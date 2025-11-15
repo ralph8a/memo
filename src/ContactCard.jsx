@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ContactCard.css";
+import "../styles/ContactCard.css";
 import "animate.css/animate.css";
 
 const ContactCard = () => {
@@ -189,3 +189,4 @@ const ContactCard = () => {
 };
 
 export default ContactCard;
+// Moved to src/components/ContactCard.jsx
