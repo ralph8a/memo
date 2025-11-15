@@ -20,7 +20,7 @@ function App() {
     // Solo descarga al entrar por primera vez a la página principal
     if (window.location.pathname === "/" || window.location.pathname === "/memo") {
       const link = document.createElement("a");
-      link.href = "/memo/tarjeta.jpg";
+  link.href = "/assets/tarjeta.jpg";
       link.download = "tarjeta.jpg";
       document.body.appendChild(link);
       link.click();
@@ -29,7 +29,7 @@ function App() {
   }, []);
   const handleDescargarTarjeta = () => {
     const link = document.createElement("a");
-    link.href = "/memo/tarjeta.jpg";
+  link.href = "/assets/tarjeta.jpg";
     link.download = "tarjeta.jpg";
     document.body.appendChild(link);
     link.click();
