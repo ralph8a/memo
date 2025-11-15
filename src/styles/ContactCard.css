@@ -5,7 +5,7 @@ body {
 	font-family: 'Segoe UI', Arial, sans-serif;
 	background: #f5f6fa;
 	transition: background 0.3s;
-
+}
 
 body.dark-mode {
 	background: #181a20;
@@ -39,7 +39,7 @@ body.dark-mode .background-soft {
 		color: #222;
 }
 
-.body.dark-mode .contact-card {
+body.dark-mode .contact-card {
 	background: #232526;
 	color: #f5f6fa;
 }
@@ -63,7 +63,6 @@ body.dark-mode .contact-info-value {
 }
 body.dark-mode .contact-address-value {
 	color: #e0e0e0;
-}
 }
 
 .contact-header {
