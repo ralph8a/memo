@@ -216,14 +216,6 @@ body {
 .color-dot.selected {
   border: 2px solid #232526;
   box-shadow: 0 0 0 4px #c94f7c33;
-}
-
-.contact-address {
-  display: flex;
-  align-items: center;
-  margin-top: 14px;
-  font-size: 1.08em;
-}
 
 .contact-address-icon {
   width: 32px;
@@ -232,6 +224,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.contact-address-icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px #0002);
+}
 }
 
 .contact-address-icon img {
