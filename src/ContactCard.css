@@ -17,6 +17,292 @@ body {
   --main-text-light: #222;
   --main-shadow: 0 4px 24px rgba(231, 84, 128, 0.2);
 }
+
+.contact-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff6fa;
+  border-radius: 28px;
+  box-shadow: 0 8px 32px #a02c5a44, 0 2px 12px #a02c5a22;
+  color: #a02c5a;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 7vw auto 3vw auto;
+  padding: 32px 18px 28px 18px;
+  box-sizing: border-box;
+  border: 2px solid #a02c5a33;
+  transition: box-shadow 0.3s, background 0.3s;
+}
+
+.contact-divider {
+  border: none;
+  border-top: 2px solid var(--main-color, #c94f7c);
+  margin: 0 0 18px 0;
+  width: 80%;
+  align-self: center;
+  background: radial-gradient(circle at 60% 20%, #a02c5a33 0%, #c94f7c22 100%);
+  pointer-events: none;
+}
+
+.contact-header {
+  background: var(--main-pink-light);
+  color: var(--main-text-light);
+}
+
+.contact-photo {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  margin-bottom: 18px;
+  border: 6px solid #a02c5a;
+  box-shadow: 0 0 24px 6px #a02c5a88, 0 2px 12px #a02c5a22;
+  transition: box-shadow 0.3s, border-color 0.3s;
+  position: relative;
+  background: var(--main-pink-dark);
+}
+
+.contact-role {
+  font-size: 1.08em;
+  background: var(--main-pink);
+  color: var(--main-text-dark);
+  margin-bottom: 18px;
+}
+
+.contact-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+  margin-top: 22px;
+  background: var(--main-pink-light);
+  color: var(--main-text-light);
+  text-decoration: none;
+}
+
+.contact-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #a02c5a;
+  box-shadow: 0 2px 8px #a02c5a33;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-icon-circle img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px #0002);
+}
+
+.contact-action:hover .contact-icon-circle {
+  animation: animate__tada 0.8s;
+  transform: scale(1.18);
+  box-shadow: 0 4px 16px #a02c5a66;
+}
+
+.contact-info {
+  background: transparent;
+  color: #a02c5a;
+  padding: 10px 6px;
+  font-size: 1.08em;
+  border-radius: 0 0 18px 18px;
+  margin-top: 0;
+}
+
+.contact-info-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 1.08em;
+  border-bottom: 1px solid #a02c5a44;
+  padding-bottom: 8px;
+}
+
+.contact-info-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.contact-info-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-info-icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px #0002);
+}
+
+.cv-btn {
+  background: linear-gradient(90deg, #a02c5a 0%, #c94f7c 100%);
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 22px;
+  cursor: pointer;
+  font-family: 'Poppins', 'Roboto', Arial, sans-serif;
+  font-size: 1.12em;
+  box-shadow: 0 4px 18px #a02c5a22, 0 2px 12px #a02c5a44;
+  display: block;
+  margin: 0 auto;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  outline: none;
+}
+
+.cv-btn:hover {
+  background: linear-gradient(90deg, #fff 0%, #a02c5a 100%);
+  color: #a02c5a;
+  box-shadow: 0 8px 24px #a02c5a33, 0 4px 16px #a02c5a44;
+  transform: scale(1.07);
+}
+
+.dark-btn {
+  background: linear-gradient(90deg, #4FC98A 0%, #232526 100%) !important;
+}
+
+.dark-btn:hover {
+  background: linear-gradient(90deg, #232526 0%, #4FC98A 100%) !important;
+  box-shadow: 0 4px 16px #4FC98A44 !important;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #232526ee;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.95em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+
+.contact-action:hover .tooltip {
+  opacity: 1;
+}
+
+.color-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #0002;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.color-dot.selected {
+  border: 2px solid #232526;
+  box-shadow: 0 0 0 4px #c94f7c33;
+}
+
+.contact-address {
+  display: flex;
+  align-items: center;
+  margin-top: 14px;
+  font-size: 1.08em;
+}
+
+.contact-address-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-address-icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px #0002);
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .contact-card {
+    max-width: 98vw;
+    margin: 2vw auto;
+    padding: 10px 2vw;
+  }
+  .contact-header {
+    padding: 14px 0 10px 0;
+  }
+  .contact-photo {
+    width: 70px;
+    height: 70px;
+  }
+  .contact-actions {
+    gap: 12px;
+  }
+  .contact-icon-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2em;
+  }
+  .contact-info {
+    padding: 8px 2px;
+    font-size: 1em;
+  }
+  .contact-name {
+    font-size: 1.2em;
+  }
+  .contact-role {
+    font-size: 1em;
+  }
+  .cv-btn {
+    font-size: 1em;
+    padding: 10px 16px;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Roboto', Arial, sans-serif;
+  background: linear-gradient(135deg, #a02c5a 0%, #c94f7c 100%);
+  min-height: 100vh;
+  transition: background 0.5s;
+}
+
+:root {
+  --main-bg: #2d0036;
+  --main-pink: #e75480;
+  --main-pink-dark: #c2185b;
+  --main-pink-light: #ffb6c1;
+  --main-text: #fff;
+  --main-text-dark: #fff;
+  --main-text-light: #222;
+  --main-shadow: 0 4px 24px rgba(231, 84, 128, 0.2);
+}
     background: linear-gradient(135deg, #a02c5a 0%, #c94f7c 100%);
     min-height: 100vh;
     transition: background 0.5s;
