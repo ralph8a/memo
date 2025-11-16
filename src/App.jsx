@@ -20,7 +20,7 @@ function App() {
     // Download tarjeta automatically on first load
     if (window.location.pathname === "/" || window.location.pathname === "/memo") {
       const link = document.createElement("a");
-      link.href = `${import.meta.env.BASE_URL}assets/tarjeta.jpg`;
+  link.href = `${import.meta.env.BASE_URL}tarjeta.jpg`;
       link.download = "tarjeta.jpg";
       document.body.appendChild(link);
       link.click();
@@ -29,7 +29,7 @@ function App() {
   }, []);
   const handleDescargarTarjeta = () => {
     const link = document.createElement("a");
-    link.href = `${import.meta.env.BASE_URL}assets/tarjeta.jpg`;
+  link.href = `${import.meta.env.BASE_URL}tarjeta.jpg`;
     link.download = "tarjeta.jpg";
     document.body.appendChild(link);
     link.click();

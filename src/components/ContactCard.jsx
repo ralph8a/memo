@@ -76,7 +76,7 @@ const ContactCard = () => {
             tabIndex={0}
             onClick={e => {e.preventDefault(); navigator.clipboard.writeText("5580190389"); showNotification(t[language].copied);}}>
             <span className="contact-icon contact-icon-circle" style={{ background: "#4FC98A", position:'relative' }}>
-              <img src={`${import.meta.env.BASE_URL}assets/phone.svg`} alt={t[language].phone} />
+              <img src={`${import.meta.env.BASE_URL}phone.svg`} alt={t[language].phone} />
               <span className="tooltip">{t[language].phone}</span>
             </span>
           </a>
@@ -84,7 +84,7 @@ const ContactCard = () => {
             tabIndex={0}
             onClick={e => {e.preventDefault(); navigator.clipboard.writeText("guille_ks@outlook.com"); showNotification(t[language].copied);}}>
             <span className="contact-icon contact-icon-circle" style={{ background: mainColor, position:'relative' }}>
-              <img src={`${import.meta.env.BASE_URL}assets/mail.svg`} alt={t[language].email} />
+              <img src={`${import.meta.env.BASE_URL}mail.svg`} alt={t[language].email} />
               <span className="tooltip">{t[language].email}</span>
             </span>
           </a>
@@ -106,27 +106,27 @@ const ContactCard = () => {
         <div className="contact-info animate__animated animate__fadeInUp animate__delay-4s">
           <div className="contact-info-row">
             <span className="contact-info-icon" style={{background: mainColor, borderRadius: '50%', padding: '4px'}}>
-              <img src={`${import.meta.env.BASE_URL}assets/phone.svg`} alt={t[language].phone} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
+              <img src={`${import.meta.env.BASE_URL}phone.svg`} alt={t[language].phone} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
             </span>
             <span className="contact-info-value">5580190389</span>
           </div>
           <div className="contact-info-row">
             <span className="contact-info-icon" style={{background: mainColor, borderRadius: '50%', padding: '4px'}}>
-              <img src={`${import.meta.env.BASE_URL}assets/mail.svg`} alt={t[language].email} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
+              <img src={`${import.meta.env.BASE_URL}mail.svg`} alt={t[language].email} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
             </span>
             <span className="contact-info-value">guille_ks@outlook.com</span>
           </div>
           <div className="contact-info-row" style={{ justifyContent: "center", marginTop: 24, marginBottom: 0, borderBottom: "none" }}>
             <button id="show-cv-btn" className={`cv-btn animate__animated animate__pulse animate__infinite${darkMode ? ' dark-btn' : ''}`} onClick={() => window.location.href = "cv_web.html"}>
               <span style={{background: mainColor, borderRadius: '50%', padding: '4px', marginRight: '8px', display: 'inline-flex', alignItems: 'center'}}>
-                <img src={`${import.meta.env.BASE_URL}assets/cv.svg`} alt={t[language].cv} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
+                <img src={`${import.meta.env.BASE_URL}cv.svg`} alt={t[language].cv} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
               </span>
               {t[language].cv}
             </button>
           </div>
           <div className="contact-address animate__animated animate__fadeIn animate__delay-5s">
             <span className="contact-address-icon" style={{background: mainColor, borderRadius: '50%', padding: '4px'}}>
-              <img src={`${import.meta.env.BASE_URL}assets/location.svg`} alt={t[language].address} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
+              <img src={`${import.meta.env.BASE_URL}location.svg`} alt={t[language].address} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
             </span>
             <span className="contact-address-value">{t[language].address}</span>
             {/* Google Maps embed */}
