@@ -1817,13 +1817,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
 .contact-address-icon img {
   width: 20px;
   height: 20px;
   object-fit: contain;
   filter: drop-shadow(0 1px 2px #0002);
+}
+
 @media (max-width: 600px) {
   .contact-card {
     max-width: 98vw;
