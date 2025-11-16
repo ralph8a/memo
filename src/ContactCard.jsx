@@ -32,7 +32,7 @@ const ContactCard = () => {
       linkedin: "LinkedIn",
       twitter: "Twitter",
       address: "Miguel Hidalgo, 11000, Anahuac 203",
-      cv: "Ver CV",
+  cv: "Visualizar CV web",
       theme: "Tema",
       dark: "Modo oscuro",
       color: "Color principal",
@@ -49,7 +49,7 @@ const ContactCard = () => {
       linkedin: "LinkedIn",
       twitter: "Twitter",
       address: "Miguel Hidalgo, 11000, Anahuac 203",
-      cv: "View CV",
+  cv: "Download my CV",
       theme: "Theme",
       dark: "Dark mode",
       color: "Main color",
@@ -108,16 +108,16 @@ const ContactCard = () => {
           <a href="tel:+525580190389" className="contact-action animate__animated animate__bounceIn animate__delay-3s" title={t[language].phone}
             tabIndex={0}
             onClick={e => {e.preventDefault(); navigator.clipboard.writeText("5580190389"); showNotification(t[language].copied);}}>
-            <span className="contact-icon contact-icon-circle" style={{ background: "#4FC98A", position:'relative' }}>
-              <img src="/assets/phone.svg" alt={t[language].phone} />
+            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c", position:'relative', fontSize: '1.6em', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              📞
               <span className="tooltip">{t[language].phone}</span>
             </span>
           </a>
           <a href="mailto:guille_ks@outlook.com" className="contact-action animate__animated animate__bounceIn animate__delay-3s" title={t[language].email}
             tabIndex={0}
             onClick={e => {e.preventDefault(); navigator.clipboard.writeText("guille_ks@outlook.com"); showNotification(t[language].copied);}}>
-            <span className="contact-icon contact-icon-circle" style={{ background: mainColor, position:'relative' }}>
-              <img src="/assets/mail.svg" alt={t[language].email} />
+            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c", position:'relative', fontSize: '1.6em', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              ✉️
               <span className="tooltip">{t[language].email}</span>
             </span>
           </a>
@@ -129,8 +129,8 @@ const ContactCard = () => {
             title={t[language].linkedin}
             tabIndex={0}
           >
-            <span className="contact-icon contact-icon-circle" style={{ background: darkMode ? "#4FC98A" : mainColor, position:'relative' }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill={darkMode ? "#4FC98A" : mainColor}/><path fill="#fff" d="M7.5 9.5a1 1 0 11-2 0 1 1 0 012 0zM6 11h3v7H6v-7zm5 0h2v1.25a2.25 2.25 0 014.5 0V18h-2v-4.25a.25.25 0 00-.5 0V18h-2v-7z"/></svg>
+            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c", position:'relative' }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#c94f7c"/><path fill="#fff" d="M7.5 9.5a1 1 0 11-2 0 1 1 0 012 0zM6 11h3v7H6v-7zm5 0h2v1.25a2.25 2.25 0 014.5 0V18h-2v-4.25a.25.25 0 00-.5 0V18h-2v-7z"/></svg>
               <span className="tooltip">{t[language].linkedin}</span>
             </span>
           </a>
@@ -144,28 +144,20 @@ const ContactCard = () => {
         <hr className="contact-divider" />
         <div className="contact-info animate__animated animate__fadeInUp animate__delay-4s">
           <div className="contact-info-row">
-            <span className="contact-info-icon" style={{background: mainColor, borderRadius: '50%', padding: '4px'}}>
-              <img src="/assets/phone.svg" alt={t[language].phone} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
+            <span className="contact-info-icon" style={{background: "#c94f7c", borderRadius: '50%', padding: '4px', fontSize: '1.3em', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+              📞
             </span>
             <span className="contact-info-value">5580190389</span>
           </div>
           <div className="contact-info-row">
-            <span className="contact-info-icon" style={{background: mainColor, borderRadius: '50%', padding: '4px'}}>
-              <img src="/assets/mail.svg" alt={t[language].email} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
+            <span className="contact-info-icon" style={{background: "#c94f7c", borderRadius: '50%', padding: '4px', fontSize: '1.3em', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+              ✉️
             </span>
             <span className="contact-info-value">guille_ks@outlook.com</span>
           </div>
-          <div className="contact-info-row" style={{ justifyContent: "center", marginTop: 24, marginBottom: 0, borderBottom: "none" }}>
-            <button id="show-cv-btn" className={`cv-btn animate__animated animate__pulse animate__infinite${darkMode ? ' dark-btn' : ''}`} onClick={() => window.location.href = "cv_web.html"}>
-              <span style={{background: mainColor, borderRadius: '50%', padding: '4px', marginRight: '8px', display: 'inline-flex', alignItems: 'center'}}>
-                <img src="/assets/cv.svg" alt={t[language].cv} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
-              </span>
-              {t[language].cv}
-            </button>
-          </div>
           <div className="contact-address animate__animated animate__fadeIn animate__delay-5s">
-            <span className="contact-address-icon" style={{background: mainColor, borderRadius: '50%', padding: '4px'}}>
-              <img src="/assets/location.svg" alt={t[language].address} style={{filter: darkMode ? 'brightness(1.8)' : 'none'}} />
+            <span className="contact-address-icon" style={{background: "#c94f7c", borderRadius: '50%', padding: '4px', fontSize: '1.3em', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+              📍
             </span>
             <span className="contact-address-value">{t[language].address}</span>
             {/* Google Maps embed */}
@@ -173,6 +165,13 @@ const ContactCard = () => {
               {t[language].map}
             </a>
             {/* Fin Google Maps */}
+          </div>
+          <div className="contact-info-row" style={{ justifyContent: "center", marginTop: 24, marginBottom: 0, borderBottom: "none" }}>
+            <button id="show-cv-btn" className={`cv-btn animate__animated animate__pulse animate__infinite${darkMode ? ' dark-btn' : ''}`} onClick={() => window.location.href = "cv_web.html"}>
+              <span style={{background: "#c94f7c", borderRadius: '50%', padding: '4px', marginRight: '8px', display: 'inline-flex', alignItems: 'center', fontSize: '1.3em'}}>
+                📄 {t[language].cv}
+              </span>
+            </button>
           </div>
         </div>
         <div style={{textAlign:'center',marginTop:16}}>

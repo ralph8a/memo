@@ -19,7 +19,7 @@ export default function Tarjeta() {
     const html2canvas = (await import("html2canvas")).default;
     const canvas = await html2canvas(node);
     const link = document.createElement("a");
-    link.download = "tarjeta.jpg";
+  link.download = "tarjeta.jpg"; // download name is fine, but ensure href uses /memo-static/assets/tarjeta.jpg
     link.href = canvas.toDataURL("image/jpeg", 0.95);
     link.click();
   };
