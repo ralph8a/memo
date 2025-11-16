@@ -463,54 +463,86 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  }
 
-.contact-info-icon img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  filter: drop-shadow(0 1px 2px #0002);
+  .contact-info-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 2px #0002);
+  }
+
+  .cv-btn {
+    background: linear-gradient(90deg, #a02c5a 0%, #c94f7c 100%);
+    color: #fff;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 22px;
+    cursor: pointer;
+    font-family: 'Poppins', 'Roboto', Arial, sans-serif;
+    font-size: 1.12em;
+    box-shadow: 0 4px 18px #a02c5a22, 0 2px 12px #a02c5a44;
+    display: block;
+    margin: 0 auto;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    outline: none;
+  }
 
   .cv-btn:hover {
-}
-
-.cv-btn {
-  background: linear-gradient(90deg, #a02c5a 0%, #c94f7c 100%);
-  color: #fff;
+    background: linear-gradient(90deg, #fff 0%, #a02c5a 100%);
+    color: #a02c5a;
+    box-shadow: 0 8px 24px #a02c5a33, 0 4px 16px #a02c5a44;
+    transform: scale(1.07);
+  }
 
   .dark-btn {
-  border: none;
-  padding: 16px 32px;
+    background: linear-gradient(90deg, #4FC98A 0%, #232526 100%) !important;
+  }
 
   .dark-btn:hover {
-  border-radius: 22px;
-  cursor: pointer;
-  font-family: 'Poppins', 'Roboto', Arial, sans-serif;
+    background: linear-gradient(90deg, #232526 0%, #4FC98A 100%) !important;
+    box-shadow: 0 4px 16px #4FC98A44 !important;
+  }
 
   .tooltip {
-  font-size: 1.12em;
-  box-shadow: 0 4px 18px #a02c5a22, 0 2px 12px #a02c5a44;
-  display: block;
-  margin: 0 auto;
-  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  outline: none;
-}
-
-.cv-btn:hover {
-  background: linear-gradient(90deg, #fff 0%, #a02c5a 100%);
-  color: #a02c5a;
-  box-shadow: 0 8px 24px #a02c5a33, 0 4px 16px #a02c5a44;
-  transform: scale(1.07);
-}
+    font-size: 1.12em;
+    box-shadow: 0 4px 18px #a02c5a22, 0 2px 12px #a02c5a44;
+    display: block;
+    margin: 0 auto;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    outline: none;
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #232526ee;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.95em;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
 
   .contact-action:hover .tooltip {
-}
-
+    opacity: 1;
+  }
 
   .color-dot {
-.dark-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0002;
+    transition: border 0.2s, box-shadow 0.2s;
+  }
   background: linear-gradient(90deg, #4FC98A 0%, #232526 100%) !important;
 }
 }
