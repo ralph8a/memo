@@ -1,6 +1,6 @@
 // This file has been removed to avoid duplication and confusion.
 import React, { useState } from "react";
-import "../styles/ContactCard.css";
+import "../ContactCard.clean.css";
 import "animate.css/animate.css";
 
 const t = {
@@ -151,7 +151,7 @@ const ContactCard = () => {
 
 export default ContactCard;
 import React, { useState } from "react";
-import "../styles/ContactCard.css";
+import "../ContactCard.clean.css";
 import "animate.css/animate.css";
 
 const t = {

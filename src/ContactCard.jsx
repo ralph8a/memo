@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "./ContactCard.clean.css";
+import phoneIcon from './assets/phone.png';
+import mailIcon from './assets/mail.png';
+import locationIcon from './assets/location.png';
+import cvIcon from './assets/cv.png';
 import "animate.css/animate.css";
 
 const ContactCard = () => {
@@ -10,18 +14,13 @@ const ContactCard = () => {
   const [language, setLanguage] = useState("es");
   const colorOptions = ["#c94f7c", "#4FC98A", "#0A66C2", "#ffb6d5", "#232526", "#800020"];
   const languages = { es: "Español", en: "English" };
-  // Detecta si está en producción (GitHub Pages) o desarrollo
-  // Usar rutas absolutas para los iconos, compatible con GitHub Pages y local
-  const repoBase = '/memo/assets/';
-  const localBase = '/assets/';
-  const isProd = window.location.hostname.includes('github.io');
-  const assetPath = isProd ? repoBase : localBase;
+  // Import images so webpack bundles them reliably
   const icons = {
-    phone: assetPath + 'phone.png',
-    mail: assetPath + 'mail.png',
-    location: assetPath + 'location.png',
-    linkedin: assetPath + 'cv.png',
-    cv: assetPath + 'cv.png',
+    phone: phoneIcon,
+    mail: mailIcon,
+    location: locationIcon,
+    linkedin: cvIcon,
+    cv: cvIcon,
   };
 
   // Mostrar notificación
@@ -114,15 +113,17 @@ const ContactCard = () => {
           </div>
         </div>
         {/* Animación de entrada personalizada */}
-  <div className="contact-header animate__animated animate__fadeInDown animate__slower animate__delay-1s">
+        <div className="contact-header animate__animated animate__fadeInDown animate__slower animate__delay-1s">
           <img
             src="https://raw.githubusercontent.com/rafaelhernandezochoa95-lang/cuestionarios-filmacion/main/aaa9e1cb-2a25-4fd1-a286-4ff6123f4dc8.jpg"
             alt={t[language].name}
             className="contact-photo animate__animated animate__zoomIn animate__slower animate__delay-2s"
-            style={{borderColor: darkMode ? '#ffd6e0' : mainColor, boxShadow: darkMode ? '0 0 24px 6px #ffd6e088, 0 2px 12px #ffd6e022' : `0 0 24px 6px ${mainColor}88, 0 2px 12px ${mainColor}22`, transition:'border-color 0.3s, box-shadow 0.3s'}}
+            style={{width:64,height:64,maxWidth:'100%',borderColor: darkMode ? '#ffd6e0' : mainColor, boxShadow: darkMode ? '0 0 24px 6px #ffd6e088, 0 2px 12px #ffd6e022' : `0 0 24px 6px ${mainColor}88, 0 2px 12px ${mainColor}22`, transition:'border-color 0.3s, box-shadow 0.3s'}}
           />
-          <div className="contact-name animate__animated animate__fadeInLeft animate__delay-2s">{t[language].name}</div>
-          <div className="contact-role animate__animated animate__fadeInRight animate__delay-2s">{t[language].role}</div>
+          <div className="contact-meta">
+            <div className="contact-name animate__animated animate__fadeInLeft animate__delay-2s">{t[language].name}</div>
+            <div className="contact-role animate__animated animate__fadeInRight animate__delay-2s">{t[language].role}</div>
+          </div>
         </div>
         <hr className="contact-divider" />
   <div className="contact-actions animate__animated animate__fadeInUp animate__slower animate__delay-2s">
