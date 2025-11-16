@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ContactCard.css";
+import "./ContactCard.clean.css";
 import "animate.css/animate.css";
 
 const ContactCard = () => {
