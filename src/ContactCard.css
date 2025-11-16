@@ -454,16 +454,17 @@ body {
   color: var(--main-text-light);
 }
 
+/* Foto de contacto: tamaño fijo y estilos coherentes */
 .contact-photo {
   width: 90px;
-  background: var(--main-pink-dark);
-  color: var(--main-text-dark);
+  height: 90px;
   object-fit: cover;
   margin-bottom: 18px;
   border: 6px solid #a02c5a;
   box-shadow: 0 0 24px 6px #a02c5a88, 0 2px 12px #a02c5a22;
   transition: box-shadow 0.3s, border-color 0.3s;
   position: relative;
+  background: var(--main-pink-dark);
 }
 
 .contact-role {
