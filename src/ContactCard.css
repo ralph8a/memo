@@ -212,6 +212,7 @@ body {
   color: #a02c5a;
   box-shadow: 0 8px 24px #a02c5a33, 0 4px 16px #a02c5a44;
   transform: scale(1.07);
+}
 
   .contact-action:hover .tooltip {
 }
@@ -221,10 +222,12 @@ body {
 .dark-btn {
   background: linear-gradient(90deg, #4FC98A 0%, #232526 100%) !important;
 }
+}
 
 .dark-btn:hover {
   background: linear-gradient(90deg, #232526 0%, #4FC98A 100%) !important;
   box-shadow: 0 4px 16px #4FC98A44 !important;
+}
 }
 
   .color-dot.selected {
