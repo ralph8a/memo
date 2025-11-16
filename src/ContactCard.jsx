@@ -17,11 +17,11 @@ const ContactCard = () => {
   const isProd = window.location.hostname.includes('github.io');
   const assetPath = isProd ? repoBase : localBase;
   const icons = {
-    phone: assetPath + 'phone.svg',
-    mail: assetPath + 'mail.svg',
-    location: assetPath + 'location.svg',
-    linkedin: assetPath + 'cv.svg',
-    cv: assetPath + 'cv.svg',
+    phone: assetPath + 'phone.png',
+    mail: assetPath + 'mail.png',
+    location: assetPath + 'location.png',
+    linkedin: assetPath + 'cv.png',
+    cv: assetPath + 'cv.png',
   };
 
   // Mostrar notificación
@@ -34,7 +34,7 @@ const ContactCard = () => {
     document.body.className = darkMode ? "dark-mode" : "";
     document.body.style.setProperty("--main-color", mainColor);
     if (darkMode) {
-      document.body.style.background = "linear-gradient(135deg, #232526 0%, #a02c5a 100%)";
+      document.body.style.background = "#000";
       document.body.style.color = "#fff";
     } else {
       document.body.style.background = "linear-gradient(135deg, #a02c5a 0%, #c94f7c 100%)";
