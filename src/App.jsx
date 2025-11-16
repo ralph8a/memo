@@ -1,8 +1,8 @@
 
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import ContactCard from "./components/ContactCard";
-import "./styles/ContactCard.css";
+import ContactCard from "./ContactCard";
+import "./ContactCard.css";
 import Tarjeta from "./components/Tarjeta";
 
 function CVPage() {
