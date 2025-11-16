@@ -10,6 +10,13 @@ const ContactCard = () => {
   const [language, setLanguage] = useState("es");
   const colorOptions = ["#c94f7c", "#4FC98A", "#0A66C2", "#ffb6d5", "#232526", "#800020"];
   const languages = { es: "Español", en: "English" };
+  const icons = {
+    phone: `${import.meta.env.BASE_URL}assets/phone.svg`,
+    mail: `${import.meta.env.BASE_URL}assets/mail.svg`,
+    location: `${import.meta.env.BASE_URL}assets/location.svg`,
+    linkedin: `${import.meta.env.BASE_URL}assets/linkedin.svg`,
+    cv: `${import.meta.env.BASE_URL}assets/cv.svg`,
+  };
 
   // Mostrar notificación
   const showNotification = (msg) => {
@@ -174,18 +181,9 @@ const ContactCard = () => {
             </button>
           </div>
         </div>
-        <div style={{textAlign:'center',marginTop:16}}>
-          <a href="https://facebook.com/" target="_blank" rel="noopener" style={{margin:'0 8px'}} title={t[language].facebook} tabIndex={0}>
-            <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#4267B2"/><path fill="#fff" d="M21 16h-3v8h-4v-8h-2v-3h2v-2c0-2.2 1.3-3.5 3.5-3.5H21v3h-2c-.6 0-1 .4-1 1v1h3l-.5 3z"/></svg>
-          </a>
-          <a href="https://instagram.com/" target="_blank" rel="noopener" style={{margin:'0 8px'}} title={t[language].instagram} tabIndex={0}>
-            <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#E1306C"/><path fill="#fff" d="M16 11.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 7.5a3 3 0 110-6 3 3 0 010 6zm5.5-7.75a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z"/></svg>
-          </a>
-        </div>
       </div>
     </>
   );
-};
+}
 
 export default ContactCard;
-// Moved to src/components/ContactCard.jsx
