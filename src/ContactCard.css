@@ -1428,13 +1428,11 @@ body {
   outline: none;
 }
 
-.cv-btn:hover {
   background: linear-gradient(90deg, #fff 0%, #a02c5a 100%);
   color: #a02c5a;
   box-shadow: 0 8px 24px #a02c5a33, 0 4px 16px #a02c5a44;
   transform: scale(1.07);
 }
-.dark-btn {
   background: linear-gradient(90deg, #4FC98A 0%, #232526 100%) !important;
 }
 .dark-btn:hover {
