@@ -24,6 +24,11 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      // allow importing SVGs as files (emit to output and return URL)
+      {
+        test: /\.svg$/i,
+        type: 'asset/resource'
+      },
     ],
   },
   resolve: {
@@ -34,6 +39,11 @@ module.exports = {
     compress: true,
     port: 3000,
     historyApiFallback: true,
+    // ensure the dev middleware serves assets under the same publicPath
+    // used for production builds (output.publicPath = '/memo/').
+    devMiddleware: {
+      publicPath: '/memo/'
+    }
   },
   mode: 'development',
   plugins: [

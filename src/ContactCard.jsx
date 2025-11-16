@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./ContactCard.clean.css";
-import phoneIcon from './assets/phone.png';
-import mailIcon from './assets/mail.png';
-import locationIcon from './assets/location.png';
-import cvIcon from './assets/cv.png';
+// Prefer SVGs (they're present and non-empty) — PNGs in src were zero-byte and produced broken images.
+import phoneIcon from './assets/phone.svg';
+import mailIcon from './assets/mail.svg';
+import locationIcon from './assets/location.svg';
+import cvIcon from './assets/cv.svg';
 import "animate.css/animate.css";
 
 const ContactCard = () => {
@@ -126,20 +127,28 @@ const ContactCard = () => {
           </div>
         </div>
         <hr className="contact-divider" />
-  <div className="contact-actions animate__animated animate__fadeInUp animate__slower animate__delay-2s">
+  <div className="contact-actions animate__animated animate__fadeInUp animate__slower animate__delay-2s" role="group" aria-label="Contact actions">
           <a href="tel:+525580190389" className="contact-action animate__animated animate__bounceIn animate__slower animate__delay-3s" title={t[language].phone}
-            tabIndex={0}
-            onClick={e => {e.preventDefault(); navigator.clipboard.writeText("5580190389"); showNotification(t[language].copied);}}>
-            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c", position:'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src={icons.phone} alt="phone" style={{width:'1.6em',height:'1.6em'}} />
+            aria-label={t[language].phone}
+            onClick={async e => {
+              e.preventDefault();
+              try { await navigator.clipboard.writeText("5580190389"); showNotification(t[language].copied); }
+              catch(_) { /* fallback: open dialer */ window.location.href = 'tel:+525580190389'; }
+            }}>
+            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c" }}>
+              <img src={icons.phone} alt="" aria-hidden="true" onError={(e)=>{e.currentTarget.style.display='none'}} />
               <span className="tooltip">{t[language].phone}</span>
             </span>
           </a>
           <a href="mailto:guille_ks@outlook.com" className="contact-action animate__animated animate__bounceIn animate__slower animate__delay-3s" title={t[language].email}
-            tabIndex={0}
-            onClick={e => {e.preventDefault(); navigator.clipboard.writeText("guille_ks@outlook.com"); showNotification(t[language].copied);}}>
-            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c", position:'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src={icons.mail} alt="mail" style={{width:'1.6em',height:'1.6em'}} />
+            aria-label={t[language].email}
+            onClick={async e => {
+              e.preventDefault();
+              try { await navigator.clipboard.writeText("guille_ks@outlook.com"); showNotification(t[language].copied); }
+              catch(_) { window.location.href = 'mailto:guille_ks@outlook.com'; }
+            }}>
+            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c" }}>
+              <img src={icons.mail} alt="" aria-hidden="true" onError={(e)=>{e.currentTarget.style.display='none'}} />
               <span className="tooltip">{t[language].email}</span>
             </span>
           </a>
@@ -147,18 +156,18 @@ const ContactCard = () => {
             href="http://www.linkedin.com/in/guillermo-krause-s-238895248"
             className="contact-action animate__animated animate__bounceIn animate__slower animate__delay-3s"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             title={t[language].linkedin}
-            tabIndex={0}
+            aria-label={t[language].linkedin}
           >
-            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c", position:'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src={icons.linkedin} alt="linkedin" style={{width:'1.6em',height:'1.6em'}} />
+            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c" }}>
+              <img src={icons.linkedin} alt="" aria-hidden="true" onError={(e)=>{e.currentTarget.style.display='none'}} />
               <span className="tooltip">{t[language].linkedin}</span>
             </span>
           </a>
-          <a href="https://twitter.com/" className="contact-action animate__animated animate__bounceIn animate__slower animate__delay-3s" target="_blank" rel="noopener" title={t[language].twitter} tabIndex={0}>
-            <span className="contact-icon contact-icon-circle" style={{ background: "#1DA1F2", position:'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src={icons.mail} alt="twitter" style={{width:'1.6em',height:'1.6em',filter:'grayscale(1)'}} />
+          <a href="https://twitter.com/" className="contact-action animate__animated animate__bounceIn animate__slower animate__delay-3s" target="_blank" rel="noopener noreferrer" title={t[language].twitter} aria-label={t[language].twitter}>
+            <span className="contact-icon contact-icon-circle" style={{ background: "#1DA1F2" }}>
+              <img src={icons.mail} alt="" aria-hidden="true" style={{filter:'grayscale(1)'}} onError={(e)=>{e.currentTarget.style.display='none'}} />
               <span className="tooltip">{t[language].twitter}</span>
             </span>
           </a>
