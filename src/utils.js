@@ -82,6 +82,33 @@ export const calculateAccent2 = (mainColor) => {
 };
 
 /**
+ * Calculate darker shade for background gradients
+ */
+export const calculateDarkShade = (mainColor, factor = 0.3) => {
+  try {
+    const hex = mainColor.replace('#', '');
+    let full = hex;
+    
+    if (hex.length === 3) {
+      const r = hex[0] + hex[0];
+      const g = hex[1] + hex[1];
+      const b = hex[2] + hex[2];
+      full = r + g + b;
+    }
+    
+    const r = parseInt(full.substring(0, 2), 16);
+    const g = parseInt(full.substring(2, 4), 16);
+    const b = parseInt(full.substring(4, 6), 16);
+    const darken = (v) => Math.round(v * factor);
+    const r2 = darken(r), g2 = darken(g), b2 = darken(b);
+    
+    return `#${(1 << 24 | r2 << 16 | g2 << 8 | b2).toString(16).slice(1)}`;
+  } catch (e) {
+    return mainColor;
+  }
+};
+
+/**
  * Resize and optimize image
  */
 export const optimizeImage = (file) => {
