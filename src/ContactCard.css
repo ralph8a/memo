@@ -65,7 +65,9 @@ body{
 }
 
 [data-theme="dark"] body{
-  background: #0a0a0a;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(155, 89, 182, 0.3) 0%, rgba(155, 89, 182, 0.18) 30%, transparent 70%),
+    #000000;
 }
 
 /* full-page decorative background element (renders behind the card) */
@@ -78,7 +80,7 @@ body{
   opacity:1;
 }
 
-[data-theme="dark"] .background-soft{background:#0a0a0a}
+
 
 .contact-card{
   max-width:600px;
