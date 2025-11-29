@@ -514,6 +514,16 @@ const ContactCard = () => {
         {/* Bottom Controls Bar */}
         <div className="bottom-controls-bar">
           <div className="controls-container">
+            <button 
+              type="button" 
+              aria-label={t.dark} 
+              title={t.dark} 
+              className="emoji-control" 
+              onClick={() => setDarkMode(d => !d)}
+            >
+              {darkMode ? '🌙' : '☀️'}
+            </button>
+
             <div className="color-picker-wrapper">
               <button 
                 type="button" 
