@@ -67,10 +67,6 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-[data-theme="dark"] body{
-  background: #000000;
-}
-
 /* full-page decorative background element (renders behind the card) */
 .background-soft{
   position:fixed;
@@ -141,8 +137,8 @@ body{
 }
 
 [data-theme="dark"] .controls-container {
-  background: linear-gradient(135deg, rgba(60,60,60,0.6), rgba(50,50,50,0.5));
-  border-color: rgba(255,255,255,0.2);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5));
+  border-color: rgb(35, 0, 36);
   box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.2);
 }
 
