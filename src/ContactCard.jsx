@@ -33,6 +33,9 @@ const ContactCard = () => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   
+  // Initialize avatar from localStorage immediately
+  const [avatarInitialized, setAvatarInitialized] = useState(false);
+  
   const t = TRANSLATIONS[language];
 
   // Show notification with animation
@@ -98,11 +101,16 @@ const ContactCard = () => {
     document.body.style.setProperty('--bg-dark-3', darkShade3);
   }, [darkMode, mainColor]);
 
-  // Load persisted avatar from localStorage
+  // Load persisted avatar from localStorage - runs immediately on mount
   useEffect(() => {
-    const stored = loadFromStorage('profileImage', null);
-    if (stored) setAvatarSrcState(stored);
-  }, []);
+    if (!avatarInitialized) {
+      const stored = loadFromStorage('profileImage', null);
+      if (stored) {
+        setAvatarSrcState(stored);
+      }
+      setAvatarInitialized(true);
+    }
+  }, [avatarInitialized]);
 
   const handleFileChange = async (e) => {
     const file = e.target.files && e.target.files[0];
