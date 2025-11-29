@@ -405,7 +405,7 @@ body{
 .contact-meta{display:flex;flex-direction:column;align-items:center;text-align:center}
 .contact-name{margin:8px 0 0;font-size:1.25rem;font-weight:700;color:#000;line-height:1.05}
 .contact-role{margin:8px 0 0;font-size:0.98rem;color:#fff;opacity:1}
-[data-theme="dark"] .contact-name{color:#fff}
+[data-theme="dark"] .contact-name{color:#000}
 [data-theme="dark"] .contact-role{color:#fff}
 
 .contact-divider{border:none;border-top:1px solid rgba(0,0,0,0.06);margin:16px 0}
@@ -1191,7 +1191,7 @@ body{
   border:var(--glass-border);
   box-shadow: var(--glass-shadow);
 }
-.section-title{font-size:0.9rem;font-weight:700;color:#000;margin:0 0 12px 0;text-transform:uppercase;letter-spacing:0.5px}
+.section-title{font-size:0.9rem;font-weight:700;color:#fff;margin:0 0 12px 0;text-transform:uppercase;letter-spacing:0.5px}
 .bio-text{margin:0;line-height:1.6;color:#fff;font-size:0.95rem}
 [data-theme="dark"] .about-section{
   background:linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.12));
