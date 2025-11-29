@@ -341,6 +341,7 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .header-name {
@@ -352,6 +353,7 @@ body{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
 }
 
 [data-theme="dark"] .header-name {
