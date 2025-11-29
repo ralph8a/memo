@@ -58,17 +58,13 @@
 body, .contact-card{font-family: Inter, 'Aptos', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
 html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial}
 body{
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(155, 89, 182, 0.5) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(155, 89, 182, 0.45) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--primary) 48%, transparent) 0%, transparent 60%),
-    linear-gradient(90deg, var(--primary, #8b2348) 0%, #9b59b6 20%, #8b5a9b 40%, #3d0a1e 50%, #8b5a9b 60%, #9b59b6 80%, var(--primary, #8b2348) 100%);
+  background: radial-gradient(ellipse at 50% 50%, #9b59b6 0%, #8b2348 45%, #3d0a1e 100%);
   color:var(--muted);
   -webkit-font-smoothing:antialiased;
 }
 
 [data-theme="dark"] body{
-  background: #000000;
+  background: radial-gradient(ellipse at 50% 50%, #1a1a1a 0%, #000000 70%);
 }
 
 /* full-page decorative background element (renders behind the card) */
@@ -109,7 +105,7 @@ body{
 }
 
 [data-theme="dark"] .contact-info-row{
-  background: linear-gradient(90deg, rgba(50,50,50,0.8), rgba(45,45,45,0.8));
+  background: rgba(0,0,0,0.3);
   border: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -192,7 +188,7 @@ body{
 }
 
 [data-theme="dark"] .color-picker-dropdown-bottom {
-  background: rgba(60,60,60,0.95);
+  background: rgba(0,0,0,0.95);
   box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
@@ -293,7 +289,7 @@ body{
 }
 
 [data-theme="dark"] .image-fade-overlay {
-  background: linear-gradient(to left, rgba(28,28,32,1), transparent);
+  background: linear-gradient(to left, rgba(0,0,0,1), transparent);
 }
 
 .image-edit-btn {
@@ -539,7 +535,7 @@ body{
 }
 
 [data-theme="dark"] .contact-card-item {
-  background: rgba(128,128,128,0.06);
+  background: rgba(0,0,0,0.2);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-color: rgba(255,255,255,0.15);
@@ -697,7 +693,7 @@ body{
 }
 
 [data-theme="dark"] .tool-card {
-  background: rgba(255,255,255,0.015);
+  background: rgba(0,0,0,0.2);
   border-color: rgba(255,255,255,0.05);
   color: #fff;
 }
@@ -876,7 +872,7 @@ body{
 }
 
 [data-theme="dark"] .download-item {
-  background: rgba(128,128,128,0.06);
+  background: rgba(0,0,0,0.2);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-color: rgba(255,255,255,0.15);
@@ -972,7 +968,7 @@ body{
 }
 .contact-action:active{transform:translateY(-2px) scale(0.98)}
 [data-theme="dark"] .contact-action{
-  background:linear-gradient(135deg, rgba(60,60,60,0.5), rgba(50,50,50,0.35));
+  background:rgba(0,0,0,0.4);
   backdrop-filter:var(--glass-blur-medium);
   -webkit-backdrop-filter:var(--glass-blur-medium);
   border:1px solid rgba(255,255,255,0.2);
@@ -980,7 +976,7 @@ body{
   color:var(--primary);
 }
 [data-theme="dark"] .contact-action:hover{
-  background:linear-gradient(135deg, rgba(70,70,70,0.65), rgba(60,60,60,0.5));
+  background:rgba(0,0,0,0.6);
   box-shadow:0 16px 32px rgba(0,0,0,0.4), 0 8px 16px rgba(0,0,0,0.3);
 }
 .contact-action img{width:18px;height:18px;display:block}
@@ -1077,13 +1073,13 @@ body{
 .install-banner-minimized{position:absolute;bottom:16px;right:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.3s;background:rgba(255,255,255,0.35);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);padding:6px 12px;border-radius:16px;border:1px solid rgba(255,255,255,0.4);box-shadow:0 2px 8px rgba(0,0,0,0.08);z-index:100}
 .install-banner-minimized:hover{transform:scale(1.05)}
 .install-minimized-text{font-weight:700;font-size:0.7rem;color:var(--primary-600);letter-spacing:0.08em;opacity:0.85}
-[data-theme="dark"] .install-banner-minimized{background:rgba(60,60,60,0.45);border-color:rgba(255,255,255,0.2)}
+[data-theme="dark"] .install-banner-minimized{background:rgba(0,0,0,0.45);border-color:rgba(255,255,255,0.2)}
 .install-actions{display:flex;gap:8px;flex-shrink:0}
 .install-btn-primary{background:linear-gradient(135deg, var(--accent), var(--primary));color:#fff;border:none;padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.3s;font-size:0.875rem;box-shadow:0 4px 12px rgba(160,44,90,0.3)}
 .install-btn-primary:hover{transform:scale(1.05);box-shadow:0 6px 16px rgba(160,44,90,0.4)}
 .install-btn-minimize{background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);color:var(--primary-600);border:1px solid rgba(255,255,255,0.4);padding:12px 16px;border-radius:8px;cursor:pointer;font-size:1.2rem;transition:all 0.3s;font-weight:700;line-height:1}
 .install-btn-minimize:hover{background:rgba(255,255,255,0.4);transform:scale(1.05)}
-[data-theme="dark"] .install-banner{background:rgba(60,60,60,0.45);border-bottom-color:rgba(255,255,255,0.1)}
+[data-theme="dark"] .install-banner{background:rgba(0,0,0,0.45);border-bottom-color:rgba(255,255,255,0.1)}
 [data-theme="dark"] .install-text,
 [data-theme="dark"] .install-text strong,
 [data-theme="dark"] .install-text p,
@@ -1182,7 +1178,7 @@ body{
 .section-title{font-size:0.9rem;font-weight:700;color:#fff;margin:0 0 12px 0;text-transform:uppercase;letter-spacing:0.5px}
 .bio-text{margin:0;line-height:1.6;color:#000;font-size:0.95rem}
 [data-theme="dark"] .about-section{
-  background:linear-gradient(135deg, rgba(128,128,128,0.06), rgba(96,96,96,0.04));
+  background:rgba(0,0,0,0.2);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-color:rgba(255,255,255,0.15);
@@ -1244,7 +1240,7 @@ body{
 /* Contact Info Cards */
 .contact-info-card{background:linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));backdrop-filter:blur(10px);padding:16px;border-radius:12px;margin:12px 0;display:flex;align-items:center;gap:14px;border:1px solid rgba(160,44,90,0.08);transition:transform 0.2s ease,box-shadow 0.2s ease}
 .contact-info-card:hover{transform:translateX(4px);box-shadow:0 6px 16px rgba(160,44,90,0.1)}
-[data-theme="dark"] .contact-info-card{background:linear-gradient(135deg, rgba(60,60,60,0.9), rgba(50,50,50,0.8));border-color:rgba(255,255,255,0.1)}
+[data-theme="dark"] .contact-info-card{background:rgba(0,0,0,0.8);border-color:rgba(255,255,255,0.1)}
 
 /* Accessibility helpers */
 .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
