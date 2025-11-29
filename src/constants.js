@@ -27,8 +27,8 @@ export const STATS = {
 
 // Theme configuration
 export const THEME_CONFIG = {
-  defaultColor: "#a02c5a",
-  colorOptions: ["#c94f7c", "#0A66C2", "#800020", "#9b59b6"],
+  defaultColor: "#9b59b6",
+  colorOptions: ["#9b59b6"],
   twitterBrandColor: "#1DA1F2"
 };
 
