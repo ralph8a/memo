@@ -94,7 +94,7 @@ const ContactCard = () => {
     // Calculate darker shades for background
     const darkShade1 = calculateDarkShade(mainColor, 0.25);
     const darkShade2 = calculateDarkShade(mainColor, 0.4);
-    const darkShade3 = calculateDarkShade(mainColor, 0.55);
+    const darkShade3 = calculateDarkShade(mainColor, 0.7);
     
     document.body.style.setProperty('--bg-dark-1', darkShade1);
     document.body.style.setProperty('--bg-dark-2', darkShade2);
