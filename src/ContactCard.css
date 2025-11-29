@@ -90,8 +90,7 @@ body{
   max-width:600px;
   margin:6vh auto;
   padding:32px;
-  background:linear-gradient(180deg, rgba(255,245,250,0.06), rgba(255,240,245,0.04));
-  background-color:rgba(255,245,250,0.03);
+  background:rgba(255,255,255,0.05);
   backdrop-filter:var(--glass-blur-strong);
   -webkit-backdrop-filter:var(--glass-blur-strong);
   color: var(--muted);
@@ -104,7 +103,7 @@ body{
 
 /* Dark-mode card overrides with better visibility */
 [data-theme="dark"] .contact-card{
-  background: rgba(128,128,128,0.03);
+  background: rgba(255,255,255,0.03);
   backdrop-filter:var(--glass-blur-dark);
   -webkit-backdrop-filter:var(--glass-blur-dark);
   border: none;
