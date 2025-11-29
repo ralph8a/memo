@@ -205,12 +205,14 @@ const ContactCard = () => {
           </div>
           <div className="header-info-section">
             <h1 className="header-name anim-fade-in-left anim-delay-2">{t.name}</h1>
-            <p className="header-role anim-fade-in-right anim-delay-2">{t.role}</p>
             <div className="header-company anim-fade-in anim-delay-3">
               <div className="company-logo anim-zoom-in anim-delay-3" style={{background: mainColor}}>
-                <KrauseLogo style={{width: '44px', height: '44px', color: 'white'}} />
+                <KrauseLogo style={{width: '56px', height: '56px', color: 'white'}} />
               </div>
-              <span className="company-name">{CONTACT_INFO.company}</span>
+              <div className="company-text">
+                <span className="company-name-line">Krause</span>
+                <span className="company-name-line">Insurance</span>
+              </div>
             </div>
           </div>
         </div>

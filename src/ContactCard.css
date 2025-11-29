@@ -298,10 +298,10 @@ body{
 }
 
 .header-name {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--primary-600);
-  margin: 0 0 6px 0;
+  margin: 0 0 12px 0;
   line-height: 1.2;
 }
 
@@ -309,38 +309,40 @@ body{
   color: var(--primary);
 }
 
-.header-role {
-  font-size: 14px;
-  color: var(--muted);
-  margin: 0 0 16px 0;
-  opacity: 0.8;
-}
-
 .header-company {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .company-logo {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
+  width: 68px;
+  height: 68px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-  padding: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  padding: 8px;
 }
 
-.company-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: rgba(0,0,0,0.6);
+.company-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
 }
 
-[data-theme="dark"] .company-name {
-  color: rgba(255,255,255,0.7);
+.company-name-line {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-600);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .company-name-line {
+  color: var(--primary);
 }
 
 /* Old header styles kept for compatibility */
