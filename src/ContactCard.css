@@ -187,33 +187,28 @@ body{
 }
 
 .lang-toggle-btn {
-  padding: 6px 12px;
-  border: 1px solid rgba(0,0,0,0.15);
-  border-radius: 8px;
-  background: rgba(0,0,0,0.03);
+  padding: 0;
+  border: none;
+  background: transparent;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.2s;
   color: var(--primary-600);
-  min-width: 50px;
 }
 
 [data-theme="dark"] .lang-toggle-btn {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.15);
   color: var(--primary);
 }
 
 .lang-toggle-btn:hover {
-  border-color: var(--accent);
-  background: rgba(0,0,0,0.08);
-  transform: scale(1.05);
+  color: var(--accent);
+  transform: scale(1.1);
 }
 
 [data-theme="dark"] .lang-toggle-btn:hover {
-  background: rgba(255,255,255,0.1);
+  color: var(--accent);
 }
 
 /* Business Card Header with Image */
