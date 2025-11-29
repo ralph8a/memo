@@ -537,7 +537,7 @@ body{
   border-radius: 16px;
   cursor: pointer;
   text-decoration: none;
-  color: inherit;
+  color: #000;
   transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
   font-family: inherit;
   box-shadow: var(--glass-shadow);
@@ -556,6 +556,7 @@ body{
   -webkit-backdrop-filter: var(--glass-blur-light);
   border-color: rgba(255,255,255,0.22);
   box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  color: #fff;
 }
 
 .contact-card-item:hover {
@@ -704,12 +705,13 @@ body{
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
   font-family: inherit;
-  color: inherit;
+  color: #000;
 }
 
 [data-theme="dark"] .tool-card {
   background: rgba(255,255,255,0.03);
   border-color: rgba(255,255,255,0.1);
+  color: #fff;
 }
 
 .tool-card:hover {
@@ -826,6 +828,11 @@ body{
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
+  color: #000;
+}
+
+[data-theme="dark"] .location-address {
+  color: #fff;
 }
 
 .location-map-button {
@@ -876,7 +883,7 @@ body{
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
   font-family: inherit;
-  color: inherit;
+  color: #000;
   box-shadow: var(--glass-shadow);
 }
 
@@ -886,6 +893,7 @@ body{
   -webkit-backdrop-filter: var(--glass-blur-light);
   border-color: rgba(255,255,255,0.22);
   box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  color: #fff;
 }
 
 .download-item:hover {
