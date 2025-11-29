@@ -18,8 +18,8 @@ import {
 } from './utils';
 
 const ContactCard = () => {
-  // Load preferences from localStorage
-  const [darkMode, setDarkMode] = useState(() => loadBooleanFromStorage('darkMode', false));
+  // Load preferences from localStorage - darkMode always false (light theme)
+  const [darkMode, setDarkMode] = useState(false);
   const [mainColor, setMainColor] = useState(() => loadFromStorage('mainColor', THEME_CONFIG.defaultColor));
   const [language, setLanguage] = useState(() => loadFromStorage('language', 'es'));
   const [avatarSrcState, setAvatarSrcState] = useState(null);
@@ -45,10 +45,6 @@ const ContactCard = () => {
   };
 
   // Persist preferences to localStorage
-  useEffect(() => {
-    saveToStorage('darkMode', JSON.stringify(darkMode));
-  }, [darkMode]);
-
   useEffect(() => {
     saveToStorage('mainColor', mainColor);
   }, [mainColor]);
@@ -514,16 +510,6 @@ const ContactCard = () => {
         {/* Bottom Controls Bar */}
         <div className="bottom-controls-bar">
           <div className="controls-container">
-            <button 
-              type="button" 
-              aria-label={t.dark} 
-              title={t.dark} 
-              className="emoji-control" 
-              onClick={() => setDarkMode(d => !d)}
-            >
-              {darkMode ? '🌙' : '☀️'}
-            </button>
-
             <div className="color-picker-wrapper">
               <button 
                 type="button" 
