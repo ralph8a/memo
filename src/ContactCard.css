@@ -406,7 +406,7 @@ body{
 .contact-name{margin:8px 0 0;font-size:1.25rem;font-weight:700;color:#000;line-height:1.05}
 .contact-role{margin:8px 0 0;font-size:0.98rem;color:#000;opacity:1}
 [data-theme="dark"] .contact-name{color:#000}
-[data-theme="dark"] .contact-role{color:#000}
+[data-theme="dark"] .contact-role{color:#9e9e9e}
 
 .contact-divider{border:none;border-top:1px solid rgba(0,0,0,0.06);margin:16px 0}
 [data-theme="dark"] .contact-divider{border-top-color:rgba(255,255,255,0.1)}
@@ -1201,7 +1201,7 @@ body{
   box-shadow: 0 2px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
 }
 [data-theme="dark"] .section-title{color:#fff}
-[data-theme="dark"] .bio-text{color:#000}
+[data-theme="dark"] .bio-text{color:#9e9e9e}
 
 /* Stats Section */
 .stats-container{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
@@ -1219,7 +1219,7 @@ body{
 .stat-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(160,44,90,0.15), inset 0 1px 0 rgba(255,255,255,0.6);}
 .stat-value{font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:4px}
 .stat-label{font-size:0.75rem;color:#000;text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
-[data-theme="dark"] .stat-label{color:#000}
+[data-theme="dark"] .stat-label{color:#9e9e9e}
 [data-theme="dark"] .stat-card{
   background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.075));
   backdrop-filter:var(--glass-blur-medium);
