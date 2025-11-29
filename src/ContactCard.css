@@ -98,7 +98,7 @@ body{
 
 /* Dark-mode card overrides with better visibility */
 [data-theme="dark"] .contact-card{
-  background: rgba(155,89,182,0.08);
+  background: rgba(155,89,182,0.04);
   backdrop-filter:var(--glass-blur-strong);
   -webkit-backdrop-filter:var(--glass-blur-strong);
   border: none;
