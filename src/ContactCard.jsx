@@ -90,15 +90,6 @@ const ContactCard = () => {
     document.body.style.setProperty('--primary-600', mainColor);
     document.body.style.setProperty('--accent', mainColor);
     document.body.style.setProperty('--accent-2', calculateAccent2(mainColor));
-    
-    // Calculate darker shades for background
-    const darkShade1 = calculateDarkShade(mainColor, 0.25);
-    const darkShade2 = calculateDarkShade(mainColor, 0.4);
-    const darkShade3 = calculateDarkShade(mainColor, 0.7);
-    
-    document.body.style.setProperty('--bg-dark-1', darkShade1);
-    document.body.style.setProperty('--bg-dark-2', darkShade2);
-    document.body.style.setProperty('--bg-dark-3', darkShade3);
   }, [darkMode, mainColor]);
 
   // Load persisted avatar from localStorage - runs immediately on mount
