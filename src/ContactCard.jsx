@@ -1,212 +1,493 @@
-import React, { useState } from "react";
-import "./ContactCard.clean.css";
-// Prefer SVGs (they're present and non-empty) — PNGs in src were zero-byte and produced broken images.
-import phoneIcon from './assets/phone.svg';
-import mailIcon from './assets/mail.svg';
-import locationIcon from './assets/location.svg';
-import cvIcon from './assets/cv.svg';
-import "animate.css/animate.css";
+import React, { useState, useRef, useEffect } from "react";
+import "./ContactCard.css";
+import avatarImg from './assets/avatar.svg';
+import { PhoneIcon, MailIcon, LocationIcon, LinkedinIcon, TwitterIcon, CvIcon, DownloadIcon, ShareIcon } from './Icons';
+import { GithubIcon, InstagramIcon } from './SocialIcons';
+import KrauseLogo from './KrauseLogo';
+import { CONTACT_INFO, THEME_CONFIG, TRANSLATIONS, LANGUAGES, STATS } from './constants';
+import { 
+  loadFromStorage, 
+  loadBooleanFromStorage, 
+  saveToStorage, 
+  calculateAccent2, 
+  optimizeImage,
+  generateVCard,
+  downloadVCard as downloadVCardFile,
+  shareContact as shareContactData
+} from './utils';
 
 const ContactCard = () => {
-  const [darkMode, setDarkMode] = useState(false);
-  const [mainColor, setMainColor] = useState("#a02c5a");
+  // Load preferences from localStorage
+  const [darkMode, setDarkMode] = useState(() => loadBooleanFromStorage('darkMode', false));
+  const [mainColor, setMainColor] = useState(() => loadFromStorage('mainColor', THEME_CONFIG.defaultColor));
+  const [language, setLanguage] = useState(() => loadFromStorage('language', 'es'));
+  const [avatarSrcState, setAvatarSrcState] = useState(null);
   const [showColors, setShowColors] = useState(false);
   const [notification, setNotification] = useState("");
-  const [language, setLanguage] = useState("es");
-  const colorOptions = ["#c94f7c", "#4FC98A", "#0A66C2", "#ffb6d5", "#232526", "#800020"];
-  const languages = { es: "Español", en: "English" };
-  // Import images so webpack bundles them reliably
-  const icons = {
-    phone: phoneIcon,
-    mail: mailIcon,
-    location: locationIcon,
-    linkedin: cvIcon,
-    cv: cvIcon,
-  };
+  const [biography, setBiography] = useState("");
+  const [githubUrl, setGithubUrl] = useState("");
+  const [websiteUrl, setWebsiteUrl] = useState("");
+  const [activeTab, setActiveTab] = useState('contact');
+  
+  const t = TRANSLATIONS[language];
 
-  // Mostrar notificación
+  // Show notification with animation
   const showNotification = (msg) => {
     setNotification(msg);
-    setTimeout(() => setNotification("") , 1800);
+    setTimeout(() => setNotification(""), 2400);
   };
 
-  React.useEffect(() => {
-    document.body.className = darkMode ? "dark-mode" : "";
-    document.body.style.setProperty("--main-color", mainColor);
+  // Persist preferences to localStorage
+  useEffect(() => {
+    saveToStorage('darkMode', JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  useEffect(() => {
+    saveToStorage('mainColor', mainColor);
+  }, [mainColor]);
+
+  useEffect(() => {
+    saveToStorage('language', language);
+  }, [language]);
+
+  useEffect(() => {
+    // Apply theme
     if (darkMode) {
-      document.body.style.background = "#000";
-      document.body.style.color = "#fff";
+      document.body.setAttribute('data-theme', 'dark');
     } else {
-      document.body.style.background = "linear-gradient(135deg, #a02c5a 0%, #c94f7c 100%)";
-      document.body.style.color = "#a02c5a";
+      document.body.removeAttribute('data-theme');
     }
+    
+    // Update CSS variables for theming
+    document.body.style.setProperty("--main-color", mainColor);
+    document.body.style.setProperty('--primary-600', mainColor);
+    document.body.style.setProperty('--accent', mainColor);
+    document.body.style.setProperty('--accent-2', calculateAccent2(mainColor));
   }, [darkMode, mainColor]);
 
-  // Traducciones
-  const t = {
-    es: {
-      name: "Guillermo Krause Sepulveda",
-      role: "Krause Insurance",
-      phone: "Teléfono",
-      email: "Email",
-      linkedin: "LinkedIn",
-      twitter: "Twitter",
-      address: "Miguel Hidalgo, 11000, Anahuac 203",
-  cv: "Visualizar CV web",
-      theme: "Tema",
-      dark: "Modo oscuro",
-      color: "Color principal",
-      facebook: "Facebook",
-      instagram: "Instagram",
-      copied: "Copiado al portapapeles",
-      map: "Ver ubicación en mapa"
-    },
-    en: {
-      name: "Guillermo Krause Sepulveda",
-      role: "Krause Insurance",
-      phone: "Phone",
-      email: "Email",
-      linkedin: "LinkedIn",
-      twitter: "Twitter",
-      address: "Miguel Hidalgo, 11000, Anahuac 203",
-  cv: "Download my CV",
-      theme: "Theme",
-      dark: "Dark mode",
-      color: "Main color",
-      facebook: "Facebook",
-      instagram: "Instagram",
-      copied: "Copied to clipboard",
-      map: "View location on map"
+  // Load persisted avatar from localStorage
+  useEffect(() => {
+    const stored = loadFromStorage('profileImage', null);
+    if (stored) setAvatarSrcState(stored);
+  }, []);
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    try {
+      const dataUrl = await optimizeImage(file);
+      setAvatarSrcState(dataUrl);
+      saveToStorage('profileImage', dataUrl);
+    } catch (error) {
+      console.error('Error optimizing image:', error);
+    }
+  };
+
+  const handleRemovePhoto = () => {
+    setAvatarSrcState(null);
+    try {
+      localStorage.removeItem('profileImage');
+    } catch (e) {
+      console.error('Error removing photo:', e);
+    }
+  };
+
+  // Download vCard
+  const handleDownloadVCard = () => {
+    const vcard = generateVCard(biography, githubUrl, websiteUrl);
+    downloadVCardFile(vcard);
+    showNotification(t.vcardDownloaded);
+  };
+
+  // Share contact
+  const handleShareContact = async () => {
+    try {
+      const result = await shareContactData();
+      if (result.success) {
+        showNotification(result.method === 'share' ? t.shared : t.linkCopied);
+      }
+    } catch (error) {
+      console.error('Error sharing:', error);
     }
   };
 
   return (
     <>
-  <div className={`background-soft animate__animated animate__fadeIn`} />
-      {/* Notificación */}
-  {notification && <div className="notification animate__animated animate__fadeInDown animate__faster">{notification}</div>}
-  <div className={`contact-card animate__animated animate__fadeInUp animate__slower`} style={{zIndex:1, transition: 'background 0.5s, color 0.5s', background: darkMode ? '#232526' : '#fff6fa', color: darkMode ? '#fff' : '#a02c5a'}}>
-        {/* Switch de modo oscuro y selector de idioma */}
-  <div style={{position:'absolute',top:18,left:18,zIndex:2,display:'flex',alignItems:'center',gap:8}}>
-          <label style={{display:'flex',alignItems:'center',cursor:'pointer',gap:6, transition:'color 0.3s'}}>
-            <input type="checkbox" checked={darkMode} onChange={() => setDarkMode(d => !d)} style={{width:24,height:24}} />
-            <span style={{fontWeight:600, color: darkMode ? '#ffd6e0' : '#a02c5a', transition:'color 0.3s'}}>{darkMode ? '🌙' : '☀️'}</span>
-          </label>
-          <select value={language} onChange={e => setLanguage(e.target.value)} style={{borderRadius:8,padding:4,border:`1px solid ${mainColor}`, background: darkMode ? '#232526' : '#fff', color: darkMode ? '#fff' : '#a02c5a', transition:'background 0.3s, color 0.3s'}}>
-            {Object.entries(languages).map(([key, label]) => (
-              <option key={key} value={key}>{label}</option>
-            ))}
-          </select>
+      <div className={`background-soft anim-fade-in`} />
+      {/* Toast notification con animación elegante */}
+      <div className={`toast-notification ${notification ? 'show' : ''}`} role="status" aria-live="polite" aria-atomic="true">
+        <div className="toast-content">
+          <span className="toast-icon">✓</span>
+          <span className="toast-message">{notification}</span>
         </div>
-        {/* Menú redondo desplegable en esquina inferior derecha */}
-        <div style={{position:'fixed',bottom:32,right:32,zIndex:10}}>
-          <div style={{position:'relative',display:'flex',justifyContent:'center',alignItems:'center'}}>
-            <button className="cv-btn animate__animated animate__pulse animate__infinite" style={{borderRadius:'50%',width:40,height:40,boxShadow:`0 2px 12px ${mainColor}55`,fontSize:'1.1em',padding:0, background: darkMode ? '#a02c5a' : mainColor, color: '#fff'}} onClick={()=>setShowColors(s=>!s)}>
-              🎨
+      </div>
+
+      {/* Controls moved into the card header (see header-controls) */}
+
+      <div className="contact-card anim-fade-in-up anim-slow">
+        <div className="business-card-header anim-fade-in-down anim-slow anim-delay-1">
+          <div className="header-image-section">
+            <img
+              src={avatarSrcState || avatarImg}
+              alt={t.name}
+              className="header-hero-image anim-zoom-in anim-slow anim-delay-2"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="image-fade-overlay"></div>
+            <label className="image-edit-btn" title={t.changePhoto}>
+              <input type="file" accept="image/*" onChange={handleFileChange} style={{display:'none'}} />
+              <AvatarUpload />
+            </label>
+          </div>
+          <div className="header-info-section">
+            <h1 className="header-name anim-fade-in-left anim-delay-2">{t.name}</h1>
+            <p className="header-role anim-fade-in-right anim-delay-2">{t.role}</p>
+            <div className="header-company anim-fade-in anim-delay-3">
+              <div className="company-logo anim-zoom-in anim-delay-3" style={{background: mainColor}}>
+                <KrauseLogo style={{width: '44px', height: '44px', color: 'white'}} />
+              </div>
+              <span className="company-name">{CONTACT_INFO.company}</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* About Section */}
+        <div className="about-section anim-fade-in anim-delay-3">
+          <h3 className="section-title">{t.about}</h3>
+          <p className="bio-text">{CONTACT_INFO.bio[language]}</p>
+        </div>
+
+        {/* Stats Section */}
+        <div className="stats-container anim-fade-in anim-delay-4">
+          <div className="stat-card">
+            <div className="stat-value">{STATS.experience}</div>
+            <div className="stat-label">{t.yearsExp}</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-value">{STATS.clients}</div>
+            <div className="stat-label">{t.clients}</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-value">{STATS.policies}</div>
+            <div className="stat-label">{t.policies}</div>
+          </div>
+        </div>
+
+        <hr className="contact-divider" />
+        
+        {/* Tabs Navigation */}
+        <div className="tabs-container">
+          <div className="tabs-header" role="tablist">
+            <button 
+              className={`tab-button ${activeTab === 'contact' ? 'active' : ''}`}
+              onClick={() => setActiveTab('contact')}
+              role="tab"
+              aria-selected={activeTab === 'contact'}
+              aria-controls="contact-panel"
+            >
+              <PhoneIcon className="tab-icon" />
+              <span>Contacto</span>
             </button>
-            {showColors && (
-              <div style={{position:'absolute',bottom:'110%',right:'-24px',background: darkMode ? '#232526' : '#fff',borderRadius:'24px',boxShadow:'0 2px 12px #a02c5a22',padding:18,display:'flex',flexDirection:'column',gap:12,alignItems:'center', transition:'background 0.3s'}}>
-                {colorOptions.map(color => (
-                  <span key={color} className={`color-dot${mainColor===color?' selected':''}`} style={{background:color,width:24,height:24,margin:'4px 0',borderRadius:'50%',border:'2px solid #fff',cursor:'pointer',display:'block'}} title={color === '#800020' ? 'Vino' : ''} onClick={()=>{setMainColor(color);setShowColors(false);showNotification(t[language].color + ' cambiado');}}></span>
-                ))}
+            <button 
+              className={`tab-button ${activeTab === 'social' ? 'active' : ''}`}
+              onClick={() => setActiveTab('social')}
+              role="tab"
+              aria-selected={activeTab === 'social'}
+              aria-controls="social-panel"
+            >
+              <ShareIcon className="tab-icon" />
+              <span>Social</span>
+            </button>
+            <button 
+              className={`tab-button ${activeTab === 'location' ? 'active' : ''}`}
+              onClick={() => setActiveTab('location')}
+              role="tab"
+              aria-selected={activeTab === 'location'}
+              aria-controls="location-panel"
+            >
+              <LocationIcon className="tab-icon" />
+              <span>Ubicación</span>
+            </button>
+            <button 
+              className={`tab-button ${activeTab === 'downloads' ? 'active' : ''}`}
+              onClick={() => setActiveTab('downloads')}
+              role="tab"
+              aria-selected={activeTab === 'downloads'}
+              aria-controls="downloads-panel"
+            >
+              <DownloadIcon className="tab-icon" />
+              <span>Descargas</span>
+            </button>
+          </div>
+
+          {/* Tab Panels */}
+          <div className="tabs-content">
+            {/* Contact Tab */}
+            {activeTab === 'contact' && (
+              <div className="tab-panel anim-fade-in" id="contact-panel" role="tabpanel">
+                <div className="contact-grid">
+                  <a 
+                    href={`tel:${CONTACT_INFO.phone}`} 
+                    className="contact-card-item phone-card" 
+                    title={t.phone}
+                    aria-label={t.phone}
+                    onClick={async e => {
+                      e.preventDefault();
+                      try { 
+                        await navigator.clipboard.writeText(CONTACT_INFO.phoneDisplay); 
+                        showNotification(t.copied); 
+                      }
+                      catch(_) { 
+                        window.location.href = `tel:${CONTACT_INFO.phone}`; 
+                      }
+                    }}
+                  >
+                    <div className="card-icon">
+                      <PhoneIcon className="icon-svg" />
+                    </div>
+                    <div className="card-content">
+                      <div className="card-label">{t.phone}</div>
+                      <div className="card-value">{CONTACT_INFO.phoneDisplay}</div>
+                    </div>
+                  </a>
+
+                  <a 
+                    href={`mailto:${CONTACT_INFO.email}`} 
+                    className="contact-card-item email-card" 
+                    title={t.email}
+                    aria-label={t.email}
+                    onClick={async e => {
+                      e.preventDefault();
+                      try { 
+                        await navigator.clipboard.writeText(CONTACT_INFO.email); 
+                        showNotification(t.copied); 
+                      }
+                      catch(_) { 
+                        window.location.href = `mailto:${CONTACT_INFO.email}`; 
+                      }
+                    }}
+                  >
+                    <div className="card-icon">
+                      <MailIcon className="icon-svg" />
+                    </div>
+                    <div className="card-content">
+                      <div className="card-label">{t.email}</div>
+                      <div className="card-value">{CONTACT_INFO.email}</div>
+                    </div>
+                  </a>
+
+                  <button 
+                    type="button" 
+                    className="contact-card-item share-card" 
+                    onClick={handleShareContact} 
+                    title={t.share}
+                    aria-label={t.share}
+                  >
+                    <div className="card-icon">
+                      <ShareIcon className="icon-svg" />
+                    </div>
+                    <div className="card-content">
+                      <div className="card-label">{t.share}</div>
+                      <div className="card-value">Compartir contacto</div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Social Tab */}
+            {activeTab === 'social' && (
+              <div className="tab-panel anim-fade-in" id="social-panel" role="tabpanel">
+                <div className="social-grid">
+                  <a
+                    href={CONTACT_INFO.linkedin}
+                    className="social-card linkedin-card"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={t.linkedin}
+                    aria-label={t.linkedin}
+                  >
+                    <LinkedinIcon className="social-icon" />
+                    <span className="social-label">{t.linkedin}</span>
+                  </a>
+
+                  <a 
+                    href={CONTACT_INFO.twitter} 
+                    className="social-card twitter-card" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    title={t.twitter} 
+                    aria-label={t.twitter}
+                  >
+                    <TwitterIcon className="social-icon" />
+                    <span className="social-label">{t.twitter}</span>
+                  </a>
+
+                  <a 
+                    href={CONTACT_INFO.github} 
+                    className="social-card github-card" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    title={t.github} 
+                    aria-label={t.github}
+                  >
+                    <GithubIcon className="social-icon" />
+                    <span className="social-label">{t.github}</span>
+                  </a>
+
+                  <a 
+                    href={CONTACT_INFO.instagram} 
+                    className="social-card instagram-card" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    title={t.instagram} 
+                    aria-label={t.instagram}
+                  >
+                    <InstagramIcon className="social-icon" />
+                    <span className="social-label">{t.instagram}</span>
+                  </a>
+                </div>
+              </div>
+            )}
+
+            {/* Location Tab */}
+            {activeTab === 'location' && (
+              <div className="tab-panel anim-fade-in" id="location-panel" role="tabpanel">
+                <div className="location-card">
+                  <div className="location-icon-wrapper">
+                    <LocationIcon className="location-icon" />
+                  </div>
+                  <div className="location-info">
+                    <div className="location-label">Dirección</div>
+                    <div className="location-address">{CONTACT_INFO.address}</div>
+                  </div>
+                  <a 
+                    href={CONTACT_INFO.googleMapsUrl} 
+                    target="_blank" 
+                    rel="noopener" 
+                    className="location-map-button" 
+                    title={t.map}
+                  >
+                    {t.map}
+                    <svg className="map-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            )}
+
+            {/* Downloads Tab */}
+            {activeTab === 'downloads' && (
+              <div className="tab-panel anim-fade-in" id="downloads-panel" role="tabpanel">
+                <div className="downloads-grid">
+                  <button 
+                    type="button" 
+                    className="download-item cv-item" 
+                    onClick={() => window.location.href = CONTACT_INFO.cvUrl}
+                    title={t.cv}
+                  >
+                    <div className="download-icon">
+                      <CvIcon className="icon-svg" />
+                    </div>
+                    <div className="download-content">
+                      <div className="download-title">{t.cv}</div>
+                      <div className="download-subtitle">Ver en web</div>
+                    </div>
+                    <div className="download-arrow">→</div>
+                  </button>
+
+                  <button 
+                    type="button" 
+                    className="download-item vcard-item" 
+                    onClick={handleDownloadVCard} 
+                    title={t.download}
+                  >
+                    <div className="download-icon">
+                      <DownloadIcon className="icon-svg" />
+                    </div>
+                    <div className="download-content">
+                      <div className="download-title">Descargar vCard</div>
+                      <div className="download-subtitle">Guardar contacto</div>
+                    </div>
+                    <div className="download-arrow">↓</div>
+                  </button>
+                </div>
               </div>
             )}
           </div>
         </div>
-        {/* Animación de entrada personalizada */}
-        <div className="contact-header animate__animated animate__fadeInDown animate__slower animate__delay-1s">
-          <img
-            src="https://raw.githubusercontent.com/rafaelhernandezochoa95-lang/cuestionarios-filmacion/main/aaa9e1cb-2a25-4fd1-a286-4ff6123f4dc8.jpg"
-            alt={t[language].name}
-            className="contact-photo animate__animated animate__zoomIn animate__slower animate__delay-2s"
-            style={{width:64,height:64,maxWidth:'100%',borderColor: darkMode ? '#ffd6e0' : mainColor, boxShadow: darkMode ? '0 0 24px 6px #ffd6e088, 0 2px 12px #ffd6e022' : `0 0 24px 6px ${mainColor}88, 0 2px 12px ${mainColor}22`, transition:'border-color 0.3s, box-shadow 0.3s'}}
-          />
-          <div className="contact-meta">
-            <div className="contact-name animate__animated animate__fadeInLeft animate__delay-2s">{t[language].name}</div>
-            <div className="contact-role animate__animated animate__fadeInRight animate__delay-2s">{t[language].role}</div>
-          </div>
-        </div>
-        <hr className="contact-divider" />
-  <div className="contact-actions animate__animated animate__fadeInUp animate__slower animate__delay-2s" role="group" aria-label="Contact actions">
-          <a href="tel:+525580190389" className="contact-action animate__animated animate__bounceIn animate__slower animate__delay-3s" title={t[language].phone}
-            aria-label={t[language].phone}
-            onClick={async e => {
-              e.preventDefault();
-              try { await navigator.clipboard.writeText("5580190389"); showNotification(t[language].copied); }
-              catch(_) { /* fallback: open dialer */ window.location.href = 'tel:+525580190389'; }
-            }}>
-            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c" }}>
-              <img src={icons.phone} alt="" aria-hidden="true" onError={(e)=>{e.currentTarget.style.display='none'}} />
-              <span className="tooltip">{t[language].phone}</span>
-            </span>
-          </a>
-          <a href="mailto:guille_ks@outlook.com" className="contact-action animate__animated animate__bounceIn animate__slower animate__delay-3s" title={t[language].email}
-            aria-label={t[language].email}
-            onClick={async e => {
-              e.preventDefault();
-              try { await navigator.clipboard.writeText("guille_ks@outlook.com"); showNotification(t[language].copied); }
-              catch(_) { window.location.href = 'mailto:guille_ks@outlook.com'; }
-            }}>
-            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c" }}>
-              <img src={icons.mail} alt="" aria-hidden="true" onError={(e)=>{e.currentTarget.style.display='none'}} />
-              <span className="tooltip">{t[language].email}</span>
-            </span>
-          </a>
-          <a
-            href="http://www.linkedin.com/in/guillermo-krause-s-238895248"
-            className="contact-action animate__animated animate__bounceIn animate__slower animate__delay-3s"
-            target="_blank"
-            rel="noopener noreferrer"
-            title={t[language].linkedin}
-            aria-label={t[language].linkedin}
+
+        {/* Bottom Controls Bar */}
+        <div className="bottom-controls-bar">
+          <button 
+            type="button" 
+            aria-label={t.dark} 
+            title={t.dark} 
+            className="emoji-control" 
+            onClick={() => setDarkMode(d => !d)}
           >
-            <span className="contact-icon contact-icon-circle" style={{ background: "#c94f7c" }}>
-              <img src={icons.linkedin} alt="" aria-hidden="true" onError={(e)=>{e.currentTarget.style.display='none'}} />
-              <span className="tooltip">{t[language].linkedin}</span>
-            </span>
-          </a>
-          <a href="https://twitter.com/" className="contact-action animate__animated animate__bounceIn animate__slower animate__delay-3s" target="_blank" rel="noopener noreferrer" title={t[language].twitter} aria-label={t[language].twitter}>
-            <span className="contact-icon contact-icon-circle" style={{ background: "#1DA1F2" }}>
-              <img src={icons.mail} alt="" aria-hidden="true" style={{filter:'grayscale(1)'}} onError={(e)=>{e.currentTarget.style.display='none'}} />
-              <span className="tooltip">{t[language].twitter}</span>
-            </span>
-          </a>
-        </div>
-        <hr className="contact-divider" />
-  <div className="contact-info animate__animated animate__fadeInUp animate__slower animate__delay-3s">
-          <div className="contact-info-row animate__animated animate__fadeInLeft animate__slower animate__delay-4s">
-            <span className="contact-info-icon" style={{background: "#c94f7c", borderRadius: '50%', padding: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-              <img src={icons.phone} alt="phone" style={{width:'1.3em',height:'1.3em'}} />
-            </span>
-            <span className="contact-info-value">5580190389</span>
-          </div>
-          <div className="contact-info-row animate__animated animate__fadeInLeft animate__slower animate__delay-4s">
-            <span className="contact-info-icon" style={{background: "#c94f7c", borderRadius: '50%', padding: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-              <img src={icons.mail} alt="mail" style={{width:'1.3em',height:'1.3em'}} />
-            </span>
-            <span className="contact-info-value">guille_ks@outlook.com</span>
-          </div>
-          <div className="contact-address animate__animated animate__fadeIn animate__slower animate__delay-5s">
-            <span className="contact-address-icon" style={{background: "#c94f7c", borderRadius: '50%', padding: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-              <img src={icons.location} alt="location" style={{width:'1.3em',height:'1.3em'}} />
-            </span>
-            <span className="contact-address-value">{t[language].address}</span>
-            {/* Google Maps embed */}
-            <a href="https://www.google.com/maps/search/?api=1&query=Miguel+Hidalgo+11000+Anahuac+203" target="_blank" rel="noopener" style={{marginLeft:12,fontWeight:600,color:mainColor,textDecoration:'underline',fontSize:'0.98em'}} title={t[language].map}>
-              {t[language].map}
-            </a>
-            {/* Fin Google Maps */}
-          </div>
-          <div className="contact-info-row animate__animated animate__fadeInUp animate__slower animate__delay-5s" style={{ justifyContent: "center", marginTop: 24, marginBottom: 0, borderBottom: "none" }}>
-            <button id="show-cv-btn" className={`cv-btn animate__animated animate__pulse animate__infinite${darkMode ? ' dark-btn' : ''}`} onClick={() => window.location.href = "cv_web.html"}>
-              <span style={{background: "#c94f7c", borderRadius: '50%', padding: '4px', marginRight: '8px', display: 'inline-flex', alignItems: 'center'}}>
-                <img src={icons.cv} alt="cv" style={{width:'1.3em',height:'1.3em',marginRight:'6px'}} /> {t[language].cv}
-              </span>
+            {darkMode ? '🌙' : '☀️'}
+          </button>
+
+          <div className="color-picker-wrapper">
+            <button 
+              type="button" 
+              className="emoji-control" 
+              onClick={() => setShowColors(s => !s)}
+              title="Cambiar color"
+            >
+              🎨
             </button>
+            {showColors && (
+              <div className="color-picker-dropdown-bottom">
+                {THEME_CONFIG.colorOptions.map(color => (
+                  <button 
+                    key={color} 
+                    type="button" 
+                    aria-label={`Set color ${color}`} 
+                    className={`color-dot ${mainColor === color ? 'selected' : ''}`} 
+                    style={{background: color}} 
+                    onClick={() => {
+                      setMainColor(color);
+                      setShowColors(false);
+                      showNotification(t.colorChanged);
+                    }} 
+                  />
+                ))}
+              </div>
+            )}
           </div>
+
+          <select className="lang-select-minimal" value={language} onChange={e => setLanguage(e.target.value)} aria-label="Language selector">
+            {Object.entries(LANGUAGES).map(([key, label]) => (
+              <option key={key} value={key}>{label}</option>
+            ))}
+          </select>
         </div>
       </div>
     </>
+  );
+}
+// Small helper component so we can access the file input via a ref and reliably trigger
+// the file chooser on mobile devices where label clicks can be flaky.
+function AvatarUpload(){
+  const inputRef = useRef(null);
+  // find the hidden input sibling and keep a ref to it (works even if input is not wired via React ref)
+  React.useEffect(() => {
+    // nothing to do, input lives inside the label
+  }, []);
+  const onClick = (e) => {
+    // try to find the input element in the same label
+    const label = e.currentTarget.closest('label');
+    if (!label) return;
+    const input = label.querySelector('input[type="file"]');
+    if (input) input.click();
+  };
+  return (
+    <span role="button" tabIndex={0} onClick={onClick} onKeyDown={(e)=>{if(e.key==='Enter' || e.key===' ') onClick(e);}} className="avatar-upload-btn" aria-hidden="false">📷</span>
   );
 }
 

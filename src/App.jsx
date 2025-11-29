@@ -39,9 +39,6 @@ function App() {
     <>
       {/* Show ContactCard first, then menu and routes */}
       <ContactCard />
-      <nav style={{ marginBottom: "1rem" }}>
-        <Link to="/">Inicio</Link> | <Link to="/cv">Ver CV</Link> | <Link to="/tarjeta">Ver tarjeta</Link> | <button style={{marginLeft:4, padding:"2px 10px", borderRadius:6, border:"none", background:"#1976d2", color:"#fff", fontWeight:"bold", cursor:"pointer"}} onClick={handleDescargarTarjeta}>Descargar tarjeta</button>
-      </nav>
       <Routes>
         <Route path="/cv" element={<CVPage />} />
         <Route path="/tarjeta" element={<Tarjeta />} />

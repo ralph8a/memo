@@ -1,0 +1,17 @@
+{
+  "name": "Guillermo Krause - Contact Card",
+  "short_name": "Contact Card",
+  "description": "Professional contact card for Guillermo Krause Sepulveda - Krause Insurance",
+  "start_url": "/memo/",
+  "display": "standalone",
+  "background_color": "#fff6fa",
+  "theme_color": "#a02c5a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
