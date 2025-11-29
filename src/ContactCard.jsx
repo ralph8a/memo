@@ -29,6 +29,7 @@ const ContactCard = () => {
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [activeTab, setActiveTab] = useState('contact');
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   
   const t = TRANSLATIONS[language];
@@ -147,9 +148,12 @@ const ContactCard = () => {
     setShowInstallPrompt(false);
   };
 
-  const handleDismissInstall = () => {
-    setShowInstallPrompt(false);
-    saveToStorage('pwaPromptDismissed', 'true');
+  const handleMinimizeInstall = () => {
+    setIsMinimized(true);
+  };
+  
+  const handleExpandInstall = () => {
+    setIsMinimized(false);
   };
 
   return (
@@ -158,22 +162,28 @@ const ContactCard = () => {
       
       {/* PWA Install Banner */}
       {showInstallPrompt && (
-        <div className="install-banner anim-slide-down">
-          <div className="install-banner-content">
-            <div className="install-icon">📱</div>
-            <div className="install-text">
-              <strong>{t.installTitle || 'Instalar App'}</strong>
-              <p>{t.installDescription || 'Accede más rápido desde tu pantalla de inicio'}</p>
+        <div className={`install-banner ${isMinimized ? 'minimized' : ''} anim-slide-down`}>
+          {!isMinimized ? (
+            <div className="install-banner-content">
+              <div className="install-icon">📱</div>
+              <div className="install-text">
+                <strong>{t.installTitle || 'Instalar App'}</strong>
+                <p>{t.installDescription || 'Accede más rápido desde tu pantalla de inicio'}</p>
+              </div>
+              <div className="install-actions">
+                <button onClick={handleInstallApp} className="install-btn-primary">
+                  {t.install || 'Instalar'}
+                </button>
+                <button onClick={handleMinimizeInstall} className="install-btn-minimize">
+                  –
+                </button>
+              </div>
             </div>
-            <div className="install-actions">
-              <button onClick={handleInstallApp} className="install-btn-primary">
-                {t.install || 'Instalar'}
-              </button>
-              <button onClick={handleDismissInstall} className="install-btn-dismiss">
-                ✕
-              </button>
+          ) : (
+            <div className="install-banner-minimized" onClick={handleExpandInstall}>
+              <span className="install-minimized-text">APP</span>
             </div>
-          </div>
+          )}
         </div>
       )}
       
