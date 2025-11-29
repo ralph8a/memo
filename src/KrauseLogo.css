@@ -46,16 +46,7 @@
   }
 }
 
-/* Efecto hover sutil */
+/* Efecto hover sutil - usa la animación pulse de ContactCard.css */
 .krause-shield:hover {
   animation: pulse 0.6s ease-in-out;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
 }

@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 
 const cardData = {
-  nombre: "Rafael A.",
-  puesto: "Desarrollador Web",
-  email: "rafael@email.com",
-  telefono: "+52 123 456 7890",
-  linkedin: "linkedin.com/in/ralph8a",
+  nombre: "Guillermo Krause Sepulveda",
+  puesto: "Agente de Seguros",
+  email: "Guillermo.Krause@ksinsurancee.com",
+  telefono: "+52 5580190389",
+  linkedin: "linkedin.com/in/guillermo-krause-s-238895248",
   ubicacion: "CDMX, México"
 };
 
