@@ -59,7 +59,7 @@ body{
     radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--primary) 68%, transparent) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--primary) 62%, transparent) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--primary) 48%, transparent) 0%, transparent 60%),
-    linear-gradient(90deg, var(--bg-dark-3, #3d0a1e) 0%, var(--bg-dark-2, #721d3f) 25%, var(--primary, #8b2348) 50%, var(--bg-dark-2, #721d3f) 75%, var(--bg-dark-3, #4a0f24) 100%);
+    linear-gradient(90deg, var(--primary, #8b2348) 0%, var(--bg-dark-2, #721d3f) 25%, var(--bg-dark-3, #3d0a1e) 50%, var(--bg-dark-2, #721d3f) 75%, var(--primary, #8b2348) 100%);
   color:var(--muted);
   -webkit-font-smoothing:antialiased;
 }
