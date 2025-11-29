@@ -234,7 +234,7 @@ const ContactCard = () => {
             <h1 className="header-name anim-fade-in-left anim-delay-2">{t.name}</h1>
             <div className="header-company anim-fade-in anim-delay-3">
               <div className="company-logo anim-zoom-in anim-delay-3">
-                <KrauseLogo style={{width: '64px', height: '64px', color: '#000'}} />
+                <KrauseLogo style={{width: '80px', height: '80px', color: '#000'}} />
               </div>
               <div className="company-text">
                 <span className="company-name-line">Krause</span>
