@@ -331,13 +331,13 @@ body{
 .header-name {
   font-size: 20px;
   font-weight: 700;
-  color: var(--primary-600);
+  color: #000 !important;
   margin: 0 0 12px 0;
   line-height: 1.2;
 }
 
 [data-theme="dark"] .header-name {
-  color: var(--primary);
+  color: #fff !important;
 }
 
 .header-company {
