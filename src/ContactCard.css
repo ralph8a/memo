@@ -373,12 +373,16 @@ body{
 .company-name-line {
   font-size: 18px;
   font-weight: 700;
-  color: #000;
+  color: #000 !important;
   line-height: 1;
   letter-spacing: -0.02em;
 }
 
 [data-theme="dark"] .company-name-line {
+  color: #fff !important;
+}
+
+[data-theme="dark"] .company-name-line-old {
   color: var(--primary);
 }
 
