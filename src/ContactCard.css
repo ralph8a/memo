@@ -98,12 +98,11 @@ body{
 
 /* Dark-mode card overrides with better visibility */
 [data-theme="dark"] .contact-card{
-  background: linear-gradient(180deg, rgba(40,40,45,0.25), rgba(35,35,40,0.2));
-  background-color: rgba(40,40,45,0.18);
+  background: rgba(155,89,182,0.08);
   backdrop-filter:var(--glass-blur-strong);
   -webkit-backdrop-filter:var(--glass-blur-strong);
   border: none;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+  box-shadow: none;
   color: var(--muted);
 }
 
