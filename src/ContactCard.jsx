@@ -20,10 +20,8 @@ import {
 const ContactCard = () => {
   // Load preferences from localStorage
   const [darkMode, setDarkMode] = useState(() => loadBooleanFromStorage('darkMode', false));
-  const [mainColor, setMainColor] = useState(() => loadFromStorage('mainColor', THEME_CONFIG.defaultColor));
   const [language, setLanguage] = useState(() => loadFromStorage('language', 'es'));
   const [avatarSrcState, setAvatarSrcState] = useState(null);
-  const [showColors, setShowColors] = useState(false);
   const [notification, setNotification] = useState("");
   const [biography, setBiography] = useState("");
   const [githubUrl, setGithubUrl] = useState("");
@@ -48,10 +46,6 @@ const ContactCard = () => {
   useEffect(() => {
     saveToStorage('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
-
-  useEffect(() => {
-    saveToStorage('mainColor', mainColor);
-  }, [mainColor]);
 
   useEffect(() => {
     saveToStorage('language', language);
@@ -84,13 +78,7 @@ const ContactCard = () => {
     } else {
       document.body.removeAttribute('data-theme');
     }
-    
-    // Update CSS variables for theming
-    document.body.style.setProperty("--main-color", mainColor);
-    document.body.style.setProperty('--primary-600', mainColor);
-    document.body.style.setProperty('--accent', mainColor);
-    document.body.style.setProperty('--accent-2', calculateAccent2(mainColor));
-  }, [darkMode, mainColor]);
+  }, [darkMode]);
 
   // Load persisted avatar from localStorage - runs immediately on mount
   useEffect(() => {
