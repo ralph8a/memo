@@ -69,8 +69,8 @@ body{
 
 [data-theme="dark"] body{
   background: 
-    radial-gradient(ellipse at 100% 0%, rgba(96, 96, 96, 0.06) 0%, transparent 25%),
-    radial-gradient(ellipse at 0% 100%, rgba(128, 128, 128, 0.04) 0%, transparent 30%),
+    radial-gradient(ellipse at 100% 0%, rgba(80, 80, 80, 0.15) 0%, transparent 30%),
+    radial-gradient(ellipse at 0% 100%, rgba(100, 100, 100, 0.12) 0%, transparent 35%),
     #000000;
 }
 
