@@ -486,52 +486,54 @@ const ContactCard = () => {
 
         {/* Bottom Controls Bar */}
         <div className="bottom-controls-bar">
-          <button 
-            type="button" 
-            aria-label={t.dark} 
-            title={t.dark} 
-            className="emoji-control" 
-            onClick={() => setDarkMode(d => !d)}
-          >
-            {darkMode ? '🌙' : '☀️'}
-          </button>
-
-          <div className="color-picker-wrapper">
+          <div className="controls-container">
             <button 
               type="button" 
+              aria-label={t.dark} 
+              title={t.dark} 
               className="emoji-control" 
-              onClick={() => setShowColors(s => !s)}
-              title="Cambiar color"
+              onClick={() => setDarkMode(d => !d)}
             >
-              🎨
+              {darkMode ? '🌙' : '☀️'}
             </button>
-            {showColors && (
-              <div className="color-picker-dropdown-bottom">
-                {THEME_CONFIG.colorOptions.map(color => (
-                  <button 
-                    key={color} 
-                    type="button" 
-                    aria-label={`Set color ${color}`} 
-                    className={`color-dot ${mainColor === color ? 'selected' : ''}`} 
-                    style={{background: color}} 
-                    onClick={() => {
-                      setMainColor(color);
-                      setShowColors(false);
-                      showNotification(t.colorChanged);
-                    }} 
-                  />
-                ))}
-              </div>
-            )}
-          </div>
 
-          <button 
-            className="lang-toggle-btn" 
-            onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-            aria-label="Toggle language"
-          >
-            {language === 'es' ? 'ES' : 'ENG'}
-          </button>
+            <div className="color-picker-wrapper">
+              <button 
+                type="button" 
+                className="emoji-control" 
+                onClick={() => setShowColors(s => !s)}
+                title="Cambiar color"
+              >
+                🎨
+              </button>
+              {showColors && (
+                <div className="color-picker-dropdown-bottom">
+                  {THEME_CONFIG.colorOptions.map(color => (
+                    <button 
+                      key={color} 
+                      type="button" 
+                      aria-label={`Set color ${color}`} 
+                      className={`color-dot ${mainColor === color ? 'selected' : ''}`} 
+                      style={{background: color}} 
+                      onClick={() => {
+                        setMainColor(color);
+                        setShowColors(false);
+                        showNotification(t.colorChanged);
+                      }} 
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button 
+              className="lang-toggle-btn" 
+              onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+              aria-label="Toggle language"
+            >
+              {language === 'es' ? 'ES' : 'ENG'}
+            </button>
+          </div>
         </div>
       </div>
     </>
