@@ -229,10 +229,6 @@ const ContactCard = () => {
               decoding="async"
             />
             <div className="image-fade-overlay"></div>
-            <label className="image-edit-btn" title={t.changePhoto}>
-              <input type="file" accept="image/*" onChange={handleFileChange} style={{display:'none'}} />
-              <AvatarUpload />
-            </label>
           </div>
           <div className="header-info-section">
             <h1 className="header-name anim-fade-in-left anim-delay-2">{t.name}</h1>
