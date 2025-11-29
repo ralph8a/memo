@@ -162,30 +162,24 @@ const ContactCard = () => {
     <>
       <div className={`background-soft anim-fade-in`} />
       
-      {/* PWA Install Banner */}
-      {showInstallPrompt && (
-        <div className={`install-banner ${isMinimized ? 'minimized' : ''} anim-slide-down`}>
-          {!isMinimized ? (
-            <div className="install-banner-content">
-              <div className="install-icon">📱</div>
-              <div className="install-text">
-                <strong>{t.installTitle || 'Instalar App'}</strong>
-                <p>{t.installDescription || 'Accede más rápido desde tu pantalla de inicio'}</p>
-              </div>
-              <div className="install-actions">
-                <button onClick={handleInstallApp} className="install-btn-primary">
-                  {t.install || 'Instalar'}
-                </button>
-                <button onClick={handleMinimizeInstall} className="install-btn-minimize">
-                  –
-                </button>
-              </div>
+      {/* PWA Install Banner - Full width version */}
+      {showInstallPrompt && !isMinimized && (
+        <div className="install-banner anim-slide-down">
+          <div className="install-banner-content">
+            <div className="install-icon">📱</div>
+            <div className="install-text">
+              <strong>{t.installTitle || 'Instalar App'}</strong>
+              <p>{t.installDescription || 'Accede más rápido desde tu pantalla de inicio'}</p>
             </div>
-          ) : (
-            <div className="install-banner-minimized" onClick={handleExpandInstall}>
-              <span className="install-minimized-text">APP</span>
+            <div className="install-actions">
+              <button onClick={handleInstallApp} className="install-btn-primary">
+                {t.install || 'Instalar'}
+              </button>
+              <button onClick={handleMinimizeInstall} className="install-btn-minimize">
+                –
+              </button>
             </div>
-          )}
+          </div>
         </div>
       )}
       
@@ -200,6 +194,13 @@ const ContactCard = () => {
       {/* Controls moved into the card header (see header-controls) */}
 
       <div className="contact-card anim-fade-in-up anim-slow">
+        
+        {/* PWA Install Banner - Minimized version inside card */}
+        {showInstallPrompt && isMinimized && (
+          <div className="install-banner-minimized" onClick={handleExpandInstall}>
+            <span className="install-minimized-text">APP</span>
+          </div>
+        )}
         <div className="business-card-header anim-fade-in-down anim-slow anim-delay-1">
           <div className="header-image-section">
             <img
