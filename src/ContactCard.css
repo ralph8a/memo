@@ -967,7 +967,7 @@ body{
 .contact-action:focus-visible{outline:3px solid rgba(201,79,124,0.18);outline-offset:3px}
 
 /* Icon svg styling */
-.icon-svg{width:18px;height:18px;display:block;color:#fff}
+.icon-svg{width:18px;height:18px;display:block;color:currentColor}
 .icon-svg.icon-info{width:20px;height:20px}
 
 .contact-icon{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:8px;transition:transform .16s ease,box-shadow .16s ease,opacity .16s}
@@ -976,7 +976,6 @@ body{
 
 /* Info rows: subtle background and icon color */
 .contact-info-icon{background:linear-gradient(180deg,var(--primary),var(--accent));color:#fff}
-.contact-info-icon .icon-svg{color:#fff}
 
 /* Tooltip: keep simple and accessible */
 .tooltip{position:absolute;left:50%;transform:translateX(-50%);bottom:-34px;background:rgba(0,0,0,0.75);color:#fff;padding:8px 12px;border-radius:8px;font-size:0.85rem;white-space:nowrap;display:none}
@@ -999,13 +998,13 @@ body{
 
 /* Avatar upload button */
 .avatar-upload{cursor:pointer}
-.avatar-upload-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:linear-gradient(180deg,var(--primary),var(--accent));color:#fff;box-shadow:0 8px 18px rgba(0,0,0,0.12);font-size:18px;line-height:1}
+.avatar-upload-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:linear-gradient(180deg,var(--primary),var(--accent));color:#fff;box-shadow:0 8px 18px rgba(0,0,0,0.12);font-size:18px;line-height:1;cursor:pointer;transition:transform 0.3s}
 .avatar-upload-btn:hover{transform:translateY(-2px)}
 .avatar-upload-btn:focus{outline:3px solid rgba(255,255,255,0.14);outline-offset:3px}
 .avatar-upload input{display:none}
 
 /* Floating theme button (bottom-right) */
-.theme-fab{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--surface);color:var(--muted);box-shadow:0 8px 22px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.06);cursor:pointer}
+.theme-fab{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--surface);color:var(--muted);box-shadow:0 8px 22px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.06);cursor:pointer;transition:transform 0.3s}
 .theme-fab:hover{transform:translateY(-3px)}
 .theme-fab:focus{outline:3px solid rgba(201,79,124,0.12);outline-offset:3px}
 
@@ -1033,36 +1032,37 @@ body{
   box-shadow:0 12px 28px rgba(160,44,90,0.14), 0 6px 12px rgba(0,0,0,0.1);
   background:linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.4));
 }
-.contact-info-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(180deg,var(--accent),var(--primary));box-shadow:0 8px 18px rgba(160,44,90,0.08)}
+.contact-info-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;box-shadow:0 8px 18px rgba(160,44,90,0.08)}
 .contact-info-value{font-weight:700;color:var(--primary-600)}
 
 /* Address icon (circular) */
 .contact-address-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;box-shadow:0 6px 14px rgba(0,0,0,0.06);flex:0 0 44px}
-.contact-address-icon .icon-svg{width:20px;height:20px;color:#fff}
+.contact-address-icon .icon-svg{width:20px;height:20px}
 
 .contact-address{display:flex;flex-direction:row;align-items:center;gap:12px}
 .contact-address a{color:var(--link-color);text-decoration:underline}
 .contact-address-value{color:var(--address-text);font-weight:600}
 .map-link{margin-left:12px;font-weight:700;color:var(--link-color);text-decoration:underline;font-size:0.98em}
 
-.cv-btn{display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:24px;background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;text-decoration:none;border:none;font-weight:700;box-shadow:0 12px 28px rgba(160,44,90,0.14)}
+.cv-btn{display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:24px;background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;text-decoration:none;border:none;font-weight:700;box-shadow:0 12px 28px rgba(160,44,90,0.14);cursor:pointer;transition:transform 0.3s,box-shadow 0.3s}
 .cv-btn .icon{width:18px;height:18px}
 
 /* PWA Install Banner */
-.install-banner{position:fixed;top:0;left:0;right:0;z-index:9998;background:linear-gradient(135deg, var(--primary-600), var(--accent));color:#fff;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,0.15);backdrop-filter:blur(10px)}
+.install-banner{position:fixed;top:0;left:0;right:0;z-index:9998;background:rgba(255,255,255,0.15);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);color:var(--primary-600);padding:16px;box-shadow:0 4px 20px rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.6);border-bottom:1px solid rgba(255,255,255,0.3)}
 .install-banner-content{display:flex;align-items:center;gap:16px;max-width:800px;margin:0 auto}
 .install-icon{font-size:32px;flex-shrink:0}
 .install-text{flex:1}
 .install-text strong{display:block;font-size:1rem;margin-bottom:4px}
 .install-text p{margin:0;font-size:0.875rem;opacity:0.95}
 .install-actions{display:flex;gap:8px;flex-shrink:0}
-.install-btn-primary{background:rgba(255,255,255,0.95);color:var(--primary-600);border:none;padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.2s;font-size:0.875rem}
-.install-btn-primary:hover{background:#fff;transform:scale(1.05)}
-.install-btn-dismiss{background:transparent;color:#fff;border:none;padding:12px;border-radius:8px;cursor:pointer;font-size:1.2rem;opacity:0.8;transition:all 0.2s}
-.install-btn-dismiss:hover{opacity:1;background:rgba(255,255,255,0.15)}
-[data-theme="dark"] .install-banner{background:linear-gradient(135deg, #ff98c1, #ff80b0)}
-[data-theme="dark"] .install-btn-primary{background:rgba(10,10,10,0.95);color:#ff98c1}
-[data-theme="dark"] .install-btn-primary:hover{background:#0a0a0a}
+.install-btn-primary{background:linear-gradient(135deg, var(--accent), var(--primary));color:#fff;border:none;padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.3s;font-size:0.875rem;box-shadow:0 4px 12px rgba(160,44,90,0.3)}
+.install-btn-primary:hover{transform:scale(1.05);box-shadow:0 6px 16px rgba(160,44,90,0.4)}
+.install-btn-dismiss{background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);color:var(--primary-600);border:1px solid rgba(255,255,255,0.4);padding:12px;border-radius:8px;cursor:pointer;font-size:1.2rem;transition:all 0.3s}
+.install-btn-dismiss:hover{background:rgba(255,255,255,0.4);transform:scale(1.05)}
+[data-theme="dark"] .install-banner{background:rgba(40,40,45,0.25);border-bottom-color:rgba(255,255,255,0.1);color:var(--primary)}
+[data-theme="dark"] .install-btn-primary{background:linear-gradient(135deg, var(--accent), var(--primary));box-shadow:0 4px 12px rgba(255,152,193,0.4)}
+[data-theme="dark"] .install-btn-dismiss{background:rgba(255,255,255,0.1);color:var(--primary);border-color:rgba(255,255,255,0.2)}
+[data-theme="dark"] .install-btn-dismiss:hover{background:rgba(255,255,255,0.2)}
 @keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}
 .anim-slide-down{animation:slideDown 0.4s ease-out forwards}
 
