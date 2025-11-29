@@ -67,6 +67,13 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
+[data-theme="dark"] body{
+  background: 
+    radial-gradient(ellipse at 20% 80%, rgba(60, 60, 80, 0.15) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 20%, rgba(80, 60, 80, 0.12) 0%, transparent 40%),
+    #000000;
+}
+
 /* full-page decorative background element (renders behind the card) */
 .background-soft{
   position:fixed;
