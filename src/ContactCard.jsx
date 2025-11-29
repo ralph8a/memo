@@ -28,6 +28,8 @@ const ContactCard = () => {
   const [githubUrl, setGithubUrl] = useState("");
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [activeTab, setActiveTab] = useState('contact');
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
   
   const t = TRANSLATIONS[language];
 
@@ -49,6 +51,24 @@ const ContactCard = () => {
   useEffect(() => {
     saveToStorage('language', language);
   }, [language]);
+
+  // PWA Install prompt
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      
+      // Check if user dismissed before
+      const dismissed = loadBooleanFromStorage('pwaPromptDismissed', false);
+      if (!dismissed) {
+        setTimeout(() => setShowInstallPrompt(true), 3000);
+      }
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+  }, []);
 
   useEffect(() => {
     // Apply theme
@@ -112,9 +132,51 @@ const ContactCard = () => {
     }
   };
 
+  // Install PWA
+  const handleInstallApp = async () => {
+    if (!deferredPrompt) return;
+    
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    
+    if (outcome === 'accepted') {
+      showNotification(t.appInstalled || '¡App instalada!');
+    }
+    
+    setDeferredPrompt(null);
+    setShowInstallPrompt(false);
+  };
+
+  const handleDismissInstall = () => {
+    setShowInstallPrompt(false);
+    saveToStorage('pwaPromptDismissed', 'true');
+  };
+
   return (
     <>
       <div className={`background-soft anim-fade-in`} />
+      
+      {/* PWA Install Banner */}
+      {showInstallPrompt && (
+        <div className="install-banner anim-slide-down">
+          <div className="install-banner-content">
+            <div className="install-icon">📱</div>
+            <div className="install-text">
+              <strong>{t.installTitle || 'Instalar App'}</strong>
+              <p>{t.installDescription || 'Accede más rápido desde tu pantalla de inicio'}</p>
+            </div>
+            <div className="install-actions">
+              <button onClick={handleInstallApp} className="install-btn-primary">
+                {t.install || 'Instalar'}
+              </button>
+              <button onClick={handleDismissInstall} className="install-btn-dismiss">
+                ✕
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* Toast notification con animación elegante */}
       <div className={`toast-notification ${notification ? 'show' : ''}`} role="status" aria-live="polite" aria-atomic="true">
         <div className="toast-content">

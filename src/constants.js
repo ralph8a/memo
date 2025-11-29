@@ -72,7 +72,11 @@ export const TRANSLATIONS = {
     contactInfo: "Información de Contacto",
     yearsExp: "Años de experiencia",
     clients: "Clientes satisfechos",
-    policies: "Pólizas emitidas"
+    policies: "Pólizas emitidas",
+    installTitle: "Instalar App",
+    installDescription: "Accede más rápido desde tu pantalla de inicio",
+    install: "Instalar",
+    appInstalled: "¡App instalada!"
   },
   en: {
     name: "Guillermo Krause Sepulveda",
@@ -105,7 +109,11 @@ export const TRANSLATIONS = {
     contactInfo: "Contact Information",
     yearsExp: "Years of experience",
     clients: "Satisfied clients",
-    policies: "Policies issued"
+    policies: "Policies issued",
+    installTitle: "Install App",
+    installDescription: "Access faster from your home screen",
+    install: "Install",
+    appInstalled: "App installed!"
   }
 };
 
