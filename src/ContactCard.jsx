@@ -59,14 +59,16 @@ const ContactCard = () => {
       e.preventDefault();
       setDeferredPrompt(e);
       
-      // Check if user dismissed before
-      const dismissed = loadBooleanFromStorage('pwaPromptDismissed', false);
-      if (!dismissed) {
-        setTimeout(() => setShowInstallPrompt(true), 3000);
-      }
+      // Always show prompt after 3 seconds
+      setTimeout(() => setShowInstallPrompt(true), 3000);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    
+    // For testing: show banner even without PWA event
+    if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
+      setTimeout(() => setShowInstallPrompt(true), 3000);
+    }
     
     return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
   }, []);
