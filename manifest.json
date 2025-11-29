@@ -9,10 +9,9 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/memo/icon.svg",
+      "src": "icon.svg",
       "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/svg+xml"
     }
   ]
 }
