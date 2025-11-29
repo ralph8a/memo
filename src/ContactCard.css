@@ -31,12 +31,12 @@
   --page-bg: #0a0a0a;
   --card-bg: #0a0a0a;
   --surface: #0a0a0a;
-  --primary: #ffb4d2;
-  --primary-600: #ff98c1;
-  --link-color: #ffd6e0;
+  --primary: #b0b0b0;
+  --primary-600: #999999;
+  --link-color: #d0d0d0;
   --address-text: var(--muted);
   --muted: #e6e6e6;
-  --accent: #ff80b0;
+  --accent: #888888;
   --shadow: 0 8px 30px rgba(0,0,0,0.8);
 }
 /* Aptos font support (drop woff2 into src/assets/fonts/ and these will be used) */
@@ -1103,7 +1103,7 @@ body{
 .toast-content{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg, var(--accent), var(--primary-600));color:#fff;padding:16px 20px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.1);backdrop-filter:blur(10px);min-width:200px}
 .toast-icon{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.25);font-weight:bold;font-size:14px}
 .toast-message{font-weight:600;font-size:0.95rem;letter-spacing:0.01em}
-[data-theme="dark"] .toast-content{background:linear-gradient(135deg, #ff80b0, #ff98c1);box-shadow:0 8px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.15)}
+[data-theme="dark"] .toast-content{background:linear-gradient(135deg, #888888, #999999);box-shadow:0 8px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.15)}
 
 /* Enhanced animations */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
