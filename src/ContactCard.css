@@ -68,10 +68,7 @@ body{
 }
 
 [data-theme="dark"] body{
-  background: 
-    radial-gradient(ellipse at 100% 0%, rgba(80, 80, 80, 0.08) 0%, transparent 20%),
-    radial-gradient(ellipse at 0% 100%, rgba(100, 100, 100, 0.06) 0%, transparent 25%),
-    #000000;
+  background: #000000;
 }
 
 /* full-page decorative background element (renders behind the card) */
