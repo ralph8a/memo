@@ -525,11 +525,13 @@ const ContactCard = () => {
             )}
           </div>
 
-          <select className="lang-select-minimal" value={language} onChange={e => setLanguage(e.target.value)} aria-label="Language selector">
-            {Object.entries(LANGUAGES).map(([key, label]) => (
-              <option key={key} value={key}>{label}</option>
-            ))}
-          </select>
+          <button 
+            className="lang-toggle-btn" 
+            onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+            aria-label="Toggle language"
+          >
+            {language === 'es' ? 'ES' : 'ENG'}
+          </button>
         </div>
       </div>
     </>
