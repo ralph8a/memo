@@ -62,7 +62,7 @@ body{
     radial-gradient(circle at 20% 20%, rgba(155, 89, 182, 0.3) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(155, 89, 182, 0.25) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--primary) 48%, transparent) 0%, transparent 60%),
-    linear-gradient(90deg, var(--primary, #8b2348) 0%, #721d3f 25%, #3d0a1e 50%, #721d3f 75%, var(--primary, #8b2348) 100%);
+    linear-gradient(90deg, var(--primary, #8b2348) 0%, #9b59b6 25%, #3d0a1e 50%, #9b59b6 75%, var(--primary, #8b2348) 100%);
   color:var(--muted);
   -webkit-font-smoothing:antialiased;
 }
