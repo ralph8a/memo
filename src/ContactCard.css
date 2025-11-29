@@ -32,11 +32,11 @@
   --card-bg: #0a0a0a;
   --surface: #0a0a0a;
   --primary: #b0b0b0;
-  --primary-600: #999999;
-  --link-color: #d0d0d0;
+  --primary-600: #b0b0b0;
+  --link-color: #b0b0b0;
   --address-text: var(--muted);
   --muted: #e6e6e6;
-  --accent: #888888;
+  --accent: #b0b0b0;
   --shadow: 0 8px 30px rgba(0,0,0,0.8);
 }
 /* Aptos font support (drop woff2 into src/assets/fonts/ and these will be used) */
