@@ -222,7 +222,7 @@ body{
   right: 0;
   width: 100px;
   height: 100%;
-  background: linear-gradient(to left, rgba(255,255,255,1), transparent);
+  background: linear-gradient(to left, #fef5f9, transparent);
   pointer-events: none;
 }
 
