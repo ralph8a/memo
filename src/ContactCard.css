@@ -1,4 +1,4 @@
-/* ---------- Professional Contact Card Styles ---------- */
+﻿/* ---------- Professional Contact Card Styles ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 *{box-sizing:border-box}
@@ -13,6 +13,7 @@
   --color-white: #ffffff;
   --color-black: #000000;
   --color-gray: #333333;
+  --baby-pink: #fef5f9;
   
   /* Opacity Layers */
   --white-03: rgba(255,255,255,0.03);
@@ -37,12 +38,12 @@
   --black-8: rgba(0,0,0,0.8);
   
   /* Light Theme */
-  --page-bg: var(--brand-maroon);
-  --card-bg: var(--color-white);
-  --primary: var(--brand-maroon);
+  --page-bg: linear-gradient(135deg, var(--brand-maroon) 0%, var(--brand-purple) 100%);
+  --card-bg: var(--baby-pink);
+  --primary: var(--color-black);
   --accent: var(--brand-purple);
-  --muted: var(--color-gray);
-  --surface: var(--color-white);
+  --muted: var(--color-black);
+  --surface: var(--baby-pink);
   --shadow: 0 8px 30px rgba(16,18,22,0.08);
   
   /* Glass Effects */
