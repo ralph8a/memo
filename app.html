@@ -110,6 +110,21 @@
     </div>
   </footer>
 
+  <script>
+    // Restart shield animation when page loads
+    window.addEventListener('load', () => {
+      const shields = document.querySelectorAll('.krause-shield');
+      shields.forEach(shield => {
+        const elements = shield.querySelectorAll('.shield-circle, .shield-diamond, .shield-arc, .shield-line');
+        elements.forEach(el => {
+          el.style.animation = 'none';
+          setTimeout(() => {
+            el.style.animation = '';
+          }, 10);
+        });
+      });
+    });
+  </script>
   <script src="app.js"></script>
 </body>
 </html>
