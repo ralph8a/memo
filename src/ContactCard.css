@@ -1000,7 +1000,7 @@ body{
   border:var(--glass-border);
   box-shadow: var(--glass-shadow);
 }
-.section-title{font-size:0.9rem;font-weight:700;color:var(--primary);margin:0 0 12px 0;text-transform:uppercase;letter-spacing:0.5px}
+.section-title{font-size:0.9rem;font-weight:700;color:#fff;margin:0 0 12px 0;text-transform:uppercase;letter-spacing:0.5px}
 .bio-text{margin:0;line-height:1.6;color:var(--primary);font-size:0.95rem}
 
 /* Stats Container */
