@@ -113,7 +113,7 @@ body{
   -webkit-backdrop-filter:var(--glass-blur-strong);
   color: var(--muted);
   border-radius:var(--radius-lg);
-  box-shadow:var(--shadow);
+  box-shadow:none;
   border:none;
   position:relative;
   overflow:visible;
