@@ -263,6 +263,10 @@ body {
   margin-top: 80px;
 }
 
+.main-content.home-page {
+  overflow: hidden;
+}
+
 /* Buttons */
 .btn {
   padding: 12px 24px;
@@ -573,13 +577,28 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.8s ease;
-  position: relative;
-  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 15;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px;
 }
 
 .features-parade.show-features {
   opacity: 1;
   pointer-events: all;
+}
+
+.features-parade.parade-complete {
+  position: relative;
+  margin-top: 0;
+  min-height: auto;
+  transition: all 1s ease;
 }
 
 .features-parade .feature-box {
@@ -623,6 +642,9 @@ body {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 1s ease, transform 1s ease;
+  position: relative;
+  z-index: 20;
+  margin-top: -100vh;
 }
 
 .final-cta.show-cta {

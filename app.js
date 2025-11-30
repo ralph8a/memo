@@ -962,6 +962,7 @@ function loadPage(page) {
 
 // Home page animation sequence
 function startHomeSequence() {
+  const mainContent = document.getElementById('mainContent');
   const heroIntro = document.querySelector('.hero-intro');
   const featuresSection = document.querySelector('.features-parade');
   const finalCta = document.querySelector('.final-cta');
@@ -969,12 +970,15 @@ function startHomeSequence() {
   
   console.log('Starting home sequence...', { heroIntro, featuresSection, finalCta });
   
+  // Add home-page class for overflow control
+  if (mainContent) mainContent.classList.add('home-page');
+  
   // After animations complete (shield + stats), fade out intro
   setTimeout(() => {
     console.log('Fading out hero intro...');
     if (heroIntro) heroIntro.classList.add('fade-out-intro');
     
-    // Show features in parade
+    // Show features in parade (appearing in hero position)
     setTimeout(() => {
       console.log('Starting features parade...');
       if (featuresSection) {
@@ -991,11 +995,17 @@ function startHomeSequence() {
           }, index * 500);
         });
         
-        // Show final CTA
+        // After parade completes, transition to normal layout
         setTimeout(() => {
-          console.log('Showing final CTA...');
-          if (finalCta) finalCta.classList.add('show-cta');
-        }, cards.length * 500 + 1000);
+          console.log('Parade complete, transitioning to normal layout...');
+          featuresSection.classList.add('parade-complete');
+          
+          // Show final CTA
+          setTimeout(() => {
+            console.log('Showing final CTA...');
+            if (finalCta) finalCta.classList.add('show-cta');
+          }, 800);
+        }, cards.length * 500 + 1500);
       }
     }, 1000);
   }, 5000); // Wait for shield + stats animations
@@ -1018,10 +1028,12 @@ function skipToFinalState() {
   const finalCta = document.querySelector('.final-cta');
   const cards = document.querySelectorAll('.feature-box');
   
-  heroIntro.classList.add('instant-hide');
-  featuresSection.classList.add('show-features', 'instant-position');
+  if (heroIntro) heroIntro.classList.add('instant-hide');
+  if (featuresSection) {
+    featuresSection.classList.add('show-features', 'instant-position', 'parade-complete');
+  }
   cards.forEach(card => card.classList.add('parade-animate', 'instant-position'));
-  finalCta.classList.add('show-cta');
+  if (finalCta) finalCta.classList.add('show-cta');
 }
 
 // Initialize stats animation
