@@ -155,8 +155,29 @@ const pages = {
     
     <section class="cta-section final-cta home-section" id="contacto-section">
       <div class="container">
-        <h2 style="margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.2rem);">Contacta a Nuestros Agentes</h2>
-        <p style="margin-bottom: 24px; font-size: 1rem;">Expertos listos para asesorarte</p>
+        <div class="cta-hero-title">
+          <h2 class="animated-title">
+            <span class="title-line">¿Listo para</span>
+            <span class="title-line highlight">Proteger</span>
+            <span class="title-line">tu Futuro?</span>
+          </h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <p class="cta-subtitle">Obtén una cotización personalizada sin compromiso</p>
+        
+        <div class="cta-buttons cta-main-buttons">
+          <button class="btn btn-primary btn-lg btn-pulse" onclick="navigateTo('contact')">
+            <span>📝 Solicitar Cotización Gratis</span>
+          </button>
+          <button class="btn btn-secondary btn-lg" onclick="navigateTo('services')">
+            <span>🛡️ Ver Servicios</span>
+          </button>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <h3 class="agents-title">Nuestros Agentes Expertos</h3>
         
         <div class="agents-grid">
           <div class="agent-card">
@@ -186,15 +207,6 @@ const pages = {
             <p class="agent-title">Seguros Hogar</p>
             <a href="tel:+525544445555" class="agent-contact">📞 (55) 4444-5555</a>
           </div>
-        </div>
-        
-        <div class="cta-buttons" style="margin-top: 24px;">
-          <button class="btn btn-primary" onclick="navigateTo('contact')">
-            Solicitar Cotización
-          </button>
-          <button class="btn btn-secondary" onclick="navigateTo('services')">
-            Ver Servicios
-          </button>
         </div>
       </div>
     </section>
