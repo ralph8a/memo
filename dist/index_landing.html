@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Krause Insurance - Protegemos lo que más valoras. Seguros personalizados con más de 25 años de experiencia.">
+  <title>Krause Insurance - Tu Protección, Nuestra Prioridad</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="landing.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Aptos+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Particles Background -->
+  <canvas id="particles-canvas"></canvas>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <span class="logo-text">Krause</span>
+          <span class="logo-text">Insurance</span>
+        </div>
+        <button class="cta-button-nav" onclick="scrollToContact()">Contactar</button>
+      </div>
+    </nav>
+    
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="title-line">Protegemos</span>
+        <span class="title-line accent">Lo Que Más Valoras</span>
+      </h1>
+      <p class="hero-subtitle">
+        Seguros personalizados con más de 25 años de experiencia. 
+        Tu tranquilidad es nuestra misión.
+      </p>
+      <div class="hero-buttons">
+        <button class="cta-button primary" onclick="scrollToContact()">
+          <span>Solicitar Cotización</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+        <button class="cta-button secondary" onclick="scrollToServices()">
+          Ver Servicios
+        </button>
+      </div>
+      
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number" data-target="25">0</div>
+          <div class="stat-label">Años de Experiencia</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="5000">0</div>
+          <div class="stat-label">Clientes Satisfechos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="10000">0</div>
+          <div class="stat-label">Pólizas Activas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Nuestros Servicios</h2>
+      <p class="section-subtitle">Cobertura completa para todas tus necesidades</p>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3 class="service-title">Seguros de Hogar</h3>
+          <p class="service-description">Protege tu patrimonio y a tu familia con coberturas completas contra todo riesgo.</p>
+          <ul class="service-features">
+            <li>Daños estructurales</li>
+            <li>Contenido y bienes</li>
+            <li>Responsabilidad civil</li>
+          </ul>
+        </div>
+        
+        <div class="service-card featured">
+          <div class="badge">Más Popular</div>
+          <div class="service-icon">🚗</div>
+          <h3 class="service-title">Seguros de Auto</h3>
+          <p class="service-description">Circula con tranquilidad. Cobertura amplia y asistencia 24/7 donde estés.</p>
+          <ul class="service-features">
+            <li>Cobertura total</li>
+            <li>Asistencia en carretera</li>
+            <li>Auto de reemplazo</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">❤️</div>
+          <h3 class="service-title">Seguros de Vida</h3>
+          <p class="service-description">Asegura el futuro de tus seres queridos con planes flexibles y accesibles.</p>
+          <ul class="service-features">
+            <li>Cobertura familiar</li>
+            <li>Planes personalizados</li>
+            <li>Pago de primas flexible</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3 class="service-title">Seguros Comerciales</h3>
+          <p class="service-description">Protege tu negocio contra imprevistos y asegura la continuidad operativa.</p>
+          <ul class="service-features">
+            <li>Responsabilidad general</li>
+            <li>Propiedad comercial</li>
+            <li>Compensación laboral</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">💼</div>
+          <h3 class="service-title">Seguros de Salud</h3>
+          <p class="service-description">Acceso a los mejores servicios médicos con cobertura amplia y red extensa.</p>
+          <ul class="service-features">
+            <li>Cobertura hospitalaria</li>
+            <li>Medicamentos incluidos</li>
+            <li>Red médica premium</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">✈️</div>
+          <h3 class="service-title">Seguros de Viaje</h3>
+          <p class="service-description">Viaja sin preocupaciones con cobertura internacional completa.</p>
+          <ul class="service-features">
+            <li>Asistencia mundial</li>
+            <li>Cancelación de viaje</li>
+            <li>Equipaje protegido</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-us">
+    <div class="container">
+      <h2 class="section-title">¿Por Qué Elegirnos?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Respuesta Rápida</h3>
+          <p>Atención inmediata en siniestros. Tu tranquilidad no puede esperar.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Asesoría Personalizada</h3>
+          <p>Cada cliente es único. Diseñamos soluciones a tu medida.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>Mejores Precios</h3>
+          <p>Cotizamos con múltiples aseguradoras para ofrecerte el mejor precio.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>25+ Años de Experiencia</h3>
+          <p>Confianza respaldada por miles de clientes satisfechos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"Excelente servicio. Cuando tuve un accidente, Guillermo estuvo conmigo en cada paso. Recomendado 100%."</p>
+          <div class="testimonial-author">
+            <strong>María González</strong>
+            <span>Cliente desde 2019</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"Encontré el mejor precio para mi auto y hogar. La atención personalizada hace toda la diferencia."</p>
+          <div class="testimonial-author">
+            <strong>Carlos Ramírez</strong>
+            <span>Cliente desde 2020</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"Profesionalismo y calidez humana. Se preocupan genuinamente por el bienestar de sus clientes."</p>
+          <div class="testimonial-author">
+            <strong>Ana Martínez</strong>
+            <span>Cliente desde 2018</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-content">
+        <div class="contact-info">
+          <h2 class="section-title">Hablemos</h2>
+          <p class="contact-description">
+            ¿Tienes preguntas? Estamos aquí para ayudarte. 
+            Contáctanos y recibe una cotización personalizada sin compromiso.
+          </p>
+          
+          <div class="contact-methods">
+            <a href="tel:+123456789" class="contact-method">
+              <div class="method-icon">📞</div>
+              <div class="method-content">
+                <div class="method-label">Llámanos</div>
+                <div class="method-value">+1 (234) 567-89</div>
+              </div>
+            </a>
+            
+            <a href="mailto:info@krauseinsurances.com" class="contact-method">
+              <div class="method-icon">📧</div>
+              <div class="method-content">
+                <div class="method-label">Email</div>
+                <div class="method-value">info@krauseinsurances.com</div>
+              </div>
+            </a>
+            
+            <div class="contact-method">
+              <div class="method-icon">📍</div>
+              <div class="method-content">
+                <div class="method-label">Ubicación</div>
+                <div class="method-value">Tu Ciudad, Estado</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-link" aria-label="Facebook">f</a>
+            <a href="#" class="social-link" aria-label="Instagram">ig</a>
+          </div>
+        </div>
+        
+        <div class="contact-form-container">
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <input type="text" class="form-input" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-input" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" class="form-input" placeholder="Teléfono" required>
+            </div>
+            <div class="form-group">
+              <select class="form-input" required>
+                <option value="">Tipo de seguro</option>
+                <option value="auto">Auto</option>
+                <option value="hogar">Hogar</option>
+                <option value="vida">Vida</option>
+                <option value="salud">Salud</option>
+                <option value="comercial">Comercial</option>
+                <option value="viaje">Viaje</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea class="form-input" rows="4" placeholder="Cuéntanos qué necesitas..." required></textarea>
+            </div>
+            <button type="submit" class="cta-button primary full-width">
+              Solicitar Cotización Gratis
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-text">Krause</span>
+            <span class="logo-text">Insurance</span>
+          </div>
+          <p class="footer-tagline">Protegemos lo que más valoras</p>
+        </div>
+        <div class="footer-links">
+          <a href="#services">Servicios</a>
+          <a href="#contact">Contacto</a>
+          <a href="/memo/">Tarjeta Digital</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Krause Insurance. Todos los derechos reservados.</p>
+        <a href="https://www.krauseinsurances.com" class="footer-url">www.KrauseInsurances.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="landing.js"></script>
+</body>
+</html>

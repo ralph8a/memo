@@ -55,6 +55,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Guillermo Krause - Contact Card',
+      filename: 'card.html',
       // ensure correct base when served from GitHub Pages repo subpath
       templateContent: ({ htmlWebpackPlugin }) => `<!doctype html><html lang="en"><head><base href="/memo/"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#a02c5a"><meta name="description" content="Professional contact card for Guillermo Krause Sepulveda - Krause Insurance"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Contact Card"><link rel="icon" type="image/svg+xml" href="icon.svg"><link rel="icon" type="image/x-icon" href="favicon.ico"><link rel="manifest" href="manifest.json"><title>${htmlWebpackPlugin.options.title}</title></head><body><div id="root"></div></body></html>`
     }),
@@ -63,7 +64,11 @@ module.exports = {
         { from: 'src/assets/icon.svg', to: 'icon.svg' },
         { from: 'src/assets/favicon.ico', to: 'favicon.ico' },
         { from: 'public/manifest.json', to: 'manifest.json' },
-        { from: 'src/service-worker.js', to: 'service-worker.js' }
+        { from: 'src/service-worker.js', to: 'service-worker.js' },
+        { from: 'landing.html', to: 'landing.html' },
+        { from: 'landing.css', to: 'landing.css' },
+        { from: 'landing.js', to: 'landing.js' },
+        { from: 'splash.html', to: 'index.html' }
       ]
     })
   ],

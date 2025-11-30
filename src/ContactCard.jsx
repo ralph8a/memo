@@ -4,6 +4,8 @@ import avatarImg from './assets/avatar.jpeg';
 import { PhoneIcon, MailIcon, LocationIcon, LinkedinIcon, TwitterIcon, CvIcon, DownloadIcon, ShareIcon } from './Icons';
 import { GithubIcon, InstagramIcon } from './SocialIcons';
 import KrauseLogo from './KrauseLogo';
+import Particles from './Particles';
+import AnimatedCounter from './AnimatedCounter';
 import { CONTACT_INFO, THEME_CONFIG, TRANSLATIONS, LANGUAGES, STATS } from './constants';
 import { 
   loadFromStorage, 
@@ -157,6 +159,7 @@ const ContactCard = () => {
 
   return (
     <>
+      <Particles darkMode={darkMode} />
       <div className={`background-soft anim-fade-in`} />
       
       {/* PWA Install Banner - Full width version */}
@@ -213,7 +216,7 @@ const ContactCard = () => {
             <h1 className="header-name anim-fade-in-left anim-delay-2">{t.name}</h1>
             <div className="header-company anim-fade-in anim-delay-3">
               <div className="company-logo anim-zoom-in anim-delay-3">
-                <KrauseLogo style={{width: '80px', height: '80px', color: '#000'}} />
+                <KrauseLogo style={{width: '100%', height: '100%', color: '#000'}} />
               </div>
               <div className="company-text">
                 <span className="company-name-line">Krause</span>
@@ -232,15 +235,15 @@ const ContactCard = () => {
         {/* Stats Section */}
         <div className="stats-container anim-fade-in anim-delay-4">
           <div className="stat-card">
-            <div className="stat-value">{STATS.experience}</div>
+            <div className="stat-value"><AnimatedCounter end={STATS.experience} suffix="+" duration={2500} /></div>
             <div className="stat-label">{t.yearsExp}</div>
           </div>
           <div className="stat-card">
-            <div className="stat-value">{STATS.clients}</div>
+            <div className="stat-value"><AnimatedCounter end={STATS.clients} suffix="+" duration={2800} /></div>
             <div className="stat-label">{t.clients}</div>
           </div>
           <div className="stat-card">
-            <div className="stat-value">{STATS.policies}</div>
+            <div className="stat-value"><AnimatedCounter end={STATS.policies} suffix="+" duration={3000} /></div>
             <div className="stat-label">{t.policies}</div>
           </div>
         </div>
@@ -510,6 +513,11 @@ const ContactCard = () => {
             >
               {language === 'es' ? 'ES' : 'ENG'}
             </button>
+          </div>
+          <div className="footer-url">
+            <a href="https://www.krauseinsurances.com" target="_blank" rel="noopener noreferrer">
+              www.KrauseInsurances.com
+            </a>
           </div>
         </div>
       </div>
