@@ -100,28 +100,25 @@ body{
   z-index:0;
   pointer-events:none;
   background: var(--page-bg);
-  background-size: 200% 200%;
+  background-size: 150% 150%;
+  background-position: center;
   opacity:1;
-  will-change: transform;
-  animation: parallaxGradient 15s ease-in-out infinite;
+  will-change: background-position;
+  animation: parallaxGradient 20s ease-in-out infinite;
 }
 
 @keyframes parallaxGradient {
   0%, 100% {
     background-position: 0% 50%;
-    transform: scale(1.1);
   }
   25% {
-    background-position: 50% 25%;
-    transform: scale(1.15) translateX(2%);
+    background-position: 40% 30%;
   }
   50% {
     background-position: 100% 50%;
-    transform: scale(1.1);
   }
   75% {
-    background-position: 50% 75%;
-    transform: scale(1.15) translateX(-2%);
+    background-position: 60% 70%;
   }
 }
 
