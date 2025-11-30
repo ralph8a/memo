@@ -1141,15 +1141,18 @@ function showHomeSection(section) {
     }
   });
   
-  // Hide all sections
-  document.querySelectorAll('.home-section').forEach(sec => {
+  // Hide all sections and remove from DOM flow
+  const allSections = document.querySelectorAll('.home-section');
+  allSections.forEach(sec => {
     sec.classList.remove('active');
     sec.classList.remove('fade-out-up');
+    sec.style.display = 'none';
   });
   
   // Show selected section
   const targetSection = document.getElementById(`${section}-section`);
   if (targetSection) {
+    targetSection.style.display = 'flex';
     targetSection.classList.add('active');
     
     // Reinitialize stats if showing hero

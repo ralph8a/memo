@@ -108,7 +108,7 @@ body.section-cta {
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 20px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -127,6 +127,8 @@ body.section-cta {
 }
 
 .logo-shield {
+  width: 50px;
+  height: 50px;
   color: var(--brand-maroon);
   filter: drop-shadow(0 2px 4px rgba(139, 35, 72, 0.3));
 }
@@ -299,7 +301,7 @@ body.section-cta {
   position: relative;
   z-index: 1;
   min-height: calc(100vh - 130px);
-  margin-top: 80px;
+  margin-top: 90px;
   margin-bottom: 50px;
 }
 
@@ -310,7 +312,7 @@ body.section-cta {
 /* Sub Navigation */
 .sub-navigation {
   position: fixed;
-  top: 80px;
+  top: 90px;
   left: 0;
   right: 0;
   z-index: 999;
@@ -363,11 +365,11 @@ body.section-cta {
 .home-section {
   display: none;
   position: absolute;
-  top: 80px;
+  top: 90px;
   left: 0;
   right: 0;
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 90px);
 }
 
 .home-section.active {
