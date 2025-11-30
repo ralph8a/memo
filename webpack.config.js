@@ -28,9 +28,9 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      // allow importing SVGs as files (emit to output and return URL)
+      // allow importing images as files (emit to output and return URL)
       {
-        test: /\.svg$/i,
+        test: /\.(svg|jpg|jpeg|png|gif)$/i,
         type: 'asset/resource'
       },
     ],
