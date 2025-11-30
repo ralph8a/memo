@@ -13,7 +13,9 @@
   --color-white: #ffffff;
   --color-black: #000000;
   --color-gray: #333333;
+  --color-dark-gray: #1a1a1a;
   --baby-pink: #fef5f9;
+  --wine: #722f37;
   
   /* Opacity Layers */
   --white-03: rgba(255,255,255,0.03);
@@ -59,10 +61,10 @@
 
 [data-theme="dark"]{
   /* Dark Theme */
-  --page-bg: var(--color-black);
+  --page-bg: linear-gradient(135deg, var(--color-black) 0%, var(--color-dark-gray) 100%);
   --card-bg: var(--color-black);
   --primary: var(--color-white);
-  --accent: var(--color-white);
+  --accent: var(--wine);
   --muted: var(--color-white);
   --surface: var(--color-black);
   --shadow: 0 8px 30px var(--black-8);
