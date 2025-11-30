@@ -995,15 +995,27 @@ function startHomeSequence() {
           }, index * 500);
         });
         
-        // After parade completes, transition to normal layout
+        // After parade completes, fade out features and show CTA
         setTimeout(() => {
-          console.log('Parade complete, transitioning to normal layout...');
-          featuresSection.classList.add('parade-complete');
+          console.log('Fading out features, showing final CTA...');
           
-          // Show final CTA
+          // Fade out features
+          if (featuresSection) featuresSection.classList.add('fade-out');
+          
+          // Show final CTA in hero position
           setTimeout(() => {
-            console.log('Showing final CTA...');
             if (finalCta) finalCta.classList.add('show-cta');
+            
+            // After CTA animation, transition everything to normal layout
+            setTimeout(() => {
+              console.log('Transitioning to final layout...');
+              if (heroIntro) heroIntro.classList.add('instant-hide');
+              if (featuresSection) {
+                featuresSection.classList.remove('fade-out');
+                featuresSection.classList.add('parade-complete');
+              }
+              if (finalCta) finalCta.classList.add('cta-final-position');
+            }, 1500);
           }, 800);
         }, cards.length * 500 + 1500);
       }
@@ -1033,7 +1045,9 @@ function skipToFinalState() {
     featuresSection.classList.add('show-features', 'instant-position', 'parade-complete');
   }
   cards.forEach(card => card.classList.add('parade-animate', 'instant-position'));
-  if (finalCta) finalCta.classList.add('show-cta');
+  if (finalCta) {
+    finalCta.classList.add('show-cta', 'cta-final-position');
+  }
 }
 
 // Initialize stats animation
