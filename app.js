@@ -1178,10 +1178,10 @@ class Particle {
   constructor() {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 3 + 1;
+    this.size = Math.random() * 4 + 2;
     this.speedX = Math.random() * 0.5 - 0.25;
     this.speedY = Math.random() * 0.5 - 0.25;
-    this.opacity = Math.random() * 0.5 + 0.3;
+    this.opacity = Math.random() * 0.4 + 0.4;
   }
 
   update() {
@@ -1194,7 +1194,7 @@ class Particle {
   }
 
   draw() {
-    ctx.fillStyle = `rgba(139, 35, 72, ${this.opacity})`;
+    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
@@ -1203,7 +1203,7 @@ class Particle {
 
 function initParticles() {
   particles = [];
-  const particleCount = Math.min(60, Math.floor((canvas.width * canvas.height) / 15000));
+  const particleCount = Math.min(100, Math.floor((canvas.width * canvas.height) / 10000));
   for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle());
   }
