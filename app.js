@@ -156,7 +156,7 @@ const pages = {
     <section class="cta-section final-cta home-section" id="contacto-section">
       <div class="container">
         <div class="cta-hero-title">
-          <h2 class="animated-title">
+          <h2 class="animated-title main-hero">
             <span class="title-line">¿Listo para</span>
             <span class="title-line highlight">Proteger</span>
             <span class="title-line">tu Futuro?</span>
@@ -177,7 +177,7 @@ const pages = {
         
         <div class="section-divider"></div>
         
-        <h3 class="agents-title">Nuestros Agentes Expertos</h3>
+        <h3 class="agents-section-title">Contacta a Nuestros Agentes</h3>
         
         <div class="agents-grid">
           <div class="agent-card">
