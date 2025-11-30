@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ContactCard.css";
-import avatarImg from './assets/avatar.jpg';
+import avatarImg from './assets/avatar.jpeg';
 import { PhoneIcon, MailIcon, LocationIcon, LinkedinIcon, TwitterIcon, CvIcon, DownloadIcon, ShareIcon } from './Icons';
 import { GithubIcon, InstagramIcon } from './SocialIcons';
 import KrauseLogo from './KrauseLogo';
