@@ -319,6 +319,12 @@ body{
 .contact-name{margin:8px 0 0;font-size:1.25rem;font-weight:700;color:#000;line-height:1.05}
 .contact-role{margin:8px 0 0;font-size:0.98rem;color:#000;opacity:1}
 
+/* Tabs Container */
+.tabs-container {
+  width: 100%;
+  margin-top: 24px;
+}
+
 .tabs-header {
   display: flex;
   gap: 8px;
