@@ -307,6 +307,8 @@ body.section-cta {
 
 .main-content.home-page {
   overflow: hidden;
+  position: relative;
+  min-height: calc(100vh - 90px);
 }
 
 /* Sub Navigation */
@@ -363,17 +365,21 @@ body.section-cta {
 
 /* Home Sections */
 .home-section {
-  display: none;
+  display: none !important;
   position: absolute;
   top: 90px;
   left: 0;
   right: 0;
   width: 100%;
   min-height: calc(100vh - 90px);
+  opacity: 0;
+  visibility: hidden;
 }
 
 .home-section.active {
-  display: flex;
+  display: flex !important;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Fade out animation - minimize to button */
@@ -492,30 +498,32 @@ body.section-cta {
 
 /* Skip button */
 .btn-home-start {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
-  padding: 12px 28px;
+  padding: 14px 24px;
   border-radius: 50px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 8px;
-  z-index: 20;
+  z-index: 1001;
+  writing-mode: horizontal-tb;
 }
 
 .btn-home-start:hover {
   background: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.5);
-  transform: translateX(-50%) translateY(-2px);
+  transform: translateY(-50%) translateX(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn-home-start svg {
@@ -634,7 +642,7 @@ body.section-cta {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 40px 24px;
+  padding: 20px 24px;
 }
 
 .hero-content {
@@ -719,10 +727,11 @@ body.section-cta {
 /* Features Section */
 .features-section {
   background: transparent;
-  padding: 40px 24px;
+  padding: 20px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: calc(100vh - 90px);
 }
 
 /* Features parade animation */
@@ -819,12 +828,13 @@ body.section-cta {
 /* CTA Section */
 .cta-section {
   background: transparent;
-  padding: 40px 24px;
+  padding: 20px 24px;
   text-align: center;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: calc(100vh - 90px);
 }
 
 /* Final CTA animation */
