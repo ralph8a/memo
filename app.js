@@ -967,28 +967,37 @@ function startHomeSequence() {
   const finalCta = document.querySelector('.final-cta');
   const btnHomeStart = document.querySelector('.btn-home-start');
   
+  console.log('Starting home sequence...', { heroIntro, featuresSection, finalCta });
+  
   // After animations complete (shield + stats), fade out intro
   setTimeout(() => {
-    heroIntro.classList.add('fade-out-intro');
+    console.log('Fading out hero intro...');
+    if (heroIntro) heroIntro.classList.add('fade-out-intro');
     
     // Show features in parade
     setTimeout(() => {
-      featuresSection.classList.add('show-features');
-      
-      // Animate each card sequentially
-      const cards = document.querySelectorAll('.feature-box');
-      cards.forEach((card, index) => {
+      console.log('Starting features parade...');
+      if (featuresSection) {
+        featuresSection.classList.add('show-features');
+        
+        // Animate each card sequentially
+        const cards = document.querySelectorAll('.features-parade .feature-box');
+        console.log('Found cards:', cards.length);
+        
+        cards.forEach((card, index) => {
+          setTimeout(() => {
+            console.log(`Animating card ${index + 1}`);
+            card.classList.add('parade-animate');
+          }, index * 500);
+        });
+        
+        // Show final CTA
         setTimeout(() => {
-          card.classList.add('parade-animate');
-        }, index * 400);
-      });
-      
-      // Show final CTA
-      setTimeout(() => {
-        finalCta.classList.add('show-cta');
-      }, cards.length * 400 + 800);
-      
-    }, 800);
+          console.log('Showing final CTA...');
+          if (finalCta) finalCta.classList.add('show-cta');
+        }, cards.length * 500 + 1000);
+      }
+    }, 1000);
   }, 5000); // Wait for shield + stats animations
   
   // Button to skip to final state
@@ -996,6 +1005,7 @@ function startHomeSequence() {
     btnHomeStart.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
+      console.log('Skipping to final state...');
       skipToFinalState();
     });
   }
