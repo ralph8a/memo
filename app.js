@@ -79,7 +79,7 @@ function navigateTo(page) {
 // Page templates
 const pages = {
   home: `
-    <nav class="sub-navigation">
+    <nav class="sub-navigation" id="sub-nav" style="display: none;">
       <button class="sub-nav-btn active" data-section="hero" onclick="showHomeSection('hero')">Hero</button>
       <button class="sub-nav-btn" data-section="eleccion" onclick="showHomeSection('eleccion')">Elección</button>
       <button class="sub-nav-btn" data-section="contacto" onclick="showHomeSection('contacto')">Contacto</button>
@@ -115,29 +115,36 @@ const pages = {
             <div class="stat-label">% Satisfacción</div>
           </div>
         </div>
+        
+        <button class="btn-home-start" onclick="skipToFinalState()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          Saltar Animación
+        </button>
       </div>
     </section>
     
-    <section class="features-section home-section" id="eleccion-section">
+    <section class="features-section features-parade home-section" id="eleccion-section">
       <div class="container">
         <h2 class="section-title">¿Por Qué Elegirnos?</h2>
         <div class="features-grid">
-          <div class="feature-box">
+          <div class="feature-box feature-card-1">
             <div class="feature-icon">🛡️</div>
             <h3>Cobertura Integral</h3>
             <p>Protección completa adaptada a tus necesidades específicas</p>
           </div>
-          <div class="feature-box">
+          <div class="feature-box feature-card-2">
             <div class="feature-icon">⚡</div>
             <h3>Respuesta Inmediata</h3>
             <p>Atención 24/7 cuando más nos necesitas</p>
           </div>
-          <div class="feature-box">
+          <div class="feature-box feature-card-3">
             <div class="feature-icon">💰</div>
             <h3>Mejores Precios</h3>
             <p>Cotizamos con múltiples aseguradoras para ti</p>
           </div>
-          <div class="feature-box">
+          <div class="feature-box feature-card-4">
             <div class="feature-icon">👨‍💼</div>
             <h3>Asesoría Experta</h3>
             <p>25+ años de experiencia a tu servicio</p>
@@ -146,7 +153,7 @@ const pages = {
       </div>
     </section>
     
-    <section class="cta-section home-section" id="contacto-section">
+    <section class="cta-section final-cta home-section" id="contacto-section">
       <div class="container">
         <h2>¿Listo para proteger tu futuro?</h2>
         <p>Obtén una cotización personalizada sin compromiso</p>
@@ -949,16 +956,86 @@ function loadPage(page) {
   if (pages[page]) {
     mainContent.innerHTML = pages[page];
     
-    // Initialize animations for stats if on home page
+    // Initialize animations for stats and start sequence if on home page
     if (page === 'home') {
-      setTimeout(initStatsAnimation, 100);
+      setTimeout(() => {
+        initStatsAnimation();
+        startHomeSequence();
+      }, 100);
     }
   } else {
     mainContent.innerHTML = '<div class="container"><h1>Página no encontrada</h1></div>';
   }
 }
 
-// Show home section
+// Home animation sequence
+function startHomeSequence() {
+  const heroSection = document.querySelector('.hero-intro');
+  const paradeSection = document.querySelector('.features-parade');
+  const ctaSection = document.querySelector('.final-cta');
+  const subNav = document.getElementById('sub-nav');
+  const skipBtn = document.querySelector('.btn-home-start');
+
+  if (!heroSection || !paradeSection || !ctaSection) return;
+
+  // Step 1: Show hero for 6 seconds
+  setTimeout(() => {
+    // Step 2: Transition to parade
+    heroSection.classList.add('fade-out-up');
+    setTimeout(() => {
+      heroSection.classList.remove('active');
+      paradeSection.classList.add('active');
+      
+      // Step 3: After parade, show CTA
+      setTimeout(() => {
+        paradeSection.classList.add('fade-out-up');
+        setTimeout(() => {
+          paradeSection.classList.remove('active');
+          ctaSection.classList.add('active');
+          
+          // Show sub-navigation after sequence completes
+          if (subNav) {
+            subNav.style.display = 'flex';
+          }
+          
+          // Remove skip button
+          if (skipBtn) {
+            skipBtn.style.display = 'none';
+          }
+        }, 800);
+      }, 8000); // Show parade for 8 seconds
+    }, 800);
+  }, 6000); // Show hero for 6 seconds
+}
+
+// Skip to final state
+function skipToFinalState() {
+  const heroSection = document.querySelector('.hero-intro');
+  const paradeSection = document.querySelector('.features-parade');
+  const ctaSection = document.querySelector('.final-cta');
+  const subNav = document.getElementById('sub-nav');
+  const skipBtn = document.querySelector('.btn-home-start');
+
+  if (!heroSection || !paradeSection || !ctaSection) return;
+
+  // Hide all sections
+  heroSection.classList.remove('active', 'fade-out-up');
+  paradeSection.classList.remove('active', 'fade-out-up');
+  
+  // Show CTA section
+  ctaSection.classList.add('active');
+  
+  // Show sub-navigation
+  if (subNav) {
+    subNav.style.display = 'flex';
+  }
+  
+  // Remove skip button
+  if (skipBtn) {
+    skipBtn.style.display = 'none';
+  }
+}
+
 function showHomeSection(section) {
   // Update nav buttons
   document.querySelectorAll('.sub-nav-btn').forEach(btn => {
@@ -971,6 +1048,7 @@ function showHomeSection(section) {
   // Hide all sections
   document.querySelectorAll('.home-section').forEach(sec => {
     sec.classList.remove('active');
+    sec.classList.remove('fade-out-up');
   });
   
   // Show selected section
