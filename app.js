@@ -978,9 +978,14 @@ function startHomeSequence() {
 
   if (!heroSection || !paradeSection || !ctaSection) return;
 
+  // Set initial gradient position
+  document.body.classList.add('section-hero');
+
   // Step 1: Show hero for 6 seconds
   setTimeout(() => {
     // Step 2: Transition to parade
+    document.body.classList.remove('section-hero');
+    document.body.classList.add('section-parade');
     heroSection.classList.add('fade-out-up');
     setTimeout(() => {
       heroSection.classList.remove('active');
@@ -988,6 +993,8 @@ function startHomeSequence() {
       
       // Step 3: After parade, show CTA
       setTimeout(() => {
+        document.body.classList.remove('section-parade');
+        document.body.classList.add('section-cta');
         paradeSection.classList.add('fade-out-up');
         setTimeout(() => {
           paradeSection.classList.remove('active');
@@ -1018,6 +1025,10 @@ function skipToFinalState() {
 
   if (!heroSection || !paradeSection || !ctaSection) return;
 
+  // Update gradient position
+  document.body.classList.remove('section-hero', 'section-parade');
+  document.body.classList.add('section-cta');
+
   // Hide all sections
   heroSection.classList.remove('active', 'fade-out-up');
   paradeSection.classList.remove('active', 'fade-out-up');
@@ -1037,6 +1048,16 @@ function skipToFinalState() {
 }
 
 function showHomeSection(section) {
+  // Update gradient position based on section
+  document.body.classList.remove('section-hero', 'section-parade', 'section-cta');
+  if (section === 'hero') {
+    document.body.classList.add('section-hero');
+  } else if (section === 'eleccion') {
+    document.body.classList.add('section-parade');
+  } else if (section === 'contacto') {
+    document.body.classList.add('section-cta');
+  }
+
   // Update nav buttons
   document.querySelectorAll('.sub-nav-btn').forEach(btn => {
     btn.classList.remove('active');
