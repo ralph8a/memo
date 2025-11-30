@@ -90,16 +90,39 @@ html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-
 body{
   background: var(--page-bg);
   color: var(--muted);
+  overflow-x: hidden;
 }
 
-/* full-page decorative background element (renders behind the card) */
+/* full-page decorative background element with parallax effect */
 .background-soft{
   position:fixed;
   inset:0;
   z-index:0;
   pointer-events:none;
-  background: inherit;
+  background: var(--page-bg);
+  background-size: 200% 200%;
   opacity:1;
+  will-change: transform;
+  animation: parallaxGradient 15s ease-in-out infinite;
+}
+
+@keyframes parallaxGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+    transform: scale(1.1);
+  }
+  25% {
+    background-position: 50% 25%;
+    transform: scale(1.15) translateX(2%);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: scale(1.1);
+  }
+  75% {
+    background-position: 50% 75%;
+    transform: scale(1.15) translateX(-2%);
+  }
 }
 
 
