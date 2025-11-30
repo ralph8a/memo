@@ -314,39 +314,47 @@ body.section-cta {
   left: 0;
   right: 0;
   z-index: 999;
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding: 12px 24px;
   display: flex;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .sub-nav-btn {
   padding: 10px 24px;
-  background: transparent;
-  border: 2px solid var(--gray-300);
-  border-radius: 8px;
-  font-size: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--text-dark);
+  color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .sub-nav-btn:hover {
-  border-color: var(--brand-maroon);
-  color: var(--brand-maroon);
-  background: rgba(139, 35, 72, 0.05);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .sub-nav-btn.active {
-  background: var(--brand-maroon);
-  border-color: var(--brand-maroon);
+  background: rgba(139, 35, 72, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-color: rgba(139, 35, 72, 0.9);
   color: white;
+  box-shadow: 0 4px 12px rgba(139, 35, 72, 0.4);
 }
 
 /* Home Sections */
@@ -364,19 +372,61 @@ body.section-cta {
   display: flex;
 }
 
-/* Fade out animation */
+/* Fade out animation - minimize to button */
 .fade-out-up {
-  animation: fadeOutUp 0.8s ease-out forwards;
+  animation: minimizeToButton 0.8s ease-in-out forwards;
 }
 
-@keyframes fadeOutUp {
-  from {
+@keyframes minimizeToButton {
+  0% {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
   }
-  to {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
     opacity: 0;
-    transform: translateY(-50px);
+    transform: scale(0.1) translateY(-70vh);
+  }
+}
+
+/* Specific animations for each section to their button */
+.hero-intro.fade-out-up {
+  animation: minimizeToHeroButton 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: 50% 0%;
+}
+
+.features-parade.fade-out-up {
+  animation: minimizeToEleccionButton 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: 50% 0%;
+}
+
+@keyframes minimizeToHeroButton {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  60% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.02) translate(-40vw, -42vh);
+  }
+}
+
+@keyframes minimizeToEleccionButton {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  60% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.02) translate(0, -42vh);
   }
 }
 
@@ -1607,7 +1657,9 @@ body.section-cta {
 
 /* Footer */
 .footer {
-  background: var(--text-dark);
+  background: linear-gradient(135deg, rgba(114, 47, 55, 0.95), rgba(139, 35, 72, 0.95));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: white;
   position: fixed;
   bottom: 0;
@@ -1615,6 +1667,8 @@ body.section-cta {
   right: 0;
   z-index: 998;
   transition: transform 0.3s ease;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .footer.collapsed {
@@ -1622,8 +1676,11 @@ body.section-cta {
 }
 
 .footer-toggle {
-  background: var(--brand-maroon);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   color: white;
   padding: 12px 24px;
   width: 100%;
@@ -1635,11 +1692,12 @@ body.section-cta {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .footer-toggle:hover {
-  background: var(--wine);
+  background: rgba(255, 255, 255, 0.2);
+  border-bottom-color: rgba(255, 255, 255, 0.25);
 }
 
 .footer-toggle svg {
