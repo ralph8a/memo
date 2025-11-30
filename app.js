@@ -981,12 +981,32 @@ function startHomeSequence() {
   // Set initial gradient position
   document.body.classList.add('section-hero');
 
+  // Show sub-nav bar but hide all buttons initially
+  if (subNav) {
+    subNav.style.display = 'flex';
+    const allButtons = subNav.querySelectorAll('.sub-nav-btn');
+    allButtons.forEach(btn => {
+      btn.style.display = 'none';
+    });
+  }
+
   // Step 1: Show hero for 6 seconds
   setTimeout(() => {
     // Step 2: Transition to parade
     document.body.classList.remove('section-hero');
     document.body.classList.add('section-parade');
     heroSection.classList.add('fade-out-up');
+    
+    // Show Hero button with droplet effect after section starts minimizing
+    setTimeout(() => {
+      const heroBtn = subNav.querySelector('[data-section="hero"]');
+      if (heroBtn) {
+        heroBtn.style.display = 'inline-block';
+        heroBtn.classList.add('btn-droplet');
+        setTimeout(() => heroBtn.classList.remove('btn-droplet'), 600);
+      }
+    }, 400);
+    
     setTimeout(() => {
       heroSection.classList.remove('active');
       paradeSection.classList.add('active');
@@ -996,14 +1016,30 @@ function startHomeSequence() {
         document.body.classList.remove('section-parade');
         document.body.classList.add('section-cta');
         paradeSection.classList.add('fade-out-up');
+        
+        // Show Elección button with droplet effect
+        setTimeout(() => {
+          const eleccionBtn = subNav.querySelector('[data-section="eleccion"]');
+          if (eleccionBtn) {
+            eleccionBtn.style.display = 'inline-block';
+            eleccionBtn.classList.add('btn-droplet');
+            setTimeout(() => eleccionBtn.classList.remove('btn-droplet'), 600);
+          }
+        }, 400);
+        
         setTimeout(() => {
           paradeSection.classList.remove('active');
           ctaSection.classList.add('active');
           
-          // Show sub-navigation after sequence completes
-          if (subNav) {
-            subNav.style.display = 'flex';
-          }
+          // Show Contacto button with droplet effect
+          setTimeout(() => {
+            const contactoBtn = subNav.querySelector('[data-section="contacto"]');
+            if (contactoBtn) {
+              contactoBtn.style.display = 'inline-block';
+              contactoBtn.classList.add('btn-droplet');
+              setTimeout(() => contactoBtn.classList.remove('btn-droplet'), 600);
+            }
+          }, 400);
           
           // Remove skip button
           if (skipBtn) {
@@ -1036,9 +1072,17 @@ function skipToFinalState() {
   // Show CTA section
   ctaSection.classList.add('active');
   
-  // Show sub-navigation
+  // Show sub-navigation with all buttons
   if (subNav) {
     subNav.style.display = 'flex';
+    const allButtons = subNav.querySelectorAll('.sub-nav-btn');
+    allButtons.forEach((btn, index) => {
+      btn.style.display = 'inline-block';
+      setTimeout(() => {
+        btn.classList.add('btn-droplet');
+        setTimeout(() => btn.classList.remove('btn-droplet'), 600);
+      }, index * 150);
+    });
   }
   
   // Remove skip button
