@@ -79,7 +79,7 @@ function navigateTo(page) {
 // Page templates
 const pages = {
   home: `
-    <section class="hero-section">
+    <section class="hero-section hero-intro">
       <div class="hero-content">
         <h1 class="hero-title">
           <span class="title-word">Protection</span>
@@ -90,17 +90,6 @@ const pages = {
           Más de 25 años protegiendo lo que más valoras. 
           Seguros personalizados respaldados por experiencia y compromiso.
         </p>
-        <div class="hero-buttons">
-          <button class="btn btn-primary btn-lg" onclick="navigateTo('services')">
-            <span>Ver Servicios</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </button>
-          <button class="btn btn-secondary btn-lg" onclick="navigateTo('login')">
-            Acceso Clientes
-          </button>
-        </div>
         
         <div class="hero-stats">
           <div class="stat-box">
@@ -120,29 +109,36 @@ const pages = {
             <div class="stat-label">% Satisfacción</div>
           </div>
         </div>
+        
+        <button class="btn-home-start" onclick="navigateTo('home')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+          Ver Menú
+        </button>
       </div>
     </section>
     
-    <section class="features-section">
+    <section class="features-section features-parade">
       <div class="container">
         <h2 class="section-title">¿Por Qué Elegirnos?</h2>
         <div class="features-grid">
-          <div class="feature-box">
+          <div class="feature-box feature-card-1">
             <div class="feature-icon">🛡️</div>
             <h3>Cobertura Integral</h3>
             <p>Protección completa adaptada a tus necesidades específicas</p>
           </div>
-          <div class="feature-box">
+          <div class="feature-box feature-card-2">
             <div class="feature-icon">⚡</div>
             <h3>Respuesta Inmediata</h3>
             <p>Atención 24/7 cuando más nos necesitas</p>
           </div>
-          <div class="feature-box">
+          <div class="feature-box feature-card-3">
             <div class="feature-icon">💰</div>
             <h3>Mejores Precios</h3>
             <p>Cotizamos con múltiples aseguradoras para ti</p>
           </div>
-          <div class="feature-box">
+          <div class="feature-box feature-card-4">
             <div class="feature-icon">👨‍💼</div>
             <h3>Asesoría Experta</h3>
             <p>25+ años de experiencia a tu servicio</p>
@@ -151,13 +147,18 @@ const pages = {
       </div>
     </section>
     
-    <section class="cta-section">
+    <section class="cta-section final-cta">
       <div class="container">
         <h2>¿Listo para proteger tu futuro?</h2>
         <p>Obtén una cotización personalizada sin compromiso</p>
-        <button class="btn btn-primary btn-lg" onclick="navigateTo('contact')">
-          Solicitar Cotización Gratis
-        </button>
+        <div class="cta-buttons">
+          <button class="btn btn-primary btn-lg" onclick="navigateTo('contact')">
+            Solicitar Cotización Gratis
+          </button>
+          <button class="btn btn-secondary btn-lg" onclick="navigateTo('services')">
+            Ver Servicios
+          </button>
+        </div>
       </div>
     </section>
   `,
@@ -952,10 +953,65 @@ function loadPage(page) {
     // Initialize animations for stats if on home page
     if (page === 'home') {
       setTimeout(initStatsAnimation, 100);
+      setTimeout(startHomeSequence, 100);
     }
   } else {
     mainContent.innerHTML = '<div class="container"><h1>Página no encontrada</h1></div>';
   }
+}
+
+// Home page animation sequence
+function startHomeSequence() {
+  const heroIntro = document.querySelector('.hero-intro');
+  const featuresSection = document.querySelector('.features-parade');
+  const finalCta = document.querySelector('.final-cta');
+  const btnHomeStart = document.querySelector('.btn-home-start');
+  
+  // After animations complete (shield + stats), fade out intro
+  setTimeout(() => {
+    heroIntro.classList.add('fade-out-intro');
+    
+    // Show features in parade
+    setTimeout(() => {
+      featuresSection.classList.add('show-features');
+      
+      // Animate each card sequentially
+      const cards = document.querySelectorAll('.feature-box');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('parade-animate');
+        }, index * 400);
+      });
+      
+      // Show final CTA
+      setTimeout(() => {
+        finalCta.classList.add('show-cta');
+      }, cards.length * 400 + 800);
+      
+    }, 800);
+  }, 5000); // Wait for shield + stats animations
+  
+  // Button to skip to final state
+  if (btnHomeStart) {
+    btnHomeStart.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      skipToFinalState();
+    });
+  }
+}
+
+// Skip animation to final state
+function skipToFinalState() {
+  const heroIntro = document.querySelector('.hero-intro');
+  const featuresSection = document.querySelector('.features-parade');
+  const finalCta = document.querySelector('.final-cta');
+  const cards = document.querySelectorAll('.feature-box');
+  
+  heroIntro.classList.add('instant-hide');
+  featuresSection.classList.add('show-features', 'instant-position');
+  cards.forEach(card => card.classList.add('parade-animate', 'instant-position'));
+  finalCta.classList.add('show-cta');
 }
 
 // Initialize stats animation
