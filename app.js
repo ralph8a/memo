@@ -79,7 +79,13 @@ function navigateTo(page) {
 // Page templates
 const pages = {
   home: `
-    <section class="hero-section hero-intro">
+    <nav class="sub-navigation">
+      <button class="sub-nav-btn active" data-section="hero" onclick="showHomeSection('hero')">Hero</button>
+      <button class="sub-nav-btn" data-section="eleccion" onclick="showHomeSection('eleccion')">Elección</button>
+      <button class="sub-nav-btn" data-section="contacto" onclick="showHomeSection('contacto')">Contacto</button>
+    </nav>
+    
+    <section class="hero-section hero-intro home-section active" id="hero-section">
       <div class="hero-content">
         <h1 class="hero-title">
           <span class="title-word">Protection</span>
@@ -109,36 +115,29 @@ const pages = {
             <div class="stat-label">% Satisfacción</div>
           </div>
         </div>
-        
-        <button class="btn-home-start" onclick="navigateTo('home')">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 12h18M3 6h18M3 18h18"/>
-          </svg>
-          Ver Menú
-        </button>
       </div>
     </section>
     
-    <section class="features-section features-parade">
+    <section class="features-section home-section" id="eleccion-section">
       <div class="container">
         <h2 class="section-title">¿Por Qué Elegirnos?</h2>
         <div class="features-grid">
-          <div class="feature-box feature-card-1">
+          <div class="feature-box">
             <div class="feature-icon">🛡️</div>
             <h3>Cobertura Integral</h3>
             <p>Protección completa adaptada a tus necesidades específicas</p>
           </div>
-          <div class="feature-box feature-card-2">
+          <div class="feature-box">
             <div class="feature-icon">⚡</div>
             <h3>Respuesta Inmediata</h3>
             <p>Atención 24/7 cuando más nos necesitas</p>
           </div>
-          <div class="feature-box feature-card-3">
+          <div class="feature-box">
             <div class="feature-icon">💰</div>
             <h3>Mejores Precios</h3>
             <p>Cotizamos con múltiples aseguradoras para ti</p>
           </div>
-          <div class="feature-box feature-card-4">
+          <div class="feature-box">
             <div class="feature-icon">👨‍💼</div>
             <h3>Asesoría Experta</h3>
             <p>25+ años de experiencia a tu servicio</p>
@@ -147,7 +146,7 @@ const pages = {
       </div>
     </section>
     
-    <section class="cta-section final-cta">
+    <section class="cta-section home-section" id="contacto-section">
       <div class="container">
         <h2>¿Listo para proteger tu futuro?</h2>
         <p>Obtén una cotización personalizada sin compromiso</p>
@@ -953,100 +952,50 @@ function loadPage(page) {
     // Initialize animations for stats if on home page
     if (page === 'home') {
       setTimeout(initStatsAnimation, 100);
-      setTimeout(startHomeSequence, 100);
     }
   } else {
     mainContent.innerHTML = '<div class="container"><h1>Página no encontrada</h1></div>';
   }
 }
 
-// Home page animation sequence
-function startHomeSequence() {
-  const mainContent = document.getElementById('mainContent');
-  const heroIntro = document.querySelector('.hero-intro');
-  const featuresSection = document.querySelector('.features-parade');
-  const finalCta = document.querySelector('.final-cta');
-  const btnHomeStart = document.querySelector('.btn-home-start');
+// Show home section
+function showHomeSection(section) {
+  // Update nav buttons
+  document.querySelectorAll('.sub-nav-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.section === section) {
+      btn.classList.add('active');
+    }
+  });
   
-  console.log('Starting home sequence...', { heroIntro, featuresSection, finalCta });
+  // Hide all sections
+  document.querySelectorAll('.home-section').forEach(sec => {
+    sec.classList.remove('active');
+  });
   
-  // Add home-page class for overflow control
-  if (mainContent) mainContent.classList.add('home-page');
-  
-  // After animations complete (shield + stats), fade out intro
-  setTimeout(() => {
-    console.log('Fading out hero intro...');
-    if (heroIntro) heroIntro.classList.add('fade-out-intro');
+  // Show selected section
+  const targetSection = document.getElementById(`${section}-section`);
+  if (targetSection) {
+    targetSection.classList.add('active');
     
-    // Show features in parade (appearing in hero position)
-    setTimeout(() => {
-      console.log('Starting features parade...');
-      if (featuresSection) {
-        featuresSection.classList.add('show-features');
-        
-        // Animate each card sequentially
-        const cards = document.querySelectorAll('.features-parade .feature-box');
-        console.log('Found cards:', cards.length);
-        
-        cards.forEach((card, index) => {
-          setTimeout(() => {
-            console.log(`Animating card ${index + 1}`);
-            card.classList.add('parade-animate');
-          }, index * 500);
-        });
-        
-        // After parade completes, fade out features and show CTA
-        setTimeout(() => {
-          console.log('Fading out features, showing final CTA...');
-          
-          // Fade out features
-          if (featuresSection) featuresSection.classList.add('fade-out');
-          
-          // Show final CTA in hero position
-          setTimeout(() => {
-            if (finalCta) finalCta.classList.add('show-cta');
-            
-            // After CTA animation, transition everything to normal layout
-            setTimeout(() => {
-              console.log('Transitioning to final layout...');
-              if (heroIntro) heroIntro.classList.add('instant-hide');
-              if (featuresSection) {
-                featuresSection.classList.remove('fade-out');
-                featuresSection.classList.add('parade-complete');
-              }
-              if (finalCta) finalCta.classList.add('cta-final-position');
-            }, 1500);
-          }, 800);
-        }, cards.length * 500 + 1500);
-      }
-    }, 1000);
-  }, 5000); // Wait for shield + stats animations
-  
-  // Button to skip to final state
-  if (btnHomeStart) {
-    btnHomeStart.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log('Skipping to final state...');
-      skipToFinalState();
-    });
+    // Reinitialize stats if showing hero
+    if (section === 'hero') {
+      setTimeout(initStatsAnimation, 100);
+    }
   }
 }
 
-// Skip animation to final state
-function skipToFinalState() {
-  const heroIntro = document.querySelector('.hero-intro');
-  const featuresSection = document.querySelector('.features-parade');
-  const finalCta = document.querySelector('.final-cta');
-  const cards = document.querySelectorAll('.feature-box');
+// Toggle footer
+function toggleFooter() {
+  const footer = document.getElementById('footer');
+  const toggleText = document.getElementById('footer-toggle-text');
   
-  if (heroIntro) heroIntro.classList.add('instant-hide');
-  if (featuresSection) {
-    featuresSection.classList.add('show-features', 'instant-position', 'parade-complete');
-  }
-  cards.forEach(card => card.classList.add('parade-animate', 'instant-position'));
-  if (finalCta) {
-    finalCta.classList.add('show-cta', 'cta-final-position');
+  if (footer.classList.contains('collapsed')) {
+    footer.classList.remove('collapsed');
+    toggleText.textContent = 'Ocultar Información';
+  } else {
+    footer.classList.add('collapsed');
+    toggleText.textContent = 'Mostrar Información';
   }
 }
 
