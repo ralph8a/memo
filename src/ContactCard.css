@@ -266,7 +266,7 @@ body{
 .header-name {
   font-size: 18px;
   font-weight: 700;
-  color: #000 !important;
+  color: var(--primary);
   margin: 0 0 10px 0;
   line-height: 1.1;
   white-space: nowrap;
@@ -306,7 +306,7 @@ body{
 .company-name-line {
   font-size: 20px;
   font-weight: 700;
-  color: #000 !important;
+  color: var(--primary);
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -1060,6 +1060,7 @@ body{
 [data-theme="dark"] .lang-toggle-btn{background:var(--white-05);color:#fff;border:1px solid var(--white-1)}
 [data-theme="dark"] .lang-toggle-btn:hover{background:var(--white-1)}
 [data-theme="dark"] .business-card-header{border-bottom:1px solid var(--white-1)}
+[data-theme="dark"] .company-logo{background:var(--white-1);box-shadow:0 4px 20px var(--black-5)}
 [data-theme="dark"] .image-fade-overlay{background:linear-gradient(to left,rgba(0,0,0,1),transparent)}
 [data-theme="dark"] .header-name{color:#fff}
 [data-theme="dark"] .company-name-line{color:#fff}
