@@ -1,0 +1,134 @@
+// Home Page Template
+export default `
+<nav class="sub-navigation" id="sub-nav" style="display: none;">
+  <button class="sub-nav-btn active" data-section="hero" onclick="window.appHandlers.showHomeSection('hero')">Hero</button>
+  <button class="sub-nav-btn" data-section="eleccion" onclick="window.appHandlers.showHomeSection('eleccion')">Elección</button>
+  <button class="sub-nav-btn" data-section="contacto" onclick="window.appHandlers.showHomeSection('contacto')">Contacto</button>
+</nav>
+
+<section class="hero-section hero-intro home-section active" id="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="title-word">Protection</span>
+      <span class="title-word accent">Beyond</span>
+      <span class="title-word">The Limits</span>
+    </h1>
+    <p class="hero-subtitle">
+      Más de 25 años protegiendo lo que más valoras. 
+      Seguros personalizados respaldados por experiencia y compromiso.
+    </p>
+    
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-number" data-target="25">0</div>
+        <div class="stat-label">Años de Experiencia</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" data-target="5000">0</div>
+        <div class="stat-label">Clientes Activos</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" data-target="10000">0</div>
+        <div class="stat-label">Pólizas Vigentes</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" data-target="98">0</div>
+        <div class="stat-label">% Satisfacción</div>
+      </div>
+    </div>
+    
+    <button class="btn-home-start" onclick="window.appHandlers.skipToFinalState()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+      Saltar Animación
+    </button>
+  </div>
+</section>
+
+<section class="features-section features-parade home-section" id="eleccion-section">
+  <div class="container">
+    <h2 class="section-title">¿Por Qué Elegirnos?</h2>
+    <div class="features-grid">
+      <div class="feature-box feature-card-1">
+        <div class="feature-icon">🛡️</div>
+        <h3>Cobertura Integral</h3>
+        <p>Protección completa adaptada a tus necesidades específicas</p>
+      </div>
+      <div class="feature-box feature-card-2">
+        <div class="feature-icon">⚡</div>
+        <h3>Respuesta Inmediata</h3>
+        <p>Atención 24/7 cuando más nos necesitas</p>
+      </div>
+      <div class="feature-box feature-card-3">
+        <div class="feature-icon">💰</div>
+        <h3>Mejores Precios</h3>
+        <p>Cotizamos con múltiples aseguradoras para ti</p>
+      </div>
+      <div class="feature-box feature-card-4">
+        <div class="feature-icon">👨‍💼</div>
+        <h3>Asesoría Experta</h3>
+        <p>25+ años de experiencia a tu servicio</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section final-cta home-section" id="contacto-section">
+  <div class="container">
+    <div class="cta-hero-title">
+      <h2 class="animated-title main-hero">
+        <span class="title-line">¿Listo para</span>
+        <span class="title-line highlight">Proteger</span>
+        <span class="title-line">tu Futuro?</span>
+      </h2>
+      <div class="title-underline"></div>
+    </div>
+    
+    <p class="cta-subtitle">Obtén una cotización personalizada sin compromiso</p>
+    
+    <div class="cta-buttons cta-main-buttons">
+      <button class="btn btn-primary btn-lg btn-pulse" onclick="window.appHandlers.navigateTo('contact')">
+        <span>📝 Solicitar Cotización Gratis</span>
+      </button>
+      <button class="btn btn-secondary btn-lg" onclick="window.appHandlers.navigateTo('services')">
+        <span>🛡️ Ver Servicios</span>
+      </button>
+    </div>
+    
+    <div class="section-divider"></div>
+    
+    <h3 class="agents-section-title">Contacta a Nuestros Agentes</h3>
+    
+    <div class="agents-grid">
+      <div class="agent-card">
+        <div class="agent-avatar">👨‍💼</div>
+        <h4>Carlos Méndez</h4>
+        <p class="agent-title">Agente Senior</p>
+        <a href="tel:+525512345678" class="agent-contact">📞 (55) 1234-5678</a>
+      </div>
+      
+      <div class="agent-card">
+        <div class="agent-avatar">👩‍💼</div>
+        <h4>Ana Rodríguez</h4>
+        <p class="agent-title">Especialista Vida</p>
+        <a href="tel:+525598765432" class="agent-contact">📞 (55) 9876-5432</a>
+      </div>
+      
+      <div class="agent-card">
+        <div class="agent-avatar">👨‍💼</div>
+        <h4>Miguel Torres</h4>
+        <p class="agent-title">Seguros Auto</p>
+        <a href="tel:+525555551234" class="agent-contact">📞 (55) 5555-1234</a>
+      </div>
+      
+      <div class="agent-card">
+        <div class="agent-avatar">👩‍💼</div>
+        <h4>Laura Gómez</h4>
+        <p class="agent-title">Seguros Hogar</p>
+        <a href="tel:+525544445555" class="agent-contact">📞 (55) 4444-5555</a>
+      </div>
+    </div>
+  </div>
+</section>
+`;

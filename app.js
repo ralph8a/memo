@@ -46,7 +46,11 @@ function toggleMobileMenu() {
 }
 
 // Navigation function
-function navigateTo(page) {
+function navigateTo(page, event) {
+  if (event) {
+    event.preventDefault();
+  }
+  
   currentPage = page;
   
   // Close mobile menu
@@ -64,9 +68,11 @@ function navigateTo(page) {
   // Hide footer on certain pages
   const footer = document.getElementById('footer');
   if (['login', 'agent-login', 'dashboard', 'agent-dashboard'].includes(page)) {
-    footer.style.display = 'none';
+    footer.classList.add('d-none');
+    footer.classList.remove('d-block');
   } else {
-    footer.style.display = 'block';
+    footer.classList.add('d-block');
+    footer.classList.remove('d-none');
   }
   
   // Load page content
@@ -79,10 +85,10 @@ function navigateTo(page) {
 // Page templates
 const pages = {
   home: `
-    <nav class="sub-navigation" id="sub-nav" style="display: none;">
+    <nav class="sub-navigation sub-nav-hidden" id="sub-nav">
       <button class="sub-nav-btn active" data-section="hero" onclick="showHomeSection('hero')">Hero</button>
       <button class="sub-nav-btn" data-section="eleccion" onclick="showHomeSection('eleccion')">Elección</button>
-      <button class="sub-nav-btn" data-section="contacto" onclick="showHomeSection('contacto')">Contacto</button>
+      <button class="sub-nav-btn" data-section="cotiza" onclick="showHomeSection('cotiza')">Cotizar</button>
     </nav>
     
     <section class="hero-section hero-intro home-section active" id="hero-section">
@@ -126,7 +132,7 @@ const pages = {
     </section>
     
     <section class="features-section features-parade home-section" id="eleccion-section">
-      <div class="container">
+      <div class="features-content">
         <h2 class="section-title">¿Por Qué Elegirnos?</h2>
         <div class="features-grid">
           <div class="feature-box feature-card-1">
@@ -153,9 +159,15 @@ const pages = {
       </div>
     </section>
     
-    <section class="cta-section final-cta home-section" id="contacto-section">
+    <section class="cta-section final-cta home-section" id="cotiza-section">
       <div class="container">
         <div class="cta-hero-title">
+          <svg class="cta-logo-large" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+            <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+            <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+            <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+          </svg>
           <h2 class="animated-title main-hero">
             <span class="title-line">¿Listo para</span>
             <span class="title-line highlight">Proteger</span>
@@ -327,10 +339,10 @@ const pages = {
             <h2>Nuestra Historia</h2>
             <p>Con más de 25 años de experiencia en el sector de seguros, Krause Insurance ha protegido a miles de familias y negocios. Fundada por Guillermo Krause, nuestra empresa se ha construido sobre los pilares de confianza, profesionalismo y compromiso genuino con nuestros clientes.</p>
             
-            <h3 style="margin-top: 2rem;">Nuestra Misión</h3>
+            <h3>Nuestra Misión</h3>
             <p>Proporcionar soluciones de seguros personalizadas que superen las expectativas de nuestros clientes, brindando protección integral y paz mental.</p>
             
-            <h3 style="margin-top: 2rem;">Nuestros Valores</h3>
+            <h3>Nuestros Valores</h3>
             <ul class="values-list">
               <li><strong>Integridad:</strong> Actuamos con honestidad y transparencia</li>
               <li><strong>Compromiso:</strong> Dedicados al bienestar de nuestros clientes</li>
@@ -496,9 +508,11 @@ const pages = {
       <div class="auth-container">
         <div class="auth-card">
           <div class="auth-header">
-            <svg class="logo-shield-auth" width="60" height="60" viewBox="0 0 100 100" fill="none">
-              <path d="M50 10 L80 25 L80 50 Q80 75 50 90 Q20 75 20 50 L20 25 Z" fill="currentColor"/>
-              <text x="50" y="60" text-anchor="middle" font-size="40" font-weight="bold" fill="white">K</text>
+            <svg class="logo-shield-auth" width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+              <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+              <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+              <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
             </svg>
             <h2>Portal de Clientes</h2>
             <p>Accede a tu cuenta para revisar tus pólizas</p>
@@ -546,9 +560,11 @@ const pages = {
       <div class="auth-container">
         <div class="auth-card">
           <div class="auth-header">
-            <svg class="logo-shield-auth" width="60" height="60" viewBox="0 0 100 100" fill="none">
-              <path d="M50 10 L80 25 L80 50 Q80 75 50 90 Q20 75 20 50 L20 25 Z" fill="currentColor"/>
-              <text x="50" y="60" text-anchor="middle" font-size="40" font-weight="bold" fill="white">K</text>
+            <svg class="logo-shield-auth" width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+              <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+              <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+              <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
             </svg>
             <h2>Portal de Agentes</h2>
             <p>Acceso exclusivo para agentes certificados</p>
@@ -1026,10 +1042,12 @@ function startHomeSequence() {
 
   // Show sub-nav bar but hide all buttons initially
   if (subNav) {
-    subNav.style.display = 'flex';
+    subNav.classList.add('d-flex');
+    subNav.classList.remove('d-none');
     const allButtons = subNav.querySelectorAll('.sub-nav-btn');
     allButtons.forEach(btn => {
-      btn.style.display = 'none';
+      btn.classList.add('d-none');
+      btn.classList.remove('d-inline-block');
     });
   }
 
@@ -1044,7 +1062,8 @@ function startHomeSequence() {
     setTimeout(() => {
       const heroBtn = subNav.querySelector('[data-section="hero"]');
       if (heroBtn) {
-        heroBtn.style.display = 'inline-block';
+        heroBtn.classList.add('d-inline-block');
+        heroBtn.classList.remove('d-none');
         heroBtn.classList.add('btn-droplet');
         setTimeout(() => heroBtn.classList.remove('btn-droplet'), 600);
       }
@@ -1064,7 +1083,8 @@ function startHomeSequence() {
         setTimeout(() => {
           const eleccionBtn = subNav.querySelector('[data-section="eleccion"]');
           if (eleccionBtn) {
-            eleccionBtn.style.display = 'inline-block';
+            eleccionBtn.classList.add('d-inline-block');
+            eleccionBtn.classList.remove('d-none');
             eleccionBtn.classList.add('btn-droplet');
             setTimeout(() => eleccionBtn.classList.remove('btn-droplet'), 600);
           }
@@ -1074,19 +1094,21 @@ function startHomeSequence() {
           paradeSection.classList.remove('active');
           ctaSection.classList.add('active');
           
-          // Show Contacto button with droplet effect
+          // Show Cotiza button with droplet effect
           setTimeout(() => {
-            const contactoBtn = subNav.querySelector('[data-section="contacto"]');
-            if (contactoBtn) {
-              contactoBtn.style.display = 'inline-block';
-              contactoBtn.classList.add('btn-droplet');
-              setTimeout(() => contactoBtn.classList.remove('btn-droplet'), 600);
+            const cotizaBtn = subNav.querySelector('[data-section="cotiza"]');
+            if (cotizaBtn) {
+              cotizaBtn.classList.add('d-inline-block');
+              cotizaBtn.classList.remove('d-none');
+              cotizaBtn.classList.add('btn-droplet');
+              setTimeout(() => cotizaBtn.classList.remove('btn-droplet'), 600);
             }
           }, 400);
           
           // Remove skip button
           if (skipBtn) {
-            skipBtn.style.display = 'none';
+            skipBtn.classList.add('d-none');
+            skipBtn.classList.remove('d-block');
           }
         }, 800);
       }, 8000); // Show parade for 8 seconds
@@ -1108,19 +1130,27 @@ function skipToFinalState() {
   document.body.classList.remove('section-hero', 'section-parade');
   document.body.classList.add('section-cta');
 
-  // Hide all sections
-  heroSection.classList.remove('active', 'fade-out-up');
-  paradeSection.classList.remove('active', 'fade-out-up');
+  // Hide all sections properly
+  const allSections = document.querySelectorAll('.home-section');
+  allSections.forEach(section => {
+    section.classList.remove('active', 'fade-out-up');
+    section.classList.add('d-none');
+    section.classList.remove('d-flex');
+  });
   
   // Show CTA section
+  ctaSection.classList.add('d-flex');
+  ctaSection.classList.remove('d-none');
   ctaSection.classList.add('active');
   
   // Show sub-navigation with all buttons
   if (subNav) {
-    subNav.style.display = 'flex';
+    subNav.classList.add('d-flex');
+    subNav.classList.remove('d-none');
     const allButtons = subNav.querySelectorAll('.sub-nav-btn');
     allButtons.forEach((btn, index) => {
-      btn.style.display = 'inline-block';
+      btn.classList.add('d-inline-block');
+      btn.classList.remove('d-none');
       setTimeout(() => {
         btn.classList.add('btn-droplet');
         setTimeout(() => btn.classList.remove('btn-droplet'), 600);
@@ -1130,7 +1160,8 @@ function skipToFinalState() {
   
   // Remove skip button
   if (skipBtn) {
-    skipBtn.style.display = 'none';
+    skipBtn.classList.add('d-none');
+    skipBtn.classList.remove('d-block');
   }
 }
 
@@ -1141,7 +1172,7 @@ function showHomeSection(section) {
     document.body.classList.add('section-hero');
   } else if (section === 'eleccion') {
     document.body.classList.add('section-parade');
-  } else if (section === 'contacto') {
+  } else if (section === 'cotiza') {
     document.body.classList.add('section-cta');
   }
 
@@ -1158,13 +1189,15 @@ function showHomeSection(section) {
   allSections.forEach(sec => {
     sec.classList.remove('active');
     sec.classList.remove('fade-out-up');
-    sec.style.display = 'none';
+    sec.classList.add('d-none');
+    sec.classList.remove('d-flex');
   });
   
   // Show selected section
   const targetSection = document.getElementById(`${section}-section`);
   if (targetSection) {
-    targetSection.style.display = 'flex';
+    targetSection.classList.add('d-flex');
+    targetSection.classList.remove('d-none');
     targetSection.classList.add('active');
     
     // Reinitialize stats if showing hero
@@ -1348,13 +1381,67 @@ class Particle {
     this.opacity = Math.random() * 0.4 + 0.4;
   }
 
+  checkCollisionWithElements() {
+    // Verificar colisión con elementos del DOM que tengan contenido
+    const elements = document.querySelectorAll('.navbar, .sub-navigation, .main-content, .home-section, .feature-box, .agent-card, .stat-box, .btn, .auth-card, .dashboard-card, .service-card-detailed, .cta-section');
+    
+    for (let elem of elements) {
+      const rect = elem.getBoundingClientRect();
+      const padding = 20; // Margen de seguridad alrededor del elemento
+      
+      // Verificar si la partícula está dentro o cerca del elemento
+      if (this.x > rect.left - padding && 
+          this.x < rect.right + padding && 
+          this.y > rect.top - padding && 
+          this.y < rect.bottom + padding) {
+        
+        // Rebotar en la dirección opuesta
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // Calcular dirección de rebote basada en la posición relativa
+        if (this.x < centerX) {
+          this.speedX = -Math.abs(this.speedX);
+        } else {
+          this.speedX = Math.abs(this.speedX);
+        }
+        
+        if (this.y < centerY) {
+          this.speedY = -Math.abs(this.speedY);
+        } else {
+          this.speedY = Math.abs(this.speedY);
+        }
+        
+        return true;
+      }
+    }
+    return false;
+  }
+
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
-    if (this.x > canvas.width) this.x = 0;
-    if (this.x < 0) this.x = canvas.width;
-    if (this.y > canvas.height) this.y = 0;
-    if (this.y < 0) this.y = canvas.height;
+    
+    // Rebotar en los bordes del canvas
+    if (this.x > canvas.width) {
+      this.x = canvas.width;
+      this.speedX *= -1;
+    }
+    if (this.x < 0) {
+      this.x = 0;
+      this.speedX *= -1;
+    }
+    if (this.y > canvas.height) {
+      this.y = canvas.height;
+      this.speedY *= -1;
+    }
+    if (this.y < 0) {
+      this.y = 0;
+      this.speedY *= -1;
+    }
+    
+    // Verificar colisiones con elementos del DOM
+    this.checkCollisionWithElements();
   }
 
   draw() {
@@ -1373,32 +1460,37 @@ function initParticles() {
   }
 }
 
+function connectParticles() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < 120) {
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * (1 - distance / 120)})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
 function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles.forEach(particle => {
     particle.update();
     particle.draw();
   });
+  connectParticles();
   requestAnimationFrame(animateParticles);
 }
 
 initParticles();
 animateParticles();
-
-// Navbar scroll effect
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-  const navbar = document.getElementById('navbar');
-  const currentScroll = window.pageYOffset;
-  
-  if (currentScroll > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-  
-  lastScroll = currentScroll;
-});
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {

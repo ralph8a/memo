@@ -65,11 +65,9 @@ module.exports = {
         { from: 'src/assets/favicon.ico', to: 'favicon.ico' },
         { from: 'public/manifest.json', to: 'manifest.json' },
         { from: 'src/service-worker.js', to: 'service-worker.js' },
-        { from: 'landing.html', to: 'landing.html' },
-        { from: 'landing.css', to: 'landing.css' },
-        { from: 'landing.js', to: 'landing.js' },
         { from: 'app.html', to: 'app.html' },
         { from: 'app.css', to: 'app.css' },
+        { from: 'acrylic.css', to: 'acrylic.css' },
         { from: 'app.js', to: 'app.js' },
         { from: 'splash.html', to: 'index.html' }
       ]
