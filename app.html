@@ -6,7 +6,8 @@
   <title>Krause Insurance - Protection Beyond The Limits</title>
   <base href="/memo/">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="app.css?v=13.0">
+    <link rel="stylesheet" href="acrylic.css?v=2.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Aptos+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,24 +19,24 @@
   <!-- Navigation Bar -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand" onclick="navigateTo('home')">
+      <div class="nav-brand" onclick="navigateTo('home', event)">
         <svg class="logo-shield krause-shield" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
           <!-- Círculo exterior -->
           <ellipse 
             class="shield-circle" 
             cx="40" 
-            cy="40" 
-            rx="24" 
-            ry="24" 
+            cy="38" 
+            rx="22" 
+            ry="22"
             stroke="currentColor" 
             stroke-width="3" 
             fill="none" 
           />
           
-          <!-- Rombo/Diamante -->
+          <!-- Rombo/Diamante (forma de escudo) -->
           <path 
             class="shield-diamond" 
-            d="M40 20 L65 40 L40 75 L15 40 Z" 
+            d="M40 12 L62 35 L40 70 L18 35 Z" 
             stroke="currentColor" 
             stroke-width="3" 
             fill="none" 
@@ -44,19 +45,19 @@
           <!-- Arco protector -->
           <path 
             class="shield-arc" 
-            d="M22 54 Q40 28 58 54" 
+            d="M24 50 Q40 30 56 50"
             stroke="currentColor" 
             stroke-width="3" 
             fill="none" 
           />
           
-          <!-- Línea vertical -->
+          <!-- Línea vertical (lanza) -->
           <line 
             class="shield-line" 
             x1="40" 
-            y1="54" 
+            y1="50" 
             x2="40" 
-            y2="72" 
+            y2="68" 
             stroke="currentColor" 
             stroke-width="3" 
           />
@@ -74,10 +75,10 @@
       </button>
       
       <div class="nav-menu" id="navMenu">
-        <a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home')">Inicio</a>
-        <a href="#" class="nav-link" data-page="services" onclick="navigateTo('services')">Servicios</a>
-        <a href="#" class="nav-link" data-page="about" onclick="navigateTo('about')">Nosotros</a>
-        <a href="#" class="nav-link" data-page="contact" onclick="navigateTo('contact')">Contacto</a>
+        <a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home', event)">Inicio</a>
+        <a href="#" class="nav-link" data-page="services" onclick="navigateTo('services', event)">Servicios</a>
+        <a href="#" class="nav-link" data-page="about" onclick="navigateTo('about', event)">Nosotros</a>
+        <a href="#" class="nav-link" data-page="contact" onclick="navigateTo('contact', event)">Contacto</a>
         <div class="nav-buttons">
           <button class="btn-nav btn-login" onclick="navigateTo('login')">Acceso Clientes</button>
           <button class="btn-nav btn-agent" onclick="navigateTo('agent-login')">Portal Agentes</button>
@@ -115,20 +116,20 @@
         <div class="footer-section">
           <h4>Servicios</h4>
           <ul>
-            <li><a href="#" onclick="navigateTo('services')">Seguros de Auto</a></li>
-            <li><a href="#" onclick="navigateTo('services')">Seguros de Hogar</a></li>
-            <li><a href="#" onclick="navigateTo('services')">Seguros de Vida</a></li>
-            <li><a href="#" onclick="navigateTo('services')">Seguros Comerciales</a></li>
+            <li><a href="#" onclick="navigateTo('services', event)">Seguros de Auto</a></li>
+            <li><a href="#" onclick="navigateTo('services', event)">Seguros de Hogar</a></li>
+            <li><a href="#" onclick="navigateTo('services', event)">Seguros de Vida</a></li>
+            <li><a href="#" onclick="navigateTo('services', event)">Seguros Comerciales</a></li>
           </ul>
         </div>
         
         <div class="footer-section">
           <h4>Acceso Rápido</h4>
           <ul>
-            <li><a href="#" onclick="navigateTo('login')">Portal Clientes</a></li>
-            <li><a href="#" onclick="navigateTo('agent-login')">Portal Agentes</a></li>
+            <li><a href="#" onclick="navigateTo('login', event)">Portal Clientes</a></li>
+            <li><a href="#" onclick="navigateTo('agent-login', event)">Portal Agentes</a></li>
             <li><a href="card.html">Tarjeta Digital</a></li>
-            <li><a href="#" onclick="navigateTo('contact')">Contacto</a></li>
+            <li><a href="#" onclick="navigateTo('contact', event)">Contacto</a></li>
           </ul>
         </div>
         
@@ -169,6 +170,6 @@
       });
     });
   </script>
-  <script src="app.js"></script>
+  <script src="app.js?v=2.0"></script>
 </body>
 </html>
