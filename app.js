@@ -225,72 +225,79 @@ const pages = {
   `,
   
   services: `
-    <section class="page-header services-hero">
+    <section class="page-header">
       <div class="container">
-        <div class="services-hero-content">
-          <svg class="services-logo" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-            <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
-            <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
-            <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
-            <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
-          </svg>
-          <h1 class="page-title animated-title">
-            <span class="title-line">Nuestros</span>
-            <span class="title-line highlight">Servicios</span>
-          </h1>
-          <p class="page-subtitle">Cobertura completa para todas tus necesidades</p>
-          <div class="services-stats">
-            <div class="stat-mini">
-              <div class="stat-number">6</div>
-              <div class="stat-label">Tipos de Seguro</div>
-            </div>
-            <div class="stat-mini">
-              <div class="stat-number">25+</div>
-              <div class="stat-label">Años Experiencia</div>
-            </div>
-            <div class="stat-mini">
-              <div class="stat-number">10K+</div>
-              <div class="stat-label">Pólizas Activas</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <section class="services-intro">
-      <div class="container">
-        <div class="intro-content">
-          <h2>¿Por Qué Elegirnos?</h2>
-          <p>En Krause Insurance nos especializamos en encontrar la cobertura perfecta para ti. Con más de 25 años de experiencia, trabajamos con las mejores aseguradoras del mercado para ofrecerte planes personalizados, precios competitivos y un servicio excepcional.</p>
-          <div class="intro-features">
-            <div class="intro-feature">
-              <span class="feature-icon-small">🛡️</span>
-              <span>Cobertura Integral</span>
-            </div>
-            <div class="intro-feature">
-              <span class="feature-icon-small">💰</span>
-              <span>Mejores Precios</span>
-            </div>
-            <div class="intro-feature">
-              <span class="feature-icon-small">⚡</span>
-              <span>Atención 24/7</span>
-            </div>
-            <div class="intro-feature">
-              <span class="feature-icon-small">👨‍💼</span>
-              <span>Asesoría Experta</span>
-            </div>
-          </div>
-        </div>
+        <h1 class="page-title">Nuestros Servicios</h1>
+        <p class="page-subtitle">Cobertura completa para todas tus necesidades</p>
       </div>
     </section>
     
     <section class="services-section">
       <div class="container">
-        <div class="section-header-services">
-          <h2>Explora Nuestras Soluciones</h2>
-          <p>Selecciona el tipo de seguro que mejor se adapte a tus necesidades</p>
-        </div>
-        <div class="services-grid">
+        <div class="services-two-column-layout">
+          <div class="services-sidebar">
+            <div class="sidebar-sticky">
+              <h2 class="sidebar-title">Protección Completa para Cada Etapa de tu Vida</h2>
+              <p class="sidebar-description">Más de 25 años ofreciendo las mejores soluciones en seguros con atención personalizada.</p>
+              
+              <div class="services-quick-stats">
+                <div class="quick-stat">
+                  <div class="quick-stat-icon">🛡️</div>
+                  <div>
+                    <div class="quick-stat-value">6</div>
+                    <div class="quick-stat-label">Tipos de Seguro</div>
+                  </div>
+                </div>
+                <div class="quick-stat">
+                  <div class="quick-stat-icon">🏆</div>
+                  <div>
+                    <div class="quick-stat-value">25+</div>
+                    <div class="quick-stat-label">Años Experiencia</div>
+                  </div>
+                </div>
+                <div class="quick-stat">
+                  <div class="quick-stat-icon">📋</div>
+                  <div>
+                    <div class="quick-stat-value">10K+</div>
+                    <div class="quick-stat-label">Pólizas Activas</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="services-benefits">
+                <h4>¿Por Qué Elegirnos?</h4>
+                <div class="benefit-item">
+                  <span class="benefit-check">✓</span>
+                  <span>Cobertura Integral</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-check">✓</span>
+                  <span>Mejores Precios del Mercado</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-check">✓</span>
+                  <span>Atención 24/7</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-check">✓</span>
+                  <span>Asesoría Experta</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-check">✓</span>
+                  <span>Proceso Rápido y Fácil</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="services-main-content">
+            <div class="services-content-area">
+              <div class="services-header-horizontal">
+                <h3 class="services-title-left">Encuentra la Protección que Necesitas</h3>
+                <p class="services-desc-right">En Krause Insurance nos especializamos en encontrar la cobertura perfecta para ti. Trabajamos con las mejores aseguradoras del mercado para ofrecerte planes personalizados y precios competitivos.</p>
+              </div>
+              
+              <div class="services-grid-modern">
           <div class="service-card-detailed">
             <div class="service-icon-large">🚗</div>
             <h3>Seguros de Auto</h3>
@@ -376,6 +383,10 @@ const pages = {
             <button class="btn btn-outline" onclick="openQuoteModal('viaje')">Cotizar Ahora</button>
           </div>
         </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   `,
@@ -390,62 +401,104 @@ const pages = {
     
     <section class="about-section">
       <div class="container">
-        <div class="about-grid">
-          <div class="about-content">
-            <h2>Nuestra Historia</h2>
-            <p>Con más de 25 años de experiencia en el sector de seguros, Krause Insurance ha protegido a miles de familias y negocios. Fundada por Guillermo Krause, nuestra empresa se ha construido sobre los pilares de confianza, profesionalismo y compromiso genuino con nuestros clientes.</p>
-            
-            <h3>Nuestra Misión</h3>
-            <p>Proporcionar soluciones de seguros personalizadas que superen las expectativas de nuestros clientes, brindando protección integral y paz mental.</p>
-            
-            <h3>Nuestros Valores</h3>
-            <ul class="values-list">
-              <li><strong>Integridad:</strong> Actuamos con honestidad y transparencia</li>
-              <li><strong>Compromiso:</strong> Dedicados al bienestar de nuestros clientes</li>
-              <li><strong>Excelencia:</strong> Buscamos la perfección en cada servicio</li>
-              <li><strong>Innovación:</strong> Adaptándonos a las necesidades cambiantes</li>
-            </ul>
+        <div class="about-two-column-layout">
+          <div class="about-sidebar">
+            <div class="sidebar-sticky">
+              <h2 class="sidebar-title">25+ Años Protegiendo lo que más Valoras</h2>
+              <p class="sidebar-description">Desde 1999, Krause Insurance ha sido sinónimo de confianza, protección y excelencia en servicios de seguros.</p>
+              <div class="sidebar-stats">
+                <div class="stat-compact">
+                  <div class="stat-icon">🏆</div>
+                  <div>
+                    <div class="stat-value">25+</div>
+                    <div class="stat-label">Años</div>
+                  </div>
+                </div>
+                <div class="stat-compact">
+                  <div class="stat-icon">👥</div>
+                  <div>
+                    <div class="stat-value">5,000+</div>
+                    <div class="stat-label">Clientes</div>
+                  </div>
+                </div>
+                <div class="stat-compact">
+                  <div class="stat-icon">⭐</div>
+                  <div>
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Satisfacción</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           
-          <div class="about-image">
-            <div class="stat-highlight">
-              <div class="stat-number">25+</div>
-              <div class="stat-text">Años de Experiencia</div>
+          <div class="about-main-content">
+            <div class="content-section">
+              <h3 class="section-heading">Nuestra Historia</h3>
+              <p>Con más de 25 años de experiencia en el sector de seguros, Krause Insurance ha protegido a miles de familias y negocios. Fundada por Guillermo Krause, nuestra empresa se ha construido sobre los pilares de confianza, profesionalismo y compromiso genuino con nuestros clientes.</p>
+              <p>Desde nuestros inicios, hemos mantenido una filosofía clara: cada cliente es único y merece una atención personalizada. Esta visión nos ha permitido crecer orgánicamente, construyendo relaciones duraderas basadas en la confianza mutua.</p>
             </div>
-            <div class="stat-highlight">
-              <div class="stat-number">5,000+</div>
-              <div class="stat-text">Clientes Satisfechos</div>
+            
+            <div class="content-section">
+              <h3 class="section-heading">Nuestra Misión</h3>
+              <p>Proporcionar soluciones de seguros personalizadas que superen las expectativas de nuestros clientes, brindando protección integral y paz mental. Nos comprometemos a estar presentes en cada momento importante de la vida de nuestros asegurados.</p>
             </div>
-            <div class="stat-highlight">
-              <div class="stat-number">98%</div>
-              <div class="stat-text">Satisfacción</div>
+            
+            <div class="content-section">
+              <h3 class="section-heading">Nuestros Valores</h3>
+              <div class="values-grid">
+                <div class="value-card">
+                  <div class="value-icon">🛡️</div>
+                  <h4>Integridad</h4>
+                  <p>Actuamos con honestidad y transparencia en cada interacción con nuestros clientes.</p>
+                </div>
+                <div class="value-card">
+                  <div class="value-icon">🤝</div>
+                  <h4>Compromiso</h4>
+                  <p>Dedicados completamente al bienestar y protección de nuestros clientes.</p>
+                </div>
+                <div class="value-card">
+                  <div class="value-icon">⭐</div>
+                  <h4>Excelencia</h4>
+                  <p>Buscamos la perfección en cada servicio que ofrecemos.</p>
+                </div>
+                <div class="value-card">
+                  <div class="value-icon">💡</div>
+                  <h4>Innovación</h4>
+                  <p>Nos adaptamos constantemente a las necesidades cambiantes del mercado.</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <section class="team-section">
-      <div class="container">
-        <h2 class="section-title">Nuestro Equipo</h2>
-        <div class="team-grid">
-          <div class="team-member">
-            <div class="member-avatar">GK</div>
-            <h3>Guillermo Krause</h3>
-            <p class="member-role">Fundador & CEO</p>
-            <p>25+ años liderando la industria de seguros con pasión y dedicación.</p>
-          </div>
-          <div class="team-member">
-            <div class="member-avatar">AS</div>
-            <h3>Agentes Especializados</h3>
-            <p class="member-role">Equipo Comercial</p>
-            <p>Expertos certificados listos para asesorarte en cada paso.</p>
-          </div>
-          <div class="team-member">
-            <div class="member-avatar">SC</div>
-            <h3>Servicio al Cliente</h3>
-            <p class="member-role">Soporte 24/7</p>
-            <p>Siempre disponibles para resolver tus dudas y necesidades.</p>
+            
+            <div class="content-section">
+              <h3 class="section-heading">Nuestro Equipo</h3>
+              <div class="team-grid-inline">
+                <div class="team-card">
+                  <div class="team-avatar">GK</div>
+                  <div class="team-info">
+                    <h4>Guillermo Krause</h4>
+                    <p class="team-role">Fundador & CEO</p>
+                    <p class="team-desc">25+ años liderando la industria de seguros con pasión y dedicación.</p>
+                  </div>
+                </div>
+                <div class="team-card">
+                  <div class="team-avatar">AS</div>
+                  <div class="team-info">
+                    <h4>Agentes Especializados</h4>
+                    <p class="team-role">Equipo Comercial</p>
+                    <p class="team-desc">Expertos certificados listos para asesorarte en cada paso.</p>
+                  </div>
+                </div>
+                <div class="team-card">
+                  <div class="team-avatar">SC</div>
+                  <div class="team-info">
+                    <h4>Servicio al Cliente</h4>
+                    <p class="team-role">Soporte 24/7</p>
+                    <p class="team-desc">Siempre disponibles para resolver tus dudas y necesidades.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -462,97 +515,132 @@ const pages = {
     
     <section class="contact-section">
       <div class="container">
-        <div class="contact-grid-layout">
-          <div class="contact-info-panel">
-            <h2>Información de Contacto</h2>
-            <p>¿Tienes preguntas? Estamos aquí para responder. Contáctanos por cualquiera de estos medios:</p>
-            
-            <div class="contact-methods-list">
-              <div class="contact-method-item">
-                <div class="method-icon">📞</div>
-                <div>
-                  <div class="method-label">Teléfono</div>
-                  <a href="tel:+123456789" class="method-value">+1 (234) 567-89</a>
+        <div class="contact-two-column-layout">
+          <div class="contact-sidebar">
+            <div class="sidebar-sticky">
+              <h2 class="sidebar-title">¿Cómo Podemos Ayudarte?</h2>
+              <p class="sidebar-description">Nuestro equipo está listo para brindarte la mejor asesoría en seguros. Contáctanos por cualquier medio.</p>
+              
+              <div class="contact-quick-info">
+                <div class="quick-info-item">
+                  <div class="info-icon-circle">📞</div>
+                  <div>
+                    <div class="info-label">Llámanos</div>
+                    <a href="tel:+123456789" class="info-value">+1 (234) 567-89</a>
+                  </div>
+                </div>
+                
+                <div class="quick-info-item">
+                  <div class="info-icon-circle">📧</div>
+                  <div>
+                    <div class="info-label">Escríbenos</div>
+                    <a href="mailto:info@krauseinsurances.com" class="info-value">info@krauseinsurances.com</a>
+                  </div>
+                </div>
+                
+                <div class="quick-info-item">
+                  <div class="info-icon-circle">📍</div>
+                  <div>
+                    <div class="info-label">Visítanos</div>
+                    <div class="info-value">Tu Ciudad, Estado<br>Código Postal</div>
+                  </div>
+                </div>
+                
+                <div class="quick-info-item">
+                  <div class="info-icon-circle">🕐</div>
+                  <div>
+                    <div class="info-label">Horario</div>
+                    <div class="info-value">Lun - Vie: 9:00 AM - 6:00 PM<br>Sáb: 10:00 AM - 2:00 PM</div>
+                  </div>
                 </div>
               </div>
               
-              <div class="contact-method-item">
-                <div class="method-icon">📧</div>
-                <div>
-                  <div class="method-label">Email</div>
-                  <a href="mailto:info@krauseinsurances.com" class="method-value">info@krauseinsurances.com</a>
+              <div class="social-section">
+                <h4>Síguenos</h4>
+                <div class="social-links-sidebar">
+                  <a href="#" class="social-icon-link">🔗 LinkedIn</a>
+                  <a href="#" class="social-icon-link">📘 Facebook</a>
+                  <a href="#" class="social-icon-link">📸 Instagram</a>
                 </div>
               </div>
-              
-              <div class="contact-method-item">
-                <div class="method-icon">📍</div>
-                <div>
-                  <div class="method-label">Oficina</div>
-                  <div class="method-value">Tu Ciudad, Estado<br>Código Postal</div>
-                </div>
-              </div>
-              
-              <div class="contact-method-item">
-                <div class="method-icon">🕐</div>
-                <div>
-                  <div class="method-label">Horario</div>
-                  <div class="method-value">Lun - Vie: 9:00 AM - 6:00 PM<br>Sáb: 10:00 AM - 2:00 PM</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="social-links-contact">
-              <a href="#" class="social-link">LinkedIn</a>
-              <a href="#" class="social-link">Facebook</a>
-              <a href="#" class="social-link">Instagram</a>
             </div>
           </div>
           
-          <div class="contact-form-panel">
-            <h2>Envíanos un Mensaje</h2>
-            <form class="contact-form-app" onsubmit="handleContactSubmit(event)">
-              <div class="form-row">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nombre completo" required>
-                </div>
+          <div class="contact-main-content">
+            <div class="contact-compact-layout">
+              <div class="contact-form-wrapper">
+                <h3 class="form-title-compact">Envíanos un Mensaje</h3>
+                <p class="form-subtitle-compact">Completa el formulario y te responderemos lo antes posible</p>
+                
+                <form class="contact-form-compact" onsubmit="handleContactSubmit(event)">
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label class="field-label">Nombre Completo</label>
+                      <input type="text" class="form-input" placeholder="Juan Pérez" required>
+                    </div>
+                    
+                    <div class="form-field">
+                      <label class="field-label">Correo Electrónico</label>
+                      <input type="email" class="form-input" placeholder="juan@ejemplo.com" required>
+                    </div>
+                  </div>
+                  
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label class="field-label">Teléfono</label>
+                      <input type="tel" class="form-input" placeholder="+1 (234) 567-8900" required>
+                    </div>
+                    
+                    <div class="form-field">
+                      <label class="field-label">Servicio de Interés</label>
+                      <select class="form-input" required>
+                        <option value="">Selecciona un servicio</option>
+                        <option value="auto">Seguro de Auto</option>
+                        <option value="hogar">Seguro de Hogar</option>
+                        <option value="vida">Seguro de Vida</option>
+                        <option value="salud">Seguro de Salud</option>
+                        <option value="comercial">Seguro Comercial</option>
+                        <option value="viaje">Seguro de Viaje</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="form-field">
+                    <label class="field-label">Mensaje</label>
+                    <textarea class="form-input form-textarea" rows="3" placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
+                  </div>
+                  
+                  <button type="submit" class="btn-submit-compact">
+                    <span>Enviar Mensaje</span>
+                    <span class="btn-arrow">→</span>
+                  </button>
+                </form>
               </div>
               
-              <div class="form-row">
-                <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Email" required>
+              <div class="contact-features-compact">
+                <div class="feature-compact">
+                  <div class="feature-icon-compact">⚡</div>
+                  <div>
+                    <h5>Respuesta Rápida</h5>
+                    <p>En menos de 24 horas</p>
+                  </div>
+                </div>
+                <div class="feature-compact">
+                  <div class="feature-icon-compact">🔒</div>
+                  <div>
+                    <h5>100% Confidencial</h5>
+                    <p>Datos protegidos</p>
+                  </div>
+                </div>
+                <div class="feature-compact">
+                  <div class="feature-icon-compact">💬</div>
+                  <div>
+                    <h5>Asesoría Gratuita</h5>
+                    <p>Sin compromiso</p>
+                  </div>
                 </div>
               </div>
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <input type="tel" class="form-control" placeholder="Teléfono" required>
-                </div>
-              </div>
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <select class="form-control" required>
-                    <option value="">Selecciona un servicio</option>
-                    <option value="auto">Seguro de Auto</option>
-                    <option value="hogar">Seguro de Hogar</option>
-                    <option value="vida">Seguro de Vida</option>
-                    <option value="salud">Seguro de Salud</option>
-                    <option value="comercial">Seguro Comercial</option>
-                    <option value="viaje">Seguro de Viaje</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <textarea class="form-control" rows="5" placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
-                </div>
-              </div>
-              
-              <button type="submit" class="btn btn-primary btn-block">
-                Enviar Mensaje
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>

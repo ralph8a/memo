@@ -1,3 +1,17 @@
 {
-    "eslint.enable": false
+    "eslint.enable": false,
+    "liveServer.settings.root": "dist",
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.CustomBrowser": "chrome",
+    "liveServer.settings.NoBrowser": false,
+    "liveServer.settings.useWebExt": false,
+    "liveServer.settings.file": "app.html",
+    "liveServer.settings.fullReload": true,
+    "liveServer.settings.wait": 500,
+    "liveServer.settings.ignoreFiles": [
+        ".vscode/**",
+        "node_modules/**",
+        "**/*.scss",
+        "**/*.sass"
+    ]
 }
