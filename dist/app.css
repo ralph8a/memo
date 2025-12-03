@@ -2257,23 +2257,24 @@ body.section-cta {
 
 .contact-quick-info {
   display: flex;
-  flex-direction: row;
-  gap: 40px;
+  flex-direction: column;
+  gap: 16px;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
   margin-bottom: 0;
   width: 100%;
 }
 
 .quick-info-item {
   display: flex;
-  align-items: start;
-  gap: 16px;
+  align-items: flex-start;
+  gap: 12px;
+  flex-direction: column;
 }
 
 .info-icon-circle {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
@@ -2281,7 +2282,7 @@ body.section-cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
