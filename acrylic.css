@@ -1,152 +1,19 @@
 /* ========================================
-   ACRYLIC GLASS EFFECT SYSTEM
-   Sistema unificado de efectos acrílicos
+   ACRYLIC DESIGN SYSTEM
+   Sistema completo de efectos acrílicos para Krause Insurance
    ======================================== */
-
-/* Mixins base - Aplicar vía clases */
-
-.acrylic-light {
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.acrylic-medium {
-  backdrop-filter: blur(25px) saturate(160%);
-  -webkit-backdrop-filter: blur(25px) saturate(160%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.acrylic-strong {
-  backdrop-filter: blur(30px) saturate(170%);
-  -webkit-backdrop-filter: blur(30px) saturate(170%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-.acrylic-intense {
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-/* Variantes con elevación */
-
-.acrylic-elevated {
-  backdrop-filter: blur(25px) saturate(160%);
-  -webkit-backdrop-filter: blur(25px) saturate(160%);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), 
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.acrylic-elevated-strong {
-  backdrop-filter: blur(30px) saturate(170%);
-  -webkit-backdrop-filter: blur(30px) saturate(170%);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 
-              inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-/* Estados hover */
-
-.acrylic-hover:hover {
-  backdrop-filter: blur(30px) saturate(170%);
-  -webkit-backdrop-filter: blur(30px) saturate(170%);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15),
-              inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-.acrylic-hover-strong:hover {
-  backdrop-filter: blur(35px) saturate(180%);
-  -webkit-backdrop-filter: blur(35px) saturate(180%);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2),
-              inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-/* Backgrounds acrílicos predefinidos */
-
-.acrylic-bg-white-light {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.acrylic-bg-white-medium {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(25px) saturate(160%);
-  -webkit-backdrop-filter: blur(25px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.acrylic-bg-white-strong {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(30px) saturate(170%);
-  -webkit-backdrop-filter: blur(30px) saturate(170%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-.acrylic-bg-dark-light {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.acrylic-bg-maroon {
-  background: linear-gradient(135deg, rgba(114, 47, 55, 0.7), rgba(139, 35, 72, 0.7));
-  backdrop-filter: blur(30px) saturate(170%);
-  -webkit-backdrop-filter: blur(30px) saturate(170%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-/* Utilidades para transiciones */
-
-.acrylic-transition {
-  transition: backdrop-filter 0.3s ease, 
-              background 0.3s ease, 
-              box-shadow 0.3s ease,
-              border-color 0.3s ease;
-}
-
-.acrylic-transition-slow {
-  transition: backdrop-filter 0.5s ease, 
-              background 0.5s ease, 
-              box-shadow 0.5s ease,
-              border-color 0.5s ease;
-}
-
-/* Soporte para navegadores sin backdrop-filter */
-@supports not (backdrop-filter: blur(10px)) {
-  .acrylic-light,
-  .acrylic-medium,
-  .acrylic-strong,
-  .acrylic-intense,
-  .acrylic-bg-white-light,
-  .acrylic-bg-white-medium,
-  .acrylic-bg-white-strong {
-    background: rgba(255, 255, 255, 0.95);
-  }
-  
-  .acrylic-bg-dark-light {
-    background: rgba(0, 0, 0, 0.85);
-  }
-  
-  .acrylic-bg-maroon {
-    background: linear-gradient(135deg, rgba(114, 47, 55, 0.95), rgba(139, 35, 72, 0.95));
-  }
-}
 
 /* ========================================
-   APLICACIONES AUTOMÁTICAS
-   Clases específicas de componentes
+   NAVEGACIÓN
    ======================================== */
 
-/* Navegación */
+/* Navbar principal */
+.navbar {
+  backdrop-filter: blur(30px) saturate(170%);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
+}
+
+/* Links de navegación */
 .nav-link:hover,
 .nav-link.active {
   backdrop-filter: blur(15px) saturate(150%);
@@ -165,7 +32,10 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Botones */
+/* ========================================
+   BOTONES
+   ======================================== */
+
 .btn-primary {
   backdrop-filter: blur(25px) saturate(170%);
   -webkit-backdrop-filter: blur(25px) saturate(170%);
@@ -192,7 +62,10 @@
   box-shadow: 0 4px 12px rgba(139, 35, 72, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Tarjetas */
+/* ========================================
+   TARJETAS Y FEATURES
+   ======================================== */
+
 .feature-box {
   backdrop-filter: blur(30px) saturate(170%);
   -webkit-backdrop-filter: blur(30px) saturate(170%);
@@ -219,17 +92,38 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-/* Dashboard */
+.service-card-detailed {
+  backdrop-filter: blur(25px) saturate(160%);
+  -webkit-backdrop-filter: blur(25px) saturate(160%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.service-card-detailed:hover {
+  backdrop-filter: blur(30px) saturate(170%);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* ========================================
+   DASHBOARD
+   ======================================== */
+
 .dashboard-stat-card {
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
-  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .dashboard-stat-card:hover {
   backdrop-filter: blur(25px) saturate(160%);
   -webkit-backdrop-filter: blur(25px) saturate(160%);
-  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-card {
+  backdrop-filter: blur(25px) saturate(160%);
+  -webkit-backdrop-filter: blur(25px) saturate(160%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .policy-item,
@@ -242,75 +136,122 @@
 .quote-item:hover {
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Footer */
+/* ========================================
+   AUTH & FORMS
+   ======================================== */
+
+.auth-card {
+  backdrop-filter: blur(30px) saturate(170%);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.form-control:focus {
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
 .footer {
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
-  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3), 
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.footer-toggle {
+/* ========================================
+   CLASES UTILITARIAS
+   ======================================== */
+
+/* Niveles de intensidad */
+.acrylic-light {
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.footer-toggle:hover {
+.acrylic-medium {
   backdrop-filter: blur(25px) saturate(160%);
   -webkit-backdrop-filter: blur(25px) saturate(160%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),
-              0 2px 8px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Badges y elementos pequeños */
-.badge {
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+.acrylic-strong {
+  backdrop-filter: blur(30px) saturate(170%);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-.social-link {
-  backdrop-filter: blur(15px) saturate(150%);
-  -webkit-backdrop-filter: blur(15px) saturate(150%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+.acrylic-intense {
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-/* Stats */
-.stat-box {
+/* Backgrounds predefinidos */
+.acrylic-bg-white-light {
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.stat-box:hover {
+.acrylic-bg-white-medium {
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(25px) saturate(160%);
   -webkit-backdrop-filter: blur(25px) saturate(160%);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Forms */
-.form-control:focus {
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  box-shadow: 0 0 0 3px rgba(139, 35, 72, 0.15), 0 4px 12px rgba(139, 35, 72, 0.1);
+.acrylic-bg-maroon {
+  background: linear-gradient(135deg, rgba(114, 47, 55, 0.7), rgba(139, 35, 72, 0.7));
+  backdrop-filter: blur(30px) saturate(170%);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.agent-contact {
-  backdrop-filter: blur(15px) saturate(150%);
-  -webkit-backdrop-filter: blur(15px) saturate(150%);
+/* Transiciones */
+.acrylic-transition {
+  transition: backdrop-filter 0.3s ease, 
+              background 0.3s ease, 
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
 }
 
-.btn-home-start {
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-}
-
-.btn-home-start:hover {
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+/* ========================================
+   FALLBACK - Navegadores sin soporte
+   ======================================== */
+@supports not (backdrop-filter: blur(10px)) {
+  .navbar,
+  .nav-link,
+  .sub-nav-btn,
+  .btn-primary,
+  .btn-secondary,
+  .feature-box,
+  .agent-card,
+  .service-card-detailed,
+  .dashboard-card,
+  .dashboard-stat-card,
+  .auth-card,
+  .footer,
+  .acrylic-light,
+  .acrylic-medium,
+  .acrylic-strong,
+  .acrylic-intense,
+  .acrylic-bg-white-light,
+  .acrylic-bg-white-medium {
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  .acrylic-bg-maroon {
+    background: linear-gradient(135deg, rgba(114, 47, 55, 0.95), rgba(139, 35, 72, 0.95));
+  }
 }
