@@ -1,9 +1,9 @@
 // Home Page Template
 export default `
-<nav class="sub-navigation" id="sub-nav" style="display: none;">
-  <button class="sub-nav-btn active" data-section="hero" onclick="window.appHandlers.showHomeSection('hero')">Hero</button>
-  <button class="sub-nav-btn" data-section="eleccion" onclick="window.appHandlers.showHomeSection('eleccion')">Elección</button>
-  <button class="sub-nav-btn" data-section="contacto" onclick="window.appHandlers.showHomeSection('contacto')">Contacto</button>
+<nav class="sub-navigation sub-nav-hidden" id="sub-nav">
+  <button class="sub-nav-btn" data-section="hero" onclick="window.appHandlers?.showHomeSection('hero')">Hero</button>
+  <button class="sub-nav-btn" data-section="eleccion" onclick="window.appHandlers?.showHomeSection('eleccion')">Elección</button>
+  <button class="sub-nav-btn" data-section="cotiza" onclick="window.appHandlers?.showHomeSection('cotiza')">Cotizar</button>
 </nav>
 
 <section class="hero-section hero-intro home-section active" id="hero-section">
@@ -47,7 +47,7 @@ export default `
 </section>
 
 <section class="features-section features-parade home-section" id="eleccion-section">
-  <div class="container">
+  <div class="features-content">
     <h2 class="section-title">¿Por Qué Elegirnos?</h2>
     <div class="features-grid">
       <div class="feature-box feature-card-1">
@@ -74,9 +74,15 @@ export default `
   </div>
 </section>
 
-<section class="cta-section final-cta home-section" id="contacto-section">
+<section class="cta-section final-cta home-section" id="cotiza-section">
   <div class="container">
     <div class="cta-hero-title">
+      <svg class="cta-logo-large" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+        <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+        <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+        <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+      </svg>
       <h2 class="animated-title main-hero">
         <span class="title-line">¿Listo para</span>
         <span class="title-line highlight">Proteger</span>

@@ -225,15 +225,71 @@ const pages = {
   `,
   
   services: `
-    <section class="page-header">
+    <section class="page-header services-hero">
       <div class="container">
-        <h1 class="page-title">Nuestros Servicios</h1>
-        <p class="page-subtitle">Cobertura completa para todas tus necesidades</p>
+        <div class="services-hero-content">
+          <svg class="services-logo" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+            <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+            <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+            <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+          </svg>
+          <h1 class="page-title animated-title">
+            <span class="title-line">Nuestros</span>
+            <span class="title-line highlight">Servicios</span>
+          </h1>
+          <p class="page-subtitle">Cobertura completa para todas tus necesidades</p>
+          <div class="services-stats">
+            <div class="stat-mini">
+              <div class="stat-number">6</div>
+              <div class="stat-label">Tipos de Seguro</div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-number">25+</div>
+              <div class="stat-label">Años Experiencia</div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-number">10K+</div>
+              <div class="stat-label">Pólizas Activas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="services-intro">
+      <div class="container">
+        <div class="intro-content">
+          <h2>¿Por Qué Elegirnos?</h2>
+          <p>En Krause Insurance nos especializamos en encontrar la cobertura perfecta para ti. Con más de 25 años de experiencia, trabajamos con las mejores aseguradoras del mercado para ofrecerte planes personalizados, precios competitivos y un servicio excepcional.</p>
+          <div class="intro-features">
+            <div class="intro-feature">
+              <span class="feature-icon-small">🛡️</span>
+              <span>Cobertura Integral</span>
+            </div>
+            <div class="intro-feature">
+              <span class="feature-icon-small">💰</span>
+              <span>Mejores Precios</span>
+            </div>
+            <div class="intro-feature">
+              <span class="feature-icon-small">⚡</span>
+              <span>Atención 24/7</span>
+            </div>
+            <div class="intro-feature">
+              <span class="feature-icon-small">👨‍💼</span>
+              <span>Asesoría Experta</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     
     <section class="services-section">
       <div class="container">
+        <div class="section-header-services">
+          <h2>Explora Nuestras Soluciones</h2>
+          <p>Selecciona el tipo de seguro que mejor se adapte a tus necesidades</p>
+        </div>
         <div class="services-grid">
           <div class="service-card-detailed">
             <div class="service-icon-large">🚗</div>

@@ -96,7 +96,7 @@ export function startHomeSequence() {
           removeClass(parade, 'active');
           addClass(cta, 'active');
           
-          showButtonWithDroplet('[data-section="contacto"]', TIMING.BUTTON_DELAY);
+          showButtonWithDroplet('[data-section="cotiza"]', TIMING.BUTTON_DELAY);
           
           if (skipBtn) setStyle(skipBtn, 'display', 'none');
         }, TIMING.CTA_FADE_IN);

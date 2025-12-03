@@ -19,14 +19,47 @@ class Particle {
     this.canvasHeight = canvasHeight;
   }
 
+  checkCollisionWithElements() {
+    const elements = document.querySelectorAll('.navbar, .sub-navigation, .main-content, .home-section, .feature-box, .agent-card, .stat-box, .btn, .auth-card, .dashboard-card, .service-card-detailed, .cta-section');
+    
+    for (let elem of elements) {
+      const rect = elem.getBoundingClientRect();
+      const padding = 20;
+      
+      if (this.x > rect.left - padding && this.x < rect.right + padding && 
+          this.y > rect.top - padding && this.y < rect.bottom + padding) {
+        
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        if (this.x < centerX) {
+          this.speedX = -Math.abs(this.speedX);
+        } else {
+          this.speedX = Math.abs(this.speedX);
+        }
+        
+        if (this.y < centerY) {
+          this.speedY = -Math.abs(this.speedY);
+        } else {
+          this.speedY = Math.abs(this.speedY);
+        }
+        
+        return true;
+      }
+    }
+    return false;
+  }
+
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
     
-    if (this.x > this.canvasWidth) this.x = 0;
-    if (this.x < 0) this.x = this.canvasWidth;
-    if (this.y > this.canvasHeight) this.y = 0;
-    if (this.y < 0) this.y = this.canvasHeight;
+    if (this.x > this.canvasWidth) this.speedX *= -1;
+    if (this.x < 0) this.speedX *= -1;
+    if (this.y > this.canvasHeight) this.speedY *= -1;
+    if (this.y < 0) this.speedY *= -1;
+    
+    this.checkCollisionWithElements();
   }
 
   draw() {

@@ -56,11 +56,37 @@ export function setStyle(element, property, value) {
 }
 
 export function show(element) {
-  if (element) element.style.display = '';
+  if (element) {
+    element.classList.remove('d-none');
+    element.style.display = '';
+  }
 }
 
 export function hide(element) {
-  if (element) element.style.display = 'none';
+  if (element) {
+    element.classList.add('d-none');
+  }
+}
+
+export function showFlex(element) {
+  if (element) {
+    element.classList.add('d-flex');
+    element.classList.remove('d-none');
+  }
+}
+
+export function showInlineBlock(element) {
+  if (element) {
+    element.classList.add('d-inline-block');
+    element.classList.remove('d-none');
+  }
+}
+
+export function showBlock(element) {
+  if (element) {
+    element.classList.add('d-block');
+    element.classList.remove('d-none');
+  }
 }
 
 export function setHTML(element, html) {

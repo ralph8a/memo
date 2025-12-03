@@ -8,7 +8,12 @@ import { clearAllTimers } from '../utils/timing.js';
 // Import templates
 import { getTemplate } from '../templates/index.js';
 
-export function navigateTo(page) {
+export function navigateTo(page, event) {
+  // Prevent default anchor behavior
+  if (event) {
+    event.preventDefault();
+  }
+  
   // Cleanup previous page
   cleanupHomeAnimations();
   clearAllTimers();

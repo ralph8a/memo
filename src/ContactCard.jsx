@@ -160,7 +160,7 @@ const ContactCard = () => {
   return (
     <>
       <Particles darkMode={darkMode} />
-      <div className={`background-soft anim-fade-in`} />
+      <canvas id="particles-canvas" />
       
       {/* PWA Install Banner - Full width version */}
       {showInstallPrompt && !isMinimized && (
@@ -216,7 +216,7 @@ const ContactCard = () => {
             <h1 className="header-name anim-fade-in-left anim-delay-2">{t.name}</h1>
             <div className="header-company anim-fade-in anim-delay-3">
               <div className="company-logo anim-zoom-in anim-delay-3">
-                <KrauseLogo style={{width: '100%', height: '100%', color: '#000'}} />
+                <KrauseLogo />
               </div>
               <div className="company-text">
                 <span className="company-name-line">Krause</span>
