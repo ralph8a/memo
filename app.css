@@ -1350,20 +1350,28 @@ body.section-cta {
 /* Page Header */
 .page-header {
   background: linear-gradient(135deg, var(--brand-maroon), var(--brand-purple));
-  padding: 100px 24px 50px;
+  padding: 24px 40px;
   text-align: center;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: nowrap;
 }
 
 .page-title {
   font-family: 'Cinzel', serif;
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  margin-bottom: 12px;
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .page-subtitle {
-  font-size: 1rem;
+  font-size: 0.85rem;
   opacity: 0.9;
+  margin: 0;
+  white-space: nowrap;
 }
 
 /* Services Section - Two Column Layout */
@@ -1391,7 +1399,7 @@ body.section-cta {
 .services-sidebar .sidebar-sticky {
   position: relative;
   background: linear-gradient(135deg, var(--brand-maroon), var(--brand-purple));
-  padding: 20px 80px;
+  padding: 16px 60px;
   border-radius: 0;
   color: white;
   box-shadow: none;
@@ -1399,7 +1407,7 @@ body.section-cta {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: 60px;
+  gap: 40px;
   width: 100%;
 }
 
@@ -1424,22 +1432,22 @@ body.section-cta {
 }
 
 .quick-stat-icon {
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 
 .quick-stat-value {
   font-family: 'Cinzel', serif;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 4px;
 }
 
 .quick-stat-label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   opacity: 0.9;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
 .services-benefits {
@@ -1476,8 +1484,8 @@ body.section-cta {
 .services-main-content {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding: 0 80px;
+  gap: 24px;
+  padding: 20px 40px;
 }
 
 .services-content-area {
@@ -1498,11 +1506,11 @@ body.section-cta {
 
 .services-title-left {
   font-family: 'Cinzel', serif;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--text-dark);
   line-height: 1.2;
-  padding-right: 24px;
-  border-right: 3px solid var(--brand-maroon);
+  padding-right: 16px;
+  border-right: 2px solid var(--brand-maroon);
   margin: 0;
   white-space: nowrap;
   flex-shrink: 0;
@@ -1511,8 +1519,8 @@ body.section-cta {
 
 .services-desc-right {
   color: var(--text-light);
-  line-height: 1.5;
-  font-size: 0.9rem;
+  line-height: 1.4;
+  font-size: 0.8rem;
   margin: 0;
   animation: slideInFromRight 0.6s ease-out;
   animation-delay: 0.2s;
@@ -1545,9 +1553,9 @@ body.section-cta {
 
 .services-grid-modern {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 40px 80px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px 60px 40px 60px;
   max-width: 100%;
 }
 
@@ -1555,8 +1563,8 @@ body.section-cta {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: 28px 24px;
-  border-radius: 16px;
+  padding: 18px 16px;
+  border-radius: 12px;
   box-shadow: 0 4px 16px rgba(139, 35, 72, 0.08);
   transition: all 0.3s ease;
   position: relative;
@@ -1597,21 +1605,21 @@ body.section-cta {
 }
 
 .service-icon-large {
-  font-size: 3.5rem;
-  margin-bottom: 16px;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
 .service-card-detailed h3 {
   font-family: 'Cinzel', serif;
-  font-size: 1.3rem;
-  margin-bottom: 12px;
+  font-size: 1rem;
+  margin-bottom: 8px;
   line-height: 1.3;
 }
 
 .service-card-detailed > p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 16px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 10px;
   flex-grow: 0;
 }
 
@@ -1622,9 +1630,9 @@ body.section-cta {
 }
 
 .service-list li {
-  padding: 6px 0;
-  font-size: 0.85rem;
-  line-height: 1.4;
+  padding: 3px 0;
+  font-size: 0.75rem;
+  line-height: 1.3;
 }
 
 .service-card-detailed.featured .service-list li {
@@ -2189,7 +2197,7 @@ body.section-cta {
 .contact-sidebar .sidebar-sticky {
   position: relative;
   background: linear-gradient(135deg, var(--brand-maroon), var(--brand-purple));
-  padding: 20px 80px;
+  padding: 14px 40px;
   border-radius: 0;
   color: white;
   box-shadow: none;
@@ -2197,7 +2205,7 @@ body.section-cta {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: 60px;
+  gap: 40px;
   width: 100%;
 }
 
@@ -2294,8 +2302,8 @@ body.section-cta {
 .contact-main-content {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding: 40px 80px;
+  gap: 24px;
+  padding: 20px 40px;
 }
 
 .contact-form-wrapper {
@@ -2304,15 +2312,15 @@ body.section-cta {
 
 .form-title {
   font-family: 'Cinzel', serif;
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: var(--text-dark);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .form-subtitle {
   color: var(--text-light);
-  margin-bottom: 32px;
-  font-size: 1.05rem;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
 }
 
 .contact-form-modern {
@@ -2324,8 +2332,8 @@ body.section-cta {
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 40px 80px;
+  gap: 12px;
+  padding: 0;
 }
 
 .form-field {
@@ -2337,16 +2345,16 @@ body.section-cta {
 .field-label {
   font-weight: 600;
   color: var(--text-dark);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
 .form-input {
-  padding: 14px 16px;
+  padding: 10px 12px;
   border: 2px solid var(--gray-200);
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-family: inherit;
   transition: all 0.3s ease;
   background: white;
@@ -2476,15 +2484,15 @@ body.section-cta {
 .contact-features-compact {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px 24px;
-  padding: 40px 80px;
+  gap: 12px 16px;
+  padding: 20px 40px 40px 40px;
 }
 
 .feature-compact {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 10px;
+  padding: 10px 12px;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -2502,21 +2510,21 @@ body.section-cta {
 }
 
 .feature-icon-compact {
-  font-size: 1.2rem;
+  font-size: 1rem;
   flex-shrink: 0;
 }
 
 .feature-compact h5 {
   font-family: 'Cinzel', serif;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-dark);
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .feature-compact p {
   color: var(--text-light);
-  font-size: 0.6rem;
-  line-height: 1.2;
+  font-size: 0.55rem;
+  line-height: 1.1;
   margin: 0;
 }
 
@@ -2559,21 +2567,21 @@ body.section-cta {
 
 .sidebar-title {
   font-family: 'Cinzel', serif;
-  font-size: 1.2rem;
-  line-height: 1.3;
+  font-size: 1rem;
+  line-height: 1.2;
   margin: 0;
   font-weight: 700;
   flex-shrink: 0;
-  max-width: 350px;
+  max-width: 300px;
 }
 
 .sidebar-description {
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.85rem;
+  line-height: 1.4;
   opacity: 0.95;
   margin: 0;
-  flex: 1 1 300px;
-  min-width: 250px;
+  flex: 1 1 250px;
+  min-width: 200px;
 }
 
 .sidebar-stats {
@@ -2599,19 +2607,19 @@ body.section-cta {
 }
 
 .stat-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .stat-compact .stat-value {
   font-family: 'Cinzel', serif;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 4px;
 }
 
 .stat-compact .stat-label {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   opacity: 0.9;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -2621,8 +2629,8 @@ body.section-cta {
 .about-main-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 40px 80px;
+  gap: 14px;
+  padding: 20px 40px;
 }
 
 .content-section {
@@ -2631,9 +2639,9 @@ body.section-cta {
 
 .section-heading {
   font-family: 'Cinzel', serif;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: var(--text-dark);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   padding-bottom: 10px;
   border-bottom: 3px solid var(--brand-maroon);
   display: inline-block;
@@ -2650,16 +2658,16 @@ body.section-cta {
 .values-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px 30px;
-  margin-top: 20px;
+  gap: 14px 20px;
+  margin-top: 12px;
 }
 
 .value-card {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: 20px 24px;
-  border-radius: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
   border: 2px solid rgba(139, 35, 72, 0.1);
   transition: all 0.3s ease;
   box-shadow: 0 4px 16px rgba(139, 35, 72, 0.08);
@@ -2673,21 +2681,21 @@ body.section-cta {
 }
 
 .value-icon {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
+  font-size: 2rem;
+  margin-bottom: 8px;
 }
 
 .value-card h4 {
   font-family: 'Cinzel', serif;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--text-dark);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .value-card p {
   color: var(--text-light);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.8rem;
+  line-height: 1.4;
   margin: 0;
 }
 
@@ -2702,8 +2710,8 @@ body.section-cta {
 .team-card {
   display: flex;
   align-items: start;
-  gap: 20px;
-  padding: 18px 24px;
+  gap: 14px;
+  padding: 12px 16px;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -2719,8 +2727,8 @@ body.section-cta {
 }
 
 .team-avatar {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--brand-maroon), var(--brand-purple));
   color: white;
@@ -2728,30 +2736,30 @@ body.section-cta {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   flex-shrink: 0;
 }
 
 .team-info h4 {
   font-family: 'Cinzel', serif;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--text-dark);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .team-role {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: var(--brand-maroon);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
+  letter-spacing: 0.4px;
+  margin-bottom: 4px;
 }
 
 .team-desc {
   color: var(--text-light);
-  line-height: 1.6;
-  font-size: 0.95rem;
+  line-height: 1.4;
+  font-size: 0.8rem;
   margin: 0;
 }
 
