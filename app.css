@@ -1374,8 +1374,8 @@ body.section-cta {
 
 .services-two-column-layout {
   display: grid;
-  grid-template-columns: 350px 1fr;
-  gap: 60px;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
@@ -1389,10 +1389,10 @@ body.section-cta {
 
 .services-sidebar .sidebar-sticky {
   position: sticky;
-  top: 120px;
+  top: 100px;
   background: linear-gradient(135deg, var(--brand-maroon), var(--brand-purple));
-  padding: 40px 32px;
-  border-radius: 20px;
+  padding: 24px 20px;
+  border-radius: 16px;
   color: white;
   box-shadow: 0 8px 32px rgba(139, 35, 72, 0.25);
 }
@@ -1436,23 +1436,23 @@ body.section-cta {
 }
 
 .services-benefits {
-  padding-top: 24px;
+  padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .services-benefits h4 {
   font-family: 'Cinzel', serif;
-  font-size: 1.1rem;
-  margin-bottom: 16px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
   opacity: 0.95;
 }
 
 .benefit-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  font-size: 0.95rem;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 0.8rem;
 }
 
 .benefit-check {
@@ -2181,13 +2181,13 @@ body.section-cta {
 /* Contact Section - Two Column Layout */
 .contact-section {
   background: white;
-  padding: 60px 40px;
+  padding: 20px 40px 40px;
 }
 
 .contact-two-column-layout {
   display: grid;
-  grid-template-columns: 350px 1fr;
-  gap: 60px;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
@@ -2201,10 +2201,10 @@ body.section-cta {
 
 .contact-sidebar .sidebar-sticky {
   position: sticky;
-  top: 120px;
+  top: 100px;
   background: linear-gradient(135deg, var(--brand-maroon), var(--brand-purple));
-  padding: 40px 32px;
-  border-radius: 20px;
+  padding: 24px 20px;
+  border-radius: 16px;
   color: white;
   box-shadow: 0 8px 32px rgba(139, 35, 72, 0.25);
 }
@@ -2505,13 +2505,13 @@ body.section-cta {
 /* About Page - Two Column Layout */
 .about-section {
   background: white;
-  padding: 80px 40px;
+  padding: 20px 40px 40px;
 }
 
 .about-two-column-layout {
   display: grid;
-  grid-template-columns: 350px 1fr;
-  gap: 60px;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
@@ -2535,17 +2535,17 @@ body.section-cta {
 
 .sidebar-title {
   font-family: 'Cinzel', serif;
-  font-size: 1.75rem;
-  line-height: 1.3;
-  margin-bottom: 16px;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  margin-bottom: 12px;
   font-weight: 700;
 }
 
 .sidebar-description {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.85rem;
+  line-height: 1.5;
   opacity: 0.95;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 
 .sidebar-stats {
@@ -2557,29 +2557,29 @@ body.section-cta {
 .stat-compact {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
+  gap: 12px;
+  padding: 10px;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .stat-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .stat-compact .stat-value {
   font-family: 'Cinzel', serif;
-  font-size: 1.75rem;
+  font-size: 1.3rem;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .stat-compact .stat-label {
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   opacity: 0.9;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -2589,7 +2589,7 @@ body.section-cta {
 .about-main-content {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 28px;
 }
 
 .content-section {
@@ -2598,33 +2598,33 @@ body.section-cta {
 
 .section-heading {
   font-family: 'Cinzel', serif;
-  font-size: 1.75rem;
+  font-size: 1.3rem;
   color: var(--text-dark);
-  margin-bottom: 20px;
-  padding-bottom: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
   border-bottom: 3px solid var(--brand-maroon);
   display: inline-block;
 }
 
 .content-section p {
   color: var(--text-light);
-  line-height: 1.8;
-  font-size: 1.05rem;
-  margin-bottom: 16px;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
 }
 
 /* Values Grid */
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-  margin-top: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .value-card {
   background: var(--gray-100);
-  padding: 28px 24px;
-  border-radius: 16px;
+  padding: 16px;
+  border-radius: 12px;
   border: 2px solid transparent;
   transition: all 0.3s ease;
 }
@@ -2636,21 +2636,21 @@ body.section-cta {
 }
 
 .value-icon {
-  font-size: 2.5rem;
-  margin-bottom: 16px;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
 .value-card h4 {
   font-family: 'Cinzel', serif;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--text-dark);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .value-card p {
   color: var(--text-light);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.8rem;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -2665,10 +2665,10 @@ body.section-cta {
 .team-card {
   display: flex;
   align-items: start;
-  gap: 20px;
-  padding: 24px;
+  gap: 16px;
+  padding: 16px;
   background: var(--gray-100);
-  border-radius: 16px;
+  border-radius: 12px;
   border: 2px solid transparent;
   transition: all 0.3s ease;
 }
@@ -2679,8 +2679,8 @@ body.section-cta {
 }
 
 .team-avatar {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--brand-maroon), var(--brand-purple));
   color: white;
@@ -2688,30 +2688,30 @@ body.section-cta {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   flex-shrink: 0;
 }
 
 .team-info h4 {
   font-family: 'Cinzel', serif;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--text-dark);
   margin-bottom: 4px;
 }
 
 .team-role {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: var(--brand-maroon);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .team-desc {
   color: var(--text-light);
-  line-height: 1.6;
-  font-size: 0.95rem;
+  line-height: 1.5;
+  font-size: 0.8rem;
   margin: 0;
 }
 
