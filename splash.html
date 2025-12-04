@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Krause Insurance</title>
+  <title>Krause Insurance - Portal</title>
   <base href="/memo/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #8b2348 0%, #9b59b6 100%);
@@ -15,80 +19,301 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      overflow: hidden;
     }
+    
     .container {
-      max-width: 600px;
+      max-width: 700px;
+      width: 100%;
       text-align: center;
+      position: relative;
     }
+    
+    /* Logo Shield */
+    .logo-shield {
+      width: 120px;
+      height: 140px;
+      margin: 0 auto 20px;
+      position: relative;
+      animation: shieldFloat 3s ease-in-out infinite;
+    }
+    
+    @keyframes shieldFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .shield-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    }
+    
+    .shield-part {
+      fill: white;
+      opacity: 0;
+      animation: shieldBuild 2s ease-out forwards;
+    }
+    
+    .shield-part:nth-child(1) { animation-delay: 0.1s; }
+    .shield-part:nth-child(2) { animation-delay: 0.2s; }
+    .shield-part:nth-child(3) { animation-delay: 0.3s; }
+    .shield-part:nth-child(4) { animation-delay: 0.4s; }
+    .shield-part:nth-child(5) { animation-delay: 0.5s; }
+    
+    @keyframes shieldBuild {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(180deg);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.1) rotate(-10deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+    
     h1 {
-      font-size: 3rem;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
       color: white;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       font-weight: 700;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      letter-spacing: 2px;
     }
-    p {
+    
+    .subtitle {
       color: rgba(255, 255, 255, 0.9);
-      font-size: 1.2rem;
-      margin-bottom: 3rem;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin-bottom: 1rem;
+      font-weight: 300;
     }
+    
+    .instruction {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      margin-bottom: 2rem;
+      font-weight: 600;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.85; }
+      50% { opacity: 1; }
+    }
+    
     .buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 2rem;
     }
+    
     .btn {
-      padding: 20px 40px;
-      font-size: 1.1rem;
+      padding: 18px 30px;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
       font-weight: 600;
       border-radius: 12px;
       text-decoration: none;
       transition: all 0.3s ease;
       display: inline-block;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.5s, height 0.5s;
+    }
+    
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .btn span {
+      position: relative;
+      z-index: 1;
+    }
+    
     .btn-primary {
       background: white;
       color: #8b2348;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      grid-column: span 2;
     }
+    
     .btn-primary:hover {
       transform: translateY(-4px);
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     }
+    
     .btn-secondary {
-      background: transparent;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
       color: white;
-      border: 2px solid white;
+      border: 2px solid rgba(255, 255, 255, 0.5);
     }
+    
     .btn-secondary:hover {
-      background: white;
+      background: rgba(255, 255, 255, 0.95);
       color: #8b2348;
+      border-color: white;
       transform: translateY(-4px);
     }
+    
+    /* Countdown Progress Bar */
+    .countdown-container {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    
+    .countdown-text {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .countdown-number {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 196, 214, 0.9) 50%,
+        rgba(255, 255, 255, 0.9) 100%
+      );
+      background-size: 200% 100%;
+      border-radius: 10px;
+      width: 100%;
+      animation: progressDeplete 10s linear forwards, shimmer 1.5s ease infinite;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    
+    @keyframes progressDeplete {
+      from { width: 100%; }
+      to { width: 0%; }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    
     @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      p { font-size: 1rem; }
-      .buttons { flex-direction: column; }
-      .btn { width: 100%; }
+      .buttons {
+        grid-template-columns: 1fr;
+      }
+      .btn-primary {
+        grid-column: span 1;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Krause Insurance</h1>
-    <p>Bienvenido a nuestro portal digital</p>
+    <!-- Logo Shield -->
+    <div class="logo-shield">
+      <svg class="shield-svg" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shield Background -->
+        <path class="shield-part" d="M50 5 L90 25 L90 55 Q90 85 50 115 Q10 85 10 55 L10 25 Z" 
+              fill="white" stroke="rgba(139, 35, 72, 0.3)" stroke-width="2"/>
+        <!-- Center emblem -->
+        <circle class="shield-part" cx="50" cy="50" r="20" fill="rgba(139, 35, 72, 0.2)"/>
+        <!-- Cross/Plus design -->
+        <rect class="shield-part" x="47" y="35" width="6" height="30" fill="rgba(139, 35, 72, 0.4)" rx="2"/>
+        <rect class="shield-part" x="35" y="47" width="30" height="6" fill="rgba(139, 35, 72, 0.4)" rx="2"/>
+        <!-- Inner shield accent -->
+        <path class="shield-part" d="M50 20 L75 32 L75 55 Q75 75 50 95 Q25 75 25 55 L25 32 Z" 
+              fill="none" stroke="rgba(139, 35, 72, 0.25)" stroke-width="1.5"/>
+      </svg>
+    </div>
+    
+    <h1>KRAUSE INSURANCE</h1>
+    <p class="subtitle">Bienvenido a nuestro portal digital</p>
+    <p class="instruction">⚡ Seleccione una opción para continuar</p>
+    
     <div class="buttons">
-      <a href="app.html" class="btn btn-primary">Inicio</a>
-      <a href="app.html#login" class="btn btn-secondary">Acceso Clientes</a>
-      <a href="app.html#agent-login" class="btn btn-secondary">Acceso Agentes</a>
-      <a href="card.html" class="btn btn-secondary">Tarjeta Digital</a>
+      <a href="app.html" class="btn btn-primary" onclick="clearAutoRedirect()">
+        <span>🏠 Inicio</span>
+      </a>
+      <a href="app.html#login" class="btn btn-secondary" onclick="clearAutoRedirect()">
+        <span>👤 Acceso Clientes</span>
+      </a>
+      <a href="app.html#agent-login" class="btn btn-secondary" onclick="clearAutoRedirect()">
+        <span>🏢 Acceso Agentes</span>
+      </a>
+      <a href="card.html" class="btn btn-secondary" onclick="clearAutoRedirect()">
+        <span>💳 Tarjeta Digital</span>
+      </a>
+    </div>
+    
+    <div class="countdown-container">
+      <div class="countdown-text">
+        Redireccionando en <span class="countdown-number" id="countdown">10</span> segundos
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill"></div>
+      </div>
     </div>
   </div>
+  
   <script>
-    // Auto-redirect to landing page after 3 seconds
-    setTimeout(() => {
+    let countdownInterval;
+    let autoRedirectTimeout;
+    let timeRemaining = 10;
+    
+    // Countdown timer
+    countdownInterval = setInterval(() => {
+      timeRemaining--;
+      document.getElementById('countdown').textContent = timeRemaining;
+      
+      if (timeRemaining <= 0) {
+        clearInterval(countdownInterval);
+      }
+    }, 1000);
+    
+    // Auto-redirect to landing page after 10 seconds
+    autoRedirectTimeout = setTimeout(() => {
       window.location.href = 'app.html';
-    }, 3000);
+    }, 10000);
+    
+    // Clear auto redirect when user clicks
+    function clearAutoRedirect() {
+      clearTimeout(autoRedirectTimeout);
+      clearInterval(countdownInterval);
+    }
   </script>
 </body>
 </html>

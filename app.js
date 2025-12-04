@@ -1295,8 +1295,12 @@ function handleClientLogin(e) {
   if (email === 'cliente@demo.com' && password === 'demo123') {
     currentUser = { name: 'Juan Cliente', type: 'client', email };
     localStorage.setItem('krause_user', JSON.stringify(currentUser));
-    showNotification('Inicio de sesión exitoso', 'success');
-    navigateTo('dashboard');
+    showNotification('Acceso concedido', 'success');
+    
+    // Redirect to loading screen with shield animation
+    setTimeout(() => {
+      window.location.href = 'loading.html?redirect=app.html%23dashboard';
+    }, 500);
   } else {
     showNotification('Credenciales incorrectas', 'error');
   }
@@ -1310,8 +1314,12 @@ function handleAgentLogin(e) {
   if (agentId === 'agente@demo.com' && password === 'agent123') {
     currentUser = { name: 'Guillermo Krause', type: 'agent', id: agentId };
     localStorage.setItem('krause_user', JSON.stringify(currentUser));
-    showNotification('Inicio de sesión exitoso', 'success');
-    navigateTo('agent-dashboard');
+    showNotification('Acceso concedido', 'success');
+    
+    // Redirect to loading screen with shield animation
+    setTimeout(() => {
+      window.location.href = 'loading.html?redirect=app.html%23agent-dashboard';
+    }, 500);
   } else {
     showNotification('Credenciales incorrectas', 'error');
   }

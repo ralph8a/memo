@@ -69,7 +69,8 @@ module.exports = {
         { from: 'app.css', to: 'app.css' },
         { from: 'acrylic.css', to: 'acrylic.css' },
         { from: 'app.js', to: 'app.js' },
-        { from: 'splash.html', to: 'index.html' }
+        { from: 'splash.html', to: 'index.html' },
+        { from: 'loading.html', to: 'loading.html' }
       ]
     })
   ],
