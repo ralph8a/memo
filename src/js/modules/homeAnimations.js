@@ -117,13 +117,14 @@ export function skipToFinalState() {
   removeClass(document.body, GRADIENT_CLASSES.PARADE);
   addClass(document.body, GRADIENT_CLASSES.CTA);
   
-  // Hide all sections
-  removeClass(hero, 'active');
-  removeClass(hero, 'fade-out-up');
-  removeClass(parade, 'active');
-  removeClass(parade, 'fade-out-up');
+  // IMPORTANT: Hide ALL sections first, including any fade animations
+  const allSections = getElements(SELECTORS.HOME_SECTIONS);
+  allSections.forEach(section => {
+    removeClass(section, 'active');
+    removeClass(section, 'fade-out-up');
+  });
   
-  // Show CTA section
+  // Now show ONLY the CTA section
   addClass(cta, 'active');
   
   // Show all buttons with stagger

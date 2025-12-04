@@ -68,11 +68,9 @@ function navigateTo(page, event) {
   // Hide footer on certain pages
   const footer = document.getElementById('footer');
   if (['login', 'agent-login', 'dashboard', 'agent-dashboard'].includes(page)) {
-    footer.classList.add('d-none');
-    footer.classList.remove('d-block');
+    footer.style.display = 'none';
   } else {
-    footer.classList.add('d-block');
-    footer.classList.remove('d-none');
+    footer.style.display = 'block';
   }
   
   // Load page content
@@ -85,6 +83,10 @@ function navigateTo(page, event) {
 // Page templates
 const pages = {
   home: `
+    <div class="animation-progress-bar" id="animation-progress">
+      <div class="progress-fill"></div>
+    </div>
+    
     <nav class="sub-navigation sub-nav-hidden" id="sub-nav">
       <button class="sub-nav-btn active" data-section="hero" onclick="showHomeSection('hero')">Hero</button>
       <button class="sub-nav-btn" data-section="eleccion" onclick="showHomeSection('eleccion')">Elección</button>
@@ -104,19 +106,23 @@ const pages = {
         </p>
         
         <div class="hero-stats">
-          <div class="stat-box">
+          <div class="stat-box stat-pulse">
+            <div class="stat-icon-mini">⏳</div>
             <div class="stat-number" data-target="25">0</div>
             <div class="stat-label">Años de Experiencia</div>
           </div>
-          <div class="stat-box">
+          <div class="stat-box stat-pulse" style="animation-delay: 0.1s">
+            <div class="stat-icon-mini">👥</div>
             <div class="stat-number" data-target="5000">0</div>
             <div class="stat-label">Clientes Activos</div>
           </div>
-          <div class="stat-box">
+          <div class="stat-box stat-pulse" style="animation-delay: 0.2s">
+            <div class="stat-icon-mini">📝</div>
             <div class="stat-number" data-target="10000">0</div>
             <div class="stat-label">Pólizas Vigentes</div>
           </div>
-          <div class="stat-box">
+          <div class="stat-box stat-pulse" style="animation-delay: 0.3s">
+            <div class="stat-icon-mini">⭐</div>
             <div class="stat-number" data-target="98">0</div>
             <div class="stat-label">% Satisfacción</div>
           </div>
@@ -136,24 +142,42 @@ const pages = {
         <h2 class="section-title">¿Por Qué Elegirnos?</h2>
         <div class="features-grid">
           <div class="feature-box feature-card-1">
-            <div class="feature-icon">🛡️</div>
+            <div class="feature-icon icon-bounce">🛡️</div>
             <h3>Cobertura Integral</h3>
             <p>Protección completa adaptada a tus necesidades específicas</p>
           </div>
           <div class="feature-box feature-card-2">
-            <div class="feature-icon">⚡</div>
+            <div class="feature-icon icon-pulse">⚡</div>
             <h3>Respuesta Inmediata</h3>
             <p>Atención 24/7 cuando más nos necesitas</p>
           </div>
           <div class="feature-box feature-card-3">
-            <div class="feature-icon">💰</div>
+            <div class="feature-icon icon-shake">💰</div>
             <h3>Mejores Precios</h3>
             <p>Cotizamos con múltiples aseguradoras para ti</p>
           </div>
           <div class="feature-box feature-card-4">
-            <div class="feature-icon">👨‍💼</div>
+            <div class="feature-icon icon-bounce">👨‍💼</div>
             <h3>Asesoría Experta</h3>
             <p>25+ años de experiencia a tu servicio</p>
+          </div>
+        </div>
+        
+        <div class="testimonials-container">
+          <div class="testimonial-quick">
+            <div class="testimonial-avatar">👨</div>
+            <div class="testimonial-content">
+              <p class="testimonial-text">“Excelente servicio y atención. Me ayudaron a encontrar la mejor cobertura para mi familia.”</p>
+              <p class="testimonial-author">- Roberto M., Cliente desde 2018</p>
+            </div>
+          </div>
+          
+          <div class="testimonial-quick" style="animation-delay: 0.7s">
+            <div class="testimonial-avatar">👩</div>
+            <div class="testimonial-content">
+              <p class="testimonial-text">“Profesionales y confiables. Resolvieron mi siniestro en tiempo récord.”</p>
+              <p class="testimonial-author">- María L., Cliente desde 2020</p>
+            </div>
           </div>
         </div>
       </div>
@@ -225,426 +249,255 @@ const pages = {
   `,
   
   services: `
-    <section class="page-header">
-      <div class="container">
-        <h1 class="page-title">Nuestros Servicios</h1>
-        <p class="page-subtitle">Cobertura completa para todas tus necesidades</p>
-      </div>
-    </section>
+<section class="services-fullpage">
+  <div class="services-container">
+    <div class="services-header-compact">
+      <h1 class="services-main-title">Nuestros Servicios</h1>
+      <p class="services-main-subtitle">Cobertura completa para todas tus necesidades</p>
+    </div>
     
-    <section class="services-section">
-      <div class="container">
-        <div class="services-two-column-layout">
-          <div class="services-sidebar">
-            <div class="sidebar-sticky">
-              <h2 class="sidebar-title">Protección Completa para Cada Etapa de tu Vida</h2>
-              <p class="sidebar-description">Más de 25 años ofreciendo las mejores soluciones en seguros con atención personalizada.</p>
-              
-              <div class="services-quick-stats">
-                <div class="quick-stat">
-                  <div class="quick-stat-icon">🛡️</div>
-                  <div>
-                    <div class="quick-stat-value">6</div>
-                    <div class="quick-stat-label">Tipos de Seguro</div>
-                  </div>
-                </div>
-                <div class="quick-stat">
-                  <div class="quick-stat-icon">🏆</div>
-                  <div>
-                    <div class="quick-stat-value">25+</div>
-                    <div class="quick-stat-label">Años Experiencia</div>
-                  </div>
-                </div>
-                <div class="quick-stat">
-                  <div class="quick-stat-icon">📋</div>
-                  <div>
-                    <div class="quick-stat-value">10K+</div>
-                    <div class="quick-stat-label">Pólizas Activas</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="services-benefits">
-                <h4>¿Por Qué Elegirnos?</h4>
-                <div class="benefit-item">
-                  <span class="benefit-check">✓</span>
-                  <span>Cobertura Integral</span>
-                </div>
-                <div class="benefit-item">
-                  <span class="benefit-check">✓</span>
-                  <span>Mejores Precios del Mercado</span>
-                </div>
-                <div class="benefit-item">
-                  <span class="benefit-check">✓</span>
-                  <span>Atención 24/7</span>
-                </div>
-                <div class="benefit-item">
-                  <span class="benefit-check">✓</span>
-                  <span>Asesoría Experta</span>
-                </div>
-                <div class="benefit-item">
-                  <span class="benefit-check">✓</span>
-                  <span>Proceso Rápido y Fácil</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="services-main-content">
-            <div class="services-content-area">
-              <div class="services-header-horizontal">
-                <h3 class="services-title-left">Encuentra la Protección que Necesitas</h3>
-                <p class="services-desc-right">En Krause Insurance nos especializamos en encontrar la cobertura perfecta para ti. Trabajamos con las mejores aseguradoras del mercado para ofrecerte planes personalizados y precios competitivos.</p>
-              </div>
-              
-              <div class="services-grid-modern">
-          <div class="service-card-detailed">
-            <div class="service-icon-large">🚗</div>
-            <h3>Seguros de Auto</h3>
-            <p>Protección completa para tu vehículo con las mejores coberturas del mercado.</p>
-            <ul class="service-list">
-              <li>✓ Responsabilidad Civil</li>
-              <li>✓ Cobertura Amplia</li>
-              <li>✓ Asistencia Vial 24/7</li>
-              <li>✓ Auto de Reemplazo</li>
-              <li>✓ Cristales y Robo</li>
-            </ul>
-            <button class="btn btn-outline" onclick="openQuoteModal('auto')">Cotizar Ahora</button>
-          </div>
-          
-          <div class="service-card-detailed featured">
-            <div class="badge">Más Popular</div>
-            <div class="service-icon-large">🏠</div>
-            <h3>Seguros de Hogar</h3>
-            <p>Tu patrimonio protegido contra todo tipo de riesgos y eventualidades.</p>
-            <ul class="service-list">
-              <li>✓ Daños Estructurales</li>
-              <li>✓ Contenido y Bienes</li>
-              <li>✓ Responsabilidad Civil</li>
-              <li>✓ Desastres Naturales</li>
-              <li>✓ Robo y Vandalismo</li>
-            </ul>
-            <button class="btn btn-primary" onclick="openQuoteModal('hogar')">Cotizar Ahora</button>
-          </div>
-          
-          <div class="service-card-detailed">
-            <div class="service-icon-large">❤️</div>
-            <h3>Seguros de Vida</h3>
-            <p>Asegura el futuro de tus seres queridos con planes flexibles y accesibles.</p>
-            <ul class="service-list">
-              <li>✓ Cobertura Familiar</li>
-              <li>✓ Planes Personalizados</li>
-              <li>✓ Beneficios por Invalidez</li>
-              <li>✓ Enfermedades Graves</li>
-              <li>✓ Ahorro e Inversión</li>
-            </ul>
-            <button class="btn btn-outline" onclick="openQuoteModal('vida')">Cotizar Ahora</button>
-          </div>
-          
-          <div class="service-card-detailed">
-            <div class="service-icon-large">🏢</div>
-            <h3>Seguros Comerciales</h3>
-            <p>Protección integral para tu negocio y continuidad operativa.</p>
-            <ul class="service-list">
-              <li>✓ Responsabilidad General</li>
-              <li>✓ Propiedad Comercial</li>
-              <li>✓ Compensación Laboral</li>
-              <li>✓ Interrupción de Negocio</li>
-              <li>✓ Cyber Seguridad</li>
-            </ul>
-            <button class="btn btn-outline" onclick="openQuoteModal('comercial')">Cotizar Ahora</button>
-          </div>
-          
-          <div class="service-card-detailed">
-            <div class="service-icon-large">💼</div>
-            <h3>Seguros de Salud</h3>
-            <p>Acceso a los mejores servicios médicos con cobertura amplia.</p>
-            <ul class="service-list">
-              <li>✓ Hospitalización</li>
-              <li>✓ Cirugías y Tratamientos</li>
-              <li>✓ Medicamentos</li>
-              <li>✓ Red Médica Extensa</li>
-              <li>✓ Exámenes Preventivos</li>
-            </ul>
-            <button class="btn btn-outline" onclick="openQuoteModal('salud')">Cotizar Ahora</button>
-          </div>
-          
-          <div class="service-card-detailed">
-            <div class="service-icon-large">✈️</div>
-            <h3>Seguros de Viaje</h3>
-            <p>Viaja tranquilo con cobertura internacional completa.</p>
-            <ul class="service-list">
-              <li>✓ Asistencia Mundial</li>
-              <li>✓ Gastos Médicos</li>
-              <li>✓ Cancelación de Viaje</li>
-              <li>✓ Equipaje Protegido</li>
-              <li>✓ Repatriación</li>
-            </ul>
-            <button class="btn btn-outline" onclick="openQuoteModal('viaje')">Cotizar Ahora</button>
-          </div>
-        </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="services-grid-compact">
+      <div class="service-card-compact card-1">
+        <div class="service-icon-compact">🚗</div>
+        <h3 class="service-name-compact">Seguros de Auto</h3>
+        <p class="service-desc-compact">Protección completa para tu vehículo con las mejores coberturas del mercado.</p>
+        <ul class="service-features-compact">
+          <li>✓ Responsabilidad Civil</li>
+          <li>✓ Cobertura Amplia</li>
+          <li>✓ Asistencia Vial 24/7</li>
+          <li>✓ Auto de Reemplazo</li>
+          <li>✓ Cristales y Robo</li>
+        </ul>
+        <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('auto')">Cotizar Ahora</button>
       </div>
-    </section>
+
+      <div class="service-card-compact card-2 featured-compact">
+        <div class="badge-compact">MÁS POPULAR</div>
+        <div class="service-icon-compact">🏠</div>
+        <h3 class="service-name-compact">Seguros de Hogar</h3>
+        <p class="service-desc-compact">Tu patrimonio protegido contra todo tipo de riesgos y eventualidades.</p>
+        <ul class="service-features-compact">
+          <li>✓ Daños Estructurales</li>
+          <li>✓ Contenido y Bienes</li>
+          <li>✓ Responsabilidad Civil</li>
+          <li>✓ Desastres Naturales</li>
+          <li>✓ Robo y Vandalismo</li>
+        </ul>
+        <button class="btn-compact primary-compact" onclick="window.appHandlers.openQuoteModal('hogar')">Cotizar Ahora</button>
+      </div>
+
+      <div class="service-card-compact card-3">
+        <div class="service-icon-compact">❤️</div>
+        <h3 class="service-name-compact">Seguros de Vida</h3>
+        <p class="service-desc-compact">Asegura el futuro de tus seres queridos con planes flexibles y accesibles.</p>
+        <ul class="service-features-compact">
+          <li>✓ Cobertura Familiar</li>
+          <li>✓ Planes Personalizados</li>
+          <li>✓ Beneficios por Invalidez</li>
+          <li>✓ Enfermedades Graves</li>
+          <li>✓ Ahorro e Inversión</li>
+        </ul>
+        <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('vida')">Cotizar Ahora</button>
+      </div>
+
+      <div class="service-card-compact card-4">
+        <div class="service-icon-compact">🏢</div>
+        <h3 class="service-name-compact">Seguros Comerciales</h3>
+        <p class="service-desc-compact">Protección integral para tu negocio y continuidad operativa.</p>
+        <ul class="service-features-compact">
+          <li>✓ Responsabilidad General</li>
+          <li>✓ Propiedad Comercial</li>
+          <li>✓ Compensación Laboral</li>
+          <li>✓ Interrupción de Negocio</li>
+          <li>✓ Cyber Seguridad</li>
+        </ul>
+        <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('comercial')">Cotizar Ahora</button>
+      </div>
+
+      <div class="service-card-compact card-5">
+        <div class="service-icon-compact">💼</div>
+        <h3 class="service-name-compact">Seguros de Salud</h3>
+        <p class="service-desc-compact">Acceso a los mejores servicios médicos con cobertura amplia.</p>
+        <ul class="service-features-compact">
+          <li>✓ Hospitalización</li>
+          <li>✓ Cirugías y Tratamientos</li>
+          <li>✓ Medicamentos</li>
+          <li>✓ Red Médica Extensa</li>
+          <li>✓ Exámenes Preventivos</li>
+        </ul>
+        <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('salud')">Cotizar Ahora</button>
+      </div>
+
+      <div class="service-card-compact card-6">
+        <div class="service-icon-compact">✈️</div>
+        <h3 class="service-name-compact">Seguros de Viaje</h3>
+        <p class="service-desc-compact">Viaja tranquilo con cobertura internacional completa.</p>
+        <ul class="service-features-compact">
+          <li>✓ Asistencia Mundial</li>
+          <li>✓ Gastos Médicos</li>
+          <li>✓ Cancelación de Viaje</li>
+          <li>✓ Equipaje Protegido</li>
+          <li>✓ Repatriación</li>
+        </ul>
+        <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('viaje')">Cotizar Ahora</button>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  
+
+  
   `,
   
   about: `
-    <section class="page-header">
-      <div class="container">
-        <h1 class="page-title">Sobre Nosotros</h1>
-        <p class="page-subtitle">Protection Beyond The Limits</p>
-      </div>
-    </section>
+<section class="about-fullpage">
+  <div class="about-container">
+    <div class="about-header-main">
+      <h1 class="about-main-title">Sobre Nosotros</h1>
+      <p class="about-main-subtitle">Protection Beyond The Limits</p>
+    </div>
     
-    <section class="about-section">
-      <div class="container">
-        <div class="about-two-column-layout">
-          <div class="about-sidebar">
-            <div class="sidebar-sticky">
-              <h2 class="sidebar-title">25+ Años Protegiendo lo que más Valoras</h2>
-              <p class="sidebar-description">Desde 1999, Krause Insurance ha sido sinónimo de confianza, protección y excelencia en servicios de seguros.</p>
-              <div class="sidebar-stats">
-                <div class="stat-compact">
-                  <div class="stat-icon">🏆</div>
-                  <div>
-                    <div class="stat-value">25+</div>
-                    <div class="stat-label">Años</div>
-                  </div>
-                </div>
-                <div class="stat-compact">
-                  <div class="stat-icon">👥</div>
-                  <div>
-                    <div class="stat-value">5,000+</div>
-                    <div class="stat-label">Clientes</div>
-                  </div>
-                </div>
-                <div class="stat-compact">
-                  <div class="stat-icon">⭐</div>
-                  <div>
-                    <div class="stat-value">98%</div>
-                    <div class="stat-label">Satisfacción</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div class="about-content-grid">
+      <div class="about-story-card animated-card-1">
+        <div class="about-icon">📖</div>
+        <h2 class="about-card-title">Nuestra Historia</h2>
+        <p class="about-card-text">Con más de 25 años de experiencia en el mercado asegurador, Krause Insurance se ha consolidado como líder en protección patrimonial, brindando tranquilidad a miles de familias y empresas en todo el país.</p>
+        <div class="about-stats-mini">
+          <div class="stat-mini">
+            <span class="stat-number">25+</span>
+            <span class="stat-label">Años</span>
           </div>
-          
-          <div class="about-main-content">
-            <div class="content-section">
-              <h3 class="section-heading">Nuestra Historia</h3>
-              <p>Con más de 25 años de experiencia en el sector de seguros, Krause Insurance ha protegido a miles de familias y negocios. Fundada por Guillermo Krause, nuestra empresa se ha construido sobre los pilares de confianza, profesionalismo y compromiso genuino con nuestros clientes.</p>
-              <p>Desde nuestros inicios, hemos mantenido una filosofía clara: cada cliente es único y merece una atención personalizada. Esta visión nos ha permitido crecer orgánicamente, construyendo relaciones duraderas basadas en la confianza mutua.</p>
-            </div>
-            
-            <div class="content-section">
-              <h3 class="section-heading">Nuestra Misión</h3>
-              <p>Proporcionar soluciones de seguros personalizadas que superen las expectativas de nuestros clientes, brindando protección integral y paz mental. Nos comprometemos a estar presentes en cada momento importante de la vida de nuestros asegurados.</p>
-            </div>
-            
-            <div class="content-section">
-              <h3 class="section-heading">Nuestros Valores</h3>
-              <div class="values-grid">
-                <div class="value-card">
-                  <div class="value-icon">🛡️</div>
-                  <h4>Integridad</h4>
-                  <p>Actuamos con honestidad y transparencia en cada interacción con nuestros clientes.</p>
-                </div>
-                <div class="value-card">
-                  <div class="value-icon">🤝</div>
-                  <h4>Compromiso</h4>
-                  <p>Dedicados completamente al bienestar y protección de nuestros clientes.</p>
-                </div>
-                <div class="value-card">
-                  <div class="value-icon">⭐</div>
-                  <h4>Excelencia</h4>
-                  <p>Buscamos la perfección en cada servicio que ofrecemos.</p>
-                </div>
-                <div class="value-card">
-                  <div class="value-icon">💡</div>
-                  <h4>Innovación</h4>
-                  <p>Nos adaptamos constantemente a las necesidades cambiantes del mercado.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="content-section">
-              <h3 class="section-heading">Nuestro Equipo</h3>
-              <div class="team-grid-inline">
-                <div class="team-card">
-                  <div class="team-avatar">GK</div>
-                  <div class="team-info">
-                    <h4>Guillermo Krause</h4>
-                    <p class="team-role">Fundador & CEO</p>
-                    <p class="team-desc">25+ años liderando la industria de seguros con pasión y dedicación.</p>
-                  </div>
-                </div>
-                <div class="team-card">
-                  <div class="team-avatar">AS</div>
-                  <div class="team-info">
-                    <h4>Agentes Especializados</h4>
-                    <p class="team-role">Equipo Comercial</p>
-                    <p class="team-desc">Expertos certificados listos para asesorarte en cada paso.</p>
-                  </div>
-                </div>
-                <div class="team-card">
-                  <div class="team-avatar">SC</div>
-                  <div class="team-info">
-                    <h4>Servicio al Cliente</h4>
-                    <p class="team-role">Soporte 24/7</p>
-                    <p class="team-desc">Siempre disponibles para resolver tus dudas y necesidades.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="stat-mini">
+            <span class="stat-number">50K+</span>
+            <span class="stat-label">Clientes</span>
           </div>
         </div>
       </div>
-    </section>
+
+      <div class="about-mission-card animated-card-2">
+        <div class="about-icon">🎯</div>
+        <h2 class="about-card-title">Nuestra Misión</h2>
+        <p class="about-card-text">Proporcionar soluciones de seguros personalizadas que no solo cumplan, sino que superen las expectativas de nuestros clientes, protegiendo lo que más valoran con excelencia y compromiso.</p>
+        <ul class="about-values-list">
+          <li><span class="value-icon">✓</span> Confianza y Transparencia</li>
+          <li><span class="value-icon">✓</span> Atención Personalizada</li>
+          <li><span class="value-icon">✓</span> Innovación Constante</li>
+        </ul>
+      </div>
+
+      <div class="about-team-card animated-card-3">
+        <div class="about-icon">👥</div>
+        <h2 class="about-card-title">Nuestro Equipo</h2>
+        <p class="about-card-text">Contamos con un equipo de profesionales altamente capacitados y certificados, dedicados a brindar el mejor servicio y asesoría en cada etapa de tu protección.</p>
+        <div class="team-grid-mini">
+          <div class="team-member-mini">
+            <div class="member-avatar">MK</div>
+            <div class="member-name">María Krause</div>
+            <div class="member-role">CEO</div>
+          </div>
+          <div class="team-member-mini">
+            <div class="member-avatar">JR</div>
+            <div class="member-name">John Rivera</div>
+            <div class="member-role">Director</div>
+          </div>
+          <div class="team-member-mini">
+            <div class="member-avatar">SC</div>
+            <div class="member-name">Sara Chen</div>
+            <div class="member-role">Asesora</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  
+
+  
   `,
   
   contact: `
-    <section class="page-header">
-      <div class="container">
-        <h1 class="page-title">Contáctanos</h1>
-        <p class="page-subtitle">Estamos aquí para ayudarte</p>
-      </div>
-    </section>
+<section class="contact-fullpage">
+  <div class="contact-container">
+    <div class="contact-header-main">
+      <h1 class="contact-main-title">Contáctanos</h1>
+      <p class="contact-main-subtitle">Estamos aquí para ayudarte</p>
+    </div>
     
-    <section class="contact-section">
-      <div class="container">
-        <div class="contact-two-column-layout">
-          <div class="contact-sidebar">
-            <div class="sidebar-sticky">
-              <h2 class="sidebar-title">¿Cómo Podemos Ayudarte?</h2>
-              <p class="sidebar-description">Nuestro equipo está listo para brindarte la mejor asesoría en seguros. Contáctanos por cualquier medio.</p>
-              
-              <div class="contact-quick-info">
-                <div class="quick-info-item">
-                  <div class="info-icon-circle">📞</div>
-                  <div>
-                    <div class="info-label">Llámanos</div>
-                    <a href="tel:+123456789" class="info-value">+1 (234) 567-89</a>
-                  </div>
-                </div>
-                
-                <div class="quick-info-item">
-                  <div class="info-icon-circle">📧</div>
-                  <div>
-                    <div class="info-label">Escríbenos</div>
-                    <a href="mailto:info@krauseinsurances.com" class="info-value">info@krauseinsurances.com</a>
-                  </div>
-                </div>
-                
-                <div class="quick-info-item">
-                  <div class="info-icon-circle">📍</div>
-                  <div>
-                    <div class="info-label">Visítanos</div>
-                    <div class="info-value">Tu Ciudad, Estado<br>Código Postal</div>
-                  </div>
-                </div>
-                
-                <div class="quick-info-item">
-                  <div class="info-icon-circle">🕐</div>
-                  <div>
-                    <div class="info-label">Horario</div>
-                    <div class="info-value">Lun - Vie: 9:00 AM - 6:00 PM<br>Sáb: 10:00 AM - 2:00 PM</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="social-section">
-                <h4>Síguenos</h4>
-                <div class="social-links-sidebar">
-                  <a href="#" class="social-icon-link">🔗 LinkedIn</a>
-                  <a href="#" class="social-icon-link">📘 Facebook</a>
-                  <a href="#" class="social-icon-link">📸 Instagram</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="contact-main-content">
-            <div class="contact-compact-layout">
-              <div class="contact-form-wrapper">
-                <h3 class="form-title-compact">Envíanos un Mensaje</h3>
-                <p class="form-subtitle-compact">Completa el formulario y te responderemos lo antes posible</p>
-                
-                <form class="contact-form-compact" onsubmit="handleContactSubmit(event)">
-                  <div class="form-grid">
-                    <div class="form-field">
-                      <label class="field-label">Nombre Completo</label>
-                      <input type="text" class="form-input" placeholder="Juan Pérez" required>
-                    </div>
-                    
-                    <div class="form-field">
-                      <label class="field-label">Correo Electrónico</label>
-                      <input type="email" class="form-input" placeholder="juan@ejemplo.com" required>
-                    </div>
-                  </div>
-                  
-                  <div class="form-grid">
-                    <div class="form-field">
-                      <label class="field-label">Teléfono</label>
-                      <input type="tel" class="form-input" placeholder="+1 (234) 567-8900" required>
-                    </div>
-                    
-                    <div class="form-field">
-                      <label class="field-label">Servicio de Interés</label>
-                      <select class="form-input" required>
-                        <option value="">Selecciona un servicio</option>
-                        <option value="auto">Seguro de Auto</option>
-                        <option value="hogar">Seguro de Hogar</option>
-                        <option value="vida">Seguro de Vida</option>
-                        <option value="salud">Seguro de Salud</option>
-                        <option value="comercial">Seguro Comercial</option>
-                        <option value="viaje">Seguro de Viaje</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <div class="form-field">
-                    <label class="field-label">Mensaje</label>
-                    <textarea class="form-input form-textarea" rows="3" placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
-                  </div>
-                  
-                  <button type="submit" class="btn-submit-compact">
-                    <span>Enviar Mensaje</span>
-                    <span class="btn-arrow">→</span>
-                  </button>
-                </form>
-              </div>
-              
-              <div class="contact-features-compact">
-                <div class="feature-compact">
-                  <div class="feature-icon-compact">⚡</div>
-                  <div>
-                    <h5>Respuesta Rápida</h5>
-                    <p>En menos de 24 horas</p>
-                  </div>
-                </div>
-                <div class="feature-compact">
-                  <div class="feature-icon-compact">🔒</div>
-                  <div>
-                    <h5>100% Confidencial</h5>
-                    <p>Datos protegidos</p>
-                  </div>
-                </div>
-                <div class="feature-compact">
-                  <div class="feature-icon-compact">💬</div>
-                  <div>
-                    <h5>Asesoría Gratuita</h5>
-                    <p>Sin compromiso</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="contact-content-wrapper">
+      <div class="contact-info-section">
+        <div class="contact-info-card animated-info-1">
+          <div class="contact-info-icon">📞</div>
+          <h3 class="contact-info-title">Teléfono</h3>
+          <a href="tel:+1234567890" class="contact-info-value">+1 (234) 567-890</a>
+          <p class="contact-info-desc">Lun - Vie: 9:00 AM - 6:00 PM</p>
+        </div>
+        
+        <div class="contact-info-card animated-info-2">
+          <div class="contact-info-icon">✉️</div>
+          <h3 class="contact-info-title">Email</h3>
+          <a href="mailto:contact@krause.com" class="contact-info-value">contact@krause.com</a>
+          <p class="contact-info-desc">Te respondemos en 24 horas</p>
+        </div>
+        
+        <div class="contact-info-card animated-info-3">
+          <div class="contact-info-icon">📍</div>
+          <h3 class="contact-info-title">Ubicación</h3>
+          <p class="contact-info-value">Calle Principal 123</p>
+          <p class="contact-info-desc">Ciudad, Estado 12345</p>
         </div>
       </div>
-    </section>
+      
+      <div class="contact-form-section">
+        <form class="contact-form-modern" onsubmit="window.appHandlers.handleContactSubmit(event)">
+          <div class="form-row-double">
+            <div class="form-group-modern">
+              <input type="text" class="form-input-modern" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-group-modern">
+              <input type="email" class="form-input-modern" placeholder="Tu email" required>
+            </div>
+          </div>
+          <div class="form-row-double">
+            <div class="form-group-modern">
+              <input type="tel" class="form-input-modern" placeholder="Teléfono">
+            </div>
+            <div class="form-group-modern">
+              <select class="form-input-modern" required>
+                <option value="">Selecciona un servicio</option>
+                <option value="auto">Seguros de Auto</option>
+                <option value="hogar">Seguros de Hogar</option>
+                <option value="vida">Seguros de Vida</option>
+                <option value="comercial">Seguros Comerciales</option>
+                <option value="salud">Seguros de Salud</option>
+                <option value="viaje">Seguros de Viaje</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group-modern">
+            <textarea class="form-textarea-modern" placeholder="Tu mensaje" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit-modern">Enviar Mensaje</button>
+          
+          <div class="contact-social-card-inline">
+            <h3 class="contact-social-title-inline">Síguenos</h3>
+            <div class="contact-social-icons-inline">
+              <a href="#" class="social-icon-inline">📘</a>
+              <a href="#" class="social-icon-inline">📷</a>
+              <a href="#" class="social-icon-inline">🐦</a>
+              <a href="#" class="social-icon-inline">💼</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  
+
+  
   `,
   
   login: `
@@ -1171,6 +1024,14 @@ function loadPage(page) {
   }
 }
 
+// Track all animation timeouts
+const homeAnimationTimeouts = [];
+
+function clearHomeAnimations() {
+  homeAnimationTimeouts.forEach(timeout => clearTimeout(timeout));
+  homeAnimationTimeouts.length = 0;
+}
+
 // Home animation sequence
 function startHomeSequence() {
   const heroSection = document.querySelector('.hero-intro');
@@ -1178,8 +1039,12 @@ function startHomeSequence() {
   const ctaSection = document.querySelector('.final-cta');
   const subNav = document.getElementById('sub-nav');
   const skipBtn = document.querySelector('.btn-home-start');
+  const progressBar = document.querySelector('.progress-fill');
 
   if (!heroSection || !paradeSection || !ctaSection) return;
+
+  // Clear any existing animations
+  clearHomeAnimations();
 
   // Set initial gradient position
   document.body.classList.add('section-hero');
@@ -1195,106 +1060,130 @@ function startHomeSequence() {
     });
   }
 
-  // Step 1: Show hero for 6 seconds
-  setTimeout(() => {
+  // Animate progress bar synchronized with sections (total: 18 seconds = 8 + 10)
+  if (progressBar) {
+    progressBar.style.width = '0%';
+    progressBar.style.transition = 'width 8s linear';
+    // Hero phase: 0% to 33% (8 seconds) - sync with hero button appearance
+    setTimeout(() => progressBar.style.width = '33%', 100);
+  }
+
+  // Step 1: Show hero for 8 seconds (increased for more impact)
+  homeAnimationTimeouts.push(setTimeout(() => {
     // Step 2: Transition to parade
     document.body.classList.remove('section-hero');
     document.body.classList.add('section-parade');
     heroSection.classList.add('fade-out-up');
     
+    // Update progress bar: 33% to 66% during parade (sync with elección button)
+    if (progressBar) {
+      progressBar.style.transition = 'width 10s linear';
+      setTimeout(() => progressBar.style.width = '66%', 100);
+    }
+    
     // Show Hero button with droplet effect after section starts minimizing
-    setTimeout(() => {
+    homeAnimationTimeouts.push(setTimeout(() => {
       const heroBtn = subNav.querySelector('[data-section="hero"]');
       if (heroBtn) {
         heroBtn.classList.add('d-inline-block');
         heroBtn.classList.remove('d-none');
         heroBtn.classList.add('btn-droplet');
-        setTimeout(() => heroBtn.classList.remove('btn-droplet'), 600);
+        homeAnimationTimeouts.push(setTimeout(() => heroBtn.classList.remove('btn-droplet'), 600));
       }
-    }, 400);
+    }, 400));
     
-    setTimeout(() => {
+    homeAnimationTimeouts.push(setTimeout(() => {
       heroSection.classList.remove('active');
       paradeSection.classList.add('active');
       
       // Step 3: After parade, show CTA
-      setTimeout(() => {
+      homeAnimationTimeouts.push(setTimeout(() => {
         document.body.classList.remove('section-parade');
         document.body.classList.add('section-cta');
         paradeSection.classList.add('fade-out-up');
         
         // Show Elección button with droplet effect
-        setTimeout(() => {
+        homeAnimationTimeouts.push(setTimeout(() => {
           const eleccionBtn = subNav.querySelector('[data-section="eleccion"]');
           if (eleccionBtn) {
             eleccionBtn.classList.add('d-inline-block');
             eleccionBtn.classList.remove('d-none');
             eleccionBtn.classList.add('btn-droplet');
-            setTimeout(() => eleccionBtn.classList.remove('btn-droplet'), 600);
+            homeAnimationTimeouts.push(setTimeout(() => eleccionBtn.classList.remove('btn-droplet'), 600));
           }
-        }, 400);
+        }, 400));
         
-        setTimeout(() => {
+        homeAnimationTimeouts.push(setTimeout(() => {
           paradeSection.classList.remove('active');
           ctaSection.classList.add('active');
           
+          // Update progress bar: 66% to 100% when CTA appears (sync with cotiza button)
+          if (progressBar) {
+            progressBar.style.transition = 'width 1s ease-out';
+            progressBar.style.width = '100%';
+          }
+          
           // Show Cotiza button with droplet effect
-          setTimeout(() => {
+          homeAnimationTimeouts.push(setTimeout(() => {
             const cotizaBtn = subNav.querySelector('[data-section="cotiza"]');
             if (cotizaBtn) {
               cotizaBtn.classList.add('d-inline-block');
               cotizaBtn.classList.remove('d-none');
               cotizaBtn.classList.add('btn-droplet');
-              setTimeout(() => cotizaBtn.classList.remove('btn-droplet'), 600);
+              homeAnimationTimeouts.push(setTimeout(() => cotizaBtn.classList.remove('btn-droplet'), 600));
             }
-          }, 400);
+          }, 400));
           
           // Remove skip button
           if (skipBtn) {
             skipBtn.classList.add('d-none');
             skipBtn.classList.remove('d-block');
           }
-        }, 800);
-      }, 8000); // Show parade for 8 seconds
-    }, 800);
-  }, 6000); // Show hero for 6 seconds
+        }, 800));
+      }, 10000)); // Show parade for 10 seconds (increased for better engagement)
+    }, 800));
+  }, 8000)); // Show hero for 8 seconds
 }
 
 // Skip to final state
 function skipToFinalState() {
+  // CRITICAL: Cancel ALL pending animations first
+  clearHomeAnimations();
+
   const heroSection = document.querySelector('.hero-intro');
   const paradeSection = document.querySelector('.features-parade');
   const ctaSection = document.querySelector('.final-cta');
   const subNav = document.getElementById('sub-nav');
   const skipBtn = document.querySelector('.btn-home-start');
+  const progressBar = document.querySelector('.progress-fill');
 
   if (!heroSection || !paradeSection || !ctaSection) return;
+
+  // Complete progress bar immediately
+  if (progressBar) {
+    progressBar.style.width = '100%';
+  }
 
   // Update gradient position
   document.body.classList.remove('section-hero', 'section-parade');
   document.body.classList.add('section-cta');
 
-  // Hide all sections properly
+  // CRITICAL: Remove active from ALL sections first to hide them
   const allSections = document.querySelectorAll('.home-section');
   allSections.forEach(section => {
-    section.classList.remove('active', 'fade-out-up');
-    section.classList.add('d-none');
-    section.classList.remove('d-flex');
+    section.classList.remove('active');
+    section.classList.remove('fade-out-up');
   });
   
-  // Show CTA section
-  ctaSection.classList.add('d-flex');
-  ctaSection.classList.remove('d-none');
+  // Now show ONLY the CTA section
   ctaSection.classList.add('active');
   
-  // Show sub-navigation with all buttons
+  // Show sub-navigation with all buttons (using new timeouts that won't be cleared)
   if (subNav) {
-    subNav.classList.add('d-flex');
-    subNav.classList.remove('d-none');
+    subNav.style.display = 'flex';
     const allButtons = subNav.querySelectorAll('.sub-nav-btn');
     allButtons.forEach((btn, index) => {
-      btn.classList.add('d-inline-block');
-      btn.classList.remove('d-none');
+      btn.style.display = 'inline-block';
       setTimeout(() => {
         btn.classList.add('btn-droplet');
         setTimeout(() => btn.classList.remove('btn-droplet'), 600);
@@ -1304,8 +1193,7 @@ function skipToFinalState() {
   
   // Remove skip button
   if (skipBtn) {
-    skipBtn.classList.add('d-none');
-    skipBtn.classList.remove('d-block');
+    skipBtn.style.display = 'none';
   }
 }
 
@@ -1328,20 +1216,16 @@ function showHomeSection(section) {
     }
   });
   
-  // Hide all sections and remove from DOM flow
+  // Hide ALL sections first (removes active class)
   const allSections = document.querySelectorAll('.home-section');
   allSections.forEach(sec => {
     sec.classList.remove('active');
     sec.classList.remove('fade-out-up');
-    sec.classList.add('d-none');
-    sec.classList.remove('d-flex');
   });
   
   // Show selected section
   const targetSection = document.getElementById(`${section}-section`);
   if (targetSection) {
-    targetSection.classList.add('d-flex');
-    targetSection.classList.remove('d-none');
     targetSection.classList.add('active');
     
     // Reinitialize stats if showing hero

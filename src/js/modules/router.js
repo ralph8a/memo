@@ -4,9 +4,13 @@ import { PAGES, PAGES_WITHOUT_FOOTER, SELECTORS } from '../utils/constants.js';
 import { getElement, getElements, addClass, removeClass, setStyle, setHTML, hide, show } from '../utils/dom.js';
 import { cleanupHomeAnimations, startHomeSequence, initStatsAnimation } from './homeAnimations.js';
 import { clearAllTimers } from '../utils/timing.js';
+import { stopParticles, startParticles } from './particles.js';
 
 // Import templates
 import { getTemplate } from '../templates/index.js';
+
+// Pages that don't need particles animation
+const PAGES_WITHOUT_PARTICLES = ['services', 'about', 'contact'];
 
 export function navigateTo(page, event) {
   // Prevent default anchor behavior
@@ -67,6 +71,13 @@ function loadPage(page) {
   const template = getTemplate(page);
   if (template) {
     setHTML(mainContent, template);
+    
+    // Control particles animation based on page
+    if (PAGES_WITHOUT_PARTICLES.includes(page)) {
+      stopParticles();
+    } else {
+      startParticles();
+    }
     
     // Initialize page-specific features
     if (page === PAGES.HOME) {
