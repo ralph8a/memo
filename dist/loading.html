@@ -243,6 +243,49 @@
       color: rgba(255, 255, 255, 0.7);
       font-size: 0.9rem;
     }
+    
+    /* Did you know section */
+    .did-you-know {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: clamp(16px, 3vh, 24px) clamp(20px, 4vw, 32px);
+      margin: 2rem 0 1rem;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .did-you-know-title {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 700;
+      color: rgba(255, 196, 214, 1);
+      margin-bottom: 0.75rem;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .did-you-know-text {
+      font-size: clamp(0.85rem, 1.6vw, 1rem);
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.6;
+      text-align: center;
+      font-weight: 400;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
@@ -302,6 +345,12 @@
     <p class="loading-text">Preparando su experiencia<span class="dots"></span></p>
     <p class="status-text" id="status">Inicializando sistema</p>
     
+    <!-- Sabías que... Section -->
+    <div class="did-you-know">
+      <div class="did-you-know-title">💡 Sabías que...</div>
+      <div class="did-you-know-text" id="funFact">Cargando dato interesante...</div>
+    </div>
+    
     <div class="progress-details">
       <span id="detail-left">Conectando</span>
       <span id="detail-right">...</span>
@@ -319,6 +368,34 @@
       particle.style.animationDelay = Math.random() * 5 + 's';
       particlesContainer.appendChild(particle);
     }
+    
+    // Fun facts about insurance and Krause Insurance
+    const funFacts = [
+      "Krause Insurance fue fundada con el compromiso de brindar protección personalizada a cada familia y negocio.",
+      "El primer seguro documentado data del año 1347 en Génova, Italia, para proteger embarcaciones.",
+      "El seguro de vida ayuda a proteger el futuro financiero de tus seres queridos en caso de imprevistos.",
+      "Krause Insurance trabaja con las aseguradoras más confiables para garantizar tu tranquilidad.",
+      "El 60% de las pequeñas empresas cierran después de un desastre mayor sin tener un seguro adecuado.",
+      "Los seguros de hogar cubren no solo daños estructurales, sino también tus pertenencias personales.",
+      "Actualizar tu póliza regularmente asegura que tu cobertura se ajuste a tus necesidades actuales.",
+      "El seguro de salud puede cubrir exámenes preventivos sin costo adicional para ti.",
+      "Krause Insurance ofrece consultas personalizadas para encontrar la cobertura perfecta para ti.",
+      "El seguro de automóvil es obligatorio en la mayoría de los estados para proteger a todos en la carretera.",
+      "Las pólizas paraguas ofrecen protección adicional más allá de tus seguros básicos.",
+      "Krause Insurance cuenta con más de 25 años de experiencia protegiendo familias y negocios.",
+      "El deducible es la cantidad que pagas antes de que tu seguro comience a cubrir un reclamo.",
+      "Comparar cotizaciones puede ahorrarte hasta un 30% en tu prima anual de seguro.",
+      "El seguro de responsabilidad civil protege tu patrimonio en caso de demandas legales.",
+      "Krause Insurance ofrece atención 24/7 para asistirte cuando más lo necesites.",
+      "El seguro de inquilino protege tus pertenencias incluso si no eres dueño de la propiedad.",
+      "Mantener un buen historial de crédito puede reducir el costo de tus primas de seguro.",
+      "El seguro de vida temporal es una opción económica para protección durante períodos específicos.",
+      "Krause Insurance te ayuda a entender cada aspecto de tu póliza para que tomes decisiones informadas."
+    ];
+    
+    // Select random fun fact
+    const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+    document.getElementById('funFact').textContent = randomFact;
     
     // Loading simulation
     const statusMessages = [

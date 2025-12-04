@@ -70,7 +70,9 @@ module.exports = {
         { from: 'acrylic.css', to: 'acrylic.css' },
         { from: 'app.js', to: 'app.js' },
         { from: 'splash.html', to: 'index.html' },
-        { from: 'loading.html', to: 'loading.html' }
+        { from: 'loading.html', to: 'loading.html' },
+        { from: 'cache-manager.js', to: 'cache-manager.js' },
+        { from: 'api-integration.js', to: 'api-integration.js' }
       ]
     })
   ],
