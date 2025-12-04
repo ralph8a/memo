@@ -1522,6 +1522,9 @@ animateParticles();
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
+  // Check for hash navigation
+  const hash = window.location.hash.substring(1);
+  
   if (checkAuth()) {
     if (currentUser.type === 'client') {
       navigateTo('dashboard');
@@ -1531,7 +1534,14 @@ document.addEventListener('DOMContentLoaded', () => {
       navigateTo('home');
     }
   } else {
-    navigateTo('home');
+    // Navigate based on hash if present
+    if (hash === 'login') {
+      navigateTo('login');
+    } else if (hash === 'agent-login') {
+      navigateTo('agent-login');
+    } else {
+      navigateTo('home');
+    }
   }
 });
 
