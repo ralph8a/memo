@@ -121,10 +121,11 @@ body[data-theme="dark-forest"] {
     --footer-acrylic-saturate: 235%;
 
     /* Semantic surfaces used by pages (cards / inputs / compact service tiles) */
-    --theme-surface-bg: rgba(15, 43, 33, 0.78);
-    --theme-surface-bg-solid: rgba(15, 43, 33, 0.92);
-    --theme-surface-border: rgba(232, 246, 238, 0.16);
-    --theme-surface-border-strong: rgba(232, 246, 238, 0.22);
+    --theme-surface-bg: rgba(3, 12, 8, 0.82);
+    --theme-surface-bg-solid: rgba(3, 10, 7, 0.94);
+    --theme-surface-bg-deep: #020b07;
+    --theme-surface-border: rgba(242, 234, 220, 0.22);
+    --theme-surface-border-strong: rgba(242, 234, 220, 0.32);
 
     /* Accent tints (dashboards, decorative borders) */
     --theme-accent-border-subtle: rgba(125, 99, 63, 0.18);
@@ -502,8 +503,9 @@ body[data-theme="dark-forest"] {
     --acrylic-bg-medium: var(--theme-surface-bg-solid);
     --acrylic-bg-dark: var(--theme-surface-bg-solid);
 
-    background: var(--theme-surface-bg-solid);
+    background: #010805;
     background-image: none;
+    color: var(--theme-text-primary);
 }
 
 [data-theme="dark-forest"] .dashboard-header {
@@ -511,18 +513,19 @@ body[data-theme="dark-forest"] {
 }
 
 [data-theme="dark-forest"] .dashboard-header h1 {
-    color: var(--theme-accent-color);
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    color: var(--theme-sunlight);
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.65);
 }
 
 [data-theme="dark-forest"] .dashboard-header p {
-    color: var(--theme-text-secondary);
+    color: rgba(240, 247, 243, 0.94);
 }
 
 [data-theme="dark-forest"] .dashboard-header .btn {
     background: var(--theme-primary-color);
     color: var(--theme-text-primary);
     border: 1px solid var(--theme-highlight-strong-border);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
 [data-theme="dark-forest"] .dashboard-header .btn:hover {
@@ -532,40 +535,53 @@ body[data-theme="dark-forest"] {
 }
 
 [data-theme="dark-forest"] .dashboard-stat-card {
-    background: var(--theme-surface-bg);
-    border: 1px solid var(--theme-surface-border);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    background: var(--theme-surface-bg-solid);
+    border: 1px solid var(--theme-surface-border-strong);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
     /* Keep dashboards crisp and performant */
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
 
 [data-theme="dark-forest"] .dashboard-stat-card:hover {
-    background: var(--theme-surface-bg-solid);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    border-color: var(--theme-highlight-strong-border);
+    background: var(--theme-surface-bg-deep, var(--theme-surface-bg-solid));
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65);
+    border-color: var(--theme-highlight-border);
 }
 
 [data-theme="dark-forest"] .dashboard-stat-card .stat-icon {
     background: linear-gradient(135deg, var(--theme-primary-color) 0%, var(--theme-secondary-color) 100%);
-    color: var(--theme-text-primary);
+    color: var(--theme-sunlight);
     box-shadow: 0 6px 18px var(--theme-primary-shadow-color);
 }
 
 [data-theme="dark-forest"] .stat-value {
     color: var(--theme-text-primary);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
 }
 
 [data-theme="dark-forest"] .stat-label {
-    color: var(--theme-text-secondary);
+    color: rgba(242, 234, 220, 0.94);
+    font-weight: 600;
 }
 
 /* Solid surfaces: override earlier generic "card" glass if present */
 [data-theme="dark-forest"] .dashboard-card {
-    background: var(--theme-surface-bg);
-    border-color: var(--theme-surface-border);
+    background: var(--theme-surface-bg-solid);
+    border-color: var(--theme-surface-border-strong);
+    color: var(--theme-text-primary);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+}
+
+[data-theme="dark-forest"] .dashboard-card h3,
+[data-theme="dark-forest"] .dashboard-card h4,
+[data-theme="dark-forest"] .dashboard-card p,
+[data-theme="dark-forest"] .dashboard-card li,
+[data-theme="dark-forest"] .dashboard-card span {
+    color: rgba(240, 247, 243, 0.96);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="dark-forest"] .agent-dashboard .dashboard-header {
@@ -573,18 +589,19 @@ body[data-theme="dark-forest"] {
 }
 
 [data-theme="dark-forest"] .agent-dashboard .dashboard-header h1 {
-    color: var(--theme-accent-color);
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    color: var(--theme-sunlight);
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.65);
 }
 
 [data-theme="dark-forest"] .agent-dashboard .dashboard-header p {
-    color: var(--theme-text-secondary);
+    color: rgba(240, 247, 243, 0.94);
 }
 
 [data-theme="dark-forest"] .agent-dashboard .dashboard-header .btn {
     background: var(--theme-primary-color);
     color: var(--theme-text-primary);
     border: 1px solid var(--theme-highlight-strong-border);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
 [data-theme="dark-forest"] .agent-dashboard .dashboard-header .btn:hover {
@@ -594,31 +611,33 @@ body[data-theme="dark-forest"] {
 }
 
 [data-theme="dark-forest"] .agent-dashboard .dashboard-stat-card {
-    background: var(--theme-surface-bg);
-    border: 1px solid var(--theme-surface-border);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    background: var(--theme-surface-bg-solid);
+    border: 1px solid var(--theme-surface-border-strong);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
 
 [data-theme="dark-forest"] .agent-dashboard .dashboard-stat-card:hover {
-    background: var(--theme-surface-bg-solid);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    border-color: var(--theme-highlight-strong-border);
+    background: var(--theme-surface-bg-deep, var(--theme-surface-bg-solid));
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65);
+    border-color: var(--theme-highlight-border);
 }
 
 [data-theme="dark-forest"] .agent-dashboard .dashboard-stat-card .stat-icon {
     background: linear-gradient(135deg, var(--theme-primary-color) 0%, var(--theme-secondary-color) 100%);
-    color: var(--theme-text-primary);
+    color: var(--theme-sunlight);
     box-shadow: 0 6px 18px var(--theme-primary-shadow-color);
 }
 
 [data-theme="dark-forest"] .agent-dashboard .stat-value {
     color: var(--theme-text-primary);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
 }
 
 [data-theme="dark-forest"] .agent-dashboard .stat-label {
-    color: var(--theme-text-secondary);
+    color: rgba(242, 234, 220, 0.94);
+    font-weight: 600;
 }
 
 /* Auth Pages */
