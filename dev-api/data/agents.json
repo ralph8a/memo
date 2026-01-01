@@ -1,0 +1,16 @@
+[
+  {
+    "id": "a1",
+    "name": "Agent One",
+    "email": "agent.one@krause.local",
+    "phone": "+1-555-000-0001",
+    "region": "North"
+  },
+  {
+    "id": "a2",
+    "name": "Agent Two",
+    "email": "agent.two@krause.local",
+    "phone": "+1-555-000-0002",
+    "region": "South"
+  }
+]

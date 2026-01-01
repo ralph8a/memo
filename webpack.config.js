@@ -1,16 +1,71 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const fs = require('fs');
+
+// Helper to read template files
+const readTemplate = (filePath) => {
+  try {
+    return fs.readFileSync(path.join(__dirname, filePath), 'utf8');
+  } catch (err) {
+    console.error(`Failed to read template: ${filePath}`, err);
+    return '';
+  }
+};
+
+// Custom plugin to inject templates into index.html after generation
+class InjectTemplatesPlugin {
+  apply(compiler) {
+    compiler.hooks.compilation.tap('InjectTemplatesPlugin', (compilation) => {
+      HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tapAsync(
+        'InjectTemplatesPlugin',
+        (data, cb) => {
+          const templates = {
+            'page-home': readTemplate('src/templates/pages/home.html'),
+            'page-services': readTemplate('src/templates/pages/services.html'),
+            'page-about': readTemplate('src/templates/pages/about.html'),
+            'page-contact': readTemplate('src/templates/pages/contact.html'),
+            'page-client-login': readTemplate('src/templates/auth/client-login.html'),
+            'page-agent-login': readTemplate('src/templates/auth/agent-login.html'),
+            'page-client-dashboard': readTemplate('src/templates/dashboards/client-dashboard.html'),
+            'page-agent-dashboard': readTemplate('src/templates/dashboards/agent-dashboard.html'),
+            'page-admin-dashboard': readTemplate('src/templates/dashboards/admin-dashboard.html'),
+          };
+
+          let html = data.html;
+
+          // Inject each template into its corresponding div
+          for (const [id, content] of Object.entries(templates)) {
+            const placeholder = `<div id="${id}" class="page-section`;
+            const startIndex = html.indexOf(placeholder);
+            if (startIndex !== -1) {
+              const closeDiv = html.indexOf('</div>', startIndex);
+              if (closeDiv !== -1) {
+                // Insert content between opening and closing div
+                const openingDiv = html.substring(startIndex, html.indexOf('>', startIndex) + 1);
+                html = html.substring(0, startIndex + openingDiv.length) +
+                  '\n      ' + content + '\n    ' +
+                  html.substring(closeDiv);
+              }
+            }
+          }
+
+          data.html = html;
+          cb(null, data);
+        }
+      );
+    });
+  }
+}
 
 module.exports = {
-  // Use the app entry that mounts into #root so the bundle actually renders
-  // the React tree. Previously this pointed at the component only which
-  // produced a bundle that didn't call createRoot -> blank page.
-  entry: './src/main.jsx',
+  // Modular ES entry for the vanilla runtime
+  entry: './src/core/EntryPointMainApp.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/memo/',
+    // Distinctive filename to avoid collisions with other public artifacts
+    filename: 'krause.app.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -24,11 +79,8 @@ module.exports = {
           },
         },
       },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      // allow importing images as files (emit to output and return URL)
+      // Note: we intentionally do not process CSS here so that CSS files
+      // remain static and are served from `styles/` (copied below).
       {
         test: /\.(svg|jpg|jpeg|png|gif)$/i,
         type: 'asset/resource'
@@ -39,40 +91,51 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
-    static: path.join(__dirname, 'dist'),
+    static: {
+      directory: path.join(__dirname, 'dist'),
+      // Helps when working with copied assets (e.g., styles/*) that aren't part of the JS module graph.
+      watch: true,
+    },
     compress: true,
-    port: 3000,
+    // Allow overriding the dev port (avoids EADDRINUSE when 3000 is already taken)
+    port: process.env.PORT ? Number(process.env.PORT) : 3000,
     historyApiFallback: true,
-    // ensure the dev middleware serves assets under the same publicPath
-    // used for production builds (output.publicPath = '/memo/').
     devMiddleware: {
-      publicPath: '/memo/'
-    }
+      publicPath: '/'
+    },
+    // Force live-reload when editing static sources (CSS/templates) that may not be imported by JS.
+    watchFiles: [
+      'styles/**/*',
+      'src/templates/**/*',
+      'public/**/*'
+    ]
   },
-  // production build: optimized output and generated index.html
-  mode: 'production',
-  devtool: false,
+  // Use development mode during iterative work; switch to production when ready
+  mode: 'development',
+  devtool: 'source-map',
   plugins: [
+    // Generate index.html with templates injected via custom plugin
     new HtmlWebpackPlugin({
-      title: 'Guillermo Krause - Contact Card',
-      filename: 'card.html',
-      // ensure correct base when served from GitHub Pages repo subpath
-      templateContent: ({ htmlWebpackPlugin }) => `<!doctype html><html lang="en"><head><base href="/memo/"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#a02c5a"><meta name="description" content="Professional contact card for Guillermo Krause Sepulveda - Krause Insurance"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Contact Card"><link rel="icon" type="image/svg+xml" href="icon.svg"><link rel="icon" type="image/x-icon" href="favicon.ico"><link rel="manifest" href="manifest.json"><title>${htmlWebpackPlugin.options.title}</title></head><body><div id="root"></div></body></html>`
+      template: 'public/index.html',
+      filename: 'index.html',
+      minify: false,
     }),
+
+    // Inject templates into the generated HTML
+    new InjectTemplatesPlugin(),
+
+    // Copy static assets
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/assets/icon.svg', to: 'icon.svg' },
-        { from: 'src/assets/favicon.ico', to: 'favicon.ico' },
+        { from: 'public/favicon.ico', to: 'favicon.ico' },
         { from: 'public/manifest.json', to: 'manifest.json' },
-        { from: 'src/service-worker.js', to: 'service-worker.js' },
-        { from: 'app.html', to: 'app.html' },
-        { from: 'app.css', to: 'app.css' },
-        { from: 'acrylic.css', to: 'acrylic.css' },
-        { from: 'app.js', to: 'app.js' },
-        { from: 'splash.html', to: 'index.html' },
-        { from: 'loading.html', to: 'loading.html' },
-        { from: 'cache-manager.js', to: 'cache-manager.js' },
-        { from: 'api-integration.js', to: 'api-integration.js' }
+        { from: 'public/assets', to: 'assets' },
+        { from: 'styles', to: 'styles' },
+        { from: 'src/api-integration.js', to: 'api-integration.js' },
+        { from: 'src/service-worker.js', to: 'service-worker.js', noErrorOnMissing: true },
+        { from: 'src/app.js', to: 'app.js', noErrorOnMissing: true },
+        { from: 'public/loading.html', to: 'loading.html', noErrorOnMissing: true },
+        { from: 'public/admin.html', to: 'admin.html', noErrorOnMissing: true }
       ]
     })
   ],

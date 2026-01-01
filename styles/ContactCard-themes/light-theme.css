@@ -1,0 +1,20 @@
+/* Light Theme Variables */
+:root {
+  --card-bg: #ffffff;
+  --page-bg: #0d3d23;
+  --primary: #0d3d23;
+  --primary-600: #0d3d23;
+  --link-color: #0d3d23;
+  --address-text: #333333;
+  --muted: #333333;
+  --accent: #c94f7c;
+  --accent-2: #ffb6d5;
+  --surface: #ffffff;
+  --shadow: 0 8px 30px rgba(16, 18, 22, 0.08);
+}
+
+/* Light Theme Body */
+body {
+  background: #0d3d23;
+  color: var(--muted);
+}

@@ -1,51 +1,54 @@
-const CACHE_NAME = 'contact-card-v1';
-const urlsToCache = [
-  '/memo/',
-  '/memo/index.html',
-  '/memo/bundle.js',
-  '/memo/354.bundle.js'
+// Simple service worker for offline caching (development-friendly)
+// Bump CACHE_NAME on updates so clients will install a fresh service worker and refresh cached assets
+const CACHE_NAME = 'krause-cache-v2';
+const ASSETS_TO_CACHE = [
+    '/',
+    '/index.html',
+    // include cache-busted bundle reference to ensure the updated script is cached
+    '/krause.app.js?v=1.1',
+    '/api-integration.js',
+    '/styles/app.css',
+    '/styles/acrylic.css',
+    '/favicon.ico'
 ];
 
-// Install service worker and cache resources
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-      .then(() => self.skipWaiting())
-  );
-});
-
-// Activate and clean up old caches
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
+self.addEventListener('install', (event) => {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll(ASSETS_TO_CACHE);
         })
-      );
-    }).then(() => self.clients.claim())
-  );
+    );
+    self.skipWaiting();
 });
 
-// Fetch with network-first strategy for dynamic content
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // Clone response and cache it
-        if (response && response.status === 200) {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => cache.put(event.request, responseToCache));
-        }
-        return response;
-      })
-      .catch(() => {
-        // If network fails, try cache
-        return caches.match(event.request);
-      })
-  );
+self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.keys().then((keys) => {
+            return Promise.all(
+                keys.map((key) => {
+                    if (key !== CACHE_NAME) return caches.delete(key);
+                })
+            );
+        })
+    );
+    self.clients.claim();
+});
+
+self.addEventListener('fetch', (event) => {
+    if (event.request.method !== 'GET') return;
+
+    event.respondWith(
+        caches.match(event.request).then((cached) => {
+            if (cached) return cached;
+            return fetch(event.request).then((response) => {
+                // Optionally cache new requests
+                return response;
+            }).catch(() => {
+                // Fallback to index.html for navigation requests
+                if (event.request.mode === 'navigate') {
+                    return caches.match('/index.html');
+                }
+            });
+        })
+    );
 });

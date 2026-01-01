@@ -1,0 +1,173 @@
+<section class="dashboard-section" id="dashboard-section">
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <div>
+        <h1>Mi Dashboard</h1>
+        <p>Bienvenido, Cliente</p>
+      </div>
+      <button class="btn btn-outline" onclick="logout()">Cerrar Sesión</button>
+    </div>
+    <div class="dashboard-stats">
+      <div class="dashboard-stat-card">
+        <div class="stat-icon">📄</div>
+        <div class="stat-info">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Pólizas Activas</div>
+        </div>
+      </div>
+      <div class="dashboard-stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-info">
+          <div class="stat-value">Al Día</div>
+          <div class="stat-label">Estado de Pagos</div>
+        </div>
+      </div>
+      <div class="dashboard-stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-info">
+          <div class="stat-value">15 Mar</div>
+          <div class="stat-label">Próximo Pago</div>
+        </div>
+      </div>
+      <div class="dashboard-stat-card">
+        <div class="stat-icon">💰</div>
+        <div class="stat-info">
+          <div class="stat-value">$450</div>
+          <div class="stat-label">Total Mensual</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-main">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Mis Pólizas</h3>
+            <button class="btn btn-sm btn-outline" onclick="showNotification('Función disponible próximamente', 'info')">Nueva Póliza</button>
+          </div>
+          <div class="policies-list">
+            <div class="policy-item">
+              <div class="policy-icon">🚗</div>
+              <div class="policy-info">
+                <h4>Seguro de Auto</h4>
+                <p>Toyota Camry 2022 • Póliza #A-12345</p>
+                <div class="policy-meta">
+                  <span class="badge badge-success">Activa</span>
+                  <span>Vence: 15 Dic 2025</span>
+                </div>
+              </div>
+              <div class="policy-actions">
+                <button class="btn btn-sm btn-outline" onclick="viewPolicy('A-12345')">Ver Detalles</button>
+              </div>
+            </div>
+
+            <div class="policy-item">
+              <div class="policy-icon">🏠</div>
+              <div class="policy-info">
+                <h4>Seguro de Hogar</h4>
+                <p>Propiedad Residencial • Póliza #H-67890</p>
+                <div class="policy-meta">
+                  <span class="badge badge-success">Activa</span>
+                  <span>Vence: 20 Nov 2025</span>
+                </div>
+              </div>
+              <div class="policy-actions">
+                <button class="btn btn-sm btn-outline" onclick="viewPolicy('H-67890')">Ver Detalles</button>
+              </div>
+            </div>
+
+            <div class="policy-item">
+              <div class="policy-icon">❤️</div>
+              <div class="policy-info">
+                <h4>Seguro de Vida</h4>
+                <p>Plan Familiar • Póliza #V-24680</p>
+                <div class="policy-meta">
+                  <span class="badge badge-success">Activa</span>
+                  <span>Vence: 01 Ene 2026</span>
+                </div>
+              </div>
+              <div class="policy-actions">
+                <button class="btn btn-sm btn-outline" onclick="viewPolicy('V-24680')">Ver Detalles</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Historial de Pagos</h3>
+            <button class="btn btn-sm btn-outline" onclick="downloadPaymentHistory()">Descargar</button>
+          </div>
+          <div class="payments-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Póliza</th>
+                  <th>Monto</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>15 Feb 2025</td>
+                  <td>Auto - A-12345</td>
+                  <td>$150.00</td>
+                  <td><span class="badge badge-success">Pagado</span></td>
+                </tr>
+                <tr>
+                  <td>20 Ene 2025</td>
+                  <td>Hogar - H-67890</td>
+                  <td>$200.00</td>
+                  <td><span class="badge badge-success">Pagado</span></td>
+                </tr>
+                <tr>
+                  <td>01 Ene 2025</td>
+                  <td>Vida - V-24680</td>
+                  <td>$100.00</td>
+                  <td><span class="badge badge-success">Pagado</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-sidebar">
+        <div class="dashboard-card">
+          <h3>Acciones Rápidas</h3>
+          <div class="quick-actions">
+            <button class="btn btn-outline btn-block" onclick="makePayment()">💳 Realizar Pago</button>
+            <button class="btn btn-outline btn-block" onclick="fileClaim()">📋 Reportar Siniestro</button>
+            <button class="btn btn-outline btn-block" onclick="updateInfo()">✏️ Actualizar Información</button>
+            <button class="btn btn-outline btn-block" onclick="contactAgent()">📞 Contactar Agente</button>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <h3>Mi Agente</h3>
+          <div class="agent-info">
+            <div class="agent-avatar">GK</div>
+            <h4>Guillermo Krause</h4>
+            <p>Agente Principal</p>
+            <div class="agent-contact">
+              <p>📞 +1 (234) 567-89</p>
+              <p>📧 gkrause@krauseins.com</p>
+            </div>
+            <button class="btn btn-sm btn-outline btn-block" onclick="contactAgent()">Contactar</button>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <h3>Documentos</h3>
+          <div class="documents-list">
+            <a href="#" class="document-link" onclick="showNotification('Función disponible próximamente', 'info'); return false;">📄 Póliza Auto (PDF)</a>
+            <a href="#" class="document-link" onclick="showNotification('Función disponible próximamente', 'info'); return false;">📄 Póliza Hogar (PDF)</a>
+            <a href="#" class="document-link" onclick="showNotification('Función disponible próximamente', 'info'); return false;">📄 Póliza Vida (PDF)</a>
+            <a href="#" class="document-link" onclick="showNotification('Función disponible próximamente', 'info'); return false;">📊 Estado de Cuenta</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+    <section class="auth-section" id="auth-login">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <svg class="logo-shield-auth krause-shield" width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+              <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+              <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+              <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+            </svg>
+            <h2>Portal de Clientes</h2>
+            <p>Accede a tu cuenta para revisar tus pólizas</p>
+          </div>
+          <form class="auth-form" onsubmit="handleClientLogin(event)">
+            <div class="form-group"><label class="form-label">Número de Póliza o Email</label><input type="text" class="form-control" placeholder="Ingresa tu número de póliza" required></div>
+            <div class="form-group"><label class="form-label">Contraseña</label><input type="password" class="form-control" placeholder="Ingresa tu contraseña" required></div>
+            <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+          </form>
+
+          <div class="auth-divider">
+            <span>o</span>
+          </div>
+
+          <p class="auth-footer-text">
+            ¿Eres agente?
+            <a href="#" onclick="navigateTo('agent-login', event)" class="auth-link">Accede aquí</a>
+          </p>
+
+          <p class="auth-footer-text auth-register-text">
+            ¿Aún no eres cliente?
+            <a href="#" onclick="navigateTo('contact', event)" class="auth-link">Solicita una cotización</a>
+          </p>
+        </div>
+      </div>
+    </section>

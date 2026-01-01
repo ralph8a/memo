@@ -1,0 +1,507 @@
+    <section class="services-fullpage">
+      <div class="services-container">
+        <div class="services-extended">
+          <h1 class="services-page-title">Servicios</h1>
+          <div class="services-tech" aria-label="Servicios y contenido técnico">
+            <nav class="services-tech-nav" aria-label="Módulos técnicos">
+              <a class="services-tech-link" href="#services-panel-products">Seguros</a>
+              <a class="services-tech-link" href="#services-panel-guide">Guía</a>
+              <a class="services-tech-link" href="#services-panel-process">Proceso</a>
+              <a class="services-tech-link" href="#services-panel-compare">Comparador</a>
+              <a class="services-tech-link" href="#services-panel-claims">Siniestros</a>
+              <a class="services-tech-link" href="#services-panel-faq">FAQ</a>
+            </nav>
+
+            <p class="services-tech-hint">Tip: usa el menú para cambiar de módulo (en móvil también puedes deslizar).</p>
+
+            <div class="services-tech-panels" role="region" aria-label="Módulos técnicos" tabindex="0">
+              <section id="services-panel-products" class="services-section services-panel services-panel--cards" aria-label="Seguros disponibles">
+                <h2 class="services-section-title">Seguros disponibles</h2>
+                <p class="services-section-subtitle">Selecciona una categoría y cotiza al instante.</p>
+
+                <div class="services-grid-compact">
+                  <div class="service-card-compact card-1">
+                    <div class="service-icon-compact">🚗</div>
+                    <h3 class="service-name-compact">Seguros de Auto</h3>
+                    <p class="service-desc-compact">Protección completa para tu vehículo con las mejores coberturas del mercado.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Responsabilidad Civil</li>
+                      <li>✓ Cobertura amplia</li>
+                      <li>✓ Asistencia vial 24/7</li>
+                      <li>✓ Cristales y robo</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('auto')">Cotizar Ahora</button>
+                  </div>
+
+                  <div class="service-card-compact card-2 featured-compact">
+                    <div class="badge-compact">MÁS POPULAR</div>
+                    <div class="service-icon-compact">🏠</div>
+                    <h3 class="service-name-compact">Seguros de Hogar</h3>
+                    <p class="service-desc-compact">Tu patrimonio protegido contra todo tipo de riesgos y eventualidades.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Daños estructurales</li>
+                      <li>✓ Contenido y bienes</li>
+                      <li>✓ Responsabilidad civil</li>
+                      <li>✓ Robo y vandalismo</li>
+                    </ul>
+                    <button class="btn-compact primary-compact" onclick="window.appHandlers.openQuoteModal('hogar')">Cotizar Ahora</button>
+                  </div>
+
+                  <div class="service-card-compact card-3">
+                    <div class="service-icon-compact">❤️</div>
+                    <h3 class="service-name-compact">Seguros de Vida</h3>
+                    <p class="service-desc-compact">Asegura el futuro de tus seres queridos con planes flexibles y accesibles.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Cobertura familiar</li>
+                      <li>✓ Planes personalizados</li>
+                      <li>✓ Invalidez</li>
+                      <li>✓ Enfermedades graves</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('vida')">Cotizar Ahora</button>
+                  </div>
+
+                  <div class="service-card-compact card-4">
+                    <div class="service-icon-compact">🏢</div>
+                    <h3 class="service-name-compact">Seguros Comerciales</h3>
+                    <p class="service-desc-compact">Protección integral para tu negocio y continuidad operativa.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Responsabilidad general</li>
+                      <li>✓ Propiedad comercial</li>
+                      <li>✓ Interrupción de negocio</li>
+                      <li>✓ Cyber seguridad</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('comercial')">Cotizar Ahora</button>
+                  </div>
+
+                  <div class="service-card-compact card-5">
+                    <div class="service-icon-compact">💼</div>
+                    <h3 class="service-name-compact">Seguros de Salud</h3>
+                    <p class="service-desc-compact">Acceso a los mejores servicios médicos con cobertura amplia.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Hospitalización</li>
+                      <li>✓ Cirugías</li>
+                      <li>✓ Medicamentos</li>
+                      <li>✓ Red médica</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('salud')">Cotizar Ahora</button>
+                  </div>
+
+                  <div class="service-card-compact card-6">
+                    <div class="service-icon-compact">✈️</div>
+                    <h3 class="service-name-compact">Seguros de Viaje</h3>
+                    <p class="service-desc-compact">Viaja tranquilo con cobertura internacional completa.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Asistencia mundial</li>
+                      <li>✓ Gastos médicos</li>
+                      <li>✓ Equipaje protegido</li>
+                      <li>✓ Repatriación</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('viaje')">Cotizar Ahora</button>
+                  </div>
+                </div>
+              </section>
+
+              <section id="services-panel-guide" class="services-section services-panel services-panel--guide" aria-label="Guía técnica rápida">
+                <h2 class="services-section-title">Guía técnica rápida</h2>
+                <p class="services-section-subtitle">
+                  Conceptos clave para comparar pólizas. Los nombres exactos pueden variar por aseguradora, pero la lógica es la misma.
+                </p>
+
+                <div class="services-info-grid">
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Suma asegurada</h3>
+                    <p class="services-info-text">
+                      Es el tope máximo que la póliza pagará por una cobertura. En autos suele aplicarse por daños/robo; en hogar por estructura y contenido;
+                      en vida por el monto contratado.
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Deducible</h3>
+                    <p class="services-info-text">
+                      Es la parte del siniestro que pagas tú. Normalmente se expresa como porcentaje (p. ej. 5%) o monto fijo.
+                      A menor deducible, mayor prima.
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Coaseguro (Salud)</h3>
+                    <p class="services-info-text">
+                      Porcentaje del gasto que asume el asegurado después del deducible, hasta un tope.
+                      Ejemplo: deducible + 10% de coaseguro (hasta $X).
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Carencias y preexistencias</h3>
+                    <p class="services-info-text">
+                      Algunas coberturas pueden tener periodos de espera (carencias). Las condiciones preexistentes suelen tener reglas especiales o exclusiones.
+                      Es clave declararlo correctamente.
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Exclusiones</h3>
+                    <p class="services-info-text">
+                      Situaciones que la póliza no cubre (p. ej. uso distinto al declarado, dolo, falta de mantenimiento, deportes extremos en viaje, etc.).
+                      Leer exclusiones evita sorpresas.
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Endosos / adicionales</h3>
+                    <p class="services-info-text">
+                      Coberturas opcionales que “se agregan” a la póliza: auto sustituto, equipo especial, asistencia ampliada, coberturas internacionales, etc.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <section id="services-panel-process" class="services-section services-panel services-panel--process" aria-label="Proceso">
+                <h2 class="services-section-title">Cómo se arma una póliza (paso a paso)</h2>
+                <p class="services-section-subtitle">
+                  Un proceso claro para que sepas qué información se usa y por qué.
+                </p>
+
+                <ol class="services-steps">
+                  <li class="services-step">
+                    <div class="services-step-badge">1</div>
+                    <div class="services-step-body">
+                      <h3>Cotización</h3>
+                      <p>Recopilamos datos básicos: quién asegura, qué se asegura, uso/riesgo, ubicación, historial (si aplica).</p>
+                    </div>
+                  </li>
+                  <li class="services-step">
+                    <div class="services-step-badge">2</div>
+                    <div class="services-step-body">
+                      <h3>Evaluación de riesgo</h3>
+                      <p>Se define prima y condiciones: suma asegurada, deducibles/coaseguro, exclusiones, asistencias y adicionales.</p>
+                    </div>
+                  </li>
+                  <li class="services-step">
+                    <div class="services-step-badge">3</div>
+                    <div class="services-step-body">
+                      <h3>Emisión</h3>
+                      <p>Se emite póliza y carátula. Verificamos datos y dejamos por escrito coberturas y límites.</p>
+                    </div>
+                  </li>
+                  <li class="services-step">
+                    <div class="services-step-badge">4</div>
+                    <div class="services-step-body">
+                      <h3>Vigencia y renovaciones</h3>
+                      <p>Durante la vigencia puedes ajustar coberturas (endosos). Al renovar se recalcula según siniestralidad y mercado.</p>
+                    </div>
+                  </li>
+                </ol>
+              </section>
+
+              <section id="services-panel-compare" class="services-section services-panel services-panel--compare" aria-label="Comparación de planes">
+                <h2 class="services-section-title">Comparación de planes (por seguro)</h2>
+                <p class="services-section-subtitle">
+                  Niveles técnicos de ejemplo para comparar. La póliza final depende de suma asegurada, deducible/coaseguro, endosos y condiciones de la aseguradora.
+                </p>
+
+                <div class="services-compare-grid">
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">🚗 Auto</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('auto')">Cotizar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de auto" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">RC (daños a terceros)</th><td>Limitado</td><td>Alto</td><td>Muy alto</td></tr>
+                          <tr><th scope="row">Robo total</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Daños materiales</th><td>—</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Cristales</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Asistencia vial</th><td>Básica</td><td>Plus</td><td>Premium</td></tr>
+                          <tr><th scope="row">Auto sustituto</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Deducible típico (daños)</th><td>Medio/alto</td><td>Medio</td><td>Bajo/medio</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">🏠 Hogar</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('hogar')">Cotizar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de hogar" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">Estructura (incendio/daños)</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Contenido / bienes</th><td>Limitado</td><td>Medio</td><td>Alto</td></tr>
+                          <tr><th scope="row">Robo</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">RC familiar</th><td>Básico</td><td>Medio</td><td>Alto</td></tr>
+                          <tr><th scope="row">Desastres naturales</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Hospedaje temporal</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Deducible típico</th><td>Medio/alto</td><td>Medio</td><td>Bajo/medio</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">❤️ Vida</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('vida')">Cotizar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de vida" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">Fallecimiento (suma asegurada)</th><td>Media</td><td>Alta</td><td>Muy alta</td></tr>
+                          <tr><th scope="row">Invalidez total</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Enfermedades graves</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Anticipos por diagnóstico</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Ahorro / inversión</th><td>—</td><td>Opcional</td><td>Opcional/✓</td></tr>
+                          <tr><th scope="row">Asistencia funeraria</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Requisitos médicos</th><td>Bajos</td><td>Medios</td><td>Medios/Altos</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">🏢 Comercial</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('comercial')">Cotizar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes comerciales" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">RC general</th><td>Básico</td><td>Alto</td><td>Muy alto</td></tr>
+                          <tr><th scope="row">Propiedad (incendio/daños)</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Equipo / maquinaria</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Interrupción de negocio</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Robo / valores</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Cyber (según giro)</th><td>—</td><td>Opcional</td><td>Opcional/✓</td></tr>
+                          <tr><th scope="row">Inspección / requisitos</th><td>Medios</td><td>Medios/Altos</td><td>Altos</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">💼 Salud</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('salud')">Cotizar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de salud" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">Hospitalización</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Red hospitalaria</th><td>Limitada</td><td>Amplia</td><td>Amplia+</td></tr>
+                          <tr><th scope="row">Deducible</th><td>Alto</td><td>Medio</td><td>Bajo</td></tr>
+                          <tr><th scope="row">Coaseguro</th><td>Más alto</td><td>Medio</td><td>Más bajo</td></tr>
+                          <tr><th scope="row">Tope de coaseguro</th><td>Alto</td><td>Medio</td><td>Bajo</td></tr>
+                          <tr><th scope="row">Maternidad</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Carencias (ejemplo)</th><td>Más largas</td><td>Medias</td><td>Más cortas</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">✈️ Viaje</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('viaje')">Cotizar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de viaje" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">Gastos médicos</th><td>Medio</td><td>Alto</td><td>Muy alto</td></tr>
+                          <tr><th scope="row">Asistencia 24/7</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Cancelación de viaje</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Equipaje</th><td>Básico</td><td>Medio</td><td>Alto</td></tr>
+                          <tr><th scope="row">Deportes / actividades</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Asistencia legal</th><td>—</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Repatriación</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="services-compare-footnote">
+                  Nota: “✓” indica que normalmente viene incluido en ese nivel. “Opcional” depende de endosos. Los límites y deducibles reales se definen en la carátula.
+                </p>
+              </section>
+
+              <section id="services-panel-claims" class="services-section services-panel services-panel--claims" aria-label="Asistencia y siniestros">
+                <h2 class="services-section-title">Asistencia y siniestros (checklists)</h2>
+                <p class="services-section-subtitle">
+                  En un siniestro, ganar tiempo es clave. Esto es lo que normalmente se necesita (puede variar por aseguradora y cobertura).
+                </p>
+
+                <div class="services-claims-grid">
+                  <div class="services-claim-card">
+                    <h3>🚗 Auto: accidente</h3>
+                    <ul>
+                      <li>Ubicación y fotos (placas, daños, señales)</li>
+                      <li>Datos de terceros (nombre, teléfono, placas)</li>
+                      <li>Licencia y tarjeta de circulación</li>
+                      <li>No admitas responsabilidad sin asesoría</li>
+                    </ul>
+                  </div>
+
+                  <div class="services-claim-card">
+                    <h3>🏠 Hogar: daño o robo</h3>
+                    <ul>
+                      <li>Fotos/Video del evento y daños</li>
+                      <li>Inventario de bienes (si aplica)</li>
+                      <li>Denuncia/acta (en caso de robo)</li>
+                      <li>Facturas o comprobantes (cuando existan)</li>
+                    </ul>
+                  </div>
+
+                  <div class="services-claim-card">
+                    <h3>💼 Salud: atención médica</h3>
+                    <ul>
+                      <li>Diagnóstico e informes médicos</li>
+                      <li>Presupuestos/Facturas (hospital, médicos, meds)</li>
+                      <li>Autorizaciones (según red y procedimiento)</li>
+                      <li>Revisión de deducible y coaseguro</li>
+                    </ul>
+                  </div>
+
+                  <div class="services-claim-card">
+                    <h3>✈️ Viaje: emergencia</h3>
+                    <ul>
+                      <li>Póliza/certificado y número de asistencia</li>
+                      <li>Reportar antes de incurrir gastos grandes</li>
+                      <li>Comprobantes del gasto</li>
+                      <li>Reportes (aerolínea por equipaje, etc.)</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="services-cta-row">
+                  <button class="btn-compact" onclick="window.appHandlers.contactAgent()">Contactar a un agente</button>
+                  <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('auto')">Cotizar Auto</button>
+                  <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('hogar')">Cotizar Hogar</button>
+                </div>
+              </section>
+
+              <section id="services-panel-faq" class="services-section services-panel services-panel--faq" aria-label="Preguntas frecuentes">
+                <h2 class="services-section-title">FAQ técnico</h2>
+                <p class="services-section-subtitle">Respuestas cortas, sin “marketing”: lo que realmente importa al contratar.</p>
+
+                <div class="services-faq">
+                  <details class="services-faq-item">
+                    <summary>¿Qué diferencia hay entre “cobertura amplia” y “limitada” (Auto)?</summary>
+                    <div class="services-faq-body">
+                      <p>En general, “amplia” incluye daños materiales al vehículo además de robo y RC; “limitada” suele enfocarse en RC + robo total y asistencias. Revisa límites y deducibles.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Por qué dos autos iguales pueden pagar distinto?</summary>
+                    <div class="services-faq-body">
+                      <p>Influyen zona de circulación, edad/conductor, historial, uso (particular/ride-share), valor comercial, deducibles, y siniestralidad local.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Qué es “valor comercial” vs “valor convenido”?</summary>
+                    <div class="services-faq-body">
+                      <p>Valor comercial se ajusta al mercado; valor convenido se fija por contrato (con reglas). El costo de prima y condiciones cambian según la opción.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Qué cubre la Responsabilidad Civil (RC)?</summary>
+                    <div class="services-faq-body">
+                      <p>Cubre daños a terceros (personas/bienes) hasta el límite contratado. No sustituye coberturas para tu propio vehículo o patrimonio (eso va aparte).</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Qué documentos suelen pedir para emitir (Hogar/Comercial)?</summary>
+                    <div class="services-faq-body">
+                      <p>Ubicación, características del inmueble, suma asegurada deseada, inventario aproximado (contenido), y en comerciales: giro, medidas de seguridad y valores expuestos.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Qué significa “interrupción de negocio”?</summary>
+                    <div class="services-faq-body">
+                      <p>Es una cobertura que busca compensar ingresos/gastos fijos cuando un siniestro cubierto impide operar. Aplica con reglas y periodos de espera.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Cómo se calcula el deducible en %?</summary>
+                    <div class="services-faq-body">
+                      <p>Normalmente es un porcentaje del monto del daño o del valor asegurado (según cobertura). Ejemplo: 5% de $100,000 = $5,000 (antes de otros ajustes).</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>En Salud: ¿qué es coaseguro y tope de coaseguro?</summary>
+                    <div class="services-faq-body">
+                      <p>Tras el deducible, el coaseguro es el % que pagas. El “tope” limita cuánto pagarás como máximo por coaseguro en un evento/periodo (según condiciones).</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>En Viaje: ¿por qué es importante llamar a asistencia primero?</summary>
+                    <div class="services-faq-body">
+                      <p>Porque la cobertura suele operar mejor con coordinación: hospitales de red, autorizaciones, y control de costos. Si pagas por tu cuenta, el reembolso puede tener límites o requisitos.</p>
+                    </div>
+                  </details>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

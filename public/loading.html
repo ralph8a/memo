@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargando - Krause Insurance</title>
+  <base href="/memo/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>
+    // Keep the loader visually consistent with the app theme.
+    // The main app uses the same localStorage key.
+    (function () {
+      try {
+        const t = localStorage.getItem('krause_theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {
+        // ignore
+      }
+    })();
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Loader theme tokens (avoid hard-coded colors in component styles) */
+    :root {
+      --gradient-start: #631832;
+      --gradient-mid: #521a38;
+      --gradient-end: #401a59;
+      --loader-fg: rgba(255, 255, 255, 0.95);
+      --loader-fg-muted: rgba(255, 255, 255, 0.30);
+      --loader-shadow: rgba(0, 0, 0, 0.40);
+    }
+
+    :root[data-theme="dark-forest"] {
+      --gradient-start: #5a4633;
+      --gradient-mid: #062012;
+      --gradient-end: #35231c;
+      --loader-fg: rgba(240, 247, 243, 0.95);
+      --loader-fg-muted: rgba(240, 247, 243, 0.28);
+      --loader-shadow: rgba(0, 0, 0, 0.55);
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    /* Animated background particles */
+    .bg-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--loader-fg-muted);
+      border-radius: 50%;
+      animation: particleFloat linear infinite;
+    }
+    
+    @keyframes particleFloat {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+      }
+    }
+    
+    .loading-container {
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      max-width: 500px;
+      padding: 20px;
+    }
+    
+    /* Shield Loader - Building Animation */
+    .shield-loader {
+      width: 200px;
+      height: 240px;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+    
+    .shield-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 10px 40px var(--loader-shadow));
+    }
+    
+    /* Shield parts build up sequentially */
+    .shield-outline {
+      fill: none;
+      stroke: var(--loader-fg);
+      stroke-width: 3;
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+      animation: drawShield 2s ease-out forwards infinite;
+    }
+    
+    @keyframes drawShield {
+      0% {
+        stroke-dashoffset: 500;
+        opacity: 0.3;
+      }
+      50% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: -500;
+        opacity: 0.3;
+      }
+    }
+    
+    .shield-fill {
+      fill: var(--loader-fg);
+      animation: shieldPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes shieldPulse {
+      0%, 100% {
+        opacity: 0.95;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(0.98);
+      }
+    }
+    
+    /* Shield segments that fill up like a progress bar */
+    .shield-segment {
+      fill: rgba(139, 35, 72, 0.8);
+      transform-origin: center;
+      opacity: 0;
+    }
+    
+    .shield-segment.active {
+      animation: segmentFill 0.5s ease-out forwards;
+    }
+    
+    @keyframes segmentFill {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    /* Center emblem rotates */
+    .shield-center {
+      fill: rgba(139, 35, 72, 0.6);
+      animation: centerRotate 3s linear infinite;
+      transform-origin: 100px 100px;
+    }
+    
+    @keyframes centerRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .shield-cross {
+      fill: white;
+      animation: crossGlow 1.5s ease-in-out infinite alternate;
+    }
+    
+    @keyframes crossGlow {
+      from { 
+        opacity: 0.8;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+      }
+      to { 
+        opacity: 1;
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+      }
+    }
+    
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: white;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .loading-text {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      animation: textPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes textPulse {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.6; }
+    }
+    
+    .status-text {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      margin-bottom: 1.5rem;
+      min-height: 30px;
+      font-weight: 500;
+    }
+    
+    /* Progress percentage */
+    .progress-percentage {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      font-family: 'Cinzel', serif;
+    }
+    
+    /* Dots animation */
+    .dots {
+      display: inline-block;
+      width: 40px;
+      text-align: left;
+    }
+    
+    .dots::after {
+      content: '...';
+      animation: dots 1.5s steps(4, end) infinite;
+    }
+    
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60%, 100% { content: '...'; }
+    }
+    
+    /* Progress details */
+    .progress-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding: 0 10px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+    
+    /* Did you know section */
+    .did-you-know {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: clamp(16px, 3vh, 24px) clamp(20px, 4vw, 32px);
+      margin: 2rem 0 1rem;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .did-you-know-title {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 700;
+      color: rgba(255, 196, 214, 1);
+      margin-bottom: 0.75rem;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .did-you-know-text {
+      font-size: clamp(0.85rem, 1.6vw, 1rem);
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.6;
+      text-align: center;
+      font-weight: 400;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background particles -->
+  <div class="bg-particles" id="particles"></div>
+  
+  <div class="loading-container">
+    <!-- Shield Loader -->
+    <div class="shield-loader">
+      <svg class="shield-svg" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- Main shield shape with outline animation -->
+        <path class="shield-outline" 
+              d="M100 10 L180 50 L180 110 Q180 170 100 230 Q20 170 20 110 L20 50 Z"/>
+        
+        <!-- Filled shield base -->
+        <path class="shield-fill" 
+              d="M100 10 L180 50 L180 110 Q180 170 100 230 Q20 170 20 110 L20 50 Z"/>
+        
+        <!-- Shield segments (fill up as progress) -->
+        <path class="shield-segment" id="segment1" 
+              d="M100 10 L180 50 L180 70 L100 45 Z"/>
+        <path class="shield-segment" id="segment2" 
+              d="M180 70 L180 90 L100 75 L100 45 Z"/>
+        <path class="shield-segment" id="segment3" 
+              d="M180 90 L180 110 L100 105 L100 75 Z"/>
+        <path class="shield-segment" id="segment4" 
+              d="M180 110 L180 130 Q175 145 165 155 L100 135 L100 105 Z"/>
+        <path class="shield-segment" id="segment5" 
+              d="M165 155 Q150 170 130 185 L100 175 L100 135 Z"/>
+        <path class="shield-segment" id="segment6" 
+              d="M130 185 Q115 200 100 230 L100 175 Z"/>
+        
+        <path class="shield-segment" id="segment7" 
+              d="M100 10 L20 50 L20 70 L100 45 Z"/>
+        <path class="shield-segment" id="segment8" 
+              d="M20 70 L20 90 L100 75 L100 45 Z"/>
+        <path class="shield-segment" id="segment9" 
+              d="M20 90 L20 110 L100 105 L100 75 Z"/>
+        <path class="shield-segment" id="segment10" 
+              d="M20 110 L20 130 Q25 145 35 155 L100 135 L100 105 Z"/>
+        <path class="shield-segment" id="segment11" 
+              d="M35 155 Q50 170 70 185 L100 175 L100 135 Z"/>
+        <path class="shield-segment" id="segment12" 
+              d="M70 185 Q85 200 100 230 L100 175 Z"/>
+        
+        <!-- Center rotating emblem -->
+        <circle class="shield-center" cx="100" cy="100" r="30"/>
+        
+        <!-- Cross/Plus in center -->
+        <rect class="shield-cross" x="95" y="75" width="10" height="50" rx="3"/>
+        <rect class="shield-cross" x="75" y="95" width="50" height="10" rx="3"/>
+      </svg>
+    </div>
+    
+    <h2>KRAUSE INSURANCE</h2>
+    <div class="progress-percentage" id="percentage">0%</div>
+    <p class="loading-text">Preparando su experiencia<span class="dots"></span></p>
+    <p class="status-text" id="status">Inicializando sistema</p>
+    
+    <!-- Sabías que... Section -->
+    <div class="did-you-know">
+      <div class="did-you-know-title">💡 Sabías que...</div>
+      <div class="did-you-know-text" id="funFact">Cargando dato interesante...</div>
+    </div>
+    
+    <div class="progress-details">
+      <span id="detail-left">Conectando</span>
+      <span id="detail-right">...</span>
+    </div>
+  </div>
+  
+  <script>
+    // Create floating particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      particlesContainer.appendChild(particle);
+    }
+    
+    // Fun facts about insurance and Krause Insurance
+    const funFacts = [
+      "Krause Insurance fue fundada con el compromiso de brindar protección personalizada a cada familia y negocio.",
+      "El primer seguro documentado data del año 1347 en Génova, Italia, para proteger embarcaciones.",
+      "El seguro de vida ayuda a proteger el futuro financiero de tus seres queridos en caso de imprevistos.",
+      "Krause Insurance trabaja con las aseguradoras más confiables para garantizar tu tranquilidad.",
+      "El 60% de las pequeñas empresas cierran después de un desastre mayor sin tener un seguro adecuado.",
+      "Los seguros de hogar cubren no solo daños estructurales, sino también tus pertenencias personales.",
+      "Actualizar tu póliza regularmente asegura que tu cobertura se ajuste a tus necesidades actuales.",
+      "El seguro de salud puede cubrir exámenes preventivos sin costo adicional para ti.",
+      "Krause Insurance ofrece consultas personalizadas para encontrar la cobertura perfecta para ti.",
+      "El seguro de automóvil es obligatorio en la mayoría de los estados para proteger a todos en la carretera.",
+      "Las pólizas paraguas ofrecen protección adicional más allá de tus seguros básicos.",
+      "Krause Insurance cuenta con más de 25 años de experiencia protegiendo familias y negocios.",
+      "El deducible es la cantidad que pagas antes de que tu seguro comience a cubrir un reclamo.",
+      "Comparar cotizaciones puede ahorrarte hasta un 30% en tu prima anual de seguro.",
+      "El seguro de responsabilidad civil protege tu patrimonio en caso de demandas legales.",
+      "Krause Insurance ofrece atención 24/7 para asistirte cuando más lo necesites.",
+      "El seguro de inquilino protege tus pertenencias incluso si no eres dueño de la propiedad.",
+      "Mantener un buen historial de crédito puede reducir el costo de tus primas de seguro.",
+      "El seguro de vida temporal es una opción económica para protección durante períodos específicos.",
+      "Krause Insurance te ayuda a entender cada aspecto de tu póliza para que tomes decisiones informadas."
+    ];
+    
+    // Select random fun fact
+    const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+    document.getElementById('funFact').textContent = randomFact;
+    
+    // Loading simulation
+    const statusMessages = [
+      { text: 'Inicializando sistema', detail: 'Conectando' },
+      { text: 'Verificando credenciales', detail: 'Autenticando' },
+      { text: 'Cargando datos de usuario', detail: 'Sincronizando' },
+      { text: 'Configurando preferencias', detail: 'Personalizando' },
+      { text: 'Preparando interfaz', detail: 'Optimizando' },
+      { text: 'Cargando recursos', detail: 'Finalizando' },
+      { text: 'Pre-cache completado', detail: 'Listo' }
+    ];
+    
+    let progress = 0;
+    let currentSegment = 0;
+    const totalSegments = 12;
+    const totalTime = 5000; // 5 seconds
+    const intervalTime = totalTime / 100;
+    
+    const progressInterval = setInterval(() => {
+      progress += 1;
+      
+      // Update percentage
+      document.getElementById('percentage').textContent = progress + '%';
+      
+      // Update status message
+      const statusIndex = Math.floor((progress / 100) * statusMessages.length);
+      if (statusIndex < statusMessages.length) {
+        document.getElementById('status').textContent = statusMessages[statusIndex].text;
+        document.getElementById('detail-left').textContent = statusMessages[statusIndex].detail;
+      }
+      
+      // Activate shield segments progressively
+      const segmentIndex = Math.floor((progress / 100) * totalSegments);
+      if (segmentIndex > currentSegment && segmentIndex <= totalSegments) {
+        const segment = document.getElementById(`segment${segmentIndex}`);
+        if (segment) {
+          segment.classList.add('active');
+          currentSegment = segmentIndex;
+        }
+      }
+      
+      // Complete
+      if (progress >= 100) {
+        clearInterval(progressInterval);
+        setTimeout(() => {
+          // Get redirect target from URL parameter or default to app.html
+          const urlParams = new URLSearchParams(window.location.search);
+          const redirectTo = urlParams.get('redirect') || 'app.html';
+          window.location.href = redirectTo;
+        }, 500);
+      }
+    }, intervalTime);
+  </script>
+</body>
+</html>

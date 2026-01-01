@@ -1,0 +1,18 @@
+[
+  {
+    "id": "c1",
+    "name": "Client One",
+    "email": "client.one@example.com",
+    "policies": [
+      { "policyId": "p100", "type": "auto" }
+    ]
+  },
+  {
+    "id": "c2",
+    "name": "Client Two",
+    "email": "client.two@example.com",
+    "policies": [
+      { "policyId": "p200", "type": "home" }
+    ]
+  }
+]
