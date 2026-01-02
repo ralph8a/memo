@@ -260,9 +260,9 @@ body[data-theme="dark-forest"] {
 html[data-theme="dark-forest"] body .footer,
 [data-theme="dark-forest"] body[data-page="home"] .footer,
 html[data-theme="dark-forest"] body[data-page="home"] .footer {
-    background: var(--footer-acrylic-bg);
-    backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate));
-    -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate));
+    background: rgba(5, 10, 8, 0.46) !important;
+    backdrop-filter: blur(60px) saturate(235%) !important;
+    -webkit-backdrop-filter: blur(60px) saturate(235%) !important;
     border-top: 1px solid var(--theme-surface-border-strong);
     color: var(--theme-text-primary);
 }
