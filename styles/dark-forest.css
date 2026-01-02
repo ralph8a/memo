@@ -367,10 +367,10 @@ html[data-theme="dark-forest"] .agent-card {
 
 html[data-theme="dark-forest"] .navbar,
 html[data-theme="dark-forest"] .sub-navigation {
-    background: rgba(6, 31, 16, 0.38);
+    background: rgba(6, 31, 16, 0.38) !important;
     border-bottom: 1px solid var(--theme-surface-border-strong);
-    backdrop-filter: blur(var(--acrylic-blur-medium)) saturate(var(--acrylic-saturate));
-    -webkit-backdrop-filter: blur(var(--acrylic-blur-medium)) saturate(var(--acrylic-saturate));
+    backdrop-filter: blur(var(--acrylic-blur-medium)) saturate(var(--acrylic-saturate)) !important;
+    -webkit-backdrop-filter: blur(var(--acrylic-blur-medium)) saturate(var(--acrylic-saturate)) !important;
 }
 
 html[data-theme="dark-forest"] .btn-primary,
