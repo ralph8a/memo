@@ -89,8 +89,11 @@ module.exports = {
           },
         },
       },
-      // Note: we intentionally do not process CSS here so that CSS files
-      // remain static and are served from `styles/` (copied below).
+      // Process CSS files with style-loader (inlines CSS in JS bundle)
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
       {
         test: /\.(svg|jpg|jpeg|png|gif)$/i,
         type: 'asset/resource'
@@ -134,13 +137,12 @@ module.exports = {
     // Inject templates into the generated HTML
     new InjectTemplatesPlugin(),
 
-    // Copy static assets
+    // Copy static assets (CSS now processed by webpack, not copied)
     new CopyWebpackPlugin({
       patterns: [
         { from: 'public/favicon.ico', to: 'favicon.ico' },
         { from: 'public/manifest.json', to: 'manifest.json' },
         { from: 'public/assets', to: 'assets' },
-        { from: 'styles', to: 'styles' },
         { from: 'src/api-integration.js', to: 'api-integration.js' },
         { from: 'src/service-worker.js', to: 'service-worker.js', noErrorOnMissing: true },
         { from: 'src/app.js', to: 'app.js', noErrorOnMissing: true },

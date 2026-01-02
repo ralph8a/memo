@@ -1,4 +1,19 @@
 // Main Application Entry Point
+// Import CSS in explicit order - webpack will inline in this exact sequence
+import '../../styles/acrylic.css';
+import '../../styles/auth.css';
+import '../../styles/notifications.css';
+import '../../styles/pages/home.css';
+import '../../styles/pages/services.css';
+import '../../styles/pages/about.css';
+import '../../styles/pages/contact.css';
+import '../../styles/dashboards.css';
+import '../../styles/dashboards/client-dashboard.css';
+import '../../styles/dashboards/agent-dashboard.css';
+import '../../styles/dashboards/admin-dashboard.css';
+import '../../styles/app.css'; // Base styles
+import '../../styles/dark-forest.css'; // Theme overrides MUST load last
+
 import { startParticles } from '../modules/particles.js';
 import { navigateTo, toggleMobileMenu, toggleFooter, initializeTemplates } from '../modules/simpleRouter.js';
 import { login, logout, checkAuth, getRedirectPage } from '../modules/auth.js';
