@@ -255,11 +255,8 @@ body[data-theme="dark-forest"] {
 
 /* Progress / accents: handled via theme tokens in :root + overrides above */
 
-/* Footer theming - preserve acrylic effect using theme variables */
-[data-theme="dark-forest"] body .footer,
-html[data-theme="dark-forest"] body .footer,
-[data-theme="dark-forest"] body[data-page="home"] .footer,
-html[data-theme="dark-forest"] body[data-page="home"] .footer {
+/* Footer theming - preserve acrylic effect */
+[data-theme="dark-forest"] .footer {
     background: var(--footer-acrylic-bg) !important;
     backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
     -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
