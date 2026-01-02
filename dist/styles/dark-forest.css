@@ -549,19 +549,30 @@ html[data-theme="dark-forest"] body[data-page="home"] .footer {
 /* Buttons - simplified, no gradients */
 [data-theme="dark-forest"] .dashboard-header .btn,
 [data-theme="dark-forest"] .agent-dashboard .dashboard-header .btn,
-[data-theme="dark-forest"] .admin-dashboard .dashboard-header .btn {
+[data-theme="dark-forest"] .admin-dashboard .dashboard-header .btn,
+[data-theme="dark-forest"] .dashboard-section .btn-primary,
+[data-theme="dark-forest"] .agent-dashboard .btn-primary,
+[data-theme="dark-forest"] .admin-dashboard .btn-primary {
     background: #062012;
     color: #f0f7f3;
     border: 1px solid rgba(242, 234, 220, 0.25);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    /* Remove blur effects */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 [data-theme="dark-forest"] .dashboard-header .btn:hover,
 [data-theme="dark-forest"] .agent-dashboard .dashboard-header .btn:hover,
-[data-theme="dark-forest"] .admin-dashboard .dashboard-header .btn:hover {
+[data-theme="dark-forest"] .admin-dashboard .dashboard-header .btn:hover,
+[data-theme="dark-forest"] .dashboard-section .btn-primary:hover,
+[data-theme="dark-forest"] .agent-dashboard .btn-primary:hover,
+[data-theme="dark-forest"] .admin-dashboard .btn-primary:hover {
     background: #0b241a;
     border-color: rgba(242, 234, 220, 0.35);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+    /* Simple brightness instead of gradients */
+    filter: none;
 }
 
 /* Stat cards - solid backgrounds, high contrast */
@@ -672,7 +683,9 @@ html[data-theme="dark-forest"] body[data-page="home"] .footer {
 }
 
 /* Button icons */
-[data-theme="dark-forest"] .btn-icon {
+[data-theme="dark-forest"] .dashboard-section .btn-icon,
+[data-theme="dark-forest"] .agent-dashboard .btn-icon,
+[data-theme="dark-forest"] .admin-dashboard .btn-icon {
     background: #0b1a15;
     border: 1px solid rgba(242, 234, 220, 0.18);
     color: #f0f7f3;
@@ -681,7 +694,9 @@ html[data-theme="dark-forest"] body[data-page="home"] .footer {
     -webkit-backdrop-filter: none;
 }
 
-[data-theme="dark-forest"] .btn-icon:hover {
+[data-theme="dark-forest"] .dashboard-section .btn-icon:hover,
+[data-theme="dark-forest"] .agent-dashboard .btn-icon:hover,
+[data-theme="dark-forest"] .admin-dashboard .btn-icon:hover {
     background: #0f2418;
     border-color: rgba(242, 234, 220, 0.25);
 }
