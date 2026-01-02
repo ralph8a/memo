@@ -264,8 +264,9 @@ body[data-theme="dark-forest"] {
     color: var(--theme-text-primary);
 }
 
-/* Ensure home page also renders acrylic footer with correct specificity */
-body[data-theme="dark-forest"][data-page="home"] .footer {
+/* Ensure home page also renders acrylic footer with correct specificity
+   NOTE: data-theme is on <html> (documentElement), data-page is on <body> */
+html[data-theme="dark-forest"] body[data-page="home"] .footer {
     background: var(--footer-acrylic-bg) !important;
     backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
     -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
