@@ -16,76 +16,7 @@
   <!-- Particles Background -->
   <canvas id="particles-canvas"></canvas>
   
-  <!-- Navigation Bar -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <div class="nav-brand" onclick="navigateTo('home', event)">
-        <svg class="logo-shield krause-shield" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-          <!-- Círculo exterior -->
-          <ellipse 
-            class="shield-circle" 
-            cx="40" 
-            cy="38" 
-            rx="22" 
-            ry="22"
-            stroke="currentColor" 
-            stroke-width="3" 
-            fill="none" 
-          />
-          
-          <!-- Rombo/Diamante (forma de escudo) -->
-          <path 
-            class="shield-diamond" 
-            d="M40 12 L62 35 L40 70 L18 35 Z" 
-            stroke="currentColor" 
-            stroke-width="3" 
-            fill="none" 
-          />
-          
-          <!-- Arco protector -->
-          <path 
-            class="shield-arc" 
-            d="M24 50 Q40 30 56 50"
-            stroke="currentColor" 
-            stroke-width="3" 
-            fill="none" 
-          />
-          
-          <!-- Línea vertical (lanza) -->
-          <line 
-            class="shield-line" 
-            x1="40" 
-            y1="50" 
-            x2="40" 
-            y2="68" 
-            stroke="currentColor" 
-            stroke-width="3" 
-          />
-        </svg>
-        <div class="brand-text">
-          <span class="brand-name">Krause Insurance</span>
-          <span class="brand-tagline">Protection Beyond The Limits</span>
-        </div>
-      </div>
-      
-      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      
-      <div class="nav-menu" id="navMenu">
-        <a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home', event)">Inicio</a>
-        <a href="#" class="nav-link" data-page="services" onclick="navigateTo('services', event)">Servicios</a>
-        <a href="#" class="nav-link" data-page="about" onclick="navigateTo('about', event)">Nosotros</a>
-        <a href="#" class="nav-link" data-page="contact" onclick="navigateTo('contact', event)">Contacto</a>
-        <div class="nav-buttons">
-          <button class="btn-nav btn-login" onclick="navigateTo('client-login')">Acceso Clientes</button>
-          <button class="btn-nav btn-agent" onclick="navigateTo('agent-login')">Portal Agentes</button>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <!-- Navigation Bar (injected by Webpack from src/templates/navbar.html) -->
 
   <!-- Main Content Container with Page Sections (injected by webpack) -->
   <main id="mainContent" class="main-content">
@@ -126,72 +57,7 @@
     </div>
   </main>
 
-
-
-  <!-- Footer -->
-  <footer class="footer collapsed" id="footer">
-    <button class="footer-toggle" onclick="toggleFooter()">
-      <span id="footer-toggle-text">Mostrar Información</span>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 15l-6-6-6 6"/>
-      </svg>
-    </button>
-    <div class="footer-container">
-      <div class="footer-grid">
-        <div class="footer-section">
-          <div class="footer-brand">
-            <svg class="logo-shield-footer" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="40" cy="40" rx="24" ry="24" stroke="currentColor" stroke-width="3" fill="none"/>
-              <path d="M40 20 L65 40 L40 75 L15 40 Z" stroke="currentColor" stroke-width="3" fill="none"/>
-              <path d="M22 54 Q40 28 58 54" stroke="currentColor" stroke-width="3" fill="none"/>
-              <line x1="40" y1="54" x2="40" y2="72" stroke="currentColor" stroke-width="3"/>
-            </svg>
-            <h3>Krause Insurance</h3>
-            <p class="footer-tagline">Protection Beyond The Limits</p>
-          </div>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Servicios</h4>
-          <ul>
-            <li><a href="#" onclick="navigateTo('services', event)">Seguros de Auto</a></li>
-            <li><a href="#" onclick="navigateTo('services', event)">Seguros de Hogar</a></li>
-            <li><a href="#" onclick="navigateTo('services', event)">Seguros de Vida</a></li>
-            <li><a href="#" onclick="navigateTo('services', event)">Seguros Comerciales</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Acceso Rápido</h4>
-          <ul>
-            <li><a href="#" onclick="navigateTo('client-login', event)">Portal Clientes</a></li>
-            <li><a href="#" onclick="navigateTo('agent-login', event)">Portal Agentes</a></li>
-            <li><a href="card.html">Tarjeta Digital</a></li>
-            <li><a href="#" onclick="navigateTo('contact', event)">Contacto</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Contacto</h4>
-          <ul class="footer-contact">
-            <li>📞 +1 (234) 567-89</li>
-            <li>📧 info@krauseinsurances.com</li>
-            <li>📍 Tu Ciudad, Estado</li>
-          </ul>
-          <div class="social-links">
-            <a href="#" class="social-link">in</a>
-            <a href="#" class="social-link">f</a>
-            <a href="#" class="social-link">ig</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; 2025 Krause Insurance. Todos los derechos reservados.</p>
-        <a href="https://www.krauseinsurances.com" class="footer-url">www.KrauseInsurances.com</a>
-      </div>
-    </div>
-  </footer>
+  <!-- Footer (injected by Webpack from src/templates/footer.html) -->
 
   <script>
     // Bind theme toggle to the header logo (.nav-brand .krause-shield).

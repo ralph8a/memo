@@ -34,6 +34,16 @@ class InjectTemplatesPlugin {
 
           let html = data.html;
 
+          // Inject navbar
+          const navbarContent = readTemplate('src/templates/navbar.html');
+          const navbarPlaceholder = '<!-- Navigation Bar (injected by Webpack from src/templates/navbar.html) -->';
+          html = html.replace(navbarPlaceholder, navbarContent);
+
+          // Inject footer
+          const footerContent = readTemplate('src/templates/footer.html');
+          const footerPlaceholder = '<!-- Footer (injected by Webpack from src/templates/footer.html) -->';
+          html = html.replace(footerPlaceholder, footerContent);
+
           // Inject each template into its corresponding div
           for (const [id, content] of Object.entries(templates)) {
             const placeholder = `<div id="${id}" class="page-section`;
