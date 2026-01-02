@@ -265,10 +265,12 @@ body[data-theme="dark-forest"] {
 }
 
 /* Ensure home page also renders acrylic footer with correct specificity */
-[data-theme="dark-forest"] body[data-page="home"] .footer {
+body[data-theme="dark-forest"][data-page="home"] .footer {
     background: var(--footer-acrylic-bg) !important;
     backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
     -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
+    border-top: 1px solid var(--theme-surface-border-strong) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 [data-theme="dark-forest"] .footer h3,
