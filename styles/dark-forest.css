@@ -25,8 +25,7 @@
 */
 
 /* Global animated background ("canvas") should match Services/About palette */
-[data-theme="dark-forest"] body,
-body[data-theme="dark-forest"] {
+html[data-theme="dark-forest"] body {
     background-image:
         linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-maroon) 50%, var(--wine) 100%),
         radial-gradient(circle at 20% 50%, var(--theme-highlight-glow-subtle) 0%, transparent 50%),
@@ -162,8 +161,7 @@ body[data-theme="dark-forest"] {
 }
 
 /* Body background + texto */
-[data-theme="dark-forest"] body,
-body[data-theme="dark-forest"] {
+html[data-theme="dark-forest"] body {
     color: var(--text-dark);
 }
 
