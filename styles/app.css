@@ -246,7 +246,7 @@ body[data-page="home"] .footer {
 
   /* Footer glass tokens (theme-overridable) */
   /* Slightly stronger by default; themes can override for more/less glass. */
-  --footer-acrylic-bg: rgba(99, 24, 50, 0.22);
+  --footer-acrylic-bg: rgba(99, 24, 50, 0.7);
   --footer-acrylic-blur: 32px;
   --footer-acrylic-saturate: 200%;
 
