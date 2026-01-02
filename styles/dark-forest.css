@@ -264,6 +264,13 @@ body[data-theme="dark-forest"] {
     color: var(--theme-text-primary);
 }
 
+/* Ensure home page also renders acrylic footer with correct specificity */
+[data-theme="dark-forest"] body[data-page="home"] .footer {
+    background: var(--footer-acrylic-bg) !important;
+    backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
+    -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
+}
+
 [data-theme="dark-forest"] .footer h3,
 [data-theme="dark-forest"] .footer h4 {
     color: var(--theme-text-primary);
