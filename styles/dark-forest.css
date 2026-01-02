@@ -255,11 +255,14 @@ body[data-theme="dark-forest"] {
 
 /* Progress / accents: handled via theme tokens in :root + overrides above */
 
-/* Footer theming (border and text colors only; acrylic handled by app.css using variables) */
+/* Footer theming - preserve acrylic effect */
 [data-theme="dark-forest"] body .footer,
 html[data-theme="dark-forest"] body .footer,
 [data-theme="dark-forest"] body[data-page="home"] .footer,
 html[data-theme="dark-forest"] body[data-page="home"] .footer {
+    background: var(--footer-acrylic-bg, var(--acrylic-bg-dark));
+    backdrop-filter: blur(var(--footer-acrylic-blur, 60px)) saturate(var(--footer-acrylic-saturate, 235%));
+    -webkit-backdrop-filter: blur(var(--footer-acrylic-blur, 60px)) saturate(var(--footer-acrylic-saturate, 235%));
     border-top: 1px solid var(--theme-surface-border-strong);
     color: var(--theme-text-primary);
 }
