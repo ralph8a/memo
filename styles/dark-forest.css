@@ -323,8 +323,7 @@ body[data-theme="dark-forest"] {
 */
 
 /* Acrylic variables and overrides for dark-forest theme */
-:root[data-theme="dark-forest"],
-[data-theme="dark-forest"] {
+:root[data-theme="dark-forest"] {
     /* Acrylic tuning variables */
     --acrylic-blur-strong: 30px;
     --acrylic-blur-medium: 25px;
