@@ -351,8 +351,7 @@ html[data-theme="dark-forest"] .acrylic-light {
 }
 
 html[data-theme="dark-forest"] .acrylic-medium,
-html[data-theme="dark-forest"] .btn-primary,
-html[data-theme="dark-forest"] .navbar {
+html[data-theme="dark-forest"] .btn-primary {
     backdrop-filter: blur(var(--acrylic-blur-medium)) saturate(var(--acrylic-saturate));
     -webkit-backdrop-filter: blur(var(--acrylic-blur-medium)) saturate(var(--acrylic-saturate));
 }
