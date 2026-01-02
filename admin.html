@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Krause Insurance — Admin</title>
+  <link rel="stylesheet" href="styles/theme.css?v=1.0">
+  <link rel="stylesheet" href="styles/app.css?v=38.0">
+  <script>
+    // Sync admin page theme with the main site.
+    (function () {
+      try {
+        const t = localStorage.getItem('krause_theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {
+        // ignore
+      }
+    })();
+  </script>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; padding: 2rem; background: var(--krause-surface, #f8f8f9); color: var(--krause-text, #111); }
+    .card { background: #fff; border-radius:8px; padding: 1rem; box-shadow:0 6px 20px rgba(0,0,0,.08); max-width:900px; margin: 0 auto; }
+    .hidden{ display:none; }
+    .btn { background: var(--krause-primary); color: #fff; border:none; padding: .5rem 1rem; border-radius:6px; cursor:pointer; }
+    .btn.secondary { background: var(--krause-info); }
+    pre { background: #f3f4f6; padding: .5rem; border-radius:6px; overflow:auto; max-height:40vh; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+    .link { color: var(--krause-primary-700, var(--krause-primary, #7a1f3f)); text-decoration: none; }
+    label { margin-right: .5rem; }
+    input { padding: .35rem .5rem; border:1px solid #e5e7eb; border-radius:4px }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="topbar">
+      <h2>Portal Admin — Krause Insurance</h2>
+      <div>
+        <a class="link" href="index.html">Volver al sitio</a>
+      </div>
+    </div>
+
+    <div id="login">
+      <p>Acceso administrativo. (Credenciales de desarrollo: <strong>admin / admin123</strong>)</p>
+      <form id="loginForm">
+        <label>Usuario: <input name="username" required></label>
+        <label>Contraseña: <input type="password" name="password" required></label>
+        <button class="btn" type="submit">Entrar</button>
+      </form>
+      <div id="loginMsg" style="margin-top:.5rem;color:var(--krause-danger)"></div>
+    </div>
+
+    <div id="dashboard" class="hidden">
+      <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:1rem">
+        <button class="btn" id="btnAgents">Ver Agentes</button>
+        <button class="btn secondary" id="btnClients">Ver Clientes</button>
+        <button id="btnLogout" style="margin-left:auto" class="btn">Cerrar sesión</button>
+      </div>
+      <div>
+        <h4>Resultados</h4>
+        <pre id="results">—</pre>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+  (function(){
+    const LS_KEY = 'krause_admin';
+
+    function isLogged() {
+      return !!localStorage.getItem(LS_KEY);
+    }
+
+    function showLogin() {
+      document.getElementById('login').classList.remove('hidden');
+      document.getElementById('dashboard').classList.add('hidden');
+    }
+
+    function showDashboard() {
+      document.getElementById('login').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+    }
+
+    function setMessage(msg, color) {
+      const el = document.getElementById('loginMsg');
+      el.textContent = msg || '';
+      el.style.color = color || 'var(--krause-danger)';
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const u = e.target.username.value.trim();
+      const p = e.target.password.value.trim();
+      if (u === 'admin' && p === 'admin123') {
+        localStorage.setItem(LS_KEY, JSON.stringify({name:'Administrator', loggedAt: Date.now()}));
+        setMessage('');
+        showDashboard();
+        fetchAndShow('agents'); // preload agents
+      } else {
+        setMessage('Credenciales inválidas', 'var(--krause-danger)');
+      }
+    });
+
+    document.getElementById('btnLogout').addEventListener('click', function(){
+      localStorage.removeItem(LS_KEY);
+      showLogin();
+    });
+
+    async function fetchAndShow(type) {
+      const resultsEl = document.getElementById('results');
+      resultsEl.textContent = 'Cargando...';
+      try {
+        const url = (type === 'agents') ? 'http://localhost:4000/api/agents' : 'http://localhost:4000/api/clients';
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error(resp.statusText || 'fetch error');
+        const json = await resp.json();
+        resultsEl.textContent = JSON.stringify(json, null, 2);
+      } catch (err) {
+        resultsEl.textContent = 'Error obteniendo datos: ' + (err.message || err);
+      }
+    }
+
+    document.getElementById('btnAgents').addEventListener('click', () => fetchAndShow('agents'));
+    document.getElementById('btnClients').addEventListener('click', () => fetchAndShow('clients'));
+
+    // initialize
+    if (isLogged()) {
+      showDashboard();
+    } else {
+      showLogin();
+    }
+  })();
+  </script>
+
+</body>
+</html>

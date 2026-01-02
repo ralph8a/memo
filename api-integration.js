@@ -1,1 +1,370 @@
-const API_CONFIG={BASE_URL:"localhost"===window.location.hostname?"http://localhost/api":"https://yourdomain.com/api",ENDPOINTS:{LOGIN:"/auth/login",LOGOUT:"/auth/logout",VERIFY_TOKEN:"/auth/verify",GET_USER_PROFILE:"/users/profile",UPDATE_USER_PROFILE:"/users/profile",GET_USER_POLICIES:"/users/policies",GET_POLICIES:"/policies",GET_POLICY_DETAILS:"/policies/:id",CREATE_POLICY:"/policies/create",UPDATE_POLICY:"/policies/:id",GET_CLAIMS:"/claims",CREATE_CLAIM:"/claims/create",GET_CLAIM_DETAILS:"/claims/:id",UPLOAD_CLAIM_DOCUMENT:"/claims/:id/upload",GET_PAYMENT_HISTORY:"/payments/history",PROCESS_PAYMENT:"/payments/process",DOWNLOAD_RECEIPT:"/payments/:id/receipt",UPLOAD_DOCUMENT:"/documents/upload",DOWNLOAD_DOCUMENT:"/documents/:id",LIST_DOCUMENTS:"/documents",DELETE_DOCUMENT:"/documents/:id",REQUEST_QUOTE:"/quotes/request",GET_QUOTES:"/quotes",GET_CLIENTS:"/agents/clients",GET_CLIENT_DETAILS:"/agents/clients/:id",UPDATE_CLIENT:"/agents/clients/:id",GET_DASHBOARD_STATS:"/analytics/dashboard",GET_AGENT_PERFORMANCE:"/analytics/agent/:id"}};class APIService{constructor(){this.cache=window.cacheManager||new CacheManager,this.fileManager=window.fileManager||new FileManager}buildUrl(e,t={}){let a=API_CONFIG.BASE_URL+e;return Object.keys(t).forEach(e=>{a=a.replace(`:${e}`,t[e])}),a}async request(e,t={},a={}){const{method:o="GET",body:i=null,headers:r={},params:c={},queryParams:n={}}=t,{useCache:s=!0,cacheDuration:l=this.cache.CACHE_DURATION.MEDIUM,forceRefresh:d=!1,showLoading:u=!1}=a,h=this.buildUrl(e,c),E=new URL(h);Object.keys(n).forEach(e=>{E.searchParams.append(e,n[e])});const I=E.toString(),T=`api_${o}_${e}_${JSON.stringify(c)}_${JSON.stringify(n)}`,S=this.getCurrentUserId();if("GET"===o&&s&&!d){const e=this.cache.get(T,S);if(e)return console.log("✅ API Cache hit:",T),e}u&&this.showLoadingScreen();try{const t=this.getAuthToken(),a={method:o,headers:{"Content-Type":"application/json",Authorization:t?`Bearer ${t}`:"",...r}};i&&"GET"!==o&&(a.body=JSON.stringify(i));const c=await fetch(I,a);if(!c.ok)throw new Error(`API Error: ${c.status} ${c.statusText}`);const n=await c.json();return"GET"===o&&s&&this.cache.set(T,n,l,S),["POST","PUT","DELETE","PATCH"].includes(o)&&this.invalidateRelatedCache(e),u&&this.hideLoadingScreen(),n}catch(e){throw console.error("API Request failed:",e),u&&this.hideLoadingScreen(),e}}invalidateRelatedCache(e){Object.keys(localStorage).forEach(t=>{t.includes(e.split("/")[1])&&localStorage.removeItem(t)})}getCurrentUserId(){try{const e=localStorage.getItem("krauser_user");if(e){const t=JSON.parse(e);return t.id||t.email}}catch(e){return null}return null}getAuthToken(){return localStorage.getItem("auth_token")}setAuthToken(e){localStorage.setItem("auth_token",e)}clearAuthToken(){localStorage.removeItem("auth_token")}showLoadingScreen(){const e=encodeURIComponent(window.location.href);window.location.href=`loading.html?redirect=${e}`}hideLoadingScreen(){}async uploadFile(e,t,a,o={}){const i=this.buildUrl(e,o);try{const e=await this.fileManager.uploadFile(i,t,e=>{a&&a(e)});return this.invalidateRelatedCache("/documents"),e}catch(e){throw console.error("File upload failed:",e),e}}async downloadFile(e,t,a,o={}){const i=this.buildUrl(e,o);try{return await this.fileManager.downloadFile(i,t,e=>{a&&a(e)})}catch(e){throw console.error("File download failed:",e),e}}}const apiService=new APIService;async function loginUser(e,t){try{const a=await apiService.request(API_CONFIG.ENDPOINTS.LOGIN,{method:"POST",body:{email:e,password:t}},{useCache:!1,showLoading:!0});return a.token&&(apiService.setAuthToken(a.token),apiService.cache.set("user_profile",a.user,apiService.cache.CACHE_DURATION.LONG,a.user.id)),a}catch(e){throw new Error("Login failed: "+e.message)}}async function getUserPolicies(e=!1){try{return await apiService.request(API_CONFIG.ENDPOINTS.GET_USER_POLICIES,{method:"GET"},{useCache:!0,cacheDuration:apiService.cache.CACHE_DURATION.MEDIUM,forceRefresh:e,showLoading:!e})}catch(e){return console.error("Failed to get policies:",e),[]}}async function uploadClaimDocument(e,t,a){try{return await apiService.uploadFile(API_CONFIG.ENDPOINTS.UPLOAD_CLAIM_DOCUMENT,t,a,{id:e})}catch(e){throw new Error("Document upload failed: "+e.message)}}async function downloadPaymentReceipt(e,t){try{const a=`recibo_pago_${e}.pdf`;return await apiService.downloadFile(API_CONFIG.ENDPOINTS.DOWNLOAD_RECEIPT,a,t,{id:e})}catch(e){throw new Error("Receipt download failed: "+e.message)}}function logoutUser(){const e=apiService.getCurrentUserId();e&&apiService.cache.clearUserCache(e),apiService.clearAuthToken(),localStorage.removeItem("krauser_user")}"undefined"!=typeof module&&module.exports&&(module.exports={APIService,apiService,API_CONFIG,loginUser,getUserPolicies,uploadClaimDocument,downloadPaymentReceipt,logoutUser});
+// API Integration Layer for Krause Insurance
+// GoDaddy Server + Database Integration
+
+// API Configuration
+const API_CONFIG = {
+  // Update these URLs when deploying to GoDaddy
+  BASE_URL: window.location.hostname === 'localhost' 
+    ? 'http://localhost/api' 
+    : 'https://yourdomain.com/api',
+  
+  ENDPOINTS: {
+    // Authentication
+    LOGIN: '/auth/login',
+    LOGOUT: '/auth/logout',
+    VERIFY_TOKEN: '/auth/verify',
+    
+    // User Management
+    GET_USER_PROFILE: '/users/profile',
+    UPDATE_USER_PROFILE: '/users/profile',
+    GET_USER_POLICIES: '/users/policies',
+    
+    // Policies
+    GET_POLICIES: '/policies',
+    GET_POLICY_DETAILS: '/policies/:id',
+    CREATE_POLICY: '/policies/create',
+    UPDATE_POLICY: '/policies/:id',
+    
+    // Claims
+    GET_CLAIMS: '/claims',
+    CREATE_CLAIM: '/claims/create',
+    GET_CLAIM_DETAILS: '/claims/:id',
+    UPLOAD_CLAIM_DOCUMENT: '/claims/:id/upload',
+    
+    // Payments
+    GET_PAYMENT_HISTORY: '/payments/history',
+    PROCESS_PAYMENT: '/payments/process',
+    DOWNLOAD_RECEIPT: '/payments/:id/receipt',
+    
+    // Documents
+    UPLOAD_DOCUMENT: '/documents/upload',
+    DOWNLOAD_DOCUMENT: '/documents/:id',
+    LIST_DOCUMENTS: '/documents',
+    DELETE_DOCUMENT: '/documents/:id',
+    
+    // Quotes
+    REQUEST_QUOTE: '/quotes/request',
+    GET_QUOTES: '/quotes',
+    
+    // Agents (for agent portal)
+    GET_CLIENTS: '/agents/clients',
+    GET_CLIENT_DETAILS: '/agents/clients/:id',
+    UPDATE_CLIENT: '/agents/clients/:id',
+    
+    // Analytics
+    GET_DASHBOARD_STATS: '/analytics/dashboard',
+    GET_AGENT_PERFORMANCE: '/analytics/agent/:id'
+  }
+};
+
+// API Service with caching
+class APIService {
+  constructor() {
+    this.cache = window.cacheManager || new CacheManager();
+    this.fileManager = window.fileManager || new FileManager();
+  }
+
+  // Build full URL
+  buildUrl(endpoint, params = {}) {
+    let url = API_CONFIG.BASE_URL + endpoint;
+    
+    // Replace path parameters
+    Object.keys(params).forEach(key => {
+      url = url.replace(`:${key}`, params[key]);
+    });
+    
+    return url;
+  }
+
+  // Make API request with caching
+  async request(endpoint, options = {}, cacheOptions = {}) {
+    const {
+      method = 'GET',
+      body = null,
+      headers = {},
+      params = {},
+      queryParams = {}
+    } = options;
+
+    const {
+      useCache = true,
+      cacheDuration = this.cache.CACHE_DURATION.MEDIUM,
+      forceRefresh = false,
+      showLoading = false
+    } = cacheOptions;
+
+    const url = this.buildUrl(endpoint, params);
+    
+    // Add query parameters
+    const urlObj = new URL(url);
+    Object.keys(queryParams).forEach(key => {
+      urlObj.searchParams.append(key, queryParams[key]);
+    });
+
+    const fullUrl = urlObj.toString();
+    
+    // Cache identifier
+    const cacheIdentifier = `api_${method}_${endpoint}_${JSON.stringify(params)}_${JSON.stringify(queryParams)}`;
+    const userId = this.getCurrentUserId();
+
+    // Check cache for GET requests
+    if (method === 'GET' && useCache && !forceRefresh) {
+      const cached = this.cache.get(cacheIdentifier, userId);
+      if (cached) {
+        console.log('✅ API Cache hit:', cacheIdentifier);
+        return cached;
+      }
+    }
+
+    // Show loading if needed
+    if (showLoading) {
+      this.showLoadingScreen();
+    }
+
+    try {
+      // Get auth token
+      const token = this.getAuthToken();
+      
+      const requestOptions = {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token ? `Bearer ${token}` : '',
+          ...headers
+        }
+      };
+
+      if (body && method !== 'GET') {
+        requestOptions.body = JSON.stringify(body);
+      }
+
+      const response = await fetch(fullUrl, requestOptions);
+      
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      // Cache successful GET requests
+      if (method === 'GET' && useCache) {
+        this.cache.set(cacheIdentifier, data, cacheDuration, userId);
+      }
+
+      // Invalidate related cache on mutations
+      if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(method)) {
+        this.invalidateRelatedCache(endpoint);
+      }
+
+      if (showLoading) {
+        this.hideLoadingScreen();
+      }
+
+      return data;
+
+    } catch (error) {
+      console.error('API Request failed:', error);
+      
+      if (showLoading) {
+        this.hideLoadingScreen();
+      }
+
+      throw error;
+    }
+  }
+
+  // Invalidate related cache after mutations
+  invalidateRelatedCache(endpoint) {
+    // Clear cache entries related to this endpoint
+    const keys = Object.keys(localStorage);
+    keys.forEach(key => {
+      if (key.includes(endpoint.split('/')[1])) {
+        localStorage.removeItem(key);
+      }
+    });
+  }
+
+  // Get current user ID from session
+  getCurrentUserId() {
+    try {
+      const user = localStorage.getItem('krauser_user');
+      if (user) {
+        const userData = JSON.parse(user);
+        return userData.id || userData.email;
+      }
+    } catch (error) {
+      return null;
+    }
+    return null;
+  }
+
+  // Get auth token
+  getAuthToken() {
+    return localStorage.getItem('auth_token');
+  }
+
+  // Set auth token
+  setAuthToken(token) {
+    localStorage.setItem('auth_token', token);
+  }
+
+  // Clear auth token
+  clearAuthToken() {
+    localStorage.removeItem('auth_token');
+  }
+
+  // Show loading screen
+  showLoadingScreen() {
+    const currentUrl = encodeURIComponent(window.location.href);
+    window.location.href = `loading.html?redirect=${currentUrl}`;
+  }
+
+  // Hide loading screen (handled by loading.html)
+  hideLoadingScreen() {
+    // Auto-handled by loading screen
+  }
+
+  // Upload file with progress
+  async uploadFile(endpoint, file, onProgress, params = {}) {
+    const url = this.buildUrl(endpoint, params);
+    
+    try {
+      const result = await this.fileManager.uploadFile(url, file, (percent) => {
+        if (onProgress) onProgress(percent);
+      });
+      
+      // Invalidate document cache
+      this.invalidateRelatedCache('/documents');
+      
+      return result;
+    } catch (error) {
+      console.error('File upload failed:', error);
+      throw error;
+    }
+  }
+
+  // Download file with progress
+  async downloadFile(endpoint, filename, onProgress, params = {}) {
+    const url = this.buildUrl(endpoint, params);
+    
+    try {
+      const result = await this.fileManager.downloadFile(url, filename, (percent) => {
+        if (onProgress) onProgress(percent);
+      });
+      
+      return result;
+    } catch (error) {
+      console.error('File download failed:', error);
+      throw error;
+    }
+  }
+}
+
+// Initialize API Service
+const apiService = new APIService();
+
+// Example usage functions for common operations
+
+// Login with caching
+async function loginUser(email, password) {
+  try {
+    const response = await apiService.request(
+      API_CONFIG.ENDPOINTS.LOGIN,
+      {
+        method: 'POST',
+        body: { email, password }
+      },
+      {
+        useCache: false,
+        showLoading: true
+      }
+    );
+
+    if (response.token) {
+      apiService.setAuthToken(response.token);
+      apiService.cache.set('user_profile', response.user, apiService.cache.CACHE_DURATION.LONG, response.user.id);
+    }
+
+    return response;
+  } catch (error) {
+    throw new Error('Login failed: ' + error.message);
+  }
+}
+
+// Get user policies with caching
+async function getUserPolicies(forceRefresh = false) {
+  try {
+    const policies = await apiService.request(
+      API_CONFIG.ENDPOINTS.GET_USER_POLICIES,
+      { method: 'GET' },
+      {
+        useCache: true,
+        cacheDuration: apiService.cache.CACHE_DURATION.MEDIUM,
+        forceRefresh: forceRefresh,
+        showLoading: !forceRefresh
+      }
+    );
+
+    return policies;
+  } catch (error) {
+    console.error('Failed to get policies:', error);
+    return [];
+  }
+}
+
+// Upload claim document with progress
+async function uploadClaimDocument(claimId, file, onProgress) {
+  try {
+    const result = await apiService.uploadFile(
+      API_CONFIG.ENDPOINTS.UPLOAD_CLAIM_DOCUMENT,
+      file,
+      onProgress,
+      { id: claimId }
+    );
+
+    return result;
+  } catch (error) {
+    throw new Error('Document upload failed: ' + error.message);
+  }
+}
+
+// Download payment receipt
+async function downloadPaymentReceipt(paymentId, onProgress) {
+  try {
+    const filename = `recibo_pago_${paymentId}.pdf`;
+    const result = await apiService.downloadFile(
+      API_CONFIG.ENDPOINTS.DOWNLOAD_RECEIPT,
+      filename,
+      onProgress,
+      { id: paymentId }
+    );
+
+    return result;
+  } catch (error) {
+    throw new Error('Receipt download failed: ' + error.message);
+  }
+}
+
+// Clear user cache on logout
+function logoutUser() {
+  const userId = apiService.getCurrentUserId();
+  if (userId) {
+    apiService.cache.clearUserCache(userId);
+  }
+  apiService.clearAuthToken();
+  localStorage.removeItem('krauser_user');
+}
+
+// Export for use
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { 
+    APIService, 
+    apiService, 
+    API_CONFIG,
+    loginUser,
+    getUserPolicies,
+    uploadClaimDocument,
+    downloadPaymentReceipt,
+    logoutUser
+  };
+}
