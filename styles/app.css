@@ -10,8 +10,8 @@
 /* Footer (restored) */
 .footer {
   background: var(--footer-acrylic-bg, var(--acrylic-bg-dark));
-  backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%));
-  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%));
+  backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;
+  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;
   color: white;
   position: fixed;
   bottom: 0;
@@ -27,8 +27,8 @@
 /* Ensure home page also renders the acrylic footer (some browsers drop backdrop-filter without a scoped reassertion) */
 body[data-page="home"] .footer {
   background: var(--footer-acrylic-bg);
-  backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate));
-  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate));
+  backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
+  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
 }
 
 .footer.collapsed .footer-container {
