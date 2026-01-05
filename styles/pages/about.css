@@ -112,6 +112,9 @@
     overflow-x: auto;
     overflow-y: hidden;
     padding: 2px 2px 12px 2px;
+    min-height: clamp(240px, 38vh, 340px);
+    height: clamp(260px, 42vh, 360px);
+    align-items: stretch;
     scroll-snap-type: x mandatory;
     scrollbar-gutter: stable both-edges;
     -webkit-overflow-scrolling: touch;
@@ -133,6 +136,10 @@
 .about-dynamic>* {
     flex: 0 0 clamp(640px, 88vw, 760px);
     max-width: 100%;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     min-width: 0;
@@ -180,6 +187,8 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(10px, 1.4vw, 14px);
     width: 100%;
+    height: 100%;
+    grid-auto-rows: 1fr;
     align-items: stretch;
 }
 
@@ -190,6 +199,7 @@
     border-radius: 14px;
     padding: clamp(8px, 1vh, 12px) clamp(8px, 1vw, 10px);
     min-height: 110px;
+    height: 100%;
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
     text-align: center;
     overflow: hidden;
@@ -251,6 +261,7 @@
     border-radius: 16px;
     padding: 14px 16px;
     min-height: 150px;
+    height: 100%;
     box-shadow: 0 16px 44px rgba(0, 0, 0, 0.16);
     overflow: hidden;
     backdrop-filter: blur(18px) saturate(170%);
@@ -282,6 +293,10 @@
     overflow: hidden;
     border-radius: 14px;
     padding: 6px 0;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
 }
 
 .about-partners-marquee::before,
@@ -380,6 +395,11 @@
     overflow: hidden;
     backdrop-filter: blur(18px) saturate(170%);
     -webkit-backdrop-filter: blur(18px) saturate(170%);
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .about-testimonials::before {
@@ -405,6 +425,8 @@
     -webkit-overflow-scrolling: touch;
     border-radius: 14px;
     padding-bottom: 10px;
+    flex: 1;
+    min-height: 0;
     scrollbar-gutter: stable both-edges;
 }
 
@@ -430,6 +452,7 @@
     display: flex;
     gap: 14px;
     padding: 2px;
+    align-items: stretch;
 }
 
 .about-testimonial-card {
@@ -441,6 +464,7 @@
     padding: 16px;
     box-shadow: 0 12px 34px rgba(0, 0, 0, 0.16);
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
 }
 
 .about-testimonial-card.is-active {

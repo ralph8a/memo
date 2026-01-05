@@ -1,0 +1,389 @@
+    <section class="quote-page">
+      <div class="quote-hero">
+        <div class="quote-hero-copy">
+          <p class="quote-eyebrow">Plantilla rápida de cotización</p>
+          <h1 class="quote-title">Cotiza tu seguro en minutos</h1>
+          <p class="quote-lead">Selecciona el tipo de seguro, comparte los datos clave y recibe comparativos con asesores humanos (sin bots invasivos).</p>
+
+          <div class="quote-pill-row">
+            <span class="quote-pill">⏱️ Respuesta en 10-20 min</span>
+            <span class="quote-pill">🧑‍💼 Asesor dedicado</span>
+            <span class="quote-pill">🔒 Datos protegidos</span>
+          </div>
+
+          <div class="quote-tabs" role="tablist" aria-label="Tipos de seguro disponibles">
+            <button class="quote-tab active" data-quote-tab="auto">🚗 Auto</button>
+            <button class="quote-tab" data-quote-tab="hogar">🏠 Hogar</button>
+            <button class="quote-tab" data-quote-tab="vida">❤️ Vida</button>
+            <button class="quote-tab" data-quote-tab="salud">💼 Salud</button>
+            <button class="quote-tab" data-quote-tab="viaje">✈️ Viaje</button>
+            <button class="quote-tab" data-quote-tab="comercial">🏢 Comercial</button>
+          </div>
+          <p class="quote-tab-hint">Elige un tipo de seguro y completa el formulario específico. Podemos continuar la cotización por WhatsApp o correo.</p>
+        </div>
+
+        <div class="quote-hero-card" aria-label="Resumen de beneficios">
+          <div class="quote-card-header">
+            <span class="quote-pill">Benchmark multi-aseguradora</span>
+            <span class="quote-pill success">Incluye comparativo</span>
+          </div>
+          <h3>Cobertura diseñada para ti</h3>
+          <ul class="quote-benefits">
+            <li>Personalizamos suma asegurada, deducible y asistencias.</li>
+            <li>Checklist de emisión y acompañamiento en siniestros.</li>
+            <li>Renovaciones con ajuste inteligente para proteger tu prima.</li>
+          </ul>
+          <div class="quote-hero-meta">
+            <div>
+              <small>Tiempo promedio</small>
+              <strong>10-20 min</strong>
+            </div>
+            <div>
+              <small>Cotizaciones/mes</small>
+              <strong>500+</strong>
+            </div>
+            <div>
+              <small>Experiencia</small>
+              <strong>25 años</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-layout">
+        <div class="quote-forms" role="tabpanel">
+          <form class="quote-form active" data-quote-type="auto" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Auto</p>
+                <h3>Datos del vehículo</h3>
+              </div>
+              <span class="quote-chip">Requiere 3-4 datos</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="auto">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Código Postal</span>
+                <input type="text" name="postalCode" placeholder="00000" required>
+              </label>
+              <label class="quote-field">
+                <span>Año / Modelo</span>
+                <input type="text" name="vehicleModel" placeholder="2021 - Mazda 3" required>
+              </label>
+              <label class="quote-field">
+                <span>Uso</span>
+                <select name="usage" required>
+                  <option value="">Selecciona</option>
+                  <option value="personal">Personal</option>
+                  <option value="uber">Ride-hailing / Uber</option>
+                  <option value="comercial">Comercial</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Tiempo estimado de respuesta: 10-15 minutos.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="hogar" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Hogar</p>
+                <h3>Protege tu patrimonio</h3>
+              </div>
+              <span class="quote-chip">Incluye RC familiar</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="hogar">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Código Postal</span>
+                <input type="text" name="postalCode" placeholder="00000" required>
+              </label>
+              <label class="quote-field">
+                <span>Tipo de inmueble</span>
+                <select name="propertyType" required>
+                  <option value="">Selecciona</option>
+                  <option value="casa">Casa</option>
+                  <option value="departamento">Departamento</option>
+                  <option value="oficina">Oficina/Local</option>
+                </select>
+              </label>
+              <label class="quote-field">
+                <span>Valor aproximado</span>
+                <input type="text" name="propertyValue" placeholder="$2,500,000" required>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Incluimos RC familiar y opciones para robo, terremoto y asistencias.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="vida" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Vida</p>
+                <h3>Protección a largo plazo</h3>
+              </div>
+              <span class="quote-chip">Planes flexibles</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="vida">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Año de nacimiento</span>
+                <input type="number" name="birthYear" placeholder="1988" required>
+              </label>
+              <label class="quote-field">
+                <span>Suma asegurada deseada</span>
+                <select name="coverage" required>
+                  <option value="">Selecciona</option>
+                  <option value="500k">$500k MXN</option>
+                  <option value="1m">$1M MXN</option>
+                  <option value="2m">$2M MXN</option>
+                  <option value="usd">USD u otra moneda</option>
+                </select>
+              </label>
+              <label class="quote-field">
+                <span>Dependientes</span>
+                <select name="dependents" required>
+                  <option value="">Selecciona</option>
+                  <option value="0">0</option>
+                  <option value="1-2">1-2</option>
+                  <option value="3-4">3-4</option>
+                  <option value="5+">5+</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Podemos incluir coberturas de invalidez y enfermedades graves.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="salud" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Salud</p>
+                <h3>Cobertura médica</h3>
+              </div>
+              <span class="quote-chip">Red médica + deducible</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="salud">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Edad</span>
+                <input type="number" name="age" placeholder="34" required>
+              </label>
+              <label class="quote-field">
+                <span>Cobertura</span>
+                <select name="healthCoverage" required>
+                  <option value="">Selecciona</option>
+                  <option value="nacional">Nacional</option>
+                  <option value="internacional">Internacional</option>
+                  <option value="mixta">Mixta</option>
+                </select>
+              </label>
+              <label class="quote-field">
+                <span>Condiciones preexistentes</span>
+                <input type="text" name="conditions" placeholder="Opcional (diabetes, etc)">
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Incluimos opciones de deducible, coaseguro y tope.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="viaje" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Viaje</p>
+                <h3>Viaja con tranquilidad</h3>
+              </div>
+              <span class="quote-chip">Incluye asistencia 24/7</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="viaje">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Destino</span>
+                <input type="text" name="destination" placeholder="Europa / USA" required>
+              </label>
+              <label class="quote-field">
+                <span>Fecha salida</span>
+                <input type="date" name="startDate" required>
+              </label>
+              <label class="quote-field">
+                <span>Fecha regreso</span>
+                <input type="date" name="endDate" required>
+              </label>
+              <label class="quote-field">
+                <span>Viajeros</span>
+                <input type="number" name="travelers" min="1" placeholder="2" required>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Podemos incluir deportes, cancelación y equipaje.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="comercial" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Comercial</p>
+                <h3>Protección para tu negocio</h3>
+              </div>
+              <span class="quote-chip">RC + Property</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="comercial">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Giro del negocio</span>
+                <input type="text" name="businessType" placeholder="Restaurante, oficina, taller" required>
+              </label>
+              <label class="quote-field">
+                <span>Ubicación / CP</span>
+                <input type="text" name="businessPostal" placeholder="00000" required>
+              </label>
+              <label class="quote-field">
+                <span>Valor aproximado / inventario</span>
+                <input type="text" name="assetValue" placeholder="$5,000,000" required>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Incluimos RC, daños, robo, equipo electrónico y cyber (opcional).</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="quote-summary" aria-live="polite">
+          <div class="quote-summary-card">
+            <p class="quote-eyebrow">Resumen activo</p>
+            <h3 data-summary-title>Seguro de Auto</h3>
+            <p data-summary-body>Cobertura amplia + RC, asistencia vial y cristales. Ajustamos deducible y sumas según tu vehículo y uso.</p>
+            <div class="quote-summary-pills" data-summary-pills>
+              <span class="quote-pill">Cotización comparada</span>
+              <span class="quote-pill">Entrega en 10-20 min</span>
+              <span class="quote-pill">Asistencia 24/7</span>
+            </div>
+            <div class="quote-meta-grid">
+              <div class="quote-meta">
+                <small>Respuesta estimada</small>
+                <strong data-summary-sla>10-15 min</strong>
+              </div>
+              <div class="quote-meta">
+                <small>Tipo seleccionado</small>
+                <strong data-summary-type>Auto</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="quote-checklist">
+            <div class="quote-checklist-head">
+              <h4>Checklist rápido</h4>
+              <span class="quote-chip">Opcional</span>
+            </div>
+            <ul class="quote-checklist-list" data-summary-docs>
+              <li>Datos básicos y código postal.</li>
+              <li>Uso (personal/negocio) y valor aproximado.</li>
+              <li>Preferencias de deducible y asistencias.</li>
+            </ul>
+            <div class="quote-tip">
+              💡 Tip: Si prefieres, podemos seguir la cotización por WhatsApp o llamada.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>

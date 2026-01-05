@@ -23,6 +23,7 @@ class InjectTemplatesPlugin {
           const templates = {
             'page-home': readTemplate('src/templates/pages/home.html'),
             'page-services': readTemplate('src/templates/pages/services.html'),
+            'page-quote': readTemplate('src/templates/pages/quote.html'),
             'page-about': readTemplate('src/templates/pages/about.html'),
             'page-contact': readTemplate('src/templates/pages/contact.html'),
             'page-client-login': readTemplate('src/templates/auth/client-login.html'),

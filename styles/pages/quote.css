@@ -1,0 +1,419 @@
+:root {
+    --quote-surface: var(--theme-surface-bg, #ffffff);
+    --quote-border: var(--theme-surface-border, rgba(99, 24, 50, 0.1));
+    --quote-shadow: 0 14px 60px rgba(0, 0, 0, 0.08);
+    --quote-muted: var(--theme-text-secondary, #666);
+    --quote-hero-gradient: linear-gradient(135deg, rgba(99, 24, 50, 0.22), rgba(64, 26, 89, 0.26));
+    --quote-hero-strong: #ffffff;
+    --quote-hero-muted: rgba(255, 255, 255, 0.94);
+    --quote-hero-eyebrow: #fef0ff;
+}
+
+.quote-page {
+    padding: clamp(28px, 4vw, 40px) clamp(16px, 4vw, 28px) clamp(40px, 5vw, 64px);
+    max-width: 1240px;
+    margin: 0 auto clamp(40px, 4vw, 64px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    grid-template-areas:
+        "hero summary"
+        "forms summary";
+    column-gap: clamp(18px, 3vw, 28px);
+    row-gap: clamp(18px, 3vw, 26px);
+    align-items: start;
+}
+
+.quote-hero {
+    grid-area: hero;
+    background: var(--quote-hero-gradient);
+    border: 1px solid var(--quote-border);
+    border-radius: 16px;
+    padding: clamp(20px, 3vw, 28px);
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: clamp(16px, 3vw, 24px);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    color: var(--quote-hero-muted);
+}
+
+.quote-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.16), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.12), transparent 40%);
+    pointer-events: none;
+}
+
+.quote-hero-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+    color: var(--quote-hero-muted);
+}
+
+.quote-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--quote-hero-eyebrow);
+    margin: 0 0 4px;
+}
+
+.quote-summary .quote-eyebrow,
+.quote-form .quote-eyebrow {
+    color: var(--theme-primary-color);
+}
+
+.quote-title {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--quote-hero-strong);
+    text-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.quote-lead {
+    margin: 0;
+    color: var(--quote-hero-muted);
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.quote-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.quote-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--theme-text-primary);
+    border: 1px solid rgba(64, 26, 89, 0.1);
+    font-weight: 600;
+    font-size: 0.9rem;
+    backdrop-filter: blur(6px);
+}
+
+.quote-pill.success {
+    background: rgba(40, 167, 69, 0.12);
+    color: #1d7a3a;
+    border-color: rgba(40, 167, 69, 0.24);
+}
+
+.quote-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.quote-tab {
+    border: 1px solid var(--quote-border);
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--theme-text-primary);
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.quote-tab:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.quote-tab.active {
+    background: var(--theme-primary-color);
+    color: #fff;
+    border-color: var(--theme-primary-color);
+    box-shadow: 0 8px 24px rgba(99, 24, 50, 0.24);
+}
+
+.quote-tab-hint {
+    margin: 4px 0 0;
+    color: var(--quote-hero-muted);
+    font-size: 0.95rem;
+}
+
+.quote-hero-card {
+    background: var(--quote-surface);
+    border: 1px solid var(--quote-border);
+    border-radius: 14px;
+    padding: clamp(16px, 3vw, 20px);
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quote-card-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.quote-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--quote-muted);
+}
+
+.quote-benefits li::before {
+    content: "•";
+    color: var(--theme-primary-color);
+    margin-right: 6px;
+}
+
+.quote-hero-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.quote-hero-meta small {
+    color: var(--quote-muted);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.quote-hero-meta strong {
+    font-size: 1.05rem;
+    color: var(--theme-text-primary);
+}
+
+.quote-layout {
+    grid-area: forms;
+    display: contents;
+}
+
+.quote-forms {
+    grid-area: forms;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.quote-form {
+    display: none;
+    background: var(--quote-surface);
+    border: 1px solid var(--quote-border);
+    border-radius: 14px;
+    padding: clamp(16px, 3vw, 20px);
+    box-shadow: var(--quote-shadow);
+}
+
+.quote-form.active {
+    display: block;
+}
+
+.quote-form-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.quote-form-head h3 {
+    margin: 2px 0 0;
+}
+
+.quote-chip {
+    padding: 6px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--quote-border);
+    background: rgba(64, 26, 89, 0.06);
+    color: var(--theme-text-primary);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.quote-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.quote-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 600;
+    color: var(--theme-text-primary);
+}
+
+.quote-field input,
+.quote-field select,
+.quote-field textarea {
+    width: 100%;
+    border: 1px solid var(--quote-border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    background: #fff;
+    color: var(--theme-text-primary);
+    box-shadow: inset 0 1px 0 rgba(64, 26, 89, 0.06);
+}
+
+.quote-field input:focus,
+.quote-field select:focus,
+.quote-field textarea:focus {
+    outline: 2px solid rgba(99, 24, 50, 0.18);
+    border-color: rgba(99, 24, 50, 0.28);
+}
+
+.quote-form-footer {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.quote-footnote {
+    margin: 0;
+    color: var(--quote-muted);
+    font-size: 0.9rem;
+}
+
+.quote-summary {
+    grid-area: summary;
+    position: sticky;
+    top: 84px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quote-summary-card,
+.quote-checklist {
+    background: var(--quote-surface);
+    border: 1px solid var(--quote-border);
+    border-radius: 14px;
+    padding: clamp(14px, 2vw, 18px);
+    box-shadow: var(--shadow);
+}
+
+.quote-summary-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.quote-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.quote-meta small {
+    color: var(--quote-muted);
+    display: block;
+}
+
+.quote-meta strong {
+    font-size: 1.05rem;
+    color: var(--theme-text-primary);
+}
+
+.quote-checklist-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.quote-checklist-list {
+    list-style: disc;
+    margin: 10px 0 6px 16px;
+    color: var(--quote-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.quote-tip {
+    margin-top: 6px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(99, 24, 50, 0.08);
+    color: var(--theme-text-primary);
+    border: 1px dashed var(--quote-border);
+}
+
+.btn.btn-primary {
+    background: var(--theme-primary-color);
+    color: #fff;
+    border: 1px solid var(--theme-primary-color);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px rgba(99, 24, 50, 0.25);
+}
+
+@media (max-width: 1024px) {
+    .quote-page {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(20px, 4vw, 28px);
+    }
+
+    .quote-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .quote-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .quote-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 640px) {
+    .quote-tab {
+        width: calc(50% - 8px);
+        text-align: left;
+    }
+
+    .quote-form-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quote-pill-row {
+        flex-direction: column;
+    }
+}

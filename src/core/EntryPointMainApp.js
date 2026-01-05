@@ -5,6 +5,7 @@ import '../../styles/auth.css';
 import '../../styles/notifications.css';
 import '../../styles/pages/home.css';
 import '../../styles/pages/services.css';
+import '../../styles/pages/quote.css';
 import '../../styles/pages/about.css';
 import '../../styles/pages/contact.css';
 import '../../styles/dashboards.css';
@@ -21,7 +22,8 @@ import { showNotification } from '../modules/notifications.js';
 import { skipToFinalState, showHomeSection } from '../modules/homeAnimations.js';
 import { getUser } from './state.js';
 import { showNotification as notify } from '../modules/notifications.js';
-import { NOTIFICATION_TYPES } from '../utils/constants.js';
+import { NOTIFICATION_TYPES, PAGES } from '../utils/constants.js';
+import { setPendingQuoteType, notifyQuoteSuccess } from '../modules/quoteFlow.js';
 
 // Expose handlers globally for onclick handlers in templates
 window.appHandlers = {
@@ -48,6 +50,7 @@ window.appHandlers = {
   editClient,
   processQuote,
   createQuote,
+  submitQuote,
   processRenewal,
   viewReports,
   completeTask,
@@ -64,6 +67,7 @@ window.handleClientLogin = handleClientLogin;
 window.handleAgentLogin = handleAgentLogin;
 window.contactAgent = contactAgent;
 window.toggleTheme = toggleTheme;
+window.submitQuote = submitQuote;
 // Expose notification helper for quick console testing / legacy inline calls
 window.showNotification = showNotification;
 
@@ -137,7 +141,10 @@ function downloadPaymentHistory() {
 }
 
 function openQuoteModal(type) {
-  notify(`Abriendo cotización para seguro de ${type}`, NOTIFICATION_TYPES.INFO);
+  const normalized = (type || 'auto').toLowerCase();
+  setPendingQuoteType(normalized);
+  navigateTo(PAGES.QUOTE);
+  notify(`Preparando formulario para seguro de ${normalized}`, NOTIFICATION_TYPES.INFO);
 }
 
 function addNewClient() {
@@ -157,7 +164,40 @@ function processQuote(quoteId) {
 }
 
 function createQuote() {
+  navigateTo(PAGES.QUOTE);
   notify('Creando nueva cotización...', NOTIFICATION_TYPES.INFO);
+}
+
+function submitQuote(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => {
+    data[key] = value;
+  });
+
+  const quoteType = (data.quoteType || form.dataset.quoteType || 'auto').toLowerCase();
+  const labelMap = {
+    auto: 'Seguro de Auto',
+    hogar: 'Seguro de Hogar',
+    vida: 'Seguro de Vida',
+    salud: 'Gastos Médicos',
+    viaje: 'Seguro de Viaje',
+    comercial: 'Seguro Comercial'
+  };
+
+  const label = labelMap[quoteType] || 'Seguro';
+  notifyQuoteSuccess(label);
+
+  try {
+    form.reset();
+    const hiddenType = form.querySelector('input[name="quoteType"]');
+    if (hiddenType) hiddenType.value = quoteType;
+    setPendingQuoteType(quoteType);
+  } catch (err) {
+    console.warn('Quote reset error', err);
+  }
 }
 
 function processRenewal() {

@@ -13,6 +13,7 @@ import { clearAllTimers } from '../utils/timing.js';
 import { stopParticles, startParticles } from './particles.js';
 import { initServicesTechNav } from './servicesTechNav.js';
 import { initAboutEnhancements } from './aboutEnhancements.js';
+import { initQuoteFlow } from './quoteFlow.js';
 
 let currentPage = 'home';
 
@@ -95,7 +96,7 @@ export function navigateTo(page, event) {
     }
 
     // Control particles (keep UI-dense work areas distraction-free)
-    if (['services', 'about', 'contact', 'client-dashboard', 'agent-dashboard', 'admin-dashboard', 'login', 'agent-login'].includes(page)) {
+    if (['services', 'about', 'contact', 'quote', 'client-dashboard', 'agent-dashboard', 'admin-dashboard', 'login', 'agent-login'].includes(page)) {
         stopParticles();
     } else {
         startParticles();
@@ -115,6 +116,10 @@ export function navigateTo(page, event) {
 
     if (page === PAGES.ABOUT || page === 'about') {
         initAboutEnhancements(pageElement || document);
+    }
+
+    if (page === PAGES.QUOTE || page === 'quote') {
+        initQuoteFlow(pageElement || document);
     }
 
     // Clear contact flag

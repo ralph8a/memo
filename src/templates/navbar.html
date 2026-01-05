@@ -1,7 +1,7 @@
 <!-- Navigation Bar -->
 <nav class="navbar" id="navbar">
   <div class="nav-container">
-    <div class="nav-brand" onclick="navigateTo('home', event)">
+    <div class="nav-brand">
       <svg class="logo-shield krause-shield" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
         <!-- Círculo exterior -->
         <ellipse 
@@ -44,7 +44,7 @@
           stroke-width="3" 
         />
       </svg>
-      <div class="brand-text">
+      <div class="brand-text" onclick="navigateTo('home', event)">
         <span class="brand-name">Krause Insurance</span>
         <span class="brand-tagline">Protection Beyond The Limits</span>
       </div>
@@ -59,6 +59,7 @@
     <div class="nav-menu" id="navMenu">
       <a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home', event)">Inicio</a>
       <a href="#" class="nav-link" data-page="services" onclick="navigateTo('services', event)">Servicios</a>
+      <a href="#" class="nav-link" data-page="quote" onclick="navigateTo('quote', event)">Cotizar</a>
       <a href="#" class="nav-link" data-page="about" onclick="navigateTo('about', event)">Nosotros</a>
       <a href="#" class="nav-link" data-page="contact" onclick="navigateTo('contact', event)">Contacto</a>
       <div class="nav-buttons">

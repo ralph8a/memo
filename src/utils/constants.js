@@ -16,6 +16,7 @@ export const TIMING = {
 export const PAGES = {
   HOME: 'home',
   SERVICES: 'services',
+  QUOTE: 'quote',
   ABOUT: 'about',
   CONTACT: 'contact',
   LOGIN: 'login',
