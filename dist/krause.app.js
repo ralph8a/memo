@@ -10357,12 +10357,31 @@ var statusMessages = [{
   text: 'Pre-cache completado',
   detail: 'Listo'
 }];
+function createModalComponent() {
+  // Create modal HTML structure dynamically
+  var modalHTML = "\n        <div class=\"loading-modal\" id=\"loadingModal\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Cargando\">\n            <div class=\"modal-card\">\n                <div class=\"logo-and-info\">\n                    <svg class=\"shield-svg krause-shield\" viewBox=\"0 0 80 80\" xmlns=\"http://www.w3.org/2000/svg\">\n                        <ellipse class=\"shield-circle\" cx=\"40\" cy=\"38\" rx=\"22\" ry=\"22\" />\n                        <path class=\"shield-diamond\" d=\"M40 12 L62 35 L40 70 L18 35 Z\" />\n                        <path class=\"shield-arc\" d=\"M24 50 Q40 30 56 50\" />\n                        <line class=\"shield-line\" x1=\"40\" y1=\"50\" x2=\"40\" y2=\"68\" />\n                        <circle class=\"shield-center\" cx=\"40\" cy=\"40\" r=\"6\" />\n                    </svg>\n                    <div class=\"modal-info\">\n                        <h2 id=\"loading-title\">Preparando tu experiencia</h2>\n                        <div class=\"progress-percentage\" id=\"percentage\">0%</div>\n                        <div class=\"status-text\" id=\"status\">Inicializando sistema</div>\n                        <div class=\"progress-bar-container\" aria-hidden=\"true\">\n                            <div id=\"progressBar\" class=\"progress-bar-fill\"></div>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"did-you-know\" id=\"didYouKnow\">\n                    <div class=\"did-you-know-title\">\uD83D\uDCA1 Sab\xEDas que...</div>\n                    <div id=\"funFact\">Cargando dato interesante...</div>\n                </div>\n            </div>\n        </div>\n    ";
+
+  // Create particles container
+  var particlesHTML = '<div class="bg-particles" id="particles"></div>';
+
+  // Insert into DOM
+  document.body.insertAdjacentHTML('beforeend', particlesHTML);
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+  return document.getElementById('loadingModal');
+}
 function ensureModal() {
-  if (modalEl) return;
+  if (modalEl) return true;
+
+  // Try to find existing modal first
   modalEl = document.getElementById('loadingModal');
+
+  // If not found, create it dynamically
   if (!modalEl) {
-    console.warn('Loading modal not found in DOM');
-    return;
+    modalEl = createModalComponent();
+  }
+  if (!modalEl) {
+    console.error('Failed to create loading modal');
+    return false;
   }
   progressBarEl = document.getElementById('progressBar');
   percentageEl = document.getElementById('percentage');
@@ -10378,6 +10397,7 @@ function ensureModal() {
   logoParts.center = modalEl.querySelector('.shield-center');
   initLogoParts();
   initParticles();
+  return true;
 }
 function initLogoParts() {
   var partsConfig = [{
@@ -10502,8 +10522,10 @@ function showLoading() {
   var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Preparando tu experiencia';
   var detail = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Inicializando sistema';
   var showProgress = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-  ensureModal();
-  if (!modalEl) return;
+  if (!ensureModal()) {
+    console.error('Could not initialize loading modal');
+    return;
+  }
   depth += 1;
   if (titleEl) titleEl.textContent = message;
   if (statusEl) statusEl.textContent = detail;

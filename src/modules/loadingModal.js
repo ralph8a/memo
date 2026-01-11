@@ -47,13 +47,60 @@ const statusMessages = [
     { text: 'Pre-cache completado', detail: 'Listo' }
 ];
 
-function ensureModal() {
-    if (modalEl) return;
+function createModalComponent() {
+    // Create modal HTML structure dynamically
+    const modalHTML = `
+        <div class="loading-modal" id="loadingModal" role="dialog" aria-modal="true" aria-label="Cargando">
+            <div class="modal-card">
+                <div class="logo-and-info">
+                    <svg class="shield-svg krause-shield" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" />
+                        <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" />
+                        <path class="shield-arc" d="M24 50 Q40 30 56 50" />
+                        <line class="shield-line" x1="40" y1="50" x2="40" y2="68" />
+                        <circle class="shield-center" cx="40" cy="40" r="6" />
+                    </svg>
+                    <div class="modal-info">
+                        <h2 id="loading-title">Preparando tu experiencia</h2>
+                        <div class="progress-percentage" id="percentage">0%</div>
+                        <div class="status-text" id="status">Inicializando sistema</div>
+                        <div class="progress-bar-container" aria-hidden="true">
+                            <div id="progressBar" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="did-you-know" id="didYouKnow">
+                    <div class="did-you-know-title">💡 Sabías que...</div>
+                    <div id="funFact">Cargando dato interesante...</div>
+                </div>
+            </div>
+        </div>
+    `;
 
+    // Create particles container
+    const particlesHTML = '<div class="bg-particles" id="particles"></div>';
+
+    // Insert into DOM
+    document.body.insertAdjacentHTML('beforeend', particlesHTML);
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    return document.getElementById('loadingModal');
+}
+
+function ensureModal() {
+    if (modalEl) return true;
+
+    // Try to find existing modal first
     modalEl = document.getElementById('loadingModal');
+    
+    // If not found, create it dynamically
     if (!modalEl) {
-        console.warn('Loading modal not found in DOM');
-        return;
+        modalEl = createModalComponent();
+    }
+
+    if (!modalEl) {
+        console.error('Failed to create loading modal');
+        return false;
     }
 
     progressBarEl = document.getElementById('progressBar');
@@ -71,6 +118,7 @@ function ensureModal() {
 
     initLogoParts();
     initParticles();
+    return true;
 }
 
 function initLogoParts() {
@@ -199,8 +247,10 @@ function stopProgress() {
 }
 
 export function showLoading(message = 'Preparando tu experiencia', detail = 'Inicializando sistema', showProgress = true) {
-    ensureModal();
-    if (!modalEl) return;
+    if (!ensureModal()) {
+        console.error('Could not initialize loading modal');
+        return;
+    }
 
     depth += 1;
 
