@@ -132,7 +132,7 @@ async function handleClientLogin(e) {
   const email = e.target[0].value;
   const password = e.target[1].value;
 
-  showLoading('Autenticando', 'Verificando credenciales');
+  showLoading('Autenticando cliente', 'Verificando credenciales', true);
   await delay(200);
 
   const user = login({ email, password }, 'client');
@@ -149,7 +149,7 @@ async function handleAgentLogin(e) {
   const agentId = e.target[0].value;
   const password = e.target[1].value;
 
-  showLoading('Autenticando', 'Verificando credenciales');
+  showLoading('Autenticando agente', 'Verificando credenciales', true);
   await delay(200);
 
   // Check if admin credentials
@@ -351,8 +351,9 @@ async function submitQuote(e) {
 
   // Check if API is available
   if (!apiAvailable || !apiService || !API_CONFIG) {
-    notify('Procesando cotización (modo demo)...', NOTIFICATION_TYPES.INFO);
+    showLoading('Procesando cotización', 'Calculando cobertura y prima', true);
     await delay(800);
+    hideLoading(200);
     notifyQuoteSuccess(label);
     form.reset();
     const hiddenType = form.querySelector('input[name="quoteType"]');
@@ -363,7 +364,7 @@ async function submitQuote(e) {
 
   try {
     // Send quote request to API
-    notify('Enviando solicitud de cotización...', NOTIFICATION_TYPES.INFO);
+    showLoading('Enviando cotización', 'Procesando solicitud', true);
 
     const response = await apiService.request(
       API_CONFIG.ENDPOINTS.REQUEST_QUOTE,
@@ -382,14 +383,18 @@ async function submitQuote(e) {
     );
 
     if (response.success) {
+      hideLoading(200);
       notifyQuoteSuccess(label);
       form.reset();
       const hiddenType = form.querySelector('input[name="quoteType"]');
       if (hiddenType) hiddenType.value = quoteType;
       setPendingQuoteType(quoteType);
+    } else {
+      hideLoading(150);
     }
   } catch (err) {
     console.error('Quote submission error:', err);
+    hideLoading(150);
     notify('Error al enviar cotización. Por favor intenta de nuevo.', NOTIFICATION_TYPES.ERROR);
   }
 }

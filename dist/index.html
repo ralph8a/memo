@@ -2633,6 +2633,38 @@
 
   <footer id="footer" class="footer"></footer>
 
+  <!-- Particles Background for Loading Modal -->
+  <div class="bg-particles" id="particles"></div>
+
+  <!-- Loading Modal - Complete Version with Progress -->
+  <div class="loading-modal" id="loadingModal" role="dialog" aria-modal="true" aria-label="Cargando">
+    <div class="modal-card">
+      <div class="logo-and-info">
+        <svg class="shield-svg krause-shield" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" />
+          <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" />
+          <path class="shield-arc" d="M24 50 Q40 30 56 50" />
+          <line class="shield-line" x1="40" y1="50" x2="40" y2="68" />
+          <circle class="shield-center" cx="40" cy="40" r="6" />
+        </svg>
+
+        <div class="modal-info">
+          <h2 id="loading-title">Preparando tu experiencia</h2>
+          <div class="progress-percentage" id="percentage">0%</div>
+          <div class="status-text" id="status">Inicializando sistema</div>
+          <div class="progress-bar-container" aria-hidden="true">
+            <div id="progressBar" class="progress-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="did-you-know" id="didYouKnow">
+        <div class="did-you-know-title">💡 Sabías que...</div>
+        <div id="funFact">Cargando dato interesante...</div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Bind theme toggle to the header logo (.nav-brand .krause-shield).
     // Clicking the logo will invoke the global theme toggle if available,

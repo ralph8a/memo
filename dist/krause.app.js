@@ -435,7 +435,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Krause Insurance App - Main Stylesh
   display: none !important;
 }
 
-/* Loading modal overlay */
+/* Loading modal overlay - Complete version with progress and animations */
 body.loading-locked {
   overflow: hidden;
 }
@@ -443,16 +443,16 @@ body.loading-locked {
 .loading-modal {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 30% 30%, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.55));
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  background: rgba(6, 4, 6, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease;
 }
 
 .loading-modal.visible {
@@ -460,66 +460,191 @@ body.loading-locked {
   pointer-events: auto;
 }
 
-.loading-card {
-  background: var(--theme-surface-bg, rgba(255, 255, 255, 0.92));
-  color: var(--theme-text-primary, #1a1a1a);
-  border: 1px solid var(--theme-surface-border, rgba(0, 0, 0, 0.08));
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  padding: 26px 28px;
-  min-width: clamp(280px, 40vw, 420px);
+.modal-card {
+  width: min(820px, calc(100% - 48px));
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 30px 80px rgba(10, 10, 10, 0.12), 0 10px 30px rgba(10, 10, 10, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: relative;
+}
+
+.logo-and-info {
   display: flex;
-  align-items: center;
   gap: 18px;
-  text-align: left;
+  align-items: center;
 }
 
-.loading-spinner {
-  width: 64px;
-  height: 64px;
+.shield-svg {
+  width: 96px;
+  height: 96px;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.08));
+}
+
+/* Particles floating in background */
+.bg-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1100;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  border: 4px solid var(--theme-surface-border, rgba(0, 0, 0, 0.12));
-  border-top-color: var(--theme-primary-color, #631832);
-  border-right-color: var(--theme-contrast-strong, rgba(255, 196, 214, 0.9));
-  animation: loading-spin 1s linear infinite;
-  flex-shrink: 0;
-  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.6), transparent 65%);
+  background: rgba(139, 35, 72, 0.12);
+  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);
+  transform: translateY(0);
+  will-change: transform, opacity;
+  opacity: 0.9;
 }
 
-.loading-text-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+@keyframes floatUp {
+  0% {
+    transform: translateY(20px) scale(0.9);
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: translateY(-24px) scale(1.05);
+    opacity: 0.45;
+  }
 }
 
-.loading-title {
-  margin: 0;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--theme-text-primary, #1a1a1a);
-  letter-spacing: 0.4px;
+/* Official logo parts stroke draw for modal */
+.shield-circle,
+.shield-diamond,
+.shield-arc,
+.shield-line {
+  fill: none;
+  stroke: #8b2348;
+  stroke-width: 3;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  filter: drop-shadow(0 6px 18px rgba(139, 35, 72, 0.12));
 }
 
-.loading-message {
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--theme-contrast-strong, var(--brand-maroon));
+.shield-circle.active,
+.shield-diamond.active,
+.shield-arc.active,
+.shield-line.active {
+  animation: drawStroke 0.9s ease-out forwards;
+  opacity: 1;
 }
 
-.loading-detail {
-  margin: 0;
-  font-size: 0.92rem;
-  color: var(--theme-text-secondary, rgba(26, 26, 26, 0.7));
+.shield-center {
+  fill: #8b2348;
+  opacity: 0;
+  transform-origin: 50% 50%;
 }
 
-@keyframes loading-spin {
+.shield-center.active {
+  animation: centerPop 0.6s ease-out forwards;
+}
+
+@keyframes drawStroke {
   from {
-    transform: rotate(0deg);
+    stroke-dashoffset: 220;
+    opacity: 0.2;
   }
 
   to {
-    transform: rotate(360deg);
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes centerPop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-info h2 {
+  font-family: 'Cinzel', serif;
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+  color: #111;
+}
+
+.progress-percentage {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  margin-top: 6px;
+  color: #111;
+}
+
+.status-text {
+  margin-top: 6px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  box-shadow: inset 0 -2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #8b2348 0%, #9b59b6 50%, #8b2348 100%);
+  transition: width 120ms linear;
+  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.12);
+}
+
+.did-you-know {
+  margin-top: 14px;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 10px;
+  color: #111;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.did-you-know-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 700px) {
+  .logo-and-info {
+    flex-direction: row;
+  }
+
+  .shield-svg {
+    width: 72px;
+    height: 72px;
   }
 }
 
@@ -1390,7 +1515,7 @@ body[data-page="home"] .main-content {
    
    This app.css file now contains ONLY base/global styles.
    See index.html for CSS module links.
-*/`, "",{"version":3,"sources":["webpack://./styles/app.css"],"names":[],"mappings":"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","sourcesContent":["/* Krause Insurance App - Main Stylesheet */\r\n/* CSS now loaded via webpack imports in EntryPointMainApp.js */\r\n/* All imports removed - webpack handles module order */\r\n\r\n/* Global design tokens */\r\n:root {\r\n  --text-dark: #1a1a1a;\r\n  --text-light: #666;\r\n  --white: #ffffff;\r\n  --gray-100: #f5f5f5;\r\n  --gray-200: #e0e0e0;\r\n  --gray-300: #ccc;\r\n  --success: #28a745;\r\n  --warning: #ffc107;\r\n  --danger: #dc3545;\r\n  --info: #17a2b8;\r\n  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);\r\n  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);\r\n  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);\r\n  --gradient-start: #631832;\r\n  --gradient-mid: #521a38;\r\n  --gradient-end: #401a59;\r\n  /* Layout measurements to keep padding off the global background */\r\n  --nav-height: 90px;\r\n  /* header */\r\n  --subnav-height: 56px;\r\n  /* secondary navigation */\r\n  --footer-height: 56px;\r\n  /* reserve space so content doesn't go under the collapsed footer */\r\n  /* Acrylic/Frosted Glass Effects - Default Theme */\r\n  --acrylic-blur: 20px;\r\n  --acrylic-blur-strong: 30px;\r\n  --acrylic-blur-subtle: 15px;\r\n  --acrylic-saturate: 170%;\r\n  --acrylic-saturate-strong: 180%;\r\n  --acrylic-saturate-subtle: 150%;\r\n  --acrylic-bg-light: rgba(255, 255, 255, 0.08);\r\n  --acrylic-bg-medium: rgba(255, 255, 255, 0.12);\r\n  --acrylic-bg-dark: rgba(99, 24, 50, 0.15);\r\n  --acrylic-border-light: rgba(255, 255, 255, 0.15);\r\n\r\n  /* Footer glass tokens (theme-overridable) */\r\n  /* Slightly stronger by default; themes can override for more/less glass. */\r\n  --footer-acrylic-bg: rgba(99, 24, 50, 0.7);\r\n  --footer-acrylic-blur: 32px;\r\n  --footer-acrylic-saturate: 200%;\r\n\r\n  /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */\r\n  --theme-surface-bg: rgba(255, 255, 255, 0.98);\r\n  --theme-surface-bg-solid: #ffffff;\r\n  --theme-surface-border: rgba(99, 24, 50, 0.14);\r\n  --theme-surface-border-strong: rgba(99, 24, 50, 0.20);\r\n\r\n  /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */\r\n  --theme-accent-border-subtle: rgba(64, 26, 89, 0.20);\r\n  --theme-accent-border: rgba(64, 26, 89, 0.30);\r\n  --theme-accent-bg-soft: rgba(64, 26, 89, 0.18);\r\n  --theme-accent-shadow-soft: rgba(64, 26, 89, 0.10);\r\n  --theme-accent-shadow-strong: rgba(64, 26, 89, 0.30);\r\n  --theme-accent-color-hover: #4d216a;\r\n\r\n  /* RGBA helpers for acrylic gradients (avoid hard-coded brand rgba() in components) */\r\n  --theme-primary-rgba-70: rgba(99, 24, 50, 0.70);\r\n  --theme-secondary-rgba-70: rgba(91, 36, 43, 0.70);\r\n  --theme-primary-rgba-95: rgba(99, 24, 50, 0.95);\r\n  --theme-secondary-rgba-95: rgba(91, 36, 43, 0.95);\r\n\r\n  /* Navbar link pill background (active/hover) */\r\n  --theme-navlink-active-bg: rgba(99, 24, 50, 0.08);\r\n  /* Theme accent colors for components */\r\n  --theme-primary-color: var(--brand-maroon);\r\n  --theme-secondary-color: var(--wine);\r\n  --theme-accent-color: var(--brand-purple);\r\n  --theme-text-primary: var(--text-dark);\r\n  --theme-text-secondary: var(--text-light);\r\n  --theme-shadow: var(--shadow);\r\n\r\n  /* Dashboard layout tokens (shared) */\r\n  --dashboard-padding-top-offset: 28px;\r\n  --dashboard-padding-x: 16px;\r\n  --dashboard-padding-bottom: 28px;\r\n  --dashboard-grid-gap: 16px;\r\n  --dashboard-main-gap: 16px;\r\n  --dashboard-main-col-min: 240px;\r\n  --dashboard-stat-min: 240px;\r\n  --dashboard-stat-gap: 16px;\r\n  --dashboard-stat-padding: 16px 18px;\r\n  --dashboard-stat-radius: 16px;\r\n  --dashboard-card-padding: 22px 22px 20px;\r\n  --dashboard-card-header-margin: 12px;\r\n  --dashboard-card-header-padding: 10px;\r\n  --dashboard-quick-actions-gap: 8px;\r\n  --dashboard-container-max: 1880px;\r\n  --dashboard-container-max-client: 1800px;\r\n  --dashboard-container-max-agent: 1880px;\r\n  --dashboard-container-max-admin: 1920px;\r\n\r\n  /* Highlights / glows (avoid hard-coded pink/gold values in components) */\r\n  --theme-highlight-soft: #ffc4d6;\r\n  --theme-highlight-light: var(--baby-pink);\r\n  --theme-highlight-strong: #ffd700;\r\n  --theme-highlight-strong-border: rgba(255, 215, 0, 0.10);\r\n  --theme-highlight-glow: rgba(254, 245, 249, 0.6);\r\n  --theme-highlight-glow-subtle: rgba(254, 245, 249, 0.18);\r\n  --theme-highlight-border: rgba(254, 245, 249, 0.36);\r\n  --theme-primary-shadow-color: rgba(99, 24, 50, 0.35);\r\n\r\n  /* High-contrast ink (default/light uses brand ink; dark themes override) */\r\n  --theme-contrast-strong: var(--brand-maroon);\r\n\r\n  /* Text-on-color tokens (avoid hard-coded #fff / black in components) */\r\n  --theme-on-success: var(--white);\r\n  --theme-on-danger: var(--white);\r\n  /* Warning background is bright (yellow), so text should stay dark even on dark themes */\r\n  --theme-on-warning: rgba(0, 0, 0, 0.85);\r\n\r\n  /* Progress bar tokens */\r\n  --theme-progress-edge: rgba(254, 245, 249, 0.8);\r\n  --theme-progress-center: rgba(255, 255, 255, 0.95);\r\n  --theme-progress-glow-strong: rgba(254, 245, 249, 0.7);\r\n  --theme-progress-glow-soft: rgba(254, 245, 249, 0.4);\r\n\r\n  /* Particles overlay tuning */\r\n  --particles-opacity: 0.55;\r\n  --particles-opacity-home: 0.70;\r\n  /* `screen` can become effectively invisible over light UI surfaces.\r\n     Default theme uses `normal` for consistent visibility; dark-forest overrides this. */\r\n  --particles-blend-mode: normal;\r\n}\r\n\r\n/* Hidden class for page sections (show/hide navigation) */\r\n.page-section.hidden {\r\n  display: none !important;\r\n}\r\n\r\n/* Loading modal overlay */\r\nbody.loading-locked {\r\n  overflow: hidden;\r\n}\r\n\r\n.loading-modal {\r\n  position: fixed;\r\n  inset: 0;\r\n  background: radial-gradient(circle at 30% 30%, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.55));\r\n  backdrop-filter: blur(16px) saturate(140%);\r\n  -webkit-backdrop-filter: blur(16px) saturate(140%);\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  z-index: 9999;\r\n  opacity: 0;\r\n  pointer-events: none;\r\n  transition: opacity 0.2s ease;\r\n}\r\n\r\n.loading-modal.visible {\r\n  opacity: 1;\r\n  pointer-events: auto;\r\n}\r\n\r\n.loading-card {\r\n  background: var(--theme-surface-bg, rgba(255, 255, 255, 0.92));\r\n  color: var(--theme-text-primary, #1a1a1a);\r\n  border: 1px solid var(--theme-surface-border, rgba(0, 0, 0, 0.08));\r\n  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.06);\r\n  border-radius: 16px;\r\n  padding: 26px 28px;\r\n  min-width: clamp(280px, 40vw, 420px);\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 18px;\r\n  text-align: left;\r\n}\r\n\r\n.loading-spinner {\r\n  width: 64px;\r\n  height: 64px;\r\n  border-radius: 50%;\r\n  border: 4px solid var(--theme-surface-border, rgba(0, 0, 0, 0.12));\r\n  border-top-color: var(--theme-primary-color, #631832);\r\n  border-right-color: var(--theme-contrast-strong, rgba(255, 196, 214, 0.9));\r\n  animation: loading-spin 1s linear infinite;\r\n  flex-shrink: 0;\r\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.6), transparent 65%);\r\n}\r\n\r\n.loading-text-group {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 4px;\r\n}\r\n\r\n.loading-title {\r\n  margin: 0;\r\n  font-weight: 700;\r\n  font-size: 0.95rem;\r\n  color: var(--theme-text-primary, #1a1a1a);\r\n  letter-spacing: 0.4px;\r\n}\r\n\r\n.loading-message {\r\n  margin: 0;\r\n  font-size: 1.05rem;\r\n  font-weight: 700;\r\n  color: var(--theme-contrast-strong, var(--brand-maroon));\r\n}\r\n\r\n.loading-detail {\r\n  margin: 0;\r\n  font-size: 0.92rem;\r\n  color: var(--theme-text-secondary, rgba(26, 26, 26, 0.7));\r\n}\r\n\r\n@keyframes loading-spin {\r\n  from {\r\n    transform: rotate(0deg);\r\n  }\r\n\r\n  to {\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n\r\n/* Footer (restored) */\r\n.footer {\r\n  background: var(--footer-acrylic-bg, var(--acrylic-bg-dark));\r\n  backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\r\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\r\n  color: white;\r\n  position: fixed;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 9996;\r\n  transition: transform 0.3s ease;\r\n  border-top: 1px solid rgba(255, 255, 255, 0.15);\r\n  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);\r\n  pointer-events: auto;\r\n}\r\n\r\n/* Ensure home page also renders the acrylic footer (some browsers drop backdrop-filter without a scoped reassertion) */\r\nbody[data-page=\"home\"] .footer {\r\n  background: var(--footer-acrylic-bg);\r\n  backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\r\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\r\n}\r\n\r\n.footer.collapsed .footer-container {\r\n  display: none;\r\n}\r\n\r\n.footer-toggle {\r\n  background: transparent;\r\n  border: none;\r\n  border-bottom: 1px solid rgba(255, 255, 255, 0.1);\r\n  color: white;\r\n  padding: 12px 24px;\r\n  width: 100%;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  font-weight: 600;\r\n  font-size: clamp(13px, 2vw, 15px);\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  gap: 8px;\r\n  transition: all 0.3s ease;\r\n}\r\n\r\n.footer-toggle:hover {\r\n  background: rgba(255, 255, 255, 0.15);\r\n  border-bottom-color: rgba(255, 255, 255, 0.25);\r\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),\r\n    0 2px 8px rgba(255, 255, 255, 0.1);\r\n}\r\n\r\n.footer-toggle svg {\r\n  transition: transform 0.3s ease;\r\n}\r\n\r\n.footer.collapsed .footer-toggle svg {\r\n  transform: rotate(180deg);\r\n}\r\n\r\n.footer-container {\r\n  max-width: 1200px;\r\n  margin: 0 auto;\r\n  padding: clamp(12px, 2vh, 18px) clamp(16px, 3vw, 24px);\r\n}\r\n\r\n.footer-grid {\r\n  display: grid;\r\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\r\n  gap: clamp(20px, 3vw, 32px);\r\n  margin-bottom: clamp(12px, 2vh, 16px);\r\n  padding-bottom: clamp(12px, 2vh, 16px);\r\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\r\n}\r\n\r\n.footer-section h4 {\r\n  font-family: 'Cinzel', serif;\r\n  font-size: clamp(0.95rem, 1.8vw, 1.1rem);\r\n  margin-bottom: clamp(10px, 1.5vh, 14px);\r\n  color: rgba(255, 255, 255, 0.95);\r\n}\r\n\r\n.footer-section ul {\r\n  list-style: none;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.footer-section li {\r\n  margin-bottom: clamp(6px, 1vh, 9px);\r\n}\r\n\r\n.footer-section a {\r\n  color: rgba(255, 255, 255, 0.85);\r\n  text-decoration: none;\r\n  transition: color 0.3s ease;\r\n  font-size: clamp(0.8rem, 1.4vw, 0.9rem);\r\n}\r\n\r\n.footer-section a:hover {\r\n  color: white;\r\n}\r\n\r\n.footer-brand {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: clamp(8px, 1.2vh, 12px);\r\n  align-items: center;\r\n  /* center logo and text horizontally */\r\n  text-align: center;\r\n}\r\n\r\n.logo-shield-footer {\r\n  color: white;\r\n  margin-bottom: clamp(6px, 1vh, 10px);\r\n  width: clamp(52px, 7vw, 64px);\r\n  height: clamp(52px, 7vw, 64px);\r\n  display: block;\r\n  flex-shrink: 0;\r\n}\r\n\r\n/* Page visibility control */\r\n/* Page visibility control */\r\n#mainContent>[data-page] {\r\n  width: 100%;\r\n}\r\n\r\n/* Hide by default using utility class */\r\n.d-none {\r\n  display: none !important;\r\n}\r\n\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\nhtml {\r\n  margin: 0 !important;\r\n  padding: 0 !important;\r\n  height: 100% !important;\r\n  overflow: hidden !important;\r\n  width: 100% !important;\r\n}\r\n\r\nbody {\r\n  margin: 0 !important;\r\n  padding: 0 !important;\r\n  font-family: 'Aptos Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\r\n  line-height: 1.65;\r\n  color: var(--text-dark);\r\n  background: linear-gradient(135deg,\r\n      var(--gradient-start) 0%,\r\n      var(--gradient-mid) 40%,\r\n      var(--gradient-end) 100%);\r\n  background-size: 300% 300%;\r\n  background-attachment: fixed !important;\r\n  height: 100vh !important;\r\n  overflow: hidden !important;\r\n  width: 100vw !important;\r\n  position: fixed !important;\r\n  top: 0 !important;\r\n  left: 0 !important;\r\n  animation: gradientShift 20s ease infinite;\r\n  transition: background-position 1.5s ease-in-out;\r\n}\r\n\r\n/* Slightly larger body copy for descriptive sections */\r\np,\r\n.section-description,\r\n.hero-description,\r\n.feature-box p,\r\n.service-card p,\r\n.about-section p,\r\n.contact-info p,\r\n.quote-lead,\r\n.quote-footnote,\r\n.quote-benefits,\r\n.stat-box p,\r\n.agent-card p {\r\n  font-size: 1.04rem;\r\n  line-height: 1.65;\r\n}\r\n\r\n@keyframes gradientShift {\r\n  0% {\r\n    background-position: 0% 50%;\r\n  }\r\n\r\n  25% {\r\n    background-position: 50% 25%;\r\n  }\r\n\r\n  50% {\r\n    background-position: 100% 50%;\r\n  }\r\n\r\n  75% {\r\n    background-position: 50% 75%;\r\n  }\r\n\r\n  100% {\r\n    background-position: 0% 50%;\r\n  }\r\n}\r\n\r\nbody.section-hero {\r\n  background-position: 0% 30%;\r\n}\r\n\r\nbody.section-parade {\r\n  background-position: 50% 50%;\r\n}\r\n\r\nbody.section-cta {\r\n  background-position: 100% 70%;\r\n}\r\n\r\n/* Particles */\r\n#particles-canvas {\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  pointer-events: none;\r\n  /* Above page backgrounds (dashboards use solid surfaces) but below navbar/subnav */\r\n  z-index: 50;\r\n  opacity: var(--particles-opacity);\r\n  mix-blend-mode: var(--particles-blend-mode);\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\nbody[data-page=\"home\"] #particles-canvas {\r\n  opacity: var(--particles-opacity-home);\r\n}\r\n\r\n/* Hide particles on fullpage sections (route-aware).\r\n   NOTE: We can't use :has(.services-fullpage) here because templates are injected\r\n   into the DOM (hidden) and would permanently match, hiding particles everywhere. */\r\nbody[data-page=\"services\"] #particles-canvas,\r\nbody[data-page=\"about\"] #particles-canvas,\r\nbody[data-page=\"contact\"] #particles-canvas,\r\n/* Dashboards are work surfaces: keep them distraction-free */\r\nbody[data-page=\"client-dashboard\"] #particles-canvas,\r\nbody[data-page=\"agent-dashboard\"] #particles-canvas,\r\nbody[data-page=\"admin-dashboard\"] #particles-canvas,\r\n/* Auth screens also read cleaner without animated canvas behind */\r\nbody[data-page=\"login\"] #particles-canvas,\r\nbody[data-page=\"agent-login\"] #particles-canvas {\r\n  display: none;\r\n  pointer-events: none;\r\n}\r\n\r\n/* Sub Navigation */\r\n.sub-navigation {\r\n  position: fixed;\r\n  top: var(--nav-height);\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  z-index: 9998;\r\n  background: var(--acrylic-bg-dark);\r\n  backdrop-filter: blur(25px) saturate(180%);\r\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\r\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\r\n  padding: 0;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  gap: 0;\r\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\r\n  height: var(--subnav-height);\r\n  transition: all 0.3s ease;\r\n}\r\n\r\n.sub-nav-btn {\r\n  position: relative;\r\n  padding: 18px 32px;\r\n  background: transparent;\r\n  border: none;\r\n  border-radius: 0 !important;\r\n  font-size: 13px;\r\n  font-weight: 600;\r\n  color: rgba(255, 255, 255, 0.85);\r\n  cursor: pointer;\r\n  will-change: transform, opacity;\r\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\r\n  font-family: inherit;\r\n  text-transform: uppercase;\r\n  letter-spacing: 1.5px;\r\n  overflow: hidden;\r\n  height: 56px;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.sub-nav-btn::before {\r\n  content: '';\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  height: 3px;\r\n  background: linear-gradient(90deg, transparent, var(--baby-pink), transparent);\r\n  opacity: 0;\r\n  transform: scaleX(0);\r\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\r\n  pointer-events: none;\r\n}\r\n\r\n.sub-nav-btn:hover {\r\n  background: rgba(255, 255, 255, 0.1);\r\n  backdrop-filter: blur(20px) saturate(160%);\r\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\r\n  color: white;\r\n}\r\n\r\n.sub-nav-btn:hover::before {\r\n  opacity: 0.5;\r\n  transform: scaleX(1);\r\n}\r\n\r\n.sub-nav-btn.active {\r\n  background: rgba(255, 255, 255, 0.15);\r\n  backdrop-filter: blur(25px) saturate(170%);\r\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\r\n  color: white;\r\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\r\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\r\n}\r\n\r\n.sub-nav-btn.active::before {\r\n  opacity: 1;\r\n  transform: scaleX(1);\r\n  box-shadow: 0 0 15px rgba(254, 245, 249, 0.6);\r\n}\r\n\r\n.sub-nav-btn:not(:last-child)::after {\r\n  content: '|';\r\n  position: absolute;\r\n  right: 0;\r\n  top: 50%;\r\n  transform: translateY(-50%);\r\n  color: rgba(255, 255, 255, 0.25);\r\n  font-weight: 300;\r\n  font-size: 18px;\r\n  pointer-events: none;\r\n  width: 1px;\r\n  height: 100%;\r\n}\r\n\r\n.sub-navigation.show {\r\n  animation: subNavSlideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;\r\n}\r\n\r\n@keyframes subNavSlideDown {\r\n  from {\r\n    opacity: 0;\r\n    transform: translateY(-10px);\r\n  }\r\n\r\n  to {\r\n    opacity: 1;\r\n    transform: translateY(0);\r\n  }\r\n}\r\n\r\n/* Navbar */\r\n.navbar {\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  height: var(--nav-height);\r\n  z-index: 9999;\r\n  background: rgba(255, 255, 255, 0.95);\r\n  backdrop-filter: blur(20px);\r\n  border-bottom: 1px solid rgba(0, 0, 0, 0.06);\r\n  padding: 0;\r\n  margin: 0;\r\n  transition: all 0.3s ease;\r\n  box-shadow: var(--shadow-sm);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.navbar.scrolled {\r\n  box-shadow: var(--shadow);\r\n}\r\n\r\n.nav-container {\r\n  max-width: 100%;\r\n  width: 100%;\r\n  height: 100%;\r\n  margin: 0 auto;\r\n  padding: 0 48px;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.nav-brand {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 12px;\r\n  cursor: pointer;\r\n  transition: transform 0.3s ease;\r\n}\r\n\r\n.nav-brand:hover {\r\n  transform: translateY(-2px);\r\n}\r\n\r\n.logo-shield {\r\n  width: 60px;\r\n  height: 60px;\r\n  max-width: 80px;\r\n  max-height: 80px;\r\n  color: var(--brand-maroon);\r\n  filter: drop-shadow(0 2px 4px var(--theme-primary-shadow-color));\r\n}\r\n\r\n/* Shield Animation Styles */\r\n.krause-shield {\r\n  display: block;\r\n}\r\n\r\n.shield-circle {\r\n  stroke-dasharray: 400;\r\n  stroke-dashoffset: 400;\r\n  animation: drawStroke 1.5s ease-out forwards;\r\n  animation-delay: 0.4s;\r\n}\r\n\r\n.shield-diamond {\r\n  stroke-dasharray: 400;\r\n  stroke-dashoffset: 400;\r\n  animation: drawStroke 1.5s ease-out forwards;\r\n  animation-delay: 0.8s;\r\n}\r\n\r\n.shield-arc {\r\n  stroke-dasharray: 400;\r\n  stroke-dashoffset: 400;\r\n  animation: drawStroke 1.5s ease-out forwards;\r\n  animation-delay: 1.2s;\r\n}\r\n\r\n.shield-line {\r\n  stroke-dasharray: 400;\r\n  stroke-dashoffset: 400;\r\n  animation: drawStroke 1.2s ease-out forwards;\r\n  animation-delay: 1.6s;\r\n}\r\n\r\n@keyframes drawStroke {\r\n  0% {\r\n    stroke-dashoffset: 400;\r\n  }\r\n\r\n  100% {\r\n    stroke-dashoffset: 0;\r\n  }\r\n}\r\n\r\n.krause-shield:hover .shield-circle,\r\n.krause-shield:hover .shield-diamond,\r\n.krause-shield:hover .shield-arc,\r\n.krause-shield:hover .shield-line {\r\n  animation: pulse 0.6s ease-in-out;\r\n}\r\n\r\n@keyframes pulse {\r\n\r\n  0%,\r\n  100% {\r\n    transform: scale(1);\r\n    opacity: 1;\r\n  }\r\n\r\n  50% {\r\n    transform: scale(1.05);\r\n    opacity: 0.8;\r\n  }\r\n}\r\n\r\n.brand-text {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 2px;\r\n}\r\n\r\n.brand-name {\r\n  font-family: 'Cinzel', serif;\r\n  font-size: 22px;\r\n  font-weight: 600;\r\n  color: var(--brand-maroon);\r\n  line-height: 1;\r\n}\r\n\r\n.brand-tagline {\r\n  font-size: 11px;\r\n  color: var(--text-light);\r\n  font-weight: 500;\r\n  letter-spacing: 0.5px;\r\n  text-transform: uppercase;\r\n}\r\n\r\n.mobile-menu-toggle {\r\n  display: none;\r\n  flex-direction: column;\r\n  gap: 5px;\r\n  background: none;\r\n  border: none;\r\n  cursor: pointer;\r\n  padding: 8px;\r\n}\r\n\r\n.mobile-menu-toggle span {\r\n  width: 25px;\r\n  height: 3px;\r\n  background: var(--brand-maroon);\r\n  border-radius: 2px;\r\n  transition: all 0.3s ease;\r\n}\r\n\r\n.nav-menu {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 12px;\r\n}\r\n\r\n.nav-link {\r\n  padding: 10px 20px;\r\n  color: var(--text-dark);\r\n  text-decoration: none;\r\n  font-weight: 500;\r\n  transition: all 0.3s ease;\r\n  border-radius: 8px;\r\n  font-size: 16px;\r\n}\r\n\r\n.nav-link:hover,\r\n.nav-link.active {\r\n  color: var(--brand-maroon);\r\n  background: var(--theme-navlink-active-bg);\r\n  backdrop-filter: blur(15px) saturate(150%);\r\n  -webkit-backdrop-filter: blur(15px) saturate(150%);\r\n}\r\n\r\n.nav-buttons {\r\n  display: flex;\r\n  gap: 12px;\r\n  margin-left: 20px;\r\n}\r\n\r\n/* Generic buttons (used in Home CTA + Auth forms) */\r\n.btn {\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  gap: 10px;\r\n  padding: 12px 18px;\r\n  border-radius: 12px;\r\n  border: 1px solid transparent;\r\n  font-family: inherit;\r\n  font-weight: 700;\r\n  font-size: 0.95rem;\r\n  line-height: 1;\r\n  cursor: pointer;\r\n  user-select: none;\r\n  text-decoration: none;\r\n  background: transparent;\r\n  color: inherit;\r\n  transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s ease,\r\n    border-color 0.25s ease, color 0.25s ease, filter 0.25s ease;\r\n}\r\n\r\n.btn:hover {\r\n  transform: translateY(-1px);\r\n}\r\n\r\n.btn:active {\r\n  transform: translateY(0);\r\n}\r\n\r\n.btn:disabled,\r\n.btn[disabled] {\r\n  opacity: 0.65;\r\n  cursor: not-allowed;\r\n  transform: none;\r\n}\r\n\r\n.btn:focus-visible {\r\n  outline: 2px solid var(--theme-highlight-light);\r\n  outline-offset: 2px;\r\n}\r\n\r\n.btn-lg {\r\n  padding: 14px 22px;\r\n  border-radius: 14px;\r\n  font-size: 1rem;\r\n}\r\n\r\n.btn-block {\r\n  width: 100%;\r\n}\r\n\r\n.btn-primary {\r\n  background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 70%);\r\n  color: var(--white);\r\n  border-color: rgba(255, 255, 255, 0.16);\r\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), 0 10px 24px var(--theme-primary-shadow-color);\r\n}\r\n\r\n.btn.is-loading,\r\n.btn[aria-busy=\"true\"] {\r\n  position: relative;\r\n  pointer-events: none;\r\n  color: var(--theme-contrast-strong, var(--brand-maroon));\r\n  border-color: var(--theme-contrast-glow, rgba(255, 255, 255, 0.25));\r\n  filter: brightness(1.02);\r\n}\r\n\r\n.btn.is-loading::after,\r\n.btn[aria-busy=\"true\"]::after {\r\n  content: '';\r\n  position: absolute;\r\n  inset: 6px;\r\n  border-radius: inherit;\r\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));\r\n  animation: loading-pulse 0.9s ease-in-out infinite;\r\n  mix-blend-mode: screen;\r\n}\r\n\r\n@keyframes loading-pulse {\r\n\r\n  0%,\r\n  100% {\r\n    opacity: 0.35;\r\n    transform: scale(0.98);\r\n  }\r\n\r\n  50% {\r\n    opacity: 0.75;\r\n    transform: scale(1.02);\r\n  }\r\n}\r\n\r\n.btn-primary:hover {\r\n  filter: brightness(1.05);\r\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26), 0 14px 34px var(--theme-primary-shadow-color);\r\n}\r\n\r\n.btn-secondary {\r\n  background: rgba(255, 255, 255, 0.14);\r\n  color: white;\r\n  border-color: rgba(255, 255, 255, 0.20);\r\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);\r\n}\r\n\r\n.btn-secondary:hover {\r\n  background: rgba(255, 255, 255, 0.18);\r\n  border-color: rgba(255, 255, 255, 0.26);\r\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);\r\n}\r\n\r\n.btn-outline {\r\n  background: transparent;\r\n  color: var(--theme-primary-color);\r\n  border-color: rgba(255, 255, 255, 0.35);\r\n}\r\n\r\n.btn-outline:hover {\r\n  background: rgba(255, 255, 255, 0.12);\r\n  color: var(--theme-secondary-color);\r\n}\r\n\r\n.btn-nav {\r\n  padding: 12px 24px;\r\n  border-radius: 8px;\r\n  font-weight: 600;\r\n  font-size: 15px;\r\n  cursor: pointer;\r\n  transition: all 0.3s ease;\r\n  border: none;\r\n  font-family: inherit;\r\n}\r\n\r\n.btn-login {\r\n  background: transparent;\r\n  color: var(--brand-maroon);\r\n  border: 2px solid var(--brand-maroon);\r\n}\r\n\r\n.btn-login:hover {\r\n  background: var(--brand-maroon);\r\n  color: white;\r\n}\r\n\r\n.btn-agent {\r\n  background: var(--brand-maroon);\r\n  color: white;\r\n  border: 2px solid var(--brand-maroon);\r\n}\r\n\r\n.btn-agent:hover {\r\n  background: var(--wine);\r\n  border-color: var(--wine);\r\n  transform: translateY(-2px);\r\n  box-shadow: 0 4px 12px var(--theme-primary-shadow-color);\r\n}\r\n\r\n/* Main Content */\r\n.main-content {\r\n  position: fixed;\r\n  top: var(--nav-height);\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  z-index: 10;\r\n  height: auto;\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  overflow-y: auto;\r\n  overflow-x: hidden;\r\n}\r\n\r\nbody:not(.no-footer) .main-content {\r\n  padding-bottom: var(--footer-height);\r\n}\r\n\r\nbody.no-footer .main-content {\r\n  padding-bottom: 0;\r\n}\r\n\r\nbody.no-footer .footer {\r\n  display: none !important;\r\n}\r\n\r\n/* Home has a fixed sub-navigation that overlays the scroll container.\r\n   Add top padding only on home so sections (esp. Cotiza logo/title) are not cut. */\r\nbody[data-page=\"home\"] .main-content {\r\n  padding-top: var(--subnav-height);\r\n}\r\n\r\n\r\n\r\n/* Sub Navigation */\r\n.sub-navigation {\r\n  position: fixed;\r\n  top: var(--nav-height);\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  z-index: 9998;\r\n  background: var(--acrylic-bg-dark);\r\n  backdrop-filter: blur(25px) saturate(180%);\r\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\r\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\r\n  padding: 0;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  gap: 0;\r\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\r\n  height: var(--subnav-height);\r\n  transition: all 0.3s ease;\r\n}\r\n\r\n.sub-nav-btn {\r\n  position: relative;\r\n  padding: 18px 32px;\r\n  background: transparent;\r\n  border: none;\r\n  border-radius: 0 !important;\r\n  font-size: 13px;\r\n  font-weight: 600;\r\n  color: rgba(255, 255, 255, 0.85);\r\n  cursor: pointer;\r\n  will-change: transform, opacity;\r\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\r\n  font-family: inherit;\r\n  text-transform: uppercase;\r\n  letter-spacing: 1.5px;\r\n  overflow: hidden;\r\n  height: 56px;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.sub-nav-btn::before {\r\n  content: '';\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  height: 3px;\r\n  background: linear-gradient(90deg, transparent, var(--theme-highlight-light), transparent);\r\n  opacity: 0;\r\n  transform: scaleX(0);\r\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\r\n  pointer-events: none;\r\n}\r\n\r\n.sub-nav-btn:hover {\r\n  background: rgba(255, 255, 255, 0.1);\r\n  backdrop-filter: blur(20px) saturate(160%);\r\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\r\n  color: white;\r\n}\r\n\r\n.sub-nav-btn:hover::before {\r\n  opacity: 0.5;\r\n  transform: scaleX(1);\r\n}\r\n\r\n.sub-nav-btn.active {\r\n  background: rgba(255, 255, 255, 0.15);\r\n  backdrop-filter: blur(25px) saturate(170%);\r\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\r\n  color: white;\r\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\r\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\r\n}\r\n\r\n.sub-nav-btn.active::before {\r\n  opacity: 1;\r\n  transform: scaleX(1);\r\n  box-shadow: 0 0 15px var(--theme-highlight-glow);\r\n}\r\n\r\n/* Button separators */\r\n.sub-nav-btn:not(:last-child)::after {\r\n  content: '|';\r\n  position: absolute;\r\n  right: 0;\r\n  top: 50%;\r\n  transform: translateY(-50%);\r\n  color: rgba(255, 255, 255, 0.25);\r\n  font-weight: 300;\r\n  font-size: 18px;\r\n  pointer-events: none;\r\n  width: 1px;\r\n  height: 100%;\r\n}\r\n\r\n/* \r\n   PAGE-SPECIFIC STYLES HAVE BEEN EXTRACTED TO SEPARATE FILES:\r\n   - styles/pages/home.css: Home page sections (hero, features, cta, agents)\r\n   - styles/pages/services.css: Services grid and cards\r\n   - styles/pages/about.css: About content and team\r\n   - styles/pages/contact.css: Contact form and info\r\n   - styles/auth.css: Auth login forms\r\n   - styles/dashboards.css: Dashboard layouts\r\n   \r\n   This app.css file now contains ONLY base/global styles.\r\n   See index.html for CSS module links.\r\n*/"],"sourceRoot":""}]);
+*/`, "",{"version":3,"sources":["webpack://./styles/app.css"],"names":[],"mappings":"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","sourcesContent":["/* Krause Insurance App - Main Stylesheet */\r\n/* CSS now loaded via webpack imports in EntryPointMainApp.js */\r\n/* All imports removed - webpack handles module order */\r\n\r\n/* Global design tokens */\r\n:root {\r\n  --text-dark: #1a1a1a;\r\n  --text-light: #666;\r\n  --white: #ffffff;\r\n  --gray-100: #f5f5f5;\r\n  --gray-200: #e0e0e0;\r\n  --gray-300: #ccc;\r\n  --success: #28a745;\r\n  --warning: #ffc107;\r\n  --danger: #dc3545;\r\n  --info: #17a2b8;\r\n  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);\r\n  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);\r\n  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);\r\n  --gradient-start: #631832;\r\n  --gradient-mid: #521a38;\r\n  --gradient-end: #401a59;\r\n  /* Layout measurements to keep padding off the global background */\r\n  --nav-height: 90px;\r\n  /* header */\r\n  --subnav-height: 56px;\r\n  /* secondary navigation */\r\n  --footer-height: 56px;\r\n  /* reserve space so content doesn't go under the collapsed footer */\r\n  /* Acrylic/Frosted Glass Effects - Default Theme */\r\n  --acrylic-blur: 20px;\r\n  --acrylic-blur-strong: 30px;\r\n  --acrylic-blur-subtle: 15px;\r\n  --acrylic-saturate: 170%;\r\n  --acrylic-saturate-strong: 180%;\r\n  --acrylic-saturate-subtle: 150%;\r\n  --acrylic-bg-light: rgba(255, 255, 255, 0.08);\r\n  --acrylic-bg-medium: rgba(255, 255, 255, 0.12);\r\n  --acrylic-bg-dark: rgba(99, 24, 50, 0.15);\r\n  --acrylic-border-light: rgba(255, 255, 255, 0.15);\r\n\r\n  /* Footer glass tokens (theme-overridable) */\r\n  /* Slightly stronger by default; themes can override for more/less glass. */\r\n  --footer-acrylic-bg: rgba(99, 24, 50, 0.7);\r\n  --footer-acrylic-blur: 32px;\r\n  --footer-acrylic-saturate: 200%;\r\n\r\n  /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */\r\n  --theme-surface-bg: rgba(255, 255, 255, 0.98);\r\n  --theme-surface-bg-solid: #ffffff;\r\n  --theme-surface-border: rgba(99, 24, 50, 0.14);\r\n  --theme-surface-border-strong: rgba(99, 24, 50, 0.20);\r\n\r\n  /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */\r\n  --theme-accent-border-subtle: rgba(64, 26, 89, 0.20);\r\n  --theme-accent-border: rgba(64, 26, 89, 0.30);\r\n  --theme-accent-bg-soft: rgba(64, 26, 89, 0.18);\r\n  --theme-accent-shadow-soft: rgba(64, 26, 89, 0.10);\r\n  --theme-accent-shadow-strong: rgba(64, 26, 89, 0.30);\r\n  --theme-accent-color-hover: #4d216a;\r\n\r\n  /* RGBA helpers for acrylic gradients (avoid hard-coded brand rgba() in components) */\r\n  --theme-primary-rgba-70: rgba(99, 24, 50, 0.70);\r\n  --theme-secondary-rgba-70: rgba(91, 36, 43, 0.70);\r\n  --theme-primary-rgba-95: rgba(99, 24, 50, 0.95);\r\n  --theme-secondary-rgba-95: rgba(91, 36, 43, 0.95);\r\n\r\n  /* Navbar link pill background (active/hover) */\r\n  --theme-navlink-active-bg: rgba(99, 24, 50, 0.08);\r\n  /* Theme accent colors for components */\r\n  --theme-primary-color: var(--brand-maroon);\r\n  --theme-secondary-color: var(--wine);\r\n  --theme-accent-color: var(--brand-purple);\r\n  --theme-text-primary: var(--text-dark);\r\n  --theme-text-secondary: var(--text-light);\r\n  --theme-shadow: var(--shadow);\r\n\r\n  /* Dashboard layout tokens (shared) */\r\n  --dashboard-padding-top-offset: 28px;\r\n  --dashboard-padding-x: 16px;\r\n  --dashboard-padding-bottom: 28px;\r\n  --dashboard-grid-gap: 16px;\r\n  --dashboard-main-gap: 16px;\r\n  --dashboard-main-col-min: 240px;\r\n  --dashboard-stat-min: 240px;\r\n  --dashboard-stat-gap: 16px;\r\n  --dashboard-stat-padding: 16px 18px;\r\n  --dashboard-stat-radius: 16px;\r\n  --dashboard-card-padding: 22px 22px 20px;\r\n  --dashboard-card-header-margin: 12px;\r\n  --dashboard-card-header-padding: 10px;\r\n  --dashboard-quick-actions-gap: 8px;\r\n  --dashboard-container-max: 1880px;\r\n  --dashboard-container-max-client: 1800px;\r\n  --dashboard-container-max-agent: 1880px;\r\n  --dashboard-container-max-admin: 1920px;\r\n\r\n  /* Highlights / glows (avoid hard-coded pink/gold values in components) */\r\n  --theme-highlight-soft: #ffc4d6;\r\n  --theme-highlight-light: var(--baby-pink);\r\n  --theme-highlight-strong: #ffd700;\r\n  --theme-highlight-strong-border: rgba(255, 215, 0, 0.10);\r\n  --theme-highlight-glow: rgba(254, 245, 249, 0.6);\r\n  --theme-highlight-glow-subtle: rgba(254, 245, 249, 0.18);\r\n  --theme-highlight-border: rgba(254, 245, 249, 0.36);\r\n  --theme-primary-shadow-color: rgba(99, 24, 50, 0.35);\r\n\r\n  /* High-contrast ink (default/light uses brand ink; dark themes override) */\r\n  --theme-contrast-strong: var(--brand-maroon);\r\n\r\n  /* Text-on-color tokens (avoid hard-coded #fff / black in components) */\r\n  --theme-on-success: var(--white);\r\n  --theme-on-danger: var(--white);\r\n  /* Warning background is bright (yellow), so text should stay dark even on dark themes */\r\n  --theme-on-warning: rgba(0, 0, 0, 0.85);\r\n\r\n  /* Progress bar tokens */\r\n  --theme-progress-edge: rgba(254, 245, 249, 0.8);\r\n  --theme-progress-center: rgba(255, 255, 255, 0.95);\r\n  --theme-progress-glow-strong: rgba(254, 245, 249, 0.7);\r\n  --theme-progress-glow-soft: rgba(254, 245, 249, 0.4);\r\n\r\n  /* Particles overlay tuning */\r\n  --particles-opacity: 0.55;\r\n  --particles-opacity-home: 0.70;\r\n  /* `screen` can become effectively invisible over light UI surfaces.\r\n     Default theme uses `normal` for consistent visibility; dark-forest overrides this. */\r\n  --particles-blend-mode: normal;\r\n}\r\n\r\n/* Hidden class for page sections (show/hide navigation) */\r\n.page-section.hidden {\r\n  display: none !important;\r\n}\r\n\r\n/* Loading modal overlay - Complete version with progress and animations */\r\nbody.loading-locked {\r\n  overflow: hidden;\r\n}\r\n\r\n.loading-modal {\r\n  position: fixed;\r\n  inset: 0;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  z-index: 9999;\r\n  background: rgba(6, 4, 6, 0.45);\r\n  backdrop-filter: blur(6px);\r\n  -webkit-backdrop-filter: blur(6px);\r\n  opacity: 0;\r\n  pointer-events: none;\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.loading-modal.visible {\r\n  opacity: 1;\r\n  pointer-events: auto;\r\n}\r\n\r\n.modal-card {\r\n  width: min(820px, calc(100% - 48px));\r\n  background: rgba(255, 255, 255, 0.86);\r\n  border-radius: 14px;\r\n  padding: 20px;\r\n  box-shadow: 0 30px 80px rgba(10, 10, 10, 0.12), 0 10px 30px rgba(10, 10, 10, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);\r\n  color: #111;\r\n  border: 1px solid rgba(0, 0, 0, 0.06);\r\n  backdrop-filter: blur(8px);\r\n  -webkit-backdrop-filter: blur(8px);\r\n  position: relative;\r\n}\r\n\r\n.logo-and-info {\r\n  display: flex;\r\n  gap: 18px;\r\n  align-items: center;\r\n}\r\n\r\n.shield-svg {\r\n  width: 96px;\r\n  height: 96px;\r\n  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.08));\r\n}\r\n\r\n/* Particles floating in background */\r\n.bg-particles {\r\n  position: absolute;\r\n  inset: 0;\r\n  pointer-events: none;\r\n  z-index: 1100;\r\n  overflow: hidden;\r\n}\r\n\r\n.particle {\r\n  position: absolute;\r\n  width: 8px;\r\n  height: 8px;\r\n  border-radius: 50%;\r\n  background: rgba(139, 35, 72, 0.12);\r\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);\r\n  transform: translateY(0);\r\n  will-change: transform, opacity;\r\n  opacity: 0.9;\r\n}\r\n\r\n@keyframes floatUp {\r\n  0% {\r\n    transform: translateY(20px) scale(0.9);\r\n    opacity: 0.7;\r\n  }\r\n\r\n  50% {\r\n    opacity: 0.95;\r\n  }\r\n\r\n  100% {\r\n    transform: translateY(-24px) scale(1.05);\r\n    opacity: 0.45;\r\n  }\r\n}\r\n\r\n/* Official logo parts stroke draw for modal */\r\n.shield-circle,\r\n.shield-diamond,\r\n.shield-arc,\r\n.shield-line {\r\n  fill: none;\r\n  stroke: #8b2348;\r\n  stroke-width: 3;\r\n  stroke-dasharray: 220;\r\n  stroke-dashoffset: 220;\r\n  opacity: 0;\r\n  transition: opacity 0.25s ease;\r\n  filter: drop-shadow(0 6px 18px rgba(139, 35, 72, 0.12));\r\n}\r\n\r\n.shield-circle.active,\r\n.shield-diamond.active,\r\n.shield-arc.active,\r\n.shield-line.active {\r\n  animation: drawStroke 0.9s ease-out forwards;\r\n  opacity: 1;\r\n}\r\n\r\n.shield-center {\r\n  fill: #8b2348;\r\n  opacity: 0;\r\n  transform-origin: 50% 50%;\r\n}\r\n\r\n.shield-center.active {\r\n  animation: centerPop 0.6s ease-out forwards;\r\n}\r\n\r\n@keyframes drawStroke {\r\n  from {\r\n    stroke-dashoffset: 220;\r\n    opacity: 0.2;\r\n  }\r\n\r\n  to {\r\n    stroke-dashoffset: 0;\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n@keyframes centerPop {\r\n  0% {\r\n    transform: scale(0.4);\r\n    opacity: 0;\r\n  }\r\n\r\n  60% {\r\n    transform: scale(1.12);\r\n    opacity: 1;\r\n  }\r\n\r\n  100% {\r\n    transform: scale(1);\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.modal-info h2 {\r\n  font-family: 'Cinzel', serif;\r\n  margin-bottom: 6px;\r\n  font-size: 1.2rem;\r\n  color: #111;\r\n}\r\n\r\n.progress-percentage {\r\n  font-size: 2rem;\r\n  font-weight: 700;\r\n  font-family: 'Cinzel', serif;\r\n  margin-top: 6px;\r\n  color: #111;\r\n}\r\n\r\n.status-text {\r\n  margin-top: 6px;\r\n  color: rgba(0, 0, 0, 0.8);\r\n}\r\n\r\n.progress-bar-container {\r\n  width: 100%;\r\n  height: 8px;\r\n  background: rgba(0, 0, 0, 0.06);\r\n  border-radius: 999px;\r\n  overflow: hidden;\r\n  margin-top: 12px;\r\n  border: 1px solid rgba(0, 0, 0, 0.02);\r\n  box-shadow: inset 0 -2px 8px rgba(0, 0, 0, 0.06);\r\n}\r\n\r\n.progress-bar-fill {\r\n  height: 100%;\r\n  width: 0%;\r\n  background: linear-gradient(90deg, #8b2348 0%, #9b59b6 50%, #8b2348 100%);\r\n  transition: width 120ms linear;\r\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.12);\r\n}\r\n\r\n.did-you-know {\r\n  margin-top: 14px;\r\n  background: #ffffff;\r\n  padding: 12px;\r\n  border-radius: 10px;\r\n  color: #111;\r\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);\r\n}\r\n\r\n.did-you-know-title {\r\n  font-weight: 700;\r\n  margin-bottom: 6px;\r\n}\r\n\r\n@media (max-width: 700px) {\r\n  .logo-and-info {\r\n    flex-direction: row;\r\n  }\r\n\r\n  .shield-svg {\r\n    width: 72px;\r\n    height: 72px;\r\n  }\r\n}\r\n\r\n/* Footer (restored) */\r\n.footer {\r\n  background: var(--footer-acrylic-bg, var(--acrylic-bg-dark));\r\n  backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\r\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\r\n  color: white;\r\n  position: fixed;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 9996;\r\n  transition: transform 0.3s ease;\r\n  border-top: 1px solid rgba(255, 255, 255, 0.15);\r\n  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);\r\n  pointer-events: auto;\r\n}\r\n\r\n/* Ensure home page also renders the acrylic footer (some browsers drop backdrop-filter without a scoped reassertion) */\r\nbody[data-page=\"home\"] .footer {\r\n  background: var(--footer-acrylic-bg);\r\n  backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\r\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\r\n}\r\n\r\n.footer.collapsed .footer-container {\r\n  display: none;\r\n}\r\n\r\n.footer-toggle {\r\n  background: transparent;\r\n  border: none;\r\n  border-bottom: 1px solid rgba(255, 255, 255, 0.1);\r\n  color: white;\r\n  padding: 12px 24px;\r\n  width: 100%;\r\n  text-align: center;\r\n  cursor: pointer;\r\n  font-weight: 600;\r\n  font-size: clamp(13px, 2vw, 15px);\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  gap: 8px;\r\n  transition: all 0.3s ease;\r\n}\r\n\r\n.footer-toggle:hover {\r\n  background: rgba(255, 255, 255, 0.15);\r\n  border-bottom-color: rgba(255, 255, 255, 0.25);\r\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),\r\n    0 2px 8px rgba(255, 255, 255, 0.1);\r\n}\r\n\r\n.footer-toggle svg {\r\n  transition: transform 0.3s ease;\r\n}\r\n\r\n.footer.collapsed .footer-toggle svg {\r\n  transform: rotate(180deg);\r\n}\r\n\r\n.footer-container {\r\n  max-width: 1200px;\r\n  margin: 0 auto;\r\n  padding: clamp(12px, 2vh, 18px) clamp(16px, 3vw, 24px);\r\n}\r\n\r\n.footer-grid {\r\n  display: grid;\r\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\r\n  gap: clamp(20px, 3vw, 32px);\r\n  margin-bottom: clamp(12px, 2vh, 16px);\r\n  padding-bottom: clamp(12px, 2vh, 16px);\r\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\r\n}\r\n\r\n.footer-section h4 {\r\n  font-family: 'Cinzel', serif;\r\n  font-size: clamp(0.95rem, 1.8vw, 1.1rem);\r\n  margin-bottom: clamp(10px, 1.5vh, 14px);\r\n  color: rgba(255, 255, 255, 0.95);\r\n}\r\n\r\n.footer-section ul {\r\n  list-style: none;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.footer-section li {\r\n  margin-bottom: clamp(6px, 1vh, 9px);\r\n}\r\n\r\n.footer-section a {\r\n  color: rgba(255, 255, 255, 0.85);\r\n  text-decoration: none;\r\n  transition: color 0.3s ease;\r\n  font-size: clamp(0.8rem, 1.4vw, 0.9rem);\r\n}\r\n\r\n.footer-section a:hover {\r\n  color: white;\r\n}\r\n\r\n.footer-brand {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: clamp(8px, 1.2vh, 12px);\r\n  align-items: center;\r\n  /* center logo and text horizontally */\r\n  text-align: center;\r\n}\r\n\r\n.logo-shield-footer {\r\n  color: white;\r\n  margin-bottom: clamp(6px, 1vh, 10px);\r\n  width: clamp(52px, 7vw, 64px);\r\n  height: clamp(52px, 7vw, 64px);\r\n  display: block;\r\n  flex-shrink: 0;\r\n}\r\n\r\n/* Page visibility control */\r\n/* Page visibility control */\r\n#mainContent>[data-page] {\r\n  width: 100%;\r\n}\r\n\r\n/* Hide by default using utility class */\r\n.d-none {\r\n  display: none !important;\r\n}\r\n\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\nhtml {\r\n  margin: 0 !important;\r\n  padding: 0 !important;\r\n  height: 100% !important;\r\n  overflow: hidden !important;\r\n  width: 100% !important;\r\n}\r\n\r\nbody {\r\n  margin: 0 !important;\r\n  padding: 0 !important;\r\n  font-family: 'Aptos Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\r\n  line-height: 1.65;\r\n  color: var(--text-dark);\r\n  background: linear-gradient(135deg,\r\n      var(--gradient-start) 0%,\r\n      var(--gradient-mid) 40%,\r\n      var(--gradient-end) 100%);\r\n  background-size: 300% 300%;\r\n  background-attachment: fixed !important;\r\n  height: 100vh !important;\r\n  overflow: hidden !important;\r\n  width: 100vw !important;\r\n  position: fixed !important;\r\n  top: 0 !important;\r\n  left: 0 !important;\r\n  animation: gradientShift 20s ease infinite;\r\n  transition: background-position 1.5s ease-in-out;\r\n}\r\n\r\n/* Slightly larger body copy for descriptive sections */\r\np,\r\n.section-description,\r\n.hero-description,\r\n.feature-box p,\r\n.service-card p,\r\n.about-section p,\r\n.contact-info p,\r\n.quote-lead,\r\n.quote-footnote,\r\n.quote-benefits,\r\n.stat-box p,\r\n.agent-card p {\r\n  font-size: 1.04rem;\r\n  line-height: 1.65;\r\n}\r\n\r\n@keyframes gradientShift {\r\n  0% {\r\n    background-position: 0% 50%;\r\n  }\r\n\r\n  25% {\r\n    background-position: 50% 25%;\r\n  }\r\n\r\n  50% {\r\n    background-position: 100% 50%;\r\n  }\r\n\r\n  75% {\r\n    background-position: 50% 75%;\r\n  }\r\n\r\n  100% {\r\n    background-position: 0% 50%;\r\n  }\r\n}\r\n\r\nbody.section-hero {\r\n  background-position: 0% 30%;\r\n}\r\n\r\nbody.section-parade {\r\n  background-position: 50% 50%;\r\n}\r\n\r\nbody.section-cta {\r\n  background-position: 100% 70%;\r\n}\r\n\r\n/* Particles */\r\n#particles-canvas {\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  pointer-events: none;\r\n  /* Above page backgrounds (dashboards use solid surfaces) but below navbar/subnav */\r\n  z-index: 50;\r\n  opacity: var(--particles-opacity);\r\n  mix-blend-mode: var(--particles-blend-mode);\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\nbody[data-page=\"home\"] #particles-canvas {\r\n  opacity: var(--particles-opacity-home);\r\n}\r\n\r\n/* Hide particles on fullpage sections (route-aware).\r\n   NOTE: We can't use :has(.services-fullpage) here because templates are injected\r\n   into the DOM (hidden) and would permanently match, hiding particles everywhere. */\r\nbody[data-page=\"services\"] #particles-canvas,\r\nbody[data-page=\"about\"] #particles-canvas,\r\nbody[data-page=\"contact\"] #particles-canvas,\r\n/* Dashboards are work surfaces: keep them distraction-free */\r\nbody[data-page=\"client-dashboard\"] #particles-canvas,\r\nbody[data-page=\"agent-dashboard\"] #particles-canvas,\r\nbody[data-page=\"admin-dashboard\"] #particles-canvas,\r\n/* Auth screens also read cleaner without animated canvas behind */\r\nbody[data-page=\"login\"] #particles-canvas,\r\nbody[data-page=\"agent-login\"] #particles-canvas {\r\n  display: none;\r\n  pointer-events: none;\r\n}\r\n\r\n/* Sub Navigation */\r\n.sub-navigation {\r\n  position: fixed;\r\n  top: var(--nav-height);\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  z-index: 9998;\r\n  background: var(--acrylic-bg-dark);\r\n  backdrop-filter: blur(25px) saturate(180%);\r\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\r\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\r\n  padding: 0;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  gap: 0;\r\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\r\n  height: var(--subnav-height);\r\n  transition: all 0.3s ease;\r\n}\r\n\r\n.sub-nav-btn {\r\n  position: relative;\r\n  padding: 18px 32px;\r\n  background: transparent;\r\n  border: none;\r\n  border-radius: 0 !important;\r\n  font-size: 13px;\r\n  font-weight: 600;\r\n  color: rgba(255, 255, 255, 0.85);\r\n  cursor: pointer;\r\n  will-change: transform, opacity;\r\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\r\n  font-family: inherit;\r\n  text-transform: uppercase;\r\n  letter-spacing: 1.5px;\r\n  overflow: hidden;\r\n  height: 56px;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.sub-nav-btn::before {\r\n  content: '';\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  height: 3px;\r\n  background: linear-gradient(90deg, transparent, var(--baby-pink), transparent);\r\n  opacity: 0;\r\n  transform: scaleX(0);\r\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\r\n  pointer-events: none;\r\n}\r\n\r\n.sub-nav-btn:hover {\r\n  background: rgba(255, 255, 255, 0.1);\r\n  backdrop-filter: blur(20px) saturate(160%);\r\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\r\n  color: white;\r\n}\r\n\r\n.sub-nav-btn:hover::before {\r\n  opacity: 0.5;\r\n  transform: scaleX(1);\r\n}\r\n\r\n.sub-nav-btn.active {\r\n  background: rgba(255, 255, 255, 0.15);\r\n  backdrop-filter: blur(25px) saturate(170%);\r\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\r\n  color: white;\r\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\r\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\r\n}\r\n\r\n.sub-nav-btn.active::before {\r\n  opacity: 1;\r\n  transform: scaleX(1);\r\n  box-shadow: 0 0 15px rgba(254, 245, 249, 0.6);\r\n}\r\n\r\n.sub-nav-btn:not(:last-child)::after {\r\n  content: '|';\r\n  position: absolute;\r\n  right: 0;\r\n  top: 50%;\r\n  transform: translateY(-50%);\r\n  color: rgba(255, 255, 255, 0.25);\r\n  font-weight: 300;\r\n  font-size: 18px;\r\n  pointer-events: none;\r\n  width: 1px;\r\n  height: 100%;\r\n}\r\n\r\n.sub-navigation.show {\r\n  animation: subNavSlideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;\r\n}\r\n\r\n@keyframes subNavSlideDown {\r\n  from {\r\n    opacity: 0;\r\n    transform: translateY(-10px);\r\n  }\r\n\r\n  to {\r\n    opacity: 1;\r\n    transform: translateY(0);\r\n  }\r\n}\r\n\r\n/* Navbar */\r\n.navbar {\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  height: var(--nav-height);\r\n  z-index: 9999;\r\n  background: rgba(255, 255, 255, 0.95);\r\n  backdrop-filter: blur(20px);\r\n  border-bottom: 1px solid rgba(0, 0, 0, 0.06);\r\n  padding: 0;\r\n  margin: 0;\r\n  transition: all 0.3s ease;\r\n  box-shadow: var(--shadow-sm);\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.navbar.scrolled {\r\n  box-shadow: var(--shadow);\r\n}\r\n\r\n.nav-container {\r\n  max-width: 100%;\r\n  width: 100%;\r\n  height: 100%;\r\n  margin: 0 auto;\r\n  padding: 0 48px;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.nav-brand {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 12px;\r\n  cursor: pointer;\r\n  transition: transform 0.3s ease;\r\n}\r\n\r\n.nav-brand:hover {\r\n  transform: translateY(-2px);\r\n}\r\n\r\n.logo-shield {\r\n  width: 60px;\r\n  height: 60px;\r\n  max-width: 80px;\r\n  max-height: 80px;\r\n  color: var(--brand-maroon);\r\n  filter: drop-shadow(0 2px 4px var(--theme-primary-shadow-color));\r\n}\r\n\r\n/* Shield Animation Styles */\r\n.krause-shield {\r\n  display: block;\r\n}\r\n\r\n.shield-circle {\r\n  stroke-dasharray: 400;\r\n  stroke-dashoffset: 400;\r\n  animation: drawStroke 1.5s ease-out forwards;\r\n  animation-delay: 0.4s;\r\n}\r\n\r\n.shield-diamond {\r\n  stroke-dasharray: 400;\r\n  stroke-dashoffset: 400;\r\n  animation: drawStroke 1.5s ease-out forwards;\r\n  animation-delay: 0.8s;\r\n}\r\n\r\n.shield-arc {\r\n  stroke-dasharray: 400;\r\n  stroke-dashoffset: 400;\r\n  animation: drawStroke 1.5s ease-out forwards;\r\n  animation-delay: 1.2s;\r\n}\r\n\r\n.shield-line {\r\n  stroke-dasharray: 400;\r\n  stroke-dashoffset: 400;\r\n  animation: drawStroke 1.2s ease-out forwards;\r\n  animation-delay: 1.6s;\r\n}\r\n\r\n@keyframes drawStroke {\r\n  0% {\r\n    stroke-dashoffset: 400;\r\n  }\r\n\r\n  100% {\r\n    stroke-dashoffset: 0;\r\n  }\r\n}\r\n\r\n.krause-shield:hover .shield-circle,\r\n.krause-shield:hover .shield-diamond,\r\n.krause-shield:hover .shield-arc,\r\n.krause-shield:hover .shield-line {\r\n  animation: pulse 0.6s ease-in-out;\r\n}\r\n\r\n@keyframes pulse {\r\n\r\n  0%,\r\n  100% {\r\n    transform: scale(1);\r\n    opacity: 1;\r\n  }\r\n\r\n  50% {\r\n    transform: scale(1.05);\r\n    opacity: 0.8;\r\n  }\r\n}\r\n\r\n.brand-text {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 2px;\r\n}\r\n\r\n.brand-name {\r\n  font-family: 'Cinzel', serif;\r\n  font-size: 22px;\r\n  font-weight: 600;\r\n  color: var(--brand-maroon);\r\n  line-height: 1;\r\n}\r\n\r\n.brand-tagline {\r\n  font-size: 11px;\r\n  color: var(--text-light);\r\n  font-weight: 500;\r\n  letter-spacing: 0.5px;\r\n  text-transform: uppercase;\r\n}\r\n\r\n.mobile-menu-toggle {\r\n  display: none;\r\n  flex-direction: column;\r\n  gap: 5px;\r\n  background: none;\r\n  border: none;\r\n  cursor: pointer;\r\n  padding: 8px;\r\n}\r\n\r\n.mobile-menu-toggle span {\r\n  width: 25px;\r\n  height: 3px;\r\n  background: var(--brand-maroon);\r\n  border-radius: 2px;\r\n  transition: all 0.3s ease;\r\n}\r\n\r\n.nav-menu {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 12px;\r\n}\r\n\r\n.nav-link {\r\n  padding: 10px 20px;\r\n  color: var(--text-dark);\r\n  text-decoration: none;\r\n  font-weight: 500;\r\n  transition: all 0.3s ease;\r\n  border-radius: 8px;\r\n  font-size: 16px;\r\n}\r\n\r\n.nav-link:hover,\r\n.nav-link.active {\r\n  color: var(--brand-maroon);\r\n  background: var(--theme-navlink-active-bg);\r\n  backdrop-filter: blur(15px) saturate(150%);\r\n  -webkit-backdrop-filter: blur(15px) saturate(150%);\r\n}\r\n\r\n.nav-buttons {\r\n  display: flex;\r\n  gap: 12px;\r\n  margin-left: 20px;\r\n}\r\n\r\n/* Generic buttons (used in Home CTA + Auth forms) */\r\n.btn {\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  gap: 10px;\r\n  padding: 12px 18px;\r\n  border-radius: 12px;\r\n  border: 1px solid transparent;\r\n  font-family: inherit;\r\n  font-weight: 700;\r\n  font-size: 0.95rem;\r\n  line-height: 1;\r\n  cursor: pointer;\r\n  user-select: none;\r\n  text-decoration: none;\r\n  background: transparent;\r\n  color: inherit;\r\n  transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s ease,\r\n    border-color 0.25s ease, color 0.25s ease, filter 0.25s ease;\r\n}\r\n\r\n.btn:hover {\r\n  transform: translateY(-1px);\r\n}\r\n\r\n.btn:active {\r\n  transform: translateY(0);\r\n}\r\n\r\n.btn:disabled,\r\n.btn[disabled] {\r\n  opacity: 0.65;\r\n  cursor: not-allowed;\r\n  transform: none;\r\n}\r\n\r\n.btn:focus-visible {\r\n  outline: 2px solid var(--theme-highlight-light);\r\n  outline-offset: 2px;\r\n}\r\n\r\n.btn-lg {\r\n  padding: 14px 22px;\r\n  border-radius: 14px;\r\n  font-size: 1rem;\r\n}\r\n\r\n.btn-block {\r\n  width: 100%;\r\n}\r\n\r\n.btn-primary {\r\n  background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 70%);\r\n  color: var(--white);\r\n  border-color: rgba(255, 255, 255, 0.16);\r\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), 0 10px 24px var(--theme-primary-shadow-color);\r\n}\r\n\r\n.btn.is-loading,\r\n.btn[aria-busy=\"true\"] {\r\n  position: relative;\r\n  pointer-events: none;\r\n  color: var(--theme-contrast-strong, var(--brand-maroon));\r\n  border-color: var(--theme-contrast-glow, rgba(255, 255, 255, 0.25));\r\n  filter: brightness(1.02);\r\n}\r\n\r\n.btn.is-loading::after,\r\n.btn[aria-busy=\"true\"]::after {\r\n  content: '';\r\n  position: absolute;\r\n  inset: 6px;\r\n  border-radius: inherit;\r\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));\r\n  animation: loading-pulse 0.9s ease-in-out infinite;\r\n  mix-blend-mode: screen;\r\n}\r\n\r\n@keyframes loading-pulse {\r\n\r\n  0%,\r\n  100% {\r\n    opacity: 0.35;\r\n    transform: scale(0.98);\r\n  }\r\n\r\n  50% {\r\n    opacity: 0.75;\r\n    transform: scale(1.02);\r\n  }\r\n}\r\n\r\n.btn-primary:hover {\r\n  filter: brightness(1.05);\r\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26), 0 14px 34px var(--theme-primary-shadow-color);\r\n}\r\n\r\n.btn-secondary {\r\n  background: rgba(255, 255, 255, 0.14);\r\n  color: white;\r\n  border-color: rgba(255, 255, 255, 0.20);\r\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);\r\n}\r\n\r\n.btn-secondary:hover {\r\n  background: rgba(255, 255, 255, 0.18);\r\n  border-color: rgba(255, 255, 255, 0.26);\r\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);\r\n}\r\n\r\n.btn-outline {\r\n  background: transparent;\r\n  color: var(--theme-primary-color);\r\n  border-color: rgba(255, 255, 255, 0.35);\r\n}\r\n\r\n.btn-outline:hover {\r\n  background: rgba(255, 255, 255, 0.12);\r\n  color: var(--theme-secondary-color);\r\n}\r\n\r\n.btn-nav {\r\n  padding: 12px 24px;\r\n  border-radius: 8px;\r\n  font-weight: 600;\r\n  font-size: 15px;\r\n  cursor: pointer;\r\n  transition: all 0.3s ease;\r\n  border: none;\r\n  font-family: inherit;\r\n}\r\n\r\n.btn-login {\r\n  background: transparent;\r\n  color: var(--brand-maroon);\r\n  border: 2px solid var(--brand-maroon);\r\n}\r\n\r\n.btn-login:hover {\r\n  background: var(--brand-maroon);\r\n  color: white;\r\n}\r\n\r\n.btn-agent {\r\n  background: var(--brand-maroon);\r\n  color: white;\r\n  border: 2px solid var(--brand-maroon);\r\n}\r\n\r\n.btn-agent:hover {\r\n  background: var(--wine);\r\n  border-color: var(--wine);\r\n  transform: translateY(-2px);\r\n  box-shadow: 0 4px 12px var(--theme-primary-shadow-color);\r\n}\r\n\r\n/* Main Content */\r\n.main-content {\r\n  position: fixed;\r\n  top: var(--nav-height);\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  z-index: 10;\r\n  height: auto;\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  overflow-y: auto;\r\n  overflow-x: hidden;\r\n}\r\n\r\nbody:not(.no-footer) .main-content {\r\n  padding-bottom: var(--footer-height);\r\n}\r\n\r\nbody.no-footer .main-content {\r\n  padding-bottom: 0;\r\n}\r\n\r\nbody.no-footer .footer {\r\n  display: none !important;\r\n}\r\n\r\n/* Home has a fixed sub-navigation that overlays the scroll container.\r\n   Add top padding only on home so sections (esp. Cotiza logo/title) are not cut. */\r\nbody[data-page=\"home\"] .main-content {\r\n  padding-top: var(--subnav-height);\r\n}\r\n\r\n\r\n\r\n/* Sub Navigation */\r\n.sub-navigation {\r\n  position: fixed;\r\n  top: var(--nav-height);\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  z-index: 9998;\r\n  background: var(--acrylic-bg-dark);\r\n  backdrop-filter: blur(25px) saturate(180%);\r\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\r\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\r\n  padding: 0;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  gap: 0;\r\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\r\n  height: var(--subnav-height);\r\n  transition: all 0.3s ease;\r\n}\r\n\r\n.sub-nav-btn {\r\n  position: relative;\r\n  padding: 18px 32px;\r\n  background: transparent;\r\n  border: none;\r\n  border-radius: 0 !important;\r\n  font-size: 13px;\r\n  font-weight: 600;\r\n  color: rgba(255, 255, 255, 0.85);\r\n  cursor: pointer;\r\n  will-change: transform, opacity;\r\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\r\n  font-family: inherit;\r\n  text-transform: uppercase;\r\n  letter-spacing: 1.5px;\r\n  overflow: hidden;\r\n  height: 56px;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.sub-nav-btn::before {\r\n  content: '';\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  width: 100%;\r\n  height: 3px;\r\n  background: linear-gradient(90deg, transparent, var(--theme-highlight-light), transparent);\r\n  opacity: 0;\r\n  transform: scaleX(0);\r\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\r\n  pointer-events: none;\r\n}\r\n\r\n.sub-nav-btn:hover {\r\n  background: rgba(255, 255, 255, 0.1);\r\n  backdrop-filter: blur(20px) saturate(160%);\r\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\r\n  color: white;\r\n}\r\n\r\n.sub-nav-btn:hover::before {\r\n  opacity: 0.5;\r\n  transform: scaleX(1);\r\n}\r\n\r\n.sub-nav-btn.active {\r\n  background: rgba(255, 255, 255, 0.15);\r\n  backdrop-filter: blur(25px) saturate(170%);\r\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\r\n  color: white;\r\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\r\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\r\n}\r\n\r\n.sub-nav-btn.active::before {\r\n  opacity: 1;\r\n  transform: scaleX(1);\r\n  box-shadow: 0 0 15px var(--theme-highlight-glow);\r\n}\r\n\r\n/* Button separators */\r\n.sub-nav-btn:not(:last-child)::after {\r\n  content: '|';\r\n  position: absolute;\r\n  right: 0;\r\n  top: 50%;\r\n  transform: translateY(-50%);\r\n  color: rgba(255, 255, 255, 0.25);\r\n  font-weight: 300;\r\n  font-size: 18px;\r\n  pointer-events: none;\r\n  width: 1px;\r\n  height: 100%;\r\n}\r\n\r\n/* \r\n   PAGE-SPECIFIC STYLES HAVE BEEN EXTRACTED TO SEPARATE FILES:\r\n   - styles/pages/home.css: Home page sections (hero, features, cta, agents)\r\n   - styles/pages/services.css: Services grid and cards\r\n   - styles/pages/about.css: About content and team\r\n   - styles/pages/contact.css: Contact form and info\r\n   - styles/auth.css: Auth login forms\r\n   - styles/dashboards.css: Dashboard layouts\r\n   \r\n   This app.css file now contains ONLY base/global styles.\r\n   See index.html for CSS module links.\r\n*/"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2931,7 +3056,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Shared Dashboard UI (restored from 
     --dashboard-stat-gap-shared: 14px;
     --dashboard-stat-icon-size-shared: 60px;
     --dashboard-stat-icon-radius-shared: 14px;
-    --dashboard-stat-transition-shared: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --dashboard-stat-transition-shared: all 0.42s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 /* Utilities for dashboard buttons */
@@ -3167,7 +3292,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Shared Dashboard UI (restored from 
     border-radius: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .dashboard-tab:hover {
@@ -4003,6 +4128,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Shared Dashboard UI (restored from 
     gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));
     position: relative;
     overflow: hidden;
+    transition: transform 0.42s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.42s cubic-bezier(0.33, 1, 0.68, 1), background 0.42s cubic-bezier(0.33, 1, 0.68, 1), border-color 0.42s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .dashboard-stat-card:hover {
@@ -4332,7 +4458,7 @@ html[data-theme="dark-forest"] .dashboard-card {
         margin-left: 0;
         padding: 0;
     }
-}`, "",{"version":3,"sources":["webpack://./styles/dashboards.css"],"names":[],"mappings":"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","sourcesContent":["/* Shared Dashboard UI (restored from backup, tokenized)\r\n   This file provides the missing layout/components for dashboards:\r\n   - grid layout\r\n   - cards + headers\r\n   - lists (policies/quotes)\r\n   - tables\r\n   - badges\r\n   - icon buttons\r\n   - sidebar widgets\r\n*/\r\n\r\n:root {\r\n    /* Modern Dashboard Colors */\r\n    --sidebar-width: 240px;\r\n    --sidebar-slim-width: 80px;\r\n    --color-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\r\n    --color-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);\r\n    --color-warning: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);\r\n    --color-info: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);\r\n    --bg-main: #f8f9fa;\r\n    --bg-card: #ffffff;\r\n    --bg-sidebar: #1a1d29;\r\n    --text-primary: #2d3748;\r\n    --text-secondary: #718096;\r\n    --border-color: #e2e8f0;\r\n    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);\r\n    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);\r\n    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.08);\r\n    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);\r\n\r\n    /* Legacy compatibility */\r\n    --dashboard-bg-light: var(--bg-main);\r\n    --dashboard-stat-gap-shared: 14px;\r\n    --dashboard-stat-icon-size-shared: 60px;\r\n    --dashboard-stat-icon-radius-shared: 14px;\r\n    --dashboard-stat-transition-shared: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\r\n}\r\n\r\n/* Utilities for dashboard buttons */\r\n.btn-sm {\r\n    padding: 8px 12px;\r\n    border-radius: 10px;\r\n    font-size: 0.88rem;\r\n    line-height: 1.1;\r\n}\r\n\r\n.btn-icon {\r\n    width: 36px;\r\n    height: 36px;\r\n    border-radius: 10px;\r\n    border: 1px solid var(--theme-surface-border);\r\n    background: var(--acrylic-bg-light);\r\n    color: var(--theme-text-primary);\r\n    cursor: pointer;\r\n    display: inline-flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;\r\n}\r\n\r\n.btn-icon:hover {\r\n    transform: translateY(-1px);\r\n    background: var(--theme-accent-bg-soft);\r\n    border-color: var(--theme-accent-border);\r\n}\r\n\r\n.hidden {\r\n    display: none !important;\r\n}\r\n\r\n/* Modern Dashboard Layout - Only shows on dashboard pages */\r\n.dashboard-section {\r\n    background: var(--bg-main);\r\n    min-height: 100vh;\r\n}\r\n\r\n/* Dashboard Layout with Sidebar */\r\n.dashboard-section .dashboard-layout {\r\n    display: flex;\r\n    min-height: 100vh;\r\n}\r\n\r\n/* Shell container for dashboards (centered width) */\r\n.dashboard-shell {\r\n    width: 100%;\r\n    max-width: 1500px;\r\n    margin: 0 auto;\r\n    padding: 22px 22px 32px;\r\n}\r\n\r\n/* No-sidebar variation (cliente) */\r\n.dashboard-section.no-sidebar .dashboard-layout {\r\n    display: block;\r\n}\r\n\r\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\r\n    margin-left: 0;\r\n    padding: 0;\r\n    max-width: none;\r\n}\r\n\r\n.dashboard-section.no-sidebar .dashboard-shell {\r\n    padding: 28px 20px 36px;\r\n}\r\n\r\n/* Slim Sidebar Navigation */\r\n.dashboard-section .dashboard-sidebar {\r\n    width: var(--sidebar-width);\r\n    background: var(--bg-sidebar);\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 24px 0;\r\n    position: fixed;\r\n    height: 100vh;\r\n    left: 0;\r\n    top: 0;\r\n    z-index: 100;\r\n    box-shadow: var(--shadow-xl);\r\n}\r\n\r\n.dashboard-section .sidebar-header {\r\n    padding: 0 20px 24px;\r\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\r\n    text-align: center;\r\n}\r\n\r\n.dashboard-section .user-avatar {\r\n    width: 60px;\r\n    height: 60px;\r\n    margin: 0 auto 12px;\r\n    border-radius: 50%;\r\n    overflow: hidden;\r\n    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);\r\n}\r\n\r\n.dashboard-section .sidebar-header h3 {\r\n    color: white;\r\n    font-size: 16px;\r\n    font-weight: 600;\r\n    margin: 0;\r\n}\r\n\r\n.dashboard-section .sidebar-nav {\r\n    flex: 1;\r\n    padding: 24px 0;\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 4px;\r\n}\r\n\r\n.dashboard-section .nav-item {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n    padding: 12px 20px;\r\n    color: rgba(255, 255, 255, 0.7);\r\n    text-decoration: none;\r\n    transition: all 0.2s ease;\r\n    position: relative;\r\n}\r\n\r\n.dashboard-section .nav-item::before {\r\n    content: '';\r\n    position: absolute;\r\n    left: 0;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    width: 3px;\r\n    height: 0;\r\n    background: linear-gradient(180deg, #667eea, #764ba2);\r\n    border-radius: 0 2px 2px 0;\r\n    transition: height 0.2s ease;\r\n}\r\n\r\n.dashboard-section .nav-item:hover,\r\n.dashboard-section .nav-item.active {\r\n    color: white;\r\n    background: rgba(255, 255, 255, 0.05);\r\n}\r\n\r\n.dashboard-section .nav-item.active::before {\r\n    height: 70%;\r\n}\r\n\r\n.dashboard-section .nav-item svg {\r\n    flex-shrink: 0;\r\n}\r\n\r\n.dashboard-section .sidebar-logout {\r\n    margin: 0 20px;\r\n    padding: 12px;\r\n    background: rgba(245, 87, 108, 0.1);\r\n    border: 1px solid rgba(245, 87, 108, 0.2);\r\n    border-radius: 8px;\r\n    color: #f5576c;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    gap: 8px;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n    font-size: 14px;\r\n    font-weight: 500;\r\n}\r\n\r\n.dashboard-section .sidebar-logout:hover {\r\n    background: rgba(245, 87, 108, 0.2);\r\n    border-color: rgba(245, 87, 108, 0.4);\r\n}\r\n\r\n/* Main Content Wrapper */\r\n.dashboard-section .dashboard-main-wrapper {\r\n    flex: 1;\r\n    margin-left: var(--sidebar-width);\r\n    padding: 24px;\r\n    max-width: 1600px;\r\n}\r\n\r\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\r\n    margin-left: 0;\r\n    padding: 0;\r\n    max-width: none;\r\n}\r\n\r\n/* Top Header */\r\n.dashboard-section .dashboard-top-header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin-bottom: 22px;\r\n}\r\n\r\n.dashboard-section .dashboard-top-header .eyebrow {\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.08em;\r\n    font-size: 11px;\r\n    color: var(--text-secondary);\r\n    margin: 0 0 6px 0;\r\n    font-weight: 700;\r\n}\r\n\r\n.dashboard-section .dashboard-top-header .header-actions {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 10px;\r\n    flex-wrap: wrap;\r\n    justify-content: flex-end;\r\n}\r\n\r\n.dashboard-tabs {\r\n    display: flex;\r\n    gap: 10px;\r\n    padding: 8px;\r\n    background: rgba(255, 255, 255, 0.78);\r\n    border: 1px solid rgba(255, 255, 255, 0.6);\r\n    border-radius: 14px;\r\n    box-shadow: 0 12px 28px rgba(31, 38, 135, 0.12), var(--shadow-sm);\r\n    backdrop-filter: blur(10px) saturate(1.05);\r\n    -webkit-backdrop-filter: blur(10px) saturate(1.05);\r\n    flex-wrap: wrap;\r\n    margin-bottom: 18px;\r\n}\r\n\r\n.dashboard-tab {\r\n    border: none;\r\n    background: transparent;\r\n    color: var(--text-secondary);\r\n    padding: 10px 14px;\r\n    border-radius: 12px;\r\n    font-weight: 600;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n}\r\n\r\n.dashboard-tab:hover {\r\n    color: var(--text-primary);\r\n    background: rgba(102, 126, 234, 0.06);\r\n}\r\n\r\n.dashboard-tab.active {\r\n    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(118, 75, 162, 0.18));\r\n    color: #4a3b91;\r\n    box-shadow: 0 10px 26px rgba(102, 126, 234, 0.18);\r\n}\r\n\r\n.tab-panels {\r\n    width: 100%;\r\n}\r\n\r\n.tab-panels .tab-panel {\r\n    display: none !important;\r\n    width: 100%;\r\n    gap: 18px;\r\n}\r\n\r\n.tab-panels .tab-panel.active {\r\n    display: block !important;\r\n}\r\n\r\n.panel-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\r\n    gap: 14px;\r\n}\r\n\r\n.panel-grid.two-columns {\r\n    grid-template-columns: 1.25fr 1fr;\r\n}\r\n\r\n.panel-grid.stacked {\r\n    align-items: start;\r\n}\r\n\r\n.dashboard-section .dashboard-top-header h1 {\r\n    font-size: 32px;\r\n    font-weight: 700;\r\n    color: var(--text-primary);\r\n    margin: 0 0 4px 0;\r\n}\r\n\r\n.dashboard-section .text-muted {\r\n    color: var(--text-secondary);\r\n    font-size: 14px;\r\n    margin: 0;\r\n}\r\n\r\n.dashboard-section .btn-refresh {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 8px;\r\n    padding: 10px 20px;\r\n    background: white;\r\n    border: 1px solid var(--border-color);\r\n    border-radius: 10px;\r\n    color: var(--text-primary);\r\n    font-size: 14px;\r\n    font-weight: 500;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n    box-shadow: var(--shadow-sm);\r\n}\r\n\r\n.dashboard-section .btn-refresh:hover {\r\n    border-color: #667eea;\r\n    color: #667eea;\r\n    box-shadow: var(--shadow-md);\r\n    transform: translateY(-2px);\r\n}\r\n\r\n.dashboard-section .btn-refresh svg {\r\n    transition: transform 0.4s ease;\r\n}\r\n\r\n.dashboard-section .btn-refresh:hover svg {\r\n    transform: rotate(180deg);\r\n}\r\n\r\n/* Stats Grid with Color Pops */\r\n.dashboard-section .stats-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));\r\n    gap: 20px;\r\n    margin-bottom: 32px;\r\n}\r\n\r\n.dashboard-section .stats-grid.compact {\r\n    gap: 16px;\r\n    margin-bottom: 24px;\r\n}\r\n\r\n.dashboard-section .stat-card {\r\n    background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.68));\r\n    border-radius: 16px;\r\n    padding: 24px;\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 16px;\r\n    position: relative;\r\n    overflow: hidden;\r\n    box-shadow: 0 16px 38px rgba(31, 38, 135, 0.12), var(--shadow-md);\r\n    border: 1px solid rgba(255, 255, 255, 0.55);\r\n    backdrop-filter: blur(14px) saturate(1.15);\r\n    -webkit-backdrop-filter: blur(14px) saturate(1.15);\r\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\r\n}\r\n\r\n.dashboard-section .stat-card::before {\r\n    content: '';\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 4px;\r\n    opacity: 0;\r\n    transition: opacity 0.3s ease;\r\n}\r\n\r\n.dashboard-section .stat-card.stat-primary::before {\r\n    background: var(--color-primary);\r\n}\r\n\r\n.dashboard-section .stat-card.stat-success::before {\r\n    background: var(--color-success);\r\n}\r\n\r\n.dashboard-section .stat-card.stat-warning::before {\r\n    background: var(--color-warning);\r\n}\r\n\r\n.dashboard-section .stat-card.stat-info::before {\r\n    background: var(--color-info);\r\n}\r\n\r\n.dashboard-section .stat-card:hover {\r\n    transform: translateY(-4px);\r\n    box-shadow: var(--shadow-lg);\r\n}\r\n\r\n.dashboard-section .stat-card:hover::before {\r\n    opacity: 1;\r\n}\r\n\r\n.dashboard-section .stat-icon-wrapper {\r\n    width: 56px;\r\n    height: 56px;\r\n    border-radius: 12px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.dashboard-section .stat-primary .stat-icon-wrapper {\r\n    background: var(--color-primary);\r\n}\r\n\r\n.dashboard-section .stat-success .stat-icon-wrapper {\r\n    background: var(--color-success);\r\n}\r\n\r\n.dashboard-section .stat-warning .stat-icon-wrapper {\r\n    background: var(--color-warning);\r\n}\r\n\r\n.dashboard-section .stat-info .stat-icon-wrapper {\r\n    background: var(--color-info);\r\n}\r\n\r\n.dashboard-section .stat-icon-wrapper svg {\r\n    stroke: white;\r\n}\r\n\r\n.dashboard-section .stat-content {\r\n    flex: 1;\r\n}\r\n\r\n.dashboard-section .stat-value {\r\n    font-size: 28px;\r\n    font-weight: 700;\r\n    color: var(--text-primary);\r\n    margin: 0 0 4px 0;\r\n    line-height: 1;\r\n}\r\n\r\n.dashboard-section .stat-label {\r\n    font-size: 13px;\r\n    color: var(--text-secondary);\r\n    font-weight: 500;\r\n}\r\n\r\n.dashboard-section .stat-trend,\r\n.dashboard-section .stat-badge {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 4px;\r\n    font-size: 13px;\r\n    font-weight: 600;\r\n    padding: 4px 10px;\r\n    border-radius: 20px;\r\n}\r\n\r\n.dashboard-section .stat-trend.positive {\r\n    color: #38ef7d;\r\n    background: rgba(56, 239, 125, 0.1);\r\n}\r\n\r\n.dashboard-section .stat-trend.negative {\r\n    color: #f5576c;\r\n    background: rgba(245, 87, 108, 0.1);\r\n}\r\n\r\n.dashboard-section .stat-badge.success {\r\n    color: #38ef7d;\r\n    background: rgba(56, 239, 125, 0.1);\r\n}\r\n\r\n.dashboard-section .stat-badge.warning {\r\n    color: #fee140;\r\n    background: rgba(254, 225, 64, 0.15);\r\n}\r\n\r\n/* Content Grid */\r\n.dashboard-section .content-grid {\r\n    display: grid;\r\n    grid-template-columns: 1fr 360px;\r\n    gap: 24px;\r\n}\r\n\r\n.client-dashboard .content-grid,\r\n.agent-dashboard .content-grid {\r\n    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\r\n    gap: 18px;\r\n}\r\n\r\n.dashboard-section .content-main {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 24px;\r\n}\r\n\r\n/* Content Cards */\r\n.dashboard-section .content-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.74));\r\n    border-radius: 16px;\r\n    padding: 24px;\r\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-md);\r\n    border: 1px solid rgba(255, 255, 255, 0.55);\r\n    backdrop-filter: blur(14px) saturate(1.1);\r\n    -webkit-backdrop-filter: blur(14px) saturate(1.1);\r\n}\r\n\r\n.dashboard-section .content-card.compact,\r\n.dashboard-section .widget-card.compact {\r\n    padding: 18px 18px 16px;\r\n    border-radius: 14px;\r\n}\r\n\r\n.card-body-scroll {\r\n    max-height: 340px;\r\n    overflow: auto;\r\n    padding-right: 4px;\r\n    scrollbar-width: thin;\r\n}\r\n\r\n.card-body-scroll::-webkit-scrollbar {\r\n    width: 8px;\r\n}\r\n\r\n.card-body-scroll::-webkit-scrollbar-thumb {\r\n    background: rgba(0, 0, 0, 0.12);\r\n    border-radius: 10px;\r\n}\r\n\r\n.dashboard-section .card-header-modern {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.dashboard-section .card-header-modern h3 {\r\n    font-size: 18px;\r\n    font-weight: 600;\r\n    color: var(--text-primary);\r\n    margin: 0;\r\n}\r\n\r\n.dashboard-section .card-badge {\r\n    padding: 6px 12px;\r\n    background: var(--color-primary);\r\n    color: white;\r\n    border-radius: 20px;\r\n    font-size: 12px;\r\n    font-weight: 600;\r\n}\r\n\r\n.dashboard-section .btn-icon-sm {\r\n    width: 32px;\r\n    height: 32px;\r\n    border-radius: 8px;\r\n    border: 1px solid var(--border-color);\r\n    background: white;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n}\r\n\r\n.dashboard-section .btn-icon-sm:hover {\r\n    border-color: #667eea;\r\n    background: #f7fafc;\r\n}\r\n\r\n/* Sidebar Widgets */\r\n.dashboard-section .content-sidebar {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 20px;\r\n}\r\n\r\n.dashboard-section .widget-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.74));\r\n    border-radius: 16px;\r\n    padding: 20px;\r\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-md);\r\n    border: 1px solid rgba(255, 255, 255, 0.55);\r\n    backdrop-filter: blur(14px) saturate(1.1);\r\n    -webkit-backdrop-filter: blur(14px) saturate(1.1);\r\n}\r\n\r\n.dashboard-section .widget-card h4 {\r\n    font-size: 16px;\r\n    font-weight: 600;\r\n    color: var(--text-primary);\r\n    margin: 0 0 16px 0;\r\n}\r\n\r\n/* Quick Actions */\r\n.dashboard-section .quick-actions {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 10px;\r\n}\r\n\r\n.dashboard-section .action-btn {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n    padding: 12px 16px;\r\n    background: var(--bg-main);\r\n    border: 1px solid var(--border-color);\r\n    border-radius: 10px;\r\n    color: var(--text-primary);\r\n    font-size: 14px;\r\n    font-weight: 500;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n    text-align: left;\r\n}\r\n\r\n.dashboard-section .action-btn:hover {\r\n    background: white;\r\n    border-color: #667eea;\r\n    transform: translateX(4px);\r\n    box-shadow: var(--shadow-sm);\r\n}\r\n\r\n.dashboard-section .action-btn svg {\r\n    flex-shrink: 0;\r\n    stroke: #667eea;\r\n}\r\n\r\n/* Help Widget */\r\n.dashboard-section .help-widget {\r\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\r\n    color: white;\r\n    text-align: center;\r\n}\r\n\r\n.dashboard-section .help-widget h4 {\r\n    color: white;\r\n}\r\n\r\n.dashboard-section .help-widget svg {\r\n    margin: 0 auto 12px;\r\n    stroke: rgba(255, 255, 255, 0.9);\r\n}\r\n\r\n.dashboard-section .help-widget h5 {\r\n    font-size: 16px;\r\n    font-weight: 600;\r\n    margin: 0 0 8px 0;\r\n}\r\n\r\n.dashboard-section .help-widget p {\r\n    font-size: 13px;\r\n    opacity: 0.9;\r\n    margin: 0 0 16px 0;\r\n}\r\n\r\n.dashboard-section .btn-help {\r\n    width: 100%;\r\n    padding: 10px;\r\n    background: white;\r\n    color: #667eea;\r\n    border: none;\r\n    border-radius: 8px;\r\n    font-size: 14px;\r\n    font-weight: 600;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n}\r\n\r\n.dashboard-section .btn-help:hover {\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\r\n}\r\n\r\n/* Cards */\r\n.dashboard-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.78));\r\n    border: 1px solid rgba(255, 255, 255, 0.6);\r\n    border-radius: 16px;\r\n    padding: var(--dashboard-card-padding);\r\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-sm);\r\n    backdrop-filter: blur(12px) saturate(1.08);\r\n    -webkit-backdrop-filter: blur(12px) saturate(1.08);\r\n    margin-bottom: 24px;\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n.agent-dashboard .dashboard-card {\r\n    padding: 18px 16px;\r\n    border-radius: 14px;\r\n}\r\n\r\n.agent-dashboard .dashboard-stats {\r\n    gap: 12px;\r\n    margin-bottom: 12px;\r\n}\r\n\r\n/* Simple card title when no .card-header is used (sidebar cards) */\r\n.dashboard-card>h3 {\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 1.25rem;\r\n    color: var(--theme-text-primary);\r\n    margin: 0 0 16px 0;\r\n}\r\n\r\n.card-header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    gap: 12px;\r\n    margin-bottom: var(--dashboard-card-header-margin);\r\n    padding-bottom: var(--dashboard-card-header-padding);\r\n    border-bottom: 2px solid var(--theme-surface-border);\r\n}\r\n\r\n.card-header h3 {\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 1.25rem;\r\n    color: var(--theme-text-primary);\r\n    margin: 0;\r\n}\r\n\r\n/* Lists */\r\n.policies-list,\r\n.quotes-list,\r\n.documents-list,\r\n.tasks-list,\r\n.alert-list,\r\n.activity-list,\r\n.prelaunch-checklist {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 14px;\r\n}\r\n\r\n.task-item,\r\n.alert-item,\r\n.activity-item {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    gap: 12px;\r\n    padding: 14px 16px;\r\n    background: var(--acrylic-bg-light);\r\n    border: 1px solid var(--theme-accent-border-subtle);\r\n    border-radius: 12px;\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n.task-title,\r\n.alert-title,\r\n.activity-title {\r\n    margin: 0 0 4px 0;\r\n    font-weight: 700;\r\n}\r\n\r\n.task-meta,\r\n.alert-meta,\r\n.activity-meta {\r\n    margin: 0;\r\n    color: var(--theme-text-secondary);\r\n    font-size: 0.9rem;\r\n}\r\n\r\n.quick-actions {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 10px;\r\n}\r\n\r\n/* Skeleton loading states for dashboards */\r\n.skeleton-mode .dashboard-stat-card,\r\n.skeleton-mode .task-item,\r\n.skeleton-mode .alert-item,\r\n.skeleton-mode .activity-item {\r\n    position: relative;\r\n    overflow: hidden;\r\n    color: transparent !important;\r\n}\r\n\r\n.skeleton-mode .dashboard-stat-card::after,\r\n.skeleton-mode .task-item::after,\r\n.skeleton-mode .alert-item::after,\r\n.skeleton-mode .activity-item::after {\r\n    content: '';\r\n    position: absolute;\r\n    inset: 0;\r\n    background: linear-gradient(90deg,\r\n            rgba(255, 255, 255, 0.04) 0%,\r\n            rgba(255, 255, 255, 0.08) 40%,\r\n            rgba(255, 255, 255, 0.04) 80%);\r\n    animation: skeleton-shimmer 1.2s infinite;\r\n}\r\n\r\n.skeleton-mode .dashboard-stat-card .stat-icon,\r\n.skeleton-mode .dashboard-stat-card .stat-value,\r\n.skeleton-mode .dashboard-stat-card .stat-label,\r\n.skeleton-mode .task-item *,\r\n.skeleton-mode .alert-item *,\r\n.skeleton-mode .activity-item * {\r\n    color: transparent !important;\r\n}\r\n\r\n@keyframes skeleton-shimmer {\r\n    0% {\r\n        transform: translateX(-60%);\r\n    }\r\n\r\n    100% {\r\n        transform: translateX(60%);\r\n    }\r\n}\r\n\r\n.badge-light {\r\n    background: rgba(255, 255, 255, 0.12);\r\n    color: var(--theme-text-primary);\r\n    border: 1px solid var(--theme-surface-border);\r\n}\r\n\r\n.prelaunch-checklist {\r\n    padding-left: 18px;\r\n    margin: 0;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n.prelaunch-checklist li {\r\n    margin-bottom: 8px;\r\n}\r\n\r\n.policy-item,\r\n.quote-item {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 16px;\r\n    padding: 18px;\r\n    background: var(--acrylic-bg-light);\r\n    border: 1px solid var(--theme-surface-border);\r\n    border-radius: 12px;\r\n    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;\r\n}\r\n\r\n.policy-item:hover,\r\n.quote-item:hover {\r\n    background: var(--theme-accent-bg-soft);\r\n    border-color: var(--theme-accent-border);\r\n    transform: translateX(3px);\r\n    box-shadow: var(--shadow);\r\n}\r\n\r\n.policy-icon {\r\n    font-size: 2rem;\r\n    width: 52px;\r\n    height: 52px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    background: var(--acrylic-bg-light);\r\n    border: 1px solid var(--theme-surface-border);\r\n    border-radius: 12px;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.policy-info,\r\n.quote-info {\r\n    flex: 1;\r\n    min-width: 0;\r\n}\r\n\r\n.policy-actions {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 10px;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.policy-info h4,\r\n.quote-info h4 {\r\n    font-size: 1.05rem;\r\n    color: var(--theme-text-primary);\r\n    margin: 0 0 6px 0;\r\n}\r\n\r\n.policy-info p,\r\n.quote-info p {\r\n    color: var(--theme-text-secondary);\r\n    font-size: 0.92rem;\r\n    margin: 0 0 10px 0;\r\n}\r\n\r\n.policy-meta {\r\n    display: flex;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    gap: 10px;\r\n    font-size: 0.85rem;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n.quote-date {\r\n    font-size: 0.85rem;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n/* Badges */\r\n.badge {\r\n    padding: 4px 12px;\r\n    border-radius: 999px;\r\n    font-size: 0.72rem;\r\n    font-weight: 700;\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.5px;\r\n}\r\n\r\n.badge-success {\r\n    background: var(--success);\r\n    color: var(--theme-on-success);\r\n}\r\n\r\n.badge-warning {\r\n    background: var(--warning);\r\n    color: var(--theme-on-warning);\r\n}\r\n\r\n.badge-danger {\r\n    background: var(--danger);\r\n    color: var(--theme-on-danger);\r\n}\r\n\r\n.badge-primary {\r\n    background: var(--theme-primary-color);\r\n    color: var(--theme-highlight-light);\r\n}\r\n\r\n.badge-accent {\r\n    background: var(--theme-accent-bg-soft);\r\n    color: var(--theme-accent-color);\r\n    border: 1px solid var(--theme-accent-border);\r\n}\r\n\r\n/* Tables */\r\n.payments-table table,\r\n.clients-table table {\r\n    width: 100%;\r\n    border-collapse: collapse;\r\n}\r\n\r\n.payments-table th,\r\n.payments-table td,\r\n.clients-table th,\r\n.clients-table td {\r\n    padding: 14px 12px;\r\n    text-align: left;\r\n    border-bottom: 1px solid var(--theme-surface-border);\r\n}\r\n\r\n.payments-table th,\r\n.clients-table th {\r\n    font-weight: 700;\r\n    color: var(--theme-text-primary);\r\n    background: var(--theme-navlink-active-bg);\r\n    font-size: 0.9rem;\r\n}\r\n\r\n.payments-table td,\r\n.clients-table td {\r\n    color: var(--theme-text-secondary);\r\n    font-size: 0.95rem;\r\n}\r\n\r\n.client-cell {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n}\r\n\r\n.client-avatar {\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 50%;\r\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\r\n    color: var(--white);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-weight: 800;\r\n    font-size: 0.9rem;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.client-name {\r\n    font-weight: 700;\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n.client-email {\r\n    font-size: 0.85rem;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n/* Sidebar */\r\n.dashboard-sidebar .dashboard-card {\r\n    position: sticky;\r\n    top: calc(var(--nav-height) + 14px);\r\n}\r\n\r\n.quick-actions {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: var(--dashboard-quick-actions-gap);\r\n}\r\n\r\n.agent-info {\r\n    text-align: center;\r\n}\r\n\r\n.agent-avatar {\r\n    width: 80px;\r\n    height: 80px;\r\n    border-radius: 50%;\r\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\r\n    color: var(--white);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 2rem;\r\n    font-weight: 800;\r\n    margin: 0 auto 16px;\r\n    box-shadow: 0 10px 26px var(--theme-primary-shadow-color);\r\n}\r\n\r\n.agent-info h4 {\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 1.15rem;\r\n    margin: 0 0 6px 0;\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n.agent-info p {\r\n    color: var(--theme-text-secondary);\r\n    font-size: 0.92rem;\r\n    margin: 0 0 14px 0;\r\n}\r\n\r\n.agent-contact {\r\n    margin: 14px 0;\r\n    padding: 14px;\r\n    background: var(--theme-navlink-active-bg);\r\n    border: 1px solid var(--theme-surface-border);\r\n    border-radius: 12px;\r\n    text-align: left;\r\n}\r\n\r\n.agent-contact p {\r\n    margin: 6px 0;\r\n    font-size: 0.92rem;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n/* Shared stat grid + cards */\r\n.dashboard-stats {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(var(--dashboard-stat-min), 1fr));\r\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\r\n    margin-top: 0;\r\n    margin-bottom: 12px;\r\n}\r\n\r\n.dashboard-stat-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\r\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\r\n    padding: var(--dashboard-stat-padding);\r\n    border-radius: var(--dashboard-stat-radius);\r\n    border: 1px solid var(--theme-accent-border);\r\n    box-shadow: var(--dashboard-stat-shadow, var(--dashboard-stat-shadow-shared));\r\n    transition: var(--dashboard-stat-transition, var(--dashboard-stat-transition-shared));\r\n    display: flex;\r\n    align-items: center;\r\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\r\n    position: relative;\r\n    overflow: hidden;\r\n}\r\n\r\n.dashboard-stat-card:hover {\r\n    transform: translateY(var(--dashboard-stat-hover-lift, var(--dashboard-stat-hover-lift-shared)));\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\r\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\r\n    box-shadow: var(--dashboard-stat-hover-shadow, var(--dashboard-stat-hover-shadow-shared));\r\n}\r\n\r\n.dashboard-stat-card .stat-icon {\r\n    font-size: var(--dashboard-stat-icon-font, var(--dashboard-stat-icon-font-shared));\r\n    width: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\r\n    height: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\r\n    border-radius: var(--dashboard-stat-icon-radius, var(--dashboard-stat-icon-radius-shared));\r\n    border: 1px solid var(--theme-accent-border);\r\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\r\n    box-shadow: var(--dashboard-stat-icon-shadow, var(--dashboard-stat-icon-shadow-shared));\r\n    flex-shrink: 0;\r\n}\r\n\r\n.stat-info {\r\n    flex: 1;\r\n}\r\n\r\n.stat-value {\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 2rem;\r\n    font-weight: 700;\r\n    color: var(--theme-text-primary);\r\n    line-height: 1;\r\n    margin-bottom: 6px;\r\n}\r\n\r\n.stat-label {\r\n    font-size: 0.95rem;\r\n    color: var(--theme-text-secondary);\r\n    font-weight: 500;\r\n}\r\n\r\n.document-link {\r\n    padding: 12px 14px;\r\n    background: var(--theme-navlink-active-bg);\r\n    border: 1px solid var(--theme-surface-border);\r\n    border-radius: 10px;\r\n    text-decoration: none;\r\n    color: var(--theme-text-primary);\r\n    font-size: 0.92rem;\r\n    transition: transform 0.2s ease, background 0.2s ease;\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 10px;\r\n}\r\n\r\n.document-link:hover {\r\n    background: var(--theme-accent-bg-soft);\r\n    border-color: var(--theme-accent-border);\r\n    transform: translateX(3px);\r\n}\r\n\r\n.task-item {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n    padding: 12px;\r\n    background: var(--acrylic-bg-light);\r\n    border: 1px solid var(--theme-accent-border-subtle);\r\n    border-radius: 10px;\r\n    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;\r\n}\r\n\r\n.task-item:hover {\r\n    background: var(--theme-accent-bg-soft);\r\n    border-color: var(--theme-accent-border);\r\n    transform: translateX(2px);\r\n}\r\n\r\n.task-item input[type=\"checkbox\"] {\r\n    width: 18px;\r\n    height: 18px;\r\n    cursor: pointer;\r\n}\r\n\r\n.commissions-info {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 12px;\r\n}\r\n\r\n.commission-row {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    gap: 12px;\r\n    padding: 10px 0;\r\n    border-bottom: 1px solid var(--theme-surface-border);\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n.commission-row strong {\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n/* Responsive */\r\n@media (max-width: 1480px) {\r\n    .dashboard-grid {\r\n        grid-template-columns: repeat(2, minmax(300px, 1fr));\r\n    }\r\n\r\n    .dashboard-main {\r\n        grid-column: span 2;\r\n        grid-template-columns: repeat(2, minmax(var(--dashboard-main-col-min), 1fr));\r\n    }\r\n\r\n    .dashboard-sidebar {\r\n        grid-column: span 2;\r\n    }\r\n}\r\n\r\n@media (max-width: 1100px) {\r\n    .dashboard-grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-main {\r\n        grid-column: span 1;\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-sidebar {\r\n        grid-column: span 1;\r\n    }\r\n\r\n    .dashboard-sidebar .dashboard-card {\r\n        position: static;\r\n    }\r\n}\r\n\r\n@media (max-width: 560px) {\r\n    .dashboard-card {\r\n        padding: 20px;\r\n    }\r\n\r\n    .policy-item,\r\n    .quote-item {\r\n        flex-direction: column;\r\n        align-items: flex-start;\r\n    }\r\n}\r\n\r\n/* ===== Dark-Forest Dashboard Overrides (moved from theme file for load priority) ===== */\r\nhtml[data-theme=\"dark-forest\"] .dashboard-section,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard {\r\n    background:\r\n        radial-gradient(90% 80% at 12% 18%, rgba(76, 201, 191, 0.32), transparent 58%),\r\n        radial-gradient(85% 70% at 88% 22%, rgba(113, 220, 201, 0.24), transparent 62%),\r\n        radial-gradient(95% 80% at 18% 88%, rgba(76, 150, 220, 0.22), transparent 68%),\r\n        linear-gradient(155deg, #0f2c35 0%, #0c1f2c 46%, #0a1724 100%);\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header {\r\n    border-bottom: 2px solid rgba(223, 243, 237, 0.26);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header h1,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header h1,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child h1,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header h1,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child h1 {\r\n    color: var(--theme-contrast-strong);\r\n    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header p,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header p,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child p,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header p,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child p {\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn,\r\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary {\r\n    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));\r\n    color: var(--theme-text-primary);\r\n    border: 1px solid var(--theme-accent-border);\r\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.14);\r\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\r\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn:hover,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn:hover,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn:hover,\r\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary:hover,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary:hover,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary:hover {\r\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\r\n    border-color: var(--theme-accent-border);\r\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), 0 0 0 1px var(--theme-accent-border);\r\n    filter: none;\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\r\n    border: 1px solid var(--theme-accent-border);\r\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);\r\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card:hover,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card:hover,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card:hover {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\r\n    border-color: var(--theme-accent-border);\r\n    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card .stat-icon,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card .stat-icon,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card .stat-icon {\r\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\r\n    color: var(--theme-text-primary);\r\n    border: 1px solid var(--theme-accent-border);\r\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\r\n    box-shadow: 0 10px 28px var(--theme-primary-shadow-color), inset 0 1px 0 rgba(255, 255, 255, 0.24);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .stat-value,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-value,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-value {\r\n    color: var(--theme-contrast-strong);\r\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .stat-label,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-label,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-label {\r\n    color: var(--theme-text-secondary);\r\n    font-weight: 600;\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));\r\n    border: 1px solid var(--theme-accent-border);\r\n    color: var(--theme-text-primary);\r\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);\r\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\r\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\r\n}\r\n\r\n/* Responsive Design */\r\n@media (max-width: 1200px) {\r\n    .dashboard-section .content-grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-section .content-sidebar {\r\n        grid-column: 1;\r\n    }\r\n\r\n    .panel-grid.two-columns {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-shell {\r\n        padding: 26px 18px 32px;\r\n    }\r\n}\r\n\r\n@media (max-width: 768px) {\r\n    .dashboard-section .dashboard-sidebar {\r\n        width: var(--sidebar-slim-width);\r\n    }\r\n\r\n    .dashboard-section .dashboard-main-wrapper {\r\n        margin-left: var(--sidebar-slim-width);\r\n        padding: 20px;\r\n    }\r\n\r\n    .dashboard-section .nav-item span,\r\n    .dashboard-section .sidebar-header h3 {\r\n        display: none;\r\n    }\r\n\r\n    .dashboard-section .stats-grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-section .dashboard-top-header {\r\n        flex-direction: column;\r\n        align-items: flex-start;\r\n        gap: 16px;\r\n    }\r\n\r\n    .dashboard-tabs {\r\n        width: 100%;\r\n        justify-content: space-between;\r\n        gap: 6px;\r\n    }\r\n\r\n    .dashboard-tab {\r\n        flex: 1 1 45%;\r\n        text-align: center;\r\n    }\r\n\r\n    .dashboard-shell,\r\n    .dashboard-section.no-sidebar .dashboard-shell {\r\n        padding: 22px 14px 28px;\r\n    }\r\n\r\n    .dashboard-section.no-sidebar .dashboard-main-wrapper {\r\n        margin-left: 0;\r\n        padding: 0;\r\n    }\r\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/dashboards.css"],"names":[],"mappings":"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","sourcesContent":["/* Shared Dashboard UI (restored from backup, tokenized)\r\n   This file provides the missing layout/components for dashboards:\r\n   - grid layout\r\n   - cards + headers\r\n   - lists (policies/quotes)\r\n   - tables\r\n   - badges\r\n   - icon buttons\r\n   - sidebar widgets\r\n*/\r\n\r\n:root {\r\n    /* Modern Dashboard Colors */\r\n    --sidebar-width: 240px;\r\n    --sidebar-slim-width: 80px;\r\n    --color-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\r\n    --color-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);\r\n    --color-warning: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);\r\n    --color-info: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);\r\n    --bg-main: #f8f9fa;\r\n    --bg-card: #ffffff;\r\n    --bg-sidebar: #1a1d29;\r\n    --text-primary: #2d3748;\r\n    --text-secondary: #718096;\r\n    --border-color: #e2e8f0;\r\n    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);\r\n    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);\r\n    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.08);\r\n    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);\r\n\r\n    /* Legacy compatibility */\r\n    --dashboard-bg-light: var(--bg-main);\r\n    --dashboard-stat-gap-shared: 14px;\r\n    --dashboard-stat-icon-size-shared: 60px;\r\n    --dashboard-stat-icon-radius-shared: 14px;\r\n    --dashboard-stat-transition-shared: all 0.42s cubic-bezier(0.33, 1, 0.68, 1);\r\n}\r\n\r\n/* Utilities for dashboard buttons */\r\n.btn-sm {\r\n    padding: 8px 12px;\r\n    border-radius: 10px;\r\n    font-size: 0.88rem;\r\n    line-height: 1.1;\r\n}\r\n\r\n.btn-icon {\r\n    width: 36px;\r\n    height: 36px;\r\n    border-radius: 10px;\r\n    border: 1px solid var(--theme-surface-border);\r\n    background: var(--acrylic-bg-light);\r\n    color: var(--theme-text-primary);\r\n    cursor: pointer;\r\n    display: inline-flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;\r\n}\r\n\r\n.btn-icon:hover {\r\n    transform: translateY(-1px);\r\n    background: var(--theme-accent-bg-soft);\r\n    border-color: var(--theme-accent-border);\r\n}\r\n\r\n.hidden {\r\n    display: none !important;\r\n}\r\n\r\n/* Modern Dashboard Layout - Only shows on dashboard pages */\r\n.dashboard-section {\r\n    background: var(--bg-main);\r\n    min-height: 100vh;\r\n}\r\n\r\n/* Dashboard Layout with Sidebar */\r\n.dashboard-section .dashboard-layout {\r\n    display: flex;\r\n    min-height: 100vh;\r\n}\r\n\r\n/* Shell container for dashboards (centered width) */\r\n.dashboard-shell {\r\n    width: 100%;\r\n    max-width: 1500px;\r\n    margin: 0 auto;\r\n    padding: 22px 22px 32px;\r\n}\r\n\r\n/* No-sidebar variation (cliente) */\r\n.dashboard-section.no-sidebar .dashboard-layout {\r\n    display: block;\r\n}\r\n\r\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\r\n    margin-left: 0;\r\n    padding: 0;\r\n    max-width: none;\r\n}\r\n\r\n.dashboard-section.no-sidebar .dashboard-shell {\r\n    padding: 28px 20px 36px;\r\n}\r\n\r\n/* Slim Sidebar Navigation */\r\n.dashboard-section .dashboard-sidebar {\r\n    width: var(--sidebar-width);\r\n    background: var(--bg-sidebar);\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 24px 0;\r\n    position: fixed;\r\n    height: 100vh;\r\n    left: 0;\r\n    top: 0;\r\n    z-index: 100;\r\n    box-shadow: var(--shadow-xl);\r\n}\r\n\r\n.dashboard-section .sidebar-header {\r\n    padding: 0 20px 24px;\r\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\r\n    text-align: center;\r\n}\r\n\r\n.dashboard-section .user-avatar {\r\n    width: 60px;\r\n    height: 60px;\r\n    margin: 0 auto 12px;\r\n    border-radius: 50%;\r\n    overflow: hidden;\r\n    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);\r\n}\r\n\r\n.dashboard-section .sidebar-header h3 {\r\n    color: white;\r\n    font-size: 16px;\r\n    font-weight: 600;\r\n    margin: 0;\r\n}\r\n\r\n.dashboard-section .sidebar-nav {\r\n    flex: 1;\r\n    padding: 24px 0;\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 4px;\r\n}\r\n\r\n.dashboard-section .nav-item {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n    padding: 12px 20px;\r\n    color: rgba(255, 255, 255, 0.7);\r\n    text-decoration: none;\r\n    transition: all 0.2s ease;\r\n    position: relative;\r\n}\r\n\r\n.dashboard-section .nav-item::before {\r\n    content: '';\r\n    position: absolute;\r\n    left: 0;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    width: 3px;\r\n    height: 0;\r\n    background: linear-gradient(180deg, #667eea, #764ba2);\r\n    border-radius: 0 2px 2px 0;\r\n    transition: height 0.2s ease;\r\n}\r\n\r\n.dashboard-section .nav-item:hover,\r\n.dashboard-section .nav-item.active {\r\n    color: white;\r\n    background: rgba(255, 255, 255, 0.05);\r\n}\r\n\r\n.dashboard-section .nav-item.active::before {\r\n    height: 70%;\r\n}\r\n\r\n.dashboard-section .nav-item svg {\r\n    flex-shrink: 0;\r\n}\r\n\r\n.dashboard-section .sidebar-logout {\r\n    margin: 0 20px;\r\n    padding: 12px;\r\n    background: rgba(245, 87, 108, 0.1);\r\n    border: 1px solid rgba(245, 87, 108, 0.2);\r\n    border-radius: 8px;\r\n    color: #f5576c;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    gap: 8px;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n    font-size: 14px;\r\n    font-weight: 500;\r\n}\r\n\r\n.dashboard-section .sidebar-logout:hover {\r\n    background: rgba(245, 87, 108, 0.2);\r\n    border-color: rgba(245, 87, 108, 0.4);\r\n}\r\n\r\n/* Main Content Wrapper */\r\n.dashboard-section .dashboard-main-wrapper {\r\n    flex: 1;\r\n    margin-left: var(--sidebar-width);\r\n    padding: 24px;\r\n    max-width: 1600px;\r\n}\r\n\r\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\r\n    margin-left: 0;\r\n    padding: 0;\r\n    max-width: none;\r\n}\r\n\r\n/* Top Header */\r\n.dashboard-section .dashboard-top-header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin-bottom: 22px;\r\n}\r\n\r\n.dashboard-section .dashboard-top-header .eyebrow {\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.08em;\r\n    font-size: 11px;\r\n    color: var(--text-secondary);\r\n    margin: 0 0 6px 0;\r\n    font-weight: 700;\r\n}\r\n\r\n.dashboard-section .dashboard-top-header .header-actions {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 10px;\r\n    flex-wrap: wrap;\r\n    justify-content: flex-end;\r\n}\r\n\r\n.dashboard-tabs {\r\n    display: flex;\r\n    gap: 10px;\r\n    padding: 8px;\r\n    background: rgba(255, 255, 255, 0.78);\r\n    border: 1px solid rgba(255, 255, 255, 0.6);\r\n    border-radius: 14px;\r\n    box-shadow: 0 12px 28px rgba(31, 38, 135, 0.12), var(--shadow-sm);\r\n    backdrop-filter: blur(10px) saturate(1.05);\r\n    -webkit-backdrop-filter: blur(10px) saturate(1.05);\r\n    flex-wrap: wrap;\r\n    margin-bottom: 18px;\r\n}\r\n\r\n.dashboard-tab {\r\n    border: none;\r\n    background: transparent;\r\n    color: var(--text-secondary);\r\n    padding: 10px 14px;\r\n    border-radius: 12px;\r\n    font-weight: 600;\r\n    cursor: pointer;\r\n    transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);\r\n}\r\n\r\n.dashboard-tab:hover {\r\n    color: var(--text-primary);\r\n    background: rgba(102, 126, 234, 0.06);\r\n}\r\n\r\n.dashboard-tab.active {\r\n    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(118, 75, 162, 0.18));\r\n    color: #4a3b91;\r\n    box-shadow: 0 10px 26px rgba(102, 126, 234, 0.18);\r\n}\r\n\r\n.tab-panels {\r\n    width: 100%;\r\n}\r\n\r\n.tab-panels .tab-panel {\r\n    display: none !important;\r\n    width: 100%;\r\n    gap: 18px;\r\n}\r\n\r\n.tab-panels .tab-panel.active {\r\n    display: block !important;\r\n}\r\n\r\n.panel-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\r\n    gap: 14px;\r\n}\r\n\r\n.panel-grid.two-columns {\r\n    grid-template-columns: 1.25fr 1fr;\r\n}\r\n\r\n.panel-grid.stacked {\r\n    align-items: start;\r\n}\r\n\r\n.dashboard-section .dashboard-top-header h1 {\r\n    font-size: 32px;\r\n    font-weight: 700;\r\n    color: var(--text-primary);\r\n    margin: 0 0 4px 0;\r\n}\r\n\r\n.dashboard-section .text-muted {\r\n    color: var(--text-secondary);\r\n    font-size: 14px;\r\n    margin: 0;\r\n}\r\n\r\n.dashboard-section .btn-refresh {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 8px;\r\n    padding: 10px 20px;\r\n    background: white;\r\n    border: 1px solid var(--border-color);\r\n    border-radius: 10px;\r\n    color: var(--text-primary);\r\n    font-size: 14px;\r\n    font-weight: 500;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n    box-shadow: var(--shadow-sm);\r\n}\r\n\r\n.dashboard-section .btn-refresh:hover {\r\n    border-color: #667eea;\r\n    color: #667eea;\r\n    box-shadow: var(--shadow-md);\r\n    transform: translateY(-2px);\r\n}\r\n\r\n.dashboard-section .btn-refresh svg {\r\n    transition: transform 0.4s ease;\r\n}\r\n\r\n.dashboard-section .btn-refresh:hover svg {\r\n    transform: rotate(180deg);\r\n}\r\n\r\n/* Stats Grid with Color Pops */\r\n.dashboard-section .stats-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));\r\n    gap: 20px;\r\n    margin-bottom: 32px;\r\n}\r\n\r\n.dashboard-section .stats-grid.compact {\r\n    gap: 16px;\r\n    margin-bottom: 24px;\r\n}\r\n\r\n.dashboard-section .stat-card {\r\n    background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.68));\r\n    border-radius: 16px;\r\n    padding: 24px;\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 16px;\r\n    position: relative;\r\n    overflow: hidden;\r\n    box-shadow: 0 16px 38px rgba(31, 38, 135, 0.12), var(--shadow-md);\r\n    border: 1px solid rgba(255, 255, 255, 0.55);\r\n    backdrop-filter: blur(14px) saturate(1.15);\r\n    -webkit-backdrop-filter: blur(14px) saturate(1.15);\r\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\r\n}\r\n\r\n.dashboard-section .stat-card::before {\r\n    content: '';\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 4px;\r\n    opacity: 0;\r\n    transition: opacity 0.3s ease;\r\n}\r\n\r\n.dashboard-section .stat-card.stat-primary::before {\r\n    background: var(--color-primary);\r\n}\r\n\r\n.dashboard-section .stat-card.stat-success::before {\r\n    background: var(--color-success);\r\n}\r\n\r\n.dashboard-section .stat-card.stat-warning::before {\r\n    background: var(--color-warning);\r\n}\r\n\r\n.dashboard-section .stat-card.stat-info::before {\r\n    background: var(--color-info);\r\n}\r\n\r\n.dashboard-section .stat-card:hover {\r\n    transform: translateY(-4px);\r\n    box-shadow: var(--shadow-lg);\r\n}\r\n\r\n.dashboard-section .stat-card:hover::before {\r\n    opacity: 1;\r\n}\r\n\r\n.dashboard-section .stat-icon-wrapper {\r\n    width: 56px;\r\n    height: 56px;\r\n    border-radius: 12px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.dashboard-section .stat-primary .stat-icon-wrapper {\r\n    background: var(--color-primary);\r\n}\r\n\r\n.dashboard-section .stat-success .stat-icon-wrapper {\r\n    background: var(--color-success);\r\n}\r\n\r\n.dashboard-section .stat-warning .stat-icon-wrapper {\r\n    background: var(--color-warning);\r\n}\r\n\r\n.dashboard-section .stat-info .stat-icon-wrapper {\r\n    background: var(--color-info);\r\n}\r\n\r\n.dashboard-section .stat-icon-wrapper svg {\r\n    stroke: white;\r\n}\r\n\r\n.dashboard-section .stat-content {\r\n    flex: 1;\r\n}\r\n\r\n.dashboard-section .stat-value {\r\n    font-size: 28px;\r\n    font-weight: 700;\r\n    color: var(--text-primary);\r\n    margin: 0 0 4px 0;\r\n    line-height: 1;\r\n}\r\n\r\n.dashboard-section .stat-label {\r\n    font-size: 13px;\r\n    color: var(--text-secondary);\r\n    font-weight: 500;\r\n}\r\n\r\n.dashboard-section .stat-trend,\r\n.dashboard-section .stat-badge {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 4px;\r\n    font-size: 13px;\r\n    font-weight: 600;\r\n    padding: 4px 10px;\r\n    border-radius: 20px;\r\n}\r\n\r\n.dashboard-section .stat-trend.positive {\r\n    color: #38ef7d;\r\n    background: rgba(56, 239, 125, 0.1);\r\n}\r\n\r\n.dashboard-section .stat-trend.negative {\r\n    color: #f5576c;\r\n    background: rgba(245, 87, 108, 0.1);\r\n}\r\n\r\n.dashboard-section .stat-badge.success {\r\n    color: #38ef7d;\r\n    background: rgba(56, 239, 125, 0.1);\r\n}\r\n\r\n.dashboard-section .stat-badge.warning {\r\n    color: #fee140;\r\n    background: rgba(254, 225, 64, 0.15);\r\n}\r\n\r\n/* Content Grid */\r\n.dashboard-section .content-grid {\r\n    display: grid;\r\n    grid-template-columns: 1fr 360px;\r\n    gap: 24px;\r\n}\r\n\r\n.client-dashboard .content-grid,\r\n.agent-dashboard .content-grid {\r\n    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\r\n    gap: 18px;\r\n}\r\n\r\n.dashboard-section .content-main {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 24px;\r\n}\r\n\r\n/* Content Cards */\r\n.dashboard-section .content-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.74));\r\n    border-radius: 16px;\r\n    padding: 24px;\r\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-md);\r\n    border: 1px solid rgba(255, 255, 255, 0.55);\r\n    backdrop-filter: blur(14px) saturate(1.1);\r\n    -webkit-backdrop-filter: blur(14px) saturate(1.1);\r\n}\r\n\r\n.dashboard-section .content-card.compact,\r\n.dashboard-section .widget-card.compact {\r\n    padding: 18px 18px 16px;\r\n    border-radius: 14px;\r\n}\r\n\r\n.card-body-scroll {\r\n    max-height: 340px;\r\n    overflow: auto;\r\n    padding-right: 4px;\r\n    scrollbar-width: thin;\r\n}\r\n\r\n.card-body-scroll::-webkit-scrollbar {\r\n    width: 8px;\r\n}\r\n\r\n.card-body-scroll::-webkit-scrollbar-thumb {\r\n    background: rgba(0, 0, 0, 0.12);\r\n    border-radius: 10px;\r\n}\r\n\r\n.dashboard-section .card-header-modern {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.dashboard-section .card-header-modern h3 {\r\n    font-size: 18px;\r\n    font-weight: 600;\r\n    color: var(--text-primary);\r\n    margin: 0;\r\n}\r\n\r\n.dashboard-section .card-badge {\r\n    padding: 6px 12px;\r\n    background: var(--color-primary);\r\n    color: white;\r\n    border-radius: 20px;\r\n    font-size: 12px;\r\n    font-weight: 600;\r\n}\r\n\r\n.dashboard-section .btn-icon-sm {\r\n    width: 32px;\r\n    height: 32px;\r\n    border-radius: 8px;\r\n    border: 1px solid var(--border-color);\r\n    background: white;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n}\r\n\r\n.dashboard-section .btn-icon-sm:hover {\r\n    border-color: #667eea;\r\n    background: #f7fafc;\r\n}\r\n\r\n/* Sidebar Widgets */\r\n.dashboard-section .content-sidebar {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 20px;\r\n}\r\n\r\n.dashboard-section .widget-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.74));\r\n    border-radius: 16px;\r\n    padding: 20px;\r\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-md);\r\n    border: 1px solid rgba(255, 255, 255, 0.55);\r\n    backdrop-filter: blur(14px) saturate(1.1);\r\n    -webkit-backdrop-filter: blur(14px) saturate(1.1);\r\n}\r\n\r\n.dashboard-section .widget-card h4 {\r\n    font-size: 16px;\r\n    font-weight: 600;\r\n    color: var(--text-primary);\r\n    margin: 0 0 16px 0;\r\n}\r\n\r\n/* Quick Actions */\r\n.dashboard-section .quick-actions {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 10px;\r\n}\r\n\r\n.dashboard-section .action-btn {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n    padding: 12px 16px;\r\n    background: var(--bg-main);\r\n    border: 1px solid var(--border-color);\r\n    border-radius: 10px;\r\n    color: var(--text-primary);\r\n    font-size: 14px;\r\n    font-weight: 500;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n    text-align: left;\r\n}\r\n\r\n.dashboard-section .action-btn:hover {\r\n    background: white;\r\n    border-color: #667eea;\r\n    transform: translateX(4px);\r\n    box-shadow: var(--shadow-sm);\r\n}\r\n\r\n.dashboard-section .action-btn svg {\r\n    flex-shrink: 0;\r\n    stroke: #667eea;\r\n}\r\n\r\n/* Help Widget */\r\n.dashboard-section .help-widget {\r\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\r\n    color: white;\r\n    text-align: center;\r\n}\r\n\r\n.dashboard-section .help-widget h4 {\r\n    color: white;\r\n}\r\n\r\n.dashboard-section .help-widget svg {\r\n    margin: 0 auto 12px;\r\n    stroke: rgba(255, 255, 255, 0.9);\r\n}\r\n\r\n.dashboard-section .help-widget h5 {\r\n    font-size: 16px;\r\n    font-weight: 600;\r\n    margin: 0 0 8px 0;\r\n}\r\n\r\n.dashboard-section .help-widget p {\r\n    font-size: 13px;\r\n    opacity: 0.9;\r\n    margin: 0 0 16px 0;\r\n}\r\n\r\n.dashboard-section .btn-help {\r\n    width: 100%;\r\n    padding: 10px;\r\n    background: white;\r\n    color: #667eea;\r\n    border: none;\r\n    border-radius: 8px;\r\n    font-size: 14px;\r\n    font-weight: 600;\r\n    cursor: pointer;\r\n    transition: all 0.2s ease;\r\n}\r\n\r\n.dashboard-section .btn-help:hover {\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\r\n}\r\n\r\n/* Cards */\r\n.dashboard-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.78));\r\n    border: 1px solid rgba(255, 255, 255, 0.6);\r\n    border-radius: 16px;\r\n    padding: var(--dashboard-card-padding);\r\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-sm);\r\n    backdrop-filter: blur(12px) saturate(1.08);\r\n    -webkit-backdrop-filter: blur(12px) saturate(1.08);\r\n    margin-bottom: 24px;\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n.agent-dashboard .dashboard-card {\r\n    padding: 18px 16px;\r\n    border-radius: 14px;\r\n}\r\n\r\n.agent-dashboard .dashboard-stats {\r\n    gap: 12px;\r\n    margin-bottom: 12px;\r\n}\r\n\r\n/* Simple card title when no .card-header is used (sidebar cards) */\r\n.dashboard-card>h3 {\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 1.25rem;\r\n    color: var(--theme-text-primary);\r\n    margin: 0 0 16px 0;\r\n}\r\n\r\n.card-header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    gap: 12px;\r\n    margin-bottom: var(--dashboard-card-header-margin);\r\n    padding-bottom: var(--dashboard-card-header-padding);\r\n    border-bottom: 2px solid var(--theme-surface-border);\r\n}\r\n\r\n.card-header h3 {\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 1.25rem;\r\n    color: var(--theme-text-primary);\r\n    margin: 0;\r\n}\r\n\r\n/* Lists */\r\n.policies-list,\r\n.quotes-list,\r\n.documents-list,\r\n.tasks-list,\r\n.alert-list,\r\n.activity-list,\r\n.prelaunch-checklist {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 14px;\r\n}\r\n\r\n.task-item,\r\n.alert-item,\r\n.activity-item {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    gap: 12px;\r\n    padding: 14px 16px;\r\n    background: var(--acrylic-bg-light);\r\n    border: 1px solid var(--theme-accent-border-subtle);\r\n    border-radius: 12px;\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n.task-title,\r\n.alert-title,\r\n.activity-title {\r\n    margin: 0 0 4px 0;\r\n    font-weight: 700;\r\n}\r\n\r\n.task-meta,\r\n.alert-meta,\r\n.activity-meta {\r\n    margin: 0;\r\n    color: var(--theme-text-secondary);\r\n    font-size: 0.9rem;\r\n}\r\n\r\n.quick-actions {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 10px;\r\n}\r\n\r\n/* Skeleton loading states for dashboards */\r\n.skeleton-mode .dashboard-stat-card,\r\n.skeleton-mode .task-item,\r\n.skeleton-mode .alert-item,\r\n.skeleton-mode .activity-item {\r\n    position: relative;\r\n    overflow: hidden;\r\n    color: transparent !important;\r\n}\r\n\r\n.skeleton-mode .dashboard-stat-card::after,\r\n.skeleton-mode .task-item::after,\r\n.skeleton-mode .alert-item::after,\r\n.skeleton-mode .activity-item::after {\r\n    content: '';\r\n    position: absolute;\r\n    inset: 0;\r\n    background: linear-gradient(90deg,\r\n            rgba(255, 255, 255, 0.04) 0%,\r\n            rgba(255, 255, 255, 0.08) 40%,\r\n            rgba(255, 255, 255, 0.04) 80%);\r\n    animation: skeleton-shimmer 1.2s infinite;\r\n}\r\n\r\n.skeleton-mode .dashboard-stat-card .stat-icon,\r\n.skeleton-mode .dashboard-stat-card .stat-value,\r\n.skeleton-mode .dashboard-stat-card .stat-label,\r\n.skeleton-mode .task-item *,\r\n.skeleton-mode .alert-item *,\r\n.skeleton-mode .activity-item * {\r\n    color: transparent !important;\r\n}\r\n\r\n@keyframes skeleton-shimmer {\r\n    0% {\r\n        transform: translateX(-60%);\r\n    }\r\n\r\n    100% {\r\n        transform: translateX(60%);\r\n    }\r\n}\r\n\r\n.badge-light {\r\n    background: rgba(255, 255, 255, 0.12);\r\n    color: var(--theme-text-primary);\r\n    border: 1px solid var(--theme-surface-border);\r\n}\r\n\r\n.prelaunch-checklist {\r\n    padding-left: 18px;\r\n    margin: 0;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n.prelaunch-checklist li {\r\n    margin-bottom: 8px;\r\n}\r\n\r\n.policy-item,\r\n.quote-item {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 16px;\r\n    padding: 18px;\r\n    background: var(--acrylic-bg-light);\r\n    border: 1px solid var(--theme-surface-border);\r\n    border-radius: 12px;\r\n    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;\r\n}\r\n\r\n.policy-item:hover,\r\n.quote-item:hover {\r\n    background: var(--theme-accent-bg-soft);\r\n    border-color: var(--theme-accent-border);\r\n    transform: translateX(3px);\r\n    box-shadow: var(--shadow);\r\n}\r\n\r\n.policy-icon {\r\n    font-size: 2rem;\r\n    width: 52px;\r\n    height: 52px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    background: var(--acrylic-bg-light);\r\n    border: 1px solid var(--theme-surface-border);\r\n    border-radius: 12px;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.policy-info,\r\n.quote-info {\r\n    flex: 1;\r\n    min-width: 0;\r\n}\r\n\r\n.policy-actions {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 10px;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.policy-info h4,\r\n.quote-info h4 {\r\n    font-size: 1.05rem;\r\n    color: var(--theme-text-primary);\r\n    margin: 0 0 6px 0;\r\n}\r\n\r\n.policy-info p,\r\n.quote-info p {\r\n    color: var(--theme-text-secondary);\r\n    font-size: 0.92rem;\r\n    margin: 0 0 10px 0;\r\n}\r\n\r\n.policy-meta {\r\n    display: flex;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    gap: 10px;\r\n    font-size: 0.85rem;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n.quote-date {\r\n    font-size: 0.85rem;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n/* Badges */\r\n.badge {\r\n    padding: 4px 12px;\r\n    border-radius: 999px;\r\n    font-size: 0.72rem;\r\n    font-weight: 700;\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.5px;\r\n}\r\n\r\n.badge-success {\r\n    background: var(--success);\r\n    color: var(--theme-on-success);\r\n}\r\n\r\n.badge-warning {\r\n    background: var(--warning);\r\n    color: var(--theme-on-warning);\r\n}\r\n\r\n.badge-danger {\r\n    background: var(--danger);\r\n    color: var(--theme-on-danger);\r\n}\r\n\r\n.badge-primary {\r\n    background: var(--theme-primary-color);\r\n    color: var(--theme-highlight-light);\r\n}\r\n\r\n.badge-accent {\r\n    background: var(--theme-accent-bg-soft);\r\n    color: var(--theme-accent-color);\r\n    border: 1px solid var(--theme-accent-border);\r\n}\r\n\r\n/* Tables */\r\n.payments-table table,\r\n.clients-table table {\r\n    width: 100%;\r\n    border-collapse: collapse;\r\n}\r\n\r\n.payments-table th,\r\n.payments-table td,\r\n.clients-table th,\r\n.clients-table td {\r\n    padding: 14px 12px;\r\n    text-align: left;\r\n    border-bottom: 1px solid var(--theme-surface-border);\r\n}\r\n\r\n.payments-table th,\r\n.clients-table th {\r\n    font-weight: 700;\r\n    color: var(--theme-text-primary);\r\n    background: var(--theme-navlink-active-bg);\r\n    font-size: 0.9rem;\r\n}\r\n\r\n.payments-table td,\r\n.clients-table td {\r\n    color: var(--theme-text-secondary);\r\n    font-size: 0.95rem;\r\n}\r\n\r\n.client-cell {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n}\r\n\r\n.client-avatar {\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 50%;\r\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\r\n    color: var(--white);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-weight: 800;\r\n    font-size: 0.9rem;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.client-name {\r\n    font-weight: 700;\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n.client-email {\r\n    font-size: 0.85rem;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n/* Sidebar */\r\n.dashboard-sidebar .dashboard-card {\r\n    position: sticky;\r\n    top: calc(var(--nav-height) + 14px);\r\n}\r\n\r\n.quick-actions {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: var(--dashboard-quick-actions-gap);\r\n}\r\n\r\n.agent-info {\r\n    text-align: center;\r\n}\r\n\r\n.agent-avatar {\r\n    width: 80px;\r\n    height: 80px;\r\n    border-radius: 50%;\r\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\r\n    color: var(--white);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 2rem;\r\n    font-weight: 800;\r\n    margin: 0 auto 16px;\r\n    box-shadow: 0 10px 26px var(--theme-primary-shadow-color);\r\n}\r\n\r\n.agent-info h4 {\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 1.15rem;\r\n    margin: 0 0 6px 0;\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n.agent-info p {\r\n    color: var(--theme-text-secondary);\r\n    font-size: 0.92rem;\r\n    margin: 0 0 14px 0;\r\n}\r\n\r\n.agent-contact {\r\n    margin: 14px 0;\r\n    padding: 14px;\r\n    background: var(--theme-navlink-active-bg);\r\n    border: 1px solid var(--theme-surface-border);\r\n    border-radius: 12px;\r\n    text-align: left;\r\n}\r\n\r\n.agent-contact p {\r\n    margin: 6px 0;\r\n    font-size: 0.92rem;\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n/* Shared stat grid + cards */\r\n.dashboard-stats {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(var(--dashboard-stat-min), 1fr));\r\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\r\n    margin-top: 0;\r\n    margin-bottom: 12px;\r\n}\r\n\r\n.dashboard-stat-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\r\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\r\n    padding: var(--dashboard-stat-padding);\r\n    border-radius: var(--dashboard-stat-radius);\r\n    border: 1px solid var(--theme-accent-border);\r\n    box-shadow: var(--dashboard-stat-shadow, var(--dashboard-stat-shadow-shared));\r\n    transition: var(--dashboard-stat-transition, var(--dashboard-stat-transition-shared));\r\n    display: flex;\r\n    align-items: center;\r\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\r\n    position: relative;\r\n    overflow: hidden;\r\n    transition: transform 0.42s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.42s cubic-bezier(0.33, 1, 0.68, 1), background 0.42s cubic-bezier(0.33, 1, 0.68, 1), border-color 0.42s cubic-bezier(0.33, 1, 0.68, 1);\r\n}\r\n\r\n.dashboard-stat-card:hover {\r\n    transform: translateY(var(--dashboard-stat-hover-lift, var(--dashboard-stat-hover-lift-shared)));\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\r\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\r\n    box-shadow: var(--dashboard-stat-hover-shadow, var(--dashboard-stat-hover-shadow-shared));\r\n}\r\n\r\n.dashboard-stat-card .stat-icon {\r\n    font-size: var(--dashboard-stat-icon-font, var(--dashboard-stat-icon-font-shared));\r\n    width: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\r\n    height: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\r\n    border-radius: var(--dashboard-stat-icon-radius, var(--dashboard-stat-icon-radius-shared));\r\n    border: 1px solid var(--theme-accent-border);\r\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\r\n    box-shadow: var(--dashboard-stat-icon-shadow, var(--dashboard-stat-icon-shadow-shared));\r\n    flex-shrink: 0;\r\n}\r\n\r\n.stat-info {\r\n    flex: 1;\r\n}\r\n\r\n.stat-value {\r\n    font-family: 'Cinzel', serif;\r\n    font-size: 2rem;\r\n    font-weight: 700;\r\n    color: var(--theme-text-primary);\r\n    line-height: 1;\r\n    margin-bottom: 6px;\r\n}\r\n\r\n.stat-label {\r\n    font-size: 0.95rem;\r\n    color: var(--theme-text-secondary);\r\n    font-weight: 500;\r\n}\r\n\r\n.document-link {\r\n    padding: 12px 14px;\r\n    background: var(--theme-navlink-active-bg);\r\n    border: 1px solid var(--theme-surface-border);\r\n    border-radius: 10px;\r\n    text-decoration: none;\r\n    color: var(--theme-text-primary);\r\n    font-size: 0.92rem;\r\n    transition: transform 0.2s ease, background 0.2s ease;\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 10px;\r\n}\r\n\r\n.document-link:hover {\r\n    background: var(--theme-accent-bg-soft);\r\n    border-color: var(--theme-accent-border);\r\n    transform: translateX(3px);\r\n}\r\n\r\n.task-item {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n    padding: 12px;\r\n    background: var(--acrylic-bg-light);\r\n    border: 1px solid var(--theme-accent-border-subtle);\r\n    border-radius: 10px;\r\n    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;\r\n}\r\n\r\n.task-item:hover {\r\n    background: var(--theme-accent-bg-soft);\r\n    border-color: var(--theme-accent-border);\r\n    transform: translateX(2px);\r\n}\r\n\r\n.task-item input[type=\"checkbox\"] {\r\n    width: 18px;\r\n    height: 18px;\r\n    cursor: pointer;\r\n}\r\n\r\n.commissions-info {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 12px;\r\n}\r\n\r\n.commission-row {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    gap: 12px;\r\n    padding: 10px 0;\r\n    border-bottom: 1px solid var(--theme-surface-border);\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\n.commission-row strong {\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\n/* Responsive */\r\n@media (max-width: 1480px) {\r\n    .dashboard-grid {\r\n        grid-template-columns: repeat(2, minmax(300px, 1fr));\r\n    }\r\n\r\n    .dashboard-main {\r\n        grid-column: span 2;\r\n        grid-template-columns: repeat(2, minmax(var(--dashboard-main-col-min), 1fr));\r\n    }\r\n\r\n    .dashboard-sidebar {\r\n        grid-column: span 2;\r\n    }\r\n}\r\n\r\n@media (max-width: 1100px) {\r\n    .dashboard-grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-main {\r\n        grid-column: span 1;\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-sidebar {\r\n        grid-column: span 1;\r\n    }\r\n\r\n    .dashboard-sidebar .dashboard-card {\r\n        position: static;\r\n    }\r\n}\r\n\r\n@media (max-width: 560px) {\r\n    .dashboard-card {\r\n        padding: 20px;\r\n    }\r\n\r\n    .policy-item,\r\n    .quote-item {\r\n        flex-direction: column;\r\n        align-items: flex-start;\r\n    }\r\n}\r\n\r\n/* ===== Dark-Forest Dashboard Overrides (moved from theme file for load priority) ===== */\r\nhtml[data-theme=\"dark-forest\"] .dashboard-section,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard {\r\n    background:\r\n        radial-gradient(90% 80% at 12% 18%, rgba(76, 201, 191, 0.32), transparent 58%),\r\n        radial-gradient(85% 70% at 88% 22%, rgba(113, 220, 201, 0.24), transparent 62%),\r\n        radial-gradient(95% 80% at 18% 88%, rgba(76, 150, 220, 0.22), transparent 68%),\r\n        linear-gradient(155deg, #0f2c35 0%, #0c1f2c 46%, #0a1724 100%);\r\n    color: var(--theme-text-primary);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header {\r\n    border-bottom: 2px solid rgba(223, 243, 237, 0.26);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header h1,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header h1,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child h1,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header h1,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child h1 {\r\n    color: var(--theme-contrast-strong);\r\n    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header p,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header p,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child p,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header p,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child p {\r\n    color: var(--theme-text-secondary);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn,\r\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary {\r\n    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));\r\n    color: var(--theme-text-primary);\r\n    border: 1px solid var(--theme-accent-border);\r\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.14);\r\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\r\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn:hover,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn:hover,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn:hover,\r\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary:hover,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary:hover,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary:hover {\r\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\r\n    border-color: var(--theme-accent-border);\r\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), 0 0 0 1px var(--theme-accent-border);\r\n    filter: none;\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\r\n    border: 1px solid var(--theme-accent-border);\r\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);\r\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card:hover,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card:hover,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card:hover {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\r\n    border-color: var(--theme-accent-border);\r\n    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card .stat-icon,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card .stat-icon,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card .stat-icon {\r\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\r\n    color: var(--theme-text-primary);\r\n    border: 1px solid var(--theme-accent-border);\r\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\r\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\r\n    box-shadow: 0 10px 28px var(--theme-primary-shadow-color), inset 0 1px 0 rgba(255, 255, 255, 0.24);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .stat-value,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-value,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-value {\r\n    color: var(--theme-contrast-strong);\r\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .stat-label,\r\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-label,\r\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-label {\r\n    color: var(--theme-text-secondary);\r\n    font-weight: 600;\r\n}\r\n\r\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\r\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));\r\n    border: 1px solid var(--theme-accent-border);\r\n    color: var(--theme-text-primary);\r\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);\r\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\r\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\r\n}\r\n\r\n/* Responsive Design */\r\n@media (max-width: 1200px) {\r\n    .dashboard-section .content-grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-section .content-sidebar {\r\n        grid-column: 1;\r\n    }\r\n\r\n    .panel-grid.two-columns {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-shell {\r\n        padding: 26px 18px 32px;\r\n    }\r\n}\r\n\r\n@media (max-width: 768px) {\r\n    .dashboard-section .dashboard-sidebar {\r\n        width: var(--sidebar-slim-width);\r\n    }\r\n\r\n    .dashboard-section .dashboard-main-wrapper {\r\n        margin-left: var(--sidebar-slim-width);\r\n        padding: 20px;\r\n    }\r\n\r\n    .dashboard-section .nav-item span,\r\n    .dashboard-section .sidebar-header h3 {\r\n        display: none;\r\n    }\r\n\r\n    .dashboard-section .stats-grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .dashboard-section .dashboard-top-header {\r\n        flex-direction: column;\r\n        align-items: flex-start;\r\n        gap: 16px;\r\n    }\r\n\r\n    .dashboard-tabs {\r\n        width: 100%;\r\n        justify-content: space-between;\r\n        gap: 6px;\r\n    }\r\n\r\n    .dashboard-tab {\r\n        flex: 1 1 45%;\r\n        text-align: center;\r\n    }\r\n\r\n    .dashboard-shell,\r\n    .dashboard-section.no-sidebar .dashboard-shell {\r\n        padding: 22px 14px 28px;\r\n    }\r\n\r\n    .dashboard-section.no-sidebar .dashboard-main-wrapper {\r\n        margin-left: 0;\r\n        padding: 0;\r\n    }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10171,6 +10297,8 @@ function animateCounter(element, target) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   hideLoading: () => (/* binding */ hideLoading),
+/* harmony export */   setProgress: () => (/* binding */ setProgress),
+/* harmony export */   setStatus: () => (/* binding */ setStatus),
 /* harmony export */   showLoading: () => (/* binding */ showLoading),
 /* harmony export */   withLoading: () => (/* binding */ withLoading)
 /* harmony export */ });
@@ -10178,34 +10306,219 @@ function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present,
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
-// Lightweight loading modal controller
-// Provides show/hide helpers and a ref-counted overlay to avoid flicker.
+// Complete Loading Modal Controller with Progress, Logo Animation, and Particles
+// Provides show/hide helpers with ref-counted overlay, progress tracking, and visual enhancements
 
 var modalEl;
-var messageEl;
-var detailEl;
+var progressEl;
+var percentageEl;
+var statusEl;
+var titleEl;
+var funFactEl;
+var progressBarEl;
 var timer = null;
 var depth = 0;
+var progressInterval = null;
+var currentProgress = 0;
 var MIN_DELAY = 180;
+
+// Logo animation parts
+var logoParts = {
+  circle: null,
+  diamond: null,
+  arc: null,
+  line: null,
+  center: null
+};
+
+// Fun facts for the "Did you know" section
+var funFacts = ["Krause Insurance fue fundada con el compromiso de brindar protección personalizada a cada familia y negocio.", "El primer seguro documentado data del año 1347 en Génova, Italia.", "El seguro de vida ayuda a proteger el futuro financiero de tus seres queridos.", "Krause Insurance trabaja con las aseguradoras más confiables.", "Comparar cotizaciones puede ahorrarte hasta un 30% en tu prima anual.", "Un seguro de hogar bien estructurado protege tu patrimonio ante eventos inesperados.", "El seguro de auto es obligatorio en la mayoría de estados para circular legalmente.", "Revisar tus pólizas anualmente puede ayudarte a identificar ahorros y mejorar coberturas."];
+
+// Status messages for different progress phases
+var statusMessages = [{
+  text: 'Inicializando sistema',
+  detail: 'Conectando'
+}, {
+  text: 'Verificando credenciales',
+  detail: 'Autenticando'
+}, {
+  text: 'Cargando datos de usuario',
+  detail: 'Sincronizando'
+}, {
+  text: 'Configurando preferencias',
+  detail: 'Personalizando'
+}, {
+  text: 'Preparando interfaz',
+  detail: 'Optimizando'
+}, {
+  text: 'Cargando recursos',
+  detail: 'Finalizando'
+}, {
+  text: 'Pre-cache completado',
+  detail: 'Listo'
+}];
 function ensureModal() {
   if (modalEl) return;
-  modalEl = document.createElement('div');
-  modalEl.id = 'loading-modal';
-  modalEl.className = 'loading-modal';
-  modalEl.innerHTML = "\n        <div class=\"loading-container\" role=\"status\" aria-live=\"polite\">\n            <div class=\"shield-loader\">\n                <svg class=\"shield-svg\" viewBox=\"0 0 200 240\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n                    <path class=\"shield-outline\" d=\"M100 10 L180 50 L180 110 Q180 170 100 230 Q20 170 20 110 L20 50 Z\"/>\n                    <path class=\"shield-fill\" d=\"M100 10 L180 50 L180 110 Q180 170 100 230 Q20 170 20 110 L20 50 Z\"/>\n                    <circle class=\"shield-center\" cx=\"100\" cy=\"100\" r=\"30\"/>\n                    <rect class=\"shield-cross\" x=\"95\" y=\"75\" width=\"10\" height=\"50\" rx=\"3\"/>\n                    <rect class=\"shield-cross\" x=\"75\" y=\"95\" width=\"50\" height=\"10\" rx=\"3\"/>\n                </svg>\n            </div>\n            <h2 class=\"loading-title\">KRAUSE INSURANCE</h2>\n            <p class=\"loading-message\" id=\"loading-message\">Preparando la experiencia</p>\n            <p class=\"loading-detail\" id=\"loading-detail\">Por favor espera...</p>\n        </div>\n    ";
-  document.body.appendChild(modalEl);
-  messageEl = modalEl.querySelector('#loading-message');
-  detailEl = modalEl.querySelector('#loading-detail');
+  modalEl = document.getElementById('loadingModal');
+  if (!modalEl) {
+    console.warn('Loading modal not found in DOM');
+    return;
+  }
+  progressBarEl = document.getElementById('progressBar');
+  percentageEl = document.getElementById('percentage');
+  statusEl = document.getElementById('status');
+  titleEl = document.getElementById('loading-title');
+  funFactEl = document.getElementById('funFact');
+
+  // Initialize logo parts
+  logoParts.circle = modalEl.querySelector('.shield-circle');
+  logoParts.diamond = modalEl.querySelector('.shield-diamond');
+  logoParts.arc = modalEl.querySelector('.shield-arc');
+  logoParts.line = modalEl.querySelector('.shield-line');
+  logoParts.center = modalEl.querySelector('.shield-center');
+  initLogoParts();
+  initParticles();
+}
+function initLogoParts() {
+  var partsConfig = [{
+    el: logoParts.circle,
+    start: 0,
+    end: 35
+  }, {
+    el: logoParts.diamond,
+    start: 30,
+    end: 65
+  }, {
+    el: logoParts.arc,
+    start: 55,
+    end: 85
+  }, {
+    el: logoParts.line,
+    start: 75,
+    end: 95
+  }];
+  logoParts._config = partsConfig;
+  partsConfig.forEach(function (p) {
+    var el = p.el;
+    if (!el) return;
+    var len = 220;
+    try {
+      if (typeof el.getTotalLength === 'function') {
+        len = Math.max(8, Math.floor(el.getTotalLength()));
+      }
+    } catch (e) {}
+    el.__len = len;
+    el.style.strokeDasharray = len;
+    el.style.strokeDashoffset = len;
+    el.style.opacity = 0.25;
+    el.style.transition = 'stroke-dashoffset 140ms linear, opacity 140ms linear';
+  });
+  if (logoParts.center) {
+    logoParts.center.style.opacity = 0;
+    logoParts.center.classList.remove('active');
+  }
+}
+function resetLogo() {
+  Object.values(logoParts).forEach(function (el) {
+    if (el) el.classList.remove('active');
+  });
+}
+function updateLogoByProgress(pct) {
+  if (!logoParts._config) return;
+  var cfg = logoParts._config;
+  cfg.forEach(function (p) {
+    var el = p.el;
+    if (!el) return;
+    var len = el.__len || 220;
+    if (pct <= p.start) {
+      el.style.strokeDashoffset = Math.ceil(len);
+      el.style.opacity = 0.2;
+    } else if (pct >= p.end) {
+      el.style.strokeDashoffset = 0;
+      el.style.opacity = 1;
+    } else {
+      var local = (pct - p.start) / (p.end - p.start);
+      var eased = 1 - Math.pow(1 - Math.min(1, Math.max(0, local)), 0.9);
+      el.style.strokeDashoffset = Math.ceil(len * (1 - eased));
+      el.style.opacity = (0.25 + 0.75 * eased).toFixed(2);
+    }
+  });
+
+  // Center pop near the end
+  var centerStart = 90;
+  if (logoParts.center) {
+    if (pct >= centerStart) {
+      if (!logoParts.center.classList.contains('active')) {
+        logoParts.center.classList.add('active');
+      }
+    } else {
+      logoParts.center.classList.remove('active');
+    }
+  }
+}
+function initParticles() {
+  var particlesContainer = document.getElementById('particles');
+  if (!particlesContainer || particlesContainer.children.length > 0) return;
+  for (var i = 0; i < 24; i++) {
+    var particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationName = 'floatUp';
+    particle.style.animationDuration = Math.random() * 3 + 4 + 's';
+    particle.style.animationDelay = Math.random() * 5 + 's';
+    particle.style.animationIterationCount = 'infinite';
+    particle.style.animationTimingFunction = 'ease-in-out';
+    particlesContainer.appendChild(particle);
+  }
+}
+function startProgress() {
+  var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3000;
+  currentProgress = 0;
+  var step = Math.max(10, Math.floor(duration / 100));
+  if (progressInterval) clearInterval(progressInterval);
+  progressInterval = setInterval(function () {
+    currentProgress = Math.min(100, currentProgress + 1);
+    if (percentageEl) percentageEl.textContent = currentProgress + '%';
+    if (progressBarEl) progressBarEl.style.width = currentProgress + '%';
+    updateLogoByProgress(currentProgress);
+    var statusIndex = Math.floor(currentProgress / 100 * statusMessages.length);
+    if (statusIndex < statusMessages.length && statusEl) {
+      statusEl.textContent = statusMessages[statusIndex].text;
+    }
+    if (currentProgress >= 100) {
+      clearInterval(progressInterval);
+      progressInterval = null;
+    }
+  }, Math.max(12, Math.floor(duration / 100)));
+}
+function stopProgress() {
+  if (progressInterval) {
+    clearInterval(progressInterval);
+    progressInterval = null;
+  }
 }
 function showLoading() {
-  var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Cargando...';
-  var detail = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Procesando';
+  var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Preparando tu experiencia';
+  var detail = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Inicializando sistema';
+  var showProgress = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
   ensureModal();
+  if (!modalEl) return;
   depth += 1;
-  if (messageEl) messageEl.textContent = message;
-  if (detailEl) detailEl.textContent = detail;
+  if (titleEl) titleEl.textContent = message;
+  if (statusEl) statusEl.textContent = detail;
+  if (funFactEl) funFactEl.textContent = funFacts[Math.floor(Math.random() * funFacts.length)];
+
+  // Reset progress
+  currentProgress = 0;
+  if (percentageEl) percentageEl.textContent = '0%';
+  if (progressBarEl) progressBarEl.style.width = '0%';
+  resetLogo();
   modalEl.classList.add('visible');
   document.body.classList.add('loading-locked');
+  if (showProgress) {
+    startProgress(3000);
+  }
   if (timer) {
     clearTimeout(timer);
     timer = null;
@@ -10215,17 +10528,26 @@ function hideLoading() {
   var delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : MIN_DELAY;
   depth = Math.max(0, depth - 1);
   if (depth > 0) return;
+  stopProgress();
   if (timer) clearTimeout(timer);
   timer = setTimeout(function () {
     if (depth === 0 && modalEl) {
       modalEl.classList.remove('visible');
       document.body.classList.remove('loading-locked');
+      // Reset after animation
+      setTimeout(function () {
+        if (percentageEl) percentageEl.textContent = '0%';
+        if (progressBarEl) progressBarEl.style.width = '0%';
+        resetLogo();
+      }, 300);
     }
   }, delay);
 }
 function withLoading(_x) {
   return _withLoading.apply(this, arguments);
 }
+
+// Helper to set progress manually (for custom loading scenarios)
 function _withLoading() {
   _withLoading = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(action) {
     var opts,
@@ -10235,6 +10557,8 @@ function _withLoading() {
       detail,
       _opts$minDelay,
       minDelay,
+      _opts$showProgress,
+      showProgress,
       result,
       _args = arguments,
       _t;
@@ -10242,8 +10566,8 @@ function _withLoading() {
       while (1) switch (_context.p = _context.n) {
         case 0:
           opts = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
-          _opts$message = opts.message, message = _opts$message === void 0 ? 'Cargando...' : _opts$message, _opts$detail = opts.detail, detail = _opts$detail === void 0 ? 'Procesando' : _opts$detail, _opts$minDelay = opts.minDelay, minDelay = _opts$minDelay === void 0 ? MIN_DELAY : _opts$minDelay;
-          showLoading(message, detail);
+          _opts$message = opts.message, message = _opts$message === void 0 ? 'Preparando tu experiencia' : _opts$message, _opts$detail = opts.detail, detail = _opts$detail === void 0 ? 'Inicializando sistema' : _opts$detail, _opts$minDelay = opts.minDelay, minDelay = _opts$minDelay === void 0 ? MIN_DELAY : _opts$minDelay, _opts$showProgress = opts.showProgress, showProgress = _opts$showProgress === void 0 ? true : _opts$showProgress;
+          showLoading(message, detail, showProgress);
           _context.p = 1;
           if (!(typeof action === 'function')) {
             _context.n = 3;
@@ -10273,6 +10597,16 @@ function _withLoading() {
     }, _callee, null, [[1,, 6, 7]]);
   }));
   return _withLoading.apply(this, arguments);
+}
+function setProgress(percent) {
+  if (percentageEl) percentageEl.textContent = Math.round(percent) + '%';
+  if (progressBarEl) progressBarEl.style.width = Math.round(percent) + '%';
+  updateLogoByProgress(percent);
+}
+
+// Helper to update status message
+function setStatus(message) {
+  if (statusEl) statusEl.textContent = message;
 }
 
 /***/ }),
@@ -11373,6 +11707,26 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 
 var PAGES_WITH_MODAL_LOADING = ['quote', 'client-dashboard', 'agent-dashboard', 'admin-dashboard'];
+
+// Loading messages for different page types
+var LOADING_MESSAGES = {
+  'quote': {
+    message: 'Preparando cotización',
+    detail: 'Cargando formulario inteligente'
+  },
+  'client-dashboard': {
+    message: 'Accediendo a tu panel',
+    detail: 'Cargando tus pólizas y documentos'
+  },
+  'agent-dashboard': {
+    message: 'Cargando panel de agente',
+    detail: 'Sincronizando clientes y estadísticas'
+  },
+  'admin-dashboard': {
+    message: 'Panel administrativo',
+    detail: 'Cargando análisis y reportes'
+  }
+};
 var currentPage = 'home';
 
 /**
@@ -11393,7 +11747,11 @@ function navigateTo(page, event) {
   }
   var shouldShowModal = PAGES_WITH_MODAL_LOADING.includes(page);
   if (shouldShowModal) {
-    (0,_loadingModal_js__WEBPACK_IMPORTED_MODULE_9__.showLoading)('Cargando sección', 'Preparando contenido');
+    var loadingConfig = LOADING_MESSAGES[page] || {
+      message: 'Cargando sección',
+      detail: 'Preparando contenido'
+    };
+    (0,_loadingModal_js__WEBPACK_IMPORTED_MODULE_9__.showLoading)(loadingConfig.message, loadingConfig.detail, true);
     document.body.classList.add('skeleton-mode');
   }
 
@@ -11558,9 +11916,9 @@ function navigateTo(page, event) {
   });
   if (shouldShowModal) {
     setTimeout(function () {
-      (0,_loadingModal_js__WEBPACK_IMPORTED_MODULE_9__.hideLoading)(200);
+      (0,_loadingModal_js__WEBPACK_IMPORTED_MODULE_9__.hideLoading)(320);
       document.body.classList.remove('skeleton-mode');
-    }, 180);
+    }, 220);
   }
 }
 
@@ -13216,7 +13574,7 @@ function _handleClientLogin() {
           e.preventDefault();
           email = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.showLoading)('Autenticando', 'Verificando credenciales');
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.showLoading)('Autenticando cliente', 'Verificando credenciales', true);
           _context3.n = 1;
           return delay(200);
         case 1:
@@ -13249,7 +13607,7 @@ function _handleAgentLogin() {
           e.preventDefault();
           agentId = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.showLoading)('Autenticando', 'Verificando credenciales');
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.showLoading)('Autenticando agente', 'Verificando credenciales', true);
           _context4.n = 1;
           return delay(200);
         case 1:
@@ -13322,55 +13680,113 @@ function contactAgent() {
   }, 500);
 }
 function refreshDashboard() {
-  var user = (0,_state_js__WEBPACK_IMPORTED_MODULE_22__.getUser)();
-  if (!user) return;
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Actualizando datos...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-  try {
-    if (user.type === 'agent' && loadAgentDashboard) {
-      loadAgentDashboard();
-    } else if (user.type === 'client' && loadClientDashboard) {
-      loadClientDashboard();
-    }
-  } catch (e) {
-    console.warn('Could not refresh dashboard:', e);
-    (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-  }
+  return _refreshDashboard.apply(this, arguments);
+}
+function _refreshDashboard() {
+  _refreshDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
+    var user, isAgent, message, _t3;
+    return _regenerator().w(function (_context6) {
+      while (1) switch (_context6.p = _context6.n) {
+        case 0:
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_22__.getUser)();
+          if (user) {
+            _context6.n = 1;
+            break;
+          }
+          return _context6.a(2);
+        case 1:
+          isAgent = user.type === 'agent';
+          message = isAgent ? 'Actualizando panel de agente' : 'Actualizando panel de cliente';
+          document.body.classList.add('skeleton-mode');
+          _context6.p = 2;
+          _context6.n = 3;
+          return (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.withLoading)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+            return _regenerator().w(function (_context5) {
+              while (1) switch (_context5.n) {
+                case 0:
+                  if (!(isAgent && loadAgentDashboard)) {
+                    _context5.n = 2;
+                    break;
+                  }
+                  _context5.n = 1;
+                  return loadAgentDashboard();
+                case 1:
+                  _context5.n = 3;
+                  break;
+                case 2:
+                  if (!(!isAgent && loadClientDashboard)) {
+                    _context5.n = 3;
+                    break;
+                  }
+                  _context5.n = 3;
+                  return loadClientDashboard();
+                case 3:
+                  _context5.n = 4;
+                  return delay(200);
+                case 4:
+                  return _context5.a(2);
+              }
+            }, _callee5);
+          })), {
+            message: message,
+            detail: 'Cargando últimos datos',
+            minDelay: 420
+          });
+        case 3:
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Datos actualizados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
+          _context6.n = 5;
+          break;
+        case 4:
+          _context6.p = 4;
+          _t3 = _context6.v;
+          console.warn('Could not refresh dashboard:', _t3);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
+        case 5:
+          _context6.p = 5;
+          document.body.classList.remove('skeleton-mode');
+          return _context6.f(5);
+        case 6:
+          return _context6.a(2);
+      }
+    }, _callee6, null, [[2, 4, 5, 6]]);
+  }));
+  return _refreshDashboard.apply(this, arguments);
 }
 function viewClientDetails(_x3) {
   return _viewClientDetails.apply(this, arguments);
 }
 function _viewClientDetails() {
-  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(clientId) {
-    var data, _t3;
-    return _regenerator().w(function (_context5) {
-      while (1) switch (_context5.p = _context5.n) {
+  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(clientId) {
+    var data, _t4;
+    return _regenerator().w(function (_context7) {
+      while (1) switch (_context7.p = _context7.n) {
         case 0:
           if (loadClientDetailsData) {
-            _context5.n = 1;
+            _context7.n = 1;
             break;
           }
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Detalles no disponibles en modo demo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-          return _context5.a(2);
+          return _context7.a(2);
         case 1:
-          _context5.p = 1;
+          _context7.p = 1;
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-          _context5.n = 2;
+          _context7.n = 2;
           return loadClientDetailsData(clientId);
         case 2:
-          data = _context5.v;
+          data = _context7.v;
           if (data) {
             showClientDetailsModal(data);
           }
-          _context5.n = 4;
+          _context7.n = 4;
           break;
         case 3:
-          _context5.p = 3;
-          _t3 = _context5.v;
+          _context7.p = 3;
+          _t4 = _context7.v;
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context5.a(2);
+          return _context7.a(2);
       }
-    }, _callee5, null, [[1, 3]]);
+    }, _callee7, null, [[1, 3]]);
   }));
   return _viewClientDetails.apply(this, arguments);
 }
@@ -13416,10 +13832,10 @@ function submitQuote(_x4) {
   return _submitQuote.apply(this, arguments);
 }
 function _submitQuote() {
-  _submitQuote = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(e) {
-    var form, formData, data, quoteType, labelMap, label, hiddenType, _data$fullName, _data$fullName2, response, _hiddenType, _t4;
-    return _regenerator().w(function (_context6) {
-      while (1) switch (_context6.p = _context6.n) {
+  _submitQuote = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(e) {
+    var form, formData, data, quoteType, labelMap, label, hiddenType, _data$fullName, _data$fullName2, response, _hiddenType, _t5;
+    return _regenerator().w(function (_context8) {
+      while (1) switch (_context8.p = _context8.n) {
         case 0:
           e.preventDefault();
           form = e.target;
@@ -13439,24 +13855,25 @@ function _submitQuote() {
           };
           label = labelMap[quoteType] || 'Seguro'; // Check if API is available
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
-            _context6.n = 2;
+            _context8.n = 2;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Procesando cotización (modo demo)...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-          _context6.n = 1;
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.showLoading)('Procesando cotización', 'Calculando cobertura y prima', true);
+          _context8.n = 1;
           return delay(800);
         case 1:
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.hideLoading)(200);
           (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_23__.notifyQuoteSuccess)(label);
           form.reset();
           hiddenType = form.querySelector('input[name="quoteType"]');
           if (hiddenType) hiddenType.value = quoteType;
           (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_23__.setPendingQuoteType)(quoteType);
-          return _context6.a(2);
+          return _context8.a(2);
         case 2:
-          _context6.p = 2;
+          _context8.p = 2;
           // Send quote request to API
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Enviando solicitud de cotización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-          _context6.n = 3;
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.showLoading)('Enviando cotización', 'Procesando solicitud', true);
+          _context8.n = 3;
           return apiService.request(API_CONFIG.ENDPOINTS.REQUEST_QUOTE, {
             method: 'POST',
             body: {
@@ -13471,25 +13888,29 @@ function _submitQuote() {
             useCache: false
           });
         case 3:
-          response = _context6.v;
+          response = _context8.v;
           if (response.success) {
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.hideLoading)(200);
             (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_23__.notifyQuoteSuccess)(label);
             form.reset();
             _hiddenType = form.querySelector('input[name="quoteType"]');
             if (_hiddenType) _hiddenType.value = quoteType;
             (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_23__.setPendingQuoteType)(quoteType);
+          } else {
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.hideLoading)(150);
           }
-          _context6.n = 5;
+          _context8.n = 5;
           break;
         case 4:
-          _context6.p = 4;
-          _t4 = _context6.v;
-          console.error('Quote submission error:', _t4);
+          _context8.p = 4;
+          _t5 = _context8.v;
+          console.error('Quote submission error:', _t5);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.hideLoading)(150);
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Error al enviar cotización. Por favor intenta de nuevo.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.ERROR);
         case 5:
-          return _context6.a(2);
+          return _context8.a(2);
       }
-    }, _callee6, null, [[2, 4]]);
+    }, _callee8, null, [[2, 4]]);
   }));
   return _submitQuote.apply(this, arguments);
 }
@@ -13511,21 +13932,21 @@ function assignClaimToAgent(_x5) {
   return _assignClaimToAgent.apply(this, arguments);
 }
 function _assignClaimToAgent() {
-  _assignClaimToAgent = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(claimIdOrClient) {
-    var _t5;
-    return _regenerator().w(function (_context7) {
-      while (1) switch (_context7.p = _context7.n) {
+  _assignClaimToAgent = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(claimIdOrClient) {
+    var _t6;
+    return _regenerator().w(function (_context9) {
+      while (1) switch (_context9.p = _context9.n) {
         case 0:
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
-            _context7.n = 1;
+            _context9.n = 1;
             break;
           }
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Siniestro asignado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.SUCCESS);
-          return _context7.a(2);
+          return _context9.a(2);
         case 1:
-          _context7.p = 1;
+          _context9.p = 1;
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Asignando siniestro y notificando...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-          _context7.n = 2;
+          _context9.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.ASSIGN_CLAIM, {
             method: 'POST',
             params: {
@@ -13539,7 +13960,7 @@ function _assignClaimToAgent() {
             useCache: false
           });
         case 2:
-          _context7.n = 3;
+          _context9.n = 3;
           return apiService.request(API_CONFIG.ENDPOINTS.SEND_NOTIFICATION, {
             method: 'POST',
             body: {
@@ -13552,17 +13973,17 @@ function _assignClaimToAgent() {
           });
         case 3:
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Siniestro asignado y notificación enviada.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.SUCCESS);
-          _context7.n = 5;
+          _context9.n = 5;
           break;
         case 4:
-          _context7.p = 4;
-          _t5 = _context7.v;
-          console.error('Assign claim failed', _t5);
+          _context9.p = 4;
+          _t6 = _context9.v;
+          console.error('Assign claim failed', _t6);
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Error al asignar o notificar el siniestro.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.ERROR);
         case 5:
-          return _context7.a(2);
+          return _context9.a(2);
       }
-    }, _callee7, null, [[1, 4]]);
+    }, _callee9, null, [[1, 4]]);
   }));
   return _assignClaimToAgent.apply(this, arguments);
 }
@@ -13570,24 +13991,24 @@ function sendQuestionnaire() {
   return _sendQuestionnaire.apply(this, arguments);
 }
 function _sendQuestionnaire() {
-  _sendQuestionnaire = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
+  _sendQuestionnaire = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
     var clientId,
-      _args8 = arguments,
-      _t6;
-    return _regenerator().w(function (_context8) {
-      while (1) switch (_context8.p = _context8.n) {
+      _args0 = arguments,
+      _t7;
+    return _regenerator().w(function (_context0) {
+      while (1) switch (_context0.p = _context0.n) {
         case 0:
-          clientId = _args8.length > 0 && _args8[0] !== undefined ? _args8[0] : '';
+          clientId = _args0.length > 0 && _args0[0] !== undefined ? _args0[0] : '';
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
-            _context8.n = 1;
+            _context0.n = 1;
             break;
           }
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Cuestionario enviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.SUCCESS);
-          return _context8.a(2);
+          return _context0.a(2);
         case 1:
-          _context8.p = 1;
+          _context0.p = 1;
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Enviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-          _context8.n = 2;
+          _context0.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.SEND_QUESTIONNAIRE, {
             method: 'POST',
             body: {
@@ -13598,17 +14019,17 @@ function _sendQuestionnaire() {
           });
         case 2:
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Cuestionario enviado al cliente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.SUCCESS);
-          _context8.n = 4;
+          _context0.n = 4;
           break;
         case 3:
-          _context8.p = 3;
-          _t6 = _context8.v;
-          console.error('Send questionnaire failed', _t6);
+          _context0.p = 3;
+          _t7 = _context0.v;
+          console.error('Send questionnaire failed', _t7);
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('No se pudo enviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context8.a(2);
+          return _context0.a(2);
       }
-    }, _callee8, null, [[1, 3]]);
+    }, _callee0, null, [[1, 3]]);
   }));
   return _sendQuestionnaire.apply(this, arguments);
 }
@@ -13616,21 +14037,21 @@ function resendQuestionnaire(_x6) {
   return _resendQuestionnaire.apply(this, arguments);
 }
 function _resendQuestionnaire() {
-  _resendQuestionnaire = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(id) {
-    var _t7;
-    return _regenerator().w(function (_context9) {
-      while (1) switch (_context9.p = _context9.n) {
+  _resendQuestionnaire = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(id) {
+    var _t8;
+    return _regenerator().w(function (_context1) {
+      while (1) switch (_context1.p = _context1.n) {
         case 0:
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
-            _context9.n = 1;
+            _context1.n = 1;
             break;
           }
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Cuestionario reenviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.SUCCESS);
-          return _context9.a(2);
+          return _context1.a(2);
         case 1:
-          _context9.p = 1;
+          _context1.p = 1;
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Reenviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-          _context9.n = 2;
+          _context1.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.RESEND_QUESTIONNAIRE, {
             method: 'POST',
             params: {
@@ -13641,17 +14062,17 @@ function _resendQuestionnaire() {
           });
         case 2:
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Cuestionario reenviado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.SUCCESS);
-          _context9.n = 4;
+          _context1.n = 4;
           break;
         case 3:
-          _context9.p = 3;
-          _t7 = _context9.v;
-          console.error('Resend questionnaire failed', _t7);
+          _context1.p = 3;
+          _t8 = _context1.v;
+          console.error('Resend questionnaire failed', _t8);
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('No se pudo reenviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context9.a(2);
+          return _context1.a(2);
       }
-    }, _callee9, null, [[1, 3]]);
+    }, _callee1, null, [[1, 3]]);
   }));
   return _resendQuestionnaire.apply(this, arguments);
 }
@@ -13659,21 +14080,21 @@ function completeQuestionnaire(_x7) {
   return _completeQuestionnaire.apply(this, arguments);
 }
 function _completeQuestionnaire() {
-  _completeQuestionnaire = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(id) {
-    var _t8;
-    return _regenerator().w(function (_context0) {
-      while (1) switch (_context0.p = _context0.n) {
+  _completeQuestionnaire = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(id) {
+    var _t9;
+    return _regenerator().w(function (_context10) {
+      while (1) switch (_context10.p = _context10.n) {
         case 0:
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
-            _context0.n = 1;
+            _context10.n = 1;
             break;
           }
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Cuestionario completado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.SUCCESS);
-          return _context0.a(2);
+          return _context10.a(2);
         case 1:
-          _context0.p = 1;
+          _context10.p = 1;
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Marcando cuestionario como completado...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
-          _context0.n = 2;
+          _context10.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.COMPLETE_QUESTIONNAIRE, {
             method: 'POST',
             params: {
@@ -13684,17 +14105,17 @@ function _completeQuestionnaire() {
           });
         case 2:
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('Cuestionario completado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.SUCCESS);
-          _context0.n = 4;
+          _context10.n = 4;
           break;
         case 3:
-          _context0.p = 3;
-          _t8 = _context0.v;
-          console.error('Complete questionnaire failed', _t8);
+          _context10.p = 3;
+          _t9 = _context10.v;
+          console.error('Complete questionnaire failed', _t9);
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)('No se pudo completar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context0.a(2);
+          return _context10.a(2);
       }
-    }, _callee0, null, [[1, 3]]);
+    }, _callee10, null, [[1, 3]]);
   }));
   return _completeQuestionnaire.apply(this, arguments);
 }
@@ -13702,15 +14123,15 @@ function reviewQuestionnaire(_x8) {
   return _reviewQuestionnaire.apply(this, arguments);
 }
 function _reviewQuestionnaire() {
-  _reviewQuestionnaire = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(id) {
-    return _regenerator().w(function (_context1) {
-      while (1) switch (_context1.n) {
+  _reviewQuestionnaire = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11(id) {
+    return _regenerator().w(function (_context11) {
+      while (1) switch (_context11.n) {
         case 0:
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)("Abriendo revisi\xF3n del cuestionario ".concat(id, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
         case 1:
-          return _context1.a(2);
+          return _context11.a(2);
       }
-    }, _callee1);
+    }, _callee11);
   }));
   return _reviewQuestionnaire.apply(this, arguments);
 }
@@ -13718,20 +14139,20 @@ function openSupport(_x9) {
   return _openSupport.apply(this, arguments);
 }
 function _openSupport() {
-  _openSupport = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(type) {
-    var _t9;
-    return _regenerator().w(function (_context10) {
-      while (1) switch (_context10.p = _context10.n) {
+  _openSupport = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12(type) {
+    var _t0;
+    return _regenerator().w(function (_context12) {
+      while (1) switch (_context12.p = _context12.n) {
         case 0:
           (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_19__.showNotification)("Abriendo caso de soporte (".concat(type, ")..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_21__.NOTIFICATION_TYPES.INFO);
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
-            _context10.n = 1;
+            _context12.n = 1;
             break;
           }
-          return _context10.a(2);
+          return _context12.a(2);
         case 1:
-          _context10.p = 1;
-          _context10.n = 2;
+          _context12.p = 1;
+          _context12.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.SEND_NOTIFICATION, {
             method: 'POST',
             body: {
@@ -13743,16 +14164,16 @@ function _openSupport() {
             useCache: false
           });
         case 2:
-          _context10.n = 4;
+          _context12.n = 4;
           break;
         case 3:
-          _context10.p = 3;
-          _t9 = _context10.v;
-          console.error('Support notification failed', _t9);
+          _context12.p = 3;
+          _t0 = _context12.v;
+          console.error('Support notification failed', _t0);
         case 4:
-          return _context10.a(2);
+          return _context12.a(2);
       }
-    }, _callee10, null, [[1, 3]]);
+    }, _callee12, null, [[1, 3]]);
   }));
   return _openSupport.apply(this, arguments);
 }

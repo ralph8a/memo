@@ -18,6 +18,14 @@ import { showLoading, hideLoading } from './loadingModal.js';
 
 const PAGES_WITH_MODAL_LOADING = ['quote', 'client-dashboard', 'agent-dashboard', 'admin-dashboard'];
 
+// Loading messages for different page types
+const LOADING_MESSAGES = {
+    'quote': { message: 'Preparando cotización', detail: 'Cargando formulario inteligente' },
+    'client-dashboard': { message: 'Accediendo a tu panel', detail: 'Cargando tus pólizas y documentos' },
+    'agent-dashboard': { message: 'Cargando panel de agente', detail: 'Sincronizando clientes y estadísticas' },
+    'admin-dashboard': { message: 'Panel administrativo', detail: 'Cargando análisis y reportes' }
+};
+
 let currentPage = 'home';
 
 /**
@@ -40,7 +48,8 @@ export function navigateTo(page, event) {
 
     const shouldShowModal = PAGES_WITH_MODAL_LOADING.includes(page);
     if (shouldShowModal) {
-        showLoading('Cargando sección', 'Preparando contenido');
+        const loadingConfig = LOADING_MESSAGES[page] || { message: 'Cargando sección', detail: 'Preparando contenido' };
+        showLoading(loadingConfig.message, loadingConfig.detail, true);
         document.body.classList.add('skeleton-mode');
     }
 
