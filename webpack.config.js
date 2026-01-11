@@ -143,6 +143,7 @@ module.exports = {
       patterns: [
         { from: 'public/favicon.ico', to: 'favicon.ico' },
         { from: 'public/manifest.json', to: 'manifest.json' },
+        { from: 'public/.htaccess', to: '.htaccess', noErrorOnMissing: true },
         { from: 'public/assets', to: 'assets' },
         { from: 'src/api-integration.js', to: 'api-integration.js' },
         { from: 'src/service-worker.js', to: 'service-worker.js', noErrorOnMissing: true },

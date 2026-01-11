@@ -3,15 +3,28 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "basic-ftp": "^5.1.0",
+    "dotenv": "^17.2.3",
     "html2canvas": "^1.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.0.0"
+    "react-router-dom": "^6.0.0",
+    "ssh2-sftp-client": "^12.0.1"
   },
   "scripts": {
-    "start": "webpack serve --config webpack.config.js",
+    "prestart": "node scripts/kill-port.js",
+    "start": "node scripts/start-dev.js",
     "build": "webpack --config webpack.config.js",
     "deploy": "gh-pages -d dist",
+    "deploy:ftp": "node scripts/deploy-ftp.js",
+    "deploy:godaddy": "node scripts/deploy-godaddy.js",
+    "deploy:cpanel": "python scripts/deploy-cpanel-simple.py",
+    "deploy:sftp": "node scripts/deploy-sftp.js",
+    "deploy:backend": "node scripts/deploy-backend.js",
+    "deploy:build": "npm run build && npm run deploy:cpanel",
+    "rebuild": "node scripts/rebuild-deploy.js",
+    "rebuild:sftp": "node scripts/deploy-sftp.js",
+    "diagnose": "python scripts/diagnose-hosting.py",
     "start:api": "node dev-api/server.js"
   },
   "devDependencies": {

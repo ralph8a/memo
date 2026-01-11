@@ -30,5 +30,126 @@
         </div>
       </div>
     </div>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-main">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Cola de trabajo</h3>
+            <span class="badge badge-warning">Pre-lanzamiento</span>
+          </div>
+          <div class="tasks-list">
+            <div class="task-item">
+              <div>
+                <p class="task-title">Revisar cotizaciones pendientes</p>
+                <p class="task-meta">12 en espera · SLA 4h</p>
+              </div>
+              <button class="btn btn-outline btn-sm" aria-label="Abrir cola de cotizaciones">Ver</button>
+            </div>
+            <div class="task-item">
+              <div>
+                <p class="task-title">Aprobar renovaciones críticas</p>
+                <p class="task-meta">5 requieren revisión manual</p>
+              </div>
+              <button class="btn btn-outline btn-sm" aria-label="Abrir renovaciones">Revisar</button>
+            </div>
+            <div class="task-item">
+              <div>
+                <p class="task-title">Siniestros priorizados</p>
+                <p class="task-meta">3 abiertos · 2 con documentación</p>
+              </div>
+              <button class="btn btn-outline btn-sm" aria-label="Abrir siniestros">Detalle</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Alertas y cumplimiento</h3>
+            <span class="badge badge-danger">Atención</span>
+          </div>
+          <div class="alert-list">
+            <div class="alert-item">
+              <div>
+                <p class="alert-title">Pólizas con pago atrasado</p>
+                <p class="alert-meta">8 pólizas · riesgo de cancelación</p>
+              </div>
+              <span class="badge badge-warning">SLA 24h</span>
+            </div>
+            <div class="alert-item">
+              <div>
+                <p class="alert-title">Auditoría pendiente</p>
+                <p class="alert-meta">Reporte trimestral de cumplimiento</p>
+              </div>
+              <span class="badge badge-accent">Revisión</span>
+            </div>
+            <div class="alert-item">
+              <div>
+                <p class="alert-title">Documentos faltantes</p>
+                <p class="alert-meta">11 archivos solicitados a clientes</p>
+              </div>
+              <span class="badge badge-primary">Seguimiento</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="dashboard-sidebar">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Actividad reciente</h3>
+            <span class="badge badge-accent">Live</span>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div>
+                <p class="activity-title">Agente Rivera aprobó una cotización</p>
+                <p class="activity-meta">Hace 12 min · Auto</p>
+              </div>
+              <span class="badge badge-success">OK</span>
+            </div>
+            <div class="activity-item">
+              <div>
+                <p class="activity-title">Admin configuró política de seguridad</p>
+                <p class="activity-meta">Hace 28 min · MFA obligatorio</p>
+              </div>
+              <span class="badge badge-primary">Config</span>
+            </div>
+            <div class="activity-item">
+              <div>
+                <p class="activity-title">Cliente envió documentos de siniestro</p>
+                <p class="activity-meta">Hace 1 h · Hogar</p>
+              </div>
+              <span class="badge badge-warning">Revisar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Acciones rápidas</h3>
+            <span class="badge badge-light">Pre-lanzamiento</span>
+          </div>
+          <div class="quick-actions">
+            <button class="btn btn-primary btn-block">Crear agente</button>
+            <button class="btn btn-outline btn-block">Importar clientes</button>
+            <button class="btn btn-outline btn-block">Descargar reporte mensual</button>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Modo pre-lanzamiento</h3>
+            <span class="badge badge-accent">Demo</span>
+          </div>
+          <ul class="prelaunch-checklist">
+            <li>Datos mockeados con guardado local</li>
+            <li>Acciones destructivas deshabilitadas</li>
+            <li>Logs de auditoría en consola</li>
+            <li>Pruebas de accesibilidad en progreso</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
   </div>
 </section>

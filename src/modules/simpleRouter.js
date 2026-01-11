@@ -14,6 +14,9 @@ import { stopParticles, startParticles } from './particles.js';
 import { initServicesTechNav } from './servicesTechNav.js';
 import { initAboutEnhancements } from './aboutEnhancements.js';
 import { initQuoteFlow } from './quoteFlow.js';
+import { showLoading, hideLoading } from './loadingModal.js';
+
+const PAGES_WITH_MODAL_LOADING = ['quote', 'client-dashboard', 'agent-dashboard', 'admin-dashboard'];
 
 let currentPage = 'home';
 
@@ -33,6 +36,12 @@ export function navigateTo(page, event) {
     if (page === PAGES.CONTACT && !window.__allowContact) {
         showNotification('La sección de Contacto sólo se abre desde el contacto con un agente.', NOTIFICATION_TYPES.INFO);
         return;
+    }
+
+    const shouldShowModal = PAGES_WITH_MODAL_LOADING.includes(page);
+    if (shouldShowModal) {
+        showLoading('Cargando sección', 'Preparando contenido');
+        document.body.classList.add('skeleton-mode');
     }
 
     // Cleanup previous page
@@ -69,10 +78,14 @@ export function navigateTo(page, event) {
         if (link.dataset.page === page) link.classList.add('active');
     });
 
-    // Handle footer visibility
+    // Handle footer visibility & body spacing
     const footer = document.getElementById('footer');
+    const hideFooter = PAGES_WITHOUT_FOOTER.includes(page);
+
+    document.body.classList.toggle('no-footer', hideFooter);
+
     if (footer) {
-        if (PAGES_WITHOUT_FOOTER.includes(page)) {
+        if (hideFooter) {
             footer.classList.add('d-none');
         } else {
             footer.classList.remove('d-none');
@@ -122,6 +135,39 @@ export function navigateTo(page, event) {
         initQuoteFlow(pageElement || document);
     }
 
+    // Load dashboard data when navigating to dashboards
+    if (page === 'client-dashboard' || page === PAGES.CLIENT_DASHBOARD) {
+        setTimeout(async () => {
+            try {
+                if (window.appHandlers && typeof window.appHandlers.loadClientDashboard === 'function') {
+                    await window.appHandlers.loadClientDashboard();
+                }
+            } catch (e) {
+                console.warn('Could not load client dashboard data:', e);
+                const container = document.querySelector('.policies-list');
+                if (container) {
+                    container.innerHTML = '<p class="empty-state">Error al cargar datos - modo demo activo</p>';
+                }
+            }
+        }, 200);
+    }
+
+    if (page === 'agent-dashboard' || page === PAGES.AGENT_DASHBOARD) {
+        setTimeout(async () => {
+            try {
+                if (window.appHandlers && typeof window.appHandlers.loadAgentDashboard === 'function') {
+                    await window.appHandlers.loadAgentDashboard();
+                }
+            } catch (e) {
+                console.warn('Could not load agent dashboard data:', e);
+                const container = document.querySelector('[data-clients-list]');
+                if (container) {
+                    container.innerHTML = '<p class="empty-state">Error al cargar datos - modo demo activo</p>';
+                }
+            }
+        }, 200);
+    }
+
     // Clear contact flag
     if (page === PAGES.CONTACT) {
         setTimeout(() => { window.__allowContact = false; }, 500);
@@ -129,6 +175,13 @@ export function navigateTo(page, event) {
 
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (shouldShowModal) {
+        setTimeout(() => {
+            hideLoading(320);
+            document.body.classList.remove('skeleton-mode');
+        }, 220);
+    }
 }
 
 /**

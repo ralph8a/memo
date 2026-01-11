@@ -4,17 +4,49 @@ import { DEMO_CREDENTIALS, PAGES, NOTIFICATION_TYPES } from '../utils/constants.
 import { showNotification } from './notifications.js';
 
 export function checkAuth() {
-  return getUser() !== null;
+  // Check if user exists in state or has valid token
+  const user = getUser();
+  const token = localStorage.getItem('auth_token');
+  return user !== null && token !== null;
 }
 
-export function login(credentials, type = 'client') {
+export async function login(credentials, type = 'client') {
+  try {
+    // Import apiService
+    const { loginUser } = await import('../api-integration.js');
+
+    // Try real API first
+    const email = credentials.email || credentials.agentId;
+    const password = credentials.password;
+
+    const result = await loginUser(email, password);
+
+    if (result.success) {
+      // Store user from API
+      const user = {
+        ...result.user,
+        name: `${result.user.first_name} ${result.user.last_name}`,
+        type: result.user.user_type,
+        email: result.user.email
+      };
+
+      setUser(user);
+      localStorage.setItem('auth_token', result.token);
+      showNotification('Inicio de sesión exitoso', NOTIFICATION_TYPES.SUCCESS);
+      return user;
+    }
+  } catch (error) {
+    console.warn('API login failed, trying demo credentials:', error);
+  }
+
+  // Fallback to demo credentials for development
   const user = type === 'client'
     ? validateClientLogin(credentials)
     : validateAgentLogin(credentials);
 
   if (user) {
     setUser(user);
-    showNotification('Inicio de sesión exitoso', NOTIFICATION_TYPES.SUCCESS);
+    showNotification('Inicio de sesión exitoso (modo demo)', NOTIFICATION_TYPES.SUCCESS);
     return user;
   }
 
@@ -23,6 +55,14 @@ export function login(credentials, type = 'client') {
 }
 
 export function logout() {
+  // Clear API token
+  localStorage.removeItem('auth_token');
+
+  // Import and call API logout if available
+  import('../api-integration.js').then(({ logoutUser }) => {
+    logoutUser();
+  }).catch(() => { });
+
   clearState();
   showNotification('Sesión cerrada exitosamente', NOTIFICATION_TYPES.SUCCESS);
 }
@@ -56,6 +96,8 @@ export function getRedirectPage(user) {
 
   if (user.type === 'client') return PAGES.CLIENT_DASHBOARD;
   if (user.type === 'agent') return PAGES.AGENT_DASHBOARD;
+  if (user.type === 'admin') return PAGES.ADMIN_DASHBOARD;
 
   return PAGES.HOME;
 }
+

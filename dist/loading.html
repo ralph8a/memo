@@ -25,21 +25,25 @@
 
     /* Loader theme tokens (avoid hard-coded colors in component styles) */
     :root {
-      --gradient-start: #631832;
-      --gradient-mid: #521a38;
-      --gradient-end: #401a59;
-      --loader-fg: rgba(255, 255, 255, 0.95);
-      --loader-fg-muted: rgba(255, 255, 255, 0.30);
-      --loader-shadow: rgba(0, 0, 0, 0.40);
+      --gradient-start: #0f2b24;
+      --gradient-mid: #1b3f47;
+      --gradient-end: #2f6b7a;
+      --loader-fg: rgba(223, 243, 237, 0.98);
+      --loader-fg-muted: rgba(223, 243, 237, 0.28);
+      --loader-shadow: rgba(0, 0, 0, 0.42);
+      --loader-accent: #8dd7c0;
+      --loader-accent-strong: #c3efe2;
     }
 
     :root[data-theme="dark-forest"] {
-      --gradient-start: #5a4633;
-      --gradient-mid: #062012;
-      --gradient-end: #35231c;
-      --loader-fg: rgba(240, 247, 243, 0.95);
-      --loader-fg-muted: rgba(240, 247, 243, 0.28);
-      --loader-shadow: rgba(0, 0, 0, 0.55);
+      --gradient-start: #0f2b24;
+      --gradient-mid: #1b3f47;
+      --gradient-end: #2f6b7a;
+      --loader-fg: rgba(223, 243, 237, 0.98);
+      --loader-fg-muted: rgba(223, 243, 237, 0.32);
+      --loader-shadow: rgba(0, 0, 0, 0.6);
+      --loader-accent: #8dd7c0;
+      --loader-accent-strong: #c3efe2;
     }
     
     body {
@@ -96,127 +100,152 @@
       padding: 20px;
     }
     
-    /* Shield Loader - Building Animation */
+    /* Shield Loader - Brand Mark Animation */
     .shield-loader {
       width: 200px;
-      height: 240px;
+      height: 220px;
       margin: 0 auto 30px;
       position: relative;
     }
-    
+
     .shield-svg {
       width: 100%;
       height: 100%;
-      filter: drop-shadow(0 10px 40px var(--loader-shadow));
+      filter: drop-shadow(0 12px 42px var(--loader-shadow));
     }
-    
-    /* Shield parts build up sequentially */
-    .shield-outline {
-      fill: none;
-      stroke: var(--loader-fg);
+
+    .shield-mark path,
+    .shield-mark ellipse,
+    .shield-mark line {
       stroke-width: 3;
-      stroke-dasharray: 500;
-      stroke-dashoffset: 500;
-      animation: drawShield 2s ease-out forwards infinite;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
-    
-    @keyframes drawShield {
-      0% {
-        stroke-dashoffset: 500;
-        opacity: 0.3;
+
+    .shield-ring {
+      stroke: url(#shieldStrokeGradient);
+      stroke-dasharray: 140;
+      stroke-dashoffset: 140;
+      animation: ringDraw 2.6s ease-in-out infinite alternate;
+    }
+
+    .shield-diamond {
+      stroke: var(--loader-fg);
+      stroke-dasharray: 160;
+      stroke-dashoffset: 160;
+      animation: diamondDraw 2.4s ease-in-out infinite alternate;
+    }
+
+    .shield-arc {
+      stroke: var(--loader-accent);
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: arcGlow 2.1s ease-in-out infinite alternate;
+    }
+
+    .shield-lance {
+      stroke: var(--loader-accent-strong);
+      animation: lancePulse 1.6s ease-in-out infinite;
+    }
+
+    .shield-core {
+      fill: var(--loader-accent-strong);
+      filter: drop-shadow(0 0 12px rgba(195, 239, 226, 0.5));
+      transform-origin: 40px 38px;
+      animation: corePulse 1.8s ease-in-out infinite;
+    }
+
+    .shield-orbit {
+      fill: none;
+      stroke: var(--loader-fg-muted);
+      stroke-width: 1.4;
+      stroke-dasharray: 6 8;
+      animation: orbitSpin 7s linear infinite;
+      transform-origin: 40px 40px;
+    }
+
+    .shield-orbit.orbit-delayed {
+      stroke-dasharray: 4 10;
+      animation-duration: 9s;
+      animation-delay: 0.5s;
+      opacity: 0.6;
+    }
+
+    @keyframes ringDraw {
+      from {
+        stroke-dashoffset: 140;
+        opacity: 0.4;
       }
-      50% {
+      to {
         stroke-dashoffset: 0;
         opacity: 1;
       }
-      100% {
-        stroke-dashoffset: -500;
-        opacity: 0.3;
+    }
+
+    @keyframes diamondDraw {
+      from {
+        stroke-dashoffset: 160;
+        opacity: 0.35;
+      }
+      to {
+        stroke-dashoffset: 0;
+        opacity: 1;
       }
     }
-    
-    .shield-fill {
-      fill: var(--loader-fg);
-      animation: shieldPulse 2s ease-in-out infinite;
-    }
-    
-    @keyframes shieldPulse {
-      0%, 100% {
-        opacity: 0.95;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.7;
-        transform: scale(0.98);
-      }
-    }
-    
-    /* Shield segments that fill up like a progress bar */
-    .shield-segment {
-      fill: rgba(139, 35, 72, 0.8);
-      transform-origin: center;
-      opacity: 0;
-    }
-    
-    .shield-segment.active {
-      animation: segmentFill 0.5s ease-out forwards;
-    }
-    
-    @keyframes segmentFill {
+
+    @keyframes arcGlow {
       0% {
-        opacity: 0;
-        transform: scale(0.5);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.1);
+        stroke-dashoffset: 80;
+        opacity: 0.4;
+        filter: drop-shadow(0 0 10px rgba(141, 215, 192, 0.4));
       }
       100% {
+        stroke-dashoffset: 0;
         opacity: 1;
-        transform: scale(1);
+        filter: drop-shadow(0 0 18px rgba(141, 215, 192, 0.6));
       }
     }
-    
-    /* Center emblem rotates */
-    .shield-center {
-      fill: rgba(139, 35, 72, 0.6);
-      animation: centerRotate 3s linear infinite;
-      transform-origin: 100px 100px;
+
+    @keyframes lancePulse {
+      0%, 100% {
+        stroke-width: 3;
+        opacity: 0.8;
+      }
+      50% {
+        stroke-width: 3.6;
+        opacity: 1;
+      }
     }
-    
-    @keyframes centerRotate {
+
+    @keyframes orbitSpin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-    
-    .shield-cross {
-      fill: white;
-      animation: crossGlow 1.5s ease-in-out infinite alternate;
-    }
-    
-    @keyframes crossGlow {
-      from { 
-        opacity: 0.8;
-        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-      }
-      to { 
+
+    @keyframes corePulse {
+      0%, 100% {
+        transform: scale(1);
         opacity: 1;
-        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 0.7;
       }
     }
     
     h2 {
       font-family: 'Cinzel', serif;
       font-size: clamp(1.8rem, 4vw, 2.5rem);
-      color: white;
+      color: var(--loader-fg);
       margin-bottom: 1rem;
       font-weight: 700;
       letter-spacing: 2px;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.38);
     }
     
     .loading-text {
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(223, 243, 237, 0.9);
       font-size: clamp(1rem, 2vw, 1.2rem);
       margin-bottom: 2rem;
       font-weight: 300;
@@ -229,7 +258,7 @@
     }
     
     .status-text {
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(223, 243, 237, 0.85);
       font-size: clamp(0.9rem, 1.8vw, 1.1rem);
       margin-bottom: 1.5rem;
       min-height: 30px;
@@ -240,7 +269,7 @@
     .progress-percentage {
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 700;
-      color: white;
+      color: var(--loader-fg);
       margin-bottom: 1rem;
       text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       font-family: 'Cinzel', serif;
@@ -271,7 +300,7 @@
       align-items: center;
       margin-top: 1rem;
       padding: 0 10px;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(223, 243, 237, 0.72);
       font-size: 0.9rem;
     }
     
@@ -300,7 +329,7 @@
     .did-you-know-title {
       font-size: clamp(1rem, 2vw, 1.2rem);
       font-weight: 700;
-      color: rgba(255, 196, 214, 1);
+      color: var(--loader-accent);
       margin-bottom: 0.75rem;
       text-align: center;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -308,7 +337,7 @@
     
     .did-you-know-text {
       font-size: clamp(0.85rem, 1.6vw, 1rem);
-      color: rgba(255, 255, 255, 0.95);
+      color: var(--loader-fg);
       line-height: 1.6;
       text-align: center;
       font-weight: 400;
@@ -326,48 +355,22 @@
   <div class="loading-container">
     <!-- Shield Loader -->
     <div class="shield-loader">
-      <svg class="shield-svg" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
-        <!-- Main shield shape with outline animation -->
-        <path class="shield-outline" 
-              d="M100 10 L180 50 L180 110 Q180 170 100 230 Q20 170 20 110 L20 50 Z"/>
-        
-        <!-- Filled shield base -->
-        <path class="shield-fill" 
-              d="M100 10 L180 50 L180 110 Q180 170 100 230 Q20 170 20 110 L20 50 Z"/>
-        
-        <!-- Shield segments (fill up as progress) -->
-        <path class="shield-segment" id="segment1" 
-              d="M100 10 L180 50 L180 70 L100 45 Z"/>
-        <path class="shield-segment" id="segment2" 
-              d="M180 70 L180 90 L100 75 L100 45 Z"/>
-        <path class="shield-segment" id="segment3" 
-              d="M180 90 L180 110 L100 105 L100 75 Z"/>
-        <path class="shield-segment" id="segment4" 
-              d="M180 110 L180 130 Q175 145 165 155 L100 135 L100 105 Z"/>
-        <path class="shield-segment" id="segment5" 
-              d="M165 155 Q150 170 130 185 L100 175 L100 135 Z"/>
-        <path class="shield-segment" id="segment6" 
-              d="M130 185 Q115 200 100 230 L100 175 Z"/>
-        
-        <path class="shield-segment" id="segment7" 
-              d="M100 10 L20 50 L20 70 L100 45 Z"/>
-        <path class="shield-segment" id="segment8" 
-              d="M20 70 L20 90 L100 75 L100 45 Z"/>
-        <path class="shield-segment" id="segment9" 
-              d="M20 90 L20 110 L100 105 L100 75 Z"/>
-        <path class="shield-segment" id="segment10" 
-              d="M20 110 L20 130 Q25 145 35 155 L100 135 L100 105 Z"/>
-        <path class="shield-segment" id="segment11" 
-              d="M35 155 Q50 170 70 185 L100 175 L100 135 Z"/>
-        <path class="shield-segment" id="segment12" 
-              d="M70 185 Q85 200 100 230 L100 175 Z"/>
-        
-        <!-- Center rotating emblem -->
-        <circle class="shield-center" cx="100" cy="100" r="30"/>
-        
-        <!-- Cross/Plus in center -->
-        <rect class="shield-cross" x="95" y="75" width="10" height="50" rx="3"/>
-        <rect class="shield-cross" x="75" y="95" width="50" height="10" rx="3"/>
+      <svg class="shield-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="shieldStrokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--loader-accent-strong)" stop-opacity="1" />
+            <stop offset="100%" stop-color="var(--loader-fg)" stop-opacity="1" />
+          </linearGradient>
+        </defs>
+        <g class="shield-mark">
+          <ellipse class="shield-ring" cx="40" cy="38" rx="22" ry="22" />
+          <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" />
+          <path class="shield-arc" d="M24 50 Q40 30 56 50" />
+          <line class="shield-lance" x1="40" y1="50" x2="40" y2="68" />
+        </g>
+        <circle class="shield-orbit" cx="40" cy="40" r="30" />
+        <circle class="shield-orbit orbit-delayed" cx="40" cy="40" r="34" />
+        <circle class="shield-core" cx="40" cy="38" r="3" />
       </svg>
     </div>
     
@@ -440,8 +443,6 @@
     ];
     
     let progress = 0;
-    let currentSegment = 0;
-    const totalSegments = 12;
     const totalTime = 5000; // 5 seconds
     const intervalTime = totalTime / 100;
     
@@ -456,16 +457,6 @@
       if (statusIndex < statusMessages.length) {
         document.getElementById('status').textContent = statusMessages[statusIndex].text;
         document.getElementById('detail-left').textContent = statusMessages[statusIndex].detail;
-      }
-      
-      // Activate shield segments progressively
-      const segmentIndex = Math.floor((progress / 100) * totalSegments);
-      if (segmentIndex > currentSegment && segmentIndex <= totalSegments) {
-        const segment = document.getElementById(`segment${segmentIndex}`);
-        if (segment) {
-          segment.classList.add('active');
-          currentSegment = segmentIndex;
-        }
       }
       
       // Complete

@@ -4,53 +4,64 @@
 // API Configuration
 const API_CONFIG = {
   // Update these URLs when deploying to GoDaddy
-  BASE_URL: window.location.hostname === 'localhost' 
-    ? 'http://localhost/api' 
-    : 'https://yourdomain.com/api',
-  
+  BASE_URL: window.location.hostname === 'localhost'
+    ? 'http://localhost/api'
+    : 'https://ksinsurancee.com/api',
+
   ENDPOINTS: {
     // Authentication
     LOGIN: '/auth/login',
     LOGOUT: '/auth/logout',
     VERIFY_TOKEN: '/auth/verify',
-    
+
     // User Management
     GET_USER_PROFILE: '/users/profile',
     UPDATE_USER_PROFILE: '/users/profile',
     GET_USER_POLICIES: '/users/policies',
-    
+
     // Policies
     GET_POLICIES: '/policies',
     GET_POLICY_DETAILS: '/policies/:id',
     CREATE_POLICY: '/policies/create',
     UPDATE_POLICY: '/policies/:id',
-    
+
     // Claims
     GET_CLAIMS: '/claims',
     CREATE_CLAIM: '/claims/create',
     GET_CLAIM_DETAILS: '/claims/:id',
     UPLOAD_CLAIM_DOCUMENT: '/claims/:id/upload',
-    
+    ASSIGN_CLAIM: '/claims/:id/assign',
+
     // Payments
     GET_PAYMENT_HISTORY: '/payments/history',
     PROCESS_PAYMENT: '/payments/process',
     DOWNLOAD_RECEIPT: '/payments/:id/receipt',
-    
+
     // Documents
     UPLOAD_DOCUMENT: '/documents/upload',
     DOWNLOAD_DOCUMENT: '/documents/:id',
     LIST_DOCUMENTS: '/documents',
     DELETE_DOCUMENT: '/documents/:id',
-    
+
     // Quotes
     REQUEST_QUOTE: '/quotes/request',
     GET_QUOTES: '/quotes',
-    
+
+    // Questionnaires / Roadmap
+    GET_QUESTIONNAIRES: '/questionnaires',
+    SEND_QUESTIONNAIRE: '/questionnaires/send',
+    RESEND_QUESTIONNAIRE: '/questionnaires/:id/resend',
+    COMPLETE_QUESTIONNAIRE: '/questionnaires/:id/complete',
+    GET_ROADMAP: '/agents/clients/:id/roadmap',
+
+    // Notifications
+    SEND_NOTIFICATION: '/notifications/email',
+
     // Agents (for agent portal)
     GET_CLIENTS: '/agents/clients',
     GET_CLIENT_DETAILS: '/agents/clients/:id',
     UPDATE_CLIENT: '/agents/clients/:id',
-    
+
     // Analytics
     GET_DASHBOARD_STATS: '/analytics/dashboard',
     GET_AGENT_PERFORMANCE: '/analytics/agent/:id'
@@ -67,12 +78,12 @@ class APIService {
   // Build full URL
   buildUrl(endpoint, params = {}) {
     let url = API_CONFIG.BASE_URL + endpoint;
-    
+
     // Replace path parameters
     Object.keys(params).forEach(key => {
       url = url.replace(`:${key}`, params[key]);
     });
-    
+
     return url;
   }
 
@@ -94,7 +105,7 @@ class APIService {
     } = cacheOptions;
 
     const url = this.buildUrl(endpoint, params);
-    
+
     // Add query parameters
     const urlObj = new URL(url);
     Object.keys(queryParams).forEach(key => {
@@ -102,7 +113,7 @@ class APIService {
     });
 
     const fullUrl = urlObj.toString();
-    
+
     // Cache identifier
     const cacheIdentifier = `api_${method}_${endpoint}_${JSON.stringify(params)}_${JSON.stringify(queryParams)}`;
     const userId = this.getCurrentUserId();
@@ -124,7 +135,7 @@ class APIService {
     try {
       // Get auth token
       const token = this.getAuthToken();
-      
+
       const requestOptions = {
         method,
         headers: {
@@ -139,7 +150,7 @@ class APIService {
       }
 
       const response = await fetch(fullUrl, requestOptions);
-      
+
       if (!response.ok) {
         throw new Error(`API Error: ${response.status} ${response.statusText}`);
       }
@@ -164,7 +175,7 @@ class APIService {
 
     } catch (error) {
       console.error('API Request failed:', error);
-      
+
       if (showLoading) {
         this.hideLoadingScreen();
       }
@@ -227,15 +238,15 @@ class APIService {
   // Upload file with progress
   async uploadFile(endpoint, file, onProgress, params = {}) {
     const url = this.buildUrl(endpoint, params);
-    
+
     try {
       const result = await this.fileManager.uploadFile(url, file, (percent) => {
         if (onProgress) onProgress(percent);
       });
-      
+
       // Invalidate document cache
       this.invalidateRelatedCache('/documents');
-      
+
       return result;
     } catch (error) {
       console.error('File upload failed:', error);
@@ -246,12 +257,12 @@ class APIService {
   // Download file with progress
   async downloadFile(endpoint, filename, onProgress, params = {}) {
     const url = this.buildUrl(endpoint, params);
-    
+
     try {
       const result = await this.fileManager.downloadFile(url, filename, (percent) => {
         if (onProgress) onProgress(percent);
       });
-      
+
       return result;
     } catch (error) {
       console.error('File download failed:', error);
@@ -357,9 +368,9 @@ function logoutUser() {
 
 // Export for use
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { 
-    APIService, 
-    apiService, 
+  module.exports = {
+    APIService,
+    apiService,
     API_CONFIG,
     loginUser,
     getUserPolicies,

@@ -2,9 +2,272 @@
 /* CSS now loaded via webpack imports in EntryPointMainApp.js */
 /* All imports removed - webpack handles module order */
 
+/* Global design tokens */
+:root {
+  --text-dark: #1a1a1a;
+  --text-light: #666;
+  --white: #ffffff;
+  --gray-100: #f5f5f5;
+  --gray-200: #e0e0e0;
+  --gray-300: #ccc;
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --info: #17a2b8;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+  --gradient-start: #631832;
+  --gradient-mid: #521a38;
+  --gradient-end: #401a59;
+  /* Layout measurements to keep padding off the global background */
+  --nav-height: 90px;
+  /* header */
+  --subnav-height: 56px;
+  /* secondary navigation */
+  --footer-height: 56px;
+  /* reserve space so content doesn't go under the collapsed footer */
+  /* Acrylic/Frosted Glass Effects - Default Theme */
+  --acrylic-blur: 20px;
+  --acrylic-blur-strong: 30px;
+  --acrylic-blur-subtle: 15px;
+  --acrylic-saturate: 170%;
+  --acrylic-saturate-strong: 180%;
+  --acrylic-saturate-subtle: 150%;
+  --acrylic-bg-light: rgba(255, 255, 255, 0.08);
+  --acrylic-bg-medium: rgba(255, 255, 255, 0.12);
+  --acrylic-bg-dark: rgba(99, 24, 50, 0.15);
+  --acrylic-border-light: rgba(255, 255, 255, 0.15);
+
+  /* Footer glass tokens (theme-overridable) */
+  /* Slightly stronger by default; themes can override for more/less glass. */
+  --footer-acrylic-bg: rgba(99, 24, 50, 0.7);
+  --footer-acrylic-blur: 32px;
+  --footer-acrylic-saturate: 200%;
+
+  /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */
+  --theme-surface-bg: rgba(255, 255, 255, 0.98);
+  --theme-surface-bg-solid: #ffffff;
+  --theme-surface-border: rgba(99, 24, 50, 0.14);
+  --theme-surface-border-strong: rgba(99, 24, 50, 0.20);
+
+  /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */
+  --theme-accent-border-subtle: rgba(64, 26, 89, 0.20);
+  --theme-accent-border: rgba(64, 26, 89, 0.30);
+  --theme-accent-bg-soft: rgba(64, 26, 89, 0.18);
+  --theme-accent-shadow-soft: rgba(64, 26, 89, 0.10);
+  --theme-accent-shadow-strong: rgba(64, 26, 89, 0.30);
+  --theme-accent-color-hover: #4d216a;
+
+  /* RGBA helpers for acrylic gradients (avoid hard-coded brand rgba() in components) */
+  --theme-primary-rgba-70: rgba(99, 24, 50, 0.70);
+  --theme-secondary-rgba-70: rgba(91, 36, 43, 0.70);
+  --theme-primary-rgba-95: rgba(99, 24, 50, 0.95);
+  --theme-secondary-rgba-95: rgba(91, 36, 43, 0.95);
+
+  /* Navbar link pill background (active/hover) */
+  --theme-navlink-active-bg: rgba(99, 24, 50, 0.08);
+  /* Theme accent colors for components */
+  --theme-primary-color: var(--brand-maroon);
+  --theme-secondary-color: var(--wine);
+  --theme-accent-color: var(--brand-purple);
+  --theme-text-primary: var(--text-dark);
+  --theme-text-secondary: var(--text-light);
+  --theme-shadow: var(--shadow);
+
+  /* Dashboard layout tokens (shared) */
+  --dashboard-padding-top-offset: 28px;
+  --dashboard-padding-x: 16px;
+  --dashboard-padding-bottom: 28px;
+  --dashboard-grid-gap: 16px;
+  --dashboard-main-gap: 16px;
+  --dashboard-main-col-min: 240px;
+  --dashboard-stat-min: 240px;
+  --dashboard-stat-gap: 16px;
+  --dashboard-stat-padding: 16px 18px;
+  --dashboard-stat-radius: 16px;
+  --dashboard-card-padding: 22px 22px 20px;
+  --dashboard-card-header-margin: 12px;
+  --dashboard-card-header-padding: 10px;
+  --dashboard-quick-actions-gap: 8px;
+  --dashboard-container-max: 1880px;
+  --dashboard-container-max-client: 1800px;
+  --dashboard-container-max-agent: 1880px;
+  --dashboard-container-max-admin: 1920px;
+
+  /* Highlights / glows (avoid hard-coded pink/gold values in components) */
+  --theme-highlight-soft: #ffc4d6;
+  --theme-highlight-light: var(--baby-pink);
+  --theme-highlight-strong: #ffd700;
+  --theme-highlight-strong-border: rgba(255, 215, 0, 0.10);
+  --theme-highlight-glow: rgba(254, 245, 249, 0.6);
+  --theme-highlight-glow-subtle: rgba(254, 245, 249, 0.18);
+  --theme-highlight-border: rgba(254, 245, 249, 0.36);
+  --theme-primary-shadow-color: rgba(99, 24, 50, 0.35);
+
+  /* High-contrast ink (default/light uses brand ink; dark themes override) */
+  --theme-contrast-strong: var(--brand-maroon);
+
+  /* Text-on-color tokens (avoid hard-coded #fff / black in components) */
+  --theme-on-success: var(--white);
+  --theme-on-danger: var(--white);
+  /* Warning background is bright (yellow), so text should stay dark even on dark themes */
+  --theme-on-warning: rgba(0, 0, 0, 0.85);
+
+  /* Progress bar tokens */
+  --theme-progress-edge: rgba(254, 245, 249, 0.8);
+  --theme-progress-center: rgba(255, 255, 255, 0.95);
+  --theme-progress-glow-strong: rgba(254, 245, 249, 0.7);
+  --theme-progress-glow-soft: rgba(254, 245, 249, 0.4);
+
+  /* Particles overlay tuning */
+  --particles-opacity: 0.55;
+  --particles-opacity-home: 0.70;
+  /* `screen` can become effectively invisible over light UI surfaces.
+     Default theme uses `normal` for consistent visibility; dark-forest overrides this. */
+  --particles-blend-mode: normal;
+}
+
 /* Hidden class for page sections (show/hide navigation) */
 .page-section.hidden {
   display: none !important;
+}
+
+/* Loading modal overlay */
+body.loading-locked {
+  overflow: hidden;
+}
+
+.loading-modal {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(80% 80% at 15% 20%, rgba(99, 24, 50, 0.55), transparent 55%),
+    radial-gradient(70% 70% at 80% 20%, rgba(64, 26, 89, 0.45), transparent 60%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.32));
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.38s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.loading-modal.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.loading-container {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 28px 32px;
+  min-width: clamp(280px, 44vw, 520px);
+  text-align: center;
+  color: var(--theme-text-primary, #1a1a1a);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+}
+
+.shield-loader {
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+}
+
+.shield-svg {
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0 12px 28px rgba(99, 24, 50, 0.35));
+  animation: shield-float 3.6s ease-in-out infinite;
+}
+
+.shield-outline {
+  fill: none;
+  stroke: var(--brand-maroon, #631832);
+  stroke-width: 6;
+  opacity: 0.35;
+}
+
+.shield-fill {
+  fill: rgba(99, 24, 50, 0.78);
+  opacity: 0.92;
+  animation: shield-glow 2.8s ease-in-out infinite;
+}
+
+.shield-center {
+  fill: rgba(255, 255, 255, 0.9);
+  stroke: var(--brand-purple, #401a59);
+  stroke-width: 4;
+  opacity: 0.9;
+  animation: shield-pulse 2.2s ease-in-out infinite;
+}
+
+.shield-cross {
+  fill: var(--brand-purple, #401a59);
+  opacity: 0.9;
+}
+
+.loading-title {
+  margin: 8px 0 4px;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.6px;
+  color: var(--brand-maroon, #631832);
+}
+
+.loading-message {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--theme-text-primary, #1a1a1a);
+}
+
+.loading-detail {
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+  color: var(--theme-text-secondary, rgba(26, 26, 26, 0.7));
+}
+
+@keyframes shield-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shield-glow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(99, 24, 50, 0.25));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 26px rgba(99, 24, 50, 0.45));
+  }
+}
+
+@keyframes shield-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
 }
 
 /* Footer (restored) */
@@ -123,191 +386,10 @@ body[data-page="home"] .footer {
 .logo-shield-footer {
   color: white;
   margin-bottom: clamp(6px, 1vh, 10px);
-  width: clamp(40px, 5vw, 50px);
-  height: clamp(40px, 5vw, 50px);
-}
-
-.footer-brand h3 {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
-  color: rgba(255, 255, 255, 0.95);
-}
-
-.footer-tagline {
-  font-size: clamp(0.75rem, 1.3vw, 0.85rem);
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.4;
-}
-
-.footer-contact {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(6px, 1vh, 8px);
-}
-
-.footer-contact li {
-  font-size: clamp(0.8rem, 1.4vw, 0.9rem);
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.4;
-}
-
-.social-links {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.social-link {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px) saturate(150%);
-  -webkit-backdrop-filter: blur(15px) saturate(150%);
-  color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.social-link:hover {
-  background: var(--theme-primary-color);
-  transform: translateY(-2px);
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.9rem;
-}
-
-.footer-url {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-family: 'Cinzel', serif;
-  transition: all 0.3s ease;
-}
-
-.footer-url:hover {
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* Base Styles */
-
-:root {
-  /* Default theme palette (darkened to reduce the bright-magenta feel) */
-  --brand-maroon: #631832;
-  --brand-purple: #401a59;
-  --wine: #5b242b;
-  --baby-pink: #fef5f9;
-  --text-dark: #1a1a1a;
-  --text-light: #666;
-  --white: #ffffff;
-  --gray-100: #f5f5f5;
-  --gray-200: #e0e0e0;
-  --gray-300: #ccc;
-  --success: #28a745;
-  --warning: #ffc107;
-  --danger: #dc3545;
-  --info: #17a2b8;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
-  --gradient-start: #631832;
-  --gradient-mid: #521a38;
-  --gradient-end: #401a59;
-  /* Layout measurements to keep padding off the global background */
-  --nav-height: 90px;
-  /* header */
-  --subnav-height: 56px;
-  /* secondary navigation */
-  --footer-height: 56px;
-  /* reserve space so content doesn't go under the collapsed footer */
-  /* Acrylic/Frosted Glass Effects - Default Theme */
-  --acrylic-blur: 20px;
-  --acrylic-blur-strong: 30px;
-  --acrylic-blur-subtle: 15px;
-  --acrylic-saturate: 170%;
-  --acrylic-saturate-strong: 180%;
-  --acrylic-saturate-subtle: 150%;
-  --acrylic-bg-light: rgba(255, 255, 255, 0.08);
-  --acrylic-bg-medium: rgba(255, 255, 255, 0.12);
-  --acrylic-bg-dark: rgba(99, 24, 50, 0.15);
-  --acrylic-border-light: rgba(255, 255, 255, 0.15);
-
-  /* Footer glass tokens (theme-overridable) */
-  /* Slightly stronger by default; themes can override for more/less glass. */
-  --footer-acrylic-bg: rgba(99, 24, 50, 0.7);
-  --footer-acrylic-blur: 32px;
-  --footer-acrylic-saturate: 200%;
-
-  /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */
-  --theme-surface-bg: rgba(255, 255, 255, 0.95);
-  --theme-surface-bg-solid: #ffffff;
-  --theme-surface-border: rgba(99, 24, 50, 0.10);
-  --theme-surface-border-strong: rgba(99, 24, 50, 0.15);
-
-  /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */
-  --theme-accent-border-subtle: rgba(64, 26, 89, 0.15);
-  --theme-accent-border: rgba(64, 26, 89, 0.25);
-  --theme-accent-bg-soft: rgba(64, 26, 89, 0.15);
-  --theme-accent-shadow-soft: rgba(64, 26, 89, 0.10);
-  --theme-accent-shadow-strong: rgba(64, 26, 89, 0.30);
-  --theme-accent-color-hover: #4d216a;
-
-  /* RGBA helpers for acrylic gradients (avoid hard-coded brand rgba() in components) */
-  --theme-primary-rgba-70: rgba(99, 24, 50, 0.70);
-  --theme-secondary-rgba-70: rgba(91, 36, 43, 0.70);
-  --theme-primary-rgba-95: rgba(99, 24, 50, 0.95);
-  --theme-secondary-rgba-95: rgba(91, 36, 43, 0.95);
-
-  /* Navbar link pill background (active/hover) */
-  --theme-navlink-active-bg: rgba(99, 24, 50, 0.08);
-  /* Theme accent colors for components */
-  --theme-primary-color: var(--brand-maroon);
-  --theme-secondary-color: var(--wine);
-  --theme-accent-color: var(--brand-purple);
-  --theme-text-primary: var(--text-dark);
-  --theme-text-secondary: var(--text-light);
-  --theme-shadow: var(--shadow);
-
-  /* Highlights / glows (avoid hard-coded pink/gold values in components) */
-  --theme-highlight-soft: #ffc4d6;
-  --theme-highlight-light: var(--baby-pink);
-  --theme-highlight-strong: #ffd700;
-  --theme-highlight-strong-border: rgba(255, 215, 0, 0.10);
-  --theme-highlight-glow: rgba(254, 245, 249, 0.6);
-  --theme-highlight-glow-subtle: rgba(254, 245, 249, 0.18);
-  --theme-highlight-border: rgba(254, 245, 249, 0.36);
-  --theme-primary-shadow-color: rgba(99, 24, 50, 0.35);
-
-  /* Text-on-color tokens (avoid hard-coded #fff / black in components) */
-  --theme-on-success: var(--white);
-  --theme-on-danger: var(--white);
-  /* Warning background is bright (yellow), so text should stay dark even on dark themes */
-  --theme-on-warning: rgba(0, 0, 0, 0.85);
-
-  /* Progress bar tokens */
-  --theme-progress-edge: rgba(254, 245, 249, 0.8);
-  --theme-progress-center: rgba(255, 255, 255, 0.95);
-  --theme-progress-glow-strong: rgba(254, 245, 249, 0.7);
-  --theme-progress-glow-soft: rgba(254, 245, 249, 0.4);
-
-  /* Particles overlay tuning */
-  --particles-opacity: 0.55;
-  --particles-opacity-home: 0.70;
-  /* `screen` can become effectively invisible over light UI surfaces.
-     Default theme uses `normal` for consistent visibility; dark-forest overrides this. */
-  --particles-blend-mode: normal;
+  width: clamp(52px, 7vw, 64px);
+  height: clamp(52px, 7vw, 64px);
+  display: block;
+  flex-shrink: 0;
 }
 
 /* Page visibility control */
@@ -339,7 +421,7 @@ body {
   margin: 0 !important;
   padding: 0 !important;
   font-family: 'Aptos Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--text-dark);
   background: linear-gradient(135deg,
       var(--gradient-start) 0%,
@@ -355,6 +437,23 @@ body {
   left: 0 !important;
   animation: gradientShift 20s ease infinite;
   transition: background-position 1.5s ease-in-out;
+}
+
+/* Slightly larger body copy for descriptive sections */
+p,
+.section-description,
+.hero-description,
+.feature-box p,
+.service-card p,
+.about-section p,
+.contact-info p,
+.quote-lead,
+.quote-footnote,
+.quote-benefits,
+.stat-box p,
+.agent-card p {
+  font-size: 1.04rem;
+  line-height: 1.65;
 }
 
 @keyframes gradientShift {
@@ -787,10 +886,44 @@ body[data-page="agent-login"] #particles-canvas {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--theme-primary-color) 0%, var(--theme-secondary-color) 100%);
+  background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 70%);
   color: var(--white);
   border-color: rgba(255, 255, 255, 0.16);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), 0 10px 24px var(--theme-primary-shadow-color);
+}
+
+.btn.is-loading,
+.btn[aria-busy="true"] {
+  position: relative;
+  pointer-events: none;
+  color: var(--theme-contrast-strong, var(--brand-maroon));
+  border-color: var(--theme-contrast-glow, rgba(255, 255, 255, 0.25));
+  filter: brightness(1.02);
+}
+
+.btn.is-loading::after,
+.btn[aria-busy="true"]::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: inherit;
+  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+  animation: loading-pulse 0.9s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes loading-pulse {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.98);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.02);
+  }
 }
 
 .btn-primary:hover {
@@ -870,7 +1003,18 @@ body[data-page="agent-login"] #particles-canvas {
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+body:not(.no-footer) .main-content {
   padding-bottom: var(--footer-height);
+}
+
+body.no-footer .main-content {
+  padding-bottom: 0;
+}
+
+body.no-footer .footer {
+  display: none !important;
 }
 
 /* Home has a fixed sub-navigation that overlays the scroll container.

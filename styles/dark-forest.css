@@ -39,15 +39,16 @@ html[data-theme="dark-forest"] body {
    Use higher specificity here so dark-forest variables actually override defaults when data-theme is on <html>.
    NOTE: Variables MUST be defined in :root, NOT [data-theme] selectors, to inherit properly */
 :root[data-theme="dark-forest"] {
-    /* Variables principales (mapeo para compatibilidad con estilos existentes) */
-    --brand-maroon: #062012;
-    /* dark cucumber green */
-    --brand-purple: #5a4633;
-    /* warm coffee/tan para diferenciación */
-    --wine: #35231c;
-    /* darker chocolate brown */
-    --baby-pink: #e8f6ee;
-    /* soft pale green/cream for highlights */
+    /* Variables principales (mapeo para compatibilidad con estilos existentes)
+         Swapped the warm browns for the petrolean teal family to match the lab tests */
+    --brand-maroon: #0f2b24;
+    /* deep petrolean green */
+    --brand-purple: #2f6b7a;
+    /* cool teal accent */
+    --wine: #1b3f47;
+    /* muted blue-green shadow */
+    --baby-pink: #dff3ed;
+    /* pale mint highlight */
 
     --text-dark: #f0f7f3;
     /* brighter light text on dark background for better contrast */
@@ -65,45 +66,45 @@ html[data-theme="dark-forest"] body {
     --info: #17a2b8;
 
     /* Gradient tokens (keep in sync with Services/About backgrounds) */
-    --gradient-start: var(--brand-purple);
-    --gradient-mid: var(--brand-maroon);
-    --gradient-end: var(--wine);
+    --gradient-start: #0f2b24;
+    --gradient-mid: #1b3f47;
+    --gradient-end: #2f6b7a;
 
     /* Sombras y borders */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
-    --shadow: 0 4px 16px rgba(0, 0, 0, 0.65);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.7);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.58);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.62);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.68);
 
     /* Theme accent colors - usando variables */
-    --theme-primary-color: #062012;
-    --theme-secondary-color: #5a4633;
-    /* Warm coffee/latte accent (replaces the old purplish accent feeling) */
-    --theme-accent-color: #7d633f;
+    --theme-primary-color: #0f2b24;
+    --theme-secondary-color: #1b3f47;
+    /* Cool petrolean accent */
+    --theme-accent-color: #2f6b7a;
     --theme-text-primary: #f0f7f3;
     --theme-text-secondary: #c8ddd2;
     --theme-shadow: var(--shadow);
 
     /* Highlights / glows / progress tokens (match semantics from default theme) */
-    --theme-highlight-soft: #cfe9d8;
+    --theme-highlight-soft: #cbeee4;
 
-    /* "Sunlight" contrast: the light counterpart that gives the UI lift (similar role to default's baby-pink/gold). */
-    --theme-sunlight: #f2eadc;
-    --theme-sunlight-strong: #f0c87a;
+    /* "Sunlight" contrast, now cool-mint to lift the teal canvas */
+    --theme-sunlight: #e6f5ef;
+    --theme-sunlight-strong: #c6ede0;
 
     /* Extra contrast accent to bring light into the palette */
-    --theme-contrast-color: #f6e7c1;
-    --theme-contrast-strong: #f3d590;
-    --theme-contrast-glow: rgba(246, 231, 193, 0.28);
-    --theme-contrast-shadow: rgba(246, 231, 193, 0.35);
+    --theme-contrast-color: #dff3ed;
+    --theme-contrast-strong: #c3efe2;
+    --theme-contrast-glow: rgba(195, 239, 226, 0.28);
+    --theme-contrast-shadow: rgba(20, 51, 40, 0.36);
 
     --theme-highlight-light: var(--theme-sunlight);
-    /* Brighter warm highlight used for emphasis/hover */
+    /* Brighter cool highlight used for emphasis/hover */
     --theme-highlight-strong: var(--theme-sunlight-strong);
-    --theme-highlight-strong-border: rgba(240, 200, 122, 0.18);
-    --theme-highlight-glow: rgba(242, 234, 220, 0.40);
-    --theme-highlight-glow-subtle: rgba(242, 234, 220, 0.18);
-    --theme-highlight-border: rgba(242, 234, 220, 0.28);
-    --theme-primary-shadow-color: rgba(7, 18, 12, 0.8);
+    --theme-highlight-strong-border: rgba(198, 237, 224, 0.18);
+    --theme-highlight-glow: rgba(223, 243, 237, 0.42);
+    --theme-highlight-glow-subtle: rgba(223, 243, 237, 0.22);
+    --theme-highlight-border: rgba(223, 243, 237, 0.28);
+    --theme-primary-shadow-color: rgba(7, 26, 19, 0.78);
 
     /* Text-on-color tokens (keep semantics consistent across themes) */
     --theme-on-success: var(--white);
@@ -112,52 +113,52 @@ html[data-theme="dark-forest"] body {
     --theme-on-warning: rgba(0, 0, 0, 0.85);
 
     /* Particles overlay tuning */
-    --particles-opacity: 0.62;
-    --particles-opacity-home: 0.78;
+    --particles-opacity: 0.6;
+    --particles-opacity-home: 0.76;
     --particles-blend-mode: screen;
 
     /* Global chrome surfaces (footer/subnav glass) */
-    --acrylic-bg-dark: rgba(6, 31, 16, 0.55);
+    --acrylic-bg-dark: rgba(10, 34, 28, 0.56);
 
     /* Footer glass (explicit tokens used by app.css .footer) */
     /* Stronger footer glass for dark-forest */
-    --footer-acrylic-bg: rgba(5, 10, 8, 0.75);
-    --footer-acrylic-blur: 60px;
-    --footer-acrylic-saturate: 235%;
+    --footer-acrylic-bg: rgba(8, 28, 24, 0.76);
+    --footer-acrylic-blur: 56px;
+    --footer-acrylic-saturate: 220%;
 
     /* Semantic surfaces used by pages (cards / inputs / compact service tiles) */
-    --theme-surface-bg: rgba(3, 12, 8, 0.82);
-    --theme-surface-bg-solid: rgba(3, 10, 7, 0.94);
-    --theme-surface-bg-deep: #020b07;
-    --theme-surface-border: rgba(242, 234, 220, 0.22);
-    --theme-surface-border-strong: rgba(242, 234, 220, 0.32);
+    --theme-surface-bg: rgba(8, 30, 26, 0.88);
+    --theme-surface-bg-solid: rgba(8, 28, 24, 0.94);
+    --theme-surface-bg-deep: #061c17;
+    --theme-surface-border: rgba(223, 243, 237, 0.32);
+    --theme-surface-border-strong: rgba(223, 243, 237, 0.42);
 
     /* Accent tints (dashboards, decorative borders) */
-    --theme-accent-border-subtle: rgba(125, 99, 63, 0.18);
-    --theme-accent-border: rgba(125, 99, 63, 0.28);
-    --theme-accent-bg-soft: rgba(125, 99, 63, 0.14);
-    --theme-accent-shadow-soft: rgba(125, 99, 63, 0.12);
-    --theme-accent-shadow-strong: rgba(125, 99, 63, 0.28);
-    --theme-accent-color-hover: #8b724c;
+    --theme-accent-border-subtle: rgba(47, 107, 122, 0.24);
+    --theme-accent-border: rgba(47, 107, 122, 0.34);
+    --theme-accent-bg-soft: rgba(47, 107, 122, 0.22);
+    --theme-accent-shadow-soft: rgba(47, 107, 122, 0.18);
+    --theme-accent-shadow-strong: rgba(47, 107, 122, 0.34);
+    --theme-accent-color-hover: #45a0b8;
 
     /* Nav pill background on dark chrome */
-    --theme-navlink-active-bg: rgba(242, 234, 220, 0.09);
+    --theme-navlink-active-bg: rgba(207, 236, 227, 0.12);
 
     /* RGBA helpers for acrylic gradients */
-    --theme-primary-rgba-50: rgba(6, 32, 18, 0.50);
-    --theme-primary-rgba-70: rgba(6, 32, 18, 0.70);
-    --theme-secondary-rgba-70: rgba(53, 35, 28, 0.70);
-    --theme-primary-rgba-95: rgba(6, 32, 18, 0.95);
-    --theme-secondary-rgba-95: rgba(53, 35, 28, 0.95);
+    --theme-primary-rgba-50: rgba(15, 43, 36, 0.50);
+    --theme-primary-rgba-70: rgba(15, 43, 36, 0.70);
+    --theme-secondary-rgba-70: rgba(27, 63, 71, 0.70);
+    --theme-primary-rgba-95: rgba(15, 43, 36, 0.95);
+    --theme-secondary-rgba-95: rgba(27, 63, 71, 0.95);
 
-    --theme-progress-edge: rgba(232, 246, 238, 0.85);
-    --theme-progress-center: rgba(137, 201, 151, 0.95);
-    --theme-progress-glow-strong: rgba(122, 176, 128, 0.35);
-    --theme-progress-glow-soft: rgba(122, 176, 128, 0.18);
+    --theme-progress-edge: rgba(223, 243, 237, 0.85);
+    --theme-progress-center: rgba(164, 224, 207, 0.95);
+    --theme-progress-glow-strong: rgba(143, 207, 186, 0.36);
+    --theme-progress-glow-soft: rgba(143, 207, 186, 0.18);
 
     /* Compatibilidad visual */
-    --baby-pink-accent: #7ab080;
-    /* un acento musgoso más oscuro */
+    --baby-pink-accent: #8dd7c0;
+    /* cool mint accent */
 
     /* Acrylic tuning variables */
     --acrylic-blur-strong: 30px;
@@ -165,10 +166,10 @@ html[data-theme="dark-forest"] body {
     --acrylic-blur-light: 20px;
     --acrylic-saturate: 160%;
 
-    --acrylic-bg-light: rgba(3, 12, 8, 0.24);
-    --acrylic-bg-medium: rgba(3, 12, 8, 0.34);
-    --acrylic-border: rgba(242, 234, 220, 0.24);
-    --acrylic-shadow: 0 10px 36px rgba(0, 0, 0, 0.65);
+    --acrylic-bg-light: rgba(6, 24, 20, 0.22);
+    --acrylic-bg-medium: rgba(6, 24, 20, 0.34);
+    --acrylic-border: rgba(223, 243, 237, 0.22);
+    --acrylic-shadow: 0 10px 36px rgba(0, 0, 0, 0.62);
 }
 
 /* Body background + texto */
@@ -194,8 +195,10 @@ html[data-theme="dark-forest"] .nav-link.active {
 
 /* Quote page readability in dark-forest */
 html[data-theme="dark-forest"] .quote-hero {
-    background: linear-gradient(135deg, rgba(6, 32, 18, 0.75), rgba(53, 35, 28, 0.65));
-    border-color: rgba(246, 231, 193, 0.3);
+    background: rgba(6, 24, 20, 0.36);
+    border-color: rgba(223, 243, 237, 0.28);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
 }
 
 html[data-theme="dark-forest"] .quote-hero-copy,
@@ -211,6 +214,24 @@ html[data-theme="dark-forest"] .quote-hero .quote-lead,
 html[data-theme="dark-forest"] .quote-hero .quote-tab-hint {
     color: var(--theme-contrast-strong);
     text-shadow: 0 8px 30px rgba(0, 0, 0, 0.48);
+}
+
+/* Quote forms: ensure headings and chips use the warm contrast (no green ink) */
+html[data-theme="dark-forest"] .quote-form-head h3,
+html[data-theme="dark-forest"] .quote-form .quote-eyebrow {
+    color: var(--theme-contrast-strong);
+    text-shadow: none;
+}
+
+html[data-theme="dark-forest"] .quote-chip {
+    background: rgba(246, 231, 193, 0.12);
+    border-color: rgba(246, 231, 193, 0.3);
+    color: var(--theme-text-primary);
+}
+
+html[data-theme="dark-forest"] .quote-form label,
+html[data-theme="dark-forest"] .quote-field span {
+    color: var(--theme-text-primary);
 }
 
 html[data-theme="dark-forest"] .quote-pill {
@@ -342,23 +363,13 @@ html[data-theme="dark-forest"] .agent-card:hover {
 
 /* Progress / accents: handled via theme tokens in :root + overrides above */
 
-/* Footer theming - preserve acrylic effect */
-html[data-theme="dark-forest"] .footer {
+/* Footer theming - only when the footer is visible */
+html[data-theme="dark-forest"] body:not(.no-footer) .footer {
     background: var(--footer-acrylic-bg) !important;
     backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
     -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
     border-top: 1px solid var(--theme-surface-border-strong);
     color: var(--theme-text-primary);
-}
-
-/* Ensure home page also renders acrylic footer with correct specificity
-   NOTE: data-theme is on <html> (documentElement), data-page is on <body> */
-html[data-theme="dark-forest"] body[data-page="home"] .footer {
-    background: var(--footer-acrylic-bg) !important;
-    backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
-    -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;
-    border-top: 1px solid var(--theme-surface-border-strong) !important;
-    color: var(--theme-text-primary) !important;
 }
 
 html[data-theme="dark-forest"] .footer h3,
@@ -453,7 +464,7 @@ html[data-theme="dark-forest"] .sub-navigation {
 html[data-theme="dark-forest"] .btn-primary,
 html[data-theme="dark-forest"] .btn-secondary,
 html[data-theme="dark-forest"] .btn-outline {
-    background: linear-gradient(135deg, var(--theme-primary-color) 0%, var(--theme-secondary-color) 55%, var(--theme-contrast-color) 120%);
+    background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 55%, var(--theme-contrast-color) 115%);
     color: var(--theme-sunlight);
     border: 1px solid var(--theme-contrast-glow);
     backdrop-filter: blur(var(--acrylic-blur-light)) saturate(var(--acrylic-saturate));
@@ -470,7 +481,7 @@ html[data-theme="dark-forest"] .btn-outline:hover {
 }
 
 html[data-theme="dark-forest"] .auth-card .btn-primary {
-    background: linear-gradient(135deg, var(--theme-primary-color) 0%, var(--theme-secondary-color) 100%);
+    background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 85%);
     color: var(--theme-text-primary);
     border: 1px solid rgba(232, 246, 238, 0.18);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
@@ -601,13 +612,17 @@ html[data-theme="dark-forest"] .about-team-card {
 html[data-theme="dark-forest"] .dashboard-section,
 html[data-theme="dark-forest"] .agent-dashboard,
 html[data-theme="dark-forest"] .admin-dashboard {
-    /* Solid, flat background - no gradients for maximum professionalism */
-    background: #010805;
+    /* Luminous petrolean canvas with soft glows */
+    background:
+        radial-gradient(90% 80% at 12% 18%, rgba(76, 201, 191, 0.32), transparent 58%),
+        radial-gradient(85% 70% at 88% 22%, rgba(113, 220, 201, 0.24), transparent 62%),
+        radial-gradient(95% 80% at 18% 88%, rgba(76, 150, 220, 0.22), transparent 68%),
+        linear-gradient(155deg, #0f2c35 0%, #0c1f2c 46%, #0a1724 100%);
     color: var(--theme-text-primary);
 }
 
 html[data-theme="dark-forest"] .dashboard-header {
-    border-bottom: 2px solid rgba(242, 234, 220, 0.15);
+    border-bottom: 2px solid rgba(223, 243, 237, 0.26);
 }
 
 html[data-theme="dark-forest"] .dashboard-header h1,
@@ -615,8 +630,8 @@ html[data-theme="dark-forest"] .agent-dashboard .dashboard-header h1,
 html[data-theme="dark-forest"] .agent-dashboard .dashboard-header>div:first-child h1,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-header h1,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-header>div:first-child h1 {
-    color: #f2eadc;
-    text-shadow: none;
+    color: var(--theme-contrast-strong);
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 html[data-theme="dark-forest"] .dashboard-header p,
@@ -624,7 +639,7 @@ html[data-theme="dark-forest"] .agent-dashboard .dashboard-header p,
 html[data-theme="dark-forest"] .agent-dashboard .dashboard-header>div:first-child p,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-header p,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-header>div:first-child p {
-    color: #c8ddd2;
+    color: var(--theme-text-secondary);
 }
 
 /* Buttons - simplified, no gradients */
@@ -634,13 +649,12 @@ html[data-theme="dark-forest"] .admin-dashboard .dashboard-header .btn,
 html[data-theme="dark-forest"] .dashboard-section .btn-primary,
 html[data-theme="dark-forest"] .agent-dashboard .btn-primary,
 html[data-theme="dark-forest"] .admin-dashboard .btn-primary {
-    background: #062012;
-    color: #f0f7f3;
-    border: 1px solid rgba(242, 234, 220, 0.25);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    /* Remove blur effects */
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    color: var(--theme-text-primary);
+    border: 1px solid var(--theme-accent-border);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));
+    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));
 }
 
 html[data-theme="dark-forest"] .dashboard-header .btn:hover,
@@ -649,10 +663,9 @@ html[data-theme="dark-forest"] .admin-dashboard .dashboard-header .btn:hover,
 html[data-theme="dark-forest"] .dashboard-section .btn-primary:hover,
 html[data-theme="dark-forest"] .agent-dashboard .btn-primary:hover,
 html[data-theme="dark-forest"] .admin-dashboard .btn-primary:hover {
-    background: #0b241a;
-    border-color: rgba(242, 234, 220, 0.35);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
-    /* Simple brightness instead of gradients */
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+    border-color: var(--theme-accent-border);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), 0 0 0 1px var(--theme-accent-border);
     filter: none;
 }
 
@@ -660,20 +673,19 @@ html[data-theme="dark-forest"] .admin-dashboard .btn-primary:hover {
 html[data-theme="dark-forest"] .dashboard-stat-card,
 html[data-theme="dark-forest"] .agent-dashboard .dashboard-stat-card,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-stat-card {
-    background: #0b1a15;
-    border: 1px solid rgba(242, 234, 220, 0.18);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-    /* Remove blur effects */
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--theme-accent-border);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));
+    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));
 }
 
 html[data-theme="dark-forest"] .dashboard-stat-card:hover,
 html[data-theme="dark-forest"] .agent-dashboard .dashboard-stat-card:hover,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-stat-card:hover {
-    background: #0f2418;
-    border-color: rgba(242, 234, 220, 0.28);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));
+    border-color: var(--theme-accent-border);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 /* Remove animated background shimmer on admin cards */
@@ -685,34 +697,37 @@ html[data-theme="dark-forest"] .admin-dashboard .dashboard-stat-card::before {
 html[data-theme="dark-forest"] .dashboard-stat-card .stat-icon,
 html[data-theme="dark-forest"] .agent-dashboard .dashboard-stat-card .stat-icon,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-stat-card .stat-icon {
-    background: #5a4633;
-    color: #f0f7f3;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+    color: var(--theme-text-primary);
+    border: 1px solid var(--theme-accent-border);
+    backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));
+    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));
+    box-shadow: 0 10px 28px var(--theme-primary-shadow-color), inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 /* High contrast text */
 html[data-theme="dark-forest"] .stat-value,
 html[data-theme="dark-forest"] .agent-dashboard .stat-value,
 html[data-theme="dark-forest"] .admin-dashboard .stat-value {
-    color: #f2eadc;
-    text-shadow: none;
+    color: var(--theme-contrast-strong);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 html[data-theme="dark-forest"] .stat-label,
 html[data-theme="dark-forest"] .agent-dashboard .stat-label,
 html[data-theme="dark-forest"] .admin-dashboard .stat-label {
-    color: #c8ddd2;
-    font-weight: 500;
+    color: var(--theme-text-secondary);
+    font-weight: 600;
 }
 
 /* Dashboard cards - solid surfaces */
 html[data-theme="dark-forest"] .dashboard-card {
-    background: #0b1a15;
-    border: 1px solid rgba(242, 234, 220, 0.18);
-    color: #f0f7f3;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--theme-accent-border);
+    color: var(--theme-text-primary);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));
+    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));
 }
 
 html[data-theme="dark-forest"] .dashboard-card h3,
@@ -910,7 +925,7 @@ html[data-theme="dark-forest"] .form-label {
 }
 
 html[data-theme="dark-forest"] .btn-primary {
-    background: linear-gradient(135deg, var(--theme-primary-color) 0%, var(--theme-secondary-color) 100%);
+    background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 85%);
     color: var(--theme-text-primary);
     border: 1px solid rgba(232, 246, 238, 0.18);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);

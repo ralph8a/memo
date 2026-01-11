@@ -19,18 +19,20 @@ export const PAGES = {
   QUOTE: 'quote',
   ABOUT: 'about',
   CONTACT: 'contact',
-  LOGIN: 'login',
+  CLIENT_LOGIN: 'client-login',
   AGENT_LOGIN: 'agent-login',
   CLIENT_DASHBOARD: 'client-dashboard',
-  AGENT_DASHBOARD: 'agent-dashboard'
+  AGENT_DASHBOARD: 'agent-dashboard',
+  ADMIN_DASHBOARD: 'admin-dashboard'
 };
 
 // Pages that hide footer
 export const PAGES_WITHOUT_FOOTER = [
-  PAGES.LOGIN,
   PAGES.AGENT_LOGIN,
+  PAGES.CLIENT_LOGIN,
   PAGES.CLIENT_DASHBOARD,
-  PAGES.AGENT_DASHBOARD
+  PAGES.AGENT_DASHBOARD,
+  PAGES.ADMIN_DASHBOARD
 ];
 
 // Demo Credentials

@@ -3,10 +3,12 @@
     --quote-border: var(--theme-surface-border, rgba(99, 24, 50, 0.1));
     --quote-shadow: 0 14px 60px rgba(0, 0, 0, 0.08);
     --quote-muted: var(--theme-text-secondary, #666);
-    --quote-hero-gradient: linear-gradient(135deg, rgba(99, 24, 50, 0.22), rgba(64, 26, 89, 0.26));
-    --quote-hero-strong: #ffffff;
-    --quote-hero-muted: rgba(255, 255, 255, 0.94);
-    --quote-hero-eyebrow: #fef0ff;
+    --quote-hero-gradient: linear-gradient(135deg,
+            var(--theme-primary-rgba-70, rgba(15, 43, 36, 0.7)),
+            var(--theme-secondary-rgba-70, rgba(27, 63, 71, 0.7)));
+    --quote-hero-strong: var(--theme-contrast-strong, #ffffff);
+    --quote-hero-muted: var(--theme-contrast-color, rgba(255, 255, 255, 0.94));
+    --quote-hero-eyebrow: var(--theme-highlight-strong, #dff3ed);
 }
 
 .quote-page {
@@ -16,7 +18,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
     grid-template-areas:
-        "hero summary"
+        "hero hero"
         "forms summary";
     column-gap: clamp(18px, 3vw, 28px);
     row-gap: clamp(18px, 3vw, 26px);
@@ -60,7 +62,7 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 700;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     color: var(--quote-hero-eyebrow);
     margin: 0 0 4px;
 }
@@ -72,7 +74,7 @@
 
 .quote-title {
     margin: 0;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
     color: var(--quote-hero-strong);
     text-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
 }
@@ -81,7 +83,7 @@
     margin: 0;
     color: var(--quote-hero-muted);
     line-height: 1.5;
-    font-size: 1rem;
+    font-size: 1.08rem;
 }
 
 .quote-pill-row {
@@ -96,9 +98,9 @@
     gap: 6px;
     padding: 8px 12px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.65);
     color: var(--theme-text-primary);
-    border: 1px solid rgba(64, 26, 89, 0.1);
+    border: 1px solid var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.18));
     font-weight: 600;
     font-size: 0.9rem;
     backdrop-filter: blur(6px);
@@ -136,9 +138,9 @@
 
 .quote-tab.active {
     background: var(--theme-primary-color);
-    color: #fff;
+    color: var(--theme-on-success, #fff);
     border-color: var(--theme-primary-color);
-    box-shadow: 0 8px 24px rgba(99, 24, 50, 0.24);
+    box-shadow: 0 8px 24px var(--theme-accent-shadow-strong, rgba(47, 107, 122, 0.3));
 }
 
 .quote-tab-hint {
@@ -175,6 +177,8 @@
     flex-direction: column;
     gap: 8px;
     color: var(--quote-muted);
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .quote-benefits li::before {
@@ -197,7 +201,7 @@
 }
 
 .quote-hero-meta strong {
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     color: var(--theme-text-primary);
 }
 
@@ -220,6 +224,7 @@
     border-radius: 14px;
     padding: clamp(16px, 3vw, 20px);
     box-shadow: var(--quote-shadow);
+    color: var(--theme-text-primary);
 }
 
 .quote-form.active {
@@ -236,13 +241,15 @@
 
 .quote-form-head h3 {
     margin: 2px 0 0;
+    color: var(--theme-text-primary);
+    font-size: 1.12rem;
 }
 
 .quote-chip {
     padding: 6px 10px;
     border-radius: 12px;
     border: 1px solid var(--quote-border);
-    background: rgba(64, 26, 89, 0.06);
+    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.18));
     color: var(--theme-text-primary);
     font-weight: 700;
     font-size: 0.85rem;
@@ -260,6 +267,7 @@
     gap: 6px;
     font-weight: 600;
     color: var(--theme-text-primary);
+    font-size: 1rem;
 }
 
 .quote-field input,
@@ -272,14 +280,14 @@
     font-size: 0.95rem;
     background: #fff;
     color: var(--theme-text-primary);
-    box-shadow: inset 0 1px 0 rgba(64, 26, 89, 0.06);
+    box-shadow: inset 0 1px 0 var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.16));
 }
 
 .quote-field input:focus,
 .quote-field select:focus,
 .quote-field textarea:focus {
-    outline: 2px solid rgba(99, 24, 50, 0.18);
-    border-color: rgba(99, 24, 50, 0.28);
+    outline: 2px solid var(--theme-primary-rgba-70, rgba(15, 43, 36, 0.7));
+    border-color: var(--theme-primary-rgba-70, rgba(15, 43, 36, 0.7));
 }
 
 .quote-form-footer {
@@ -294,16 +302,18 @@
 .quote-footnote {
     margin: 0;
     color: var(--quote-muted);
-    font-size: 0.9rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
 }
 
 .quote-summary {
     grid-area: summary;
     position: sticky;
-    top: 84px;
+    top: calc(var(--nav-height) + 12px);
     display: flex;
     flex-direction: column;
     gap: 12px;
+    align-self: start;
 }
 
 .quote-summary-card,
@@ -335,7 +345,7 @@
 }
 
 .quote-meta strong {
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     color: var(--theme-text-primary);
 }
 
@@ -352,32 +362,35 @@
     color: var(--quote-muted);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+    font-size: 0.98rem;
+    line-height: 1.5;
 }
 
 .quote-tip {
     margin-top: 6px;
     padding: 10px 12px;
     border-radius: 12px;
-    background: rgba(99, 24, 50, 0.08);
+    background: var(--theme-primary-rgba-50, rgba(15, 43, 36, 0.5));
     color: var(--theme-text-primary);
-    border: 1px dashed var(--quote-border);
+    border: 1px dashed var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.18));
 }
 
 .btn.btn-primary {
-    background: var(--theme-primary-color);
-    color: #fff;
+    background: radial-gradient(circle at 30% 30%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 70%);
+    color: var(--theme-on-success, #fff);
     border: 1px solid var(--theme-primary-color);
     padding: 12px 16px;
     border-radius: 12px;
     font-weight: 700;
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.2s ease;
 }
 
 .btn.btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 10px 30px rgba(99, 24, 50, 0.25);
+    box-shadow: 0 10px 30px var(--theme-primary-shadow-color, rgba(7, 26, 19, 0.78));
+    filter: brightness(1.03);
 }
 
 @media (max-width: 1024px) {
