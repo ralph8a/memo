@@ -135,7 +135,7 @@ async function handleClientLogin(e) {
   showLoading('Autenticando cliente', 'Verificando credenciales', true);
   await delay(200);
 
-  const user = login({ email, password }, 'client');
+  const user = await login({ email, password }, 'client');
   if (user) {
     navigateTo('client-dashboard');
     hideLoading(250);
@@ -163,7 +163,7 @@ async function handleAgentLogin(e) {
   }
 
   // Normal agent login
-  const user = login({ agentId, password }, 'agent');
+  const user = await login({ agentId, password }, 'agent');
   if (user) {
     navigateTo('agent-dashboard');
     hideLoading(250);

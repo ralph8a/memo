@@ -13578,17 +13578,20 @@ function _handleClientLogin() {
           _context3.n = 1;
           return delay(200);
         case 1:
-          user = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_17__.login)({
+          _context3.n = 2;
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_17__.login)({
             email: email,
             password: password
           }, 'client');
+        case 2:
+          user = _context3.v;
           if (user) {
             (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_16__.navigateTo)('client-dashboard');
             (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.hideLoading)(250);
           } else {
             (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.hideLoading)(150);
           }
-        case 2:
+        case 3:
           return _context3.a(2);
       }
     }, _callee3);
@@ -13625,18 +13628,20 @@ function _handleAgentLogin() {
           window.location.href = 'admin.html';
           return _context4.a(2);
         case 2:
-          // Normal agent login
-          user = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_17__.login)({
+          _context4.n = 3;
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_17__.login)({
             agentId: agentId,
             password: password
           }, 'agent');
+        case 3:
+          user = _context4.v;
           if (user) {
             (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_16__.navigateTo)('agent-dashboard');
             (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.hideLoading)(250);
           } else {
             (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_18__.hideLoading)(150);
           }
-        case 3:
+        case 4:
           return _context4.a(2);
       }
     }, _callee4);
