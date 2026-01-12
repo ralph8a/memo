@@ -4,53 +4,80 @@
 // API Configuration
 const API_CONFIG = {
   // Update these URLs when deploying to GoDaddy
-  BASE_URL: window.location.hostname === 'localhost' 
-    ? 'http://localhost/api' 
-    : 'https://yourdomain.com/api',
-  
+  BASE_URL: window.location.hostname === 'localhost'
+    ? 'http://localhost/backend'
+    : window.location.protocol + '//' + window.location.hostname + '/backend',
+
   ENDPOINTS: {
     // Authentication
-    LOGIN: '/auth/login',
-    LOGOUT: '/auth/logout',
-    VERIFY_TOKEN: '/auth/verify',
-    
+    LOGIN: '?action=login',
+    LOGOUT: '?action=logout',
+    VERIFY_TOKEN: '?action=verify_token',
+
     // User Management
-    GET_USER_PROFILE: '/users/profile',
-    UPDATE_USER_PROFILE: '/users/profile',
-    GET_USER_POLICIES: '/users/policies',
-    
+    GET_USER_PROFILE: '?action=user_profile',
+    UPDATE_USER_PROFILE: '?action=update_profile',
+    GET_USER_POLICIES: '?action=user_policies',
+
     // Policies
-    GET_POLICIES: '/policies',
-    GET_POLICY_DETAILS: '/policies/:id',
-    CREATE_POLICY: '/policies/create',
-    UPDATE_POLICY: '/policies/:id',
-    
+    GET_POLICIES: '?action=policies',
+    GET_POLICY_DETAILS: '?action=policy_details',
+    CREATE_POLICY: '?action=create_policy',
+    UPDATE_POLICY: '?action=update_policy',
+
     // Claims
-    GET_CLAIMS: '/claims',
-    CREATE_CLAIM: '/claims/create',
-    GET_CLAIM_DETAILS: '/claims/:id',
-    UPLOAD_CLAIM_DOCUMENT: '/claims/:id/upload',
-    
+    GET_CLAIMS: '?action=claims',
+    GET_USER_CLAIMS: '?action=user_claims',
+    CREATE_CLAIM: '?action=submit_claim',
+    GET_CLAIM_DETAILS: '?action=claim_details',
+    UPLOAD_CLAIM_DOCUMENT: '?action=upload_claim_doc',
+    ASSIGN_CLAIM: '?action=assign_claim',
+
     // Payments
-    GET_PAYMENT_HISTORY: '/payments/history',
-    PROCESS_PAYMENT: '/payments/process',
-    DOWNLOAD_RECEIPT: '/payments/:id/receipt',
-    
+    GET_PAYMENT_HISTORY: '?action=payment_history',
+    PROCESS_PAYMENT: '?action=process_payment',
+    DOWNLOAD_RECEIPT: '?action=download_receipt',
+
     // Documents
-    UPLOAD_DOCUMENT: '/documents/upload',
-    DOWNLOAD_DOCUMENT: '/documents/:id',
-    LIST_DOCUMENTS: '/documents',
-    DELETE_DOCUMENT: '/documents/:id',
-    
+    UPLOAD_DOCUMENT: '?action=upload_document',
+    DOWNLOAD_DOCUMENT: '?action=download_document',
+    LIST_DOCUMENTS: '?action=recent_documents',
+    DELETE_DOCUMENT: '?action=delete_document',
+
     // Quotes
-    REQUEST_QUOTE: '/quotes/request',
-    GET_QUOTES: '/quotes',
-    
+    REQUEST_QUOTE: '?action=submit_quote',
+    GET_QUOTES: '?action=quotes',
+
+    // Dashboard Endpoints
+    CLIENT_DASHBOARD: '?action=client_dashboard',
+    CLIENT_PAYMENTS: '?action=payment_history',
+    CLIENT_POLICIES: '?action=user_policies',
+    CLIENT_CLAIMS: '?action=user_claims',
+    CLIENT_DOCUMENTS: '?action=recent_documents',
+
+    AGENT_DASHBOARD: '?action=agent_dashboard',
+    AGENT_CLIENTS: '?action=agent_clients',
+    AGENT_STATS: '?action=agent_stats',
+
+    ADMIN_DASHBOARD: '?action=admin_dashboard',
+    ADMIN_STATS: '?action=admin_stats',
+    ADMIN_ACTIVITY: '?action=system_activity',
+
+    // Questionnaires / Roadmap
+    GET_QUESTIONNAIRES: '/questionnaires',
+    SEND_QUESTIONNAIRE: '/questionnaires/send',
+    RESEND_QUESTIONNAIRE: '/questionnaires/:id/resend',
+    COMPLETE_QUESTIONNAIRE: '/questionnaires/:id/complete',
+    GET_ROADMAP: '/agents/clients/:id/roadmap',
+
+    // Notifications
+    SEND_NOTIFICATION: '/notifications/email',
+
     // Agents (for agent portal)
     GET_CLIENTS: '/agents/clients',
     GET_CLIENT_DETAILS: '/agents/clients/:id',
     UPDATE_CLIENT: '/agents/clients/:id',
-    
+
     // Analytics
     GET_DASHBOARD_STATS: '/analytics/dashboard',
     GET_AGENT_PERFORMANCE: '/analytics/agent/:id'
@@ -67,12 +94,12 @@ class APIService {
   // Build full URL
   buildUrl(endpoint, params = {}) {
     let url = API_CONFIG.BASE_URL + endpoint;
-    
+
     // Replace path parameters
     Object.keys(params).forEach(key => {
       url = url.replace(`:${key}`, params[key]);
     });
-    
+
     return url;
   }
 
@@ -94,7 +121,7 @@ class APIService {
     } = cacheOptions;
 
     const url = this.buildUrl(endpoint, params);
-    
+
     // Add query parameters
     const urlObj = new URL(url);
     Object.keys(queryParams).forEach(key => {
@@ -102,7 +129,7 @@ class APIService {
     });
 
     const fullUrl = urlObj.toString();
-    
+
     // Cache identifier
     const cacheIdentifier = `api_${method}_${endpoint}_${JSON.stringify(params)}_${JSON.stringify(queryParams)}`;
     const userId = this.getCurrentUserId();
@@ -124,7 +151,7 @@ class APIService {
     try {
       // Get auth token
       const token = this.getAuthToken();
-      
+
       const requestOptions = {
         method,
         headers: {
@@ -139,7 +166,7 @@ class APIService {
       }
 
       const response = await fetch(fullUrl, requestOptions);
-      
+
       if (!response.ok) {
         throw new Error(`API Error: ${response.status} ${response.statusText}`);
       }
@@ -164,7 +191,7 @@ class APIService {
 
     } catch (error) {
       console.error('API Request failed:', error);
-      
+
       if (showLoading) {
         this.hideLoadingScreen();
       }
@@ -227,15 +254,15 @@ class APIService {
   // Upload file with progress
   async uploadFile(endpoint, file, onProgress, params = {}) {
     const url = this.buildUrl(endpoint, params);
-    
+
     try {
       const result = await this.fileManager.uploadFile(url, file, (percent) => {
         if (onProgress) onProgress(percent);
       });
-      
+
       // Invalidate document cache
       this.invalidateRelatedCache('/documents');
-      
+
       return result;
     } catch (error) {
       console.error('File upload failed:', error);
@@ -246,12 +273,12 @@ class APIService {
   // Download file with progress
   async downloadFile(endpoint, filename, onProgress, params = {}) {
     const url = this.buildUrl(endpoint, params);
-    
+
     try {
       const result = await this.fileManager.downloadFile(url, filename, (percent) => {
         if (onProgress) onProgress(percent);
       });
-      
+
       return result;
     } catch (error) {
       console.error('File download failed:', error);
@@ -260,8 +287,9 @@ class APIService {
   }
 }
 
-// Initialize API Service
+// Initialize and export API Service immediately
 const apiService = new APIService();
+export { apiService };
 
 // Example usage functions for common operations
 
@@ -355,16 +383,172 @@ function logoutUser() {
   localStorage.removeItem('krauser_user');
 }
 
-// Export for use
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { 
-    APIService, 
-    apiService, 
-    API_CONFIG,
-    loginUser,
-    getUserPolicies,
-    uploadClaimDocument,
-    downloadPaymentReceipt,
-    logoutUser
-  };
+// ===== DASHBOARD DATA FETCHERS =====
+
+/**
+ * CLIENT DASHBOARD
+ */
+async function getClientDashboardData(clientId = null) {
+  try {
+    const endpoint = clientId
+      ? `${API_CONFIG.ENDPOINTS.CLIENT_DASHBOARD}/${clientId}`
+      : API_CONFIG.ENDPOINTS.CLIENT_DASHBOARD;
+
+    return await apiService.get(endpoint);
+  } catch (error) {
+    console.error('Failed to load client dashboard:', error);
+    throw error;
+  }
 }
+
+async function getClientPayments(clientId = null) {
+  try {
+    const endpoint = clientId
+      ? `${API_CONFIG.ENDPOINTS.CLIENT_PAYMENTS}/${clientId}`
+      : API_CONFIG.ENDPOINTS.CLIENT_PAYMENTS;
+
+    return await apiService.get(endpoint);
+  } catch (error) {
+    console.error('Failed to load payment history:', error);
+    return [];
+  }
+}
+
+async function getClientPolicies(clientId = null) {
+  try {
+    const endpoint = clientId
+      ? `${API_CONFIG.ENDPOINTS.CLIENT_POLICIES}/${clientId}`
+      : API_CONFIG.ENDPOINTS.CLIENT_POLICIES;
+
+    return await apiService.get(endpoint);
+  } catch (error) {
+    console.error('Failed to load policies:', error);
+    return [];
+  }
+}
+
+async function getClientClaims(clientId = null) {
+  try {
+    const endpoint = clientId
+      ? `${API_CONFIG.ENDPOINTS.CLIENT_CLAIMS}/${clientId}`
+      : API_CONFIG.ENDPOINTS.CLIENT_CLAIMS;
+
+    return await apiService.get(endpoint);
+  } catch (error) {
+    console.error('Failed to load claims:', error);
+    return [];
+  }
+}
+
+async function getClientDocuments(clientId = null) {
+  try {
+    const endpoint = clientId
+      ? `${API_CONFIG.ENDPOINTS.CLIENT_DOCUMENTS}/${clientId}`
+      : API_CONFIG.ENDPOINTS.CLIENT_DOCUMENTS;
+
+    return await apiService.get(endpoint);
+  } catch (error) {
+    console.error('Failed to load documents:', error);
+    return [];
+  }
+}
+
+/**
+ * AGENT DASHBOARD
+ */
+async function getAgentDashboardData(agentId = null) {
+  try {
+    const endpoint = agentId
+      ? `${API_CONFIG.ENDPOINTS.AGENT_DASHBOARD}/${agentId}`
+      : API_CONFIG.ENDPOINTS.AGENT_DASHBOARD;
+
+    return await apiService.get(endpoint);
+  } catch (error) {
+    console.error('Failed to load agent dashboard:', error);
+    throw error;
+  }
+}
+
+async function getAgentClients(agentId = null) {
+  try {
+    const endpoint = agentId
+      ? `${API_CONFIG.ENDPOINTS.AGENT_CLIENTS}/${agentId}`
+      : API_CONFIG.ENDPOINTS.AGENT_CLIENTS;
+
+    return await apiService.get(endpoint);
+  } catch (error) {
+    console.error('Failed to load clients:', error);
+    return [];
+  }
+}
+
+async function getAgentStats(agentId = null) {
+  try {
+    const endpoint = agentId
+      ? `${API_CONFIG.ENDPOINTS.AGENT_STATS}/${agentId}`
+      : API_CONFIG.ENDPOINTS.AGENT_STATS;
+
+    return await apiService.get(endpoint);
+  } catch (error) {
+    console.error('Failed to load agent stats:', error);
+    return {
+      total_clients: 0,
+      active_policies: 0,
+      pending_claims: 0,
+      monthly_revenue: 0
+    };
+  }
+}
+
+/**
+ * ADMIN DASHBOARD
+ */
+async function getAdminDashboardData() {
+  try {
+    return await apiService.get(API_CONFIG.ENDPOINTS.ADMIN_DASHBOARD);
+  } catch (error) {
+    console.error('Failed to load admin dashboard:', error);
+    throw error;
+  }
+}
+
+async function getAdminStats() {
+  try {
+    return await apiService.get(API_CONFIG.ENDPOINTS.ADMIN_STATS);
+  } catch (error) {
+    console.error('Failed to load admin stats:', error);
+    return {};
+  }
+}
+
+async function getAdminActivity() {
+  try {
+    return await apiService.get(API_CONFIG.ENDPOINTS.ADMIN_ACTIVITY);
+  } catch (error) {
+    console.error('Failed to load admin activity:', error);
+    return [];
+  }
+}
+
+// Export for use (ES6 modules)
+export {
+  APIService,
+  API_CONFIG,
+  loginUser,
+  getUserPolicies,
+  uploadClaimDocument,
+  downloadPaymentReceipt,
+  logoutUser,
+  // Dashboard exports
+  getClientDashboardData,
+  getClientPayments,
+  getClientPolicies,
+  getClientClaims,
+  getClientDocuments,
+  getAgentDashboardData,
+  getAgentClients,
+  getAgentStats,
+  getAdminDashboardData,
+  getAdminStats,
+  getAdminActivity
+};

@@ -19,48 +19,16 @@
 <nav class="navbar" id="navbar">
   <div class="nav-container">
     <div class="nav-brand">
-      <svg class="logo-shield krause-shield" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <!-- Círculo exterior -->
-        <ellipse 
-          class="shield-circle" 
-          cx="40" 
-          cy="38" 
-          rx="22" 
-          ry="22"
-          stroke="currentColor" 
-          stroke-width="3" 
-          fill="none" 
-        />
-        
-        <!-- Rombo/Diamante (forma de escudo) -->
-        <path 
-          class="shield-diamond" 
-          d="M40 12 L62 35 L40 70 L18 35 Z" 
-          stroke="currentColor" 
-          stroke-width="3" 
-          fill="none" 
-        />
-        
-        <!-- Arco protector -->
-        <path 
-          class="shield-arc" 
-          d="M24 50 Q40 30 56 50"
-          stroke="currentColor" 
-          stroke-width="3" 
-          fill="none" 
-        />
-        
-        <!-- Línea vertical (lanza) -->
-        <line 
-          class="shield-line" 
-          x1="40" 
-          y1="50" 
-          x2="40" 
-          y2="68" 
-          stroke="currentColor" 
-          stroke-width="3" 
-        />
-      </svg>
+      <div class="logo-slot logo-slot-nav" data-render-logo data-logo-size="sm" data-logo-contrast="primary" data-logo-class="logo-shield" aria-label="Krause Insurance">
+        <!-- Fallback inline logo so navbar never renders empty if JS cache is stale -->
+        <svg class="krause-shield logo-shield logo-size-sm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+          <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+          <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+          <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+          <circle class="shield-center" cx="40" cy="40" r="6" fill="currentColor" />
+        </svg>
+      </div>
       <div class="brand-text" onclick="navigateTo('home', event)">
         <span class="brand-name">Krause Insurance</span>
         <span class="brand-tagline">Protection Beyond The Limits</span>
@@ -76,7 +44,6 @@
     <div class="nav-menu" id="navMenu">
       <a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home', event)">Inicio</a>
       <a href="#" class="nav-link" data-page="services" onclick="navigateTo('services', event)">Servicios</a>
-      <a href="#" class="nav-link" data-page="quote" onclick="navigateTo('quote', event)">Cotizar</a>
       <a href="#" class="nav-link" data-page="about" onclick="navigateTo('about', event)">Nosotros</a>
       <a href="#" class="nav-link" data-page="contact" onclick="navigateTo('contact', event)">Contacto</a>
       <div class="nav-buttons">
@@ -99,7 +66,7 @@
 <nav class="sub-navigation sub-nav-hidden" id="sub-nav">
   <button class="sub-nav-btn active" data-section="hero" onclick="window.appHandlers.showHomeSection('hero')">Hero</button>
   <button class="sub-nav-btn" data-section="eleccion" onclick="window.appHandlers.showHomeSection('eleccion')">Elección</button>
-  <button class="sub-nav-btn" data-section="cotiza" onclick="window.appHandlers.showHomeSection('cotiza')">Cotizar</button>
+  <button class="sub-nav-btn" data-section="cotiza" onclick="window.appHandlers.showHomeSection('cotiza')">Proteger</button>
 </nav>
 
 <section class="hero-section hero-intro home-section active" id="hero-section">
@@ -292,7 +259,7 @@
                       <li>✓ Asistencia vial 24/7</li>
                       <li>✓ Cristales y robo</li>
                     </ul>
-                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('auto')">Cotizar Ahora</button>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('auto')">Solicitar asesoría</button>
                   </div>
 
                   <div class="service-card-compact card-2 featured-compact">
@@ -306,7 +273,7 @@
                       <li>✓ Responsabilidad civil</li>
                       <li>✓ Robo y vandalismo</li>
                     </ul>
-                    <button class="btn-compact primary-compact" onclick="window.appHandlers.openQuoteModal('hogar')">Cotizar Ahora</button>
+                    <button class="btn-compact primary-compact" onclick="window.appHandlers.openQuoteModal('hogar')">Solicitar asesoría</button>
                   </div>
 
                   <div class="service-card-compact card-3">
@@ -319,7 +286,7 @@
                       <li>✓ Invalidez</li>
                       <li>✓ Enfermedades graves</li>
                     </ul>
-                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('vida')">Cotizar Ahora</button>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('vida')">Solicitar asesoría</button>
                   </div>
 
                   <div class="service-card-compact card-4">
@@ -332,7 +299,7 @@
                       <li>✓ Interrupción de negocio</li>
                       <li>✓ Cyber seguridad</li>
                     </ul>
-                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('comercial')">Cotizar Ahora</button>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('comercial')">Solicitar asesoría</button>
                   </div>
 
                   <div class="service-card-compact card-5">
@@ -345,7 +312,7 @@
                       <li>✓ Medicamentos</li>
                       <li>✓ Red médica</li>
                     </ul>
-                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('salud')">Cotizar Ahora</button>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('salud')">Solicitar asesoría</button>
                   </div>
 
                   <div class="service-card-compact card-6">
@@ -358,7 +325,7 @@
                       <li>✓ Equipaje protegido</li>
                       <li>✓ Repatriación</li>
                     </ul>
-                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('viaje')">Cotizar Ahora</button>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('viaje')">Solicitar asesoría</button>
                   </div>
                 </div>
               </section>
@@ -467,7 +434,7 @@
                   <div class="services-compare-card">
                     <div class="services-compare-header">
                       <h3 class="services-compare-title">🚗 Auto</h3>
-                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('auto')">Cotizar</button>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('auto')">Solicitar</button>
                     </div>
                     <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de auto" tabindex="0">
                       <table class="services-compare-table">
@@ -495,7 +462,7 @@
                   <div class="services-compare-card">
                     <div class="services-compare-header">
                       <h3 class="services-compare-title">🏠 Hogar</h3>
-                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('hogar')">Cotizar</button>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('hogar')">Solicitar</button>
                     </div>
                     <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de hogar" tabindex="0">
                       <table class="services-compare-table">
@@ -523,7 +490,7 @@
                   <div class="services-compare-card">
                     <div class="services-compare-header">
                       <h3 class="services-compare-title">❤️ Vida</h3>
-                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('vida')">Cotizar</button>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('vida')">Solicitar</button>
                     </div>
                     <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de vida" tabindex="0">
                       <table class="services-compare-table">
@@ -551,7 +518,7 @@
                   <div class="services-compare-card">
                     <div class="services-compare-header">
                       <h3 class="services-compare-title">🏢 Comercial</h3>
-                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('comercial')">Cotizar</button>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('comercial')">Solicitar</button>
                     </div>
                     <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes comerciales" tabindex="0">
                       <table class="services-compare-table">
@@ -579,7 +546,7 @@
                   <div class="services-compare-card">
                     <div class="services-compare-header">
                       <h3 class="services-compare-title">💼 Salud</h3>
-                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('salud')">Cotizar</button>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('salud')">Solicitar</button>
                     </div>
                     <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de salud" tabindex="0">
                       <table class="services-compare-table">
@@ -607,7 +574,7 @@
                   <div class="services-compare-card">
                     <div class="services-compare-header">
                       <h3 class="services-compare-title">✈️ Viaje</h3>
-                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('viaje')">Cotizar</button>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('viaje')">Solicitar</button>
                     </div>
                     <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de viaje" tabindex="0">
                       <table class="services-compare-table">
@@ -688,8 +655,8 @@
 
                 <div class="services-cta-row">
                   <button class="btn-compact" onclick="window.appHandlers.contactAgent()">Contactar a un agente</button>
-                  <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('auto')">Cotizar Auto</button>
-                  <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('hogar')">Cotizar Hogar</button>
+                  <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('auto')">Solicitar Auto</button>
+                  <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('hogar')">Solicitar Hogar</button>
                 </div>
               </section>
 
@@ -1433,12 +1400,7 @@
       <div class="auth-container">
         <div class="auth-card">
           <div class="auth-header">
-            <svg class="logo-shield-auth krause-shield" width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
-              <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
-              <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
-              <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
-            </svg>
+            <div class="logo-slot logo-slot-auth" data-render-logo data-logo-size="md" data-logo-contrast="primary" data-logo-class="logo-shield-auth" aria-label="Krause Insurance"></div>
             <h2>Portal de Clientes</h2>
             <p>Accede a tu cuenta para revisar tus pólizas</p>
           </div>
@@ -1472,12 +1434,7 @@
   <div class="auth-container">
     <div class="auth-card">
       <div class="auth-header">
-        <svg class="logo-shield-auth krause-shield" width="60" height="60" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-          <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
-          <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
-          <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
-          <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
-        </svg>
+        <div class="logo-slot logo-slot-auth" data-render-logo data-logo-size="md" data-logo-contrast="primary" data-logo-class="logo-shield-auth" aria-label="Krause Insurance"></div>
         <h2>Portal de Agentes</h2>
         <p>Acceso exclusivo para agentes certificados</p>
       </div>
@@ -1507,378 +1464,1278 @@
 
     <!-- Client Dashboard -->
     <div id="page-client-dashboard" class="page-section hidden">
-      <section class="dashboard-section" id="dashboard-section">
-  <div class="dashboard-container">
-    <div class="dashboard-header">
+      <section class="dashboard-section client-dashboard" id="dashboard-section">
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-surface">
+        <div class="sidebar-header sidebar-branding">
+        <div class="logo-slot logo-slot-nav" data-render-logo data-logo-size="sm" data-logo-contrast="primary" data-logo-class="logo-shield" aria-label="Krause Insurance">
+          <svg class="krause-shield logo-shield logo-size-sm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+            <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+            <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+            <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+            <circle class="shield-center" cx="40" cy="40" r="6" fill="currentColor" />
+          </svg>
+        </div>
+        <div class="brand-text brand-text-sidebar">
+          <span class="brand-name">Krause</span>
+          <span class="brand-tagline">Insurance</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-target="client-overview">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+          <span>Resumen</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-quick-actions">
+        <div class="sidebar-qa-header">Acciones rápidas</div>
+        <button class="qa-btn" onclick="makePayment()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="5" width="20" height="14" rx="2" ry="2" />
+            <line x1="2" y1="10" x2="22" y2="10" />
+            <line x1="7" y1="15" x2="10" y2="15" />
+          </svg>
+          Pago rápido
+        </button>
+        <button class="qa-btn" onclick="downloadPaymentHistory()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Comprobante
+        </button>
+        <button class="qa-btn" onclick="updateInfo()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Datos
+        </button>
+        <button class="qa-btn" onclick="contactAgent()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5h-.5a8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 0 1 12 3h.5A8.5 8.5 0 0 1 21 11.5Z" />
+          </svg>
+          Contacto
+        </button>
+      </div>
+
+      <div class="sidebar-widget">
+        <div class="card-header-modern">
+          <h4>Contactos frecuentes</h4>
+          <span class="card-badge">Equipo</span>
+        </div>
+        <div class="contact-chips" aria-label="Contactos frecuentes">
+          <button class="contact-chip" data-name="Ana Ruiz" data-phone="+52 55 1234 5678" data-email="ana.ruiz@example.com" data-role="Agente asignada" data-policy="Auto, Hogar">Ana Ruiz</button>
+          <button class="contact-chip" data-name="Luis Ortega" data-phone="+52 81 2345 6789" data-email="luis.ortega@example.com" data-role="Especialista de reclamaciones" data-policy="Vida">Luis Ortega</button>
+          <button class="contact-chip" data-name="Sofía Pérez" data-phone="+52 33 9876 5432" data-email="sofia.perez@example.com" data-role="Soporte clientes" data-policy="Salud">Sofía Pérez</button>
+          <button class="contact-chip" data-name="Carlos Díaz" data-phone="+52 55 2468 1357" data-email="carlos.diaz@example.com" data-role="Gestor de pólizas" data-policy="Empresarial">Carlos Díaz</button>
+        </div>
+      </div>
+
+      <button class="sidebar-logout" onclick="logout()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Salir
+      </button>
+      </div><!-- .sidebar-surface -->
+    </aside>
+
+    <div class="dashboard-main-wrapper">
+        <div class="dashboard-stage">
+          <div class="stage-main">
+            <div class="hero-surface">
+              <header class="dashboard-top-header search-hero hero-grid">
+                <div class="hero-copy">
+                  <div class="hero-title-row">
+                    <span class="eyebrow">Portal de clientes</span>
+                    <span class="hero-divider" aria-hidden="true">|</span>
+                    <span class="hero-welcome">Bienvenido <span data-hero-user>@Usuario</span></span>
+                  </div>
+                  <p class="hero-description">Accede a pólizas, pagos y documentos en un solo lugar. Retoma pendientes y encuentra recomendaciones sin perder tiempo.</p>
+                </div>
+                <div class="hero-search">
+                  <div class="search-bar stretch">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="7" />
+                      <line x1="16.65" y1="16.65" x2="21" y2="21" />
+                    </svg>
+                    <input type="search" placeholder="Buscar pólizas, pagos o documentos" aria-label="Buscar" />
+                  </div>
+                  <div class="header-actions tight pill-actions">
+                    <button class="icon-pill" aria-label="Notificaciones" onclick="window.appHandlers?.openNotifications?.()">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                      </svg>
+                      <span class="dot"></span>
+                    </button>
+                    <button class="icon-pill" aria-label="Mensajes" onclick="contactAgent()">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                      </svg>
+                    </button>
+                    <span class="badge badge-accent ghost">Sesión segura</span>
+                  </div>
+                </div>
+              </header>
+            </div>
+
+            <div class="dashboard-tabs" id="client-tabs" role="tablist" aria-label="Navegación del dashboard de cliente">
+              <button class="dashboard-tab active" data-target="client-overview" aria-pressed="true">Resumen</button>
+              <button class="dashboard-tab" data-target="client-payments" aria-pressed="false">Pagos</button>
+              <button class="dashboard-tab" data-target="client-policies" aria-pressed="false">Pólizas</button>
+              <button class="dashboard-tab" data-target="client-support" aria-pressed="false">Soporte</button>
+            </div>
+
+            <div class="tab-panels" id="client-panels">
+              <div class="tab-panel active" id="client-overview" role="tabpanel" aria-label="Resumen">
+                <div class="mimic-wrap">
+                  <div class="stats-grid compact">
+                  <div class="stat-card stat-primary">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">3</div>
+                      <div class="stat-label">Pólizas Activas</div>
+                    </div>
+                    <div class="stat-trend positive">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                      </svg>
+                      <span>+12%</span>
+                    </div>
+                  </div>
+
+                  <div class="stat-card stat-success">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">Al Día</div>
+                      <div class="stat-label">Estado de Pagos</div>
+                    </div>
+                    <div class="stat-badge success">100%</div>
+                  </div>
+
+                  <div class="stat-card stat-warning">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">15 Mar</div>
+                      <div class="stat-label">Próximo Pago</div>
+                    </div>
+                    <div class="stat-badge warning">7 días</div>
+                  </div>
+
+                  <div class="stat-card stat-info">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">$450</div>
+                      <div class="stat-label">Total Mensual</div>
+                    </div>
+                    <div class="stat-trend negative">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                        <polyline points="17 18 23 18 23 12"/>
+                      </svg>
+                      <span>-3%</span>
+                    </div>
+                  </div>
+
+                  </div>
+                </div>
+
+                <div class="dashboard-body">
+                  <div class="main-surface mimic-wrap">
+                    <div class="mimic-wrap-inner">
+                      <div class="mimic-col main">
+                        <div class="content-card list-card compact">
+                          <div class="card-header-modern">
+                            <h3>Mis Pólizas</h3>
+                            <div class="header-actions tight">
+                              <button class="btn-icon-sm" onclick="window.appHandlers?.viewPolicy?.()" title="Ver todas">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="mini-table">
+                            <div class="mini-table-row mini-table-head">
+                              <span>Póliza</span>
+                              <span>Número</span>
+                              <span>Vigencia</span>
+                              <span>Estado</span>
+                              <span>Prima</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">Seguro Auto</span>
+                              <span>AUTO-001</span>
+                              <span>15 Mar 2027</span>
+                              <span class="status-dot ok">Activa</span>
+                              <span>$150/mes</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">Seguro Hogar</span>
+                              <span>HOME-001</span>
+                              <span>01 Ene 2027</span>
+                              <span class="status-dot ok">Activa</span>
+                              <span>$200/mes</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">Seguro Vida</span>
+                              <span>LIFE-001</span>
+                              <span>10 Feb 2027</span>
+                              <span class="status-dot warn">Renovación</span>
+                              <span>$100/mes</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="content-card list-card compact">
+                          <div class="card-header-modern">
+                            <h3>Siniestros En Curso</h3>
+                            <div class="header-actions tight">
+                              <button class="btn-icon-sm" onclick="window.appHandlers?.fileClaim?.()" title="Nuevo siniestro">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <line x1="12" y1="5" x2="12" y2="19"/>
+                                  <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="mini-table">
+                            <div class="mini-table-row mini-table-head">
+                              <span>Folio</span>
+                              <span>Tipo</span>
+                              <span>Fecha</span>
+                              <span>Estado</span>
+                              <span>Monto</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">#SIN-2026-001</span>
+                              <span>Auto - Colisión</span>
+                              <span>05 Ene 2026</span>
+                              <span class="status-dot warn">En revisión</span>
+                              <span>$12,500</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">#SIN-2025-089</span>
+                              <span>Hogar - Robo</span>
+                              <span>20 Dic 2025</span>
+                              <span class="status-dot ok">Aprobado</span>
+                              <span>$8,300</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="subgrid two">
+                          <div class="chart-card" onclick="window.appHandlers?.openPaymentTrendsModal?.()">
+                            <div class="chart-header">
+                              <h3 class="chart-title">
+                                <span class="icon-animated" aria-hidden="true">
+                                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 17 8 11 13 14 21 6" />
+                                    <polyline points="14 6 21 6 21 13" />
+                                  </svg>
+                                </span>
+                                Tendencia de pagos
+                              </h3>
+                              <div class="chart-legend">
+                                <span class="chart-legend-item"><span class="chart-legend-dot"></span> Pagos</span>
+                                <span class="chart-legend-item" style="color: var(--theme-accent-color);">+8.4% vs mes anterior</span>
+                              </div>
+                            </div>
+                            <div class="chart-body">
+                              <div class="sparkline-placeholder" aria-hidden="true"></div>
+                            </div>
+                            <div class="chart-metrics">
+                              <div class="chart-metric">
+                                <span class="label">Tickets cerrados</span>
+                                <span class="value">24</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Pagos puntuales</span>
+                                <span class="value">96%</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Retrasos</span>
+                                <span class="value">2</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="chart-card" onclick="window.appHandlers?.openPolicyHealthModal?.()">
+                            <div class="chart-header">
+                              <h3 class="chart-title">
+                                <span class="icon-animated" aria-hidden="true">
+                                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="10" width="4" height="10" rx="1" />
+                                    <rect x="10" y="6" width="4" height="14" rx="1" />
+                                    <rect x="17" y="3" width="4" height="17" rx="1" />
+                                  </svg>
+                                </span>
+                                Salud de pólizas
+                              </h3>
+                              <div class="chart-legend">
+                                <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #38ef7d; box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.12);"></span> Activas</span>
+                                <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #f5576c; box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.12);"></span> Riesgo</span>
+                              </div>
+                            </div>
+                            <div class="chart-body">
+                              <div class="sparkline-placeholder" aria-hidden="true"></div>
+                            </div>
+                            <div class="chart-metrics">
+                              <div class="chart-metric">
+                                <span class="label">Activas</span>
+                                <span class="value">3</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Renovaciones</span>
+                                <span class="value">2</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Alertas</span>
+                                <span class="value">0</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="content-card compact">
+                          <div class="card-header-modern">
+                            <h3>Historial de Pagos</h3>
+                            <div class="header-actions">
+                              <button class="btn-icon-sm" onclick="downloadPaymentHistory()" title="Descargar">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                  <polyline points="7 10 12 15 17 10" />
+                                  <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="payment-history-list card-body-scroll" data-payment-history>
+                            <p class="loading-state">Cargando historial...</p>
+                          </div>
+                        </div>
+
+                        <div class="subgrid two">
+                          <div class="content-card compact">
+                            <div class="card-header-modern">
+                              <h3>Mis Pólizas</h3>
+                              <span class="card-badge">Activas</span>
+                            </div>
+                            <div class="policies-list card-body-scroll">
+                              <p class="loading-state">Cargando pólizas...</p>
+                            </div>
+                          </div>
+
+                          <div class="content-card compact">
+                            <div class="card-header-modern">
+                              <h3>Reclamaciones Activas</h3>
+                              <span class="card-badge">Atención</span>
+                            </div>
+                            <div class="claims-list card-body-scroll" data-client-claims-list>
+                              <p class="loading-state">Cargando...</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- .stage-main -->
+        </div><!-- .dashboard-stage -->
+      </div><!-- .dashboard-main-wrapper -->
+
+      <aside class="dashboard-rail right-rail rail-surface">
+            <div class="content-card compact calendar-card">
+                <div class="card-header-modern">
+                  <h3>Calendario</h3>
+                  <span class="card-badge">Semana</span>
+                </div>
+                <div class="calendar-grid" aria-hidden="true">
+                  <div class="cal-day muted">Lun</div>
+                  <div class="cal-day">Mar</div>
+                  <div class="cal-day">Mié</div>
+                  <div class="cal-day">Jue</div>
+                  <div class="cal-day">Vie</div>
+                  <div class="cal-slot">09:00 - Llamada</div>
+                  <div class="cal-slot accent">11:00 - Renovación</div>
+                  <div class="cal-slot">14:00 - Consulta</div>
+                  <div class="cal-slot">16:30 - Pago</div>
+                  <div class="cal-slot muted">Libre</div>
+                </div>
+              </div>
+
+            <div class="content-card compact recent-docs-card">
+                <div class="card-header-modern">
+                  <h3>Documentos recientes</h3>
+                  <span class="card-badge">Auto</span>
+                </div>
+                <div class="recent-docs-list card-body-scroll" data-recent-docs>
+                  <p class="loading-state">Cargando documentos...</p>
+                </div>
+                </div>
+
+            <div class="content-card compact">
+              <div class="card-header-modern">
+                <h3>
+                  <span class="icon-animated" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 6v6l3 3" />
+                      <circle cx="12" cy="12" r="9" />
+                    </svg>
+                  </span>
+                  Recordatorios
+                </h3>
+                <span class="card-badge">+2</span>
+              </div>
+              <div class="tasks-list compact">
+                <div class="task-item">
+                  <span>Descarga tu comprobante mensual.</span>
+                  <button class="btn btn-sm btn-outline" onclick="downloadPaymentHistory()">Descargar</button>
+                </div>
+                <div class="task-item">
+                  <span>Actualiza tus datos de contacto.</span>
+                  <button class="btn btn-sm btn-outline" onclick="updateInfo()">Actualizar</button>
+                </div>
+              </div>
+            </div>
+          </aside><!-- .dashboard-rail -->
+  </div><!-- .dashboard-layout -->
+</section>
+
+<div class="contact-modal" id="contact-modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-contact></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-modal-name">
+    <div class="modal-card-header">
       <div>
-        <h1>Mi Dashboard</h1>
-        <p>Bienvenido, Cliente</p>
+        <p class="eyebrow">Contacto</p>
+        <h3 id="contact-modal-name" data-contact-name>Nombre</h3>
       </div>
-      <button class="btn btn-outline" onclick="logout()">Cerrar Sesión</button>
+      <button class="btn-icon-sm" type="button" data-close-contact aria-label="Cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
     </div>
-    <div class="dashboard-stats">
-      <div class="dashboard-stat-card">
-        <div class="stat-icon">📄</div>
-        <div class="stat-info">
-          <div class="stat-value">3</div>
-          <div class="stat-label">Pólizas Activas</div>
-        </div>
-      </div>
-      <div class="dashboard-stat-card">
-        <div class="stat-icon">✅</div>
-        <div class="stat-info">
-          <div class="stat-value">Al Día</div>
-          <div class="stat-label">Estado de Pagos</div>
-        </div>
-      </div>
-      <div class="dashboard-stat-card">
-        <div class="stat-icon">📅</div>
-        <div class="stat-info">
-          <div class="stat-value">15 Mar</div>
-          <div class="stat-label">Próximo Pago</div>
-        </div>
-      </div>
-      <div class="dashboard-stat-card">
-        <div class="stat-icon">💰</div>
-        <div class="stat-info">
-          <div class="stat-value">$450</div>
-          <div class="stat-label">Total Mensual</div>
-        </div>
-      </div>
+    <div class="modal-card-body">
+      <div class="contact-detail"><span>Rol</span><strong data-contact-role>—</strong></div>
+      <div class="contact-detail"><span>Teléfono</span><strong data-contact-phone>—</strong></div>
+      <div class="contact-detail"><span>Correo</span><strong data-contact-email>—</strong></div>
+      <div class="contact-detail"><span>Pólizas</span><strong data-contact-policy>—</strong></div>
     </div>
-
-    <div class="dashboard-grid">
-      <div class="dashboard-main">
-        <div class="dashboard-card">
-          <div class="card-header">
-            <h3>Mis Pólizas</h3>
-            <button class="btn btn-sm btn-outline" onclick="showNotification('Función disponible próximamente', 'info')">Nueva Póliza</button>
-          </div>
-          <div class="policies-list">
-            <div class="policy-item">
-              <div class="policy-icon">🚗</div>
-              <div class="policy-info">
-                <h4>Seguro de Auto</h4>
-                <p>Toyota Camry 2022 • Póliza #A-12345</p>
-                <div class="policy-meta">
-                  <span class="badge badge-success">Activa</span>
-                  <span>Vence: 15 Dic 2025</span>
-                </div>
-              </div>
-              <div class="policy-actions">
-                <button class="btn btn-sm btn-outline" onclick="viewPolicy('A-12345')">Ver Detalles</button>
-              </div>
-            </div>
-
-            <div class="policy-item">
-              <div class="policy-icon">🏠</div>
-              <div class="policy-info">
-                <h4>Seguro de Hogar</h4>
-                <p>Propiedad Residencial • Póliza #H-67890</p>
-                <div class="policy-meta">
-                  <span class="badge badge-success">Activa</span>
-                  <span>Vence: 20 Nov 2025</span>
-                </div>
-              </div>
-              <div class="policy-actions">
-                <button class="btn btn-sm btn-outline" onclick="viewPolicy('H-67890')">Ver Detalles</button>
-              </div>
-            </div>
-
-            <div class="policy-item">
-              <div class="policy-icon">❤️</div>
-              <div class="policy-info">
-                <h4>Seguro de Vida</h4>
-                <p>Plan Familiar • Póliza #V-24680</p>
-                <div class="policy-meta">
-                  <span class="badge badge-success">Activa</span>
-                  <span>Vence: 01 Ene 2026</span>
-                </div>
-              </div>
-              <div class="policy-actions">
-                <button class="btn btn-sm btn-outline" onclick="viewPolicy('V-24680')">Ver Detalles</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="dashboard-card">
-          <div class="card-header">
-            <h3>Historial de Pagos</h3>
-            <button class="btn btn-sm btn-outline" onclick="downloadPaymentHistory()">Descargar</button>
-          </div>
-          <div class="payments-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Póliza</th>
-                  <th>Monto</th>
-                  <th>Estado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>15 Feb 2025</td>
-                  <td>Auto - A-12345</td>
-                  <td>$150.00</td>
-                  <td><span class="badge badge-success">Pagado</span></td>
-                </tr>
-                <tr>
-                  <td>20 Ene 2025</td>
-                  <td>Hogar - H-67890</td>
-                  <td>$200.00</td>
-                  <td><span class="badge badge-success">Pagado</span></td>
-                </tr>
-                <tr>
-                  <td>01 Ene 2025</td>
-                  <td>Vida - V-24680</td>
-                  <td>$100.00</td>
-                  <td><span class="badge badge-success">Pagado</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="dashboard-sidebar">
-        <div class="dashboard-card">
-          <h3>Acciones Rápidas</h3>
-          <div class="quick-actions">
-            <button class="btn btn-outline btn-block" onclick="makePayment()">💳 Realizar Pago</button>
-            <button class="btn btn-outline btn-block" onclick="fileClaim()">📋 Reportar Siniestro</button>
-            <button class="btn btn-outline btn-block" onclick="updateInfo()">✏️ Actualizar Información</button>
-            <button class="btn btn-outline btn-block" onclick="contactAgent()">📞 Contactar Agente</button>
-          </div>
-        </div>
-
-        <div class="dashboard-card">
-          <h3>Mi Agente</h3>
-          <div class="agent-info">
-            <div class="agent-avatar">GK</div>
-            <h4>Guillermo Krause</h4>
-            <p>Agente Principal</p>
-            <div class="agent-contact">
-              <p>📞 +1 (234) 567-89</p>
-              <p>📧 gkrause@krauseins.com</p>
-            </div>
-            <button class="btn btn-sm btn-outline btn-block" onclick="contactAgent()">Contactar</button>
-          </div>
-        </div>
-
-        <div class="dashboard-card">
-          <h3>Documentos</h3>
-          <div class="documents-list">
-            <a href="#" class="document-link" onclick="showNotification('Función disponible próximamente', 'info'); return false;">📄 Póliza Auto (PDF)</a>
-            <a href="#" class="document-link" onclick="showNotification('Función disponible próximamente', 'info'); return false;">📄 Póliza Hogar (PDF)</a>
-            <a href="#" class="document-link" onclick="showNotification('Función disponible próximamente', 'info'); return false;">📄 Póliza Vida (PDF)</a>
-            <a href="#" class="document-link" onclick="showNotification('Función disponible próximamente', 'info'); return false;">📊 Estado de Cuenta</a>
-          </div>
-        </div>
-      </div>
+    <div class="modal-card-actions">
+      <button class="btn btn-sm" type="button" onclick="contactAgent()">Escribir</button>
+      <button class="btn btn-sm btn-outline" type="button" data-close-contact>Cerrar</button>
     </div>
   </div>
-</section>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('#client-tabs .dashboard-tab');
+    const panels = document.querySelectorAll('#client-panels .tab-panel');
+    const navItems = document.querySelectorAll('.dashboard-sidebar .nav-item[data-target]');
+
+    const setActive = (targetId) => {
+      tabs.forEach(btn => {
+        const isActive = btn.getAttribute('data-target') === targetId;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive);
+      });
+      navItems.forEach(link => {
+        const isActive = link.getAttribute('data-target') === targetId;
+        link.classList.toggle('active', isActive);
+      });
+      panels.forEach(panel => panel.classList.toggle('active', panel.id === targetId));
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => setActive(tab.getAttribute('data-target')));
+    });
+
+    navItems.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActive(link.getAttribute('data-target'));
+      });
+    });
+
+    // Contactos frecuentes -> modal
+    const contactModal = document.getElementById('contact-modal');
+    const contactChips = document.querySelectorAll('.contact-chip');
+    const contactFields = {
+      name: contactModal?.querySelector('[data-contact-name]'),
+      role: contactModal?.querySelector('[data-contact-role]'),
+      phone: contactModal?.querySelector('[data-contact-phone]'),
+      email: contactModal?.querySelector('[data-contact-email]'),
+      policy: contactModal?.querySelector('[data-contact-policy]')
+    };
+
+    const toggleContactModal = (isOpen) => {
+      if (!contactModal) return;
+      contactModal.classList.toggle('is-open', isOpen);
+      contactModal.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    };
+
+    const openContact = (chip) => {
+      if (!contactModal) return;
+      contactFields.name.textContent = chip.dataset.name || '';
+      contactFields.role.textContent = chip.dataset.role || '';
+      contactFields.phone.textContent = chip.dataset.phone || '';
+      contactFields.email.textContent = chip.dataset.email || '';
+      contactFields.policy.textContent = chip.dataset.policy || '';
+      toggleContactModal(true);
+    };
+
+    contactChips.forEach(chip => {
+      chip.addEventListener('click', () => openContact(chip));
+      chip.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Enter' || evt.key === ' ') {
+          evt.preventDefault();
+          openContact(chip);
+        }
+      });
+    });
+
+    contactModal?.querySelectorAll('[data-close-contact]').forEach(btn => {
+      btn.addEventListener('click', () => toggleContactModal(false));
+    });
+
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape' && contactModal?.classList.contains('is-open')) {
+        toggleContactModal(false);
+      }
+    });
+
+    // Documentos recientes dinámicos (exponer función global de render)
+    const docsContainer = document.querySelector('[data-recent-docs]');
+    const renderRecentDocs = (docs = []) => {
+      if (!docsContainer) return;
+      docsContainer.innerHTML = '';
+
+      if (!docs.length) {
+        docsContainer.innerHTML = '<p class="loading-state">Sin documentos recientes.</p>';
+        return;
+      }
+
+      docs.forEach(doc => {
+        const row = document.createElement('div');
+        row.className = 'doc-item';
+        row.innerHTML = `
+          <div class="doc-meta">
+            <strong>${doc.title || 'Documento'}</strong>
+            <span>${doc.date || ''}</span>
+          </div>
+          <div class="doc-actions">
+            <span class="badge badge-accent ghost">${doc.type || 'PDF'}</span>
+            ${doc.href ? `<a class="btn btn-sm btn-outline" href="${doc.href}" target="_blank" rel="noopener">Abrir</a>` : ''}
+          </div>
+        `;
+        docsContainer.appendChild(row);
+      });
+    };
+
+    window.renderRecentDocs = renderRecentDocs;
+
+    const demoDocs = [
+      { title: 'Comprobante de pago', date: 'Mar 08, 2024', type: 'PDF', href: '#' },
+      { title: 'Póliza Auto 2024', date: 'Feb 22, 2024', type: 'DOC', href: '#' },
+      { title: 'Endoso Hogar', date: 'Feb 10, 2024', type: 'PDF', href: '#' }
+    ];
+
+    renderRecentDocs(window.dashboardData?.recentDocs || demoDocs);
+
+    // Hero user name from session data
+    const heroUser = document.querySelector('[data-hero-user]');
+    const nameFromData = window.dashboardData?.user?.name || window.dashboardData?.user?.fullName;
+    if (heroUser) {
+      heroUser.textContent = nameFromData || 'Usuario';
+    }
+
+    // Load dashboard data from backend API
+    if (typeof loadClientDashboard === 'function') {
+      loadClientDashboard().catch(error => {
+        console.error('Error loading client dashboard:', error);
+      });
+    }
+  });
+</script>
 
     </div>
 
     <!-- Agent Dashboard -->
     <div id="page-agent-dashboard" class="page-section hidden">
       <section class="dashboard-section agent-dashboard" id="agent-dashboard-section">
-  <div class="dashboard-container">
-    <div class="dashboard-header">
-      <div>
-        <h1>Panel de Agente</h1>
-        <p>Bienvenido, Agente</p>
-      </div>
-      <button class="btn btn-outline" onclick="logout()">Cerrar Sesión</button>
-    </div>
-    <div class="dashboard-stats">
-      <div class="dashboard-stat-card">
-        <div class="stat-icon">👥</div>
-        <div class="stat-info">
-          <div class="stat-value">142</div>
-          <div class="stat-label">Clientes Activos</div>
-        </div>
-      </div>
-      <div class="dashboard-stat-card">
-        <div class="stat-icon">📄</div>
-        <div class="stat-info">
-          <div class="stat-value">256</div>
-          <div class="stat-label">Pólizas Totales</div>
-        </div>
-      </div>
-      <div class="dashboard-stat-card">
-        <div class="stat-icon">💰</div>
-        <div class="stat-info">
-          <div class="stat-value">$85K</div>
-          <div class="stat-label">Primas Este Mes</div>
-        </div>
-      </div>
-      <div class="dashboard-stat-card">
-        <div class="stat-icon">📈</div>
-        <div class="stat-info">
-          <div class="stat-value">+12%</div>
-          <div class="stat-label">Crecimiento</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="dashboard-grid">
-      <div class="dashboard-main">
-        <div class="dashboard-card">
-          <div class="card-header">
-            <h3>Clientes Recientes</h3>
-            <button class="btn btn-sm btn-primary" onclick="addNewClient()">+ Nuevo Cliente</button>
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-surface">
+        <div class="sidebar-header sidebar-branding">
+          <div class="logo-slot logo-slot-nav" data-render-logo data-logo-size="sm" data-logo-contrast="primary" data-logo-class="logo-shield" aria-label="Krause Insurance">
+            <svg class="krause-shield logo-shield logo-size-sm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+              <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+              <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+              <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+              <circle class="shield-center" cx="40" cy="40" r="6" fill="currentColor" />
+            </svg>
           </div>
-          <div class="clients-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>Cliente</th>
-                  <th>Pólizas</th>
-                  <th>Estado</th>
-                  <th>Última Actividad</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="client-cell">
-                      <div class="client-avatar">MG</div>
-                      <div>
-                        <div class="client-name">María González</div>
-                        <div class="client-email">maria.g@email.com</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>3 Activas</td>
-                  <td><span class="badge badge-success">Al Día</span></td>
-                  <td>Hace 2 días</td>
-                  <td>
-                    <button class="btn-icon" onclick="viewClientDetails('MG')">👁️</button>
-                    <button class="btn-icon" onclick="editClient('MG')">✏️</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="client-cell">
-                      <div class="client-avatar">CR</div>
-                      <div>
-                        <div class="client-name">Carlos Ramírez</div>
-                        <div class="client-email">carlos.r@email.com</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>2 Activas</td>
-                  <td><span class="badge badge-success">Al Día</span></td>
-                  <td>Hace 5 días</td>
-                  <td>
-                    <button class="btn-icon" onclick="viewClientDetails('CR')">👁️</button>
-                    <button class="btn-icon" onclick="editClient('CR')">✏️</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="client-cell">
-                      <div class="client-avatar">AM</div>
-                      <div>
-                        <div class="client-name">Ana Martínez</div>
-                        <div class="client-email">ana.m@email.com</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>4 Activas</td>
-                  <td><span class="badge badge-warning">Pago Pendiente</span></td>
-                  <td>Hace 1 semana</td>
-                  <td>
-                    <button class="btn-icon" onclick="viewClientDetails('AM')">👁️</button>
-                    <button class="btn-icon" onclick="editClient('AM')">✏️</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="brand-text brand-text-sidebar">
+            <span class="brand-name">Krause</span>
+            <span class="brand-tagline">Insurance</span>
           </div>
         </div>
 
-        <div class="dashboard-card">
-          <div class="card-header">
-            <h3>Cotizaciones Pendientes</h3>
+        <div class="sidebar-widget-group">
+          <div class="sidebar-qa-header">Clientes recientes</div>
+          <div class="recent-clients-pills">
+            <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-001')">
+              <span class="client-pill-avatar">MG</span>
+              <span class="client-pill-name">María G.</span>
+            </button>
+            <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-002')">
+              <span class="client-pill-avatar">CR</span>
+              <span class="client-pill-name">Carlos R.</span>
+            </button>
+            <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-003')">
+              <span class="client-pill-avatar">AM</span>
+              <span class="client-pill-name">Ana M.</span>
+            </button>
+            <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-004')">
+              <span class="client-pill-avatar">LH</span>
+              <span class="client-pill-name">Luis H.</span>
+            </button>
+            <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-005')">
+              <span class="client-pill-avatar">PS</span>
+              <span class="client-pill-name">Pedro S.</span>
+            </button>
           </div>
-          <div class="quotes-list">
-            <div class="quote-item">
-              <div class="quote-info">
-                <h4>Juan Pérez - Seguro de Auto</h4>
-                <p>Toyota Corolla 2023</p>
-                <span class="quote-date">Solicitado: 28 Nov 2025</span>
+        </div>
+
+        <div class="sidebar-widget-group">
+          <div class="sidebar-qa-header">Gestión rápida</div>
+          <div class="widget-mini-list">
+            <button class="widget-mini-item" onclick="window.appHandlers?.openForms?.()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11H3v10h6V11zM21 11h-6v10h6V11zM15 3H9v6h6V3z"/>
+              </svg>
+              <span>Cuestionarios</span>
+              <span class="widget-mini-badge">3</span>
+            </button>
+            <button class="widget-mini-item" onclick="window.appHandlers?.openAlerts?.()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 9v4"/>
+                <path d="M12 17h.01"/>
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              <span>Alertas vencimiento</span>
+              <span class="widget-mini-badge warn">5</span>
+            </button>
+            <button class="widget-mini-item" onclick="window.appHandlers?.openQuotes?.()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16v16H4z"/>
+                <path d="M8 8h8"/>
+                <path d="M8 12h6"/>
+              </svg>
+              <span>Cotizaciones</span>
+              <span class="widget-mini-badge">8</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-quick-actions">
+          <div class="sidebar-qa-header">Acciones rápidas</div>
+          <button class="qa-btn" onclick="window.appHandlers?.createQuote?.()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Nueva cotización
+          </button>
+          <button class="qa-btn" onclick="window.appHandlers?.addClient?.()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
+              <path d="M4 21v-1a7 7 0 0 1 14 0v1"/>
+            </svg>
+            Agregar cliente
+          </button>
+          <button class="qa-btn" onclick="window.appHandlers?.scheduleAppointment?.()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Agendar cita
+          </button>
+        </div>
+
+        <button class="sidebar-logout" onclick="logout()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Salir
+        </button>
+      </div><!-- .sidebar-surface -->
+    </aside>
+
+    <div class="dashboard-main-wrapper">
+      <div class="dashboard-stage">
+        <div class="stage-main">
+          <div class="hero-surface">
+            <header class="dashboard-top-header search-hero hero-grid">
+              <div class="hero-copy">
+                <div class="hero-title-row">
+                  <span class="eyebrow">Portal de agentes</span>
+                  <span class="hero-divider" aria-hidden="true">|</span>
+                  <span class="hero-welcome">Bienvenido <span data-agent-name>Guillermo Krause S.</span></span>
+                </div>
+                <p class="hero-description">Gestiona clientes, pólizas y comisiones. Monitorea renovaciones y atiende siniestros en tiempo real.</p>
               </div>
-              <button class="btn btn-sm btn-primary" onclick="processQuote('Q-001')">Procesar</button>
-            </div>
-            <div class="quote-item">
-              <div class="quote-info">
-                <h4>Sofía López - Seguro de Hogar</h4>
-                <p>Casa 2 pisos, $350K</p>
-                <span class="quote-date">Solicitado: 27 Nov 2025</span>
+              <div class="hero-search">
+                <div class="search-bar stretch">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="7" />
+                    <line x1="16.65" y1="16.65" x2="21" y2="21" />
+                  </svg>
+                  <input type="search" placeholder="Buscar clientes, pólizas o cotizaciones" aria-label="Buscar" />
+                </div>
+                <div class="header-actions tight pill-actions">
+                  <button class="icon-pill" aria-label="Notificaciones" onclick="window.appHandlers?.openNotifications?.()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                    <span class="dot"></span>
+                  </button>
+                  <button class="icon-pill" aria-label="Mensajes">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                  </button>
+                  <span class="badge badge-accent ghost">Sesión activa</span>
+                </div>
               </div>
-              <button class="btn btn-sm btn-primary" onclick="processQuote('Q-002')">Procesar</button>
+            </header>
+          </div>
+
+          <div class="dashboard-tabs" id="agent-tabs" role="tablist" aria-label="Navegación del dashboard de agentes" style="display: none;">
+            <button class="dashboard-tab active" data-target="agent-overview" aria-pressed="true">Resumen</button>
+          </div>
+
+          <div class="tab-panels" id="agent-panels">
+            <div class="tab-panel active" id="agent-overview" role="tabpanel" aria-label="Resumen">
+              <div class="mimic-wrap">
+                <div class="stats-grid compact">
+                  <div class="stat-card stat-primary">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
+                        <path d="M4 21v-1a7 7 0 0 1 14 0v1"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">89</div>
+                      <div class="stat-label">Total Clientes</div>
+                    </div>
+                    <div class="stat-trend positive">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                      </svg>
+                      <span>+15.8%</span>
+                    </div>
+                  </div>
+
+                  <div class="stat-card stat-success">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">156</div>
+                      <div class="stat-label">Pólizas Activas</div>
+                    </div>
+                    <div class="stat-badge success">+18 mes</div>
+                  </div>
+
+                  <div class="stat-card stat-warning">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">$45.3K</div>
+                      <div class="stat-label">Comisiones Mes</div>
+                    </div>
+                    <div class="stat-trend positive">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                      </svg>
+                      <span>+12.4%</span>
+                    </div>
+                  </div>
+
+                  <div class="stat-card stat-info">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">73%</div>
+                      <div class="stat-label">Tasa de Cierre</div>
+                    </div>
+                    <div class="stat-badge info">Excelente</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-body">
+                <div class="main-surface mimic-wrap">
+                  <div class="mimic-wrap-inner">
+                    <div class="mimic-col main">
+                      <div class="content-card compact">
+                        <div class="card-header-modern">
+                          <h3>Roadmap de Suscripción</h3>
+                          <div class="roadmap-tabs" role="tablist">
+                            <button class="roadmap-tab active" data-client="MG" aria-pressed="true">María G.</button>
+                            <button class="roadmap-tab" data-client="CR" aria-pressed="false">Carlos R.</button>
+                            <button class="roadmap-tab" data-client="AM" aria-pressed="false">Ana M.</button>
+                          </div>
+                        </div>
+                        <div class="roadmap-body">
+                          <div class="roadmap-status" data-client="MG">
+                            <div class="roadmap-step done">
+                              <span class="step-label">Captura de Datos</span>
+                              <span class="step-meta">Recibido 05 Ene</span>
+                            </div>
+                            <div class="roadmap-step done">
+                              <span class="step-label">Cuestionario de Riesgo</span>
+                              <span class="step-meta">Completo</span>
+                            </div>
+                            <div class="roadmap-step in-progress">
+                              <span class="step-label">Suscripción Técnica</span>
+                              <span class="step-meta">En revisión</span>
+                            </div>
+                            <div class="roadmap-step pending">
+                              <span class="step-label">Emisión & Bienvenida</span>
+                              <span class="step-meta">Pendiente</span>
+                            </div>
+                          </div>
+                          <div class="roadmap-status hidden" data-client="CR">
+                            <div class="roadmap-step done">
+                              <span class="step-label">Captura de Datos</span>
+                              <span class="step-meta">Recibido 03 Ene</span>
+                            </div>
+                            <div class="roadmap-step in-progress">
+                              <span class="step-label">Cuestionario de Riesgo</span>
+                              <span class="step-meta">Enviado • esperando respuestas</span>
+                            </div>
+                            <div class="roadmap-step pending">
+                              <span class="step-label">Suscripción Técnica</span>
+                              <span class="step-meta">Pendiente</span>
+                            </div>
+                            <div class="roadmap-step pending">
+                              <span class="step-label">Emisión & Bienvenida</span>
+                              <span class="step-meta">Pendiente</span>
+                            </div>
+                          </div>
+                          <div class="roadmap-status hidden" data-client="AM">
+                            <div class="roadmap-step done">
+                              <span class="step-label">Captura de Datos</span>
+                              <span class="step-meta">Recibido 28 Dic</span>
+                            </div>
+                            <div class="roadmap-step done">
+                              <span class="step-label">Cuestionario de Riesgo</span>
+                              <span class="step-meta">Completo</span>
+                            </div>
+                            <div class="roadmap-step done">
+                              <span class="step-label">Suscripción Técnica</span>
+                              <span class="step-meta">Aprobado</span>
+                            </div>
+                            <div class="roadmap-step in-progress">
+                              <span class="step-label">Emisión & Bienvenida</span>
+                              <span class="step-meta">Emitido, enviar kit</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="content-card compact">
+                        <div class="card-header-modern">
+                          <h3>Siniestros En Curso</h3>
+                          <div class="header-actions tight">
+                            <button class="btn-icon-sm" onclick="window.appHandlers?.fileClaim?.()" title="Nuevo siniestro">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="claims-interactive-list">
+                          <div class="claim-item warn">
+                            <div class="claim-icon">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                              </svg>
+                            </div>
+                            <div class="claim-content">
+                              <div class="claim-header">
+                                <strong>#SIN-2026-001</strong>
+                                <span class="claim-status warn">En revisión</span>
+                              </div>
+                              <p>Auto - Colisión | María González</p>
+                              <div class="claim-meta">
+                                <span>05 Ene 2026</span>
+                                <span class="claim-amount">$12,500</span>
+                              </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.viewClaim?.('SIN-2026-001')">Ver</button>
+                          </div>
+                          <div class="claim-item ok">
+                            <div class="claim-icon">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                              </svg>
+                            </div>
+                            <div class="claim-content">
+                              <div class="claim-header">
+                                <strong>#SIN-2025-089</strong>
+                                <span class="claim-status ok">Aprobado</span>
+                              </div>
+                              <p>Hogar - Robo | Carlos Ruiz</p>
+                              <div class="claim-meta">
+                                <span>20 Dic 2025</span>
+                                <span class="claim-amount">$8,300</span>
+                              </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.viewClaim?.('SIN-2025-089')">Ver</button>
+                          </div>
+                          <div class="claim-item urgent">
+                            <div class="claim-icon">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 9v4"/>
+                                <path d="M12 17h.01"/>
+                                <path d="m10.29 3.86-8.27 14.3A2 2 0 0 0 3.73 21h16.54a2 2 0 0 0 1.71-2.84l-8.27-14.3a2 2 0 0 0-3.42 0Z"/>
+                              </svg>
+                            </div>
+                            <div class="claim-content">
+                              <div class="claim-header">
+                                <strong>#SIN-2026-002</strong>
+                                <span class="claim-status urgent">Urgente</span>
+                              </div>
+                              <p>Vida - Accidente | Ana Martínez</p>
+                              <div class="claim-meta">
+                                <span>08 Ene 2026</span>
+                                <span class="claim-amount">$45,000</span>
+                              </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.viewClaim?.('SIN-2026-002')">Ver</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="subgrid two">
+                        <div class="chart-card" onclick="window.appHandlers?.openSalesModal?.()" style="cursor: pointer;">
+                          <div class="chart-header">
+                            <h3 class="chart-title">
+                              <span class="icon-animated" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <polyline points="3 17 8 11 13 14 21 6" />
+                                  <polyline points="14 6 21 6 21 13" />
+                                </svg>
+                              </span>
+                              Ventas del Mes
+                            </h3>
+                            <div class="chart-legend">
+                              <span class="chart-legend-item"><span class="chart-legend-dot"></span> Ventas</span>
+                              <span class="chart-legend-item" style="color: var(--theme-accent-color);">+22.3% vs mes anterior</span>
+                            </div>
+                          </div>
+                          <div class="chart-body">
+                            <div class="sparkline-placeholder" aria-hidden="true"></div>
+                          </div>
+                          <div class="chart-metrics">
+                            <div class="chart-metric">
+                              <span class="label">Pólizas vendidas</span>
+                              <span class="value">18</span>
+                            </div>
+                            <div class="chart-metric">
+                              <span class="label">Renovaciones</span>
+                              <span class="value">12</span>
+                            </div>
+                            <div class="chart-metric">
+                              <span class="label">Cotizaciones</span>
+                              <span class="value">25</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="chart-card" onclick="window.appHandlers?.openCommissionsModal?.()" style="cursor: pointer;">
+                          <div class="chart-header">
+                            <h3 class="chart-title">
+                              <span class="icon-animated" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <line x1="12" y1="1" x2="12" y2="23"/>
+                                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                              </span>
+                              Comisiones
+                            </h3>
+                            <div class="chart-legend">
+                              <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #38ef7d; box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.12);"></span> Ganadas</span>
+                              <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #f5576c; box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.12);"></span> Pendientes</span>
+                            </div>
+                          </div>
+                          <div class="chart-body">
+                            <div class="sparkline-placeholder" aria-hidden="true"></div>
+                          </div>
+                          <div class="chart-metrics">
+                            <div class="chart-metric">
+                              <span class="label">Este mes</span>
+                              <span class="value">$45.3K</span>
+                            </div>
+                            <div class="chart-metric">
+                              <span class="label">Pendiente</span>
+                              <span class="value">$8.5K</span>
+                            </div>
+                            <div class="chart-metric">
+                              <span class="label">Promedio</span>
+                              <span class="value">$42.1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div><!-- .stage-main -->
+      </div><!-- .dashboard-stage -->
+    </div><!-- .dashboard-main-wrapper -->
+
+    <aside class="dashboard-rail right-rail rail-surface">
+      <div class="content-card compact calendar-card">
+        <div class="card-header-modern">
+          <h3>Citas del Día</h3>
+          <span class="card-badge">Hoy</span>
+        </div>
+        <div class="calendar-grid" aria-hidden="true">
+          <div class="cal-slot accent">09:00 - Reunión cliente</div>
+          <div class="cal-slot">11:00 - Renovación póliza</div>
+          <div class="cal-slot accent">14:00 - Nueva cotización</div>
+          <div class="cal-slot">16:30 - Seguimiento</div>
+          <div class="cal-slot muted">18:00 - Cierre día</div>
+        </div>
+      </div>
+
+      <div class="content-card compact">
+        <div class="card-header-modern">
+          <h3>
+            <span class="icon-animated" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 6v6l3 3" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+            </span>
+            Tareas Prioritarias
+          </h3>
+          <span class="card-badge">+4</span>
+        </div>
+        <div class="tasks-list compact">
+          <div class="task-item">
+            <span>Seguimiento cotización #COT-2026-045</span>
+            <button class="btn btn-sm btn-outline">Ver</button>
+          </div>
+          <div class="task-item">
+            <span>Renovar póliza AUTO-001</span>
+            <button class="btn btn-sm btn-outline">Renovar</button>
+          </div>
+          <div class="task-item">
+            <span>Contactar cliente nuevo</span>
+            <button class="btn btn-sm btn-outline">Llamar</button>
+          </div>
+          <div class="task-item">
+            <span>Completar reporte mensual</span>
+            <button class="btn btn-sm btn-outline">Abrir</button>
           </div>
         </div>
       </div>
 
-      <div class="dashboard-sidebar">
-        <div class="dashboard-card">
-          <h3>Acciones Rápidas</h3>
-          <div class="quick-actions">
-            <button class="btn btn-primary btn-block" onclick="addNewClient()">👥 Nuevo Cliente</button>
-            <button class="btn btn-outline btn-block" onclick="createQuote()">📝 Nueva Cotización</button>
-            <button class="btn btn-outline btn-block" onclick="processRenewal()">🔄 Renovaciones</button>
-            <button class="btn btn-outline btn-block" onclick="viewReports()">📊 Reportes</button>
-          </div>
+      <div class="content-card compact">
+        <div class="card-header-modern">
+          <h3>Actividad Reciente</h3>
+          <span class="card-badge">Live</span>
         </div>
-
-        <div class="dashboard-card">
-          <h3>Tareas Pendientes</h3>
-          <div class="tasks-list">
-            <div class="task-item">
-              <input type="checkbox" onchange="completeTask(1)">
-              <span>Seguimiento a María González</span>
+        <div class="activity-list card-body-scroll" data-agent-activity>
+          <div class="activity-item">
+            <div class="activity-icon success">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
             </div>
-            <div class="task-item">
-              <input type="checkbox" onchange="completeTask(2)">
-              <span>Renovación póliza Carlos R.</span>
-            </div>
-            <div class="task-item">
-              <input type="checkbox" onchange="completeTask(3)">
-              <span>Llamar a Ana Martínez (pago)</span>
+            <div class="activity-content">
+              <strong>Póliza vendida</strong>
+              <span>AUTO-156 - María González</span>
+              <span class="activity-time">Hace 2 horas</span>
             </div>
           </div>
-        </div>
-
-        <div class="dashboard-card">
-          <h3>Comisiones</h3>
-          <div class="commissions-info">
-            <div class="commission-row">
-              <span>Este Mes:</span>
-              <strong>$3,250</strong>
+          <div class="activity-item">
+            <div class="activity-icon info">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16v16H4z"/>
+              </svg>
             </div>
-            <div class="commission-row">
-              <span>Mes Anterior:</span>
-              <strong>$2,890</strong>
+            <div class="activity-content">
+              <strong>Cotización enviada</strong>
+              <span>#COT-2026-045 - Pedro Sánchez</span>
+              <span class="activity-time">Hace 4 horas</span>
             </div>
-            <div class="commission-row">
-              <span>Año a la Fecha:</span>
-              <strong>$28,450</strong>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon warning">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 9v4"/>
+                <path d="M12 17h.01"/>
+              </svg>
             </div>
-            <button class="btn btn-sm btn-outline btn-block" onclick="viewCommissionDetails()">Ver Detalles</button>
+            <div class="activity-content">
+              <strong>Renovación pendiente</strong>
+              <span>HOME-001 - Carlos Ruiz</span>
+              <span class="activity-time">Hace 1 día</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </aside><!-- .dashboard-rail -->
+  </div><!-- .dashboard-layout -->
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Tabs (if present)
+    const tabs = document.querySelectorAll('#agent-tabs .dashboard-tab');
+    const panels = document.querySelectorAll('#agent-panels .tab-panel');
+    const navItems = document.querySelectorAll('.agent-dashboard .dashboard-sidebar .nav-item[data-target]');
+
+    const setActive = (targetId) => {
+      tabs.forEach(btn => {
+        const isActive = btn.getAttribute('data-target') === targetId;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive);
+      });
+      navItems.forEach(link => {
+        const isActive = link.getAttribute('data-target') === targetId;
+        link.classList.toggle('active', isActive);
+      });
+      panels.forEach(panel => panel.classList.toggle('active', panel.id === targetId));
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => setActive(tab.getAttribute('data-target')));
+    });
+
+    navItems.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActive(link.getAttribute('data-target'));
+      });
+    });
+
+    // Roadmap tabs inside agent dashboard
+    const roadmapTabs = document.querySelectorAll('.agent-dashboard .roadmap-tab');
+    const roadmapPanels = document.querySelectorAll('.agent-dashboard .roadmap-status');
+    const activateRoadmap = (client) => {
+      if (!client) return;
+      roadmapTabs.forEach(tab => {
+        const isActive = tab.getAttribute('data-client') === client;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-pressed', isActive);
+      });
+      roadmapPanels.forEach(panel => {
+        panel.classList.toggle('hidden', panel.getAttribute('data-client') !== client);
+      });
+    };
+
+    roadmapTabs.forEach(tab => {
+      tab.addEventListener('click', () => activateRoadmap(tab.getAttribute('data-client')));
+    });
+
+    if (roadmapTabs.length) {
+      activateRoadmap(roadmapTabs[0].getAttribute('data-client'));
+    }
+
+    // Agent data from session
+    const agentName = window.dashboardData?.user?.name || 'Guillermo Krause';
+    const agentId = window.dashboardData?.user?.id || 'AG-2024-001';
+    const initials = agentName.split(' ').map(n => n[0]).join('').toUpperCase();
+
+    const agentNameEl = document.querySelector('[data-agent-name]');
+    const agentIdEl = document.querySelector('[data-agent-id]');
+    const agentInitialsEl = document.querySelector('[data-agent-initials]');
+
+    if (agentNameEl) agentNameEl.textContent = agentName;
+    if (agentIdEl) agentIdEl.textContent = agentId;
+    if (agentInitialsEl) agentInitialsEl.textContent = initials;
+
+    // Load dashboard data from backend API
+    if (typeof loadAgentDashboard === 'function') {
+      loadAgentDashboard().catch(error => {
+        console.error('Error loading agent dashboard:', error);
+      });
+    }
+  });
+</script>
 
     </div>
 
@@ -1916,6 +2773,127 @@
         </div>
       </div>
     </div>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-main">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Cola de trabajo</h3>
+            <span class="badge badge-warning">Pre-lanzamiento</span>
+          </div>
+          <div class="tasks-list">
+            <div class="task-item">
+              <div>
+                <p class="task-title">Revisar cotizaciones pendientes</p>
+                <p class="task-meta">12 en espera · SLA 4h</p>
+              </div>
+              <button class="btn btn-outline btn-sm" aria-label="Abrir cola de cotizaciones">Ver</button>
+            </div>
+            <div class="task-item">
+              <div>
+                <p class="task-title">Aprobar renovaciones críticas</p>
+                <p class="task-meta">5 requieren revisión manual</p>
+              </div>
+              <button class="btn btn-outline btn-sm" aria-label="Abrir renovaciones">Revisar</button>
+            </div>
+            <div class="task-item">
+              <div>
+                <p class="task-title">Siniestros priorizados</p>
+                <p class="task-meta">3 abiertos · 2 con documentación</p>
+              </div>
+              <button class="btn btn-outline btn-sm" aria-label="Abrir siniestros">Detalle</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Alertas y cumplimiento</h3>
+            <span class="badge badge-danger">Atención</span>
+          </div>
+          <div class="alert-list">
+            <div class="alert-item">
+              <div>
+                <p class="alert-title">Pólizas con pago atrasado</p>
+                <p class="alert-meta">8 pólizas · riesgo de cancelación</p>
+              </div>
+              <span class="badge badge-warning">SLA 24h</span>
+            </div>
+            <div class="alert-item">
+              <div>
+                <p class="alert-title">Auditoría pendiente</p>
+                <p class="alert-meta">Reporte trimestral de cumplimiento</p>
+              </div>
+              <span class="badge badge-accent">Revisión</span>
+            </div>
+            <div class="alert-item">
+              <div>
+                <p class="alert-title">Documentos faltantes</p>
+                <p class="alert-meta">11 archivos solicitados a clientes</p>
+              </div>
+              <span class="badge badge-primary">Seguimiento</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="dashboard-sidebar">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Actividad reciente</h3>
+            <span class="badge badge-accent">Live</span>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div>
+                <p class="activity-title">Agente Rivera aprobó una cotización</p>
+                <p class="activity-meta">Hace 12 min · Auto</p>
+              </div>
+              <span class="badge badge-success">OK</span>
+            </div>
+            <div class="activity-item">
+              <div>
+                <p class="activity-title">Admin configuró política de seguridad</p>
+                <p class="activity-meta">Hace 28 min · MFA obligatorio</p>
+              </div>
+              <span class="badge badge-primary">Config</span>
+            </div>
+            <div class="activity-item">
+              <div>
+                <p class="activity-title">Cliente envió documentos de siniestro</p>
+                <p class="activity-meta">Hace 1 h · Hogar</p>
+              </div>
+              <span class="badge badge-warning">Revisar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Acciones rápidas</h3>
+            <span class="badge badge-light">Pre-lanzamiento</span>
+          </div>
+          <div class="quick-actions">
+            <button class="btn btn-primary btn-block">Crear agente</button>
+            <button class="btn btn-outline btn-block">Importar clientes</button>
+            <button class="btn btn-outline btn-block">Descargar reporte mensual</button>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Modo pre-lanzamiento</h3>
+            <span class="badge badge-accent">Demo</span>
+          </div>
+          <ul class="prelaunch-checklist">
+            <li>Datos mockeados con guardado local</li>
+            <li>Acciones destructivas deshabilitadas</li>
+            <li>Logs de auditoría en consola</li>
+            <li>Pruebas de accesibilidad en progreso</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
   </div>
 </section>
 
@@ -1934,12 +2912,7 @@
     <div class="footer-grid">
       <div class="footer-section">
         <div class="footer-brand">
-          <svg class="logo-shield-footer" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="40" cy="40" rx="24" ry="24" stroke="currentColor" stroke-width="3" fill="none"/>
-            <path d="M40 20 L65 40 L40 75 L15 40 Z" stroke="currentColor" stroke-width="3" fill="none"/>
-            <path d="M22 54 Q40 28 58 54" stroke="currentColor" stroke-width="3" fill="none"/>
-            <line x1="40" y1="54" x2="40" y2="72" stroke="currentColor" stroke-width="3"/>
-          </svg>
+          <div class="logo-slot logo-slot-footer" data-render-logo data-logo-size="md" data-logo-contrast="on-dark" data-logo-class="logo-shield-footer" aria-label="Krause Insurance"></div>
           <h3>Krause Insurance</h3>
           <p class="footer-tagline">Protection Beyond The Limits</p>
         </div>
@@ -1988,6 +2961,32 @@
 </footer>
 
   <footer id="footer" class="footer"></footer>
+
+  <!-- Particles Background for Loading Modal -->
+  <div class="bg-particles" id="particles"></div>
+
+  <!-- Loading Modal - Complete Version with Progress -->
+  <div class="loading-modal" id="loadingModal" role="dialog" aria-modal="true" aria-label="Cargando">
+    <div class="modal-card">
+      <div class="logo-and-info">
+        <div class="logo-slot logo-slot-modal" data-logo-size="lg" data-logo-contrast="primary"></div>
+
+        <div class="modal-info">
+          <h2 id="loading-title">Preparando tu experiencia</h2>
+          <div class="progress-percentage" id="percentage">0%</div>
+          <div class="status-text" id="status">Inicializando sistema</div>
+          <div class="progress-bar-container" aria-hidden="true">
+            <div id="progressBar" class="progress-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="did-you-know" id="didYouKnow">
+        <div class="did-you-know-title">💡 Sabías que...</div>
+        <div id="funFact">Cargando dato interesante...</div>
+      </div>
+    </div>
+  </div>
 
   <script>
     // Bind theme toggle to the header logo (.nav-brand .krause-shield).
