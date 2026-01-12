@@ -12,16 +12,21 @@ export function checkAuth() {
 
 export async function login(credentials, type = 'client') {
   try {
-    // Import apiService
-    const { loginUser } = await import('../api-integration.js');
+    // Import apiService dynamically
+    const apiModule = await import('../api-integration.js');
+    const apiService = apiModule.apiService;
+
+    if (!apiService) {
+      throw new Error('API service not available');
+    }
 
     // Try real API first
     const email = credentials.email || credentials.agentId;
     const password = credentials.password;
 
-    const result = await loginUser(email, password);
+    const result = await apiModule.loginUser(email, password);
 
-    if (result.success) {
+    if (result && result.success) {
       // Store user from API
       const user = {
         ...result.user,

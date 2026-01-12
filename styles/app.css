@@ -4,8 +4,14 @@
 
 /* Global design tokens */
 :root {
+  /* Brand palette (shared by all logo renders) */
+  --brand-maroon: #8b2348;
+  --brand-purple: #9b59b6;
+  --wine: #722f37;
+  --baby-pink: #fef5f9;
+
   --text-dark: #1a1a1a;
-  --text-light: #666;
+  --text-light: #4a4f5c;
   --white: #ffffff;
   --gray-100: #f5f5f5;
   --gray-200: #e0e0e0;
@@ -20,6 +26,14 @@
   --gradient-start: #631832;
   --gradient-mid: #521a38;
   --gradient-end: #401a59;
+  /* Unified logo sizing + contrast tokens */
+  --logo-size-sm: 56px;
+  --logo-size-md: 64px;
+  --logo-size-lg: 96px;
+  --logo-contrast-primary: var(--brand-maroon);
+  --logo-contrast-ink: #0f172a;
+  --logo-contrast-on-dark: #ffffff;
+  --logo-contrast-muted: var(--theme-text-secondary);
   /* Layout measurements to keep padding off the global background */
   --nav-height: 90px;
   /* header */
@@ -72,21 +86,21 @@
   --theme-secondary-color: var(--wine);
   --theme-accent-color: var(--brand-purple);
   --theme-text-primary: var(--text-dark);
-  --theme-text-secondary: var(--text-light);
+  --theme-text-secondary: #4a4f5c;
   --theme-shadow: var(--shadow);
 
   /* Dashboard layout tokens (shared) */
-  --dashboard-padding-top-offset: 28px;
-  --dashboard-padding-x: 16px;
-  --dashboard-padding-bottom: 28px;
-  --dashboard-grid-gap: 16px;
-  --dashboard-main-gap: 16px;
+  --dashboard-padding-top-offset: 12px;
+  --dashboard-padding-x: 8px;
+  --dashboard-padding-bottom: 16px;
+  --dashboard-grid-gap: 12px;
+  --dashboard-main-gap: 12px;
   --dashboard-main-col-min: 240px;
   --dashboard-stat-min: 240px;
-  --dashboard-stat-gap: 16px;
-  --dashboard-stat-padding: 16px 18px;
+  --dashboard-stat-gap: 12px;
+  --dashboard-stat-padding: 12px 16px;
   --dashboard-stat-radius: 16px;
-  --dashboard-card-padding: 22px 22px 20px;
+  --dashboard-card-padding: 16px 18px;
   --dashboard-card-header-margin: 12px;
   --dashboard-card-header-padding: 10px;
   --dashboard-quick-actions-gap: 8px;
@@ -128,6 +142,16 @@
   --particles-blend-mode: normal;
 }
 
+/* Dark-forest accessibility overrides */
+html[data-theme="dark-forest"] {
+  --text-dark: #f8fafc;
+  --text-light: rgba(255, 255, 255, 0.82);
+  --theme-text-primary: #f8fafc;
+  --theme-text-secondary: rgba(255, 255, 255, 0.82);
+  --theme-text-tertiary: rgba(255, 255, 255, 0.68);
+  --theme-contrast-strong: #ffffff;
+}
+
 /* Hidden class for page sections (show/hide navigation) */
 .page-section.hidden {
   display: none !important;
@@ -138,6 +162,11 @@ body.loading-locked {
   overflow: hidden;
 }
 
+html[data-theme="dark-forest"] {
+  --theme-text-secondary: rgba(255, 255, 255, 0.82);
+  --theme-text-tertiary: rgba(255, 255, 255, 0.68);
+}
+
 .loading-modal {
   position: fixed;
   inset: 0;
@@ -145,12 +174,12 @@ body.loading-locked {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  background: rgba(6, 4, 6, 0.45);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(6, 4, 6, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.6s ease;
 }
 
 .loading-modal.visible {
@@ -160,27 +189,95 @@ body.loading-locked {
 
 .modal-card {
   width: min(820px, calc(100% - 48px));
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.94);
   border-radius: 14px;
   padding: 20px;
-  box-shadow: 0 30px 80px rgba(10, 10, 10, 0.12), 0 10px 30px rgba(10, 10, 10, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  color: #111;
+  box-shadow: 0 30px 80px rgba(10, 10, 10, 0.16), 0 10px 30px rgba(10, 10, 10, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  color: #0f172a;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px) saturate(1.02);
+  -webkit-backdrop-filter: blur(12px) saturate(1.02);
   position: relative;
+  transform: scale(0.985);
+  opacity: 0.96;
+  transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.55s ease;
+}
+
+.loading-modal.visible .modal-card {
+  transform: scale(1);
+  opacity: 1;
 }
 
 .logo-and-info {
   display: flex;
-  gap: 18px;
+  gap: 20px;
   align-items: center;
+  width: 100%;
 }
 
+.modal-info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Shared logo renderer slots (keeps size + contrast consistent across pages) */
+.logo-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--logo-contrast-primary, var(--brand-maroon));
+}
+
+.logo-slot[data-logo-contrast="ink"] {
+  color: var(--logo-contrast-ink, #0f172a);
+}
+
+.logo-slot[data-logo-contrast="on-dark"] {
+  color: var(--logo-contrast-on-dark, #ffffff);
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.logo-slot[data-logo-contrast="muted"] {
+  color: var(--logo-contrast-muted, rgba(15, 23, 42, 0.72));
+}
+
+.krause-shield {
+  display: block;
+  width: var(--logo-size-md);
+  height: var(--logo-size-md);
+  color: inherit;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));
+}
+
+.logo-slot[data-logo-size="sm"] .krause-shield,
+.krause-shield.logo-size-sm {
+  width: var(--logo-size-sm);
+  height: var(--logo-size-sm);
+}
+
+.logo-slot[data-logo-size="md"] .krause-shield,
+.krause-shield.logo-size-md {
+  width: var(--logo-size-md);
+  height: var(--logo-size-md);
+}
+
+.logo-slot[data-logo-size="lg"] .krause-shield,
+.krause-shield.logo-size-lg {
+  width: var(--logo-size-lg);
+  height: var(--logo-size-lg);
+}
+
+.logo-shield,
 .shield-svg {
-  width: 96px;
-  height: 96px;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.08));
+  color: inherit;
+  width: var(--logo-size-md);
+  height: var(--logo-size-md);
+}
+
+.logo-shield-footer {
+  width: var(--logo-size-md);
+  height: var(--logo-size-md);
+  color: inherit;
 }
 
 /* Particles floating in background */
@@ -220,40 +317,41 @@ body.loading-locked {
   }
 }
 
-/* Official logo parts stroke draw for modal */
-.shield-circle,
-.shield-diamond,
-.shield-arc,
-.shield-line {
+/* Official logo parts stroke draw for LOADING MODAL ONLY */
+/* Shield primitives pick up currentColor for consistent contrast */
+.loading-modal .shield-circle,
+.loading-modal .shield-diamond,
+.loading-modal .shield-arc,
+.loading-modal .shield-line {
   fill: none;
-  stroke: #8b2348;
+  stroke: currentColor;
   stroke-width: 3;
   stroke-dasharray: 220;
   stroke-dashoffset: 220;
   opacity: 0;
-  transition: opacity 0.25s ease;
-  filter: drop-shadow(0 6px 18px rgba(139, 35, 72, 0.12));
+  transition: opacity 0.4s ease;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.12));
 }
 
-.shield-circle.active,
-.shield-diamond.active,
-.shield-arc.active,
-.shield-line.active {
-  animation: drawStroke 0.9s ease-out forwards;
+.loading-modal .shield-circle.active,
+.loading-modal .shield-diamond.active,
+.loading-modal .shield-arc.active,
+.loading-modal .shield-line.active {
+  animation: loadingDrawStroke 0.9s ease-out forwards;
   opacity: 1;
 }
 
-.shield-center {
-  fill: #8b2348;
+.loading-modal .shield-center {
+  fill: currentColor;
   opacity: 0;
   transform-origin: 50% 50%;
 }
 
-.shield-center.active {
+.loading-modal .shield-center.active {
   animation: centerPop 0.6s ease-out forwards;
 }
 
-@keyframes drawStroke {
+@keyframes loadingDrawStroke {
   from {
     stroke-dashoffset: 220;
     opacity: 0.2;
@@ -284,22 +382,26 @@ body.loading-locked {
 
 .modal-info h2 {
   font-family: 'Cinzel', serif;
-  margin-bottom: 6px;
-  font-size: 1.2rem;
+  margin-bottom: 8px;
+  font-size: 1.4rem;
   color: #111;
+  font-weight: 700;
 }
 
 .progress-percentage {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   font-family: 'Cinzel', serif;
-  margin-top: 6px;
-  color: #111;
+  margin-top: 8px;
+  color: #0f172a;
+  line-height: 1;
 }
 
 .status-text {
-  margin-top: 6px;
-  color: rgba(0, 0, 0, 0.8);
+  margin-top: 8px;
+  color: rgba(15, 23, 42, 0.82);
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .progress-bar-container {
@@ -317,7 +419,7 @@ body.loading-locked {
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, #8b2348 0%, #9b59b6 50%, #8b2348 100%);
-  transition: width 120ms linear;
+  transition: width 260ms linear;
   box-shadow: 0 6px 18px rgba(139, 35, 72, 0.12);
 }
 
@@ -333,6 +435,13 @@ body.loading-locked {
 .did-you-know-title {
   font-weight: 700;
   margin-bottom: 6px;
+  color: #0f172a;
+}
+
+#funFact {
+  color: rgba(15, 23, 42, 0.85);
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 700px) {
@@ -340,9 +449,11 @@ body.loading-locked {
     flex-direction: row;
   }
 
+  .logo-slot[data-logo-size="lg"] .krause-shield,
+  .shield-svg.logo-size-lg,
   .shield-svg {
-    width: 72px;
-    height: 72px;
+    width: var(--logo-size-md);
+    height: var(--logo-size-md);
   }
 }
 
@@ -762,70 +873,45 @@ body[data-page="agent-login"] #particles-canvas {
   transition: transform 0.3s ease;
 }
 
+.nav-brand .krause-shield {
+  width: var(--logo-size-sm);
+  height: var(--logo-size-sm);
+}
+
 .nav-brand:hover {
   transform: translateY(-2px);
 }
 
+
 .logo-shield {
-  width: 60px;
-  height: 60px;
-  max-width: 80px;
-  max-height: 80px;
-  color: var(--brand-maroon);
+  width: var(--logo-size-md);
+  height: var(--logo-size-md);
+  max-width: calc(var(--logo-size-lg) - 16px);
+  max-height: calc(var(--logo-size-lg) - 16px);
+  color: inherit;
   filter: drop-shadow(0 2px 4px var(--theme-primary-shadow-color));
 }
 
-/* Shield Animation Styles */
-.krause-shield {
-  display: block;
+/* Logo general - SIN auto-animación, solo estilos base */
+.krause-shield .shield-circle,
+.krause-shield .shield-diamond,
+.krause-shield .shield-arc,
+.krause-shield .shield-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  /* NO auto-animar - dejar que sean estáticos o controlados por JS */
 }
 
-.shield-circle {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: drawStroke 1.5s ease-out forwards;
-  animation-delay: 0.4s;
+/* Hover solo cuando NO está en loading */
+body:not(.loading-locked) .krause-shield:hover .shield-circle,
+body:not(.loading-locked) .krause-shield:hover .shield-diamond,
+body:not(.loading-locked) .krause-shield:hover .shield-arc,
+body:not(.loading-locked) .krause-shield:hover .shield-line {
+  animation: logoPulse 0.6s ease-in-out;
 }
 
-.shield-diamond {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: drawStroke 1.5s ease-out forwards;
-  animation-delay: 0.8s;
-}
-
-.shield-arc {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: drawStroke 1.5s ease-out forwards;
-  animation-delay: 1.2s;
-}
-
-.shield-line {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: drawStroke 1.2s ease-out forwards;
-  animation-delay: 1.6s;
-}
-
-@keyframes drawStroke {
-  0% {
-    stroke-dashoffset: 400;
-  }
-
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-.krause-shield:hover .shield-circle,
-.krause-shield:hover .shield-diamond,
-.krause-shield:hover .shield-arc,
-.krause-shield:hover .shield-line {
-  animation: pulse 0.6s ease-in-out;
-}
-
-@keyframes pulse {
+@keyframes logoPulse {
 
   0%,
   100% {

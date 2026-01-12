@@ -4,7 +4,7 @@
 
 define('DB_HOST', 'localhost'); // Usually 'localhost' in cPanel
 define('DB_NAME', 'nhs13h5k_krause'); // Format: cPanel_username_dbname
-define('DB_USER', 'nhs13h5k_krauser'); // Format: cPanel_username_dbuser
+define('DB_USER', 'nhs13h5k_krause'); // ✅ CORRECTED - Same as database name
 define('DB_PASS', 'Inspiron1999#'); // Set your MySQL password here
 define('DB_CHARSET', 'utf8mb4');
 
@@ -12,6 +12,16 @@ define('DB_CHARSET', 'utf8mb4');
 define('API_SECRET_KEY', 'change-this-to-random-string-' . bin2hex(random_bytes(16)));
 define('JWT_SECRET', 'change-this-jwt-secret-' . bin2hex(random_bytes(16)));
 define('JWT_EXPIRATION', 86400); // 24 hours
+
+// CORS Settings - Use global variable for array
+$GLOBALS['ALLOWED_ORIGINS'] = [
+    'http://ksinsurancee.com',
+    'https://ksinsurancee.com',
+    'https://nhs13h5k0x0j.krause.app',
+    'http://nhs13h5k0x0j.krause.app',
+    'http://localhost:8080',
+    'http://localhost:3000'
+];
 
 // Email Settings (GoDaddy SMTP)
 define('SMTP_HOST', 'localhost'); // or smtpout.secureserver.net for GoDaddy

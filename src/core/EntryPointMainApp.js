@@ -13,6 +13,8 @@ import '../../styles/dashboards/client-dashboard.css';
 import '../../styles/dashboards/agent-dashboard.css';
 import '../../styles/dashboards/admin-dashboard.css';
 import '../../styles/dashboard-components.css';
+import '../../styles/chart-modals.css'; // Chart modal styles
+import '../../styles/scheduling.css'; // Calendar & scheduling styles
 import '../../styles/app.css'; // Base styles
 import '../../styles/dark-forest.css'; // Theme overrides MUST load last
 
@@ -26,6 +28,11 @@ import { showNotification as notify } from '../modules/notifications.js';
 import { NOTIFICATION_TYPES, PAGES } from '../utils/constants.js';
 import { getUser } from './state.js';
 import { setPendingQuoteType, notifyQuoteSuccess } from '../modules/quoteFlow.js';
+import * as schedulingModule from '../modules/scheduling.js';
+import * as contactsModule from '../modules/contactsManager.js';
+import { renderAllLogos } from '../utils/logo.js';
+import { initScrollCollapse } from '../utils/scrollCollapse.js';
+import * as chartModals from '../modules/chartModals.js';
 
 // API service and dashboard loaders - loaded dynamically when needed
 let apiService = null;
@@ -96,10 +103,18 @@ window.appHandlers = {
   completeTask,
   viewCommissionDetails,
   showAgentRegistration,
+  // Scheduling & Contacts handlers
+  scheduleAppointment,
+  viewAgentDirectory,
+  handleAgentContact,
   // New dashboard data loaders
   loadAgentDashboard,
   loadClientDashboard,
-  refreshDashboard
+  refreshDashboard,
+  // Chart modals
+  openPaymentTrendsModal: chartModals.openPaymentTrendsModal,
+  openPolicyHealthModal: chartModals.openPolicyHealthModal,
+  closeChartModal: chartModals.closeChartModal
 };
 
 // Also expose common helpers as globals for legacy inline onclicks
@@ -113,6 +128,8 @@ window.contactAgent = contactAgent;
 window.toggleTheme = toggleTheme;
 window.submitQuote = submitQuote;
 window.logout = handleLogout;
+window.scheduleAppointment = scheduleAppointment;
+window.viewAgentDirectory = viewAgentDirectory;
 // Expose notification helper for quick console testing / legacy inline calls
 window.showNotification = showNotification;
 
@@ -127,8 +144,7 @@ function handleContactSubmit(e) {
   e.target.reset();
 }
 
-async function handleClientLogin(e) {
-  e.preventDefault();
+async function _handleClientLoginAsync(e) {
   const email = e.target[0].value;
   const password = e.target[1].value;
 
@@ -144,8 +160,16 @@ async function handleClientLogin(e) {
   }
 }
 
-async function handleAgentLogin(e) {
+function handleClientLogin(e) {
   e.preventDefault();
+  _handleClientLoginAsync(e).catch(err => {
+    console.error('Client login error:', err);
+    hideLoading(150);
+  });
+  return false;
+}
+
+async function _handleAgentLoginAsync(e) {
   const agentId = e.target[0].value;
   const password = e.target[1].value;
 
@@ -170,6 +194,15 @@ async function handleAgentLogin(e) {
   } else {
     hideLoading(150);
   }
+}
+
+function handleAgentLogin(e) {
+  e.preventDefault();
+  _handleAgentLoginAsync(e).catch(err => {
+    console.error('Agent login error:', err);
+    hideLoading(150);
+  });
+  return false;
 }
 
 function handleLogout() {
@@ -559,6 +592,216 @@ function showAgentRegistration() {
   notify('Contacta al administrador para solicitar acceso como agente', NOTIFICATION_TYPES.INFO);
 }
 
+// ========== SCHEDULING HANDLERS ==========
+async function scheduleAppointment() {
+  const user = getUser();
+  if (!user) {
+    notify('Debes iniciar sesión para agendar citas', NOTIFICATION_TYPES.INFO);
+    return;
+  }
+
+  showLoading('Cargando calendario', 'Buscando agentes disponibles', true);
+  await delay(300);
+
+  try {
+    const availableAgents = contactsModule.getAgents({ status: 'available' });
+
+    if (availableAgents.length === 0) {
+      hideLoading(100);
+      notify('No hay agentes disponibles en este momento', NOTIFICATION_TYPES.WARNING);
+      return;
+    }
+
+    hideLoading(150);
+    openSchedulingModal(availableAgents);
+  } catch (error) {
+    console.error('Error loading agents:', error);
+    hideLoading(100);
+    notify('Error al cargar agentes disponibles', NOTIFICATION_TYPES.ERROR);
+  }
+}
+
+function openSchedulingModal(agents) {
+  const modal = document.createElement('div');
+  modal.className = 'booking-modal';
+  modal.innerHTML = `
+    <div class="booking-modal-content">
+      <div class="booking-modal-header">
+        <h2>Agendar Cita</h2>
+        <button class="booking-modal-close" onclick="this.closest('.booking-modal').remove()">×</button>
+      </div>
+      <div class="booking-form">
+        <div class="booking-form-group">
+          <label>Selecciona un agente</label>
+          <select id="agentSelect" required>
+            <option value="">-- Selecciona un agente --</option>
+            ${agents.map(a => `
+              <option value="${a.id}">
+                ${a.name} (${a.specialties.join(', ')})
+              </option>
+            `).join('')}
+          </select>
+        </div>
+        <div class="booking-form-group">
+          <label>Tipo de Consulta</label>
+          <select id="meetingType" required>
+            <option value="quote">Solicitar Cotización</option>
+            <option value="consultation">Consultoría</option>
+            <option value="renewal">Renovación de Póliza</option>
+            <option value="support">Soporte Técnico</option>
+          </select>
+        </div>
+        <div class="booking-form-group">
+          <label>Fecha Preferida</label>
+          <input type="date" id="meetingDate" required min="${new Date().toISOString().split('T')[0]}">
+        </div>
+        <div class="booking-form-group">
+          <label>Hora Preferida</label>
+          <input type="time" id="meetingTime" required>
+        </div>
+        <div class="booking-form-group">
+          <label>Notas (Opcional)</label>
+          <textarea id="meetingNotes" placeholder="Cuéntale al agente sobre tu necesidad..."></textarea>
+        </div>
+        <button class="meeting-btn meeting-btn-primary" style="width: 100%; padding: 12px;" 
+          onclick="confirmSchedulingSubmit('${document.currentScript?.dataset?.modal || 'modal'}')">
+          Solicitar Cita
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.remove();
+  });
+}
+
+async function confirmSchedulingSubmit(modalElement) {
+  const agentId = document.getElementById('agentSelect')?.value;
+  const meetingType = document.getElementById('meetingType')?.value;
+  const meetingDate = document.getElementById('meetingDate')?.value;
+  const meetingTime = document.getElementById('meetingTime')?.value;
+  const notes = document.getElementById('meetingNotes')?.value || '';
+
+  if (!agentId || !meetingDate || !meetingTime) {
+    notify('Por favor completa todos los campos requeridos', NOTIFICATION_TYPES.WARNING);
+    return;
+  }
+
+  showLoading('Procesando solicitud', 'Solicitando cita con agente', true);
+
+  try {
+    const agent = contactsModule.getAgentById(agentId);
+    const user = getUser();
+    const [hours, minutes] = meetingTime.split(':');
+    const startTime = new Date(`${meetingDate}T${meetingTime}:00`);
+    const endTime = new Date(startTime.getTime() + 30 * 60000);
+
+    const meeting = await schedulingModule.requestMeeting({
+      agentId,
+      agentName: agent.name,
+      clientId: user.id,
+      clientName: user.name,
+      clientEmail: user.email,
+      startTime,
+      endTime,
+      type: meetingType,
+      notes
+    });
+
+    await delay(400);
+    hideLoading(150);
+
+    document.querySelector('.booking-modal')?.remove();
+    notify(`Solicitud enviada a ${agent.name}. Te notificaremos cuando confirme.`, NOTIFICATION_TYPES.SUCCESS);
+  } catch (error) {
+    console.error('Scheduling error:', error);
+    hideLoading(100);
+    notify('Error al agendar la cita: ' + error.message, NOTIFICATION_TYPES.ERROR);
+  }
+}
+
+async function viewAgentDirectory() {
+  showLoading('Cargando directorio', 'Buscando agentes disponibles', true);
+  await delay(250);
+
+  try {
+    const agents = contactsModule.getAgents();
+    hideLoading(100);
+    openAgentDirectoryModal(agents);
+  } catch (error) {
+    console.error('Error loading agents:', error);
+    hideLoading(100);
+    notify('Error al cargar directorio de agentes', NOTIFICATION_TYPES.ERROR);
+  }
+}
+
+function openAgentDirectoryModal(agents) {
+  const modal = document.createElement('div');
+  modal.className = 'booking-modal';
+  modal.style.overflowY = 'auto';
+
+  const content = document.createElement('div');
+  content.className = 'booking-modal-content';
+  content.style.maxHeight = '80vh';
+  content.style.overflowY = 'auto';
+
+  content.innerHTML = `
+    <div class="booking-modal-header" style="position: sticky; top: 0; background: white; z-index: 10;">
+      <h2>Directorio de Agentes</h2>
+      <button class="booking-modal-close" onclick="this.closest('.booking-modal').remove()">×</button>
+    </div>
+    <div class="agents-grid" style="grid-template-columns: 1fr;">
+      ${agents.map(agent => `
+        <div class="agent-card">
+          <div class="agent-avatar">${agent.avatar}</div>
+          <div class="agent-info">
+            <h3>${agent.name}</h3>
+            <p><strong>Email:</strong> ${agent.email}</p>
+            <p><strong>Teléfono:</strong> ${agent.phone}</p>
+            <p><strong>Experiencia:</strong> ${agent.yearsExperience} años</p>
+            <p><strong>Clientes:</strong> ${agent.clientsServed}</p>
+          </div>
+          <div class="agent-specialties">
+            ${agent.specialties.map(s => `<span class="specialty-tag">${s}</span>`).join('')}
+          </div>
+          <div class="agent-rating">
+            <span>⭐ ${agent.satisfaction}/5.0</span>
+          </div>
+          <div class="agent-status">
+            <div class="status-badge">
+              <span class="status-dot ${agent.status}"></span>
+              ${agent.status === 'available' ? 'Disponible' : agent.status === 'busy' ? 'Ocupado' : 'No disponible'}
+            </div>
+            <button class="meeting-btn meeting-btn-primary" 
+              onclick="handleAgentContact('${agent.id}', '${agent.name}')"
+              ${agent.status !== 'available' ? 'disabled' : ''}>
+              Contactar
+            </button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.remove();
+  });
+}
+
+function handleAgentContact(agentId, agentName) {
+  document.querySelector('.booking-modal')?.remove();
+  notify(`Iniciando contacto con ${agentName}...`, NOTIFICATION_TYPES.INFO);
+  scheduleAppointment();
+}
+
+// ========== END SCHEDULING HANDLERS ==========
+
 // Theme helpers (global toggle separate from any contact-card toggle)
 function applyTheme(theme) {
   try {
@@ -612,6 +855,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const normalizedSaved = savedTheme === 'dark-forest-lab' ? 'dark-forest' : savedTheme;
   applyTheme(normalizedSaved || 'dark-forest');
 
+  // Render all shared logo slots (navbar, footer, auth, etc.) with consistent sizing/contrast
+  renderAllLogos();
+
+  // Keep theme toggle on the header logo (stays consistent even with dynamic renders)
+  const headerLogo = document.querySelector('.nav-brand .krause-shield');
+  if (headerLogo) {
+    headerLogo.addEventListener('click', () => {
+      setTimeout(() => {
+        if (typeof toggleTheme === 'function') {
+          toggleTheme();
+          return;
+        }
+        const root = document.documentElement;
+        const current = root.getAttribute('data-theme');
+        if (current === 'dark-forest') {
+          root.removeAttribute('data-theme');
+        } else {
+          root.setAttribute('data-theme', 'dark-forest');
+        }
+      }, 10);
+    });
+  }
+
   // If a session exists, offer redirect or logout
   try {
     const existingUser = getUser();
@@ -636,6 +902,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Always land on Home (Inicio) first; keep session info for optional redirects later
   navigateTo(PAGES.HOME);
+
+  // Initialize scroll collapse for dashboards (will retry if dashboard not loaded yet)
+  initScrollCollapse();
+
+  // Re-initialize scroll collapse whenever page changes
+  const originalNavigateTo = window.navigateTo;
+  if (originalNavigateTo) {
+    window.navigateTo = function (...args) {
+      originalNavigateTo.apply(this, args);
+      // Reinit scroll collapse after navigation completes
+      setTimeout(() => {
+        if (args[0] && args[0].includes('dashboard')) {
+          initScrollCollapse();
+        }
+      }, 300);
+    };
+  }
 
   console.log('🏛️ Krause Insurance App cargada correctamente (Modular)');
   // Service worker disabled during testing

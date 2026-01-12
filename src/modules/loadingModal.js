@@ -1,6 +1,8 @@
 // Complete Loading Modal Controller with Progress, Logo Animation, and Particles
 // Provides show/hide helpers with ref-counted overlay, progress tracking, and visual enhancements
 
+import { createLogoElement, getLogoParts } from '../utils/logo.js';
+
 let modalEl;
 let progressEl;
 let percentageEl;
@@ -53,13 +55,7 @@ function createModalComponent() {
         <div class="loading-modal" id="loadingModal" role="dialog" aria-modal="true" aria-label="Cargando">
             <div class="modal-card">
                 <div class="logo-and-info">
-                    <svg class="shield-svg krause-shield" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" />
-                        <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" />
-                        <path class="shield-arc" d="M24 50 Q40 30 56 50" />
-                        <line class="shield-line" x1="40" y1="50" x2="40" y2="68" />
-                        <circle class="shield-center" cx="40" cy="40" r="6" />
-                    </svg>
+                    <div class="logo-slot logo-slot-modal" data-logo-size="lg" data-logo-contrast="primary"></div>
                     <div class="modal-info">
                         <h2 id="loading-title">Preparando tu experiencia</h2>
                         <div class="progress-percentage" id="percentage">0%</div>
@@ -92,7 +88,7 @@ function ensureModal() {
 
     // Try to find existing modal first
     modalEl = document.getElementById('loadingModal');
-    
+
     // If not found, create it dynamically
     if (!modalEl) {
         modalEl = createModalComponent();
@@ -109,12 +105,23 @@ function ensureModal() {
     titleEl = document.getElementById('loading-title');
     funFactEl = document.getElementById('funFact');
 
+    // Render the shared logo for the modal with the unified size/contrast
+    const logoSlot = modalEl.querySelector('.logo-slot-modal');
+    if (logoSlot && !logoSlot.dataset.logoRendered) {
+        const logoEl = createLogoElement({ size: 'lg', contrast: 'primary', className: 'shield-svg logo-size-lg' });
+        logoSlot.appendChild(logoEl);
+        logoSlot.dataset.logoRendered = 'true';
+    }
+
+    const modalLogo = modalEl.querySelector('.logo-slot-modal .krause-shield');
+    const parts = getLogoParts(modalLogo) || {};
+
     // Initialize logo parts
-    logoParts.circle = modalEl.querySelector('.shield-circle');
-    logoParts.diamond = modalEl.querySelector('.shield-diamond');
-    logoParts.arc = modalEl.querySelector('.shield-arc');
-    logoParts.line = modalEl.querySelector('.shield-line');
-    logoParts.center = modalEl.querySelector('.shield-center');
+    logoParts.circle = parts.circle || modalEl.querySelector('.shield-circle');
+    logoParts.diamond = parts.diamond || modalEl.querySelector('.shield-diamond');
+    logoParts.arc = parts.arc || modalEl.querySelector('.shield-arc');
+    logoParts.line = parts.line || modalEl.querySelector('.shield-line');
+    logoParts.center = parts.center || modalEl.querySelector('.shield-center');
 
     initLogoParts();
     initParticles();
@@ -154,9 +161,16 @@ function initLogoParts() {
 }
 
 function resetLogo() {
-    Object.values(logoParts).forEach(el => {
-        if (el) el.classList.remove('active');
-    });
+    try {
+        Object.keys(logoParts).forEach(key => {
+            const el = logoParts[key];
+            if (el && typeof el === 'object' && el.classList) {
+                el.classList.remove('active');
+            }
+        });
+    } catch (e) {
+        console.warn('Error resetting logo:', e);
+    }
 }
 
 function updateLogoByProgress(pct) {
@@ -216,11 +230,19 @@ function initParticles() {
 function startProgress(duration = 3000) {
     currentProgress = 0;
     const step = Math.max(10, Math.floor(duration / 100));
+    let incrementValue = 1;
 
     if (progressInterval) clearInterval(progressInterval);
 
     progressInterval = setInterval(() => {
-        currentProgress = Math.min(100, currentProgress + 1);
+        // Increase increment near the end to ensure we reach 100%
+        if (currentProgress >= 85) {
+            incrementValue = 2;
+        } else if (currentProgress >= 95) {
+            incrementValue = 5;
+        }
+
+        currentProgress = Math.min(100, currentProgress + incrementValue);
 
         if (percentageEl) percentageEl.textContent = currentProgress + '%';
         if (progressBarEl) progressBarEl.style.width = currentProgress + '%';
@@ -263,7 +285,11 @@ export function showLoading(message = 'Preparando tu experiencia', detail = 'Ini
     if (percentageEl) percentageEl.textContent = '0%';
     if (progressBarEl) progressBarEl.style.width = '0%';
 
-    resetLogo();
+    try {
+        resetLogo();
+    } catch (e) {
+        console.warn('Warning: logo reset failed', e);
+    }
 
     modalEl.classList.add('visible');
     document.body.classList.add('loading-locked');
@@ -282,21 +308,35 @@ export function hideLoading(delay = MIN_DELAY) {
     depth = Math.max(0, depth - 1);
     if (depth > 0) return;
 
-    stopProgress();
-
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-        if (depth === 0 && modalEl) {
-            modalEl.classList.remove('visible');
-            document.body.classList.remove('loading-locked');
-            // Reset after animation
-            setTimeout(() => {
-                if (percentageEl) percentageEl.textContent = '0%';
-                if (progressBarEl) progressBarEl.style.width = '0%';
-                resetLogo();
-            }, 300);
+    // Wait for progress to complete if running
+    const waitForComplete = () => {
+        if (currentProgress < 100 && progressInterval) {
+            setTimeout(waitForComplete, 50);
+            return;
         }
-    }, delay);
+
+        stopProgress();
+
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+            if (depth === 0 && modalEl) {
+                modalEl.classList.remove('visible');
+                document.body.classList.remove('loading-locked');
+                // Reset after animation
+                setTimeout(() => {
+                    if (percentageEl) percentageEl.textContent = '0%';
+                    if (progressBarEl) progressBarEl.style.width = '0%';
+                    try {
+                        resetLogo();
+                    } catch (e) {
+                        console.warn('Warning: logo reset failed on hide', e);
+                    }
+                }, 300);
+            }
+        }, delay);
+    };
+
+    waitForComplete();
 }
 
 export async function withLoading(action, opts = {}) {

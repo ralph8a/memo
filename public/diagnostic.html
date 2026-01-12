@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backend Diagnostic</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1a1a1a; color: #00ff00; }
+        .success { color: #00ff00; }
+        .error { color: #ff0000; }
+        .info { color: #ffaa00; }
+        pre { background: #000; padding: 10px; border: 1px solid #333; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Backend Diagnostic Tool</h1>
+    
+    <h2>Testing Backend Connection...</h2>
+    <div id="results"></div>
+    
+    <script>
+        const results = document.getElementById('results');
+        
+        async function runDiagnostics() {
+            // Test 1: Simple ping
+            results.innerHTML += '<h3>Test 1: Backend Ping</h3>';
+            try {
+                const response = await fetch('http://ksinsurancee.com/backend/index.php', {
+                    method: 'OPTIONS'
+                });
+                results.innerHTML += `<p class="success">✅ Backend is reachable (Status: ${response.status})</p>`;
+            } catch (error) {
+                results.innerHTML += `<p class="error">❌ Backend unreachable: ${error.message}</p>`;
+                return;
+            }
+            
+            // Test 2: Try login
+            results.innerHTML += '<h3>Test 2: Login Request</h3>';
+            try {
+                const response = await fetch('http://ksinsurancee.com/backend/index.php?action=login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'admin@ksinsurancee.com',
+                        password: 'Admin123!'
+                    })
+                });
+                
+                const contentType = response.headers.get('content-type');
+                results.innerHTML += `<p class="info">Status: ${response.status}</p>`;
+                results.innerHTML += `<p class="info">Content-Type: ${contentType}</p>`;
+                
+                const text = await response.text();
+                results.innerHTML += `<p class="info">Response Body:</p>`;
+                results.innerHTML += `<pre>${text || '(empty)'}</pre>`;
+                
+                if (response.status === 200) {
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.token) {
+                            results.innerHTML += `<p class="success">✅ Login successful!</p>`;
+                            results.innerHTML += `<p class="info">Token: ${data.token.substring(0, 50)}...</p>`;
+                        } else if (data.error) {
+                            results.innerHTML += `<p class="error">❌ Error: ${data.error}</p>`;
+                        }
+                    } catch (e) {
+                        results.innerHTML += `<p class="error">❌ Response is not valid JSON</p>`;
+                    }
+                } else if (response.status === 500) {
+                    results.innerHTML += `<p class="error">❌ Server Error (500)</p>`;
+                    results.innerHTML += `<p class="info">This usually means:</p>`;
+                    results.innerHTML += `<ul>`;
+                    results.innerHTML += `<li>Database connection failed</li>`;
+                    results.innerHTML += `<li>PHP syntax error</li>`;
+                    results.innerHTML += `<li>Missing PHP extensions</li>`;
+                    results.innerHTML += `</ul>`;
+                }
+            } catch (error) {
+                results.innerHTML += `<p class="error">❌ Request failed: ${error.message}</p>`;
+            }
+            
+            // Test 3: Check PHP errors endpoint
+            results.innerHTML += '<h3>Test 3: Checking PHP Error Logs</h3>';
+            results.innerHTML += '<p class="info">You need to check error logs in cPanel:</p>';
+            results.innerHTML += '<ol>';
+            results.innerHTML += '<li>Login to cPanel</li>';
+            results.innerHTML += '<li>Go to "Errors" or "Error Log"</li>';
+            results.innerHTML += '<li>Look for recent PHP errors related to database connection</li>';
+            results.innerHTML += '</ol>';
+            
+            // Recommendations
+            results.innerHTML += '<h3>💡 Troubleshooting Steps</h3>';
+            results.innerHTML += '<ol>';
+            results.innerHTML += '<li><strong>Verify Database Name:</strong> Should be exactly <code>nhs13h5k_krause</code></li>';
+            results.innerHTML += '<li><strong>Verify Database User:</strong> Should be exactly <code>nhs13h5k_krauser</code></li>';
+            results.innerHTML += '<li><strong>Check Password:</strong> Make sure it matches in both MySQL and config.php</li>';
+            results.innerHTML += '<li><strong>Check Privileges:</strong> User must have ALL PRIVILEGES on the database</li>';
+            results.innerHTML += '<li><strong>Verify Tables Exist:</strong> Go to phpMyAdmin, select database, check if 15 tables exist</li>';
+            results.innerHTML += '<li><strong>Check PHP Version:</strong> Must be PHP 7.4 or higher</li>';
+            results.innerHTML += '<li><strong>Check PDO Extension:</strong> PHP must have PDO and PDO_MYSQL enabled</li>';
+            results.innerHTML += '</ol>';
+        }
+        
+        runDiagnostics();
+    </script>
+</body>
+</html>

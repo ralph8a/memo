@@ -33,6 +33,22 @@ html[data-theme="dark-forest"] body {
     background-size: 300% 300%;
     background-attachment: fixed !important;
     animation: gradientShift 20s ease infinite;
+    color: #e8f4ef !important;
+}
+
+/* Force light text color on all text elements in dark theme */
+html[data-theme="dark-forest"] p,
+html[data-theme="dark-forest"] span,
+html[data-theme="dark-forest"] div,
+html[data-theme="dark-forest"] h1,
+html[data-theme="dark-forest"] h2,
+html[data-theme="dark-forest"] h3,
+html[data-theme="dark-forest"] h4,
+html[data-theme="dark-forest"] h5,
+html[data-theme="dark-forest"] h6,
+html[data-theme="dark-forest"] label,
+html[data-theme="dark-forest"] li {
+    color: inherit;
 }
 
 /* IMPORTANT: :root rules are defined after @import in styles/app.css.
@@ -50,11 +66,14 @@ html[data-theme="dark-forest"] body {
     --baby-pink: #dff3ed;
     /* pale mint highlight */
 
-    --text-dark: #f0f7f3;
+    --text-dark: #e8f4ef;
     /* brighter light text on dark background for better contrast */
-    --text-light: #c8ddd2;
+    --text-light: #b5d4c6;
     /* lighter muted text */
     --white: #f0f7f3;
+
+    /* Override global text color for dark theme */
+    color: #e8f4ef;
 
     --gray-100: #0f2b21;
     --gray-200: #0b241a;
@@ -178,6 +197,7 @@ html[data-theme="dark-forest"] body {
 }
 
 /* Logo / marca */
+html[data-theme="dark-forest"] .logo-slot,
 html[data-theme="dark-forest"] .logo-shield,
 html[data-theme="dark-forest"] .krause-shield,
 html[data-theme="dark-forest"] .logo-shield-footer,
@@ -185,6 +205,10 @@ html[data-theme="dark-forest"] .nav-link,
 html[data-theme="dark-forest"] .brand-name,
 html[data-theme="dark-forest"] .brand-tagline {
     color: var(--theme-text-primary);
+}
+
+html[data-theme="dark-forest"] .logo-slot[data-logo-contrast="on-dark"] {
+    color: var(--logo-contrast-on-dark, #ffffff);
 }
 
 html[data-theme="dark-forest"] .nav-link:hover,

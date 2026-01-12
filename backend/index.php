@@ -1,5 +1,8 @@
 <?php
 // Main API Router
+error_reporting(0);
+ini_set('display_errors', 0);
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
@@ -12,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // Set CORS headers
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, ALLOWED_ORIGINS)) {
+$allowedOrigins = $GLOBALS['ALLOWED_ORIGINS'] ?? [];
+if (in_array($origin, $allowedOrigins)) {
     header("Access-Control-Allow-Origin: $origin");
 }
 
@@ -20,17 +24,20 @@ require_once 'config.php';
 require_once 'database.php';
 require_once 'auth.php';
 require_once 'email-service.php';
+require_once 'api-endpoints.php';
 
-// Get request method and path
+// Get request method and action
 $method = $_SERVER['REQUEST_METHOD'];
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$path = str_replace('/api', '', $path); // Remove /api prefix
-$path = trim($path, '/');
-$segments = explode('/', $path);
+$action = $_GET['action'] ?? '';
 
 // Get request body
 $input = file_get_contents('php://input');
 $data = json_decode($input, true) ?? [];
+
+// Merge GET params with POST data
+if ($method === 'POST') {
+    $data = array_merge($_POST, $data);
+}
 
 // Response helper
 function sendResponse($data, $code = 200) {
@@ -52,8 +59,8 @@ try {
     
     // ===== AUTHENTICATION ENDPOINTS =====
     
-    // POST /auth/login
-    if ($method === 'POST' && $segments[0] === 'auth' && $segments[1] === 'login') {
+    // POST ?action=login
+    if ($method === 'POST' && $action === 'login') {
         $email = $data['email'] ?? '';
         $password = $data['password'] ?? '';
         
@@ -88,22 +95,22 @@ try {
         ]);
     }
     
-    // POST /auth/verify
-    if ($method === 'POST' && $segments[0] === 'auth' && $segments[1] === 'verify') {
+    // GET ?action=verify_token
+    if ($action === 'verify_token') {
         $user = Auth::requireAuth();
         sendResponse(['valid' => true, 'user' => $user]);
     }
     
     // ===== QUOTES ENDPOINTS =====
     
-    // POST /quotes/request
-    if ($method === 'POST' && $segments[0] === 'quotes' && $segments[1] === 'request') {
+    // POST ?action=submit_quote
+    if ($method === 'POST' && $action === 'submit_quote') {
         $email = $data['email'] ?? '';
-        $firstName = $data['firstName'] ?? '';
-        $lastName = $data['lastName'] ?? '';
+        $firstName = $data['first_name'] ?? $data['firstName'] ?? '';
+        $lastName = $data['last_name'] ?? $data['lastName'] ?? '';
         $phone = $data['phone'] ?? '';
-        $quoteType = $data['quoteType'] ?? '';
-        $coverageDetails = json_encode($data['coverageDetails'] ?? []);
+        $quoteType = $data['quote_type'] ?? $data['quoteType'] ?? '';
+        $coverageDetails = json_encode($data['coverage_details'] ?? $data['coverageDetails'] ?? []);
         
         if (!$email || !$quoteType) {
             sendError('Email and quote type required', 400);
@@ -121,8 +128,8 @@ try {
         sendResponse(['success' => true, 'quote_id' => $db->lastInsertId()]);
     }
     
-    // GET /quotes (requires agent/admin auth)
-    if ($method === 'GET' && $segments[0] === 'quotes') {
+    // GET ?action=quotes (requires agent/admin auth)
+    if ($action === 'quotes') {
         Auth::requireUserType(['agent', 'admin']);
         
         $stmt = $db->query("SELECT * FROM quotes ORDER BY requested_at DESC LIMIT 100");
@@ -133,130 +140,95 @@ try {
     
     // ===== CLAIMS ENDPOINTS =====
     
-    // POST /claims/:id/assign (requires agent/admin)
-    if ($method === 'POST' && $segments[0] === 'claims' && $segments[2] === 'assign') {
-        $user = Auth::requireUserType(['agent', 'admin']);
-        $claimId = $segments[1];
-        $agentId = $data['agentId'] ?? $user['user_id'];
-        
-        // Get claim details
-        $stmt = $db->prepare("
-            SELECT c.*, u.email as client_email, u.first_name as client_name
-            FROM claims c
-            JOIN users u ON c.client_id = u.id
-            WHERE c.id = ?
-        ");
-        $stmt->execute([$claimId]);
-        $claim = $stmt->fetch();
-        
-        if (!$claim) {
-            sendError('Claim not found', 404);
-        }
-        
-        // Assign claim
-        $stmt = $db->prepare("UPDATE claims SET assigned_agent_id = ?, status = 'under_review' WHERE id = ?");
-        $stmt->execute([$agentId, $claimId]);
-        
-        // Get agent email
-        $stmt = $db->prepare("SELECT email FROM users WHERE id = ?");
-        $stmt->execute([$agentId]);
-        $agent = $stmt->fetch();
-        
-        // Send notification
-        if ($agent) {
-            EmailService::sendClaimAssignmentNotification(
-                $agent['email'],
-                $claim['client_name'],
-                $claim['claim_number']
-            );
-        }
-        
-        sendResponse(['success' => true]);
-    }
-    
-    // GET /claims (requires auth)
-    if ($method === 'GET' && $segments[0] === 'claims' && !isset($segments[1])) {
+    // GET ?action=user_claims (client's own claims)
+    if ($action === 'user_claims') {
         $user = Auth::requireAuth();
         
-        if ($user['user_type'] === 'client') {
-            // Clients see only their claims
-            $stmt = $db->prepare("SELECT * FROM claims WHERE client_id = ? ORDER BY submitted_at DESC");
-            $stmt->execute([$user['user_id']]);
-        } else {
-            // Agents/admin see all or assigned claims
-            $stmt = $db->query("SELECT c.*, u.first_name, u.last_name 
-                FROM claims c 
-                JOIN users u ON c.client_id = u.id 
-                ORDER BY c.submitted_at DESC 
-                LIMIT 100");
-        }
+        $stmt = $db->prepare("SELECT * FROM claims WHERE client_id = ? ORDER BY submitted_at DESC");
+        $stmt->execute([$user['user_id']]);
+        $claims = $stmt->fetchAll();
+        
+        sendResponse($claims);
+    }
+    
+    // GET ?action=claims (requires agent/admin auth - all claims)
+    if ($action === 'claims') {
+        $user = Auth::requireUserType(['agent', 'admin']);
+        
+        $stmt = $db->query("SELECT c.*, u.first_name, u.last_name 
+            FROM claims c 
+            JOIN users u ON c.client_id = u.id 
+            ORDER BY c.submitted_at DESC 
+            LIMIT 100");
         
         $claims = $stmt->fetchAll();
         sendResponse($claims);
     }
     
-    // ===== QUESTIONNAIRES ENDPOINTS =====
-    
-    // POST /questionnaires/send (requires agent/admin)
-    if ($method === 'POST' && $segments[0] === 'questionnaires' && $segments[1] === 'send') {
-        $user = Auth::requireUserType(['agent', 'admin']);
+    // POST ?action=submit_claim
+    if ($method === 'POST' && $action === 'submit_claim') {
+        $user = Auth::requireAuth();
         
-        $clientId = $data['clientId'] ?? null;
-        $title = $data['title'] ?? '';
+        $policyId = $data['policy_id'] ?? null;
+        $claimType = $data['claim_type'] ?? '';
+        $incidentDate = $data['incident_date'] ?? null;
         $description = $data['description'] ?? '';
+        $claimAmount = $data['claim_amount'] ?? 0;
         
-        if (!$clientId || !$title) {
-            sendError('Client ID and title required', 400);
+        if (!$policyId || !$claimType || !$description) {
+            sendError('Policy ID, claim type, and description required', 400);
         }
         
-        // Create questionnaire
+        // Generate claim number
+        $claimNumber = 'CLM-' . date('Y') . '-' . str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+        
         $stmt = $db->prepare("
-            INSERT INTO questionnaires (client_id, agent_id, title, description, status, sent_at)
-            VALUES (?, ?, ?, ?, 'sent', CURRENT_TIMESTAMP)
+            INSERT INTO claims (client_id, policy_id, claim_number, claim_type, incident_date, description, claim_amount, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'submitted')
         ");
-        $stmt->execute([$clientId, $user['user_id'], $title, $description]);
+        $stmt->execute([$user['user_id'], $policyId, $claimNumber, $claimType, $incidentDate, $description, $claimAmount]);
         
-        // Get client email
-        $stmt = $db->prepare("SELECT email, first_name, last_name FROM users WHERE id = ?");
-        $stmt->execute([$clientId]);
-        $client = $stmt->fetch();
-        
-        // Send notification
-        if ($client) {
-            EmailService::sendQuestionnaireNotification(
-                $client['email'],
-                $client['first_name'] . ' ' . $client['last_name'],
-                $title
-            );
-        }
-        
-        sendResponse(['success' => true, 'questionnaire_id' => $db->lastInsertId()]);
+        sendResponse(['success' => true, 'claim_id' => $db->lastInsertId(), 'claim_number' => $claimNumber]);
     }
     
-    // ===== NOTIFICATIONS ENDPOINT =====
     
-    // POST /notifications/email
-    if ($method === 'POST' && $segments[0] === 'notifications' && $segments[1] === 'email') {
-        Auth::requireAuth();
-        
-        $to = $data['to'] ?? '';
-        $subject = $data['subject'] ?? '';
-        $message = $data['message'] ?? '';
-        
-        if (!$to || !$subject || !$message) {
-            sendError('To, subject, and message required', 400);
-        }
-        
-        $sent = EmailService::send($to, $subject, $message);
-        
-        sendResponse(['success' => $sent]);
+    // ===== CLIENT DASHBOARD ENDPOINTS =====
+    
+    // GET ?action=client_dashboard
+    if ($action === 'client_dashboard') {
+        $user = Auth::requireAuth();
+        sendResponse(getClientDashboard($db, $user['user_id']));
     }
     
-    // ===== AGENTS ENDPOINTS =====
+    // GET ?action=user_policies
+    if ($action === 'user_policies') {
+        $user = Auth::requireAuth();
+        sendResponse(getClientPolicies($db, $user['user_id']));
+    }
     
-    // GET /agents/clients (requires agent/admin)
-    if ($method === 'GET' && $segments[0] === 'agents' && $segments[1] === 'clients') {
-        Auth::requireUserType(['agent', 'admin']);
+    // GET ?action=payment_history
+    if ($action === 'payment_history') {
+        $user = Auth::requireAuth();
+        sendResponse(getClientPayments($db, $user['user_id']));
+    }
+    
+    // GET ?action=recent_documents
+    if ($action === 'recent_documents') {
+        $user = Auth::requireAuth();
+        sendResponse(getClientDocuments($db, $user['user_id']));
+    }
+    
+    // ===== AGENT DASHBOARD ENDPOINTS =====
+    
+    // GET ?action=agent_dashboard
+    if ($action === 'agent_dashboard') {
+        $user = Auth::requireUserType(['agent', 'admin']);
+        sendResponse(getAgentDashboard($db, $user['user_id']));
+    }
+    
+    // GET ?action=agent_clients
+    if ($action === 'agent_clients') {
+        $user = Auth::requireUserType(['agent', 'admin']);
         
         $stmt = $db->query("
             SELECT id, email, first_name, last_name, phone, status, created_at
@@ -265,67 +237,62 @@ try {
             ORDER BY created_at DESC
         ");
         
-        $clients = $stmt->fetchAll();
-        sendResponse($clients);
+        sendResponse($stmt->fetchAll());
     }
     
-    // GET /agents/clients/:id (requires agent/admin)
-    if ($method === 'GET' && $segments[0] === 'agents' && $segments[1] === 'clients' && isset($segments[2])) {
-        Auth::requireUserType(['agent', 'admin']);
-        $clientId = $segments[2];
-        
-        $stmt = $db->prepare("SELECT * FROM users WHERE id = ? AND user_type = 'client'");
-        $stmt->execute([$clientId]);
-        $client = $stmt->fetch();
-        
-        if (!$client) {
-            sendError('Client not found', 404);
-        }
-        
-        // Get client policies
-        $stmt = $db->prepare("SELECT * FROM policies WHERE client_id = ?");
-        $stmt->execute([$clientId]);
-        $policies = $stmt->fetchAll();
-        
-        // Get client claims
-        $stmt = $db->prepare("SELECT * FROM claims WHERE client_id = ? ORDER BY submitted_at DESC LIMIT 10");
-        $stmt->execute([$clientId]);
-        $claims = $stmt->fetchAll();
-        
-        sendResponse([
-            'client' => $client,
-            'policies' => $policies,
-            'claims' => $claims
-        ]);
+    // GET ?action=agent_stats
+    if ($action === 'agent_stats') {
+        $user = Auth::requireUserType(['agent', 'admin']);
+        sendResponse(getAgentStats($db, $user['user_id']));
     }
     
-    // ===== ANALYTICS ENDPOINTS =====
+    // GET ?action=agent_activity
+    if ($action === 'agent_activity') {
+        $user = Auth::requireUserType(['agent', 'admin']);
+        
+        $stmt = $db->prepare("
+            SELECT * FROM activity_logs 
+            WHERE user_id = ? 
+            ORDER BY created_at DESC 
+            LIMIT 50
+        ");
+        $stmt->execute([$user['user_id']]);
+        sendResponse($stmt->fetchAll());
+    }
     
-    // GET /analytics/dashboard (requires auth)
-    if ($method === 'GET' && $segments[0] === 'analytics' && $segments[1] === 'dashboard') {
-        $user = Auth::requireAuth();
+    // GET ?action=clients (agent/admin)
+    if ($action === 'clients') {
+        $user = Auth::requireUserType(['agent', 'admin']);
         
-        $stats = [];
+        $stmt = $db->query("
+            SELECT id, email, first_name, last_name, phone, status, created_at
+            FROM users 
+            WHERE user_type = 'client'
+            ORDER BY created_at DESC
+            LIMIT 100
+        ");
         
-        if ($user['user_type'] === 'admin') {
-            // Total users
-            $stmt = $db->query("SELECT COUNT(*) as total FROM users WHERE user_type = 'client'");
-            $stats['total_clients'] = $stmt->fetch()['total'];
-            
-            // Total policies
-            $stmt = $db->query("SELECT COUNT(*) as total FROM policies WHERE status = 'active'");
-            $stats['active_policies'] = $stmt->fetch()['total'];
-            
-            // Pending claims
-            $stmt = $db->query("SELECT COUNT(*) as total FROM claims WHERE status IN ('submitted', 'under_review')");
-            $stats['pending_claims'] = $stmt->fetch()['total'];
-            
-            // New quotes
-            $stmt = $db->query("SELECT COUNT(*) as total FROM quotes WHERE status = 'new'");
-            $stats['new_quotes'] = $stmt->fetch()['total'];
-        }
-        
-        sendResponse($stats);
+        sendResponse($stmt->fetchAll());
+    }
+    
+    // ===== ADMIN DASHBOARD ENDPOINTS =====
+    
+    // GET ?action=admin_dashboard
+    if ($action === 'admin_dashboard') {
+        $user = Auth::requireUserType(['admin']);
+        sendResponse(getAdminDashboard($db));
+    }
+    
+    // GET ?action=admin_stats
+    if ($action === 'admin_stats') {
+        $user = Auth::requireUserType(['admin']);
+        sendResponse(getAdminStats($db));
+    }
+    
+    // GET ?action=system_activity
+    if ($action === 'system_activity') {
+        $user = Auth::requireUserType(['admin']);
+        sendResponse(getAdminActivity($db));
     }
     
     // Default: Not found

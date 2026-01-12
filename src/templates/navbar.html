@@ -2,48 +2,16 @@
 <nav class="navbar" id="navbar">
   <div class="nav-container">
     <div class="nav-brand">
-      <svg class="logo-shield krause-shield" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <!-- Círculo exterior -->
-        <ellipse 
-          class="shield-circle" 
-          cx="40" 
-          cy="38" 
-          rx="22" 
-          ry="22"
-          stroke="currentColor" 
-          stroke-width="3" 
-          fill="none" 
-        />
-        
-        <!-- Rombo/Diamante (forma de escudo) -->
-        <path 
-          class="shield-diamond" 
-          d="M40 12 L62 35 L40 70 L18 35 Z" 
-          stroke="currentColor" 
-          stroke-width="3" 
-          fill="none" 
-        />
-        
-        <!-- Arco protector -->
-        <path 
-          class="shield-arc" 
-          d="M24 50 Q40 30 56 50"
-          stroke="currentColor" 
-          stroke-width="3" 
-          fill="none" 
-        />
-        
-        <!-- Línea vertical (lanza) -->
-        <line 
-          class="shield-line" 
-          x1="40" 
-          y1="50" 
-          x2="40" 
-          y2="68" 
-          stroke="currentColor" 
-          stroke-width="3" 
-        />
-      </svg>
+      <div class="logo-slot logo-slot-nav" data-render-logo data-logo-size="sm" data-logo-contrast="primary" data-logo-class="logo-shield" aria-label="Krause Insurance">
+        <!-- Fallback inline logo so navbar never renders empty if JS cache is stale -->
+        <svg class="krause-shield logo-shield logo-size-sm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+          <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+          <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+          <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+          <circle class="shield-center" cx="40" cy="40" r="6" fill="currentColor" />
+        </svg>
+      </div>
       <div class="brand-text" onclick="navigateTo('home', event)">
         <span class="brand-name">Krause Insurance</span>
         <span class="brand-tagline">Protection Beyond The Limits</span>

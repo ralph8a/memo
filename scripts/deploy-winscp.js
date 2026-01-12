@@ -6,6 +6,10 @@
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
+const dotenv = require('dotenv');
+
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 console.log('═══════════════════════════════════════════════════════');
 console.log('  🚀 REBUILD & DEPLOY con WinSCP');
@@ -26,6 +30,28 @@ try {
     if (!fs.existsSync(distPath)) {
         throw new Error('No se generó la carpeta dist/');
     }
+
+    // Copiar backend a dist
+    console.log('📁 Copiando archivos backend...');
+    const backendSrc = path.join(__dirname, '..', 'backend');
+    const backendDest = path.join(distPath, 'backend');
+
+    if (fs.existsSync(backendSrc)) {
+        if (!fs.existsSync(backendDest)) {
+            fs.mkdirSync(backendDest, { recursive: true });
+        }
+
+        const backendFiles = fs.readdirSync(backendSrc);
+        backendFiles.forEach(file => {
+            const srcFile = path.join(backendSrc, file);
+            const destFile = path.join(backendDest, file);
+            if (fs.statSync(srcFile).isFile()) {
+                fs.copyFileSync(srcFile, destFile);
+            }
+        });
+        console.log('✅ Backend copiado');
+    }
+    console.log('');
 
     // Corregir .htaccess
     const htaccessPath = path.join(distPath, '.htaccess');
@@ -68,10 +94,35 @@ try {
         process.exit(1);
     }
 
-    const scriptPath = path.join(__dirname, 'winscp-deploy.txt');
+    const ftpProtocol = process.env.FTP_PROTOCOL || 'sftp';
+    const ftpHost = process.env.FTP_HOST || 'localhost';
+    const ftpPort = process.env.FTP_PORT || '22';
+    const ftpUser = process.env.FTP_USER || '';
+    const ftpPass = process.env.FTP_PASSWORD || '';
+    const ftpRemotePath = process.env.FTP_REMOTE_PATH || 'public_html';
 
-    console.log(`Ejecutando WinSCP...`);
-    execSync(`"${winscpPath}" /script="${scriptPath}"`, { stdio: 'inherit' });
+    if (!ftpUser) throw new Error('FTP_USER no definido');
+    if (!ftpHost) throw new Error('FTP_HOST no definido');
+
+    // Construir script temporal de WinSCP usando credenciales del .env (password preferido)
+    const remotePath = ftpRemotePath.startsWith('/') ? ftpRemotePath : `./${ftpRemotePath}`;
+
+    const scriptLines = [
+        'option batch abort',
+        'option confirm off',
+        `open ${ftpProtocol}://${ftpUser}:${ftpPass}@${ftpHost}:${ftpPort}/`,
+        `cd ${remotePath}`,
+        'put -delete dist\\*',
+        'exit'
+    ];
+
+    const tmpScript = path.join(os.tmpdir(), `winscp-deploy-${Date.now()}.txt`);
+    fs.writeFileSync(tmpScript, scriptLines.join('\n'));
+
+    console.log(`Ejecutando WinSCP contra ${ftpHost}:${ftpPort} (usuario: ${ftpUser})...`);
+    execSync(`"${winscpPath}" /script="${tmpScript}"`, { stdio: 'inherit' });
+
+    fs.rmSync(tmpScript, { force: true });
 
     console.log('');
     console.log('═══════════════════════════════════════════════════════');

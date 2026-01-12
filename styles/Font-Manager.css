@@ -1,0 +1,219 @@
+/* ====================================================================
+   FONT & COLOR MANAGER FOR DASHBOARDS
+   Centraliza todas las variables de color, tipografía y contraste
+   para garantizar legibilidad y consistencia en light/dark themes
+   ==================================================================== */
+
+:root {
+    /* ===== TYPOGRAPHY SCALE ===== */
+    --dashboard-font-family-primary: 'Cinzel', serif;
+    --dashboard-font-family-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+    /* Font sizes */
+    --dashboard-text-xs: 0.72rem;
+    /* 11.5px */
+    --dashboard-text-sm: 0.85rem;
+    /* 13.6px */
+    --dashboard-text-base: 0.95rem;
+    /* 15.2px */
+    --dashboard-text-md: 1.05rem;
+    /* 16.8px */
+    --dashboard-text-lg: 1.25rem;
+    /* 20px */
+    --dashboard-text-xl: 1.5rem;
+    /* 24px */
+    --dashboard-text-2xl: 2rem;
+    /* 32px */
+
+    /* Font weights */
+    --dashboard-font-regular: 400;
+    --dashboard-font-medium: 500;
+    --dashboard-font-semibold: 600;
+    --dashboard-font-bold: 700;
+    --dashboard-font-extrabold: 800;
+
+    /* ===== LIGHT THEME COLORS (Default) ===== */
+    /* Primary text - Maximum contrast */
+    --dashboard-text-primary-light: #0f172a;
+    --dashboard-text-secondary-light: #475569;
+    --dashboard-text-tertiary-light: #64748b;
+    --dashboard-text-muted-light: #94a3b8;
+
+    /* Hero & Headers */
+    --dashboard-hero-title-light: #1e293b;
+    --dashboard-hero-subtitle-light: #334155;
+    --dashboard-hero-eyebrow-light: #64748b;
+
+    /* Stats Cards */
+    --dashboard-stat-value-light: #0f172a;
+    --dashboard-stat-label-light: #475569;
+
+    /* Monitor & Cards */
+    --dashboard-card-heading-light: #1e293b;
+    --dashboard-card-text-light: #334155;
+    --dashboard-card-meta-light: #64748b;
+
+    /* Sidebar */
+    --dashboard-sidebar-text-light: #334155;
+    --dashboard-sidebar-text-secondary-light: #64748b;
+    --dashboard-sidebar-text-active-light: #1e293b;
+
+    /* Backgrounds Light */
+    --dashboard-bg-surface-light: rgba(255, 255, 255, 0.94);
+    --dashboard-bg-card-light: rgba(255, 255, 255, 0.88);
+    --dashboard-bg-hover-light: rgba(100, 116, 139, 0.08);
+
+    /* Borders Light */
+    --dashboard-border-light: rgba(15, 23, 42, 0.08);
+    --dashboard-border-subtle-light: rgba(15, 23, 42, 0.04);
+    --dashboard-border-color-light: #d4d9e3;
+
+    /* ===== DARK THEME COLORS (dark-forest) ===== */
+    /* Primary text - Maximum contrast on dark */
+    --dashboard-text-primary-dark: #f1f5f9;
+    --dashboard-text-secondary-dark: #cbd5e1;
+    --dashboard-text-tertiary-dark: #94a3b8;
+    --dashboard-text-muted-dark: #64748b;
+
+    /* Hero & Headers Dark */
+    --dashboard-hero-title-dark: #f8fafc;
+    --dashboard-hero-subtitle-dark: #e2e8f0;
+    --dashboard-hero-eyebrow-dark: #cbd5e1;
+
+    /* Stats Cards Dark */
+    --dashboard-stat-value-dark: #f8fafc;
+    --dashboard-stat-label-dark: #cbd5e1;
+
+    /* Monitor & Cards Dark */
+    --dashboard-card-heading-dark: #f1f5f9;
+    --dashboard-card-text-dark: #e2e8f0;
+    --dashboard-card-meta-dark: #94a3b8;
+
+    /* Sidebar Dark */
+    --dashboard-sidebar-text-dark: #e2e8f0;
+    --dashboard-sidebar-text-secondary-dark: #94a3b8;
+    --dashboard-sidebar-text-active-dark: #f8fafc;
+
+    /* Backgrounds Dark */
+    --dashboard-bg-surface-dark: rgba(10, 26, 36, 0.92);
+    --dashboard-bg-card-dark: rgba(10, 26, 36, 0.86);
+    --dashboard-bg-hover-dark: rgba(255, 255, 255, 0.08);
+
+    /* Borders Dark */
+    --dashboard-border-dark: rgba(255, 255, 255, 0.12);
+    --dashboard-border-subtle-dark: rgba(255, 255, 255, 0.06);
+    --dashboard-border-color-dark: rgba(255, 255, 255, 0.12);
+
+    /* ===== ACTIVE THEME VARIABLES (automatically switch) ===== */
+    /* These are set by default to light, overridden in dark theme */
+    --dashboard-text-primary: var(--dashboard-text-primary-light);
+    --dashboard-text-secondary: var(--dashboard-text-secondary-light);
+    --dashboard-text-tertiary: var(--dashboard-text-tertiary-light);
+    --dashboard-border-color: var(--dashboard-border-color-light);
+    --dashboard-text-muted: var(--dashboard-text-muted-light);
+
+    --dashboard-hero-title: var(--dashboard-hero-title-light);
+    --dashboard-hero-subtitle: var(--dashboard-hero-subtitle-light);
+    --dashboard-hero-eyebrow: var(--dashboard-hero-eyebrow-light);
+
+    --dashboard-stat-value: var(--dashboard-stat-value-light);
+    --dashboard-stat-label: var(--dashboard-stat-label-light);
+
+    --dashboard-card-heading: var(--dashboard-card-heading-light);
+    --dashboard-card-text: var(--dashboard-card-text-light);
+    --dashboard-card-meta: var(--dashboard-card-meta-light);
+
+    --dashboard-sidebar-text: var(--dashboard-sidebar-text-light);
+    --dashboard-sidebar-text-secondary: var(--dashboard-sidebar-text-secondary-light);
+    --dashboard-sidebar-text-active: var(--dashboard-sidebar-text-active-light);
+
+    --dashboard-bg-surface: var(--dashboard-bg-surface-light);
+    --dashboard-bg-card: var(--dashboard-bg-card-light);
+    --dashboard-bg-hover: var(--dashboard-bg-hover-light);
+
+    --dashboard-border: var(--dashboard-border-light);
+    --dashboard-border-subtle: var(--dashboard-border-subtle-light);
+
+    /* ===== LAYOUT VARIABLES ===== */
+    --dashboard-sidebar-width: 300px;
+    --dashboard-rail-width: 300px;
+    --dashboard-max-width: 1680px;
+    --dashboard-content-width: 90%;
+
+    /* Spacing */
+    --dashboard-spacing-xs: 4px;
+    --dashboard-spacing-sm: 8px;
+    --dashboard-spacing-md: 12px;
+    --dashboard-spacing-lg: 16px;
+    --dashboard-spacing-xl: 24px;
+    --dashboard-spacing-2xl: 32px;
+
+    /* Border radius */
+    --dashboard-radius-sm: 10px;
+    --dashboard-radius-md: 14px;
+    --dashboard-radius-lg: 18px;
+    --dashboard-radius-xl: 24px;
+}
+
+/* ===== DARK THEME OVERRIDES ===== */
+html[data-theme="dark-forest"] {
+    --dashboard-text-primary: var(--dashboard-text-primary-dark);
+    --dashboard-text-secondary: var(--dashboard-text-secondary-dark);
+    --dashboard-text-tertiary: var(--dashboard-text-tertiary-dark);
+    --dashboard-border-color: var(--dashboard-border-color-dark);
+    --dashboard-text-muted: var(--dashboard-text-muted-dark);
+
+    --dashboard-hero-title: var(--dashboard-hero-title-dark);
+    --dashboard-hero-subtitle: var(--dashboard-hero-subtitle-dark);
+    --dashboard-hero-eyebrow: var(--dashboard-hero-eyebrow-dark);
+
+    --dashboard-stat-value: var(--dashboard-stat-value-dark);
+    --dashboard-stat-label: var(--dashboard-stat-label-dark);
+
+    --dashboard-card-heading: var(--dashboard-card-heading-dark);
+    --dashboard-card-text: var(--dashboard-card-text-dark);
+    --dashboard-card-meta: var(--dashboard-card-meta-dark);
+
+    --dashboard-sidebar-text: var(--dashboard-sidebar-text-dark);
+    --dashboard-sidebar-text-secondary: var(--dashboard-sidebar-text-secondary-dark);
+    --dashboard-sidebar-text-active: var(--dashboard-sidebar-text-active-dark);
+
+    --dashboard-bg-surface: var(--dashboard-bg-surface-dark);
+    --dashboard-bg-card: var(--dashboard-bg-card-dark);
+    --dashboard-bg-hover: var(--dashboard-bg-hover-dark);
+
+    --dashboard-border: var(--dashboard-border-dark);
+    --dashboard-border-subtle: var(--dashboard-border-subtle-dark);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.dashboard-text-primary {
+    color: var(--dashboard-text-primary) !important;
+}
+
+.dashboard-text-secondary {
+    color: var(--dashboard-text-secondary) !important;
+}
+
+.dashboard-text-tertiary {
+    color: var(--dashboard-text-tertiary) !important;
+}
+
+.dashboard-text-muted {
+    color: var(--dashboard-text-muted) !important;
+}
+
+.dashboard-heading {
+    color: var(--dashboard-card-heading);
+    font-weight: var(--dashboard-font-bold);
+}
+
+.dashboard-body-text {
+    color: var(--dashboard-card-text);
+    font-weight: var(--dashboard-font-regular);
+}
+
+.dashboard-meta-text {
+    color: var(--dashboard-card-meta);
+    font-size: var(--dashboard-text-sm);
+}

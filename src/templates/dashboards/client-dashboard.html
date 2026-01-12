@@ -1,20 +1,21 @@
 <section class="dashboard-section client-dashboard" id="dashboard-section">
   <div class="dashboard-layout">
     <aside class="dashboard-sidebar">
-      <div class="sidebar-header">
-        <div class="user-avatar">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <circle cx="20" cy="20" r="20" fill="url(#avatarGradient)"/>
-            <path d="M20 20c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2.5c-3.33 0-10 1.67-10 5V30h20v-2.5c0-3.33-6.67-5-10-5z" fill="white"/>
-            <defs>
-              <linearGradient id="avatarGradient" x1="0" y1="0" x2="40" y2="40">
-                <stop offset="0%" stop-color="#667eea"/>
-                <stop offset="100%" stop-color="#764ba2"/>
-              </linearGradient>
-            </defs>
+      <div class="sidebar-surface">
+        <div class="sidebar-header sidebar-branding">
+        <div class="logo-slot logo-slot-nav" data-render-logo data-logo-size="sm" data-logo-contrast="primary" data-logo-class="logo-shield" aria-label="Krause Insurance">
+          <svg class="krause-shield logo-shield logo-size-sm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+            <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+            <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+            <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+            <circle class="shield-center" cx="40" cy="40" r="6" fill="currentColor" />
           </svg>
         </div>
-        <h3>Cliente</h3>
+        <div class="brand-text brand-text-sidebar">
+          <span class="brand-name">Krause</span>
+          <span class="brand-tagline">Insurance</span>
+        </div>
       </div>
 
       <nav class="sidebar-nav">
@@ -27,38 +28,53 @@
           </svg>
           <span>Resumen</span>
         </a>
-        <a href="#" class="nav-item" data-target="client-payments">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="5" width="20" height="14" rx="2" ry="2"/>
-            <line x1="2" y1="10" x2="22" y2="10"/>
-            <line x1="7" y1="15" x2="10" y2="15"/>
-          </svg>
-          <span>Pagos</span>
-        </a>
-        <a href="#" class="nav-item" data-target="client-policies">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 3h12l2 4v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z"/>
-            <path d="M9 11h6"/>
-            <path d="M9 15h4"/>
-          </svg>
-          <span>Pólizas</span>
-        </a>
-        <a href="#" class="nav-item" data-target="client-support">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M12 7a3 3 0 0 1 3 3c0 2-3 3-3 3"/>
-            <circle cx="12" cy="16" r="1"/>
-          </svg>
-          <span>Soporte</span>
-        </a>
-        <a href="#" class="nav-item" onclick="window.appHandlers.navigateTo('home'); return false;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 9l9-7 9 7"/>
-            <path d="M9 22V12h6v10"/>
-          </svg>
-          <span>Inicio</span>
-        </a>
       </nav>
+
+      <div class="sidebar-quick-actions">
+        <div class="sidebar-qa-header">Acciones rápidas</div>
+        <button class="qa-btn" onclick="makePayment()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="5" width="20" height="14" rx="2" ry="2" />
+            <line x1="2" y1="10" x2="22" y2="10" />
+            <line x1="7" y1="15" x2="10" y2="15" />
+          </svg>
+          Pago rápido
+        </button>
+        <button class="qa-btn" onclick="downloadPaymentHistory()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Comprobante
+        </button>
+        <button class="qa-btn" onclick="updateInfo()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Datos
+        </button>
+        <button class="qa-btn" onclick="contactAgent()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5h-.5a8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 0 1 12 3h.5A8.5 8.5 0 0 1 21 11.5Z" />
+          </svg>
+          Contacto
+        </button>
+      </div>
+
+      <div class="sidebar-widget">
+        <div class="card-header-modern">
+          <h4>Contactos frecuentes</h4>
+          <span class="card-badge">Equipo</span>
+        </div>
+        <div class="contact-chips" aria-label="Contactos frecuentes">
+          <button class="contact-chip" data-name="Ana Ruiz" data-phone="+52 55 1234 5678" data-email="ana.ruiz@example.com" data-role="Agente asignada" data-policy="Auto, Hogar">Ana Ruiz</button>
+          <button class="contact-chip" data-name="Luis Ortega" data-phone="+52 81 2345 6789" data-email="luis.ortega@example.com" data-role="Especialista de reclamaciones" data-policy="Vida">Luis Ortega</button>
+          <button class="contact-chip" data-name="Sofía Pérez" data-phone="+52 33 9876 5432" data-email="sofia.perez@example.com" data-role="Soporte clientes" data-policy="Salud">Sofía Pérez</button>
+          <button class="contact-chip" data-name="Carlos Díaz" data-phone="+52 55 2468 1357" data-email="carlos.diaz@example.com" data-role="Gestor de pólizas" data-policy="Empresarial">Carlos Díaz</button>
+        </div>
+      </div>
 
       <button class="sidebar-logout" onclick="logout()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -68,241 +84,423 @@
         </svg>
         Salir
       </button>
+      </div><!-- .sidebar-surface -->
     </aside>
 
     <div class="dashboard-main-wrapper">
-      <div class="dashboard-shell">
-        <header class="dashboard-top-header">
-          <div>
-            <p class="eyebrow">Portal de clientes</p>
-            <h1>Tu panel unificado</h1>
-            <p class="text-muted">Sidebar para navegar y pestañas compactas para reducir scroll.</p>
-          </div>
-          <div class="header-actions">
-            <button class="btn-refresh" onclick="window.appHandlers.refreshDashboard()">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="23 4 23 10 17 10"/>
-                <polyline points="1 20 1 14 7 14"/>
-                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-              </svg>
-              Actualizar
-            </button>
-            <span class="badge badge-accent">Sesión segura</span>
-          </div>
-        </header>
-
-        <div class="dashboard-tabs" id="client-tabs" role="tablist" aria-label="Navegación del dashboard de cliente">
-          <button class="dashboard-tab active" data-target="client-overview" aria-pressed="true">Resumen</button>
-          <button class="dashboard-tab" data-target="client-payments" aria-pressed="false">Pagos</button>
-          <button class="dashboard-tab" data-target="client-policies" aria-pressed="false">Pólizas</button>
-          <button class="dashboard-tab" data-target="client-support" aria-pressed="false">Soporte</button>
-        </div>
-
-        <div class="tab-panels" id="client-panels">
-          <div class="tab-panel active" id="client-overview" role="tabpanel" aria-label="Resumen">
-            <div class="stats-grid compact">
-              <div class="stat-card stat-primary">
-                <div class="stat-icon-wrapper">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                  </svg>
-                </div>
-                <div class="stat-content">
-                  <div class="stat-value">3</div>
-                  <div class="stat-label">Pólizas Activas</div>
-                </div>
-                <div class="stat-trend positive">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                    <polyline points="17 6 23 6 23 12"/>
-                  </svg>
-                  <span>+12%</span>
-                </div>
-              </div>
-
-              <div class="stat-card stat-success">
-                <div class="stat-icon-wrapper">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
-                </div>
-                <div class="stat-content">
-                  <div class="stat-value">Al Día</div>
-                  <div class="stat-label">Estado de Pagos</div>
-                </div>
-                <div class="stat-badge success">100%</div>
-              </div>
-
-              <div class="stat-card stat-warning">
-                <div class="stat-icon-wrapper">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                </div>
-                <div class="stat-content">
-                  <div class="stat-value">15 Mar</div>
-                  <div class="stat-label">Próximo Pago</div>
-                </div>
-                <div class="stat-badge warning">7 días</div>
-              </div>
-
-              <div class="stat-card stat-info">
-                <div class="stat-icon-wrapper">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="1" x2="12" y2="23"/>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                  </svg>
-                </div>
-                <div class="stat-content">
-                  <div class="stat-value">$450</div>
-                  <div class="stat-label">Total Mensual</div>
-                </div>
-                <div class="stat-trend negative">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
-                    <polyline points="17 18 23 18 23 12"/>
-                  </svg>
-                  <span>-3%</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel-grid two-columns">
-              <div class="content-card compact">
-                <div class="card-header-modern">
-                  <h3>Resumen rápido</h3>
-                  <span class="card-badge">Hoy</span>
-                </div>
-                <ul class="prelaunch-checklist">
-                  <li>Polizas activas y al corriente.</li>
-                  <li>Próximo pago programado el 15 Mar.</li>
-                  <li>Reclamaciones sin acciones pendientes.</li>
-                </ul>
-              </div>
-
-              <div class="content-card compact">
-                <div class="card-header-modern">
-                  <h3>Recordatorios</h3>
-                  <span class="card-badge">+2</span>
-                </div>
-                <div class="tasks-list compact">
-                  <div class="task-item">
-                    <span>Descarga tu comprobante mensual.</span>
-                    <button class="btn btn-sm btn-outline" onclick="downloadPaymentHistory()">Descargar</button>
+        <div class="dashboard-stage">
+          <div class="stage-main">
+            <div class="hero-surface">
+              <header class="dashboard-top-header search-hero hero-grid">
+                <div class="hero-copy">
+                  <div class="hero-title-row">
+                    <span class="eyebrow">Portal de clientes</span>
+                    <span class="hero-divider" aria-hidden="true">|</span>
+                    <span class="hero-welcome">Bienvenido <span data-hero-user>@Usuario</span></span>
                   </div>
-                  <div class="task-item">
-                    <span>Actualiza tus datos de contacto.</span>
-                    <button class="btn btn-sm btn-outline" onclick="updateInfo()">Actualizar</button>
-                  </div>
+                  <p class="hero-description">Accede a pólizas, pagos y documentos en un solo lugar. Retoma pendientes y encuentra recomendaciones sin perder tiempo.</p>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-panel" id="client-payments" role="tabpanel" aria-label="Pagos">
-            <div class="panel-grid">
-              <div class="content-card compact">
-                <div class="card-header-modern">
-                  <h3>Historial de Pagos</h3>
-                  <div class="header-actions">
-                    <button class="btn-icon-sm" onclick="downloadPaymentHistory()" title="Descargar">
+                <div class="hero-search">
+                  <div class="search-bar stretch">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="7" />
+                      <line x1="16.65" y1="16.65" x2="21" y2="21" />
+                    </svg>
+                    <input type="search" placeholder="Buscar pólizas, pagos o documentos" aria-label="Buscar" />
+                  </div>
+                  <div class="header-actions tight pill-actions">
+                    <button class="icon-pill" aria-label="Notificaciones" onclick="window.appHandlers?.openNotifications?.()">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
+                        <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                      </svg>
+                      <span class="dot"></span>
+                    </button>
+                    <button class="icon-pill" aria-label="Mensajes" onclick="contactAgent()">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                       </svg>
                     </button>
+                    <span class="badge badge-accent ghost">Sesión segura</span>
                   </div>
                 </div>
-                <div class="payment-history-list card-body-scroll" data-payment-history>
-                  <p class="loading-state">Cargando historial...</p>
+              </header>
+            </div>
+
+            <div class="dashboard-tabs" id="client-tabs" role="tablist" aria-label="Navegación del dashboard de cliente">
+              <button class="dashboard-tab active" data-target="client-overview" aria-pressed="true">Resumen</button>
+              <button class="dashboard-tab" data-target="client-payments" aria-pressed="false">Pagos</button>
+              <button class="dashboard-tab" data-target="client-policies" aria-pressed="false">Pólizas</button>
+              <button class="dashboard-tab" data-target="client-support" aria-pressed="false">Soporte</button>
+            </div>
+
+            <div class="tab-panels" id="client-panels">
+              <div class="tab-panel active" id="client-overview" role="tabpanel" aria-label="Resumen">
+                <div class="mimic-wrap">
+                  <div class="stats-grid compact">
+                  <div class="stat-card stat-primary">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">3</div>
+                      <div class="stat-label">Pólizas Activas</div>
+                    </div>
+                    <div class="stat-trend positive">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                      </svg>
+                      <span>+12%</span>
+                    </div>
+                  </div>
+
+                  <div class="stat-card stat-success">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">Al Día</div>
+                      <div class="stat-label">Estado de Pagos</div>
+                    </div>
+                    <div class="stat-badge success">100%</div>
+                  </div>
+
+                  <div class="stat-card stat-warning">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">15 Mar</div>
+                      <div class="stat-label">Próximo Pago</div>
+                    </div>
+                    <div class="stat-badge warning">7 días</div>
+                  </div>
+
+                  <div class="stat-card stat-info">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">$450</div>
+                      <div class="stat-label">Total Mensual</div>
+                    </div>
+                    <div class="stat-trend negative">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                        <polyline points="17 18 23 18 23 12"/>
+                      </svg>
+                      <span>-3%</span>
+                    </div>
+                  </div>
+
+                  </div>
+                </div>
+
+                <div class="dashboard-body">
+                  <div class="main-surface mimic-wrap">
+                    <div class="mimic-wrap-inner">
+                      <div class="mimic-col main">
+                        <div class="content-card list-card compact">
+                          <div class="card-header-modern">
+                            <h3>Mis Pólizas</h3>
+                            <div class="header-actions tight">
+                              <button class="btn-icon-sm" onclick="window.appHandlers?.viewPolicy?.()" title="Ver todas">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="mini-table">
+                            <div class="mini-table-row mini-table-head">
+                              <span>Póliza</span>
+                              <span>Número</span>
+                              <span>Vigencia</span>
+                              <span>Estado</span>
+                              <span>Prima</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">Seguro Auto</span>
+                              <span>AUTO-001</span>
+                              <span>15 Mar 2027</span>
+                              <span class="status-dot ok">Activa</span>
+                              <span>$150/mes</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">Seguro Hogar</span>
+                              <span>HOME-001</span>
+                              <span>01 Ene 2027</span>
+                              <span class="status-dot ok">Activa</span>
+                              <span>$200/mes</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">Seguro Vida</span>
+                              <span>LIFE-001</span>
+                              <span>10 Feb 2027</span>
+                              <span class="status-dot warn">Renovación</span>
+                              <span>$100/mes</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="content-card list-card compact">
+                          <div class="card-header-modern">
+                            <h3>Siniestros En Curso</h3>
+                            <div class="header-actions tight">
+                              <button class="btn-icon-sm" onclick="window.appHandlers?.fileClaim?.()" title="Nuevo siniestro">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <line x1="12" y1="5" x2="12" y2="19"/>
+                                  <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="mini-table">
+                            <div class="mini-table-row mini-table-head">
+                              <span>Folio</span>
+                              <span>Tipo</span>
+                              <span>Fecha</span>
+                              <span>Estado</span>
+                              <span>Monto</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">#SIN-2026-001</span>
+                              <span>Auto - Colisión</span>
+                              <span>05 Ene 2026</span>
+                              <span class="status-dot warn">En revisión</span>
+                              <span>$12,500</span>
+                            </div>
+                            <div class="mini-table-row">
+                              <span class="cell-strong">#SIN-2025-089</span>
+                              <span>Hogar - Robo</span>
+                              <span>20 Dic 2025</span>
+                              <span class="status-dot ok">Aprobado</span>
+                              <span>$8,300</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="subgrid two">
+                          <div class="chart-card" onclick="window.appHandlers?.openPaymentTrendsModal?.()">
+                            <div class="chart-header">
+                              <h3 class="chart-title">
+                                <span class="icon-animated" aria-hidden="true">
+                                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 17 8 11 13 14 21 6" />
+                                    <polyline points="14 6 21 6 21 13" />
+                                  </svg>
+                                </span>
+                                Tendencia de pagos
+                              </h3>
+                              <div class="chart-legend">
+                                <span class="chart-legend-item"><span class="chart-legend-dot"></span> Pagos</span>
+                                <span class="chart-legend-item" style="color: var(--theme-accent-color);">+8.4% vs mes anterior</span>
+                              </div>
+                            </div>
+                            <div class="chart-body">
+                              <div class="sparkline-placeholder" aria-hidden="true"></div>
+                            </div>
+                            <div class="chart-metrics">
+                              <div class="chart-metric">
+                                <span class="label">Tickets cerrados</span>
+                                <span class="value">24</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Pagos puntuales</span>
+                                <span class="value">96%</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Retrasos</span>
+                                <span class="value">2</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="chart-card" onclick="window.appHandlers?.openPolicyHealthModal?.()">
+                            <div class="chart-header">
+                              <h3 class="chart-title">
+                                <span class="icon-animated" aria-hidden="true">
+                                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="10" width="4" height="10" rx="1" />
+                                    <rect x="10" y="6" width="4" height="14" rx="1" />
+                                    <rect x="17" y="3" width="4" height="17" rx="1" />
+                                  </svg>
+                                </span>
+                                Salud de pólizas
+                              </h3>
+                              <div class="chart-legend">
+                                <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #38ef7d; box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.12);"></span> Activas</span>
+                                <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #f5576c; box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.12);"></span> Riesgo</span>
+                              </div>
+                            </div>
+                            <div class="chart-body">
+                              <div class="sparkline-placeholder" aria-hidden="true"></div>
+                            </div>
+                            <div class="chart-metrics">
+                              <div class="chart-metric">
+                                <span class="label">Activas</span>
+                                <span class="value">3</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Renovaciones</span>
+                                <span class="value">2</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Alertas</span>
+                                <span class="value">0</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="content-card compact">
+                          <div class="card-header-modern">
+                            <h3>Historial de Pagos</h3>
+                            <div class="header-actions">
+                              <button class="btn-icon-sm" onclick="downloadPaymentHistory()" title="Descargar">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                  <polyline points="7 10 12 15 17 10" />
+                                  <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="payment-history-list card-body-scroll" data-payment-history>
+                            <p class="loading-state">Cargando historial...</p>
+                          </div>
+                        </div>
+
+                        <div class="subgrid two">
+                          <div class="content-card compact">
+                            <div class="card-header-modern">
+                              <h3>Mis Pólizas</h3>
+                              <span class="card-badge">Activas</span>
+                            </div>
+                            <div class="policies-list card-body-scroll">
+                              <p class="loading-state">Cargando pólizas...</p>
+                            </div>
+                          </div>
+
+                          <div class="content-card compact">
+                            <div class="card-header-modern">
+                              <h3>Reclamaciones Activas</h3>
+                              <span class="card-badge">Atención</span>
+                            </div>
+                            <div class="claims-list card-body-scroll" data-client-claims-list>
+                              <p class="loading-state">Cargando...</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div><!-- .stage-main -->
+        </div><!-- .dashboard-stage -->
+      </div><!-- .dashboard-main-wrapper -->
 
-          <div class="tab-panel" id="client-policies" role="tabpanel" aria-label="Pólizas">
-            <div class="panel-grid two-columns stacked">
-              <div class="content-card compact">
+      <aside class="dashboard-rail right-rail rail-surface">
+            <div class="content-card compact calendar-card">
                 <div class="card-header-modern">
-                  <h3>Mis Pólizas</h3>
-                  <span class="card-badge">Activas</span>
+                  <h3>Calendario</h3>
+                  <span class="card-badge">Semana</span>
                 </div>
-                <div class="policies-list card-body-scroll">
-                  <p class="loading-state">Cargando pólizas...</p>
+                <div class="calendar-grid" aria-hidden="true">
+                  <div class="cal-day muted">Lun</div>
+                  <div class="cal-day">Mar</div>
+                  <div class="cal-day">Mié</div>
+                  <div class="cal-day">Jue</div>
+                  <div class="cal-day">Vie</div>
+                  <div class="cal-slot">09:00 - Llamada</div>
+                  <div class="cal-slot accent">11:00 - Renovación</div>
+                  <div class="cal-slot">14:00 - Consulta</div>
+                  <div class="cal-slot">16:30 - Pago</div>
+                  <div class="cal-slot muted">Libre</div>
                 </div>
               </div>
 
-              <div class="content-card compact">
+            <div class="content-card compact recent-docs-card">
                 <div class="card-header-modern">
-                  <h3>Reclamaciones Activas</h3>
-                  <span class="card-badge">Atención</span>
+                  <h3>Documentos recientes</h3>
+                  <span class="card-badge">Auto</span>
                 </div>
-                <div class="claims-list card-body-scroll" data-client-claims-list>
-                  <p class="loading-state">Cargando...</p>
+                <div class="recent-docs-list card-body-scroll" data-recent-docs>
+                  <p class="loading-state">Cargando documentos...</p>
+                </div>
+                </div>
+
+            <div class="content-card compact">
+              <div class="card-header-modern">
+                <h3>
+                  <span class="icon-animated" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 6v6l3 3" />
+                      <circle cx="12" cy="12" r="9" />
+                    </svg>
+                  </span>
+                  Recordatorios
+                </h3>
+                <span class="card-badge">+2</span>
+              </div>
+              <div class="tasks-list compact">
+                <div class="task-item">
+                  <span>Descarga tu comprobante mensual.</span>
+                  <button class="btn btn-sm btn-outline" onclick="downloadPaymentHistory()">Descargar</button>
+                </div>
+                <div class="task-item">
+                  <span>Actualiza tus datos de contacto.</span>
+                  <button class="btn btn-sm btn-outline" onclick="updateInfo()">Actualizar</button>
                 </div>
               </div>
             </div>
-          </div>
+          </aside><!-- .dashboard-rail -->
+  </div><!-- .dashboard-layout -->
+</section>
 
-          <div class="tab-panel" id="client-support" role="tabpanel" aria-label="Soporte">
-            <div class="panel-grid">
-              <div class="content-card compact">
-                <div class="card-header-modern">
-                  <h3>Acciones Rápidas</h3>
-                </div>
-                <div class="quick-actions">
-                  <button class="action-btn" onclick="makePayment()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-                      <line x1="1" y1="10" x2="23" y2="10"/>
-                    </svg>
-                    <span>Realizar Pago</span>
-                  </button>
-                  <button class="action-btn" onclick="fileClaim()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                      <polyline points="14 2 14 8 20 8"/>
-                    </svg>
-                    <span>Reportar Siniestro</span>
-                  </button>
-                  <button class="action-btn" onclick="updateInfo()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                      <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                    <span>Actualizar Datos</span>
-                  </button>
-                  <button class="action-btn" onclick="contactAgent()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                    </svg>
-                    <span>Contactar Agente</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="widget-card help-widget compact">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                  <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-                <h5>¿Necesitas ayuda?</h5>
-                <p>Nuestro equipo está disponible 24/7</p>
-                <button class="btn-help" onclick="contactAgent()">Contactar Soporte</button>
-              </div>
-            </div>
-          </div>
-        </div>
+<div class="contact-modal" id="contact-modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-contact></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-modal-name">
+    <div class="modal-card-header">
+      <div>
+        <p class="eyebrow">Contacto</p>
+        <h3 id="contact-modal-name" data-contact-name>Nombre</h3>
       </div>
+      <button class="btn-icon-sm" type="button" data-close-contact aria-label="Cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="modal-card-body">
+      <div class="contact-detail"><span>Rol</span><strong data-contact-role>—</strong></div>
+      <div class="contact-detail"><span>Teléfono</span><strong data-contact-phone>—</strong></div>
+      <div class="contact-detail"><span>Correo</span><strong data-contact-email>—</strong></div>
+      <div class="contact-detail"><span>Pólizas</span><strong data-contact-policy>—</strong></div>
+    </div>
+    <div class="modal-card-actions">
+      <button class="btn btn-sm" type="button" onclick="contactAgent()">Escribir</button>
+      <button class="btn btn-sm btn-outline" type="button" data-close-contact>Cerrar</button>
     </div>
   </div>
-</section>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -333,5 +531,104 @@
         setActive(link.getAttribute('data-target'));
       });
     });
+
+    // Contactos frecuentes -> modal
+    const contactModal = document.getElementById('contact-modal');
+    const contactChips = document.querySelectorAll('.contact-chip');
+    const contactFields = {
+      name: contactModal?.querySelector('[data-contact-name]'),
+      role: contactModal?.querySelector('[data-contact-role]'),
+      phone: contactModal?.querySelector('[data-contact-phone]'),
+      email: contactModal?.querySelector('[data-contact-email]'),
+      policy: contactModal?.querySelector('[data-contact-policy]')
+    };
+
+    const toggleContactModal = (isOpen) => {
+      if (!contactModal) return;
+      contactModal.classList.toggle('is-open', isOpen);
+      contactModal.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    };
+
+    const openContact = (chip) => {
+      if (!contactModal) return;
+      contactFields.name.textContent = chip.dataset.name || '';
+      contactFields.role.textContent = chip.dataset.role || '';
+      contactFields.phone.textContent = chip.dataset.phone || '';
+      contactFields.email.textContent = chip.dataset.email || '';
+      contactFields.policy.textContent = chip.dataset.policy || '';
+      toggleContactModal(true);
+    };
+
+    contactChips.forEach(chip => {
+      chip.addEventListener('click', () => openContact(chip));
+      chip.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Enter' || evt.key === ' ') {
+          evt.preventDefault();
+          openContact(chip);
+        }
+      });
+    });
+
+    contactModal?.querySelectorAll('[data-close-contact]').forEach(btn => {
+      btn.addEventListener('click', () => toggleContactModal(false));
+    });
+
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape' && contactModal?.classList.contains('is-open')) {
+        toggleContactModal(false);
+      }
+    });
+
+    // Documentos recientes dinámicos (exponer función global de render)
+    const docsContainer = document.querySelector('[data-recent-docs]');
+    const renderRecentDocs = (docs = []) => {
+      if (!docsContainer) return;
+      docsContainer.innerHTML = '';
+
+      if (!docs.length) {
+        docsContainer.innerHTML = '<p class="loading-state">Sin documentos recientes.</p>';
+        return;
+      }
+
+      docs.forEach(doc => {
+        const row = document.createElement('div');
+        row.className = 'doc-item';
+        row.innerHTML = `
+          <div class="doc-meta">
+            <strong>${doc.title || 'Documento'}</strong>
+            <span>${doc.date || ''}</span>
+          </div>
+          <div class="doc-actions">
+            <span class="badge badge-accent ghost">${doc.type || 'PDF'}</span>
+            ${doc.href ? `<a class="btn btn-sm btn-outline" href="${doc.href}" target="_blank" rel="noopener">Abrir</a>` : ''}
+          </div>
+        `;
+        docsContainer.appendChild(row);
+      });
+    };
+
+    window.renderRecentDocs = renderRecentDocs;
+
+    const demoDocs = [
+      { title: 'Comprobante de pago', date: 'Mar 08, 2024', type: 'PDF', href: '#' },
+      { title: 'Póliza Auto 2024', date: 'Feb 22, 2024', type: 'DOC', href: '#' },
+      { title: 'Endoso Hogar', date: 'Feb 10, 2024', type: 'PDF', href: '#' }
+    ];
+
+    renderRecentDocs(window.dashboardData?.recentDocs || demoDocs);
+
+    // Hero user name from session data
+    const heroUser = document.querySelector('[data-hero-user]');
+    const nameFromData = window.dashboardData?.user?.name || window.dashboardData?.user?.fullName;
+    if (heroUser) {
+      heroUser.textContent = nameFromData || 'Usuario';
+    }
+
+    // Load dashboard data from backend API
+    if (typeof loadClientDashboard === 'function') {
+      loadClientDashboard().catch(error => {
+        console.error('Error loading client dashboard:', error);
+      });
+    }
   });
 </script>

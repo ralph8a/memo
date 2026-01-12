@@ -12,9 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Aptos+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="dev-banner" style="position:fixed;top:0;left:0;right:0;z-index:9999;padding:10px 14px;background:linear-gradient(90deg,#631832,#401a59);color:#fff;font-weight:700;font-size:14px;text-align:center;letter-spacing:0.3px;box-shadow:0 2px 10px rgba(0,0,0,0.25);">
-    🚧 PROXIMAMENTE · Ambiente de desarrollo (GoDaddy staging)
-  </div>
   <!-- Particles Background -->
   <canvas id="particles-canvas"></canvas>
   
@@ -73,13 +70,7 @@
   <div class="loading-modal" id="loadingModal" role="dialog" aria-modal="true" aria-label="Cargando">
     <div class="modal-card">
       <div class="logo-and-info">
-        <svg class="shield-svg krause-shield" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-          <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" />
-          <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" />
-          <path class="shield-arc" d="M24 50 Q40 30 56 50" />
-          <line class="shield-line" x1="40" y1="50" x2="40" y2="68" />
-          <circle class="shield-center" cx="40" cy="40" r="6" />
-        </svg>
+        <div class="logo-slot logo-slot-modal" data-logo-size="lg" data-logo-contrast="primary"></div>
 
         <div class="modal-info">
           <h2 id="loading-title">Preparando tu experiencia</h2>

@@ -1,5 +1,19 @@
 // Dashboard Data Loaders - Backend Integration
-import { apiService, API_CONFIG } from '../api-integration.js';
+import {
+    apiService,
+    API_CONFIG,
+    getClientDashboardData,
+    getClientPayments,
+    getClientPolicies,
+    getClientClaims,
+    getClientDocuments,
+    getAgentDashboardData,
+    getAgentClients,
+    getAgentStats,
+    getAdminDashboardData,
+    getAdminStats,
+    getAdminActivity
+} from '../api-integration.js';
 import { showNotification } from './notifications.js';
 import { NOTIFICATION_TYPES } from '../utils/constants.js';
 
