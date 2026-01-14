@@ -17901,14 +17901,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   fileClaim: () => (/* binding */ fileClaim),
 /* harmony export */   filterByClient: () => (/* binding */ filterByClient),
 /* harmony export */   makePayment: () => (/* binding */ makePayment),
+/* harmony export */   openCommissionsModal: () => (/* binding */ openCommissionsModal),
+/* harmony export */   openSalesModal: () => (/* binding */ openSalesModal),
 /* harmony export */   scheduleAppointment: () => (/* binding */ scheduleAppointment),
 /* harmony export */   submitAppointment: () => (/* binding */ submitAppointment),
 /* harmony export */   submitClaim: () => (/* binding */ submitClaim),
 /* harmony export */   submitInfoUpdate: () => (/* binding */ submitInfoUpdate),
 /* harmony export */   submitPayment: () => (/* binding */ submitPayment),
+/* harmony export */   submitPolicyDocumentUpload: () => (/* binding */ submitPolicyDocumentUpload),
 /* harmony export */   submitPolicyUpload: () => (/* binding */ submitPolicyUpload),
 /* harmony export */   switchClientTab: () => (/* binding */ switchClientTab),
 /* harmony export */   updateInfo: () => (/* binding */ updateInfo),
+/* harmony export */   uploadPolicyDocument: () => (/* binding */ uploadPolicyDocument),
 /* harmony export */   viewClientDetails: () => (/* binding */ viewClientDetails),
 /* harmony export */   viewPolicy: () => (/* binding */ viewPolicy)
 /* harmony export */ });
@@ -17965,9 +17969,10 @@ function _makePayment() {
           modal.className = 'app-modal-overlay';
           modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Subir Comprobante de Pago</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"payment-form\" onsubmit=\"window.dashboardActions?.submitPayment(event)\" data-policy=\"".concat(policyId || '', "\" data-schedule=\"").concat(scheduleId || '', "\">\n          <div class=\"form-group\">\n            <label for=\"payment-proof-file\">Comprobante de pago</label>\n            <input type=\"file\" id=\"payment-proof-file\" accept=\"image/*,.pdf\" required>\n            <small>Formatos aceptados: JPG, PNG, PDF (m\xE1x 5MB)</small>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"payment-reference\">Referencia de pago (opcional)</label>\n            <input type=\"text\" id=\"payment-reference\" placeholder=\"N\xFAmero de referencia o folio\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"payment-notes\">Notas adicionales (opcional)</label>\n            <textarea id=\"payment-notes\" rows=\"3\" placeholder=\"Informaci\xF3n adicional sobre el pago\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Subir comprobante</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ");
           document.body.appendChild(modal);
-          modal.addEventListener('click', function (e) {
-            if (e.target === modal) modal.remove();
-          });
+          // Prevenir cierre accidental - solo cerrar con botón X o Cancelar
+          setTimeout(function () {
+            return modal.classList.add('active');
+          }, 10);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Sube tu comprobante de pago para validación', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
         case 1:
           return _context.a(2);
@@ -18217,7 +18222,7 @@ function submitPayment(_x2) {
 function _submitPayment() {
   _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(event) {
     var _document$getElementB2, _document$getElementB3;
-    var form, policyId, scheduleId, file, reference, _window$appHandlers, result, _t2;
+    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t2;
     return _regenerator().w(function (_context4) {
       while (1) switch (_context4.p = _context4.n) {
         case 0:
@@ -18244,7 +18249,7 @@ function _submitPayment() {
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Comprobante subido. Estará en revisión pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
 
           // Refrescar dashboard si es posible
-          if ((_window$appHandlers = window.appHandlers) !== null && _window$appHandlers !== void 0 && _window$appHandlers.refreshDashboard) {
+          if ((_window$appHandlers2 = window.appHandlers) !== null && _window$appHandlers2 !== void 0 && _window$appHandlers2.refreshDashboard) {
             setTimeout(function () {
               return window.appHandlers.refreshDashboard();
             }, 1000);
@@ -18281,7 +18286,7 @@ function submitClaim(_x3) {
  */
 function _submitClaim() {
   _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(event) {
-    var form, formData, _window$appHandlers2, claimNumber, _t3;
+    var form, formData, _window$appHandlers3, claimNumber, _t3;
     return _regenerator().w(function (_context5) {
       while (1) switch (_context5.p = _context5.n) {
         case 0:
@@ -18300,7 +18305,7 @@ function _submitClaim() {
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("Siniestro registrado. N\xFAmero: ".concat(claimNumber), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
 
           // Refrescar dashboard
-          if ((_window$appHandlers2 = window.appHandlers) !== null && _window$appHandlers2 !== void 0 && _window$appHandlers2.refreshDashboard) {
+          if ((_window$appHandlers3 = window.appHandlers) !== null && _window$appHandlers3 !== void 0 && _window$appHandlers3.refreshDashboard) {
             setTimeout(function () {
               return window.appHandlers.refreshDashboard();
             }, 1000);
@@ -18328,7 +18333,7 @@ function submitPolicyUpload(_x4) {
  */
 function _submitPolicyUpload() {
   _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(event) {
-    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers3, formData, response, result, _t4;
+    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t4;
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
@@ -18432,7 +18437,7 @@ function _submitPolicyUpload() {
           }, 1000);
 
           // Refrescar dashboard
-          if ((_window$appHandlers3 = window.appHandlers) !== null && _window$appHandlers3 !== void 0 && _window$appHandlers3.refreshDashboard) {
+          if ((_window$appHandlers4 = window.appHandlers) !== null && _window$appHandlers4 !== void 0 && _window$appHandlers4.refreshDashboard) {
             setTimeout(function () {
               return window.appHandlers.refreshDashboard();
             }, 2000);
@@ -18485,7 +18490,7 @@ function confirmAndCreateClient(_x5) {
  */
 function _confirmAndCreateClient() {
   _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(tempFilePath) {
-    var confirmedData, _token, response, result, _window$appHandlers4, _t5;
+    var confirmedData, _token, response, result, _window$appHandlers5, _t5;
     return _regenerator().w(function (_context7) {
       while (1) switch (_context7.p = _context7.n) {
         case 0:
@@ -18525,7 +18530,7 @@ function _confirmAndCreateClient() {
           }
           document.querySelector('.app-modal-overlay').remove();
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cliente creado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
-          if ((_window$appHandlers4 = window.appHandlers) !== null && _window$appHandlers4 !== void 0 && _window$appHandlers4.refreshDashboard) {
+          if ((_window$appHandlers5 = window.appHandlers) !== null && _window$appHandlers5 !== void 0 && _window$appHandlers5.refreshDashboard) {
             setTimeout(function () {
               return window.appHandlers.refreshDashboard();
             }, 1000);
@@ -18573,6 +18578,78 @@ function submitAppointment(event) {
   }, 1000);
 }
 
+/**
+ * Abrir modal de ventas del mes con información completa
+ */
+function openSalesModal() {
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-lg\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">\uD83D\uDCCA Ventas del Mes - Enero 2026</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"stats-grid compact\" style=\"margin-bottom: 24px;\">\n          <div class=\"stat-card stat-success\">\n            <div class=\"stat-content\">\n              <div class=\"stat-label\">P\xF3lizas Vendidas</div>\n              <div class=\"stat-value\">18</div>\n              <div class=\"stat-trend positive\">+6 vs mes anterior</div>\n            </div>\n          </div>\n          <div class=\"stat-card stat-info\">\n            <div class=\"stat-content\">\n              <div class=\"stat-label\">Renovaciones</div>\n              <div class=\"stat-value\">12</div>\n              <div class=\"stat-trend positive\">+3 vs mes anterior</div>\n            </div>\n          </div>\n          <div class=\"stat-card stat-warning\">\n            <div class=\"stat-content\">\n              <div class=\"stat-label\">Cotizaciones</div>\n              <div class=\"stat-value\">25</div>\n              <div class=\"stat-trend positive\">+8 vs mes anterior</div>\n            </div>\n          </div>\n        </div>\n        \n        <h3 style=\"margin: 24px 0 16px;\">Detalle de Ventas</h3>\n        <table class=\"data-table\">\n          <thead>\n            <tr>\n              <th>Fecha</th>\n              <th>Cliente</th>\n              <th>Tipo</th>\n              <th>P\xF3liza</th>\n              <th>Prima Mensual</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td>12/01/2026</td>\n              <td>Mar\xEDa Gonz\xE1lez</td>\n              <td>Auto</td>\n              <td>AUTO-156</td>\n              <td>$350.00</td>\n            </tr>\n            <tr>\n              <td>10/01/2026</td>\n              <td>Pedro S\xE1nchez</td>\n              <td>Hogar</td>\n              <td>HOME-089</td>\n              <td>$280.00</td>\n            </tr>\n            <tr>\n              <td>08/01/2026</td>\n              <td>Ana Mart\xEDnez</td>\n              <td>Vida</td>\n              <td>LIFE-042</td>\n              <td>$520.00</td>\n            </tr>\n            <tr>\n              <td>05/01/2026</td>\n              <td>Luis Hern\xE1ndez</td>\n              <td>Auto</td>\n              <td>AUTO-157</td>\n              <td>$410.00</td>\n            </tr>\n          </tbody>\n        </table>\n        \n        <div class=\"form-actions\" style=\"margin-top: 24px;\">\n          <button class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cerrar</button>\n          <button class=\"btn btn-primary\" onclick=\"alert('Exportar a CSV')\">Exportar CSV</button>\n        </div>\n      </div>\n    </div>\n  ";
+  document.body.appendChild(modal);
+  setTimeout(function () {
+    return modal.classList.add('active');
+  }, 10);
+}
+
+/**
+ * Abrir modal de comisiones con información completa
+ */
+function openCommissionsModal() {
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-lg\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">\uD83D\uDCB0 Comisiones - Enero 2026</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"stats-grid compact\" style=\"margin-bottom: 24px;\">\n          <div class=\"stat-card stat-success\">\n            <div class=\"stat-content\">\n              <div class=\"stat-label\">Ganadas Este Mes</div>\n              <div class=\"stat-value\">$45,300</div>\n              <div class=\"stat-trend positive\">+12.4% vs mes anterior</div>\n            </div>\n          </div>\n          <div class=\"stat-card stat-warning\">\n            <div class=\"stat-content\">\n              <div class=\"stat-label\">Pendientes de Pago</div>\n              <div class=\"stat-value\">$8,500</div>\n              <div class=\"stat-trend\">En proceso</div>\n            </div>\n          </div>\n          <div class=\"stat-card stat-info\">\n            <div class=\"stat-content\">\n              <div class=\"stat-label\">Promedio Mensual</div>\n              <div class=\"stat-value\">$42,100</div>\n              <div class=\"stat-trend\">\xDAltimos 6 meses</div>\n            </div>\n          </div>\n        </div>\n        \n        <h3 style=\"margin: 24px 0 16px;\">Detalle de Comisiones</h3>\n        <table class=\"data-table\">\n          <thead>\n            <tr>\n              <th>P\xF3liza</th>\n              <th>Cliente</th>\n              <th>Prima</th>\n              <th>% Comisi\xF3n</th>\n              <th>Monto</th>\n              <th>Estado</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td>AUTO-156</td>\n              <td>Mar\xEDa Gonz\xE1lez</td>\n              <td>$350.00</td>\n              <td>15%</td>\n              <td>$52.50</td>\n              <td><span class=\"badge badge-success\">Pagada</span></td>\n            </tr>\n            <tr>\n              <td>HOME-089</td>\n              <td>Pedro S\xE1nchez</td>\n              <td>$280.00</td>\n              <td>12%</td>\n              <td>$33.60</td>\n              <td><span class=\"badge badge-success\">Pagada</span></td>\n            </tr>\n            <tr>\n              <td>LIFE-042</td>\n              <td>Ana Mart\xEDnez</td>\n              <td>$520.00</td>\n              <td>18%</td>\n              <td>$93.60</td>\n              <td><span class=\"badge badge-warning\">Pendiente</span></td>\n            </tr>\n            <tr>\n              <td>AUTO-157</td>\n              <td>Luis Hern\xE1ndez</td>\n              <td>$410.00</td>\n              <td>15%</td>\n              <td>$61.50</td>\n              <td><span class=\"badge badge-success\">Pagada</span></td>\n            </tr>\n          </tbody>\n        </table>\n        \n        <div class=\"form-actions\" style=\"margin-top: 24px;\">\n          <button class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cerrar</button>\n          <button class=\"btn btn-primary\" onclick=\"alert('Exportar a PDF')\">Exportar PDF</button>\n        </div>\n      </div>\n    </div>\n  ";
+  document.body.appendChild(modal);
+  setTimeout(function () {
+    return modal.classList.add('active');
+  }, 10);
+}
+
+/**
+ * Cargar póliza de cliente - Acción rápida con modal
+ */
+function uploadPolicyDocument() {
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">\uD83D\uDCC4 Cargar P\xF3liza de Cliente</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"info-box\" style=\"margin-bottom: 20px; padding: 12px; background: var(--surface-secondary); border-radius: 8px;\">\n          <p style=\"margin: 0; font-size: 14px; color: var(--text-secondary);\">\n            <strong>\u2139\uFE0F Extracci\xF3n autom\xE1tica:</strong> El sistema extraer\xE1 prima mensual, fechas de vigencia, periodicidad y aseguradora.\n          </p>\n        </div>\n        \n        <form id=\"policy-upload-form\" onsubmit=\"window.dashboardActions?.submitPolicyDocumentUpload?.(event)\">\n          <div class=\"form-group\">\n            <label for=\"upload-client-select\">Cliente</label>\n            <select id=\"upload-client-select\" name=\"client_id\" required>\n              <option value=\"\">Seleccionar cliente...</option>\n              <option value=\"CL-001\">Mar\xEDa Gonz\xE1lez</option>\n              <option value=\"CL-002\">Carlos Ruiz</option>\n              <option value=\"CL-003\">Ana Mart\xEDnez</option>\n              <option value=\"CL-004\">Luis Hern\xE1ndez</option>\n              <option value=\"CL-005\">Pedro S\xE1nchez</option>\n            </select>\n          </div>\n          \n          <div class=\"form-group\">\n            <label for=\"upload-policy-pdf\">Documento de P\xF3liza (PDF)</label>\n            <input type=\"file\" id=\"upload-policy-pdf\" name=\"policy_document\" accept=\".pdf\" required>\n            <small>Formato aceptado: PDF (m\xE1x 10MB)</small>\n          </div>\n          \n          <div id=\"upload-extraction-progress\" style=\"display: none; text-align: center; padding: 20px;\">\n            <div style=\"display: inline-block; width: 24px; height: 24px; border: 3px solid var(--accent-primary); border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;\"></div>\n            <p style=\"margin: 12px 0 0;\">Extrayendo datos de la p\xF3liza...</p>\n          </div>\n          \n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Subir y Procesar</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+  document.body.appendChild(modal);
+  setTimeout(function () {
+    return modal.classList.add('active');
+  }, 10);
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona el cliente y sube la póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Submit para carga de documento de póliza
+ */
+function submitPolicyDocumentUpload(event) {
+  event.preventDefault();
+  var form = event.target;
+  var clientSelect = document.getElementById('upload-client-select');
+  var fileInput = document.getElementById('upload-policy-pdf');
+  if (!(clientSelect !== null && clientSelect !== void 0 && clientSelect.value) || !(fileInput !== null && fileInput !== void 0 && fileInput.files[0])) {
+    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un cliente y un archivo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
+    return;
+  }
+  var progressDiv = document.getElementById('upload-extraction-progress');
+  progressDiv.style.display = 'block';
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Procesando póliza...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+
+  // Simular procesamiento
+  setTimeout(function () {
+    var _window$appHandlers;
+    progressDiv.style.display = 'none';
+    form.closest('.app-modal-overlay').remove();
+    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Póliza cargada y procesada exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+
+    // Refrescar dashboard
+    if ((_window$appHandlers = window.appHandlers) !== null && _window$appHandlers !== void 0 && _window$appHandlers.refreshDashboard) {
+      setTimeout(function () {
+        return window.appHandlers.refreshDashboard();
+      }, 1000);
+    }
+  }, 2000);
+}
+
 // Exponer todas las acciones globalmente
 if (typeof window !== 'undefined') {
   window.dashboardActions = {
@@ -18590,12 +18667,17 @@ if (typeof window !== 'undefined') {
     viewClientDetails: viewClientDetails,
     switchClientTab: switchClientTab,
     filterByClient: filterByClient,
+    // Agent dashboard modals
+    openSalesModal: openSalesModal,
+    openCommissionsModal: openCommissionsModal,
+    uploadPolicyDocument: uploadPolicyDocument,
     // Form submissions
     submitPayment: submitPayment,
     submitInfoUpdate: submitInfoUpdate,
     submitClaim: submitClaim,
     submitPolicyUpload: submitPolicyUpload,
-    submitAppointment: submitAppointment
+    submitAppointment: submitAppointment,
+    submitPolicyDocumentUpload: submitPolicyDocumentUpload
   };
 }
 

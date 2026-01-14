@@ -59,9 +59,8 @@ export async function makePayment(policyId = null, scheduleId = null) {
   `;
 
     document.body.appendChild(modal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
+    // Prevenir cierre accidental - solo cerrar con botón X o Cancelar
+    setTimeout(() => modal.classList.add('active'), 10);
 
     showNotification('Sube tu comprobante de pago para validación', NOTIFICATION_TYPES.INFO);
 }
@@ -898,6 +897,299 @@ export function submitAppointment(event) {
     }, 1000);
 }
 
+/**
+ * Abrir modal de ventas del mes con información completa
+ */
+export function openSalesModal() {
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay';
+    modal.innerHTML = `
+    <div class="app-modal app-modal-lg">
+      <div class="app-modal-header">
+        <h2 class="app-modal-title">📊 Ventas del Mes - Enero 2026</h2>
+        <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="app-modal-body">
+        <div class="stats-grid compact" style="margin-bottom: 24px;">
+          <div class="stat-card stat-success">
+            <div class="stat-content">
+              <div class="stat-label">Pólizas Vendidas</div>
+              <div class="stat-value">18</div>
+              <div class="stat-trend positive">+6 vs mes anterior</div>
+            </div>
+          </div>
+          <div class="stat-card stat-info">
+            <div class="stat-content">
+              <div class="stat-label">Renovaciones</div>
+              <div class="stat-value">12</div>
+              <div class="stat-trend positive">+3 vs mes anterior</div>
+            </div>
+          </div>
+          <div class="stat-card stat-warning">
+            <div class="stat-content">
+              <div class="stat-label">Cotizaciones</div>
+              <div class="stat-value">25</div>
+              <div class="stat-trend positive">+8 vs mes anterior</div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 style="margin: 24px 0 16px;">Detalle de Ventas</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Cliente</th>
+              <th>Tipo</th>
+              <th>Póliza</th>
+              <th>Prima Mensual</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12/01/2026</td>
+              <td>María González</td>
+              <td>Auto</td>
+              <td>AUTO-156</td>
+              <td>$350.00</td>
+            </tr>
+            <tr>
+              <td>10/01/2026</td>
+              <td>Pedro Sánchez</td>
+              <td>Hogar</td>
+              <td>HOME-089</td>
+              <td>$280.00</td>
+            </tr>
+            <tr>
+              <td>08/01/2026</td>
+              <td>Ana Martínez</td>
+              <td>Vida</td>
+              <td>LIFE-042</td>
+              <td>$520.00</td>
+            </tr>
+            <tr>
+              <td>05/01/2026</td>
+              <td>Luis Hernández</td>
+              <td>Auto</td>
+              <td>AUTO-157</td>
+              <td>$410.00</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="form-actions" style="margin-top: 24px;">
+          <button class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cerrar</button>
+          <button class="btn btn-primary" onclick="alert('Exportar a CSV')">Exportar CSV</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('active'), 10);
+}
+
+/**
+ * Abrir modal de comisiones con información completa
+ */
+export function openCommissionsModal() {
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay';
+    modal.innerHTML = `
+    <div class="app-modal app-modal-lg">
+      <div class="app-modal-header">
+        <h2 class="app-modal-title">💰 Comisiones - Enero 2026</h2>
+        <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="app-modal-body">
+        <div class="stats-grid compact" style="margin-bottom: 24px;">
+          <div class="stat-card stat-success">
+            <div class="stat-content">
+              <div class="stat-label">Ganadas Este Mes</div>
+              <div class="stat-value">$45,300</div>
+              <div class="stat-trend positive">+12.4% vs mes anterior</div>
+            </div>
+          </div>
+          <div class="stat-card stat-warning">
+            <div class="stat-content">
+              <div class="stat-label">Pendientes de Pago</div>
+              <div class="stat-value">$8,500</div>
+              <div class="stat-trend">En proceso</div>
+            </div>
+          </div>
+          <div class="stat-card stat-info">
+            <div class="stat-content">
+              <div class="stat-label">Promedio Mensual</div>
+              <div class="stat-value">$42,100</div>
+              <div class="stat-trend">Últimos 6 meses</div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 style="margin: 24px 0 16px;">Detalle de Comisiones</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Póliza</th>
+              <th>Cliente</th>
+              <th>Prima</th>
+              <th>% Comisión</th>
+              <th>Monto</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AUTO-156</td>
+              <td>María González</td>
+              <td>$350.00</td>
+              <td>15%</td>
+              <td>$52.50</td>
+              <td><span class="badge badge-success">Pagada</span></td>
+            </tr>
+            <tr>
+              <td>HOME-089</td>
+              <td>Pedro Sánchez</td>
+              <td>$280.00</td>
+              <td>12%</td>
+              <td>$33.60</td>
+              <td><span class="badge badge-success">Pagada</span></td>
+            </tr>
+            <tr>
+              <td>LIFE-042</td>
+              <td>Ana Martínez</td>
+              <td>$520.00</td>
+              <td>18%</td>
+              <td>$93.60</td>
+              <td><span class="badge badge-warning">Pendiente</span></td>
+            </tr>
+            <tr>
+              <td>AUTO-157</td>
+              <td>Luis Hernández</td>
+              <td>$410.00</td>
+              <td>15%</td>
+              <td>$61.50</td>
+              <td><span class="badge badge-success">Pagada</span></td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="form-actions" style="margin-top: 24px;">
+          <button class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cerrar</button>
+          <button class="btn btn-primary" onclick="alert('Exportar a PDF')">Exportar PDF</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('active'), 10);
+}
+
+/**
+ * Cargar póliza de cliente - Acción rápida con modal
+ */
+export function uploadPolicyDocument() {
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay';
+    modal.innerHTML = `
+    <div class="app-modal app-modal-md">
+      <div class="app-modal-header">
+        <h2 class="app-modal-title">📄 Cargar Póliza de Cliente</h2>
+        <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="app-modal-body">
+        <div class="info-box" style="margin-bottom: 20px; padding: 12px; background: var(--surface-secondary); border-radius: 8px;">
+          <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">
+            <strong>ℹ️ Extracción automática:</strong> El sistema extraerá prima mensual, fechas de vigencia, periodicidad y aseguradora.
+          </p>
+        </div>
+        
+        <form id="policy-upload-form" onsubmit="window.dashboardActions?.submitPolicyDocumentUpload?.(event)">
+          <div class="form-group">
+            <label for="upload-client-select">Cliente</label>
+            <select id="upload-client-select" name="client_id" required>
+              <option value="">Seleccionar cliente...</option>
+              <option value="CL-001">María González</option>
+              <option value="CL-002">Carlos Ruiz</option>
+              <option value="CL-003">Ana Martínez</option>
+              <option value="CL-004">Luis Hernández</option>
+              <option value="CL-005">Pedro Sánchez</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="upload-policy-pdf">Documento de Póliza (PDF)</label>
+            <input type="file" id="upload-policy-pdf" name="policy_document" accept=".pdf" required>
+            <small>Formato aceptado: PDF (máx 10MB)</small>
+          </div>
+          
+          <div id="upload-extraction-progress" style="display: none; text-align: center; padding: 20px;">
+            <div style="display: inline-block; width: 24px; height: 24px; border: 3px solid var(--accent-primary); border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+            <p style="margin: 12px 0 0;">Extrayendo datos de la póliza...</p>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Subir y Procesar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('active'), 10);
+    showNotification('Selecciona el cliente y sube la póliza', NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Submit para carga de documento de póliza
+ */
+export function submitPolicyDocumentUpload(event) {
+    event.preventDefault();
+    const form = event.target;
+    const clientSelect = document.getElementById('upload-client-select');
+    const fileInput = document.getElementById('upload-policy-pdf');
+
+    if (!clientSelect?.value || !fileInput?.files[0]) {
+        showNotification('Selecciona un cliente y un archivo', NOTIFICATION_TYPES.WARNING);
+        return;
+    }
+
+    const progressDiv = document.getElementById('upload-extraction-progress');
+    progressDiv.style.display = 'block';
+
+    showNotification('Procesando póliza...', NOTIFICATION_TYPES.INFO);
+
+    // Simular procesamiento
+    setTimeout(() => {
+        progressDiv.style.display = 'none';
+        form.closest('.app-modal-overlay').remove();
+        showNotification('Póliza cargada y procesada exitosamente', NOTIFICATION_TYPES.SUCCESS);
+
+        // Refrescar dashboard
+        if (window.appHandlers?.refreshDashboard) {
+            setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
+        }
+    }, 2000);
+}
+
 // Exponer todas las acciones globalmente
 if (typeof window !== 'undefined') {
     window.dashboardActions = {
@@ -917,11 +1209,17 @@ if (typeof window !== 'undefined') {
         switchClientTab,
         filterByClient,
 
+        // Agent dashboard modals
+        openSalesModal,
+        openCommissionsModal,
+        uploadPolicyDocument,
+
         // Form submissions
         submitPayment,
         submitInfoUpdate,
         submitClaim,
         submitPolicyUpload,
         submitAppointment,
+        submitPolicyDocumentUpload,
     };
 }
