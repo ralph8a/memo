@@ -503,7 +503,8 @@ function updateClientStats(stats) {
 }
 function renderClientPolicies(policies) {
   var container = document.querySelector('.policies-list');
-  if (!container || !policies || policies.length === 0) {
+  if (!container) return;
+  if (!policies || policies.length === 0) {
     container.innerHTML = '<p class="empty-state">No tienes pólizas activas</p>';
     return;
   }
@@ -515,10 +516,38 @@ function renderClientPolicies(policies) {
     'business': '🏢',
     'other': '📄'
   };
+
+  // Normaliza claves del backend (type vs policy_type)
   var html = policies.map(function (policy) {
-    return "\n    <div class=\"policy-item\" data-policy-id=\"".concat(policy.id, "\">\n      <div class=\"policy-icon\">").concat(policyIcons[policy.policy_type] || '📄', "</div>\n      <div class=\"policy-info\">\n        <h4>Seguro de ").concat(getPolicyTypeName(policy.policy_type), "</h4>\n        <p>P\xF3liza #").concat(policy.policy_number, "</p>\n        <div class=\"policy-meta\">\n          <span class=\"badge badge-").concat(policy.status === 'active' ? 'success' : 'warning', "\">\n            ").concat(policy.status, "\n          </span>\n          <span>Vence: ").concat(new Date(policy.end_date || policy.renewal_date).toLocaleDateString(), "</span>\n        </div>\n      </div>\n      <div class=\"policy-actions\">\n        <button class=\"btn btn-sm btn-outline\" onclick=\"window.appHandlers.viewPolicy('").concat(policy.id, "')\">\n          Ver Detalles\n        </button>\n      </div>\n    </div>\n  ");
+    var policyType = policy.policy_type || policy.type || 'other';
+    var endDate = policy.end_date || policy.renewal_date;
+    var status = (policy.status || 'active').toLowerCase();
+    return "\n                <div class=\"policy-item\" data-policy-id=\"".concat(policy.id, "\" data-policy-number=\"").concat(policy.policy_number, "\">\n                    <div class=\"policy-icon\">").concat(policyIcons[policyType] || '📄', "</div>\n                    <div class=\"policy-info\">\n                        <h4>Seguro de ").concat(getPolicyTypeName(policyType), "</h4>\n                        <p>P\xF3liza #").concat(policy.policy_number, "</p>\n                        <div class=\"policy-meta\">\n                            <span class=\"badge badge-").concat(status === 'active' ? 'success' : status === 'expired' ? 'danger' : 'warning', "\">\n                                ").concat(status, "\n                            </span>\n                            <span>").concat(endDate ? 'Vence: ' + new Date(endDate).toLocaleDateString() : '', "</span>\n                        </div>\n                    </div>\n                    <div class=\"policy-actions\">\n                        <button class=\"btn btn-sm btn-outline\" data-action=\"view-policy\" data-policy-id=\"").concat(policy.id, "\">\n                            Ver Detalles\n                        </button>\n                    </div>\n                </div>");
   }).join('');
   container.innerHTML = html;
+
+  // Bind clicks a cada póliza
+  container.querySelectorAll('[data-action="view-policy"]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var _window$appHandlers;
+      var policyId = e.currentTarget.dataset.policyId;
+      if ((_window$appHandlers = window.appHandlers) !== null && _window$appHandlers !== void 0 && _window$appHandlers.viewPolicy) {
+        window.appHandlers.viewPolicy(policyId);
+      }
+    });
+  });
+
+  // Permitir click en todo el item
+  container.querySelectorAll('.policy-item').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      var _window$appHandlers2;
+      if (e.target.closest('button')) return;
+      var policyId = item.dataset.policyId;
+      if ((_window$appHandlers2 = window.appHandlers) !== null && _window$appHandlers2 !== void 0 && _window$appHandlers2.viewPolicy) {
+        window.appHandlers.viewPolicy(policyId);
+      }
+    });
+  });
 }
 function renderClientClaims(claims) {
   var container = document.querySelector('[data-client-claims-list]');
@@ -540,7 +569,7 @@ function renderPaymentHistory(payments) {
     return;
   }
   var html = payments.slice(0, 10).map(function (payment) {
-    return "\n    <div class=\"payment-item\" data-payment-id=\"".concat(payment.id, "\">\n      <div class=\"payment-info\">\n        <p class=\"payment-date\">").concat(new Date(payment.payment_date).toLocaleDateString(), "</p>\n        <p class=\"payment-amount\">$").concat(parseFloat(payment.amount).toFixed(2), "</p>\n        <span class=\"badge badge-").concat(payment.status === 'completed' ? 'success' : 'warning', "\">\n          ").concat(payment.status, "\n        </span>\n      </div>\n    </div>\n  ");
+    return "\n    <div class=\"payment-item\" data-payment-id=\"".concat(payment.id, "\">\n      <div class=\"payment-info\">\n                <p class=\"payment-date\">").concat(new Date(payment.payment_date || payment.date).toLocaleDateString(), "</p>\n        <p class=\"payment-amount\">$").concat(parseFloat(payment.amount).toFixed(2), "</p>\n        <span class=\"badge badge-").concat(payment.status === 'completed' ? 'success' : 'warning', "\">\n          ").concat(payment.status, "\n        </span>\n      </div>\n    </div>\n  ");
   }).join('');
   container.innerHTML = html;
 }

@@ -17921,6 +17921,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _simpleRouter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./simpleRouter.js */ "./src/modules/simpleRouter.js");
 /* harmony import */ var _quoteFlow_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./quoteFlow.js */ "./src/modules/quoteFlow.js");
 /* harmony import */ var _paymentIntegration_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./paymentIntegration.js */ "./src/modules/paymentIntegration.js");
+/* harmony import */ var _api_integration_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../api-integration.js */ "./src/api-integration.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -17936,6 +17943,18 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 
 
+
+var POLICY_TYPE_LABELS = {
+  'auto': 'Auto',
+  'home': 'Hogar',
+  'life': 'Vida',
+  'health': 'Salud',
+  'business': 'Comercial',
+  'other': 'Otro'
+};
+function formatPolicyType(type) {
+  return POLICY_TYPE_LABELS[type] || type || 'Póliza';
+}
 
 // Initialize Payment API
 var paymentAPI = new _paymentIntegration_js__WEBPACK_IMPORTED_MODULE_4__.PaymentAPI();
@@ -18074,20 +18093,93 @@ function contactAgent() {
  * Ver detalles de póliza
  */
 function viewPolicy() {
-  var policyId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var modal = document.createElement('div');
-  modal.className = 'app-modal-overlay';
-  modal.innerHTML = "\n    <div class=\"app-modal app-modal-lg\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Detalles de P\xF3liza ".concat(policyId || 'POL-001', "</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"policy-details-grid\">\n          <div class=\"detail-section\">\n            <h3>Informaci\xF3n General</h3>\n            <dl>\n              <dt>N\xFAmero de p\xF3liza:</dt><dd>").concat(policyId || 'POL-001', "</dd>\n              <dt>Tipo:</dt><dd>Auto</dd>\n              <dt>Estado:</dt><dd><span class=\"badge badge-success\">Activa</span></dd>\n              <dt>Prima mensual:</dt><dd>$350.00</dd>\n            </dl>\n          </div>\n          <div class=\"detail-section\">\n            <h3>Cobertura</h3>\n            <ul>\n              <li>Responsabilidad civil: $1,000,000</li>\n              <li>Da\xF1os materiales: $500,000</li>\n              <li>Robo total: Valor comercial</li>\n              <li>Gastos m\xE9dicos: $100,000</li>\n            </ul>\n          </div>\n          <div class=\"detail-section\">\n            <h3>Veh\xEDculo Asegurado</h3>\n            <dl>\n              <dt>Marca/Modelo:</dt><dd>Toyota Camry 2020</dd>\n              <dt>Placas:</dt><dd>ABC-123-XYZ</dd>\n              <dt>VIN:</dt><dd>1HGBH41JXMN109186</dd>\n            </dl>\n          </div>\n        </div>\n        <div class=\"form-actions\">\n          <button class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cerrar</button>\n          <button class=\"btn btn-primary\" onclick=\"window.dashboardActions?.makePayment('").concat(policyId || 'POL-001', "')\">Realizar pago</button>\n        </div>\n      </div>\n    </div>\n  ");
-  document.body.appendChild(modal);
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) modal.remove();
-  });
-  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Detalles de póliza cargados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+  return _viewPolicy.apply(this, arguments);
 }
 
 /**
  * Presentar siniestro
  */
+function _viewPolicy() {
+  _viewPolicy = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+    var policyId,
+      _window$dashboardData,
+      policies,
+      policy,
+      policyType,
+      status,
+      premium,
+      coverage,
+      startDate,
+      endDate,
+      modal,
+      _args3 = arguments,
+      _t2;
+    return _regenerator().w(function (_context3) {
+      while (1) switch (_context3.p = _context3.n) {
+        case 0:
+          policyId = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : null;
+          _context3.p = 1;
+          if (policyId) {
+            _context3.n = 2;
+            break;
+          }
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona una póliza para ver detalles', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
+          return _context3.a(2);
+        case 2:
+          // Buscar en cache de dashboard
+          policies = ((_window$dashboardData = window.dashboardData) === null || _window$dashboardData === void 0 ? void 0 : _window$dashboardData.policies) || [];
+          if (policies.length) {
+            _context3.n = 4;
+            break;
+          }
+          _context3.n = 3;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_5__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_5__.API_CONFIG.ENDPOINTS.CLIENT_POLICIES, {
+            method: 'GET'
+          });
+        case 3:
+          policies = _context3.v;
+          window.dashboardData = _objectSpread(_objectSpread({}, window.dashboardData || {}), {}, {
+            policies: policies
+          });
+        case 4:
+          policy = policies.find(function (p) {
+            return String(p.id) === String(policyId);
+          });
+          if (policy) {
+            _context3.n = 5;
+            break;
+          }
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se encontró la póliza seleccionada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          return _context3.a(2);
+        case 5:
+          policyType = policy.policy_type || policy.type || 'other';
+          status = (policy.status || '').toLowerCase();
+          premium = policy.premium_amount || policy.premium || 0;
+          coverage = policy.coverage_amount || 0;
+          startDate = policy.start_date ? new Date(policy.start_date).toLocaleDateString() : '—';
+          endDate = policy.end_date ? new Date(policy.end_date).toLocaleDateString() : policy.renewal_date ? new Date(policy.renewal_date).toLocaleDateString() : '—';
+          modal = document.createElement('div');
+          modal.className = 'app-modal-overlay';
+          modal.innerHTML = "\n        <div class=\"app-modal app-modal-lg\">\n          <div class=\"app-modal-header\">\n            <h2 class=\"app-modal-title\">P\xF3liza #".concat(policy.policy_number, "</h2>\n            <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n              </svg>\n            </button>\n          </div>\n          <div class=\"app-modal-body\">\n            <div class=\"policy-details-grid\">\n              <div class=\"detail-section\">\n                <h3>Informaci\xF3n General</h3>\n                <dl>\n                  <dt>Tipo:</dt><dd>").concat(formatPolicyType(policyType), "</dd>\n                  <dt>Estado:</dt><dd><span class=\"badge badge-").concat(status === 'active' ? 'success' : status === 'expired' ? 'danger' : 'warning', "\">").concat(status || '—', "</span></dd>\n                  <dt>Prima mensual:</dt><dd>").concat(premium ? "$".concat(Number(premium).toFixed(2)) : '—', "</dd>\n                  <dt>Vigencia:</dt><dd>").concat(startDate, " - ").concat(endDate, "</dd>\n                </dl>\n              </div>\n              <div class=\"detail-section\">\n                <h3>Cobertura</h3>\n                <ul>\n                  <li>Cobertura: ").concat(coverage ? "$".concat(Number(coverage).toLocaleString()) : '—', "</li>\n                  <li>Renovaci\xF3n: ").concat(endDate, "</li>\n                  <li>Agente: ").concat(policy.agent_name || '—', " (").concat(policy.agent_email || '—', ")</li>\n                  <li>Contacto: ").concat(policy.agent_phone || '—', "</li>\n                </ul>\n              </div>\n              <div class=\"detail-section\">\n                <h3>Acciones</h3>\n                <p>Puedes subir comprobantes, consultar pagos o descargar documentos.</p>\n                <div class=\"pill-actions\" style=\"gap:8px;\">\n                  <button class=\"btn btn-sm\" onclick=\"window.dashboardActions?.makePayment('").concat(policyId, "')\">Subir comprobante</button>\n                  <button class=\"btn btn-sm btn-outline\" onclick=\"window.appHandlers?.downloadPaymentHistory?.()\">Historial de pagos</button>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      ");
+          document.body.appendChild(modal);
+          modal.addEventListener('click', function (e) {
+            if (e.target === modal) modal.remove();
+          });
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Detalles de póliza cargados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+          _context3.n = 7;
+          break;
+        case 6:
+          _context3.p = 6;
+          _t2 = _context3.v;
+          console.error('Error al cargar póliza:', _t2);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se pudo cargar la póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+        case 7:
+          return _context3.a(2);
+      }
+    }, _callee3, null, [[1, 6]]);
+  }));
+  return _viewPolicy.apply(this, arguments);
+}
 function fileClaim() {
   var modal = document.createElement('div');
   modal.className = 'app-modal-overlay';
@@ -18153,10 +18245,10 @@ function viewClientDetails(_x) {
  * Cambiar entre tabs del modal de detalles de cliente
  */
 function _viewClientDetails() {
-  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(clientId) {
+  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(clientId) {
     var modal;
-    return _regenerator().w(function (_context3) {
-      while (1) switch (_context3.n) {
+    return _regenerator().w(function (_context4) {
+      while (1) switch (_context4.n) {
         case 0:
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
 
@@ -18173,9 +18265,9 @@ function _viewClientDetails() {
           // Por ahora usa datos de ejemplo
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("Detalles del cliente ".concat(clientId, " cargados"), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
         case 1:
-          return _context3.a(2);
+          return _context4.a(2);
       }
-    }, _callee3);
+    }, _callee4);
   }));
   return _viewClientDetails.apply(this, arguments);
 }
@@ -18220,11 +18312,11 @@ function submitPayment(_x2) {
   return _submitPayment.apply(this, arguments);
 }
 function _submitPayment() {
-  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(event) {
+  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(event) {
     var _document$getElementB2, _document$getElementB3;
-    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t2;
-    return _regenerator().w(function (_context4) {
-      while (1) switch (_context4.p = _context4.n) {
+    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t3;
+    return _regenerator().w(function (_context5) {
+      while (1) switch (_context5.p = _context5.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -18233,18 +18325,18 @@ function _submitPayment() {
           file = (_document$getElementB2 = document.getElementById('payment-proof-file')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.files[0];
           reference = ((_document$getElementB3 = document.getElementById('payment-reference')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value) || '';
           if (file) {
-            _context4.n = 1;
+            _context5.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context4.a(2);
+          return _context5.a(2);
         case 1:
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Subiendo comprobante...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context4.p = 2;
-          _context4.n = 3;
+          _context5.p = 2;
+          _context5.n = 3;
           return paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
         case 3:
-          result = _context4.v;
+          result = _context5.v;
           form.closest('.app-modal-overlay').remove();
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Comprobante subido. Estará en revisión pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
 
@@ -18254,17 +18346,17 @@ function _submitPayment() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context4.n = 5;
+          _context5.n = 5;
           break;
         case 4:
-          _context4.p = 4;
-          _t2 = _context4.v;
-          console.error('Error uploading payment proof:', _t2);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t2.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context5.p = 4;
+          _t3 = _context5.v;
+          console.error('Error uploading payment proof:', _t3);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t3.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 5:
-          return _context4.a(2);
+          return _context5.a(2);
       }
-    }, _callee4, null, [[2, 4]]);
+    }, _callee5, null, [[2, 4]]);
   }));
   return _submitPayment.apply(this, arguments);
 }
@@ -18285,17 +18377,17 @@ function submitClaim(_x3) {
  * Subir póliza y crear cliente automáticamente
  */
 function _submitClaim() {
-  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(event) {
-    var form, formData, _window$appHandlers3, claimNumber, _t3;
-    return _regenerator().w(function (_context5) {
-      while (1) switch (_context5.p = _context5.n) {
+  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(event) {
+    var form, formData, _window$appHandlers3, claimNumber, _t4;
+    return _regenerator().w(function (_context6) {
+      while (1) switch (_context6.p = _context6.n) {
         case 0:
           event.preventDefault();
           form = event.target;
           formData = new FormData(form);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Enviando siniestro...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context5.p = 1;
-          _context5.n = 2;
+          _context6.p = 1;
+          _context6.n = 2;
           return new Promise(function (resolve) {
             return setTimeout(resolve, 1500);
           });
@@ -18310,17 +18402,17 @@ function _submitClaim() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context5.n = 4;
+          _context6.n = 4;
           break;
         case 3:
-          _context5.p = 3;
-          _t3 = _context5.v;
-          console.error('Error submitting claim:', _t3);
+          _context6.p = 3;
+          _t4 = _context6.v;
+          console.error('Error submitting claim:', _t4);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al enviar siniestro', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context5.a(2);
+          return _context6.a(2);
       }
-    }, _callee5, null, [[1, 3]]);
+    }, _callee6, null, [[1, 3]]);
   }));
   return _submitClaim.apply(this, arguments);
 }
@@ -18332,10 +18424,10 @@ function submitPolicyUpload(_x4) {
  * Mostrar datos extraídos para confirmación (cuando confianza es baja)
  */
 function _submitPolicyUpload() {
-  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(event) {
-    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t4;
-    return _regenerator().w(function (_context6) {
-      while (1) switch (_context6.p = _context6.n) {
+  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(event) {
+    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t5;
+    return _regenerator().w(function (_context7) {
+      while (1) switch (_context7.p = _context7.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -18344,29 +18436,29 @@ function _submitPolicyUpload() {
           file = fileInput === null || fileInput === void 0 ? void 0 : fileInput.files[0];
           clientEmail = emailInput === null || emailInput === void 0 ? void 0 : emailInput.value.trim();
           if (file) {
-            _context6.n = 1;
+            _context7.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo de póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context6.a(2);
+          return _context7.a(2);
         case 1:
           if (clientEmail) {
-            _context6.n = 2;
+            _context7.n = 2;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('El email del cliente es obligatorio', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context6.a(2);
+          return _context7.a(2);
         case 2:
           // Validar formato de email
           emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (emailRegex.test(clientEmail)) {
-            _context6.n = 3;
+            _context7.n = 3;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Por favor ingresa un email válido', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context6.a(2);
+          return _context7.a(2);
         case 3:
           // Mostrar progreso
           progressContainer = document.getElementById('upload-progress');
@@ -18375,7 +18467,7 @@ function _submitPolicyUpload() {
           submitBtn = document.getElementById('submit-policy-btn');
           progressContainer.style.display = 'block';
           submitBtn.disabled = true;
-          _context6.p = 4;
+          _context7.p = 4;
           // Preparar FormData
           formData = new FormData();
           formData.append('policy_file', file);
@@ -18383,7 +18475,7 @@ function _submitPolicyUpload() {
           // Enviar al backend
           progressText.textContent = 'Subiendo documento...';
           progressFill.style.width = '30%';
-          _context6.n = 5;
+          _context7.n = 5;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -18392,36 +18484,36 @@ function _submitPolicyUpload() {
             body: formData
           });
         case 5:
-          response = _context6.v;
+          response = _context7.v;
           progressFill.style.width = '60%';
           progressText.textContent = 'Analizando documento...';
-          _context6.n = 6;
+          _context7.n = 6;
           return response.json();
         case 6:
-          result = _context6.v;
+          result = _context7.v;
           progressFill.style.width = '100%';
           if (result.success) {
-            _context6.n = 7;
+            _context7.n = 7;
             break;
           }
           throw new Error(result.error || 'Error al procesar póliza');
         case 7:
           if (!result.requires_confirmation) {
-            _context6.n = 8;
+            _context7.n = 8;
             break;
           }
           showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
-          return _context6.a(2);
+          return _context7.a(2);
         case 8:
           if (!result.requires_manual_entry) {
-            _context6.n = 9;
+            _context7.n = 9;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se pudo extraer datos. Abriendo formulario manual...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           showManualEntryForm(result.temp_file_path);
-          return _context6.a(2);
+          return _context7.a(2);
         case 9:
           // Éxito
           form.closest('.app-modal-overlay').remove();
@@ -18442,19 +18534,19 @@ function _submitPolicyUpload() {
               return window.appHandlers.refreshDashboard();
             }, 2000);
           }
-          _context6.n = 11;
+          _context7.n = 11;
           break;
         case 10:
-          _context6.p = 10;
-          _t4 = _context6.v;
-          console.error('Error uploading policy:', _t4);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t4.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context7.p = 10;
+          _t5 = _context7.v;
+          console.error('Error uploading policy:', _t5);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t5.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
         case 11:
-          return _context6.a(2);
+          return _context7.a(2);
       }
-    }, _callee6, null, [[4, 10]]);
+    }, _callee7, null, [[4, 10]]);
   }));
   return _submitPolicyUpload.apply(this, arguments);
 }
@@ -18489,10 +18581,10 @@ function confirmAndCreateClient(_x5) {
  * Mostrar formulario de entrada manual
  */
 function _confirmAndCreateClient() {
-  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(tempFilePath) {
-    var confirmedData, _token, response, result, _window$appHandlers5, _t5;
-    return _regenerator().w(function (_context7) {
-      while (1) switch (_context7.p = _context7.n) {
+  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(tempFilePath) {
+    var confirmedData, _token, response, result, _window$appHandlers5, _t6;
+    return _regenerator().w(function (_context8) {
+      while (1) switch (_context8.p = _context8.n) {
         case 0:
           confirmedData = {
             client_email: document.getElementById('confirm-client-email').value,
@@ -18504,9 +18596,9 @@ function _confirmAndCreateClient() {
             payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
           };
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente con datos confirmados...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context7.p = 1;
+          _context8.p = 1;
           _token = sessionStorage.getItem('auth_token');
-          _context7.n = 2;
+          _context8.n = 2;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -18519,13 +18611,13 @@ function _confirmAndCreateClient() {
             })
           });
         case 2:
-          response = _context7.v;
-          _context7.n = 3;
+          response = _context8.v;
+          _context8.n = 3;
           return response.json();
         case 3:
-          result = _context7.v;
+          result = _context8.v;
           if (!result.success) {
-            _context7.n = 4;
+            _context8.n = 4;
             break;
           }
           document.querySelector('.app-modal-overlay').remove();
@@ -18535,21 +18627,21 @@ function _confirmAndCreateClient() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context7.n = 5;
+          _context8.n = 5;
           break;
         case 4:
           throw new Error(result.error);
         case 5:
-          _context7.n = 7;
+          _context8.n = 7;
           break;
         case 6:
-          _context7.p = 6;
-          _t5 = _context7.v;
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t5.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context8.p = 6;
+          _t6 = _context8.v;
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t6.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 7:
-          return _context7.a(2);
+          return _context8.a(2);
       }
-    }, _callee7, null, [[1, 6]]);
+    }, _callee8, null, [[1, 6]]);
   }));
   return _confirmAndCreateClient.apply(this, arguments);
 }
@@ -19458,6 +19550,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   NotificationModal: () => (/* binding */ NotificationModal)
 /* harmony export */ });
+/* harmony import */ var _paymentIntegration_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./paymentIntegration.js */ "./src/modules/paymentIntegration.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
@@ -19479,6 +19572,7 @@ var NotificationModal = /*#__PURE__*/function () {
     this.modal = null;
     this.notifications = [];
     this.unreadCount = 0;
+    this.paymentApi = null;
     this.init();
   }
   return _createClass(NotificationModal, [{
@@ -19544,17 +19638,17 @@ var NotificationModal = /*#__PURE__*/function () {
         return _regenerator().w(function (_context) {
           while (1) switch (_context.p = _context.n) {
             case 0:
-              _context.p = 0;
-              userType = localStorage.getItem('krauser_user') ? JSON.parse(localStorage.getItem('krauser_user')).type : 'client'; // Si existe PaymentAPI, obtener notificaciones de pagos
-              if (!window.PaymentAPI) {
-                _context.n = 2;
-                break;
+              // En producción, esto cargará desde el backend. Si falla, caemos a demo según rol.
+              userType = localStorage.getItem('krauser_user') ? JSON.parse(localStorage.getItem('krauser_user')).type : 'client';
+              _context.p = 1;
+              if (!this.paymentApi) {
+                this.paymentApi = new _paymentIntegration_js__WEBPACK_IMPORTED_MODULE_0__.PaymentAPI();
               }
-              _context.n = 1;
-              return window.PaymentAPI.getNotifications();
-            case 1:
+              _context.n = 2;
+              return this.paymentApi.getNotifications();
+            case 2:
               paymentNotifications = _context.v;
-              if (paymentNotifications.success) {
+              if (paymentNotifications !== null && paymentNotifications !== void 0 && paymentNotifications.success) {
                 this.notifications = paymentNotifications.notifications.map(function (n) {
                   return {
                     id: "payment-".concat(n.id),
@@ -19568,25 +19662,22 @@ var NotificationModal = /*#__PURE__*/function () {
                   };
                 });
               }
-            case 2:
-              // Agregar notificaciones de ejemplo si no hay del sistema
-              if (this.notifications.length === 0) {
-                this.notifications = this.getDemoNotifications(userType);
-              }
-              this.renderNotifications();
-              this.updateFilterCounts();
               _context.n = 4;
               break;
             case 3:
               _context.p = 3;
               _t = _context.v;
               console.error('Error loading notifications:', _t);
-              this.notifications = this.getDemoNotifications('client');
-              this.renderNotifications();
             case 4:
+              if (this.notifications.length === 0) {
+                this.notifications = this.getDemoNotifications(userType);
+              }
+              this.renderNotifications();
+              this.updateFilterCounts();
+            case 5:
               return _context.a(2);
           }
-        }, _callee, this, [[0, 3]]);
+        }, _callee, this, [[1, 3]]);
       }));
       function loadNotifications() {
         return _loadNotifications.apply(this, arguments);
@@ -19821,27 +19912,29 @@ var NotificationModal = /*#__PURE__*/function () {
         return n.id === notificationId;
       });
       if (notification) {
+        var _this$paymentApi;
         notification.read = true;
         this.renderNotifications();
 
         // Si es del sistema de pagos, marcar en backend
-        if (notificationId.startsWith('payment-') && window.PaymentAPI) {
+        if (notificationId.startsWith('payment-') && (_this$paymentApi = this.paymentApi) !== null && _this$paymentApi !== void 0 && _this$paymentApi.markNotificationAsRead) {
           var id = notificationId.replace('payment-', '');
-          window.PaymentAPI.markNotificationAsRead(id);
+          this.paymentApi.markNotificationAsRead(id);
         }
       }
     }
   }, {
     key: "markAllAsRead",
     value: function markAllAsRead() {
+      var _this$paymentApi2;
       this.notifications.forEach(function (n) {
         return n.read = true;
       });
       this.renderNotifications();
 
       // Marcar todas en backend si es necesario
-      if (window.PaymentAPI) {
-        window.PaymentAPI.markAllNotificationsAsRead();
+      if ((_this$paymentApi2 = this.paymentApi) !== null && _this$paymentApi2 !== void 0 && _this$paymentApi2.markAllNotificationsAsRead) {
+        this.paymentApi.markAllNotificationsAsRead();
       }
     }
   }, {
@@ -19866,8 +19959,8 @@ var NotificationModal = /*#__PURE__*/function () {
           break;
         case 'viewPolicy':
           // Ver detalles de póliza
-          if ((_window$appHandlers2 = window.appHandlers) !== null && _window$appHandlers2 !== void 0 && _window$appHandlers2.viewPolicyDetails) {
-            window.appHandlers.viewPolicyDetails(data.policyId);
+          if ((_window$appHandlers2 = window.appHandlers) !== null && _window$appHandlers2 !== void 0 && _window$appHandlers2.viewPolicy) {
+            window.appHandlers.viewPolicy(data.policyId);
           }
           break;
         case 'viewComments':
@@ -20197,18 +20290,18 @@ function getProfile(themeKey) {
   if (themeKey === 'dark-forest') {
     return {
       style: 'fireflies',
-      maxCount: 42,
-      densityFactor: 38000,
-      minSize: 1.4,
-      maxSize: 3.2,
-      minSpeed: 0.01,
-      maxSpeed: 0.055,
-      minOpacity: 0.22,
-      maxOpacity: 0.55,
-      twinkleMin: 0.003,
-      twinkleMax: 0.012,
-      glowRadiusMin: 12,
-      glowRadiusMax: 26,
+      maxCount: 52,
+      densityFactor: 34000,
+      minSize: 1.6,
+      maxSize: 3.6,
+      minSpeed: 0.018,
+      maxSpeed: 0.08,
+      minOpacity: 0.32,
+      maxOpacity: 0.72,
+      twinkleMin: 0.004,
+      twinkleMax: 0.015,
+      glowRadiusMin: 14,
+      glowRadiusMax: 28,
       composite: 'lighter',
       connections: {
         enabled: false
@@ -20860,6 +20953,12 @@ var PaymentScheduleComponent = /*#__PURE__*/function () {
     _classCallCheck(this, PaymentScheduleComponent);
     this.policyId = policyId;
     this.container = document.getElementById(containerId);
+    if (!this.container) {
+      console.warn("Payment schedule container '".concat(containerId, "' not found"));
+    }
+    if (!this.policyId) {
+      console.warn('Payment schedule initialized without policy_id');
+    }
     this.api = new PaymentAPI();
   }
   return _createClass(PaymentScheduleComponent, [{
@@ -20871,10 +20970,24 @@ var PaymentScheduleComponent = /*#__PURE__*/function () {
         return _regenerator().w(function (_context10) {
           while (1) switch (_context10.p = _context10.n) {
             case 0:
-              _context10.p = 0;
-              _context10.n = 1;
-              return this.api.getPaymentSchedule(this.policyId);
+              if (this.container) {
+                _context10.n = 1;
+                break;
+              }
+              console.warn('Cannot render payment schedule: container is null');
+              return _context10.a(2);
             case 1:
+              if (this.policyId) {
+                _context10.n = 2;
+                break;
+              }
+              this.container.innerHTML = '<div class="empty-state">No hay póliza seleccionada</div>';
+              return _context10.a(2);
+            case 2:
+              _context10.p = 2;
+              _context10.n = 3;
+              return this.api.getPaymentSchedule(this.policyId);
+            case 3:
               response = _context10.v;
               schedules = response.schedules;
               this.container.innerHTML = "\n                <div class=\"payment-schedule-container\">\n                    <h3>Calendario de Pagos</h3>\n                    <div class=\"payment-list\">\n                        ".concat(schedules.map(function (schedule) {
@@ -20883,17 +20996,17 @@ var PaymentScheduleComponent = /*#__PURE__*/function () {
 
               // Agregar event listeners
               this.attachEventListeners();
-              _context10.n = 3;
+              _context10.n = 5;
               break;
-            case 2:
-              _context10.p = 2;
+            case 4:
+              _context10.p = 4;
               _t = _context10.v;
               console.error('Error cargando calendario:', _t);
               this.container.innerHTML = "\n                <div class=\"error-message\">\n                    Error al cargar calendario de pagos\n                </div>\n            ";
-            case 3:
+            case 5:
               return _context10.a(2);
           }
-        }, _callee10, this, [[0, 2]]);
+        }, _callee10, this, [[2, 4]]);
       }));
       function render() {
         return _render.apply(this, arguments);
@@ -21021,6 +21134,9 @@ var PaymentNotificationsComponent = /*#__PURE__*/function () {
   function PaymentNotificationsComponent(containerId) {
     _classCallCheck(this, PaymentNotificationsComponent);
     this.container = document.getElementById(containerId);
+    if (!this.container) {
+      console.warn("Payment notifications container '".concat(containerId, "' not found"));
+    }
     this.api = new PaymentAPI();
   }
   return _createClass(PaymentNotificationsComponent, [{
@@ -21032,32 +21148,39 @@ var PaymentNotificationsComponent = /*#__PURE__*/function () {
         return _regenerator().w(function (_context12) {
           while (1) switch (_context12.p = _context12.n) {
             case 0:
-              _context12.p = 0;
-              _context12.n = 1;
-              return this.api.getNotifications(10);
+              if (this.container) {
+                _context12.n = 1;
+                break;
+              }
+              console.warn('Cannot render notifications: container is null');
+              return _context12.a(2);
             case 1:
+              _context12.p = 1;
+              _context12.n = 2;
+              return this.api.getNotifications(10);
+            case 2:
               response = _context12.v;
               notifications = response.notifications;
               if (!(notifications.length === 0)) {
-                _context12.n = 2;
+                _context12.n = 3;
                 break;
               }
               this.container.innerHTML = "\n                    <div class=\"no-notifications\">\n                        No tienes notificaciones nuevas\n                    </div>\n                ";
               return _context12.a(2);
-            case 2:
+            case 3:
               this.container.innerHTML = "\n                <div class=\"notifications-list\">\n                    ".concat(notifications.map(function (n) {
                 return _this4.renderNotification(n);
               }).join(''), "\n                </div>\n            ");
-              _context12.n = 4;
+              _context12.n = 5;
               break;
-            case 3:
-              _context12.p = 3;
+            case 4:
+              _context12.p = 4;
               _t3 = _context12.v;
               console.error('Error cargando notificaciones:', _t3);
-            case 4:
+            case 5:
               return _context12.a(2);
           }
-        }, _callee12, this, [[0, 3]]);
+        }, _callee12, this, [[1, 4]]);
       }));
       function render() {
         return _render2.apply(this, arguments);
@@ -21123,7 +21246,11 @@ var ProofReviewComponent = /*#__PURE__*/function () {
   function ProofReviewComponent(containerId) {
     _classCallCheck(this, ProofReviewComponent);
     this.container = document.getElementById(containerId);
+    if (!this.container) {
+      console.warn("Proof review container '".concat(containerId, "' not found"));
+    }
     this.api = new PaymentAPI();
+    this.onCountUpdate = null;
   }
   return _createClass(ProofReviewComponent, [{
     key: "render",
@@ -21134,34 +21261,44 @@ var ProofReviewComponent = /*#__PURE__*/function () {
         return _regenerator().w(function (_context13) {
           while (1) switch (_context13.p = _context13.n) {
             case 0:
-              _context13.p = 0;
-              _context13.n = 1;
-              return this.api.getPendingProofReviews();
+              if (this.container) {
+                _context13.n = 1;
+                break;
+              }
+              console.warn('Cannot render proof reviews: container is null');
+              return _context13.a(2);
             case 1:
+              _context13.p = 1;
+              _context13.n = 2;
+              return this.api.getPendingProofReviews();
+            case 2:
               response = _context13.v;
-              proofs = response.proofs;
+              proofs = response.proofs; // Notificar el contador al callback si existe
+              if (typeof this.onCountUpdate === 'function') {
+                this.onCountUpdate(proofs.length);
+              }
               if (!(proofs.length === 0)) {
-                _context13.n = 2;
+                _context13.n = 3;
                 break;
               }
               this.container.innerHTML = "\n                    <div class=\"no-pending-reviews\">\n                        No hay comprobantes pendientes de revisi\xF3n\n                    </div>\n                ";
               return _context13.a(2);
-            case 2:
+            case 3:
               this.container.innerHTML = "\n                <div class=\"proof-reviews-container\">\n                    <h3>Comprobantes Pendientes (".concat(proofs.length, ")</h3>\n                    <div class=\"proof-list\">\n                        ").concat(proofs.map(function (proof) {
                 return _this5.renderProofCard(proof);
               }).join(''), "\n                    </div>\n                </div>\n            ");
               this.attachEventListeners();
-              _context13.n = 4;
+              _context13.n = 5;
               break;
-            case 3:
-              _context13.p = 3;
+            case 4:
+              _context13.p = 4;
               _t4 = _context13.v;
               console.error('Error cargando comprobantes:', _t4);
               this.container.innerHTML = "\n                <div class=\"error-message\">\n                    Error al cargar comprobantes pendientes\n                </div>\n            ";
-            case 4:
+            case 5:
               return _context13.a(2);
           }
-        }, _callee13, this, [[0, 3]]);
+        }, _callee13, this, [[1, 4]]);
       }));
       function render() {
         return _render3.apply(this, arguments);
@@ -24931,7 +25068,6 @@ window.appHandlers = _objectSpread(_objectSpread({
   makePayment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.makePayment,
   fileClaim: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.fileClaim,
   updateInfo: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.updateInfo,
-  contactAgent: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.contactAgent,
   downloadPaymentHistory: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.downloadPaymentHistory,
   viewClientDetails: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.viewClientDetails,
   createQuote: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.createQuote,
@@ -24968,12 +25104,17 @@ window.toggleFooter = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.tog
 window.handleContactSubmit = handleContactSubmit;
 window.handleClientLogin = handleClientLogin;
 window.handleAgentLogin = handleAgentLogin;
-window.contactAgent = contactAgent;
+window.contactAgent = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.contactAgent;
 window.toggleTheme = toggleTheme;
 window.submitQuote = submitQuote;
 window.logout = handleLogout;
 window.scheduleAppointment = scheduleAppointment;
 window.viewAgentDirectory = viewAgentDirectory;
+window.makePayment = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.makePayment;
+window.downloadPaymentHistory = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.downloadPaymentHistory;
+window.updateInfo = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.updateInfo;
+window.viewPolicy = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.viewPolicy;
+window.fileClaim = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.fileClaim;
 // Expose notification helper for quick console testing / legacy inline calls
 window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification;
 function delay(ms) {
