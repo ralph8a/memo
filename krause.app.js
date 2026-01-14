@@ -3576,6 +3576,514 @@ html[data-theme="dark-forest"] .demo-credentials {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./styles/dashboard-actions.css":
+/*!****************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./styles/dashboard-actions.css ***!
+  \****************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `/**
+ * Dashboard Actions Styles
+ * Estilos para modales, tabs y componentes de acciones
+ */
+
+/* ============================================================================
+   MODAL SYSTEM - Sistema unificado de modales
+   ============================================================================ */
+
+.app-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.app-modal {
+    background: var(--background-primary);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal sizes */
+.app-modal-sm {
+    width: 100%;
+    max-width: 400px;
+}
+
+.app-modal-md {
+    width: 100%;
+    max-width: 600px;
+}
+
+.app-modal-lg {
+    width: 100%;
+    max-width: 900px;
+}
+
+.app-modal-xl {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Modal header */
+.app-modal-header {
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.app-modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.app-modal-close {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-modal-close:hover {
+    background: var(--background-tertiary);
+    color: var(--text-primary);
+}
+
+/* Modal body */
+.app-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Forms dentro de modales */
+.app-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--background-secondary);
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group small {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 8px;
+}
+
+/* ============================================================================
+   CLIENT DETAILS TABS - Sistema de tabs para detalles de cliente
+   ============================================================================ */
+
+.client-detail-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 24px;
+    padding-bottom: 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.client-detail-tabs::-webkit-scrollbar {
+    height: 4px;
+}
+
+.client-detail-tabs::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    position: relative;
+    margin-bottom: -2px;
+}
+
+.tab-btn svg {
+    flex-shrink: 0;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+    background: var(--background-tertiary);
+}
+
+.tab-btn.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+.client-detail-content {
+    min-height: 400px;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.2s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Client info grid */
+.client-info-grid {
+    background: var(--background-secondary);
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.client-info-grid dl {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px 24px;
+    margin: 0;
+}
+
+.client-info-grid dt {
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.client-info-grid dd {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+/* Data table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--background-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.data-table thead {
+    background: var(--background-tertiary);
+}
+
+.data-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-table td {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+.data-table tbody tr:hover {
+    background: var(--background-tertiary);
+}
+
+/* Files grid */
+.files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.file-card {
+    background: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.file-card:hover {
+    background: var(--background-tertiary);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.file-card svg {
+    color: var(--accent-color);
+    margin-bottom: 12px;
+}
+
+.file-card p {
+    margin: 8px 0 4px;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+.file-card small {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+/* ============================================================================
+   POLICY DETAILS - Detalles de póliza
+   ============================================================================ */
+
+.policy-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.detail-section {
+    background: var(--background-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.detail-section h3 {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 8px;
+}
+
+.detail-section dl {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.detail-section dt {
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    margin-bottom: 4px;
+}
+
+.detail-section dd {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+.detail-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-section ul li {
+    padding: 8px 0;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.detail-section ul li::before {
+    content: '•';
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    .app-modal-overlay {
+        padding: 10px;
+    }
+
+    .app-modal {
+        max-height: 95vh;
+    }
+
+    .app-modal-header {
+        padding: 16px;
+    }
+
+    .app-modal-title {
+        font-size: 1.25rem;
+    }
+
+    .app-modal-body {
+        padding: 16px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .client-info-grid dl {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .client-info-grid dt {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .policy-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .files-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .data-table {
+        font-size: 0.875rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 10px 12px;
+    }
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+    .app-modal-overlay {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .app-modal {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+}`, "",{"version":3,"sources":["webpack://./styles/dashboard-actions.css"],"names":[],"mappings":"AAAA;;;EAGE;;AAEF;;iFAEiF;;AAEjF;IACI,eAAe;IACf,MAAM;IACN,OAAO;IACP,QAAQ;IACR,SAAS;IACT,8BAA8B;IAC9B,0BAA0B;IAC1B,kCAAkC;IAClC,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,aAAa;IACb,aAAa;IACb,2BAA2B;AAC/B;;AAEA;IACI;QACI,UAAU;IACd;;IAEA;QACI,UAAU;IACd;AACJ;;AAEA;IACI,qCAAqC;IACrC,mBAAmB;IACnB,0CAA0C;IAC1C,gBAAgB;IAChB,gBAAgB;IAChB,aAAa;IACb,sBAAsB;IACtB,yDAAyD;AAC7D;;AAEA;IACI;QACI,2BAA2B;QAC3B,UAAU;IACd;;IAEA;QACI,wBAAwB;QACxB,UAAU;IACd;AACJ;;AAEA,gBAAgB;AAChB;IACI,WAAW;IACX,gBAAgB;AACpB;;AAEA;IACI,WAAW;IACX,gBAAgB;AACpB;;AAEA;IACI,WAAW;IACX,gBAAgB;AACpB;;AAEA;IACI,WAAW;IACX,iBAAiB;AACrB;;AAEA,iBAAiB;AACjB;IACI,uBAAuB;IACvB,4CAA4C;IAC5C,aAAa;IACb,mBAAmB;IACnB,8BAA8B;IAC9B,cAAc;AAClB;;AAEA;IACI,iBAAiB;IACjB,gBAAgB;IAChB,0BAA0B;IAC1B,SAAS;AACb;;AAEA;IACI,uBAAuB;IACvB,YAAY;IACZ,YAAY;IACZ,eAAe;IACf,4BAA4B;IAC5B,kBAAkB;IAClB,oBAAoB;IACpB,aAAa;IACb,mBAAmB;IACnB,uBAAuB;AAC3B;;AAEA;IACI,sCAAsC;IACtC,0BAA0B;AAC9B;;AAEA,eAAe;AACf;IACI,aAAa;IACb,gBAAgB;IAChB,OAAO;AACX;;AAEA,4BAA4B;AAC5B;IACI,aAAa;IACb,sBAAsB;IACtB,SAAS;AACb;;AAEA;IACI,aAAa;IACb,sBAAsB;IACtB,QAAQ;AACZ;;AAEA;IACI,mBAAmB;IACnB,gBAAgB;IAChB,0BAA0B;AAC9B;;AAEA;;;IAGI,kBAAkB;IAClB,qCAAqC;IACrC,kBAAkB;IAClB,uCAAuC;IACvC,0BAA0B;IAC1B,oBAAoB;IACpB,oBAAoB;AACxB;;AAEA;;;IAGI,aAAa;IACb,iCAAiC;IACjC,6CAA6C;AACjD;;AAEA;IACI,kBAAkB;IAClB,4BAA4B;AAChC;;AAEA;IACI,aAAa;IACb,2DAA2D;IAC3D,SAAS;AACb;;AAEA;IACI,aAAa;IACb,SAAS;IACT,yBAAyB;IACzB,gBAAgB;AACpB;;AAEA;;iFAEiF;;AAEjF;IACI,aAAa;IACb,QAAQ;IACR,4CAA4C;IAC5C,mBAAmB;IACnB,iBAAiB;IACjB,gBAAgB;IAChB,qBAAqB;AACzB;;AAEA;IACI,WAAW;AACf;;AAEA;IACI,+BAA+B;IAC/B,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,QAAQ;IACR,kBAAkB;IAClB,uBAAuB;IACvB,YAAY;IACZ,oCAAoC;IACpC,4BAA4B;IAC5B,mBAAmB;IACnB,gBAAgB;IAChB,eAAe;IACf,oBAAoB;IACpB,mBAAmB;IACnB,kBAAkB;IAClB,mBAAmB;AACvB;;AAEA;IACI,cAAc;AAClB;;AAEA;IACI,0BAA0B;IAC1B,sCAAsC;AAC1C;;AAEA;IACI,0BAA0B;IAC1B,wCAAwC;AAC5C;;AAEA;IACI,iBAAiB;AACrB;;AAEA;IACI,aAAa;IACb,2BAA2B;AAC/B;;AAEA;IACI,cAAc;AAClB;;AAEA,qBAAqB;AACrB;IACI,uCAAuC;IACvC,aAAa;IACb,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,gCAAgC;IAChC,cAAc;IACd,SAAS;AACb;;AAEA;IACI,gBAAgB;IAChB,4BAA4B;IAC5B,mBAAmB;AACvB;;AAEA;IACI,SAAS;IACT,0BAA0B;IAC1B,oBAAoB;AACxB;;AAEA,eAAe;AACf;IACI,WAAW;IACX,yBAAyB;IACzB,uCAAuC;IACvC,mBAAmB;IACnB,gBAAgB;AACpB;;AAEA;IACI,sCAAsC;AAC1C;;AAEA;IACI,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;IAChB,oBAAoB;IACpB,4BAA4B;IAC5B,yBAAyB;IACzB,qBAAqB;AACzB;;AAEA;IACI,aAAa;IACb,yCAAyC;IACzC,0BAA0B;IAC1B,oBAAoB;AACxB;;AAEA;IACI,sCAAsC;AAC1C;;AAEA,eAAe;AACf;IACI,aAAa;IACb,4DAA4D;IAC5D,SAAS;AACb;;AAEA;IACI,uCAAuC;IACvC,qCAAqC;IACrC,mBAAmB;IACnB,aAAa;IACb,kBAAkB;IAClB,oBAAoB;IACpB,eAAe;AACnB;;AAEA;IACI,sCAAsC;IACtC,iCAAiC;IACjC,2BAA2B;IAC3B,yCAAyC;AAC7C;;AAEA;IACI,0BAA0B;IAC1B,mBAAmB;AACvB;;AAEA;IACI,iBAAiB;IACjB,gBAAgB;IAChB,0BAA0B;IAC1B,oBAAoB;AACxB;;AAEA;IACI,4BAA4B;IAC5B,kBAAkB;AACtB;;AAEA;;iFAEiF;;AAEjF;IACI,aAAa;IACb,2DAA2D;IAC3D,SAAS;IACT,mBAAmB;AACvB;;AAEA;IACI,uCAAuC;IACvC,aAAa;IACb,mBAAmB;IACnB,qCAAqC;AACzC;;AAEA;IACI,gBAAgB;IAChB,eAAe;IACf,gBAAgB;IAChB,0BAA0B;IAC1B,4CAA4C;IAC5C,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,SAAS;IACT,SAAS;AACb;;AAEA;IACI,gBAAgB;IAChB,4BAA4B;IAC5B,oBAAoB;IACpB,kBAAkB;AACtB;;AAEA;IACI,SAAS;IACT,0BAA0B;IAC1B,oBAAoB;AACxB;;AAEA;IACI,gBAAgB;IAChB,UAAU;IACV,SAAS;AACb;;AAEA;IACI,cAAc;IACd,0BAA0B;IAC1B,oBAAoB;IACpB,aAAa;IACb,uBAAuB;IACvB,QAAQ;AACZ;;AAEA;IACI,YAAY;IACZ,0BAA0B;IAC1B,iBAAiB;IACjB,gBAAgB;AACpB;;AAEA;;iFAEiF;;AAEjF;IACI;QACI,aAAa;IACjB;;IAEA;QACI,gBAAgB;IACpB;;IAEA;QACI,aAAa;IACjB;;IAEA;QACI,kBAAkB;IACtB;;IAEA;QACI,aAAa;IACjB;;IAEA;QACI,0BAA0B;IAC9B;;IAEA;QACI,0BAA0B;QAC1B,QAAQ;IACZ;;IAEA;QACI,gBAAgB;QAChB,0BAA0B;IAC9B;;IAEA;QACI,0BAA0B;IAC9B;;IAEA;QACI,4DAA4D;IAChE;;IAEA;QACI,mBAAmB;IACvB;;IAEA;;QAEI,kBAAkB;IACtB;AACJ;;AAEA,2BAA2B;AAC3B;IACI;QACI,8BAA8B;IAClC;;IAEA;QACI,0CAA0C;IAC9C;AACJ","sourcesContent":["/**\n * Dashboard Actions Styles\n * Estilos para modales, tabs y componentes de acciones\n */\n\n/* ============================================================================\n   MODAL SYSTEM - Sistema unificado de modales\n   ============================================================================ */\n\n.app-modal-overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: rgba(0, 0, 0, 0.6);\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 9999;\n    padding: 20px;\n    animation: fadeIn 0.2s ease;\n}\n\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n.app-modal {\n    background: var(--background-primary);\n    border-radius: 16px;\n    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);\n    max-height: 90vh;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(30px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n/* Modal sizes */\n.app-modal-sm {\n    width: 100%;\n    max-width: 400px;\n}\n\n.app-modal-md {\n    width: 100%;\n    max-width: 600px;\n}\n\n.app-modal-lg {\n    width: 100%;\n    max-width: 900px;\n}\n\n.app-modal-xl {\n    width: 100%;\n    max-width: 1200px;\n}\n\n/* Modal header */\n.app-modal-header {\n    padding: 24px 24px 16px;\n    border-bottom: 1px solid var(--border-color);\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex-shrink: 0;\n}\n\n.app-modal-title {\n    font-size: 1.5rem;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0;\n}\n\n.app-modal-close {\n    background: transparent;\n    border: none;\n    padding: 8px;\n    cursor: pointer;\n    color: var(--text-secondary);\n    border-radius: 8px;\n    transition: all 0.2s;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.app-modal-close:hover {\n    background: var(--background-tertiary);\n    color: var(--text-primary);\n}\n\n/* Modal body */\n.app-modal-body {\n    padding: 24px;\n    overflow-y: auto;\n    flex: 1;\n}\n\n/* Forms dentro de modales */\n.app-modal form {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.form-group {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.form-group label {\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-primary);\n}\n\n.form-group input,\n.form-group select,\n.form-group textarea {\n    padding: 12px 16px;\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    background: var(--background-secondary);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    transition: all 0.2s;\n}\n\n.form-group input:focus,\n.form-group select:focus,\n.form-group textarea:focus {\n    outline: none;\n    border-color: var(--accent-color);\n    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);\n}\n\n.form-group small {\n    font-size: 0.75rem;\n    color: var(--text-secondary);\n}\n\n.form-row {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.form-actions {\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n    padding-top: 8px;\n}\n\n/* ============================================================================\n   CLIENT DETAILS TABS - Sistema de tabs para detalles de cliente\n   ============================================================================ */\n\n.client-detail-tabs {\n    display: flex;\n    gap: 8px;\n    border-bottom: 2px solid var(--border-color);\n    margin-bottom: 24px;\n    padding-bottom: 0;\n    overflow-x: auto;\n    scrollbar-width: thin;\n}\n\n.client-detail-tabs::-webkit-scrollbar {\n    height: 4px;\n}\n\n.client-detail-tabs::-webkit-scrollbar-thumb {\n    background: var(--border-color);\n    border-radius: 2px;\n}\n\n.tab-btn {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 12px 16px;\n    background: transparent;\n    border: none;\n    border-bottom: 3px solid transparent;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s;\n    white-space: nowrap;\n    position: relative;\n    margin-bottom: -2px;\n}\n\n.tab-btn svg {\n    flex-shrink: 0;\n}\n\n.tab-btn:hover {\n    color: var(--text-primary);\n    background: var(--background-tertiary);\n}\n\n.tab-btn.active {\n    color: var(--accent-color);\n    border-bottom-color: var(--accent-color);\n}\n\n.client-detail-content {\n    min-height: 400px;\n}\n\n.tab-content {\n    display: none;\n    animation: fadeIn 0.2s ease;\n}\n\n.tab-content.active {\n    display: block;\n}\n\n/* Client info grid */\n.client-info-grid {\n    background: var(--background-secondary);\n    padding: 24px;\n    border-radius: 12px;\n}\n\n.client-info-grid dl {\n    display: grid;\n    grid-template-columns: 140px 1fr;\n    gap: 16px 24px;\n    margin: 0;\n}\n\n.client-info-grid dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n}\n\n.client-info-grid dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n/* Data table */\n.data-table {\n    width: 100%;\n    border-collapse: collapse;\n    background: var(--background-secondary);\n    border-radius: 12px;\n    overflow: hidden;\n}\n\n.data-table thead {\n    background: var(--background-tertiary);\n}\n\n.data-table th {\n    padding: 12px 16px;\n    text-align: left;\n    font-weight: 600;\n    font-size: 0.8125rem;\n    color: var(--text-secondary);\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.data-table td {\n    padding: 16px;\n    border-top: 1px solid var(--border-color);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.data-table tbody tr:hover {\n    background: var(--background-tertiary);\n}\n\n/* Files grid */\n.files-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.file-card {\n    background: var(--background-secondary);\n    border: 1px solid var(--border-color);\n    border-radius: 12px;\n    padding: 20px;\n    text-align: center;\n    transition: all 0.2s;\n    cursor: pointer;\n}\n\n.file-card:hover {\n    background: var(--background-tertiary);\n    border-color: var(--accent-color);\n    transform: translateY(-2px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.file-card svg {\n    color: var(--accent-color);\n    margin-bottom: 12px;\n}\n\n.file-card p {\n    margin: 8px 0 4px;\n    font-weight: 500;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.file-card small {\n    color: var(--text-secondary);\n    font-size: 0.75rem;\n}\n\n/* ============================================================================\n   POLICY DETAILS - Detalles de póliza\n   ============================================================================ */\n\n.policy-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 24px;\n    margin-bottom: 24px;\n}\n\n.detail-section {\n    background: var(--background-secondary);\n    padding: 20px;\n    border-radius: 12px;\n    border: 1px solid var(--border-color);\n}\n\n.detail-section h3 {\n    margin: 0 0 16px;\n    font-size: 1rem;\n    font-weight: 600;\n    color: var(--text-primary);\n    border-bottom: 2px solid var(--accent-color);\n    padding-bottom: 8px;\n}\n\n.detail-section dl {\n    display: grid;\n    gap: 12px;\n    margin: 0;\n}\n\n.detail-section dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.8125rem;\n    margin-bottom: 4px;\n}\n\n.detail-section dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.detail-section ul {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n}\n\n.detail-section ul li {\n    padding: 8px 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    display: flex;\n    align-items: flex-start;\n    gap: 8px;\n}\n\n.detail-section ul li::before {\n    content: '•';\n    color: var(--accent-color);\n    font-weight: bold;\n    font-size: 1.2em;\n}\n\n/* ============================================================================\n   RESPONSIVE\n   ============================================================================ */\n\n@media (max-width: 768px) {\n    .app-modal-overlay {\n        padding: 10px;\n    }\n\n    .app-modal {\n        max-height: 95vh;\n    }\n\n    .app-modal-header {\n        padding: 16px;\n    }\n\n    .app-modal-title {\n        font-size: 1.25rem;\n    }\n\n    .app-modal-body {\n        padding: 16px;\n    }\n\n    .form-row {\n        grid-template-columns: 1fr;\n    }\n\n    .client-info-grid dl {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .client-info-grid dt {\n        font-weight: 600;\n        color: var(--text-primary);\n    }\n\n    .policy-details-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .files-grid {\n        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\n    }\n\n    .data-table {\n        font-size: 0.875rem;\n    }\n\n    .data-table th,\n    .data-table td {\n        padding: 10px 12px;\n    }\n}\n\n/* Dark theme adjustments */\n@media (prefers-color-scheme: dark) {\n    .app-modal-overlay {\n        background: rgba(0, 0, 0, 0.8);\n    }\n\n    .app-modal {\n        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);\n    }\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./styles/dashboard-components.css":
 /*!*******************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./styles/dashboard-components.css ***!
@@ -17238,6 +17746,311 @@ initializeDemo();
 
 /***/ }),
 
+/***/ "./src/modules/dashboardActions.js":
+/*!*****************************************!*\
+  !*** ./src/modules/dashboardActions.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   addClient: () => (/* binding */ addClient),
+/* harmony export */   contactAgent: () => (/* binding */ contactAgent),
+/* harmony export */   createQuote: () => (/* binding */ createQuote),
+/* harmony export */   downloadPaymentHistory: () => (/* binding */ downloadPaymentHistory),
+/* harmony export */   fileClaim: () => (/* binding */ fileClaim),
+/* harmony export */   filterByClient: () => (/* binding */ filterByClient),
+/* harmony export */   makePayment: () => (/* binding */ makePayment),
+/* harmony export */   scheduleAppointment: () => (/* binding */ scheduleAppointment),
+/* harmony export */   submitAppointment: () => (/* binding */ submitAppointment),
+/* harmony export */   submitClaim: () => (/* binding */ submitClaim),
+/* harmony export */   submitInfoUpdate: () => (/* binding */ submitInfoUpdate),
+/* harmony export */   submitNewClient: () => (/* binding */ submitNewClient),
+/* harmony export */   submitPayment: () => (/* binding */ submitPayment),
+/* harmony export */   switchClientTab: () => (/* binding */ switchClientTab),
+/* harmony export */   updateInfo: () => (/* binding */ updateInfo),
+/* harmony export */   viewClientDetails: () => (/* binding */ viewClientDetails),
+/* harmony export */   viewPolicy: () => (/* binding */ viewPolicy)
+/* harmony export */ });
+/* harmony import */ var _notifications_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./notifications.js */ "./src/modules/notifications.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
+/* harmony import */ var _simpleRouter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./simpleRouter.js */ "./src/modules/simpleRouter.js");
+/* harmony import */ var _quoteFlow_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./quoteFlow.js */ "./src/modules/quoteFlow.js");
+/**
+ * Dashboard Actions - Sistema unificado de acciones para dashboards
+ * Conecta todos los botones de acciones rápidas con sus respectivas funcionalidades
+ */
+
+
+
+
+
+
+// ============================================================================
+// CLIENT ACTIONS - Acciones del dashboard de clientes
+// ============================================================================
+
+/**
+ * Realizar pago rápido - Abre el modal de pago
+ */
+function makePayment() {
+  var policyId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Realizar Pago</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"payment-form\" onsubmit=\"window.dashboardActions?.submitPayment(event)\">\n          <div class=\"form-group\">\n            <label for=\"payment-policy\">P\xF3liza</label>\n            <select id=\"payment-policy\" required>\n              <option value=\"\">Seleccionar p\xF3liza</option>\n              <option value=\"POL-001\">Auto - Toyota Camry 2020</option>\n              <option value=\"POL-002\">Hogar - Casa principal</option>\n              <option value=\"POL-003\">Vida - Plan familiar</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"payment-amount\">Monto</label>\n            <input type=\"number\" id=\"payment-amount\" placeholder=\"$0.00\" step=\"0.01\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"payment-method\">M\xE9todo de pago</label>\n            <select id=\"payment-method\" required>\n              <option value=\"credit\">Tarjeta de cr\xE9dito</option>\n              <option value=\"debit\">Tarjeta de d\xE9bito</option>\n              <option value=\"transfer\">Transferencia bancaria</option>\n            </select>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Procesar pago</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.remove();
+  });
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Modal de pago abierto', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Descargar historial de pagos
+ */
+function downloadPaymentHistory() {
+  // Simular descarga de CSV
+  var csvContent = ['Fecha,Póliza,Monto,Estado', '2025-01-01,POL-001,$350.00,Pagado', '2024-12-01,POL-001,$350.00,Pagado', '2024-11-01,POL-001,$350.00,Pagado'].join('\n');
+  var blob = new Blob([csvContent], {
+    type: 'text/csv'
+  });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = "historial-pagos-".concat(new Date().toISOString().split('T')[0], ".csv");
+  a.click();
+  URL.revokeObjectURL(url);
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Historial de pagos descargado', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+}
+
+/**
+ * Actualizar información personal
+ */
+function updateInfo() {
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Actualizar Informaci\xF3n</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"update-info-form\" onsubmit=\"window.dashboardActions?.submitInfoUpdate(event)\">\n          <div class=\"form-group\">\n            <label for=\"update-phone\">Tel\xE9fono</label>\n            <input type=\"tel\" id=\"update-phone\" placeholder=\"+1 (555) 000-0000\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"update-email\">Email</label>\n            <input type=\"email\" id=\"update-email\" placeholder=\"email@ejemplo.com\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"update-address\">Direcci\xF3n</label>\n            <textarea id=\"update-address\" rows=\"3\" placeholder=\"Calle, n\xFAmero, ciudad, estado, c\xF3digo postal\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Guardar cambios</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.remove();
+  });
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Formulario de actualización abierto', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Contactar agente - Redirige a página de contacto
+ */
+function contactAgent() {
+  window.__allowContact = true;
+  (0,_simpleRouter_js__WEBPACK_IMPORTED_MODULE_2__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.PAGES.CONTACT);
+  setTimeout(function () {
+    window.__allowContact = false;
+  }, 500);
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Abriendo formulario de contacto', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Ver detalles de póliza
+ */
+function viewPolicy() {
+  var policyId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-lg\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Detalles de P\xF3liza ".concat(policyId || 'POL-001', "</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"policy-details-grid\">\n          <div class=\"detail-section\">\n            <h3>Informaci\xF3n General</h3>\n            <dl>\n              <dt>N\xFAmero de p\xF3liza:</dt><dd>").concat(policyId || 'POL-001', "</dd>\n              <dt>Tipo:</dt><dd>Auto</dd>\n              <dt>Estado:</dt><dd><span class=\"badge badge-success\">Activa</span></dd>\n              <dt>Prima mensual:</dt><dd>$350.00</dd>\n            </dl>\n          </div>\n          <div class=\"detail-section\">\n            <h3>Cobertura</h3>\n            <ul>\n              <li>Responsabilidad civil: $1,000,000</li>\n              <li>Da\xF1os materiales: $500,000</li>\n              <li>Robo total: Valor comercial</li>\n              <li>Gastos m\xE9dicos: $100,000</li>\n            </ul>\n          </div>\n          <div class=\"detail-section\">\n            <h3>Veh\xEDculo Asegurado</h3>\n            <dl>\n              <dt>Marca/Modelo:</dt><dd>Toyota Camry 2020</dd>\n              <dt>Placas:</dt><dd>ABC-123-XYZ</dd>\n              <dt>VIN:</dt><dd>1HGBH41JXMN109186</dd>\n            </dl>\n          </div>\n        </div>\n        <div class=\"form-actions\">\n          <button class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cerrar</button>\n          <button class=\"btn btn-primary\" onclick=\"window.dashboardActions?.makePayment('").concat(policyId || 'POL-001', "')\">Realizar pago</button>\n        </div>\n      </div>\n    </div>\n  ");
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.remove();
+  });
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Detalles de póliza cargados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Presentar siniestro
+ */
+function fileClaim() {
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-lg\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Nuevo Siniestro</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"claim-form\" onsubmit=\"window.dashboardActions?.submitClaim(event)\">\n          <div class=\"form-group\">\n            <label for=\"claim-policy\">P\xF3liza afectada</label>\n            <select id=\"claim-policy\" required>\n              <option value=\"\">Seleccionar p\xF3liza</option>\n              <option value=\"POL-001\">Auto - Toyota Camry 2020</option>\n              <option value=\"POL-002\">Hogar - Casa principal</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"claim-type\">Tipo de siniestro</label>\n            <select id=\"claim-type\" required>\n              <option value=\"accident\">Accidente</option>\n              <option value=\"theft\">Robo</option>\n              <option value=\"damage\">Da\xF1os</option>\n              <option value=\"other\">Otro</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"claim-date\">Fecha del incidente</label>\n            <input type=\"date\" id=\"claim-date\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"claim-description\">Descripci\xF3n del incidente</label>\n            <textarea id=\"claim-description\" rows=\"4\" placeholder=\"Describa lo ocurrido...\" required></textarea>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"claim-files\">Documentos adjuntos (fotos, reportes)</label>\n            <input type=\"file\" id=\"claim-files\" multiple accept=\"image/*,.pdf\">\n            <small>M\xE1ximo 5 archivos. Formatos: JPG, PNG, PDF</small>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Enviar siniestro</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.remove();
+  });
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Formulario de siniestro abierto', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+// ============================================================================
+// AGENT ACTIONS - Acciones del dashboard de agentes
+// ============================================================================
+
+/**
+ * Crear nueva cotización
+ */
+function createQuote() {
+  var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'auto';
+  (0,_quoteFlow_js__WEBPACK_IMPORTED_MODULE_3__.setPendingQuoteType)(type);
+  (0,_simpleRouter_js__WEBPACK_IMPORTED_MODULE_2__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.PAGES.QUOTE);
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando nueva cotización', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Agregar nuevo cliente
+ */
+function addClient() {
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Nuevo Cliente</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"add-client-form\" onsubmit=\"window.dashboardActions?.submitNewClient(event)\">\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"client-first-name\">Nombre</label>\n              <input type=\"text\" id=\"client-first-name\" required>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"client-last-name\">Apellido</label>\n              <input type=\"text\" id=\"client-last-name\" required>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"client-email\">Email</label>\n            <input type=\"email\" id=\"client-email\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"client-phone\">Tel\xE9fono</label>\n            <input type=\"tel\" id=\"client-phone\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"client-address\">Direcci\xF3n</label>\n            <textarea id=\"client-address\" rows=\"2\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Guardar cliente</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.remove();
+  });
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Formulario de nuevo cliente abierto', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Agendar cita
+ */
+function scheduleAppointment() {
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Agendar Cita</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"appointment-form\" onsubmit=\"window.dashboardActions?.submitAppointment(event)\">\n          <div class=\"form-group\">\n            <label for=\"appt-client\">Cliente</label>\n            <select id=\"appt-client\" required>\n              <option value=\"\">Seleccionar cliente</option>\n              <option value=\"CL-001\">Mar\xEDa Gonz\xE1lez</option>\n              <option value=\"CL-002\">Carlos Rodr\xEDguez</option>\n              <option value=\"CL-003\">Ana Mart\xEDnez</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-type\">Tipo de cita</label>\n            <select id=\"appt-type\" required>\n              <option value=\"consultation\">Consulta</option>\n              <option value=\"quote\">Cotizaci\xF3n</option>\n              <option value=\"claim\">Siniestro</option>\n              <option value=\"policy-review\">Revisi\xF3n de p\xF3liza</option>\n            </select>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"appt-date\">Fecha</label>\n              <input type=\"date\" id=\"appt-date\" required>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"appt-time\">Hora</label>\n              <input type=\"time\" id=\"appt-time\" required>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-notes\">Notas</label>\n            <textarea id=\"appt-notes\" rows=\"3\" placeholder=\"Asunto o detalles adicionales\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Agendar</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.remove();
+  });
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Formulario de cita abierto', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Ver detalles de cliente con filtro completo
+ */
+function viewClientDetails(clientId) {
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-xl\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Cliente: ".concat(clientId, "</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <!-- Tabs de navegaci\xF3n -->\n        <div class=\"client-detail-tabs\">\n          <button class=\"tab-btn active\" onclick=\"window.dashboardActions?.switchClientTab(event, 'info')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/>\n              <circle cx=\"12\" cy=\"7\" r=\"4\"/>\n            </svg>\n            Informaci\xF3n\n          </button>\n          <button class=\"tab-btn\" onclick=\"window.dashboardActions?.switchClientTab(event, 'policies')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/>\n              <polyline points=\"14 2 14 8 20 8\"/>\n            </svg>\n            P\xF3lizas\n          </button>\n          <button class=\"tab-btn\" onclick=\"window.dashboardActions?.switchClientTab(event, 'payments')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/>\n              <line x1=\"2\" y1=\"10\" x2=\"22\" y2=\"10\"/>\n            </svg>\n            Pagos\n          </button>\n          <button class=\"tab-btn\" onclick=\"window.dashboardActions?.switchClientTab(event, 'files')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"/>\n              <polyline points=\"13 2 13 9 20 9\"/>\n            </svg>\n            Archivos\n          </button>\n          <button class=\"tab-btn\" onclick=\"window.dashboardActions?.switchClientTab(event, 'claims')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"/>\n              <line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"13\"/>\n              <line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"/>\n            </svg>\n            Siniestros\n          </button>\n        </div>\n\n        <!-- Contenido de tabs -->\n        <div class=\"client-detail-content\">\n          <div class=\"tab-content active\" data-tab=\"info\">\n            <div class=\"client-info-grid\">\n              <dl>\n                <dt>Nombre completo:</dt><dd>Mar\xEDa Gonz\xE1lez P\xE9rez</dd>\n                <dt>Email:</dt><dd>maria.gonzalez@email.com</dd>\n                <dt>Tel\xE9fono:</dt><dd>+52 (555) 123-4567</dd>\n                <dt>Direcci\xF3n:</dt><dd>Av. Reforma 123, Col. Centro, CDMX</dd>\n                <dt>Estado:</dt><dd><span class=\"badge badge-success\">Activo</span></dd>\n                <dt>Cliente desde:</dt><dd>Enero 2020</dd>\n              </dl>\n            </div>\n          </div>\n\n          <div class=\"tab-content\" data-tab=\"policies\">\n            <table class=\"data-table\">\n              <thead>\n                <tr>\n                  <th>N\xFAmero</th>\n                  <th>Tipo</th>\n                  <th>Estado</th>\n                  <th>Prima</th>\n                  <th>Vencimiento</th>\n                  <th>Acciones</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <td>POL-001</td>\n                  <td>Auto</td>\n                  <td><span class=\"badge badge-success\">Activa</span></td>\n                  <td>$350/mes</td>\n                  <td>2025-12-31</td>\n                  <td><button class=\"btn btn-sm btn-outline\" onclick=\"window.dashboardActions?.viewPolicy('POL-001')\">Ver</button></td>\n                </tr>\n                <tr>\n                  <td>POL-002</td>\n                  <td>Hogar</td>\n                  <td><span class=\"badge badge-success\">Activa</span></td>\n                  <td>$200/mes</td>\n                  <td>2025-10-15</td>\n                  <td><button class=\"btn btn-sm btn-outline\" onclick=\"window.dashboardActions?.viewPolicy('POL-002')\">Ver</button></td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <div class=\"tab-content\" data-tab=\"payments\">\n            <table class=\"data-table\">\n              <thead>\n                <tr>\n                  <th>Fecha</th>\n                  <th>P\xF3liza</th>\n                  <th>Monto</th>\n                  <th>M\xE9todo</th>\n                  <th>Estado</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <td>2025-01-15</td>\n                  <td>POL-001</td>\n                  <td>$350.00</td>\n                  <td>Tarjeta</td>\n                  <td><span class=\"badge badge-success\">Pagado</span></td>\n                </tr>\n                <tr>\n                  <td>2024-12-15</td>\n                  <td>POL-001</td>\n                  <td>$350.00</td>\n                  <td>Transferencia</td>\n                  <td><span class=\"badge badge-success\">Pagado</span></td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <div class=\"tab-content\" data-tab=\"files\">\n            <div class=\"files-grid\">\n              <div class=\"file-card\">\n                <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <path d=\"M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"/>\n                  <polyline points=\"13 2 13 9 20 9\"/>\n                </svg>\n                <p>Licencia de conducir</p>\n                <small>Subido: 2024-12-01</small>\n              </div>\n              <div class=\"file-card\">\n                <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <path d=\"M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"/>\n                  <polyline points=\"13 2 13 9 20 9\"/>\n                </svg>\n                <p>Factura veh\xEDculo</p>\n                <small>Subido: 2024-11-15</small>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"tab-content\" data-tab=\"claims\">\n            <table class=\"data-table\">\n              <thead>\n                <tr>\n                  <th>N\xFAmero</th>\n                  <th>P\xF3liza</th>\n                  <th>Tipo</th>\n                  <th>Fecha</th>\n                  <th>Estado</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <td>CLM-001</td>\n                  <td>POL-001</td>\n                  <td>Accidente</td>\n                  <td>2024-10-20</td>\n                  <td><span class=\"badge badge-warning\">En proceso</span></td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </div>\n      </div>\n    </div>\n  ");
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.remove();
+  });
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("Detalles del cliente ".concat(clientId, " cargados"), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+}
+
+/**
+ * Cambiar entre tabs del modal de detalles de cliente
+ */
+function switchClientTab(event, tabName) {
+  var modal = event.target.closest('.app-modal');
+
+  // Actualizar botones
+  modal.querySelectorAll('.tab-btn').forEach(function (btn) {
+    return btn.classList.remove('active');
+  });
+  event.target.closest('.tab-btn').classList.add('active');
+
+  // Actualizar contenido
+  modal.querySelectorAll('.tab-content').forEach(function (content) {
+    return content.classList.remove('active');
+  });
+  modal.querySelector(".tab-content[data-tab=\"".concat(tabName, "\"]")).classList.add('active');
+}
+
+/**
+ * Filtrar vista de agente por cliente específico
+ */
+function filterByClient(clientId) {
+  // Esta función filtraría todo el dashboard del agente para mostrar solo info del cliente seleccionado
+  var mainContent = document.querySelector('.dashboard-main-wrapper');
+  if (!mainContent) return;
+
+  // En producción, esto dispararía una recarga de datos filtrados
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("Filtrando vista por cliente ".concat(clientId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+
+  // Simular filtro visual
+  document.querySelectorAll('[data-client-id]').forEach(function (el) {
+    el.style.display = el.dataset.clientId === clientId ? '' : 'none';
+  });
+}
+
+// ============================================================================
+// FORM SUBMISSIONS - Handlers para envío de formularios
+// ============================================================================
+
+function submitPayment(event) {
+  event.preventDefault();
+  var form = event.target;
+  var formData = new FormData(form);
+
+  // Simular procesamiento
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Procesando pago...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+  setTimeout(function () {
+    form.closest('.app-modal-overlay').remove();
+    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Pago procesado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+  }, 1500);
+}
+function submitInfoUpdate(event) {
+  event.preventDefault();
+  var form = event.target;
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Actualizando información...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+  setTimeout(function () {
+    form.closest('.app-modal-overlay').remove();
+    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Información actualizada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+  }, 1000);
+}
+function submitClaim(event) {
+  event.preventDefault();
+  var form = event.target;
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Enviando siniestro...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+  setTimeout(function () {
+    form.closest('.app-modal-overlay').remove();
+    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Siniestro registrado. Número: CLM-' + Math.floor(Math.random() * 1000), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+  }, 1500);
+}
+function submitNewClient(event) {
+  event.preventDefault();
+  var form = event.target;
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+  setTimeout(function () {
+    form.closest('.app-modal-overlay').remove();
+    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cliente agregado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+  }, 1000);
+}
+function submitAppointment(event) {
+  event.preventDefault();
+  var form = event.target;
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Agendando cita...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+  setTimeout(function () {
+    form.closest('.app-modal-overlay').remove();
+    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cita agendada. Confirmación enviada por email', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+  }, 1000);
+}
+
+// Exponer todas las acciones globalmente
+if (typeof window !== 'undefined') {
+  window.dashboardActions = {
+    // Client actions
+    makePayment: makePayment,
+    downloadPaymentHistory: downloadPaymentHistory,
+    updateInfo: updateInfo,
+    contactAgent: contactAgent,
+    viewPolicy: viewPolicy,
+    fileClaim: fileClaim,
+    // Agent actions
+    createQuote: createQuote,
+    addClient: addClient,
+    scheduleAppointment: scheduleAppointment,
+    viewClientDetails: viewClientDetails,
+    switchClientTab: switchClientTab,
+    filterByClient: filterByClient,
+    // Form submissions
+    submitPayment: submitPayment,
+    submitInfoUpdate: submitInfoUpdate,
+    submitClaim: submitClaim,
+    submitNewClient: submitNewClient,
+    submitAppointment: submitAppointment
+  };
+}
+
+/***/ }),
+
 /***/ "./src/modules/homeAnimations.js":
 /*!***************************************!*\
   !*** ./src/modules/homeAnimations.js ***!
@@ -22210,6 +23023,58 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./styles/dashboard-actions.css":
+/*!**************************************!*\
+  !*** ./styles/dashboard-actions.css ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_dashboard_actions_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./dashboard-actions.css */ "./node_modules/css-loader/dist/cjs.js!./styles/dashboard-actions.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_dashboard_actions_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_dashboard_actions_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_dashboard_actions_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_dashboard_actions_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
 /***/ "./styles/dashboard-components.css":
 /*!*****************************************!*\
   !*** ./styles/dashboard-components.css ***!
@@ -23252,25 +24117,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_chart_modals_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../styles/chart-modals.css */ "./styles/chart-modals.css");
 /* harmony import */ var _styles_scheduling_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../styles/scheduling.css */ "./styles/scheduling.css");
 /* harmony import */ var _styles_payments_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../styles/payments.css */ "./styles/payments.css");
-/* harmony import */ var _styles_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../styles/scroll-modal-fixes.css */ "./styles/scroll-modal-fixes.css");
-/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../styles/app.css */ "./styles/app.css");
-/* harmony import */ var _styles_dark_forest_css__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../styles/dark-forest.css */ "./styles/dark-forest.css");
-/* harmony import */ var _modules_particles_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../modules/particles.js */ "./src/modules/particles.js");
-/* harmony import */ var _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../modules/simpleRouter.js */ "./src/modules/simpleRouter.js");
-/* harmony import */ var _modules_auth_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../modules/auth.js */ "./src/modules/auth.js");
-/* harmony import */ var _modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../modules/loadingModal.js */ "./src/modules/loadingModal.js");
-/* harmony import */ var _modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../modules/notifications.js */ "./src/modules/notifications.js");
-/* harmony import */ var _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../modules/homeAnimations.js */ "./src/modules/homeAnimations.js");
-/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./state.js */ "./src/core/state.js");
-/* harmony import */ var _modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../modules/quoteFlow.js */ "./src/modules/quoteFlow.js");
-/* harmony import */ var _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../modules/scheduling.js */ "./src/modules/scheduling.js");
-/* harmony import */ var _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../modules/contactsManager.js */ "./src/modules/contactsManager.js");
-/* harmony import */ var _utils_logo_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../utils/logo.js */ "./src/utils/logo.js");
-/* harmony import */ var _utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../utils/scrollCollapse.js */ "./src/utils/scrollCollapse.js");
-/* harmony import */ var _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../modules/chartModals.js */ "./src/modules/chartModals.js");
-/* harmony import */ var _modules_notificationModal_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../modules/notificationModal.js */ "./src/modules/notificationModal.js");
-/* harmony import */ var _modules_paymentIntegration_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ../modules/paymentIntegration.js */ "./src/modules/paymentIntegration.js");
+/* harmony import */ var _styles_dashboard_actions_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../styles/dashboard-actions.css */ "./styles/dashboard-actions.css");
+/* harmony import */ var _styles_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../styles/scroll-modal-fixes.css */ "./styles/scroll-modal-fixes.css");
+/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../styles/app.css */ "./styles/app.css");
+/* harmony import */ var _styles_dark_forest_css__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../styles/dark-forest.css */ "./styles/dark-forest.css");
+/* harmony import */ var _modules_particles_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../modules/particles.js */ "./src/modules/particles.js");
+/* harmony import */ var _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../modules/simpleRouter.js */ "./src/modules/simpleRouter.js");
+/* harmony import */ var _modules_auth_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../modules/auth.js */ "./src/modules/auth.js");
+/* harmony import */ var _modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../modules/loadingModal.js */ "./src/modules/loadingModal.js");
+/* harmony import */ var _modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../modules/notifications.js */ "./src/modules/notifications.js");
+/* harmony import */ var _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../modules/homeAnimations.js */ "./src/modules/homeAnimations.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
+/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./state.js */ "./src/core/state.js");
+/* harmony import */ var _modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../modules/quoteFlow.js */ "./src/modules/quoteFlow.js");
+/* harmony import */ var _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../modules/scheduling.js */ "./src/modules/scheduling.js");
+/* harmony import */ var _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../modules/contactsManager.js */ "./src/modules/contactsManager.js");
+/* harmony import */ var _utils_logo_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../utils/logo.js */ "./src/utils/logo.js");
+/* harmony import */ var _utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../utils/scrollCollapse.js */ "./src/utils/scrollCollapse.js");
+/* harmony import */ var _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../modules/chartModals.js */ "./src/modules/chartModals.js");
+/* harmony import */ var _modules_notificationModal_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ../modules/notificationModal.js */ "./src/modules/notificationModal.js");
+/* harmony import */ var _modules_paymentIntegration_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../modules/paymentIntegration.js */ "./src/modules/paymentIntegration.js");
+/* harmony import */ var _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ../modules/dashboardActions.js */ "./src/modules/dashboardActions.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
@@ -23278,6 +24146,11 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -23301,6 +24174,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
  // Chart modal styles
  // Calendar & scheduling styles
  // NEW: Sistema de pagos
+ // NEW: Acciones y modales de dashboards
  // NEW: Fixes de scroll y modales
  // Base styles
  // Theme overrides MUST load last
@@ -23323,6 +24197,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 // NEW: Import payment and notification systems
 
+
+
+// NEW: Import dashboard actions - Sistema completo de acciones
 
 
 // API service and dashboard loaders - loaded dynamically when needed
@@ -23405,30 +24282,33 @@ _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
 }))();
 
 // Expose handlers globally for onclick handlers in templates
-window.appHandlers = {
-  navigateTo: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo,
-  toggleMobileMenu: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.toggleMobileMenu,
-  toggleFooter: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.toggleFooter,
-  skipToFinalState: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_25__.skipToFinalState,
-  showHomeSection: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_25__.showHomeSection,
+window.appHandlers = _objectSpread(_objectSpread({
+  navigateTo: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.navigateTo,
+  toggleMobileMenu: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.toggleMobileMenu,
+  toggleFooter: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.toggleFooter,
+  skipToFinalState: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_26__.skipToFinalState,
+  showHomeSection: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_26__.showHomeSection,
   handleClientLogin: handleClientLogin,
   handleAgentLogin: handleAgentLogin,
   handleContactSubmit: handleContactSubmit,
   logout: handleLogout,
-  toggleTheme: toggleTheme,
-  // Dashboard placeholders
-  viewPolicy: viewPolicy,
-  makePayment: makePayment,
-  fileClaim: fileClaim,
-  updateInfo: updateInfo,
-  contactAgent: contactAgent,
-  downloadPaymentHistory: downloadPaymentHistory,
+  toggleTheme: toggleTheme
+}, _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__), {}, {
+  // Dashboard placeholders (legacy - algunos serán reemplazados por dashboardActions)
+  viewPolicy: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.viewPolicy,
+  makePayment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.makePayment,
+  fileClaim: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.fileClaim,
+  updateInfo: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.updateInfo,
+  contactAgent: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.contactAgent,
+  downloadPaymentHistory: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.downloadPaymentHistory,
+  viewClientDetails: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.viewClientDetails,
+  createQuote: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.createQuote,
+  addClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.addClient,
+  scheduleAppointment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.scheduleAppointment,
   openQuoteModal: openQuoteModal,
-  addNewClient: addNewClient,
-  viewClientDetails: viewClientDetails,
+  addNewClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_37__.addClient,
   editClient: editClient,
   processQuote: processQuote,
-  createQuote: createQuote,
   submitQuote: submitQuote,
   processRenewal: processRenewal,
   viewReports: viewReports,
@@ -23436,7 +24316,6 @@ window.appHandlers = {
   viewCommissionDetails: viewCommissionDetails,
   showAgentRegistration: showAgentRegistration,
   // Scheduling & Contacts handlers
-  scheduleAppointment: scheduleAppointment,
   viewAgentDirectory: viewAgentDirectory,
   handleAgentContact: handleAgentContact,
   // New dashboard data loaders
@@ -23445,15 +24324,15 @@ window.appHandlers = {
   loadAdminDashboard: loadAdminDashboard,
   refreshDashboard: refreshDashboard,
   // Chart modals
-  openPaymentTrendsModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_33__.openPaymentTrendsModal,
-  openPolicyHealthModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_33__.openPolicyHealthModal,
-  closeChartModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_33__.closeChartModal
-};
+  openPaymentTrendsModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_34__.openPaymentTrendsModal,
+  openPolicyHealthModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_34__.openPolicyHealthModal,
+  closeChartModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_34__.closeChartModal
+});
 
 // Also expose common helpers as globals for legacy inline onclicks
-window.navigateTo = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo;
-window.toggleMobileMenu = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.toggleMobileMenu;
-window.toggleFooter = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.toggleFooter;
+window.navigateTo = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.navigateTo;
+window.toggleMobileMenu = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.toggleMobileMenu;
+window.toggleFooter = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.toggleFooter;
 window.handleContactSubmit = handleContactSubmit;
 window.handleClientLogin = handleClientLogin;
 window.handleAgentLogin = handleAgentLogin;
@@ -23464,7 +24343,7 @@ window.logout = handleLogout;
 window.scheduleAppointment = scheduleAppointment;
 window.viewAgentDirectory = viewAgentDirectory;
 // Expose notification helper for quick console testing / legacy inline calls
-window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification;
+window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification;
 function delay(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
@@ -23474,7 +24353,7 @@ function delay(ms) {
 // Form handlers
 function handleContactSubmit(e) {
   e.preventDefault();
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Mensaje enviado exitosamente. Te contactaremos pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Mensaje enviado exitosamente. Te contactaremos pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
   e.target.reset();
 }
 function _handleClientLoginAsync(_x) {
@@ -23488,22 +24367,22 @@ function _handleClientLoginAsync2() {
         case 0:
           email = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Autenticando cliente', 'Verificando credenciales', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.showLoading)('Autenticando cliente', 'Verificando credenciales', true);
           _context3.n = 1;
           return delay(200);
         case 1:
           _context3.n = 2;
-          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_22__.login)({
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_23__.login)({
             email: email,
             password: password
           }, 'client');
         case 2:
           user = _context3.v;
           if (user) {
-            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)('client-dashboard');
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(250);
+            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.navigateTo)('client-dashboard');
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(250);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(150);
           }
         case 3:
           return _context3.a(2);
@@ -23516,7 +24395,7 @@ function handleClientLogin(e) {
   e.preventDefault();
   _handleClientLoginAsync(e)["catch"](function (err) {
     console.error('Client login error:', err);
-    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
+    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(150);
   });
   return false;
 }
@@ -23531,7 +24410,7 @@ function _handleAgentLoginAsync2() {
         case 0:
           agentId = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Autenticando agente', 'Verificando credenciales', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.showLoading)('Autenticando agente', 'Verificando credenciales', true);
           _context4.n = 1;
           return delay(200);
         case 1:
@@ -23545,22 +24424,22 @@ function _handleAgentLoginAsync2() {
             loggedAt: Date.now()
           }));
           // Use a relative URL so it works both locally and under a subpath (e.g. /memo/ on GitHub Pages)
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(150);
           window.location.href = 'admin.html';
           return _context4.a(2);
         case 2:
           _context4.n = 3;
-          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_22__.login)({
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_23__.login)({
             agentId: agentId,
             password: password
           }, 'agent');
         case 3:
           user = _context4.v;
           if (user) {
-            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)('agent-dashboard');
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(250);
+            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.navigateTo)('agent-dashboard');
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(250);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(150);
           }
         case 4:
           return _context4.a(2);
@@ -23573,46 +24452,25 @@ function handleAgentLogin(e) {
   e.preventDefault();
   _handleAgentLoginAsync(e)["catch"](function (err) {
     console.error('Agent login error:', err);
-    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
+    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(150);
   });
   return false;
 }
 function handleLogout() {
-  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Cerrando sesión', 'Limpiando sesión');
-  (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_22__.logout)();
+  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.showLoading)('Cerrando sesión', 'Limpiando sesión');
+  (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_23__.logout)();
   try {
     localStorage.removeItem('krause_admin');
   } catch (e) {
     // Non-fatal cleanup
   }
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.HOME);
-  (0,_modules_particles_js__WEBPACK_IMPORTED_MODULE_20__.startParticles)();
-  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(200);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.PAGES.HOME);
+  (0,_modules_particles_js__WEBPACK_IMPORTED_MODULE_21__.startParticles)();
+  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(200);
 }
 
-// Dashboard placeholder functions
-function viewPolicy(policyId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Mostrando detalles de p\xF3liza ".concat(policyId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
-}
-function makePayment() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Redirigiendo a pasarela de pago...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
-}
-function fileClaim() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo formulario de siniestros...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
-}
-function updateInfo() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo formulario de actualización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
-}
-function contactAgent() {
-  // Allow navigation to contact page when triggered from an agent action
-  window.__allowContact = true;
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo chat con agente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)('contact');
-  // Clear temporary flag shortly after navigation
-  setTimeout(function () {
-    window.__allowContact = false;
-  }, 500);
-}
+// Dashboard placeholder functions - LEGACY (ahora manejadas por dashboardActions.js)
+// Mantenidas solo para compatibilidad temporal
 function refreshDashboard() {
   return _refreshDashboard.apply(this, arguments);
 }
@@ -23622,7 +24480,7 @@ function _refreshDashboard() {
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_27__.getUser)();
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_28__.getUser)();
           if (user) {
             _context6.n = 1;
             break;
@@ -23635,7 +24493,7 @@ function _refreshDashboard() {
           document.body.classList.add('skeleton-mode');
           _context6.p = 2;
           _context6.n = 3;
-          return (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.withLoading)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+          return (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.withLoading)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
             return _regenerator().w(function (_context5) {
               while (1) switch (_context5.n) {
                 case 0:
@@ -23678,14 +24536,14 @@ function _refreshDashboard() {
             minDelay: 420
           });
         case 3:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Datos actualizados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Datos actualizados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
           _context6.n = 5;
           break;
         case 4:
           _context6.p = 4;
           _t3 = _context6.v;
           console.warn('Could not refresh dashboard:', _t3);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
         case 5:
           _context6.p = 5;
           document.body.classList.remove('skeleton-mode');
@@ -23710,11 +24568,11 @@ function _viewClientDetails() {
             _context7.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Detalles no disponibles en modo demo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Detalles no disponibles en modo demo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
           return _context7.a(2);
         case 1:
           _context7.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
           _context7.n = 2;
           return loadClientDetailsData(clientId);
         case 2:
@@ -23727,7 +24585,7 @@ function _viewClientDetails() {
         case 3:
           _context7.p = 3;
           _t4 = _context7.v;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context7.a(2);
       }
@@ -23752,26 +24610,26 @@ function showClientDetailsModal(data) {
   });
 }
 function downloadPaymentHistory() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Descargando historial...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Descargando historial...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 function openQuoteModal(type) {
   var normalized = (type || 'auto').toLowerCase();
-  (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.setPendingQuoteType)(normalized);
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.QUOTE);
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Preparando formulario para seguro de ".concat(normalized), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_29__.setPendingQuoteType)(normalized);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.PAGES.QUOTE);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)("Preparando formulario para seguro de ".concat(normalized), _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 function addNewClient() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo formulario de nuevo cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Abriendo formulario de nuevo cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 function editClient(clientId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Editando cliente ".concat(clientId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)("Editando cliente ".concat(clientId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 function processQuote(quoteId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Procesando cotizaci\xF3n ".concat(quoteId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)("Procesando cotizaci\xF3n ".concat(quoteId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 function createQuote() {
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.QUOTE);
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Creando nueva cotización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.PAGES.QUOTE);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Creando nueva cotización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 function submitQuote(_x4) {
   return _submitQuote.apply(this, arguments);
@@ -23803,21 +24661,21 @@ function _submitQuote() {
             _context8.n = 2;
             break;
           }
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Procesando cotización', 'Calculando cobertura y prima', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.showLoading)('Procesando cotización', 'Calculando cobertura y prima', true);
           _context8.n = 1;
           return delay(800);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(200);
-          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.notifyQuoteSuccess)(label);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(200);
+          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_29__.notifyQuoteSuccess)(label);
           form.reset();
           hiddenType = form.querySelector('input[name="quoteType"]');
           if (hiddenType) hiddenType.value = quoteType;
-          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.setPendingQuoteType)(quoteType);
+          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_29__.setPendingQuoteType)(quoteType);
           return _context8.a(2);
         case 2:
           _context8.p = 2;
           // Send quote request to API
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Enviando cotización', 'Procesando solicitud', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.showLoading)('Enviando cotización', 'Procesando solicitud', true);
           _context8.n = 3;
           return apiService.request(API_CONFIG.ENDPOINTS.REQUEST_QUOTE, {
             method: 'POST',
@@ -23835,14 +24693,14 @@ function _submitQuote() {
         case 3:
           response = _context8.v;
           if (response.success) {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(200);
-            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.notifyQuoteSuccess)(label);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(200);
+            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_29__.notifyQuoteSuccess)(label);
             form.reset();
             _hiddenType = form.querySelector('input[name="quoteType"]');
             if (_hiddenType) _hiddenType.value = quoteType;
-            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.setPendingQuoteType)(quoteType);
+            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_29__.setPendingQuoteType)(quoteType);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(150);
           }
           _context8.n = 5;
           break;
@@ -23850,8 +24708,8 @@ function _submitQuote() {
           _context8.p = 4;
           _t5 = _context8.v;
           console.error('Quote submission error:', _t5);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al enviar cotización. Por favor intenta de nuevo.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(150);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Error al enviar cotización. Por favor intenta de nuevo.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context8.a(2);
       }
@@ -23860,16 +24718,16 @@ function _submitQuote() {
   return _submitQuote.apply(this, arguments);
 }
 function processRenewal() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo renovaciones pendientes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Abriendo renovaciones pendientes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 function viewReports() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Generando reportes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Generando reportes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 function completeTask(taskId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Tarea completada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Tarea completada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
 }
 function viewCommissionDetails() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Mostrando detalle de comisiones...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Mostrando detalle de comisiones...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 
 // --- Agent dashboard wiring ---
@@ -23886,11 +24744,11 @@ function _assignClaimToAgent() {
             _context9.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Siniestro asignado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Siniestro asignado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
           return _context9.a(2);
         case 1:
           _context9.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Asignando siniestro y notificando...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Asignando siniestro y notificando...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
           _context9.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.ASSIGN_CLAIM, {
             method: 'POST',
@@ -23917,14 +24775,14 @@ function _assignClaimToAgent() {
             useCache: false
           });
         case 3:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Siniestro asignado y notificación enviada.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Siniestro asignado y notificación enviada.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
           _context9.n = 5;
           break;
         case 4:
           _context9.p = 4;
           _t6 = _context9.v;
           console.error('Assign claim failed', _t6);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al asignar o notificar el siniestro.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Error al asignar o notificar el siniestro.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context9.a(2);
       }
@@ -23948,11 +24806,11 @@ function _sendQuestionnaire() {
             _context0.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario enviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Cuestionario enviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
           return _context0.a(2);
         case 1:
           _context0.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Enviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Enviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
           _context0.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.SEND_QUESTIONNAIRE, {
             method: 'POST',
@@ -23963,14 +24821,14 @@ function _sendQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario enviado al cliente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Cuestionario enviado al cliente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
           _context0.n = 4;
           break;
         case 3:
           _context0.p = 3;
           _t7 = _context0.v;
           console.error('Send questionnaire failed', _t7);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('No se pudo enviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('No se pudo enviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context0.a(2);
       }
@@ -23991,11 +24849,11 @@ function _resendQuestionnaire() {
             _context1.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario reenviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Cuestionario reenviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
           return _context1.a(2);
         case 1:
           _context1.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Reenviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Reenviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
           _context1.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.RESEND_QUESTIONNAIRE, {
             method: 'POST',
@@ -24006,14 +24864,14 @@ function _resendQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario reenviado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Cuestionario reenviado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
           _context1.n = 4;
           break;
         case 3:
           _context1.p = 3;
           _t8 = _context1.v;
           console.error('Resend questionnaire failed', _t8);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('No se pudo reenviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('No se pudo reenviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context1.a(2);
       }
@@ -24034,11 +24892,11 @@ function _completeQuestionnaire() {
             _context10.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario completado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Cuestionario completado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
           return _context10.a(2);
         case 1:
           _context10.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Marcando cuestionario como completado...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Marcando cuestionario como completado...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
           _context10.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.COMPLETE_QUESTIONNAIRE, {
             method: 'POST',
@@ -24049,14 +24907,14 @@ function _completeQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario completado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Cuestionario completado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
           _context10.n = 4;
           break;
         case 3:
           _context10.p = 3;
           _t9 = _context10.v;
           console.error('Complete questionnaire failed', _t9);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('No se pudo completar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('No se pudo completar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context10.a(2);
       }
@@ -24072,7 +24930,7 @@ function _reviewQuestionnaire() {
     return _regenerator().w(function (_context11) {
       while (1) switch (_context11.n) {
         case 0:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Abriendo revisi\xF3n del cuestionario ".concat(id, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)("Abriendo revisi\xF3n del cuestionario ".concat(id, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
         case 1:
           return _context11.a(2);
       }
@@ -24089,7 +24947,7 @@ function _openSupport() {
     return _regenerator().w(function (_context12) {
       while (1) switch (_context12.p = _context12.n) {
         case 0:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Abriendo caso de soporte (".concat(type, ")..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)("Abriendo caso de soporte (".concat(type, ")..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
             _context12.n = 1;
             break;
@@ -24123,7 +24981,7 @@ function _openSupport() {
   return _openSupport.apply(this, arguments);
 }
 function showAgentRegistration() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Contacta al administrador para solicitar acceso como agente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Contacta al administrador para solicitar acceso como agente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
 }
 
 // ========== SCHEDULING HANDLERS ==========
@@ -24136,31 +24994,31 @@ function _scheduleAppointment() {
     return _regenerator().w(function (_context13) {
       while (1) switch (_context13.p = _context13.n) {
         case 0:
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_27__.getUser)();
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_28__.getUser)();
           if (user) {
             _context13.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Debes iniciar sesión para agendar citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Debes iniciar sesión para agendar citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
           return _context13.a(2);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Cargando calendario', 'Buscando agentes disponibles', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.showLoading)('Cargando calendario', 'Buscando agentes disponibles', true);
           _context13.n = 2;
           return delay(300);
         case 2:
           _context13.p = 2;
-          availableAgents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_30__.getAgents({
+          availableAgents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_31__.getAgents({
             status: 'available'
           });
           if (!(availableAgents.length === 0)) {
             _context13.n = 3;
             break;
           }
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('No hay agentes disponibles en este momento', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.WARNING);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('No hay agentes disponibles en este momento', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.WARNING);
           return _context13.a(2);
         case 3:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(150);
           openSchedulingModal(availableAgents);
           _context13.n = 5;
           break;
@@ -24168,8 +25026,8 @@ function _scheduleAppointment() {
           _context13.p = 4;
           _t1 = _context13.v;
           console.error('Error loading agents:', _t1);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al cargar agentes disponibles', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Error al cargar agentes disponibles', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context13.a(2);
       }
@@ -24208,18 +25066,18 @@ function _confirmSchedulingSubmit() {
             _context14.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Por favor completa todos los campos requeridos', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.WARNING);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Por favor completa todos los campos requeridos', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.WARNING);
           return _context14.a(2);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Procesando solicitud', 'Solicitando cita con agente', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.showLoading)('Procesando solicitud', 'Solicitando cita con agente', true);
           _context14.p = 2;
-          agent = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_30__.getAgentById(agentId);
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_27__.getUser)();
+          agent = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_31__.getAgentById(agentId);
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_28__.getUser)();
           _meetingTime$split = meetingTime.split(':'), _meetingTime$split2 = _slicedToArray(_meetingTime$split, 2), hours = _meetingTime$split2[0], minutes = _meetingTime$split2[1];
           startTime = new Date("".concat(meetingDate, "T").concat(meetingTime, ":00"));
           endTime = new Date(startTime.getTime() + 30 * 60000);
           _context14.n = 3;
-          return _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_29__.requestMeeting({
+          return _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_30__.requestMeeting({
             agentId: agentId,
             agentName: agent.name,
             clientId: user.id,
@@ -24235,17 +25093,17 @@ function _confirmSchedulingSubmit() {
           _context14.n = 4;
           return delay(400);
         case 4:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(150);
           (_document$querySelect2 = document.querySelector('.booking-modal')) === null || _document$querySelect2 === void 0 || _document$querySelect2.remove();
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Solicitud enviada a ".concat(agent.name, ". Te notificaremos cuando confirme."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)("Solicitud enviada a ".concat(agent.name, ". Te notificaremos cuando confirme."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.SUCCESS);
           _context14.n = 6;
           break;
         case 5:
           _context14.p = 5;
           _t10 = _context14.v;
           console.error('Scheduling error:', _t10);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al agendar la cita: ' + _t10.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Error al agendar la cita: ' + _t10.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.ERROR);
         case 6:
           return _context14.a(2);
       }
@@ -24262,18 +25120,18 @@ function _viewAgentDirectory() {
     return _regenerator().w(function (_context15) {
       while (1) switch (_context15.n) {
         case 0:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Cargando directorio', 'Buscando agentes disponibles', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.showLoading)('Cargando directorio', 'Buscando agentes disponibles', true);
           _context15.n = 1;
           return delay(250);
         case 1:
           try {
-            agents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_30__.getAgents();
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
+            agents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_31__.getAgents();
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(100);
             openAgentDirectoryModal(agents);
           } catch (error) {
             console.error('Error loading agents:', error);
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
-            (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al cargar directorio de agentes', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_24__.hideLoading)(100);
+            (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Error al cargar directorio de agentes', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.ERROR);
           }
         case 2:
           return _context15.a(2);
@@ -24304,7 +25162,7 @@ function openAgentDirectoryModal(agents) {
 function handleAgentContact(agentId, agentName) {
   var _document$querySelect;
   (_document$querySelect = document.querySelector('.booking-modal')) === null || _document$querySelect === void 0 || _document$querySelect.remove();
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Iniciando contacto con ".concat(agentName, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)("Iniciando contacto con ".concat(agentName, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO);
   scheduleAppointment();
 }
 
@@ -24366,7 +25224,7 @@ document.addEventListener('DOMContentLoaded', function () {
   applyTheme(normalizedSaved || 'dark-forest');
 
   // Render all shared logo slots (navbar, footer, auth, etc.) with consistent sizing/contrast
-  (0,_utils_logo_js__WEBPACK_IMPORTED_MODULE_31__.renderAllLogos)();
+  (0,_utils_logo_js__WEBPACK_IMPORTED_MODULE_32__.renderAllLogos)();
 
   // Keep theme toggle on the header logo (stays consistent even with dynamic renders)
   var headerLogo = document.querySelector('.nav-brand .krause-shield');
@@ -24390,16 +25248,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // If a session exists, offer redirect or logout
   try {
-    var existingUser = (0,_state_js__WEBPACK_IMPORTED_MODULE_27__.getUser)();
+    var existingUser = (0,_state_js__WEBPACK_IMPORTED_MODULE_28__.getUser)();
     if (existingUser) {
-      (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Tienes una sesión activa. ¿Quieres ir a tu panel o cerrar sesión?', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO, {
+      (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_25__.showNotification)('Tienes una sesión activa. ¿Quieres ir a tu panel o cerrar sesión?', _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.NOTIFICATION_TYPES.INFO, {
         duration: 0
       });
       setTimeout(function () {
         var goToPanel = window.confirm('Sesión activa detectada. ¿Ir a tu panel ahora?');
         if (goToPanel) {
-          var target = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_22__.getRedirectPage)(existingUser) || _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.HOME;
-          (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(target);
+          var target = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_23__.getRedirectPage)(existingUser) || _utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.PAGES.HOME;
+          (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.navigateTo)(target);
           return;
         }
         var shouldLogout = window.confirm('¿Deseas cerrar sesión?');
@@ -24413,10 +25271,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Always land on Home (Inicio) first; keep session info for optional redirects later
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.HOME);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_22__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_27__.PAGES.HOME);
 
   // Initialize scroll collapse for dashboards (will retry if dashboard not loaded yet)
-  (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_32__.initScrollCollapse)();
+  (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_33__.initScrollCollapse)();
 
   // Re-initialize scroll collapse whenever page changes
   var originalNavigateTo = window.navigateTo;
@@ -24429,7 +25287,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Reinit scroll collapse after navigation completes
       setTimeout(function () {
         if (args[0] && args[0].includes('dashboard')) {
-          (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_32__.initScrollCollapse)();
+          (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_33__.initScrollCollapse)();
         }
       }, 300);
     };
