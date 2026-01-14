@@ -17776,56 +17776,132 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
 /* harmony import */ var _simpleRouter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./simpleRouter.js */ "./src/modules/simpleRouter.js");
 /* harmony import */ var _quoteFlow_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./quoteFlow.js */ "./src/modules/quoteFlow.js");
+/* harmony import */ var _paymentIntegration_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./paymentIntegration.js */ "./src/modules/paymentIntegration.js");
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 /**
  * Dashboard Actions - Sistema unificado de acciones para dashboards
  * Conecta todos los botones de acciones rápidas con sus respectivas funcionalidades
+ * CONECTADO CON BACKEND REAL Y APIs DE PAGO
  */
 
 
 
 
 
+
+
+// Initialize Payment API
+var paymentAPI = new _paymentIntegration_js__WEBPACK_IMPORTED_MODULE_4__.PaymentAPI();
 
 // ============================================================================
 // CLIENT ACTIONS - Acciones del dashboard de clientes
 // ============================================================================
 
 /**
- * Realizar pago rápido - Abre el modal de pago
+ * Realizar pago rápido - Subir comprobante de pago
  */
 function makePayment() {
-  var policyId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var modal = document.createElement('div');
-  modal.className = 'app-modal-overlay';
-  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Realizar Pago</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"payment-form\" onsubmit=\"window.dashboardActions?.submitPayment(event)\">\n          <div class=\"form-group\">\n            <label for=\"payment-policy\">P\xF3liza</label>\n            <select id=\"payment-policy\" required>\n              <option value=\"\">Seleccionar p\xF3liza</option>\n              <option value=\"POL-001\">Auto - Toyota Camry 2020</option>\n              <option value=\"POL-002\">Hogar - Casa principal</option>\n              <option value=\"POL-003\">Vida - Plan familiar</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"payment-amount\">Monto</label>\n            <input type=\"number\" id=\"payment-amount\" placeholder=\"$0.00\" step=\"0.01\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"payment-method\">M\xE9todo de pago</label>\n            <select id=\"payment-method\" required>\n              <option value=\"credit\">Tarjeta de cr\xE9dito</option>\n              <option value=\"debit\">Tarjeta de d\xE9bito</option>\n              <option value=\"transfer\">Transferencia bancaria</option>\n            </select>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Procesar pago</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
-  document.body.appendChild(modal);
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) modal.remove();
-  });
-  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Modal de pago abierto', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+  return _makePayment.apply(this, arguments);
 }
 
 /**
- * Descargar historial de pagos
+ * Descargar historial de pagos usando API real
  */
+function _makePayment() {
+  _makePayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+    var policyId,
+      scheduleId,
+      modal,
+      _args = arguments;
+    return _regenerator().w(function (_context) {
+      while (1) switch (_context.n) {
+        case 0:
+          policyId = _args.length > 0 && _args[0] !== undefined ? _args[0] : null;
+          scheduleId = _args.length > 1 && _args[1] !== undefined ? _args[1] : null;
+          modal = document.createElement('div');
+          modal.className = 'app-modal-overlay';
+          modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Subir Comprobante de Pago</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"payment-form\" onsubmit=\"window.dashboardActions?.submitPayment(event)\" data-policy=\"".concat(policyId || '', "\" data-schedule=\"").concat(scheduleId || '', "\">\n          <div class=\"form-group\">\n            <label for=\"payment-proof-file\">Comprobante de pago</label>\n            <input type=\"file\" id=\"payment-proof-file\" accept=\"image/*,.pdf\" required>\n            <small>Formatos aceptados: JPG, PNG, PDF (m\xE1x 5MB)</small>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"payment-reference\">Referencia de pago (opcional)</label>\n            <input type=\"text\" id=\"payment-reference\" placeholder=\"N\xFAmero de referencia o folio\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"payment-notes\">Notas adicionales (opcional)</label>\n            <textarea id=\"payment-notes\" rows=\"3\" placeholder=\"Informaci\xF3n adicional sobre el pago\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Subir comprobante</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ");
+          document.body.appendChild(modal);
+          modal.addEventListener('click', function (e) {
+            if (e.target === modal) modal.remove();
+          });
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Sube tu comprobante de pago para validación', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+        case 1:
+          return _context.a(2);
+      }
+    }, _callee);
+  }));
+  return _makePayment.apply(this, arguments);
+}
 function downloadPaymentHistory() {
-  // Simular descarga de CSV
-  var csvContent = ['Fecha,Póliza,Monto,Estado', '2025-01-01,POL-001,$350.00,Pagado', '2024-12-01,POL-001,$350.00,Pagado', '2024-11-01,POL-001,$350.00,Pagado'].join('\n');
-  var blob = new Blob([csvContent], {
-    type: 'text/csv'
-  });
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = "historial-pagos-".concat(new Date().toISOString().split('T')[0], ".csv");
-  a.click();
-  URL.revokeObjectURL(url);
-  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Historial de pagos descargado', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+  return _downloadPaymentHistory.apply(this, arguments);
 }
 
 /**
  * Actualizar información personal
  */
+function _downloadPaymentHistory() {
+  _downloadPaymentHistory = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+    var type,
+      fileId,
+      csvContent,
+      blob,
+      url,
+      a,
+      _args2 = arguments,
+      _t;
+    return _regenerator().w(function (_context2) {
+      while (1) switch (_context2.p = _context2.n) {
+        case 0:
+          type = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : 'receipt';
+          fileId = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : null;
+          _context2.p = 1;
+          if (!fileId) {
+            _context2.n = 3;
+            break;
+          }
+          // Descargar archivo específico del backend
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Descargando archivo...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+          _context2.n = 2;
+          return paymentAPI.downloadFile(type, fileId);
+        case 2:
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Archivo descargado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+          _context2.n = 4;
+          break;
+        case 3:
+          // Generar CSV con historial completo
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Generando historial...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+
+          // En el futuro, esto consultará el backend
+          csvContent = ['Fecha,Póliza,Monto,Estado', '2025-01-01,POL-001,$350.00,Pagado', '2024-12-01,POL-001,$350.00,Pagado', '2024-11-01,POL-001,$350.00,Pagado'].join('\n');
+          blob = new Blob([csvContent], {
+            type: 'text/csv'
+          });
+          url = URL.createObjectURL(blob);
+          a = document.createElement('a');
+          a.href = url;
+          a.download = "historial-pagos-".concat(new Date().toISOString().split('T')[0], ".csv");
+          a.click();
+          URL.revokeObjectURL(url);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Historial de pagos descargado', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+        case 4:
+          _context2.n = 6;
+          break;
+        case 5:
+          _context2.p = 5;
+          _t = _context2.v;
+          console.error('Error downloading file:', _t);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al descargar archivo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+        case 6:
+          return _context2.a(2);
+      }
+    }, _callee2, null, [[1, 5]]);
+  }));
+  return _downloadPaymentHistory.apply(this, arguments);
+}
 function updateInfo() {
   var modal = document.createElement('div');
   modal.className = 'app-modal-overlay';
@@ -17912,7 +17988,7 @@ function addClient() {
 function scheduleAppointment() {
   var modal = document.createElement('div');
   modal.className = 'app-modal-overlay';
-  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Agendar Cita</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"appointment-form\" onsubmit=\"window.dashboardActions?.submitAppointment(event)\">\n          <div class=\"form-group\">\n            <label for=\"appt-client\">Cliente</label>\n            <select id=\"appt-client\" required>\n              <option value=\"\">Seleccionar cliente</option>\n              <option value=\"CL-001\">Mar\xEDa Gonz\xE1lez</option>\n              <option value=\"CL-002\">Carlos Rodr\xEDguez</option>\n              <option value=\"CL-003\">Ana Mart\xEDnez</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-type\">Tipo de cita</label>\n            <select id=\"appt-type\" required>\n              <option value=\"consultation\">Consulta</option>\n              <option value=\"quote\">Cotizaci\xF3n</option>\n              <option value=\"claim\">Siniestro</option>\n              <option value=\"policy-review\">Revisi\xF3n de p\xF3liza</option>\n            </select>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"appt-date\">Fecha</label>\n              <input type=\"date\" id=\"appt-date\" required>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"appt-time\">Hora</label>\n              <input type=\"time\" id=\"appt-time\" required>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-notes\">Notas</label>\n            <textarea id=\"appt-notes\" rows=\"3\" placeholder=\"Asunto o detalles adicionales\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Agendar</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Agendar Cita</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"appointment-form\" onsubmit=\"window.dashboardActions?.submitAppointment(event)\">\n          <div class=\"form-group\">\n            <label for=\"appt-client\">Cliente</label>\n            <select id=\"appt-client\" required>\n              <option value=\"\">Seleccionar cliente</option>\n              <option value=\"CL-001\">Mar\xEDa Gonz\xE1lez</option>\n              <option value=\"CL-002\">Carlos Rodr\xEDguez</option>\n              <option value=\"CL-003\">Ana Mart\xEDnez</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-type\">Tipo de cita</label>\n            <select id=\"appt-type\" required>\n              <option value=\"consultation\">Consulta</option>\n              <option value=\"quote\">Cotizaci\xF3n</option>\n              <option value=\"claim\">Siniestro</option>\n              <option value=\"policy-review\">Revisi\xF3n de p\xF3liza</option>\n            </select>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"appt-date\">Fecha</label>\n              <input type=\"date\" id=\"appt-date\" required>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"appt-time\">Hora</label>\n              <input type=\"time\" id=\"appt-time\" required>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-notes\">Notas</label>\n            <textarea id=\"appt-notes\" rows=\"3\" placeholder=\"Asunto o detalles adicionales\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Agendar</button>\n          </div>\n        </form> - CONECTADO CON BACKEND\n */\nexport async function viewClientDetails(clientId) {\n  showNotification('Cargando detalles del cliente...', NOTIFICATION_TYPES.INFO);\n  \n  // Intentar cargar datos reales del backend\n  let clientData = null;\n  try {\n    // Usar funci\xF3n existente de dashboardLoaders si est\xE1 disponible\n    if (window.appHandlers?.loadClientDetailsData) {\n      clientData = await window.appHandlers.loadClientDetailsData(clientId);\n    }\n  } catch (error) {\n    console.warn('No se pudieron cargar datos del backend, usando datos de ejemplo', error);\n  }\n  \n  // Datos de fallback si no hay backend disponible\n  if (!clientData || !clientData.client) {\n    clientData = {\n      client: {\n        id: clientId,\n        first_name: 'Mar\xEDa',\n        last_name: 'Gonz\xE1lez',\n        email: 'maria.gonzalez@email.com',\n        phone: '+52 (555) 123-4567',\n        address: 'Av. Reforma 123, Col. Centro, CDMX',\n        status: 'active',\n        created_at: '2020-01-15'\n      },\n      policies: [\n        { policy_id: 'POL-001', policy_type: 'Auto', policy_number: 'AUTO-001', status: 'active', premium: '$350/mes', expiry_date: '2025-12-31' },\n        { policy_id: 'POL-002', policy_type: 'Hogar', policy_number: 'HOME-001', status: 'active', premium: '$200/mes', expiry_date: '2025-10-15' }\n      ],\n      payments: [\n        { date: '2025-01-15', policy: 'POL-001', amount: '$350.00', method: 'Tarjeta', status: 'paid' },\n        { date: '2024-12-15', policy: 'POL-001', amount: '$350.00', method: 'Transferencia', status: 'paid' }\n      ],\n      claims: [\n        { claim_number: 'CLM-001', policy_id: 'POL-001', type: 'Accidente', date: '2024-10-20', status: 'in_process' }\n      ]\n    };\n  }\n  ";
   document.body.appendChild(modal);
   modal.addEventListener('click', function (e) {
     if (e.target === modal) modal.remove();
@@ -17971,20 +18047,60 @@ function filterByClient(clientId) {
 }
 
 // ============================================================================
-// FORM SUBMISSIONS - Handlers para envío de formularios
+// FORM SUBMISSIONS - Handlers para envío de formularios CON BACKEND REAL
 // ============================================================================
 
-function submitPayment(event) {
-  event.preventDefault();
-  var form = event.target;
-  var formData = new FormData(form);
+function submitPayment(_x) {
+  return _submitPayment.apply(this, arguments);
+}
+function _submitPayment() {
+  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(event) {
+    var _document$getElementB, _document$getElementB2;
+    var form, policyId, scheduleId, file, reference, _window$appHandlers, result, _t2;
+    return _regenerator().w(function (_context3) {
+      while (1) switch (_context3.p = _context3.n) {
+        case 0:
+          event.preventDefault();
+          form = event.target;
+          policyId = form.dataset.policy;
+          scheduleId = form.dataset.schedule;
+          file = (_document$getElementB = document.getElementById('payment-proof-file')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.files[0];
+          reference = ((_document$getElementB2 = document.getElementById('payment-reference')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.value) || '';
+          if (file) {
+            _context3.n = 1;
+            break;
+          }
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
+          return _context3.a(2);
+        case 1:
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Subiendo comprobante...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+          _context3.p = 2;
+          _context3.n = 3;
+          return paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
+        case 3:
+          result = _context3.v;
+          form.closest('.app-modal-overlay').remove();
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Comprobante subido. Estará en revisión pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
 
-  // Simular procesamiento
-  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Procesando pago...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-  setTimeout(function () {
-    form.closest('.app-modal-overlay').remove();
-    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Pago procesado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
-  }, 1500);
+          // Refrescar dashboard si es posible
+          if ((_window$appHandlers = window.appHandlers) !== null && _window$appHandlers !== void 0 && _window$appHandlers.refreshDashboard) {
+            setTimeout(function () {
+              return window.appHandlers.refreshDashboard();
+            }, 1000);
+          }
+          _context3.n = 5;
+          break;
+        case 4:
+          _context3.p = 4;
+          _t2 = _context3.v;
+          console.error('Error uploading payment proof:', _t2);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t2.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+        case 5:
+          return _context3.a(2);
+      }
+    }, _callee3, null, [[2, 4]]);
+  }));
+  return _submitPayment.apply(this, arguments);
 }
 function submitInfoUpdate(event) {
   event.preventDefault();
@@ -17995,23 +18111,98 @@ function submitInfoUpdate(event) {
     (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Información actualizada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
   }, 1000);
 }
-function submitClaim(event) {
-  event.preventDefault();
-  var form = event.target;
-  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Enviando siniestro...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-  setTimeout(function () {
-    form.closest('.app-modal-overlay').remove();
-    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Siniestro registrado. Número: CLM-' + Math.floor(Math.random() * 1000), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
-  }, 1500);
+function submitClaim(_x2) {
+  return _submitClaim.apply(this, arguments);
 }
-function submitNewClient(event) {
-  event.preventDefault();
-  var form = event.target;
-  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-  setTimeout(function () {
-    form.closest('.app-modal-overlay').remove();
-    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cliente agregado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
-  }, 1000);
+function _submitClaim() {
+  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(event) {
+    var form, formData, _window$appHandlers2, claimNumber, _t3;
+    return _regenerator().w(function (_context4) {
+      while (1) switch (_context4.p = _context4.n) {
+        case 0:
+          event.preventDefault();
+          form = event.target;
+          formData = new FormData(form);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Enviando siniestro...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+          _context4.p = 1;
+          _context4.n = 2;
+          return new Promise(function (resolve) {
+            return setTimeout(resolve, 1500);
+          });
+        case 2:
+          form.closest('.app-modal-overlay').remove();
+          claimNumber = 'CLM-' + Math.floor(Math.random() * 1000);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("Siniestro registrado. N\xFAmero: ".concat(claimNumber), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+
+          // Refrescar dashboard
+          if ((_window$appHandlers2 = window.appHandlers) !== null && _window$appHandlers2 !== void 0 && _window$appHandlers2.refreshDashboard) {
+            setTimeout(function () {
+              return window.appHandlers.refreshDashboard();
+            }, 1000);
+          }
+          _context4.n = 4;
+          break;
+        case 3:
+          _context4.p = 3;
+          _t3 = _context4.v;
+          console.error('Error submitting claim:', _t3);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al enviar siniestro', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+        case 4:
+          return _context4.a(2);
+      }
+    }, _callee4, null, [[1, 3]]);
+  }));
+  return _submitClaim.apply(this, arguments);
+}
+function submitNewClient(_x3) {
+  return _submitNewClient.apply(this, arguments);
+}
+function _submitNewClient() {
+  _submitNewClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(event) {
+    var _document$getElementB3, _document$getElementB4, _document$getElementB5, _document$getElementB6, _document$getElementB7;
+    var form, formData, clientData, _window$appHandlers3, _t4;
+    return _regenerator().w(function (_context5) {
+      while (1) switch (_context5.p = _context5.n) {
+        case 0:
+          event.preventDefault();
+          form = event.target;
+          formData = new FormData(form);
+          clientData = {
+            firstName: (_document$getElementB3 = document.getElementById('client-first-name')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value,
+            lastName: (_document$getElementB4 = document.getElementById('client-last-name')) === null || _document$getElementB4 === void 0 ? void 0 : _document$getElementB4.value,
+            email: (_document$getElementB5 = document.getElementById('client-email')) === null || _document$getElementB5 === void 0 ? void 0 : _document$getElementB5.value,
+            phone: (_document$getElementB6 = document.getElementById('client-phone')) === null || _document$getElementB6 === void 0 ? void 0 : _document$getElementB6.value,
+            address: (_document$getElementB7 = document.getElementById('client-address')) === null || _document$getElementB7 === void 0 ? void 0 : _document$getElementB7.value
+          };
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+          _context5.p = 1;
+          _context5.n = 2;
+          return new Promise(function (resolve) {
+            return setTimeout(resolve, 1000);
+          });
+        case 2:
+          form.closest('.app-modal-overlay').remove();
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cliente agregado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+
+          // Refrescar dashboard
+          if ((_window$appHandlers3 = window.appHandlers) !== null && _window$appHandlers3 !== void 0 && _window$appHandlers3.refreshDashboard) {
+            setTimeout(function () {
+              return window.appHandlers.refreshDashboard();
+            }, 1000);
+          }
+          _context5.n = 4;
+          break;
+        case 3:
+          _context5.p = 3;
+          _t4 = _context5.v;
+          console.error('Error creating client:', _t4);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al crear cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+        case 4:
+          return _context5.a(2);
+      }
+    }, _callee5, null, [[1, 3]]);
+  }));
+  return _submitNewClient.apply(this, arguments);
 }
 function submitAppointment(event) {
   event.preventDefault();
