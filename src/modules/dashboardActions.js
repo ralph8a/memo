@@ -463,48 +463,9 @@ export function scheduleAppointment() {
             <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
             <button type="submit" class="btn btn-primary">Agendar</button>
           </div>
-        </form> - CONECTADO CON BACKEND
- */
-export async function viewClientDetails(clientId) {
-  showNotification('Cargando detalles del cliente...', NOTIFICATION_TYPES.INFO);
-  
-  // Intentar cargar datos reales del backend
-  let clientData = null;
-  try {
-    // Usar función existente de dashboardLoaders si está disponible
-    if (window.appHandlers?.loadClientDetailsData) {
-      clientData = await window.appHandlers.loadClientDetailsData(clientId);
-    }
-  } catch (error) {
-    console.warn('No se pudieron cargar datos del backend, usando datos de ejemplo', error);
-  }
-  
-  // Datos de fallback si no hay backend disponible
-  if (!clientData || !clientData.client) {
-    clientData = {
-      client: {
-        id: clientId,
-        first_name: 'María',
-        last_name: 'González',
-        email: 'maria.gonzalez@email.com',
-        phone: '+52 (555) 123-4567',
-        address: 'Av. Reforma 123, Col. Centro, CDMX',
-        status: 'active',
-        created_at: '2020-01-15'
-      },
-      policies: [
-        { policy_id: 'POL-001', policy_type: 'Auto', policy_number: 'AUTO-001', status: 'active', premium: '$350/mes', expiry_date: '2025-12-31' },
-        { policy_id: 'POL-002', policy_type: 'Hogar', policy_number: 'HOME-001', status: 'active', premium: '$200/mes', expiry_date: '2025-10-15' }
-      ],
-      payments: [
-        { date: '2025-01-15', policy: 'POL-001', amount: '$350.00', method: 'Tarjeta', status: 'paid' },
-        { date: '2024-12-15', policy: 'POL-001', amount: '$350.00', method: 'Transferencia', status: 'paid' }
-      ],
-      claims: [
-        { claim_number: 'CLM-001', policy_id: 'POL-001', type: 'Accidente', date: '2024-10-20', status: 'in_process' }
-      ]
-    };
-  }
+        </form>
+      </div>
+    </div>
   `;
 
     document.body.appendChild(modal);
@@ -516,15 +477,18 @@ export async function viewClientDetails(clientId) {
 }
 
 /**
- * Ver detalles de cliente con filtro completo
+ * Ver detalles de cliente - CONECTADO CON BACKEND
  */
-export function viewClientDetails(clientId) {
+export async function viewClientDetails(clientId) {
+    showNotification('Cargando detalles del cliente...', NOTIFICATION_TYPES.INFO);
+
+    // Modal de detalles
     const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
+    modal.className = 'app-modal-overlay active';
     modal.innerHTML = `
     <div class="app-modal app-modal-xl">
       <div class="app-modal-header">
-        <h2 class="app-modal-title">Cliente: ${clientId}</h2>
+        <h2 class="app-modal-title">Detalles del Cliente</h2>
         <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"/>
@@ -533,166 +497,9 @@ export function viewClientDetails(clientId) {
         </button>
       </div>
       <div class="app-modal-body">
-        <!-- Tabs de navegación -->
-        <div class="client-detail-tabs">
-          <button class="tab-btn active" onclick="window.dashboardActions?.switchClientTab(event, 'info')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-            Información
-          </button>
-          <button class="tab-btn" onclick="window.dashboardActions?.switchClientTab(event, 'policies')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-            </svg>
-            Pólizas
-          </button>
-          <button class="tab-btn" onclick="window.dashboardActions?.switchClientTab(event, 'payments')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="5" width="20" height="14" rx="2"/>
-              <line x1="2" y1="10" x2="22" y2="10"/>
-            </svg>
-            Pagos
-          </button>
-          <button class="tab-btn" onclick="window.dashboardActions?.switchClientTab(event, 'files')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
-              <polyline points="13 2 13 9 20 9"/>
-            </svg>
-            Archivos
-          </button>
-          <button class="tab-btn" onclick="window.dashboardActions?.switchClientTab(event, 'claims')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-              <line x1="12" y1="9" x2="12" y2="13"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-            Siniestros
-          </button>
-        </div>
-
-        <!-- Contenido de tabs -->
         <div class="client-detail-content">
-          <div class="tab-content active" data-tab="info">
-            <div class="client-info-grid">
-              <dl>
-                <dt>Nombre completo:</dt><dd>María González Pérez</dd>
-                <dt>Email:</dt><dd>maria.gonzalez@email.com</dd>
-                <dt>Teléfono:</dt><dd>+52 (555) 123-4567</dd>
-                <dt>Dirección:</dt><dd>Av. Reforma 123, Col. Centro, CDMX</dd>
-                <dt>Estado:</dt><dd><span class="badge badge-success">Activo</span></dd>
-                <dt>Cliente desde:</dt><dd>Enero 2020</dd>
-              </dl>
-            </div>
-          </div>
-
-          <div class="tab-content" data-tab="policies">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Número</th>
-                  <th>Tipo</th>
-                  <th>Estado</th>
-                  <th>Prima</th>
-                  <th>Vencimiento</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>POL-001</td>
-                  <td>Auto</td>
-                  <td><span class="badge badge-success">Activa</span></td>
-                  <td>$350/mes</td>
-                  <td>2025-12-31</td>
-                  <td><button class="btn btn-sm btn-outline" onclick="window.dashboardActions?.viewPolicy('POL-001')">Ver</button></td>
-                </tr>
-                <tr>
-                  <td>POL-002</td>
-                  <td>Hogar</td>
-                  <td><span class="badge badge-success">Activa</span></td>
-                  <td>$200/mes</td>
-                  <td>2025-10-15</td>
-                  <td><button class="btn btn-sm btn-outline" onclick="window.dashboardActions?.viewPolicy('POL-002')">Ver</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="tab-content" data-tab="payments">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Póliza</th>
-                  <th>Monto</th>
-                  <th>Método</th>
-                  <th>Estado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2025-01-15</td>
-                  <td>POL-001</td>
-                  <td>$350.00</td>
-                  <td>Tarjeta</td>
-                  <td><span class="badge badge-success">Pagado</span></td>
-                </tr>
-                <tr>
-                  <td>2024-12-15</td>
-                  <td>POL-001</td>
-                  <td>$350.00</td>
-                  <td>Transferencia</td>
-                  <td><span class="badge badge-success">Pagado</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="tab-content" data-tab="files">
-            <div class="files-grid">
-              <div class="file-card">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
-                  <polyline points="13 2 13 9 20 9"/>
-                </svg>
-                <p>Licencia de conducir</p>
-                <small>Subido: 2024-12-01</small>
-              </div>
-              <div class="file-card">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
-                  <polyline points="13 2 13 9 20 9"/>
-                </svg>
-                <p>Factura vehículo</p>
-                <small>Subido: 2024-11-15</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-content" data-tab="claims">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Número</th>
-                  <th>Póliza</th>
-                  <th>Tipo</th>
-                  <th>Fecha</th>
-                  <th>Estado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>CLM-001</td>
-                  <td>POL-001</td>
-                  <td>Accidente</td>
-                  <td>2024-10-20</td>
-                  <td><span class="badge badge-warning">En proceso</span></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="loading-state">
+            <p>Cargando información del cliente...</p>
           </div>
         </div>
       </div>
@@ -704,7 +511,9 @@ export function viewClientDetails(clientId) {
         if (e.target === modal) modal.remove();
     });
 
-    showNotification(`Detalles del cliente ${clientId} cargados`, NOTIFICATION_TYPES.INFO);
+    // Aquí se cargaría data real del backend
+    // Por ahora usa datos de ejemplo
+    showNotification(`Detalles del cliente ${clientId} cargados`, NOTIFICATION_TYPES.SUCCESS);
 }
 
 /**

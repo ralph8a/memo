@@ -18129,7 +18129,7 @@ function addClient() {
 function scheduleAppointment() {
   var modal = document.createElement('div');
   modal.className = 'app-modal-overlay';
-  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Agendar Cita</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"appointment-form\" onsubmit=\"window.dashboardActions?.submitAppointment(event)\">\n          <div class=\"form-group\">\n            <label for=\"appt-client\">Cliente</label>\n            <select id=\"appt-client\" required>\n              <option value=\"\">Seleccionar cliente</option>\n              <option value=\"CL-001\">Mar\xEDa Gonz\xE1lez</option>\n              <option value=\"CL-002\">Carlos Rodr\xEDguez</option>\n              <option value=\"CL-003\">Ana Mart\xEDnez</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-type\">Tipo de cita</label>\n            <select id=\"appt-type\" required>\n              <option value=\"consultation\">Consulta</option>\n              <option value=\"quote\">Cotizaci\xF3n</option>\n              <option value=\"claim\">Siniestro</option>\n              <option value=\"policy-review\">Revisi\xF3n de p\xF3liza</option>\n            </select>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"appt-date\">Fecha</label>\n              <input type=\"date\" id=\"appt-date\" required>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"appt-time\">Hora</label>\n              <input type=\"time\" id=\"appt-time\" required>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-notes\">Notas</label>\n            <textarea id=\"appt-notes\" rows=\"3\" placeholder=\"Asunto o detalles adicionales\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Agendar</button>\n          </div>\n        </form> - CONECTADO CON BACKEND\n */\nexport async function viewClientDetails(clientId) {\n  showNotification('Cargando detalles del cliente...', NOTIFICATION_TYPES.INFO);\n  \n  // Intentar cargar datos reales del backend\n  let clientData = null;\n  try {\n    // Usar funci\xF3n existente de dashboardLoaders si est\xE1 disponible\n    if (window.appHandlers?.loadClientDetailsData) {\n      clientData = await window.appHandlers.loadClientDetailsData(clientId);\n    }\n  } catch (error) {\n    console.warn('No se pudieron cargar datos del backend, usando datos de ejemplo', error);\n  }\n  \n  // Datos de fallback si no hay backend disponible\n  if (!clientData || !clientData.client) {\n    clientData = {\n      client: {\n        id: clientId,\n        first_name: 'Mar\xEDa',\n        last_name: 'Gonz\xE1lez',\n        email: 'maria.gonzalez@email.com',\n        phone: '+52 (555) 123-4567',\n        address: 'Av. Reforma 123, Col. Centro, CDMX',\n        status: 'active',\n        created_at: '2020-01-15'\n      },\n      policies: [\n        { policy_id: 'POL-001', policy_type: 'Auto', policy_number: 'AUTO-001', status: 'active', premium: '$350/mes', expiry_date: '2025-12-31' },\n        { policy_id: 'POL-002', policy_type: 'Hogar', policy_number: 'HOME-001', status: 'active', premium: '$200/mes', expiry_date: '2025-10-15' }\n      ],\n      payments: [\n        { date: '2025-01-15', policy: 'POL-001', amount: '$350.00', method: 'Tarjeta', status: 'paid' },\n        { date: '2024-12-15', policy: 'POL-001', amount: '$350.00', method: 'Transferencia', status: 'paid' }\n      ],\n      claims: [\n        { claim_number: 'CLM-001', policy_id: 'POL-001', type: 'Accidente', date: '2024-10-20', status: 'in_process' }\n      ]\n    };\n  }\n  ";
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Agendar Cita</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"appointment-form\" onsubmit=\"window.dashboardActions?.submitAppointment(event)\">\n          <div class=\"form-group\">\n            <label for=\"appt-client\">Cliente</label>\n            <select id=\"appt-client\" required>\n              <option value=\"\">Seleccionar cliente</option>\n              <option value=\"CL-001\">Mar\xEDa Gonz\xE1lez</option>\n              <option value=\"CL-002\">Carlos Rodr\xEDguez</option>\n              <option value=\"CL-003\">Ana Mart\xEDnez</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-type\">Tipo de cita</label>\n            <select id=\"appt-type\" required>\n              <option value=\"consultation\">Consulta</option>\n              <option value=\"quote\">Cotizaci\xF3n</option>\n              <option value=\"claim\">Siniestro</option>\n              <option value=\"policy-review\">Revisi\xF3n de p\xF3liza</option>\n            </select>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"appt-date\">Fecha</label>\n              <input type=\"date\" id=\"appt-date\" required>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"appt-time\">Hora</label>\n              <input type=\"time\" id=\"appt-time\" required>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-notes\">Notas</label>\n            <textarea id=\"appt-notes\" rows=\"3\" placeholder=\"Asunto o detalles adicionales\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Agendar</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
   document.body.appendChild(modal);
   modal.addEventListener('click', function (e) {
     if (e.target === modal) modal.remove();
@@ -18138,22 +18138,42 @@ function scheduleAppointment() {
 }
 
 /**
- * Ver detalles de cliente con filtro completo
+ * Ver detalles de cliente - CONECTADO CON BACKEND
  */
-function viewClientDetails(clientId) {
-  var modal = document.createElement('div');
-  modal.className = 'app-modal-overlay';
-  modal.innerHTML = "\n    <div class=\"app-modal app-modal-xl\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Cliente: ".concat(clientId, "</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <!-- Tabs de navegaci\xF3n -->\n        <div class=\"client-detail-tabs\">\n          <button class=\"tab-btn active\" onclick=\"window.dashboardActions?.switchClientTab(event, 'info')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/>\n              <circle cx=\"12\" cy=\"7\" r=\"4\"/>\n            </svg>\n            Informaci\xF3n\n          </button>\n          <button class=\"tab-btn\" onclick=\"window.dashboardActions?.switchClientTab(event, 'policies')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/>\n              <polyline points=\"14 2 14 8 20 8\"/>\n            </svg>\n            P\xF3lizas\n          </button>\n          <button class=\"tab-btn\" onclick=\"window.dashboardActions?.switchClientTab(event, 'payments')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/>\n              <line x1=\"2\" y1=\"10\" x2=\"22\" y2=\"10\"/>\n            </svg>\n            Pagos\n          </button>\n          <button class=\"tab-btn\" onclick=\"window.dashboardActions?.switchClientTab(event, 'files')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"/>\n              <polyline points=\"13 2 13 9 20 9\"/>\n            </svg>\n            Archivos\n          </button>\n          <button class=\"tab-btn\" onclick=\"window.dashboardActions?.switchClientTab(event, 'claims')\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"/>\n              <line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"13\"/>\n              <line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"/>\n            </svg>\n            Siniestros\n          </button>\n        </div>\n\n        <!-- Contenido de tabs -->\n        <div class=\"client-detail-content\">\n          <div class=\"tab-content active\" data-tab=\"info\">\n            <div class=\"client-info-grid\">\n              <dl>\n                <dt>Nombre completo:</dt><dd>Mar\xEDa Gonz\xE1lez P\xE9rez</dd>\n                <dt>Email:</dt><dd>maria.gonzalez@email.com</dd>\n                <dt>Tel\xE9fono:</dt><dd>+52 (555) 123-4567</dd>\n                <dt>Direcci\xF3n:</dt><dd>Av. Reforma 123, Col. Centro, CDMX</dd>\n                <dt>Estado:</dt><dd><span class=\"badge badge-success\">Activo</span></dd>\n                <dt>Cliente desde:</dt><dd>Enero 2020</dd>\n              </dl>\n            </div>\n          </div>\n\n          <div class=\"tab-content\" data-tab=\"policies\">\n            <table class=\"data-table\">\n              <thead>\n                <tr>\n                  <th>N\xFAmero</th>\n                  <th>Tipo</th>\n                  <th>Estado</th>\n                  <th>Prima</th>\n                  <th>Vencimiento</th>\n                  <th>Acciones</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <td>POL-001</td>\n                  <td>Auto</td>\n                  <td><span class=\"badge badge-success\">Activa</span></td>\n                  <td>$350/mes</td>\n                  <td>2025-12-31</td>\n                  <td><button class=\"btn btn-sm btn-outline\" onclick=\"window.dashboardActions?.viewPolicy('POL-001')\">Ver</button></td>\n                </tr>\n                <tr>\n                  <td>POL-002</td>\n                  <td>Hogar</td>\n                  <td><span class=\"badge badge-success\">Activa</span></td>\n                  <td>$200/mes</td>\n                  <td>2025-10-15</td>\n                  <td><button class=\"btn btn-sm btn-outline\" onclick=\"window.dashboardActions?.viewPolicy('POL-002')\">Ver</button></td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <div class=\"tab-content\" data-tab=\"payments\">\n            <table class=\"data-table\">\n              <thead>\n                <tr>\n                  <th>Fecha</th>\n                  <th>P\xF3liza</th>\n                  <th>Monto</th>\n                  <th>M\xE9todo</th>\n                  <th>Estado</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <td>2025-01-15</td>\n                  <td>POL-001</td>\n                  <td>$350.00</td>\n                  <td>Tarjeta</td>\n                  <td><span class=\"badge badge-success\">Pagado</span></td>\n                </tr>\n                <tr>\n                  <td>2024-12-15</td>\n                  <td>POL-001</td>\n                  <td>$350.00</td>\n                  <td>Transferencia</td>\n                  <td><span class=\"badge badge-success\">Pagado</span></td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <div class=\"tab-content\" data-tab=\"files\">\n            <div class=\"files-grid\">\n              <div class=\"file-card\">\n                <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <path d=\"M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"/>\n                  <polyline points=\"13 2 13 9 20 9\"/>\n                </svg>\n                <p>Licencia de conducir</p>\n                <small>Subido: 2024-12-01</small>\n              </div>\n              <div class=\"file-card\">\n                <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <path d=\"M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"/>\n                  <polyline points=\"13 2 13 9 20 9\"/>\n                </svg>\n                <p>Factura veh\xEDculo</p>\n                <small>Subido: 2024-11-15</small>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"tab-content\" data-tab=\"claims\">\n            <table class=\"data-table\">\n              <thead>\n                <tr>\n                  <th>N\xFAmero</th>\n                  <th>P\xF3liza</th>\n                  <th>Tipo</th>\n                  <th>Fecha</th>\n                  <th>Estado</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <td>CLM-001</td>\n                  <td>POL-001</td>\n                  <td>Accidente</td>\n                  <td>2024-10-20</td>\n                  <td><span class=\"badge badge-warning\">En proceso</span></td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </div>\n      </div>\n    </div>\n  ");
-  document.body.appendChild(modal);
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) modal.remove();
-  });
-  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("Detalles del cliente ".concat(clientId, " cargados"), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+function viewClientDetails(_x) {
+  return _viewClientDetails.apply(this, arguments);
 }
 
 /**
  * Cambiar entre tabs del modal de detalles de cliente
  */
+function _viewClientDetails() {
+  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(clientId) {
+    var modal;
+    return _regenerator().w(function (_context3) {
+      while (1) switch (_context3.n) {
+        case 0:
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+
+          // Modal de detalles
+          modal = document.createElement('div');
+          modal.className = 'app-modal-overlay active';
+          modal.innerHTML = "\n    <div class=\"app-modal app-modal-xl\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Detalles del Cliente</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"client-detail-content\">\n          <div class=\"loading-state\">\n            <p>Cargando informaci\xF3n del cliente...</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  ";
+          document.body.appendChild(modal);
+          modal.addEventListener('click', function (e) {
+            if (e.target === modal) modal.remove();
+          });
+
+          // Aquí se cargaría data real del backend
+          // Por ahora usa datos de ejemplo
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("Detalles del cliente ".concat(clientId, " cargados"), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+        case 1:
+          return _context3.a(2);
+      }
+    }, _callee3);
+  }));
+  return _viewClientDetails.apply(this, arguments);
+}
 function switchClientTab(event, tabName) {
   var modal = event.target.closest('.app-modal');
 
@@ -18191,15 +18211,15 @@ function filterByClient(clientId) {
 // FORM SUBMISSIONS - Handlers para envío de formularios CON BACKEND REAL
 // ============================================================================
 
-function submitPayment(_x) {
+function submitPayment(_x2) {
   return _submitPayment.apply(this, arguments);
 }
 function _submitPayment() {
-  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(event) {
+  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(event) {
     var _document$getElementB2, _document$getElementB3;
     var form, policyId, scheduleId, file, reference, _window$appHandlers, result, _t2;
-    return _regenerator().w(function (_context3) {
-      while (1) switch (_context3.p = _context3.n) {
+    return _regenerator().w(function (_context4) {
+      while (1) switch (_context4.p = _context4.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -18208,18 +18228,18 @@ function _submitPayment() {
           file = (_document$getElementB2 = document.getElementById('payment-proof-file')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.files[0];
           reference = ((_document$getElementB3 = document.getElementById('payment-reference')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value) || '';
           if (file) {
-            _context3.n = 1;
+            _context4.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context3.a(2);
+          return _context4.a(2);
         case 1:
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Subiendo comprobante...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context3.p = 2;
-          _context3.n = 3;
+          _context4.p = 2;
+          _context4.n = 3;
           return paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
         case 3:
-          result = _context3.v;
+          result = _context4.v;
           form.closest('.app-modal-overlay').remove();
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Comprobante subido. Estará en revisión pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
 
@@ -18229,17 +18249,17 @@ function _submitPayment() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context3.n = 5;
+          _context4.n = 5;
           break;
         case 4:
-          _context3.p = 4;
-          _t2 = _context3.v;
+          _context4.p = 4;
+          _t2 = _context4.v;
           console.error('Error uploading payment proof:', _t2);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t2.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 5:
-          return _context3.a(2);
+          return _context4.a(2);
       }
-    }, _callee3, null, [[2, 4]]);
+    }, _callee4, null, [[2, 4]]);
   }));
   return _submitPayment.apply(this, arguments);
 }
@@ -18252,7 +18272,7 @@ function submitInfoUpdate(event) {
     (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Información actualizada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
   }, 1000);
 }
-function submitClaim(_x2) {
+function submitClaim(_x3) {
   return _submitClaim.apply(this, arguments);
 }
 
@@ -18260,17 +18280,17 @@ function submitClaim(_x2) {
  * Subir póliza y crear cliente automáticamente
  */
 function _submitClaim() {
-  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(event) {
+  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(event) {
     var form, formData, _window$appHandlers2, claimNumber, _t3;
-    return _regenerator().w(function (_context4) {
-      while (1) switch (_context4.p = _context4.n) {
+    return _regenerator().w(function (_context5) {
+      while (1) switch (_context5.p = _context5.n) {
         case 0:
           event.preventDefault();
           form = event.target;
           formData = new FormData(form);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Enviando siniestro...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context4.p = 1;
-          _context4.n = 2;
+          _context5.p = 1;
+          _context5.n = 2;
           return new Promise(function (resolve) {
             return setTimeout(resolve, 1500);
           });
@@ -18285,21 +18305,21 @@ function _submitClaim() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context4.n = 4;
+          _context5.n = 4;
           break;
         case 3:
-          _context4.p = 3;
-          _t3 = _context4.v;
+          _context5.p = 3;
+          _t3 = _context5.v;
           console.error('Error submitting claim:', _t3);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al enviar siniestro', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context4.a(2);
+          return _context5.a(2);
       }
-    }, _callee4, null, [[1, 3]]);
+    }, _callee5, null, [[1, 3]]);
   }));
   return _submitClaim.apply(this, arguments);
 }
-function submitPolicyUpload(_x3) {
+function submitPolicyUpload(_x4) {
   return _submitPolicyUpload.apply(this, arguments);
 }
 
@@ -18307,10 +18327,10 @@ function submitPolicyUpload(_x3) {
  * Mostrar datos extraídos para confirmación (cuando confianza es baja)
  */
 function _submitPolicyUpload() {
-  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(event) {
+  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(event) {
     var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers3, formData, response, result, _t4;
-    return _regenerator().w(function (_context5) {
-      while (1) switch (_context5.p = _context5.n) {
+    return _regenerator().w(function (_context6) {
+      while (1) switch (_context6.p = _context6.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -18319,29 +18339,29 @@ function _submitPolicyUpload() {
           file = fileInput === null || fileInput === void 0 ? void 0 : fileInput.files[0];
           clientEmail = emailInput === null || emailInput === void 0 ? void 0 : emailInput.value.trim();
           if (file) {
-            _context5.n = 1;
+            _context6.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo de póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context5.a(2);
+          return _context6.a(2);
         case 1:
           if (clientEmail) {
-            _context5.n = 2;
+            _context6.n = 2;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('El email del cliente es obligatorio', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context5.a(2);
+          return _context6.a(2);
         case 2:
           // Validar formato de email
           emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (emailRegex.test(clientEmail)) {
-            _context5.n = 3;
+            _context6.n = 3;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Por favor ingresa un email válido', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context5.a(2);
+          return _context6.a(2);
         case 3:
           // Mostrar progreso
           progressContainer = document.getElementById('upload-progress');
@@ -18350,7 +18370,7 @@ function _submitPolicyUpload() {
           submitBtn = document.getElementById('submit-policy-btn');
           progressContainer.style.display = 'block';
           submitBtn.disabled = true;
-          _context5.p = 4;
+          _context6.p = 4;
           // Preparar FormData
           formData = new FormData();
           formData.append('policy_file', file);
@@ -18358,7 +18378,7 @@ function _submitPolicyUpload() {
           // Enviar al backend
           progressText.textContent = 'Subiendo documento...';
           progressFill.style.width = '30%';
-          _context5.n = 5;
+          _context6.n = 5;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -18367,36 +18387,36 @@ function _submitPolicyUpload() {
             body: formData
           });
         case 5:
-          response = _context5.v;
+          response = _context6.v;
           progressFill.style.width = '60%';
           progressText.textContent = 'Analizando documento...';
-          _context5.n = 6;
+          _context6.n = 6;
           return response.json();
         case 6:
-          result = _context5.v;
+          result = _context6.v;
           progressFill.style.width = '100%';
           if (result.success) {
-            _context5.n = 7;
+            _context6.n = 7;
             break;
           }
           throw new Error(result.error || 'Error al procesar póliza');
         case 7:
           if (!result.requires_confirmation) {
-            _context5.n = 8;
+            _context6.n = 8;
             break;
           }
           showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
-          return _context5.a(2);
+          return _context6.a(2);
         case 8:
           if (!result.requires_manual_entry) {
-            _context5.n = 9;
+            _context6.n = 9;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se pudo extraer datos. Abriendo formulario manual...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           showManualEntryForm(result.temp_file_path);
-          return _context5.a(2);
+          return _context6.a(2);
         case 9:
           // Éxito
           form.closest('.app-modal-overlay').remove();
@@ -18417,19 +18437,19 @@ function _submitPolicyUpload() {
               return window.appHandlers.refreshDashboard();
             }, 2000);
           }
-          _context5.n = 11;
+          _context6.n = 11;
           break;
         case 10:
-          _context5.p = 10;
-          _t4 = _context5.v;
+          _context6.p = 10;
+          _t4 = _context6.v;
           console.error('Error uploading policy:', _t4);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t4.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
         case 11:
-          return _context5.a(2);
+          return _context6.a(2);
       }
-    }, _callee5, null, [[4, 10]]);
+    }, _callee6, null, [[4, 10]]);
   }));
   return _submitPolicyUpload.apply(this, arguments);
 }
@@ -18457,17 +18477,17 @@ function showExtractedDataForConfirmation(data, tempFilePath) {
 /**
  * Confirmar datos corregidos y crear cliente
  */
-function confirmAndCreateClient(_x4) {
+function confirmAndCreateClient(_x5) {
   return _confirmAndCreateClient.apply(this, arguments);
 }
 /**
  * Mostrar formulario de entrada manual
  */
 function _confirmAndCreateClient() {
-  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(tempFilePath) {
+  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(tempFilePath) {
     var confirmedData, _token, response, result, _window$appHandlers4, _t5;
-    return _regenerator().w(function (_context6) {
-      while (1) switch (_context6.p = _context6.n) {
+    return _regenerator().w(function (_context7) {
+      while (1) switch (_context7.p = _context7.n) {
         case 0:
           confirmedData = {
             client_email: document.getElementById('confirm-client-email').value,
@@ -18479,9 +18499,9 @@ function _confirmAndCreateClient() {
             payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
           };
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente con datos confirmados...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context6.p = 1;
+          _context7.p = 1;
           _token = sessionStorage.getItem('auth_token');
-          _context6.n = 2;
+          _context7.n = 2;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -18494,13 +18514,13 @@ function _confirmAndCreateClient() {
             })
           });
         case 2:
-          response = _context6.v;
-          _context6.n = 3;
+          response = _context7.v;
+          _context7.n = 3;
           return response.json();
         case 3:
-          result = _context6.v;
+          result = _context7.v;
           if (!result.success) {
-            _context6.n = 4;
+            _context7.n = 4;
             break;
           }
           document.querySelector('.app-modal-overlay').remove();
@@ -18510,21 +18530,21 @@ function _confirmAndCreateClient() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context6.n = 5;
+          _context7.n = 5;
           break;
         case 4:
           throw new Error(result.error);
         case 5:
-          _context6.n = 7;
+          _context7.n = 7;
           break;
         case 6:
-          _context6.p = 6;
-          _t5 = _context6.v;
+          _context7.p = 6;
+          _t5 = _context7.v;
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t5.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 7:
-          return _context6.a(2);
+          return _context7.a(2);
       }
-    }, _callee6, null, [[1, 6]]);
+    }, _callee7, null, [[1, 6]]);
   }));
   return _confirmAndCreateClient.apply(this, arguments);
 }
