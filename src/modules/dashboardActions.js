@@ -824,43 +824,43 @@ export async function submitPolicyUpload(event) {
     event.preventDefault();
     const form = event.target;
     const fileInput = document.getElementById('policy-file');
-  const emailInput = document.getElementById('client-email');
-  const file = fileInput?.files[0];
-  const clientEmail = emailInput?.value.trim();
-  
-  if (!file) {
-    showNotification('Selecciona un archivo de póliza', NOTIFICATION_TYPES.WARNING);
-    return;
-  }
-  
-  if (!clientEmail) {
-    showNotification('El email del cliente es obligatorio', NOTIFICATION_TYPES.WARNING);
-    emailInput?.focus();
-    return;
-  }
-  
-  // Validar formato de email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(clientEmail)) {
-    showNotification('Por favor ingresa un email válido', NOTIFICATION_TYPES.WARNING);
-    emailInput?.focus();
-    return;
-  }
-  
-  // Mostrar progreso
-  const progressContainer = document.getElementById('upload-progress');
-  const progressFill = document.getElementById('progress-fill');
-  const progressText = document.getElementById('progress-text');
-  const submitBtn = document.getElementById('submit-policy-btn');
-  
-  progressContainer.style.display = 'block';
-  submitBtn.disabled = true;
-  
-  try {
-    // Preparar FormData
-    const formData = new FormData();
-    formData.append('policy_file', file);
-    formData.append('client_email', clientEmail);
+    const emailInput = document.getElementById('client-email');
+    const file = fileInput?.files[0];
+    const clientEmail = emailInput?.value.trim();
+
+    if (!file) {
+        showNotification('Selecciona un archivo de póliza', NOTIFICATION_TYPES.WARNING);
+        return;
+    }
+
+    if (!clientEmail) {
+        showNotification('El email del cliente es obligatorio', NOTIFICATION_TYPES.WARNING);
+        emailInput?.focus();
+        return;
+    }
+
+    // Validar formato de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(clientEmail)) {
+        showNotification('Por favor ingresa un email válido', NOTIFICATION_TYPES.WARNING);
+        emailInput?.focus();
+        return;
+    }
+
+    // Mostrar progreso
+    const progressContainer = document.getElementById('upload-progress');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const submitBtn = document.getElementById('submit-policy-btn');
+
+    progressContainer.style.display = 'block';
+    submitBtn.disabled = true;
+
+    try {
+        // Preparar FormData
+        const formData = new FormData();
+        formData.append('policy_file', file);
+        formData.append('client_email', clientEmail);
         // Enviar al backend
         progressText.textContent = 'Subiendo documento...';
         progressFill.style.width = '30%';
@@ -936,18 +936,18 @@ export async function submitPolicyUpload(event) {
  * Mostrar datos extraídos para confirmación (cuando confianza es baja)
  */
 function showExtractedDataForConfirmation(data, tempFilePath) {
-  const previewContainer = document.getElementById('extracted-data-preview');
-  const dataGrid = document.getElementById('data-grid');
-  const confidenceNote = document.getElementById('confidence-note');
-  
-  // Obtener email ingresado por el agente
-  const clientEmail = document.getElementById('client-email')?.value || '';
-  
-  previewContainer.style.display = 'block';
-  confidenceNote.innerHTML = '⚠️ Confianza baja. Por favor revisa los datos antes de continuar.';
-  confidenceNote.className = 'confidence-note warning';
-  
-  dataGrid.innerHTML = `
+    const previewContainer = document.getElementById('extracted-data-preview');
+    const dataGrid = document.getElementById('data-grid');
+    const confidenceNote = document.getElementById('confidence-note');
+
+    // Obtener email ingresado por el agente
+    const clientEmail = document.getElementById('client-email')?.value || '';
+
+    previewContainer.style.display = 'block';
+    confidenceNote.innerHTML = '⚠️ Confianza baja. Por favor revisa los datos antes de continuar.';
+    confidenceNote.className = 'confidence-note warning';
+
+    dataGrid.innerHTML = `
     <div class="data-field">
       <label>Email del cliente: <span style="color: #dc3545;">*</span></label>
       <input type="email" id="confirm-client-email" value="${clientEmail}" required readonly style="background: #e9ecef;">
@@ -983,30 +983,30 @@ function showExtractedDataForConfirmation(data, tempFilePath) {
       </select>
     </div>
   `;
-  
-  // Cambiar botón para confirmar
-  const submitBtn = document.getElementById('submit-policy-btn');
-  submitBtn.textContent = 'Confirmar y crear cliente';
-  submitBtn.onclick = () => confirmAndCreateClient(tempFilePath);
+
+    // Cambiar botón para confirmar
+    const submitBtn = document.getElementById('submit-policy-btn');
+    submitBtn.textContent = 'Confirmar y crear cliente';
+    submitBtn.onclick = () => confirmAndCreateClient(tempFilePath);
 }
 
 /**
  * Confirmar datos corregidos y crear cliente
  */
 async function confirmAndCreateClient(tempFilePath) {
-  const confirmedData = {
-    client_email: document.getElementById('confirm-client-email').value,
-    client_name: document.getElementById('confirm-client-name').value,
-    policy_number: document.getElementById('confirm-policy-number').value,
-    total_premium: parseFloat(document.getElementById('confirm-premium').value),
-    start_date: document.getElementById('confirm-start-date').value,
-    end_date: document.getElementById('confirm-end-date').value,
-    payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
-  };
+    const confirmedData = {
+        client_email: document.getElementById('confirm-client-email').value,
+        client_name: document.getElementById('confirm-client-name').value,
+        policy_number: document.getElementById('confirm-policy-number').value,
+        total_premium: parseFloat(document.getElementById('confirm-premium').value),
+        start_date: document.getElementById('confirm-start-date').value,
+        end_date: document.getElementById('confirm-end-date').value,
+        payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
+    };
 
-  showNotification('Creando cliente con datos confirmados...', NOTIFICATION_TYPES.INFO);
+    showNotification('Creando cliente con datos confirmados...', NOTIFICATION_TYPES.INFO);
 
-  try {
+    try {
         const token = sessionStorage.getItem('auth_token');
 
         const response = await fetch('/backend/client-from-policy.php', {

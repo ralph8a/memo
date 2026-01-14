@@ -10,8 +10,8 @@ const COLLAPSE_CLASS = 'scrolled-collapsed';
 let scrollHandler = null;
 
 function initScrollCollapse() {
-    // SCROLL UNIVERSAL: Escuchar en dashboard-section
-    const scrollContainer = document.querySelector('.dashboard-section');
+    // SCROLL UNIVERSAL: Escuchar en dashboard-layout
+    const scrollContainer = document.querySelector('.dashboard-section .dashboard-layout');
 
     if (!scrollContainer) {
         // Reintentar después de un delay si no existe aún
@@ -60,7 +60,7 @@ function initScrollCollapse() {
 
     scrollContainer.addEventListener('scroll', scrollHandler, { passive: true });
 
-    console.log('[scrollCollapse] Inicializado en .dashboard-section (scroll universal)');
+    console.log('[scrollCollapse] Inicializado en .dashboard-layout (scroll universal)');
 }
 
 export { initScrollCollapse };

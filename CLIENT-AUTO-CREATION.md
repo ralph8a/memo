@@ -16,22 +16,23 @@ Sistema inteligente que **elimina la entrada manual de datos** para agregar clie
 
 ```
 1. Click en "Agregar Cliente" en dashboard
-2. Subir PDF/imagen de la póliza
-3. Sistema analiza y extrae datos automáticamente
-4. Si confianza alta → Cliente creado automáticamente
-5. Si confianza baja → Revisar y confirmar datos
-6. Si falla OCR → Formulario manual
-7. ✅ Cliente creado, credenciales enviadas por email
+2. **INGRESAR EMAIL REAL DEL CLIENTE** (obligatorio)
+3. Subir PDF/imagen de la póliza
+4. Sistema analiza y extrae datos automáticamente
+5. Si confianza alta → Cliente creado automáticamente
+6. Si confianza baja → Revisar y confirmar datos
+7. Si falla OCR → Formulario manual
+8. ✅ Cliente creado, credenciales enviadas al EMAIL REAL
 ```
 
 ### Proceso Backend
 
 ```
-Upload → Análisis OCR/PDF → Extracción de datos → Detección duplicados
+Upload + Email → Análisis OCR/PDF → Extracción de datos → Detección duplicados POR EMAIL
        ↓
-   ¿Existe cliente?
+   ¿Existe cliente con ese email?
        ├─ SÍ → Solo agregar nueva póliza
-       └─ NO → Crear cliente + generar credenciales + enviar email
+       └─ NO → Crear cliente + generar password + enviar email
        ↓
    Registrar en DB + Mover archivo a storage permanente
 ```
@@ -213,14 +214,22 @@ INSERT INTO documents (
 
 ## 📧 Generación de Credenciales
 
-### Email Automático
+### Email Real del Cliente
+
+**⚠️ CAMBIO CRÍTICO: Ya NO se genera email automático**
 
 ```
-Base: nombre + apellido
-Formato: mariagonzalez@cliente.krause.com
-
-Si existe → mariagonzalez1@cliente.krause.com
+El agente DEBE proporcionar el email REAL del cliente en el formulario.
+Este email será usado para:
+1. Inicio de sesión en el portal
+2. Envío de credenciales
+3. Todas las notificaciones futuras
 ```
+
+**Campo obligatorio con validación:**
+- Formato válido: `usuario@dominio.com`
+- No puede estar vacío
+- Advertencia clara en UI sobre su uso
 
 ### Password Aleatorio
 
@@ -228,6 +237,7 @@ Si existe → mariagonzalez1@cliente.krause.com
 - Longitud: 12 caracteres
 - Incluye: Mayúsculas + minúsculas + números + símbolos
 - Ejemplo: "Xy8@mKp3!Qz7"
+- Se envía al email REAL proporcionado
 ```
 
 ### Email Enviado
@@ -239,10 +249,13 @@ Bienvenido/a María González
 
 Tu agente ha registrado una nueva póliza a tu nombre.
 
-Email: mariagonzalez@cliente.krause.com
+Email de acceso: cliente@ejemplo.com  ← EMAIL REAL
 Contraseña temporal: Xy8@mKp3!Qz7
 
-Por favor cambia tu contraseña al primer inicio de sesión.
+⚠️ Importante:
+- Usa el email cliente@ejemplo.com para iniciar sesión
+- Cambia tu contraseña al primer inicio de sesión  
+- Este email se usará para todas las notificaciones
 
 [Iniciar sesión ahora] → http://ksinsurancee.com
 ```
@@ -263,14 +276,23 @@ Por favor cambia tu contraseña al primer inicio de sesión.
 │    • Fechas de vigencia                 │
 │    • Tipo de cobertura                  │
 │                                          │
-│  Se generará un correo y contraseña      │
-│  automáticos que se enviarán al cliente. │
+│  Se generará contraseña automática.      │
 │                                          │
 │  ┌────────────────────────────────────┐  │
 │  │ [📄] Documento de póliza          │  │
 │  │      Seleccionar archivo...       │  │
 │  └────────────────────────────────────┘  │
 │  Formatos: PDF, JPG, PNG (máx 10MB)     │
+│                                          │
+│  ┌────────────────────────────────────┐  │
+│  │ Email del cliente *               │  │
+│  │ [cliente@ejemplo.com             ]│  │
+│  └────────────────────────────────────┘  │
+│  ⚠️ Importante: Este email será usado    │
+│     para:                                │
+│     • Enviar credenciales de acceso      │
+│     • Inicio de sesión del cliente       │
+│     • Notificaciones de pagos y pólizas  │
 │                                          │
 │         [Cancelar]  [Subir y procesar]  │
 └──────────────────────────────────────────┘
@@ -279,23 +301,9 @@ Por favor cambia tu contraseña al primer inicio de sesión.
 ### Indicador de Progreso
 
 ```
-Analizando documento...
-[████████████████░░░░] 60%
-```
-
-### Confirmación (Baja Confianza)
-
-```
-⚠️ Confianza baja. Por favor revisa los datos:
-
-Nombre del cliente: [María González        ]
-Número de póliza:   [POL-001               ]
-Prima total:        [350.00                ]
-Fecha inicio:       [2025-01-01            ]
-Fecha vencimiento:  [2025-12-31            ]
-Frecuencia:         [Mensual ▼             ]
-
-              [Confirmar y crear cliente]
+📤 Subiendo documento...  [████████░░] 85%
+🔍 Analizando contenido...
+✅ Datos extraídos correctamente
 ```
 
 ### Resumen de Éxito
@@ -349,26 +357,29 @@ client_name   → 70%  (Media confianza)
 ### Caso 1: Nuevo Cliente (Éxito Total)
 
 ```
-1. Agente sube póliza de AXA en PDF
-2. Sistema extrae: "María González", "POL-001", "$350", "Mensual"
-3. Confianza: 95% (high)
-4. Cliente NO existe en DB
-5. ✅ Crear user con email: mariagonzalez@cliente.krause.com
-6. ✅ Crear policy POL-001
-7. ✅ Enviar email con password: "Xy8@mKp3!Qz7"
-8. ✅ Guardar PDF en: backend/uploads/policies/123/policy_456.pdf
-9. Mensaje: "Cliente creado exitosamente"
+1. Agente ingresa email: maria@email.com
+2. Agente sube póliza de AXA en PDF
+3. Sistema extrae: "María González", "POL-001", "$350", "Mensual"
+4. Confianza: 95% (high)
+5. Cliente con email maria@email.com NO existe en DB
+6. ✅ Crear user con email real: maria@email.com
+7. ✅ Generar password: "Xy8@mKp3!Qz7"
+8. ✅ Crear policy POL-001
+9. ✅ Enviar email a maria@email.com con credenciales
+10. ✅ Guardar PDF en: backend/uploads/policies/123/policy_456.pdf
+11. Mensaje: "Cliente creado. Credenciales enviadas a maria@email.com"
 ```
 
 ### Caso 2: Cliente Existente (Nueva Póliza)
 
 ```
-1. Agente sube póliza de GNP en PDF
-2. Sistema extrae: "María González", "POL-002"
-3. Cliente "María González" YA existe (ID: 123)
-4. ✅ Solo crear nueva policy POL-002
-5. ✅ Enviar email: "Nueva póliza agregada"
-6. Mensaje: "Póliza agregada al cliente existente"
+1. Agente ingresa email: maria@email.com
+2. Agente sube póliza de GNP en PDF
+3. Sistema extrae: "María González", "POL-002"
+4. Cliente con email maria@email.com YA existe (ID: 123)
+5. ✅ Solo crear nueva policy POL-002
+6. ✅ Enviar email a maria@email.com: "Nueva póliza agregada"
+7. Mensaje: "Póliza agregada al cliente existente"
 ```
 
 ### Caso 3: Baja Confianza (Confirmación Manual)
