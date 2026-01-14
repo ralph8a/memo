@@ -516,5 +516,3 @@ if (typeof window !== 'undefined') {
         };
     });
 }
-// ES6 export para webpack
-export { NotificationModal };
