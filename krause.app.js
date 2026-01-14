@@ -18113,7 +18113,7 @@ function createQuote() {
 function addClient() {
   var modal = document.createElement('div');
   modal.className = 'app-modal-overlay';
-  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Nuevo Cliente - Subir P\xF3liza</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"upload-instructions\">\n          <div class=\"info-box\">\n            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n              <line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/>\n              <line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>\n            </svg>\n            <div>\n              <p><strong>El sistema extraer\xE1 autom\xE1ticamente:</strong></p>\n              <ul>\n                <li>Nombre del cliente</li>\n                <li>N\xFAmero de p\xF3liza</li>\n                <li>Monto de prima</li>\n                <li>Fechas de vigencia</li>\n                <li>Tipo de cobertura</li>\n              </ul>\n              <p>Se generar\xE1 un correo y contrase\xF1a autom\xE1ticos que se enviar\xE1n al cliente.</p>\n            </div>\n          </div>\n        </div>\n        \n        <form class=\"add-client-form\" onsubmit=\"window.dashboardActions?.submitPolicyUpload(event)\">\n          <div class=\"form-group\">\n            <label for=\"policy-file\">Documento de p\xF3liza</label>\n            <input type=\"file\" id=\"policy-file\" accept=\".pdf,image/*\" required>\n            <small>Formatos aceptados: PDF, JPG, PNG (m\xE1x 10MB)</small>\n          </div>\n          \n          <div id=\"upload-progress\" style=\"display: none;\">\n            <div class=\"progress-bar\">\n              <div class=\"progress-fill\" id=\"progress-fill\"></div>\n            </div>\n            <p id=\"progress-text\">Analizando documento...</p>\n          </div>\n          \n          <div id=\"extracted-data-preview\" style=\"display: none;\">\n            <h3>Datos extra\xEDdos</h3>\n            <div id=\"data-grid\" class=\"extracted-data-grid\"></div>\n            <p class=\"confidence-note\" id=\"confidence-note\"></p>\n          </div>\n          \n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\" id=\"submit-policy-btn\">\n              <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/>\n                <polyline points=\"17 8 12 3 7 8\"/>\n                <line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"15\"/>\n              </svg>\n              Subir y procesar p\xF3liza\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Nuevo Cliente - Subir P\xF3liza</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"upload-instructions\">\n          <div class=\"info-box\">\n            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n              <line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/>\n              <line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>\n            </svg>\n            <div>\n              <p><strong>El sistema extraer\xE1 autom\xE1ticamente:</strong></p>\n              <ul>\n                <li>Nombre del cliente</li>\n                <li>N\xFAmero de p\xF3liza</li>\n                <li>Monto de prima</li>\n                <li>Fechas de vigencia</li>\n                <li>Tipo de cobertura</li>\n              </ul>\n              <p>Se generar\xE1 un correo y contrase\xF1a autom\xE1ticos que se enviar\xE1n al cliente.</p>\n            </div>\n          </div>\n        </div>\n        \n        <form class=\"add-client-form\" onsubmit=\"window.dashboardActions?.submitPolicyUpload(event)\">\n          <div class=\"form-group\">\n            <label for=\"policy-file\">Documento de p\xF3liza</label>\n            <input type=\"file\" id=\"policy-file\" accept=\".pdf,image/*\" required>\n            <small>Formatos aceptados: PDF, JPG, PNG (m\xE1x 10MB)</small>\n          </div>\n          \n          <div class=\"form-group\" style=\"margin-top: 20px;\">\n            <label for=\"client-email\">\n              Email del cliente <span style=\"color: #dc3545;\">*</span>\n            </label>\n            <input \n              type=\"email\" \n              id=\"client-email\" \n              placeholder=\"cliente@ejemplo.com\" \n              required\n              autocomplete=\"email\"\n            >\n            <div class=\"alert alert-warning\" style=\"margin-top: 8px; padding: 10px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; font-size: 13px;\">\n              <strong>\u26A0\uFE0F Importante:</strong> Este email ser\xE1 usado para:\n              <ul style=\"margin: 5px 0 0 20px; padding: 0;\">\n                <li>Enviar credenciales de acceso al portal</li>\n                <li>Inicio de sesi\xF3n del cliente</li>\n                <li>Notificaciones de pagos y p\xF3lizas</li>\n              </ul>\n            </div>\n          </div>\n          \n          <div id=\"upload-progress\" style=\"display: none;\">\n            <div class=\"progress-bar\">\n              <div class=\"progress-fill\" id=\"progress-fill\"></div>\n            </div>\n            <p id=\"progress-text\">Analizando documento...</p>\n          </div>\n          \n          <div id=\"extracted-data-preview\" style=\"display: none;\">\n            <h3>Datos extra\xEDdos</h3>\n            <div id=\"data-grid\" class=\"extracted-data-grid\"></div>\n            <p class=\"confidence-note\" id=\"confidence-note\"></p>\n          </div>\n          \n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\" id=\"submit-policy-btn\">\n              <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/>\n                <polyline points=\"17 8 12 3 7 8\"/>\n                <line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"15\"/>\n              </svg>\n              Subir y procesar p\xF3liza\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
   document.body.appendChild(modal);
   modal.addEventListener('click', function (e) {
     if (e.target === modal) modal.remove();
@@ -18194,7 +18194,7 @@ function submitPayment(_x) {
 }
 function _submitPayment() {
   _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(event) {
-    var _document$getElementB, _document$getElementB2;
+    var _document$getElementB2, _document$getElementB3;
     var form, policyId, scheduleId, file, reference, _window$appHandlers, result, _t2;
     return _regenerator().w(function (_context3) {
       while (1) switch (_context3.p = _context3.n) {
@@ -18203,8 +18203,8 @@ function _submitPayment() {
           form = event.target;
           policyId = form.dataset.policy;
           scheduleId = form.dataset.schedule;
-          file = (_document$getElementB = document.getElementById('payment-proof-file')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.files[0];
-          reference = ((_document$getElementB2 = document.getElementById('payment-reference')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.value) || '';
+          file = (_document$getElementB2 = document.getElementById('payment-proof-file')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.files[0];
+          reference = ((_document$getElementB3 = document.getElementById('payment-reference')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value) || '';
           if (file) {
             _context3.n = 1;
             break;
@@ -18306,14 +18306,16 @@ function submitPolicyUpload(_x3) {
  */
 function _submitPolicyUpload() {
   _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(event) {
-    var form, fileInput, file, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers3, formData, token, response, result, _t4;
+    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers3, formData, response, result, _t4;
     return _regenerator().w(function (_context5) {
       while (1) switch (_context5.p = _context5.n) {
         case 0:
           event.preventDefault();
           form = event.target;
           fileInput = document.getElementById('policy-file');
+          emailInput = document.getElementById('client-email');
           file = fileInput === null || fileInput === void 0 ? void 0 : fileInput.files[0];
+          clientEmail = emailInput === null || emailInput === void 0 ? void 0 : emailInput.value.trim();
           if (file) {
             _context5.n = 1;
             break;
@@ -18321,6 +18323,24 @@ function _submitPolicyUpload() {
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo de póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           return _context5.a(2);
         case 1:
+          if (clientEmail) {
+            _context5.n = 2;
+            break;
+          }
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('El email del cliente es obligatorio', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
+          emailInput === null || emailInput === void 0 || emailInput.focus();
+          return _context5.a(2);
+        case 2:
+          // Validar formato de email
+          emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (emailRegex.test(clientEmail)) {
+            _context5.n = 3;
+            break;
+          }
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Por favor ingresa un email válido', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
+          emailInput === null || emailInput === void 0 || emailInput.focus();
+          return _context5.a(2);
+        case 3:
           // Mostrar progreso
           progressContainer = document.getElementById('upload-progress');
           progressFill = document.getElementById('progress-fill');
@@ -18328,16 +18348,15 @@ function _submitPolicyUpload() {
           submitBtn = document.getElementById('submit-policy-btn');
           progressContainer.style.display = 'block';
           submitBtn.disabled = true;
-          _context5.p = 2;
+          _context5.p = 4;
           // Preparar FormData
           formData = new FormData();
           formData.append('policy_file', file);
-
-          // Obtener token de autenticación
-          token = sessionStorage.getItem('auth_token'); // Enviar al backend
+          formData.append('client_email', clientEmail);
+          // Enviar al backend
           progressText.textContent = 'Subiendo documento...';
           progressFill.style.width = '30%';
-          _context5.n = 3;
+          _context5.n = 5;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -18345,38 +18364,38 @@ function _submitPolicyUpload() {
             },
             body: formData
           });
-        case 3:
+        case 5:
           response = _context5.v;
           progressFill.style.width = '60%';
           progressText.textContent = 'Analizando documento...';
-          _context5.n = 4;
+          _context5.n = 6;
           return response.json();
-        case 4:
+        case 6:
           result = _context5.v;
           progressFill.style.width = '100%';
           if (result.success) {
-            _context5.n = 5;
+            _context5.n = 7;
             break;
           }
           throw new Error(result.error || 'Error al procesar póliza');
-        case 5:
+        case 7:
           if (!result.requires_confirmation) {
-            _context5.n = 6;
+            _context5.n = 8;
             break;
           }
           showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
           return _context5.a(2);
-        case 6:
+        case 8:
           if (!result.requires_manual_entry) {
-            _context5.n = 7;
+            _context5.n = 9;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se pudo extraer datos. Abriendo formulario manual...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           showManualEntryForm(result.temp_file_path);
           return _context5.a(2);
-        case 7:
+        case 9:
           // Éxito
           form.closest('.app-modal-overlay').remove();
           if (result.new_client) {
@@ -18396,30 +18415,34 @@ function _submitPolicyUpload() {
               return window.appHandlers.refreshDashboard();
             }, 2000);
           }
-          _context5.n = 9;
+          _context5.n = 11;
           break;
-        case 8:
-          _context5.p = 8;
+        case 10:
+          _context5.p = 10;
           _t4 = _context5.v;
           console.error('Error uploading policy:', _t4);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t4.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
-        case 9:
+        case 11:
           return _context5.a(2);
       }
-    }, _callee5, null, [[2, 8]]);
+    }, _callee5, null, [[4, 10]]);
   }));
   return _submitPolicyUpload.apply(this, arguments);
 }
 function showExtractedDataForConfirmation(data, tempFilePath) {
+  var _document$getElementB;
   var previewContainer = document.getElementById('extracted-data-preview');
   var dataGrid = document.getElementById('data-grid');
   var confidenceNote = document.getElementById('confidence-note');
+
+  // Obtener email ingresado por el agente
+  var clientEmail = ((_document$getElementB = document.getElementById('client-email')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.value) || '';
   previewContainer.style.display = 'block';
   confidenceNote.innerHTML = '⚠️ Confianza baja. Por favor revisa los datos antes de continuar.';
   confidenceNote.className = 'confidence-note warning';
-  dataGrid.innerHTML = "\n    <div class=\"data-field\">\n      <label>Nombre del cliente:</label>\n      <input type=\"text\" id=\"confirm-client-name\" value=\"".concat(data.client_name || '', "\" required>\n    </div>\n    <div class=\"data-field\">\n      <label>N\xFAmero de p\xF3liza:</label>\n      <input type=\"text\" id=\"confirm-policy-number\" value=\"").concat(data.policy_number || '', "\" required>\n    </div>\n    <div class=\"data-field\">\n      <label>Prima total:</label>\n      <input type=\"number\" id=\"confirm-premium\" value=\"").concat(data.total_premium || '', "\" step=\"0.01\" required>\n    </div>\n    <div class=\"data-field\">\n      <label>Fecha inicio:</label>\n      <input type=\"date\" id=\"confirm-start-date\" value=\"").concat(data.start_date || '', "\">\n    </div>\n    <div class=\"data-field\">\n      <label>Fecha vencimiento:</label>\n      <input type=\"date\" id=\"confirm-end-date\" value=\"").concat(data.end_date || '', "\">\n    </div>\n    <div class=\"data-field\">\n      <label>Frecuencia de pago:</label>\n      <select id=\"confirm-frequency\">\n        <option value=\"1\" ").concat(data.payment_frequency == 1 ? 'selected' : '', ">Anual</option>\n        <option value=\"2\" ").concat(data.payment_frequency == 2 ? 'selected' : '', ">Semestral</option>\n        <option value=\"4\" ").concat(data.payment_frequency == 4 ? 'selected' : '', ">Trimestral</option>\n        <option value=\"12\" ").concat(data.payment_frequency == 12 ? 'selected' : '', ">Mensual</option>\n      </select>\n    </div>\n  ");
+  dataGrid.innerHTML = "\n    <div class=\"data-field\">\n      <label>Email del cliente: <span style=\"color: #dc3545;\">*</span></label>\n      <input type=\"email\" id=\"confirm-client-email\" value=\"".concat(clientEmail, "\" required readonly style=\"background: #e9ecef;\">\n      <small style=\"color: #6c757d;\">Este email se usar\xE1 para el acceso al portal</small>\n    </div>\n    <div class=\"data-field\">\n      <label>Nombre del cliente:</label>\n      <input type=\"text\" id=\"confirm-client-name\" value=\"").concat(data.client_name || '', "\" required>\n    </div>\n    <div class=\"data-field\">\n      <label>N\xFAmero de p\xF3liza:</label>\n      <input type=\"text\" id=\"confirm-policy-number\" value=\"").concat(data.policy_number || '', "\" required>\n    </div>\n    <div class=\"data-field\">\n      <label>Prima total:</label>\n      <input type=\"number\" id=\"confirm-premium\" value=\"").concat(data.total_premium || '', "\" step=\"0.01\" required>\n    </div>\n    <div class=\"data-field\">\n      <label>Fecha inicio:</label>\n      <input type=\"date\" id=\"confirm-start-date\" value=\"").concat(data.start_date || '', "\">\n    </div>\n    <div class=\"data-field\">\n      <label>Fecha vencimiento:</label>\n      <input type=\"date\" id=\"confirm-end-date\" value=\"").concat(data.end_date || '', "\">\n    </div>\n    <div class=\"data-field\">\n      <label>Frecuencia de pago:</label>\n      <select id=\"confirm-frequency\">\n        <option value=\"1\" ").concat(data.payment_frequency == 1 ? 'selected' : '', ">Anual</option>\n        <option value=\"2\" ").concat(data.payment_frequency == 2 ? 'selected' : '', ">Semestral</option>\n        <option value=\"4\" ").concat(data.payment_frequency == 4 ? 'selected' : '', ">Trimestral</option>\n        <option value=\"12\" ").concat(data.payment_frequency == 12 ? 'selected' : '', ">Mensual</option>\n      </select>\n    </div>\n  ");
 
   // Cambiar botón para confirmar
   var submitBtn = document.getElementById('submit-policy-btn');
@@ -18440,11 +18463,12 @@ function confirmAndCreateClient(_x4) {
  */
 function _confirmAndCreateClient() {
   _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(tempFilePath) {
-    var confirmedData, token, response, result, _window$appHandlers4, _t5;
+    var confirmedData, _token, response, result, _window$appHandlers4, _t5;
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
           confirmedData = {
+            client_email: document.getElementById('confirm-client-email').value,
             client_name: document.getElementById('confirm-client-name').value,
             policy_number: document.getElementById('confirm-policy-number').value,
             total_premium: parseFloat(document.getElementById('confirm-premium').value),
@@ -18454,12 +18478,12 @@ function _confirmAndCreateClient() {
           };
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente con datos confirmados...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
           _context6.p = 1;
-          token = sessionStorage.getItem('auth_token');
+          _token = sessionStorage.getItem('auth_token');
           _context6.n = 2;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
-              'Authorization': 'Bearer ' + token,
+              'Authorization': 'Bearer ' + _token,
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
