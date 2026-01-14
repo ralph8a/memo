@@ -21,9 +21,9 @@ const paymentAPI = new PaymentAPI();
  * Realizar pago rápido - Subir comprobante de pago
  */
 export async function makePayment(policyId = null, scheduleId = null) {
-  const modal = document.createElement('div');
-  modal.className = 'app-modal-overlay';
-  modal.innerHTML = `
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay';
+    modal.innerHTML = `
     <div class="app-modal app-modal-md">
       <div class="app-modal-header">
         <h2 class="app-modal-title">Subir Comprobante de Pago</h2>
@@ -57,51 +57,51 @@ export async function makePayment(policyId = null, scheduleId = null) {
       </div>
     </div>
   `;
-  
-  document.body.appendChild(modal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.remove();
-  });
 
-  showNotification('Sube tu comprobante de pago para validación', NOTIFICATION_TYPES.INFO);
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+    });
+
+    showNotification('Sube tu comprobante de pago para validación', NOTIFICATION_TYPES.INFO);
 }
 
 /**
  * Descargar historial de pagos usando API real
  */
 export async function downloadPaymentHistory(type = 'receipt', fileId = null) {
-  try {
-    if (fileId) {
-      // Descargar archivo específico del backend
-      showNotification('Descargando archivo...', NOTIFICATION_TYPES.INFO);
-      await paymentAPI.downloadFile(type, fileId);
-      showNotification('Archivo descargado exitosamente', NOTIFICATION_TYPES.SUCCESS);
-    } else {
-      // Generar CSV con historial completo
-      showNotification('Generando historial...', NOTIFICATION_TYPES.INFO);
-      
-      // En el futuro, esto consultará el backend
-      const csvContent = [
-        'Fecha,Póliza,Monto,Estado',
-        '2025-01-01,POL-001,$350.00,Pagado',
-        '2024-12-01,POL-001,$350.00,Pagado',
-        '2024-11-01,POL-001,$350.00,Pagado',
-      ].join('\n');
+    try {
+        if (fileId) {
+            // Descargar archivo específico del backend
+            showNotification('Descargando archivo...', NOTIFICATION_TYPES.INFO);
+            await paymentAPI.downloadFile(type, fileId);
+            showNotification('Archivo descargado exitosamente', NOTIFICATION_TYPES.SUCCESS);
+        } else {
+            // Generar CSV con historial completo
+            showNotification('Generando historial...', NOTIFICATION_TYPES.INFO);
 
-      const blob = new Blob([csvContent], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `historial-pagos-${new Date().toISOString().split('T')[0]}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
-      
-      showNotification('Historial de pagos descargado', NOTIFICATION_TYPES.SUCCESS);
+            // En el futuro, esto consultará el backend
+            const csvContent = [
+                'Fecha,Póliza,Monto,Estado',
+                '2025-01-01,POL-001,$350.00,Pagado',
+                '2024-12-01,POL-001,$350.00,Pagado',
+                '2024-11-01,POL-001,$350.00,Pagado',
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `historial-pagos-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            showNotification('Historial de pagos descargado', NOTIFICATION_TYPES.SUCCESS);
+        }
+    } catch (error) {
+        console.error('Error downloading file:', error);
+        showNotification('Error al descargar archivo', NOTIFICATION_TYPES.ERROR);
     }
-  } catch (error) {
-    console.error('Error downloading file:', error);
-    showNotification('Error al descargar archivo', NOTIFICATION_TYPES.ERROR);
-  }
 }
 
 /**
@@ -304,7 +304,8 @@ export function createQuote(type = 'auto') {
 }
 
 /**
- * Agregar nuevo cliente
+ * Agregar nuevo cliente mediante subida de póliza
+ * El sistema extrae datos automáticamente, crea cliente y genera credenciales
  */
 export function addClient() {
     const modal = document.createElement('div');
@@ -312,7 +313,7 @@ export function addClient() {
     modal.innerHTML = `
     <div class="app-modal app-modal-md">
       <div class="app-modal-header">
-        <h2 class="app-modal-title">Nuevo Cliente</h2>
+        <h2 class="app-modal-title">Nuevo Cliente - Subir Póliza</h2>
         <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"/>
@@ -321,32 +322,57 @@ export function addClient() {
         </button>
       </div>
       <div class="app-modal-body">
-        <form class="add-client-form" onsubmit="window.dashboardActions?.submitNewClient(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="client-first-name">Nombre</label>
-              <input type="text" id="client-first-name" required>
+        <div class="upload-instructions">
+          <div class="info-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <div>
+              <p><strong>El sistema extraerá automáticamente:</strong></p>
+              <ul>
+                <li>Nombre del cliente</li>
+                <li>Número de póliza</li>
+                <li>Monto de prima</li>
+                <li>Fechas de vigencia</li>
+                <li>Tipo de cobertura</li>
+              </ul>
+              <p>Se generará un correo y contraseña automáticos que se enviarán al cliente.</p>
             </div>
-            <div class="form-group">
-              <label for="client-last-name">Apellido</label>
-              <input type="text" id="client-last-name" required>
+          </div>
+        </div>
+        
+        <form class="add-client-form" onsubmit="window.dashboardActions?.submitPolicyUpload(event)">
+          <div class="form-group">
+            <label for="policy-file">Documento de póliza</label>
+            <input type="file" id="policy-file" accept=".pdf,image/*" required>
+            <small>Formatos aceptados: PDF, JPG, PNG (máx 10MB)</small>
+          </div>
+          
+          <div id="upload-progress" style="display: none;">
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-fill"></div>
             </div>
+            <p id="progress-text">Analizando documento...</p>
           </div>
-          <div class="form-group">
-            <label for="client-email">Email</label>
-            <input type="email" id="client-email" required>
+          
+          <div id="extracted-data-preview" style="display: none;">
+            <h3>Datos extraídos</h3>
+            <div id="data-grid" class="extracted-data-grid"></div>
+            <p class="confidence-note" id="confidence-note"></p>
           </div>
-          <div class="form-group">
-            <label for="client-phone">Teléfono</label>
-            <input type="tel" id="client-phone" required>
-          </div>
-          <div class="form-group">
-            <label for="client-address">Dirección</label>
-            <textarea id="client-address" rows="2"></textarea>
-          </div>
+          
           <div class="form-actions">
             <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Guardar cliente</button>
+            <button type="submit" class="btn btn-primary" id="submit-policy-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              Subir y procesar póliza
+            </button>
           </div>
         </form>
       </div>
@@ -358,7 +384,7 @@ export function addClient() {
         if (e.target === modal) modal.remove();
     });
 
-    showNotification('Formulario de nuevo cliente abierto', NOTIFICATION_TYPES.INFO);
+    showNotification('Sube la póliza para crear el cliente automáticamente', NOTIFICATION_TYPES.INFO);
 }
 
 /**
@@ -697,35 +723,35 @@ export function filterByClient(clientId) {
 // ============================================================================
 
 export async function submitPayment(event) {
-  event.preventDefault();
-  const form = event.target;
-  const policyId = form.dataset.policy;
-  const scheduleId = form.dataset.schedule;
-  const file = document.getElementById('payment-proof-file')?.files[0];
-  const reference = document.getElementById('payment-reference')?.value || '';
-  
-  if (!file) {
-    showNotification('Selecciona un archivo', NOTIFICATION_TYPES.WARNING);
-    return;
-  }
+    event.preventDefault();
+    const form = event.target;
+    const policyId = form.dataset.policy;
+    const scheduleId = form.dataset.schedule;
+    const file = document.getElementById('payment-proof-file')?.files[0];
+    const reference = document.getElementById('payment-reference')?.value || '';
 
-  showNotification('Subiendo comprobante...', NOTIFICATION_TYPES.INFO);
-  
-  try {
-    // Usar API real de pagos
-    const result = await paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
-    
-    form.closest('.app-modal-overlay').remove();
-    showNotification('Comprobante subido. Estará en revisión pronto.', NOTIFICATION_TYPES.SUCCESS);
-    
-    // Refrescar dashboard si es posible
-    if (window.appHandlers?.refreshDashboard) {
-      setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
+    if (!file) {
+        showNotification('Selecciona un archivo', NOTIFICATION_TYPES.WARNING);
+        return;
     }
-  } catch (error) {
-    console.error('Error uploading payment proof:', error);
-    showNotification('Error al subir comprobante: ' + error.message, NOTIFICATION_TYPES.ERROR);
-  }
+
+    showNotification('Subiendo comprobante...', NOTIFICATION_TYPES.INFO);
+
+    try {
+        // Usar API real de pagos
+        const result = await paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
+
+        form.closest('.app-modal-overlay').remove();
+        showNotification('Comprobante subido. Estará en revisión pronto.', NOTIFICATION_TYPES.SUCCESS);
+
+        // Refrescar dashboard si es posible
+        if (window.appHandlers?.refreshDashboard) {
+            setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
+        }
+    } catch (error) {
+        console.error('Error uploading payment proof:', error);
+        showNotification('Error al subir comprobante: ' + error.message, NOTIFICATION_TYPES.ERROR);
+    }
 }
 
 export function submitInfoUpdate(event) {
@@ -741,71 +767,271 @@ export function submitInfoUpdate(event) {
 }
 
 export async function submitClaim(event) {
-  event.preventDefault();
-  const form = event.target;
-  const formData = new FormData(form);
-  
-  showNotification('Enviando siniestro...', NOTIFICATION_TYPES.INFO);
-  
-  try {
-    // En el futuro, esto enviará al backend real
-    // const response = await fetch('/backend/api-endpoints.php?action=create_claim', {
-    //   method: 'POST',
-    //   body: formData
-    // });
-    
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    form.closest('.app-modal-overlay').remove();
-    const claimNumber = 'CLM-' + Math.floor(Math.random() * 1000);
-    showNotification(`Siniestro registrado. Número: ${claimNumber}`, NOTIFICATION_TYPES.SUCCESS);
-    
-    // Refrescar dashboard
-    if (window.appHandlers?.refreshDashboard) {
-      setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    showNotification('Enviando siniestro...', NOTIFICATION_TYPES.INFO);
+
+    try {
+        // En el futuro, esto enviará al backend real
+        // const response = await fetch('/backend/api-endpoints.php?action=create_claim', {
+        //   method: 'POST',
+        //   body: formData
+        // });
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        form.closest('.app-modal-overlay').remove();
+        const claimNumber = 'CLM-' + Math.floor(Math.random() * 1000);
+        showNotification(`Siniestro registrado. Número: ${claimNumber}`, NOTIFICATION_TYPES.SUCCESS);
+
+        // Refrescar dashboard
+        if (window.appHandlers?.refreshDashboard) {
+            setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
+        }
+    } catch (error) {
+        console.error('Error submitting claim:', error);
+        showNotification('Error al enviar siniestro', NOTIFICATION_TYPES.ERROR);
     }
-  } catch (error) {
-    console.error('Error submitting claim:', error);
-    showNotification('Error al enviar siniestro', NOTIFICATION_TYPES.ERROR);
-  }
 }
 
-export async function submitNewClient(event) {
-  event.preventDefault();
-  const form = event.target;
-  const formData = new FormData(form);
-  
-  const clientData = {
-    firstName: document.getElementById('client-first-name')?.value,
-    lastName: document.getElementById('client-last-name')?.value,
-    email: document.getElementById('client-email')?.value,
-    phone: document.getElementById('client-phone')?.value,
-    address: document.getElementById('client-address')?.value
-  };
-  
-  showNotification('Creando cliente...', NOTIFICATION_TYPES.INFO);
-  
-  try {
-    // Enviar al backend real cuando esté listo
-    // const response = await fetch('/backend/api-endpoints.php?action=create_client', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(clientData)
-    // });
-    
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    form.closest('.app-modal-overlay').remove();
-    showNotification('Cliente agregado exitosamente', NOTIFICATION_TYPES.SUCCESS);
-    
-    // Refrescar dashboard
-    if (window.appHandlers?.refreshDashboard) {
-      setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
+/**
+ * Subir póliza y crear cliente automáticamente
+ */
+export async function submitPolicyUpload(event) {
+    event.preventDefault();
+    const form = event.target;
+    const fileInput = document.getElementById('policy-file');
+    const file = fileInput?.files[0];
+
+    if (!file) {
+        showNotification('Selecciona un archivo de póliza', NOTIFICATION_TYPES.WARNING);
+        return;
     }
-  } catch (error) {
-    console.error('Error creating client:', error);
-    showNotification('Error al crear cliente', NOTIFICATION_TYPES.ERROR);
-  }
+
+    // Mostrar progreso
+    const progressContainer = document.getElementById('upload-progress');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const submitBtn = document.getElementById('submit-policy-btn');
+
+    progressContainer.style.display = 'block';
+    submitBtn.disabled = true;
+
+    try {
+        // Preparar FormData
+        const formData = new FormData();
+        formData.append('policy_file', file);
+
+        // Obtener token de autenticación
+        const token = sessionStorage.getItem('auth_token');
+
+        // Enviar al backend
+        progressText.textContent = 'Subiendo documento...';
+        progressFill.style.width = '30%';
+
+        const response = await fetch('/backend/client-from-policy.php', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            body: formData
+        });
+
+        progressFill.style.width = '60%';
+        progressText.textContent = 'Analizando documento...';
+
+        const result = await response.json();
+
+        progressFill.style.width = '100%';
+
+        if (!result.success) {
+            throw new Error(result.error || 'Error al procesar póliza');
+        }
+
+        // Verificar si requiere confirmación (baja confianza)
+        if (result.requires_confirmation) {
+            showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
+            progressContainer.style.display = 'none';
+            submitBtn.disabled = false;
+            return;
+        }
+
+        // Verificar si requiere entrada manual
+        if (result.requires_manual_entry) {
+            showNotification('No se pudo extraer datos. Abriendo formulario manual...', NOTIFICATION_TYPES.WARNING);
+            showManualEntryForm(result.temp_file_path);
+            return;
+        }
+
+        // Éxito
+        form.closest('.app-modal-overlay').remove();
+
+        if (result.new_client) {
+            showNotification(
+                `Cliente creado exitosamente. Credenciales enviadas por email.`,
+                NOTIFICATION_TYPES.SUCCESS
+            );
+        } else {
+            showNotification(
+                `Póliza agregada al cliente existente.`,
+                NOTIFICATION_TYPES.SUCCESS
+            );
+        }
+
+        // Mostrar resumen
+        setTimeout(() => {
+            showClientCreationSummary(result);
+        }, 1000);
+
+        // Refrescar dashboard
+        if (window.appHandlers?.refreshDashboard) {
+            setTimeout(() => window.appHandlers.refreshDashboard(), 2000);
+        }
+
+    } catch (error) {
+        console.error('Error uploading policy:', error);
+        showNotification('Error: ' + error.message, NOTIFICATION_TYPES.ERROR);
+        progressContainer.style.display = 'none';
+        submitBtn.disabled = false;
+    }
+}
+
+/**
+ * Mostrar datos extraídos para confirmación (cuando confianza es baja)
+ */
+function showExtractedDataForConfirmation(data, tempFilePath) {
+    const previewContainer = document.getElementById('extracted-data-preview');
+    const dataGrid = document.getElementById('data-grid');
+    const confidenceNote = document.getElementById('confidence-note');
+
+    previewContainer.style.display = 'block';
+    confidenceNote.innerHTML = '⚠️ Confianza baja. Por favor revisa los datos antes de continuar.';
+    confidenceNote.className = 'confidence-note warning';
+
+    dataGrid.innerHTML = `
+    <div class="data-field">
+      <label>Nombre del cliente:</label>
+      <input type="text" id="confirm-client-name" value="${data.client_name || ''}" required>
+    </div>
+    <div class="data-field">
+      <label>Número de póliza:</label>
+      <input type="text" id="confirm-policy-number" value="${data.policy_number || ''}" required>
+    </div>
+    <div class="data-field">
+      <label>Prima total:</label>
+      <input type="number" id="confirm-premium" value="${data.total_premium || ''}" step="0.01" required>
+    </div>
+    <div class="data-field">
+      <label>Fecha inicio:</label>
+      <input type="date" id="confirm-start-date" value="${data.start_date || ''}">
+    </div>
+    <div class="data-field">
+      <label>Fecha vencimiento:</label>
+      <input type="date" id="confirm-end-date" value="${data.end_date || ''}">
+    </div>
+    <div class="data-field">
+      <label>Frecuencia de pago:</label>
+      <select id="confirm-frequency">
+        <option value="1" ${data.payment_frequency == 1 ? 'selected' : ''}>Anual</option>
+        <option value="2" ${data.payment_frequency == 2 ? 'selected' : ''}>Semestral</option>
+        <option value="4" ${data.payment_frequency == 4 ? 'selected' : ''}>Trimestral</option>
+        <option value="12" ${data.payment_frequency == 12 ? 'selected' : ''}>Mensual</option>
+      </select>
+    </div>
+  `;
+
+    // Cambiar botón para confirmar
+    const submitBtn = document.getElementById('submit-policy-btn');
+    submitBtn.textContent = 'Confirmar y crear cliente';
+    submitBtn.onclick = () => confirmAndCreateClient(tempFilePath);
+}
+
+/**
+ * Confirmar datos corregidos y crear cliente
+ */
+async function confirmAndCreateClient(tempFilePath) {
+    const confirmedData = {
+        client_name: document.getElementById('confirm-client-name').value,
+        policy_number: document.getElementById('confirm-policy-number').value,
+        total_premium: parseFloat(document.getElementById('confirm-premium').value),
+        start_date: document.getElementById('confirm-start-date').value,
+        end_date: document.getElementById('confirm-end-date').value,
+        payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
+    };
+
+    showNotification('Creando cliente con datos confirmados...', NOTIFICATION_TYPES.INFO);
+
+    try {
+        const token = sessionStorage.getItem('auth_token');
+
+        const response = await fetch('/backend/client-from-policy.php', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                confirmed_data: confirmedData,
+                temp_file_path: tempFilePath
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            document.querySelector('.app-modal-overlay').remove();
+            showNotification('Cliente creado exitosamente', NOTIFICATION_TYPES.SUCCESS);
+
+            if (window.appHandlers?.refreshDashboard) {
+                setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
+            }
+        } else {
+            throw new Error(result.error);
+        }
+
+    } catch (error) {
+        showNotification('Error: ' + error.message, NOTIFICATION_TYPES.ERROR);
+    }
+}
+
+/**
+ * Mostrar formulario de entrada manual
+ */
+function showManualEntryForm(tempFilePath) {
+    // Reutilizar lógica similar a confirmación pero con campos vacíos
+    showExtractedDataForConfirmation({}, tempFilePath);
+    document.getElementById('confidence-note').innerHTML =
+        'ℹ️ No se pudo extraer datos automáticamente. Por favor ingresa los datos manualmente.';
+}
+
+/**
+ * Mostrar resumen de cliente creado
+ */
+function showClientCreationSummary(result) {
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay';
+    modal.innerHTML = `
+    <div class="app-modal app-modal-sm">
+      <div class="app-modal-header">
+        <h2 class="app-modal-title">✅ Cliente ${result.new_client ? 'Creado' : 'Actualizado'}</h2>
+      </div>
+      <div class="app-modal-body">
+        <div class="success-summary">
+          <p><strong>ID Cliente:</strong> ${result.client_id}</p>
+          <p><strong>ID Póliza:</strong> ${result.policy_id}</p>
+          ${result.new_client ? '<p>✉️ Credenciales de acceso enviadas por email</p>' : ''}
+          <p class="success-message">${result.message}</p>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="this.closest('.app-modal-overlay').remove()">Entendido</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+    document.body.appendChild(modal);
 }
 
 export function submitAppointment(event) {
@@ -843,7 +1069,7 @@ if (typeof window !== 'undefined') {
         submitPayment,
         submitInfoUpdate,
         submitClaim,
-        submitNewClient,
+        submitPolicyUpload,
         submitAppointment,
     };
 }

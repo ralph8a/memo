@@ -3601,6 +3601,144 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/**
  */
 
 /* ============================================================================
+   UPLOAD & POLICY PROCESSING - Sistema de subida de pólizas
+   ============================================================================ */
+
+.upload-instructions {
+    margin-bottom: 20px;
+}
+
+.info-box {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    color: white;
+}
+
+.info-box svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.info-box ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.info-box li {
+    margin: 5px 0;
+}
+
+/* Progress Bar */
+#upload-progress {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+#progress-text {
+    font-size: 14px;
+    color: #6c757d;
+    text-align: center;
+    margin: 0;
+}
+
+/* Extracted Data Preview */
+#extracted-data-preview {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px solid #dee2e6;
+}
+
+.extracted-data-grid {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.data-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.data-field label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.data-field input,
+.data-field select {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.confidence-note {
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin: 0;
+}
+
+.confidence-note.warning {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.confidence-note.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Success Summary */
+.success-summary {
+    padding: 20px;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.success-summary p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #155724;
+}
+
+.success-message {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #c3e6cb;
+    font-weight: 500;
+}
+
+/* ============================================================================
    MODAL SYSTEM - Sistema unificado de modales
    ============================================================================ */
 
@@ -4077,7 +4215,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/**
     .app-modal {
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     }
-}`, "",{"version":3,"sources":["webpack://./styles/dashboard-actions.css"],"names":[],"mappings":"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","sourcesContent":["/**\r\n * Dashboard Actions Styles\r\n * Estilos para modales, tabs y componentes de acciones\r\n */\r\n\r\n/* ============================================================================\r\n   MODAL SYSTEM - Sistema unificado de modales\r\n   ============================================================================ */\r\n\r\n.app-modal-overlay {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    background: rgba(0, 0, 0, 0.6);\r\n    backdrop-filter: blur(4px);\r\n    -webkit-backdrop-filter: blur(4px);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    z-index: 9999;\r\n    padding: 20px;\r\n    animation: fadeIn 0.2s ease;\r\n}\r\n\r\n@keyframes fadeIn {\r\n    from {\r\n        opacity: 0;\r\n    }\r\n\r\n    to {\r\n        opacity: 1;\r\n    }\r\n}\r\n\r\n.app-modal {\r\n    background: var(--background-primary);\r\n    border-radius: 16px;\r\n    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);\r\n    max-height: 90vh;\r\n    overflow: hidden;\r\n    display: flex;\r\n    flex-direction: column;\r\n    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\r\n}\r\n\r\n@keyframes slideUp {\r\n    from {\r\n        transform: translateY(30px);\r\n        opacity: 0;\r\n    }\r\n\r\n    to {\r\n        transform: translateY(0);\r\n        opacity: 1;\r\n    }\r\n}\r\n\r\n/* Modal sizes */\r\n.app-modal-sm {\r\n    width: 100%;\r\n    max-width: 400px;\r\n}\r\n\r\n.app-modal-md {\r\n    width: 100%;\r\n    max-width: 600px;\r\n}\r\n\r\n.app-modal-lg {\r\n    width: 100%;\r\n    max-width: 900px;\r\n}\r\n\r\n.app-modal-xl {\r\n    width: 100%;\r\n    max-width: 1200px;\r\n}\r\n\r\n/* Modal header */\r\n.app-modal-header {\r\n    padding: 24px 24px 16px;\r\n    border-bottom: 1px solid var(--border-color);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.app-modal-title {\r\n    font-size: 1.5rem;\r\n    font-weight: 600;\r\n    color: var(--text-primary);\r\n    margin: 0;\r\n}\r\n\r\n.app-modal-close {\r\n    background: transparent;\r\n    border: none;\r\n    padding: 8px;\r\n    cursor: pointer;\r\n    color: var(--text-secondary);\r\n    border-radius: 8px;\r\n    transition: all 0.2s;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.app-modal-close:hover {\r\n    background: var(--background-tertiary);\r\n    color: var(--text-primary);\r\n}\r\n\r\n/* Modal body */\r\n.app-modal-body {\r\n    padding: 24px;\r\n    overflow-y: auto;\r\n    flex: 1;\r\n}\r\n\r\n/* Forms dentro de modales */\r\n.app-modal form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 20px;\r\n}\r\n\r\n.form-group {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 8px;\r\n}\r\n\r\n.form-group label {\r\n    font-size: 0.875rem;\r\n    font-weight: 500;\r\n    color: var(--text-primary);\r\n}\r\n\r\n.form-group input,\r\n.form-group select,\r\n.form-group textarea {\r\n    padding: 12px 16px;\r\n    border: 1px solid var(--border-color);\r\n    border-radius: 8px;\r\n    background: var(--background-secondary);\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n    transition: all 0.2s;\r\n}\r\n\r\n.form-group input:focus,\r\n.form-group select:focus,\r\n.form-group textarea:focus {\r\n    outline: none;\r\n    border-color: var(--accent-color);\r\n    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);\r\n}\r\n\r\n.form-group small {\r\n    font-size: 0.75rem;\r\n    color: var(--text-secondary);\r\n}\r\n\r\n.form-row {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\r\n    gap: 16px;\r\n}\r\n\r\n.form-actions {\r\n    display: flex;\r\n    gap: 12px;\r\n    justify-content: flex-end;\r\n    padding-top: 8px;\r\n}\r\n\r\n/* ============================================================================\r\n   CLIENT DETAILS TABS - Sistema de tabs para detalles de cliente\r\n   ============================================================================ */\r\n\r\n.client-detail-tabs {\r\n    display: flex;\r\n    gap: 8px;\r\n    border-bottom: 2px solid var(--border-color);\r\n    margin-bottom: 24px;\r\n    padding-bottom: 0;\r\n    overflow-x: auto;\r\n    scrollbar-width: thin;\r\n}\r\n\r\n.client-detail-tabs::-webkit-scrollbar {\r\n    height: 4px;\r\n}\r\n\r\n.client-detail-tabs::-webkit-scrollbar-thumb {\r\n    background: var(--border-color);\r\n    border-radius: 2px;\r\n}\r\n\r\n.tab-btn {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 8px;\r\n    padding: 12px 16px;\r\n    background: transparent;\r\n    border: none;\r\n    border-bottom: 3px solid transparent;\r\n    color: var(--text-secondary);\r\n    font-size: 0.875rem;\r\n    font-weight: 500;\r\n    cursor: pointer;\r\n    transition: all 0.2s;\r\n    white-space: nowrap;\r\n    position: relative;\r\n    margin-bottom: -2px;\r\n}\r\n\r\n.tab-btn svg {\r\n    flex-shrink: 0;\r\n}\r\n\r\n.tab-btn:hover {\r\n    color: var(--text-primary);\r\n    background: var(--background-tertiary);\r\n}\r\n\r\n.tab-btn.active {\r\n    color: var(--accent-color);\r\n    border-bottom-color: var(--accent-color);\r\n}\r\n\r\n.client-detail-content {\r\n    min-height: 400px;\r\n}\r\n\r\n.tab-content {\r\n    display: none;\r\n    animation: fadeIn 0.2s ease;\r\n}\r\n\r\n.tab-content.active {\r\n    display: block;\r\n}\r\n\r\n/* Client info grid */\r\n.client-info-grid {\r\n    background: var(--background-secondary);\r\n    padding: 24px;\r\n    border-radius: 12px;\r\n}\r\n\r\n.client-info-grid dl {\r\n    display: grid;\r\n    grid-template-columns: 140px 1fr;\r\n    gap: 16px 24px;\r\n    margin: 0;\r\n}\r\n\r\n.client-info-grid dt {\r\n    font-weight: 500;\r\n    color: var(--text-secondary);\r\n    font-size: 0.875rem;\r\n}\r\n\r\n.client-info-grid dd {\r\n    margin: 0;\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n}\r\n\r\n/* Data table */\r\n.data-table {\r\n    width: 100%;\r\n    border-collapse: collapse;\r\n    background: var(--background-secondary);\r\n    border-radius: 12px;\r\n    overflow: hidden;\r\n}\r\n\r\n.data-table thead {\r\n    background: var(--background-tertiary);\r\n}\r\n\r\n.data-table th {\r\n    padding: 12px 16px;\r\n    text-align: left;\r\n    font-weight: 600;\r\n    font-size: 0.8125rem;\r\n    color: var(--text-secondary);\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.5px;\r\n}\r\n\r\n.data-table td {\r\n    padding: 16px;\r\n    border-top: 1px solid var(--border-color);\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n}\r\n\r\n.data-table tbody tr:hover {\r\n    background: var(--background-tertiary);\r\n}\r\n\r\n/* Files grid */\r\n.files-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\r\n    gap: 16px;\r\n}\r\n\r\n.file-card {\r\n    background: var(--background-secondary);\r\n    border: 1px solid var(--border-color);\r\n    border-radius: 12px;\r\n    padding: 20px;\r\n    text-align: center;\r\n    transition: all 0.2s;\r\n    cursor: pointer;\r\n}\r\n\r\n.file-card:hover {\r\n    background: var(--background-tertiary);\r\n    border-color: var(--accent-color);\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n.file-card svg {\r\n    color: var(--accent-color);\r\n    margin-bottom: 12px;\r\n}\r\n\r\n.file-card p {\r\n    margin: 8px 0 4px;\r\n    font-weight: 500;\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n}\r\n\r\n.file-card small {\r\n    color: var(--text-secondary);\r\n    font-size: 0.75rem;\r\n}\r\n\r\n/* ============================================================================\r\n   POLICY DETAILS - Detalles de póliza\r\n   ============================================================================ */\r\n\r\n.policy-details-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\r\n    gap: 24px;\r\n    margin-bottom: 24px;\r\n}\r\n\r\n.detail-section {\r\n    background: var(--background-secondary);\r\n    padding: 20px;\r\n    border-radius: 12px;\r\n    border: 1px solid var(--border-color);\r\n}\r\n\r\n.detail-section h3 {\r\n    margin: 0 0 16px;\r\n    font-size: 1rem;\r\n    font-weight: 600;\r\n    color: var(--text-primary);\r\n    border-bottom: 2px solid var(--accent-color);\r\n    padding-bottom: 8px;\r\n}\r\n\r\n.detail-section dl {\r\n    display: grid;\r\n    gap: 12px;\r\n    margin: 0;\r\n}\r\n\r\n.detail-section dt {\r\n    font-weight: 500;\r\n    color: var(--text-secondary);\r\n    font-size: 0.8125rem;\r\n    margin-bottom: 4px;\r\n}\r\n\r\n.detail-section dd {\r\n    margin: 0;\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n}\r\n\r\n.detail-section ul {\r\n    list-style: none;\r\n    padding: 0;\r\n    margin: 0;\r\n}\r\n\r\n.detail-section ul li {\r\n    padding: 8px 0;\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n    display: flex;\r\n    align-items: flex-start;\r\n    gap: 8px;\r\n}\r\n\r\n.detail-section ul li::before {\r\n    content: '•';\r\n    color: var(--accent-color);\r\n    font-weight: bold;\r\n    font-size: 1.2em;\r\n}\r\n\r\n/* ============================================================================\r\n   RESPONSIVE\r\n   ============================================================================ */\r\n\r\n@media (max-width: 768px) {\r\n    .app-modal-overlay {\r\n        padding: 10px;\r\n    }\r\n\r\n    .app-modal {\r\n        max-height: 95vh;\r\n    }\r\n\r\n    .app-modal-header {\r\n        padding: 16px;\r\n    }\r\n\r\n    .app-modal-title {\r\n        font-size: 1.25rem;\r\n    }\r\n\r\n    .app-modal-body {\r\n        padding: 16px;\r\n    }\r\n\r\n    .form-row {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .client-info-grid dl {\r\n        grid-template-columns: 1fr;\r\n        gap: 8px;\r\n    }\r\n\r\n    .client-info-grid dt {\r\n        font-weight: 600;\r\n        color: var(--text-primary);\r\n    }\r\n\r\n    .policy-details-grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .files-grid {\r\n        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\r\n    }\r\n\r\n    .data-table {\r\n        font-size: 0.875rem;\r\n    }\r\n\r\n    .data-table th,\r\n    .data-table td {\r\n        padding: 10px 12px;\r\n    }\r\n}\r\n\r\n/* Dark theme adjustments */\r\n@media (prefers-color-scheme: dark) {\r\n    .app-modal-overlay {\r\n        background: rgba(0, 0, 0, 0.8);\r\n    }\r\n\r\n    .app-modal {\r\n        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);\r\n    }\r\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/dashboard-actions.css"],"names":[],"mappings":"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","sourcesContent":["/**\r\n * Dashboard Actions Styles\r\n * Estilos para modales, tabs y componentes de acciones\r\n */\r\n\r\n/* ============================================================================\r\n   UPLOAD & POLICY PROCESSING - Sistema de subida de pólizas\r\n   ============================================================================ */\r\n\r\n.upload-instructions {\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.info-box {\r\n    display: flex;\r\n    gap: 15px;\r\n    padding: 15px;\r\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\r\n    border-radius: 8px;\r\n    color: white;\r\n}\r\n\r\n.info-box svg {\r\n    flex-shrink: 0;\r\n    margin-top: 2px;\r\n}\r\n\r\n.info-box ul {\r\n    margin: 10px 0;\r\n    padding-left: 20px;\r\n}\r\n\r\n.info-box li {\r\n    margin: 5px 0;\r\n}\r\n\r\n/* Progress Bar */\r\n#upload-progress {\r\n    margin: 20px 0;\r\n    padding: 15px;\r\n    background: #f8f9fa;\r\n    border-radius: 8px;\r\n}\r\n\r\n.progress-bar {\r\n    width: 100%;\r\n    height: 8px;\r\n    background: #e9ecef;\r\n    border-radius: 4px;\r\n    overflow: hidden;\r\n    margin-bottom: 10px;\r\n}\r\n\r\n.progress-fill {\r\n    height: 100%;\r\n    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);\r\n    transition: width 0.3s ease;\r\n    border-radius: 4px;\r\n}\r\n\r\n#progress-text {\r\n    font-size: 14px;\r\n    color: #6c757d;\r\n    text-align: center;\r\n    margin: 0;\r\n}\r\n\r\n/* Extracted Data Preview */\r\n#extracted-data-preview {\r\n    margin: 20px 0;\r\n    padding: 20px;\r\n    background: #f8f9fa;\r\n    border-radius: 8px;\r\n    border: 2px solid #dee2e6;\r\n}\r\n\r\n.extracted-data-grid {\r\n    display: grid;\r\n    gap: 15px;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.data-field {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 5px;\r\n}\r\n\r\n.data-field label {\r\n    font-size: 14px;\r\n    font-weight: 500;\r\n    color: #495057;\r\n}\r\n\r\n.data-field input,\r\n.data-field select {\r\n    padding: 8px 12px;\r\n    border: 1px solid #ced4da;\r\n    border-radius: 4px;\r\n    font-size: 14px;\r\n}\r\n\r\n.confidence-note {\r\n    padding: 10px 15px;\r\n    border-radius: 6px;\r\n    font-size: 14px;\r\n    margin: 0;\r\n}\r\n\r\n.confidence-note.warning {\r\n    background: #fff3cd;\r\n    color: #856404;\r\n    border: 1px solid #ffeeba;\r\n}\r\n\r\n.confidence-note.info {\r\n    background: #d1ecf1;\r\n    color: #0c5460;\r\n    border: 1px solid #bee5eb;\r\n}\r\n\r\n/* Success Summary */\r\n.success-summary {\r\n    padding: 20px;\r\n    background: #d4edda;\r\n    border: 1px solid #c3e6cb;\r\n    border-radius: 8px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.success-summary p {\r\n    margin: 8px 0;\r\n    font-size: 14px;\r\n    color: #155724;\r\n}\r\n\r\n.success-message {\r\n    margin-top: 15px;\r\n    padding-top: 15px;\r\n    border-top: 1px solid #c3e6cb;\r\n    font-weight: 500;\r\n}\r\n\r\n/* ============================================================================\r\n   MODAL SYSTEM - Sistema unificado de modales\r\n   ============================================================================ */\r\n\r\n.app-modal-overlay {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    background: rgba(0, 0, 0, 0.6);\r\n    backdrop-filter: blur(4px);\r\n    -webkit-backdrop-filter: blur(4px);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    z-index: 9999;\r\n    padding: 20px;\r\n    animation: fadeIn 0.2s ease;\r\n}\r\n\r\n@keyframes fadeIn {\r\n    from {\r\n        opacity: 0;\r\n    }\r\n\r\n    to {\r\n        opacity: 1;\r\n    }\r\n}\r\n\r\n.app-modal {\r\n    background: var(--background-primary);\r\n    border-radius: 16px;\r\n    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);\r\n    max-height: 90vh;\r\n    overflow: hidden;\r\n    display: flex;\r\n    flex-direction: column;\r\n    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\r\n}\r\n\r\n@keyframes slideUp {\r\n    from {\r\n        transform: translateY(30px);\r\n        opacity: 0;\r\n    }\r\n\r\n    to {\r\n        transform: translateY(0);\r\n        opacity: 1;\r\n    }\r\n}\r\n\r\n/* Modal sizes */\r\n.app-modal-sm {\r\n    width: 100%;\r\n    max-width: 400px;\r\n}\r\n\r\n.app-modal-md {\r\n    width: 100%;\r\n    max-width: 600px;\r\n}\r\n\r\n.app-modal-lg {\r\n    width: 100%;\r\n    max-width: 900px;\r\n}\r\n\r\n.app-modal-xl {\r\n    width: 100%;\r\n    max-width: 1200px;\r\n}\r\n\r\n/* Modal header */\r\n.app-modal-header {\r\n    padding: 24px 24px 16px;\r\n    border-bottom: 1px solid var(--border-color);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.app-modal-title {\r\n    font-size: 1.5rem;\r\n    font-weight: 600;\r\n    color: var(--text-primary);\r\n    margin: 0;\r\n}\r\n\r\n.app-modal-close {\r\n    background: transparent;\r\n    border: none;\r\n    padding: 8px;\r\n    cursor: pointer;\r\n    color: var(--text-secondary);\r\n    border-radius: 8px;\r\n    transition: all 0.2s;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.app-modal-close:hover {\r\n    background: var(--background-tertiary);\r\n    color: var(--text-primary);\r\n}\r\n\r\n/* Modal body */\r\n.app-modal-body {\r\n    padding: 24px;\r\n    overflow-y: auto;\r\n    flex: 1;\r\n}\r\n\r\n/* Forms dentro de modales */\r\n.app-modal form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 20px;\r\n}\r\n\r\n.form-group {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 8px;\r\n}\r\n\r\n.form-group label {\r\n    font-size: 0.875rem;\r\n    font-weight: 500;\r\n    color: var(--text-primary);\r\n}\r\n\r\n.form-group input,\r\n.form-group select,\r\n.form-group textarea {\r\n    padding: 12px 16px;\r\n    border: 1px solid var(--border-color);\r\n    border-radius: 8px;\r\n    background: var(--background-secondary);\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n    transition: all 0.2s;\r\n}\r\n\r\n.form-group input:focus,\r\n.form-group select:focus,\r\n.form-group textarea:focus {\r\n    outline: none;\r\n    border-color: var(--accent-color);\r\n    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);\r\n}\r\n\r\n.form-group small {\r\n    font-size: 0.75rem;\r\n    color: var(--text-secondary);\r\n}\r\n\r\n.form-row {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\r\n    gap: 16px;\r\n}\r\n\r\n.form-actions {\r\n    display: flex;\r\n    gap: 12px;\r\n    justify-content: flex-end;\r\n    padding-top: 8px;\r\n}\r\n\r\n/* ============================================================================\r\n   CLIENT DETAILS TABS - Sistema de tabs para detalles de cliente\r\n   ============================================================================ */\r\n\r\n.client-detail-tabs {\r\n    display: flex;\r\n    gap: 8px;\r\n    border-bottom: 2px solid var(--border-color);\r\n    margin-bottom: 24px;\r\n    padding-bottom: 0;\r\n    overflow-x: auto;\r\n    scrollbar-width: thin;\r\n}\r\n\r\n.client-detail-tabs::-webkit-scrollbar {\r\n    height: 4px;\r\n}\r\n\r\n.client-detail-tabs::-webkit-scrollbar-thumb {\r\n    background: var(--border-color);\r\n    border-radius: 2px;\r\n}\r\n\r\n.tab-btn {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 8px;\r\n    padding: 12px 16px;\r\n    background: transparent;\r\n    border: none;\r\n    border-bottom: 3px solid transparent;\r\n    color: var(--text-secondary);\r\n    font-size: 0.875rem;\r\n    font-weight: 500;\r\n    cursor: pointer;\r\n    transition: all 0.2s;\r\n    white-space: nowrap;\r\n    position: relative;\r\n    margin-bottom: -2px;\r\n}\r\n\r\n.tab-btn svg {\r\n    flex-shrink: 0;\r\n}\r\n\r\n.tab-btn:hover {\r\n    color: var(--text-primary);\r\n    background: var(--background-tertiary);\r\n}\r\n\r\n.tab-btn.active {\r\n    color: var(--accent-color);\r\n    border-bottom-color: var(--accent-color);\r\n}\r\n\r\n.client-detail-content {\r\n    min-height: 400px;\r\n}\r\n\r\n.tab-content {\r\n    display: none;\r\n    animation: fadeIn 0.2s ease;\r\n}\r\n\r\n.tab-content.active {\r\n    display: block;\r\n}\r\n\r\n/* Client info grid */\r\n.client-info-grid {\r\n    background: var(--background-secondary);\r\n    padding: 24px;\r\n    border-radius: 12px;\r\n}\r\n\r\n.client-info-grid dl {\r\n    display: grid;\r\n    grid-template-columns: 140px 1fr;\r\n    gap: 16px 24px;\r\n    margin: 0;\r\n}\r\n\r\n.client-info-grid dt {\r\n    font-weight: 500;\r\n    color: var(--text-secondary);\r\n    font-size: 0.875rem;\r\n}\r\n\r\n.client-info-grid dd {\r\n    margin: 0;\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n}\r\n\r\n/* Data table */\r\n.data-table {\r\n    width: 100%;\r\n    border-collapse: collapse;\r\n    background: var(--background-secondary);\r\n    border-radius: 12px;\r\n    overflow: hidden;\r\n}\r\n\r\n.data-table thead {\r\n    background: var(--background-tertiary);\r\n}\r\n\r\n.data-table th {\r\n    padding: 12px 16px;\r\n    text-align: left;\r\n    font-weight: 600;\r\n    font-size: 0.8125rem;\r\n    color: var(--text-secondary);\r\n    text-transform: uppercase;\r\n    letter-spacing: 0.5px;\r\n}\r\n\r\n.data-table td {\r\n    padding: 16px;\r\n    border-top: 1px solid var(--border-color);\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n}\r\n\r\n.data-table tbody tr:hover {\r\n    background: var(--background-tertiary);\r\n}\r\n\r\n/* Files grid */\r\n.files-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\r\n    gap: 16px;\r\n}\r\n\r\n.file-card {\r\n    background: var(--background-secondary);\r\n    border: 1px solid var(--border-color);\r\n    border-radius: 12px;\r\n    padding: 20px;\r\n    text-align: center;\r\n    transition: all 0.2s;\r\n    cursor: pointer;\r\n}\r\n\r\n.file-card:hover {\r\n    background: var(--background-tertiary);\r\n    border-color: var(--accent-color);\r\n    transform: translateY(-2px);\r\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n.file-card svg {\r\n    color: var(--accent-color);\r\n    margin-bottom: 12px;\r\n}\r\n\r\n.file-card p {\r\n    margin: 8px 0 4px;\r\n    font-weight: 500;\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n}\r\n\r\n.file-card small {\r\n    color: var(--text-secondary);\r\n    font-size: 0.75rem;\r\n}\r\n\r\n/* ============================================================================\r\n   POLICY DETAILS - Detalles de póliza\r\n   ============================================================================ */\r\n\r\n.policy-details-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\r\n    gap: 24px;\r\n    margin-bottom: 24px;\r\n}\r\n\r\n.detail-section {\r\n    background: var(--background-secondary);\r\n    padding: 20px;\r\n    border-radius: 12px;\r\n    border: 1px solid var(--border-color);\r\n}\r\n\r\n.detail-section h3 {\r\n    margin: 0 0 16px;\r\n    font-size: 1rem;\r\n    font-weight: 600;\r\n    color: var(--text-primary);\r\n    border-bottom: 2px solid var(--accent-color);\r\n    padding-bottom: 8px;\r\n}\r\n\r\n.detail-section dl {\r\n    display: grid;\r\n    gap: 12px;\r\n    margin: 0;\r\n}\r\n\r\n.detail-section dt {\r\n    font-weight: 500;\r\n    color: var(--text-secondary);\r\n    font-size: 0.8125rem;\r\n    margin-bottom: 4px;\r\n}\r\n\r\n.detail-section dd {\r\n    margin: 0;\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n}\r\n\r\n.detail-section ul {\r\n    list-style: none;\r\n    padding: 0;\r\n    margin: 0;\r\n}\r\n\r\n.detail-section ul li {\r\n    padding: 8px 0;\r\n    color: var(--text-primary);\r\n    font-size: 0.9375rem;\r\n    display: flex;\r\n    align-items: flex-start;\r\n    gap: 8px;\r\n}\r\n\r\n.detail-section ul li::before {\r\n    content: '•';\r\n    color: var(--accent-color);\r\n    font-weight: bold;\r\n    font-size: 1.2em;\r\n}\r\n\r\n/* ============================================================================\r\n   RESPONSIVE\r\n   ============================================================================ */\r\n\r\n@media (max-width: 768px) {\r\n    .app-modal-overlay {\r\n        padding: 10px;\r\n    }\r\n\r\n    .app-modal {\r\n        max-height: 95vh;\r\n    }\r\n\r\n    .app-modal-header {\r\n        padding: 16px;\r\n    }\r\n\r\n    .app-modal-title {\r\n        font-size: 1.25rem;\r\n    }\r\n\r\n    .app-modal-body {\r\n        padding: 16px;\r\n    }\r\n\r\n    .form-row {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .client-info-grid dl {\r\n        grid-template-columns: 1fr;\r\n        gap: 8px;\r\n    }\r\n\r\n    .client-info-grid dt {\r\n        font-weight: 600;\r\n        color: var(--text-primary);\r\n    }\r\n\r\n    .policy-details-grid {\r\n        grid-template-columns: 1fr;\r\n    }\r\n\r\n    .files-grid {\r\n        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\r\n    }\r\n\r\n    .data-table {\r\n        font-size: 0.875rem;\r\n    }\r\n\r\n    .data-table th,\r\n    .data-table td {\r\n        padding: 10px 12px;\r\n    }\r\n}\r\n\r\n/* Dark theme adjustments */\r\n@media (prefers-color-scheme: dark) {\r\n    .app-modal-overlay {\r\n        background: rgba(0, 0, 0, 0.8);\r\n    }\r\n\r\n    .app-modal {\r\n        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);\r\n    }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17765,8 +17903,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   submitAppointment: () => (/* binding */ submitAppointment),
 /* harmony export */   submitClaim: () => (/* binding */ submitClaim),
 /* harmony export */   submitInfoUpdate: () => (/* binding */ submitInfoUpdate),
-/* harmony export */   submitNewClient: () => (/* binding */ submitNewClient),
 /* harmony export */   submitPayment: () => (/* binding */ submitPayment),
+/* harmony export */   submitPolicyUpload: () => (/* binding */ submitPolicyUpload),
 /* harmony export */   switchClientTab: () => (/* binding */ switchClientTab),
 /* harmony export */   updateInfo: () => (/* binding */ updateInfo),
 /* harmony export */   viewClientDetails: () => (/* binding */ viewClientDetails),
@@ -17969,17 +18107,18 @@ function createQuote() {
 }
 
 /**
- * Agregar nuevo cliente
+ * Agregar nuevo cliente mediante subida de póliza
+ * El sistema extrae datos automáticamente, crea cliente y genera credenciales
  */
 function addClient() {
   var modal = document.createElement('div');
   modal.className = 'app-modal-overlay';
-  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Nuevo Cliente</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"add-client-form\" onsubmit=\"window.dashboardActions?.submitNewClient(event)\">\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"client-first-name\">Nombre</label>\n              <input type=\"text\" id=\"client-first-name\" required>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"client-last-name\">Apellido</label>\n              <input type=\"text\" id=\"client-last-name\" required>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"client-email\">Email</label>\n            <input type=\"email\" id=\"client-email\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"client-phone\">Tel\xE9fono</label>\n            <input type=\"tel\" id=\"client-phone\" required>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"client-address\">Direcci\xF3n</label>\n            <textarea id=\"client-address\" rows=\"2\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Guardar cliente</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Nuevo Cliente - Subir P\xF3liza</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"upload-instructions\">\n          <div class=\"info-box\">\n            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n              <line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/>\n              <line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>\n            </svg>\n            <div>\n              <p><strong>El sistema extraer\xE1 autom\xE1ticamente:</strong></p>\n              <ul>\n                <li>Nombre del cliente</li>\n                <li>N\xFAmero de p\xF3liza</li>\n                <li>Monto de prima</li>\n                <li>Fechas de vigencia</li>\n                <li>Tipo de cobertura</li>\n              </ul>\n              <p>Se generar\xE1 un correo y contrase\xF1a autom\xE1ticos que se enviar\xE1n al cliente.</p>\n            </div>\n          </div>\n        </div>\n        \n        <form class=\"add-client-form\" onsubmit=\"window.dashboardActions?.submitPolicyUpload(event)\">\n          <div class=\"form-group\">\n            <label for=\"policy-file\">Documento de p\xF3liza</label>\n            <input type=\"file\" id=\"policy-file\" accept=\".pdf,image/*\" required>\n            <small>Formatos aceptados: PDF, JPG, PNG (m\xE1x 10MB)</small>\n          </div>\n          \n          <div id=\"upload-progress\" style=\"display: none;\">\n            <div class=\"progress-bar\">\n              <div class=\"progress-fill\" id=\"progress-fill\"></div>\n            </div>\n            <p id=\"progress-text\">Analizando documento...</p>\n          </div>\n          \n          <div id=\"extracted-data-preview\" style=\"display: none;\">\n            <h3>Datos extra\xEDdos</h3>\n            <div id=\"data-grid\" class=\"extracted-data-grid\"></div>\n            <p class=\"confidence-note\" id=\"confidence-note\"></p>\n          </div>\n          \n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\" id=\"submit-policy-btn\">\n              <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/>\n                <polyline points=\"17 8 12 3 7 8\"/>\n                <line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"15\"/>\n              </svg>\n              Subir y procesar p\xF3liza\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
   document.body.appendChild(modal);
   modal.addEventListener('click', function (e) {
     if (e.target === modal) modal.remove();
   });
-  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Formulario de nuevo cliente abierto', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+  (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Sube la póliza para crear el cliente automáticamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
 }
 
 /**
@@ -18114,6 +18253,10 @@ function submitInfoUpdate(event) {
 function submitClaim(_x2) {
   return _submitClaim.apply(this, arguments);
 }
+
+/**
+ * Subir póliza y crear cliente automáticamente
+ */
 function _submitClaim() {
   _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(event) {
     var form, formData, _window$appHandlers2, claimNumber, _t3;
@@ -18154,55 +18297,225 @@ function _submitClaim() {
   }));
   return _submitClaim.apply(this, arguments);
 }
-function submitNewClient(_x3) {
-  return _submitNewClient.apply(this, arguments);
+function submitPolicyUpload(_x3) {
+  return _submitPolicyUpload.apply(this, arguments);
 }
-function _submitNewClient() {
-  _submitNewClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(event) {
-    var _document$getElementB3, _document$getElementB4, _document$getElementB5, _document$getElementB6, _document$getElementB7;
-    var form, formData, clientData, _window$appHandlers3, _t4;
+
+/**
+ * Mostrar datos extraídos para confirmación (cuando confianza es baja)
+ */
+function _submitPolicyUpload() {
+  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(event) {
+    var form, fileInput, file, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers3, formData, token, response, result, _t4;
     return _regenerator().w(function (_context5) {
       while (1) switch (_context5.p = _context5.n) {
         case 0:
           event.preventDefault();
           form = event.target;
-          formData = new FormData(form);
-          clientData = {
-            firstName: (_document$getElementB3 = document.getElementById('client-first-name')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value,
-            lastName: (_document$getElementB4 = document.getElementById('client-last-name')) === null || _document$getElementB4 === void 0 ? void 0 : _document$getElementB4.value,
-            email: (_document$getElementB5 = document.getElementById('client-email')) === null || _document$getElementB5 === void 0 ? void 0 : _document$getElementB5.value,
-            phone: (_document$getElementB6 = document.getElementById('client-phone')) === null || _document$getElementB6 === void 0 ? void 0 : _document$getElementB6.value,
-            address: (_document$getElementB7 = document.getElementById('client-address')) === null || _document$getElementB7 === void 0 ? void 0 : _document$getElementB7.value
-          };
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context5.p = 1;
-          _context5.n = 2;
-          return new Promise(function (resolve) {
-            return setTimeout(resolve, 1000);
+          fileInput = document.getElementById('policy-file');
+          file = fileInput === null || fileInput === void 0 ? void 0 : fileInput.files[0];
+          if (file) {
+            _context5.n = 1;
+            break;
+          }
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo de póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
+          return _context5.a(2);
+        case 1:
+          // Mostrar progreso
+          progressContainer = document.getElementById('upload-progress');
+          progressFill = document.getElementById('progress-fill');
+          progressText = document.getElementById('progress-text');
+          submitBtn = document.getElementById('submit-policy-btn');
+          progressContainer.style.display = 'block';
+          submitBtn.disabled = true;
+          _context5.p = 2;
+          // Preparar FormData
+          formData = new FormData();
+          formData.append('policy_file', file);
+
+          // Obtener token de autenticación
+          token = sessionStorage.getItem('auth_token'); // Enviar al backend
+          progressText.textContent = 'Subiendo documento...';
+          progressFill.style.width = '30%';
+          _context5.n = 3;
+          return fetch('/backend/client-from-policy.php', {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + token
+            },
+            body: formData
           });
-        case 2:
+        case 3:
+          response = _context5.v;
+          progressFill.style.width = '60%';
+          progressText.textContent = 'Analizando documento...';
+          _context5.n = 4;
+          return response.json();
+        case 4:
+          result = _context5.v;
+          progressFill.style.width = '100%';
+          if (result.success) {
+            _context5.n = 5;
+            break;
+          }
+          throw new Error(result.error || 'Error al procesar póliza');
+        case 5:
+          if (!result.requires_confirmation) {
+            _context5.n = 6;
+            break;
+          }
+          showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
+          progressContainer.style.display = 'none';
+          submitBtn.disabled = false;
+          return _context5.a(2);
+        case 6:
+          if (!result.requires_manual_entry) {
+            _context5.n = 7;
+            break;
+          }
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se pudo extraer datos. Abriendo formulario manual...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
+          showManualEntryForm(result.temp_file_path);
+          return _context5.a(2);
+        case 7:
+          // Éxito
           form.closest('.app-modal-overlay').remove();
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cliente agregado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+          if (result.new_client) {
+            (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("Cliente creado exitosamente. Credenciales enviadas por email.", _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+          } else {
+            (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("P\xF3liza agregada al cliente existente.", _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+          }
+
+          // Mostrar resumen
+          setTimeout(function () {
+            showClientCreationSummary(result);
+          }, 1000);
 
           // Refrescar dashboard
           if ((_window$appHandlers3 = window.appHandlers) !== null && _window$appHandlers3 !== void 0 && _window$appHandlers3.refreshDashboard) {
             setTimeout(function () {
               return window.appHandlers.refreshDashboard();
-            }, 1000);
+            }, 2000);
           }
-          _context5.n = 4;
+          _context5.n = 9;
           break;
-        case 3:
-          _context5.p = 3;
+        case 8:
+          _context5.p = 8;
           _t4 = _context5.v;
-          console.error('Error creating client:', _t4);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al crear cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
-        case 4:
+          console.error('Error uploading policy:', _t4);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t4.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          progressContainer.style.display = 'none';
+          submitBtn.disabled = false;
+        case 9:
           return _context5.a(2);
       }
-    }, _callee5, null, [[1, 3]]);
+    }, _callee5, null, [[2, 8]]);
   }));
-  return _submitNewClient.apply(this, arguments);
+  return _submitPolicyUpload.apply(this, arguments);
+}
+function showExtractedDataForConfirmation(data, tempFilePath) {
+  var previewContainer = document.getElementById('extracted-data-preview');
+  var dataGrid = document.getElementById('data-grid');
+  var confidenceNote = document.getElementById('confidence-note');
+  previewContainer.style.display = 'block';
+  confidenceNote.innerHTML = '⚠️ Confianza baja. Por favor revisa los datos antes de continuar.';
+  confidenceNote.className = 'confidence-note warning';
+  dataGrid.innerHTML = "\n    <div class=\"data-field\">\n      <label>Nombre del cliente:</label>\n      <input type=\"text\" id=\"confirm-client-name\" value=\"".concat(data.client_name || '', "\" required>\n    </div>\n    <div class=\"data-field\">\n      <label>N\xFAmero de p\xF3liza:</label>\n      <input type=\"text\" id=\"confirm-policy-number\" value=\"").concat(data.policy_number || '', "\" required>\n    </div>\n    <div class=\"data-field\">\n      <label>Prima total:</label>\n      <input type=\"number\" id=\"confirm-premium\" value=\"").concat(data.total_premium || '', "\" step=\"0.01\" required>\n    </div>\n    <div class=\"data-field\">\n      <label>Fecha inicio:</label>\n      <input type=\"date\" id=\"confirm-start-date\" value=\"").concat(data.start_date || '', "\">\n    </div>\n    <div class=\"data-field\">\n      <label>Fecha vencimiento:</label>\n      <input type=\"date\" id=\"confirm-end-date\" value=\"").concat(data.end_date || '', "\">\n    </div>\n    <div class=\"data-field\">\n      <label>Frecuencia de pago:</label>\n      <select id=\"confirm-frequency\">\n        <option value=\"1\" ").concat(data.payment_frequency == 1 ? 'selected' : '', ">Anual</option>\n        <option value=\"2\" ").concat(data.payment_frequency == 2 ? 'selected' : '', ">Semestral</option>\n        <option value=\"4\" ").concat(data.payment_frequency == 4 ? 'selected' : '', ">Trimestral</option>\n        <option value=\"12\" ").concat(data.payment_frequency == 12 ? 'selected' : '', ">Mensual</option>\n      </select>\n    </div>\n  ");
+
+  // Cambiar botón para confirmar
+  var submitBtn = document.getElementById('submit-policy-btn');
+  submitBtn.textContent = 'Confirmar y crear cliente';
+  submitBtn.onclick = function () {
+    return confirmAndCreateClient(tempFilePath);
+  };
+}
+
+/**
+ * Confirmar datos corregidos y crear cliente
+ */
+function confirmAndCreateClient(_x4) {
+  return _confirmAndCreateClient.apply(this, arguments);
+}
+/**
+ * Mostrar formulario de entrada manual
+ */
+function _confirmAndCreateClient() {
+  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(tempFilePath) {
+    var confirmedData, token, response, result, _window$appHandlers4, _t5;
+    return _regenerator().w(function (_context6) {
+      while (1) switch (_context6.p = _context6.n) {
+        case 0:
+          confirmedData = {
+            client_name: document.getElementById('confirm-client-name').value,
+            policy_number: document.getElementById('confirm-policy-number').value,
+            total_premium: parseFloat(document.getElementById('confirm-premium').value),
+            start_date: document.getElementById('confirm-start-date').value,
+            end_date: document.getElementById('confirm-end-date').value,
+            payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
+          };
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente con datos confirmados...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+          _context6.p = 1;
+          token = sessionStorage.getItem('auth_token');
+          _context6.n = 2;
+          return fetch('/backend/client-from-policy.php', {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              confirmed_data: confirmedData,
+              temp_file_path: tempFilePath
+            })
+          });
+        case 2:
+          response = _context6.v;
+          _context6.n = 3;
+          return response.json();
+        case 3:
+          result = _context6.v;
+          if (!result.success) {
+            _context6.n = 4;
+            break;
+          }
+          document.querySelector('.app-modal-overlay').remove();
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cliente creado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+          if ((_window$appHandlers4 = window.appHandlers) !== null && _window$appHandlers4 !== void 0 && _window$appHandlers4.refreshDashboard) {
+            setTimeout(function () {
+              return window.appHandlers.refreshDashboard();
+            }, 1000);
+          }
+          _context6.n = 5;
+          break;
+        case 4:
+          throw new Error(result.error);
+        case 5:
+          _context6.n = 7;
+          break;
+        case 6:
+          _context6.p = 6;
+          _t5 = _context6.v;
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t5.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+        case 7:
+          return _context6.a(2);
+      }
+    }, _callee6, null, [[1, 6]]);
+  }));
+  return _confirmAndCreateClient.apply(this, arguments);
+}
+function showManualEntryForm(tempFilePath) {
+  // Reutilizar lógica similar a confirmación pero con campos vacíos
+  showExtractedDataForConfirmation({}, tempFilePath);
+  document.getElementById('confidence-note').innerHTML = 'ℹ️ No se pudo extraer datos automáticamente. Por favor ingresa los datos manualmente.';
+}
+
+/**
+ * Mostrar resumen de cliente creado
+ */
+function showClientCreationSummary(result) {
+  var modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = "\n    <div class=\"app-modal app-modal-sm\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">\u2705 Cliente ".concat(result.new_client ? 'Creado' : 'Actualizado', "</h2>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"success-summary\">\n          <p><strong>ID Cliente:</strong> ").concat(result.client_id, "</p>\n          <p><strong>ID P\xF3liza:</strong> ").concat(result.policy_id, "</p>\n          ").concat(result.new_client ? '<p>✉️ Credenciales de acceso enviadas por email</p>' : '', "\n          <p class=\"success-message\">").concat(result.message, "</p>\n        </div>\n        <div class=\"form-actions\">\n          <button class=\"btn btn-primary\" onclick=\"this.closest('.app-modal-overlay').remove()\">Entendido</button>\n        </div>\n      </div>\n    </div>\n  ");
+  document.body.appendChild(modal);
 }
 function submitAppointment(event) {
   event.preventDefault();
@@ -18235,7 +18548,7 @@ if (typeof window !== 'undefined') {
     submitPayment: submitPayment,
     submitInfoUpdate: submitInfoUpdate,
     submitClaim: submitClaim,
-    submitNewClient: submitNewClient,
+    submitPolicyUpload: submitPolicyUpload,
     submitAppointment: submitAppointment
   };
 }
