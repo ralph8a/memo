@@ -6,6 +6,10 @@
     RewriteEngine On
     RewriteBase /
     
+    # Permitir headers de Authorization para JWT
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+    
     # FORZAR HTTPS - SSL Activado
     RewriteCond %{HTTPS} off
     RewriteCond %{HTTP:X-Forwarded-Proto} !https

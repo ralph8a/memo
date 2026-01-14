@@ -40,11 +40,8 @@ export function navigateTo(page, event) {
 
     if (!page) page = 'home';
 
-    // Contact page restriction
-    if (page === PAGES.CONTACT && !window.__allowContact) {
-        showNotification('La sección de Contacto sólo se abre desde el contacto con un agente.', NOTIFICATION_TYPES.INFO);
-        return;
-    }
+    // Contact page is now public - restriction removed
+    // Client communication happens through portal comments and notifications
 
     const shouldShowModal = PAGES_WITH_MODAL_LOADING.includes(page);
     if (shouldShowModal) {
@@ -177,10 +174,19 @@ export function navigateTo(page, event) {
         }, 200);
     }
 
-    // Clear contact flag
-    if (page === PAGES.CONTACT) {
-        setTimeout(() => { window.__allowContact = false; }, 500);
+    if (page === 'admin-dashboard' || page === PAGES.ADMIN_DASHBOARD) {
+        setTimeout(async () => {
+            try {
+                if (window.appHandlers && typeof window.appHandlers.loadAdminDashboard === 'function') {
+                    await window.appHandlers.loadAdminDashboard();
+                }
+            } catch (e) {
+                console.warn('Could not load admin dashboard data:', e);
+            }
+        }, 200);
     }
+
+    // Contact page is now always accessible (no flag clearing needed)
 
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });

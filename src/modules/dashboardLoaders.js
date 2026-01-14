@@ -18,34 +18,78 @@ import { showNotification } from './notifications.js';
 import { NOTIFICATION_TYPES } from '../utils/constants.js';
 
 // ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+/**
+ * Update user name in dashboard hero header
+ * Gets user data from localStorage and updates the UI
+ */
+export function updateUserNameInHeader() {
+    try {
+        const userStr = localStorage.getItem('krauser_user');
+        if (!userStr) return;
+
+        const user = JSON.parse(userStr);
+        const emailPart = user.email ? user.email.split('@')[0] : 'Usuario';
+        const userName = user.full_name || user.name || emailPart;
+
+        // Update all possible hero header selectors
+        const selectors = [
+            '[data-hero-user]',
+            '[data-user-name]',
+            '[data-agent-name]',
+            '[data-admin-name]'
+        ];
+
+        selectors.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.textContent = userName;
+            }
+        });
+
+        console.log('✅ User name updated in header:', userName);
+    } catch (error) {
+        console.error('Error updating user name in header:', error);
+    }
+}
+
+// ============================================
 // AGENT DASHBOARD LOADERS
 // ============================================
 
 export async function loadAgentDashboard() {
     try {
-        // Load all data in parallel
-        const [clients, claims, stats] = await Promise.all([
-            loadAgentClients(),
-            loadClaims(),
-            loadDashboardStats()
-        ]);
+        // Update user name in header first
+        updateUserNameInHeader();
 
-        // Update UI
-        if (clients) renderAgentClients(clients);
-        if (claims) renderAgentClaims(claims);
-        if (stats) updateAgentStats(stats);
+        // Load dashboard data from backend
+        const dashboardData = await apiService.request(
+            API_CONFIG.ENDPOINTS.AGENT_DASHBOARD,
+            { method: 'GET' },
+            {
+                cacheDuration: apiService.cache.CACHE_DURATION.SHORT,
+                useCache: true
+            }
+        );
 
-        return { clients, claims, stats };
+        // Update UI with real data
+        if (dashboardData.stats) updateAgentStats(dashboardData.stats);
+        if (dashboardData.clients) renderAgentClients(dashboardData.clients);
+        if (dashboardData.claims) renderAgentClaims(dashboardData.claims);
+
+        console.log('✅ Agent dashboard loaded with real data');
+        return dashboardData;
     } catch (error) {
         console.error('Error loading agent dashboard:', error);
         showNotification('Error al cargar datos del dashboard', NOTIFICATION_TYPES.ERROR);
     }
 }
-
 export async function loadAgentClients() {
     try {
         const clients = await apiService.request(
-            API_CONFIG.ENDPOINTS.GET_CLIENTS,
+            API_CONFIG.ENDPOINTS.AGENT_CLIENTS,
             { method: 'GET' },
             {
                 cacheDuration: apiService.cache.CACHE_DURATION.SHORT,
@@ -99,17 +143,36 @@ export async function loadQuotes() {
 
 export async function loadClientDashboard() {
     try {
+        // Update user name in header first
+        updateUserNameInHeader();
+
+        // Load dashboard data from backend
+        const dashboardData = await apiService.request(
+            API_CONFIG.ENDPOINTS.CLIENT_DASHBOARD,
+            { method: 'GET' },
+            {
+                cacheDuration: apiService.cache.CACHE_DURATION.SHORT,
+                useCache: true
+            }
+        );
+
+        // Load additional data in parallel
         const [policies, claims, payments] = await Promise.all([
             loadClientPolicies(),
-            loadClaims(),
+            loadClientClaims(),
             loadPaymentHistory()
         ]);
 
+        // Update stats from dashboard data
+        if (dashboardData.stats) updateClientStats(dashboardData.stats);
+
+        // Render lists
         if (policies) renderClientPolicies(policies);
         if (claims) renderClientClaims(claims);
         if (payments) renderPaymentHistory(payments);
 
-        return { policies, claims, payments };
+        console.log('✅ Client dashboard loaded with real data');
+        return { dashboardData, policies, claims, payments };
     } catch (error) {
         console.error('Error loading client dashboard:', error);
         showNotification('Error al cargar datos del dashboard', NOTIFICATION_TYPES.ERROR);
@@ -119,7 +182,7 @@ export async function loadClientDashboard() {
 export async function loadClientPolicies() {
     try {
         const policies = await apiService.request(
-            API_CONFIG.ENDPOINTS.GET_USER_POLICIES,
+            API_CONFIG.ENDPOINTS.CLIENT_POLICIES,
             { method: 'GET' },
             {
                 cacheDuration: apiService.cache.CACHE_DURATION.MEDIUM,
@@ -136,7 +199,7 @@ export async function loadClientPolicies() {
 export async function loadPaymentHistory() {
     try {
         const payments = await apiService.request(
-            API_CONFIG.ENDPOINTS.GET_PAYMENT_HISTORY,
+            API_CONFIG.ENDPOINTS.CLIENT_PAYMENTS,
             { method: 'GET' },
             {
                 cacheDuration: apiService.cache.CACHE_DURATION.MEDIUM,
@@ -151,13 +214,44 @@ export async function loadPaymentHistory() {
 }
 
 // ============================================
+// ADMIN DASHBOARD LOADERS
+// ============================================
+
+export async function loadAdminDashboard() {
+    try {
+        // Update user name in header first
+        updateUserNameInHeader();
+
+        // Load admin dashboard data from backend
+        const dashboardData = await apiService.request(
+            API_CONFIG.ENDPOINTS.ADMIN_DASHBOARD,
+            { method: 'GET' },
+            {
+                cacheDuration: apiService.cache.CACHE_DURATION.SHORT,
+                useCache: true
+            }
+        );
+
+        // Update UI with real data
+        if (dashboardData.stats) updateAdminStats(dashboardData.stats);
+        if (dashboardData.activity) renderAdminActivity(dashboardData.activity);
+
+        console.log('✅ Admin dashboard loaded with real data');
+        return dashboardData;
+    } catch (error) {
+        console.error('Error loading admin dashboard:', error);
+        showNotification('Error al cargar dashboard de administración', NOTIFICATION_TYPES.ERROR);
+    }
+}
+
+// ============================================
 // SHARED LOADERS
 // ============================================
 
-export async function loadClaims() {
+export async function loadClientClaims() {
     try {
         const claims = await apiService.request(
-            API_CONFIG.ENDPOINTS.GET_CLAIMS,
+            API_CONFIG.ENDPOINTS.CLIENT_CLAIMS,
             { method: 'GET' },
             {
                 cacheDuration: apiService.cache.CACHE_DURATION.SHORT,
@@ -264,6 +358,28 @@ function updateAgentStats(stats) {
 // RENDERERS - CLIENT
 // ============================================
 
+function updateClientStats(stats) {
+    if (!stats) return;
+
+    // Update stat cards with real data from backend
+    const statsSelectors = {
+        '[data-stat-policies]': stats.active_policies || 0,
+        '[data-stat-claims]': stats.pending_claims || 0,
+        '[data-stat-payments]': stats.payment_status || 'current',
+        '[data-next-payment]': stats.next_payment_date ? new Date(stats.next_payment_date).toLocaleDateString() : 'N/A',
+        '[data-total-monthly]': stats.total_monthly ? `$${parseFloat(stats.total_monthly).toFixed(2)}` : '$0.00'
+    };
+
+    Object.entries(statsSelectors).forEach(([selector, value]) => {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.textContent = value;
+        }
+    });
+
+    console.log('✅ Client stats updated:', stats);
+}
+
 function renderClientPolicies(policies) {
     const container = document.querySelector('.policies-list');
     if (!container || !policies || policies.length === 0) {
@@ -351,6 +467,61 @@ function renderPaymentHistory(payments) {
       </div>
     </div>
   `).join('');
+
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDERERS - ADMIN
+// ============================================
+
+function updateAdminStats(stats) {
+    if (!stats) return;
+
+    // Update admin stat cards with real data
+    const statsSelectors = {
+        '[data-stat-users]': (stats.users_client || 0) + (stats.users_agent || 0) + (stats.users_admin || 0),
+        '[data-stat-clients]': stats.users_client || 0,
+        '[data-stat-agents]': stats.users_agent || 0,
+        '[data-stat-policies]': stats.policies_active || 0,
+        '[data-stat-claims]': stats.pending_claims || 0,
+        '[data-stat-revenue]': stats.monthly_revenue ? `$${parseFloat(stats.monthly_revenue).toLocaleString()}` : '$0'
+    };
+
+    Object.entries(statsSelectors).forEach(([selector, value]) => {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.textContent = value;
+        }
+    });
+
+    console.log('✅ Admin stats updated:', stats);
+}
+
+function renderAdminActivity(activities) {
+    const container = document.querySelector('[data-admin-activity]');
+    if (!container) return;
+
+    if (!activities || activities.length === 0) {
+        container.innerHTML = '<p class="empty-state">No hay actividad reciente</p>';
+        return;
+    }
+
+    const html = activities.map(activity => {
+        const icon = activity.type === 'policy' ? '📄' : '🔔';
+        const date = new Date(activity.timestamp).toLocaleDateString();
+
+        return `
+        <div class="activity-item">
+            <div class="activity-icon">${icon}</div>
+            <div class="activity-info">
+                <p><strong>${activity.user_name}</strong> ${activity.type === 'policy' ? 'creó una póliza' : 'presentó un reclamo'}</p>
+                <p class="activity-meta">${activity.type === 'policy' ? activity.policy_type : activity.claim_type} - ${activity.status}</p>
+                <span class="activity-date">${date}</span>
+            </div>
+        </div>
+        `;
+    }).join('');
 
     container.innerHTML = html;
 }

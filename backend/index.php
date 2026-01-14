@@ -4,20 +4,32 @@ error_reporting(0);
 ini_set('display_errors', 0);
 
 header('Content-Type: application/json');
+
+// Set CORS headers FIRST
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$allowedOrigins = [
+    'http://ksinsurancee.com',
+    'https://ksinsurancee.com',
+    'https://nhs13h5k0x0j.krause.app',
+    'http://nhs13h5k0x0j.krause.app',
+    'http://localhost:8080',
+    'http://localhost:3000'
+];
+
+if (in_array($origin, $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: $origin");
+} else {
+    header("Access-Control-Allow-Origin: *"); // Permitir todos en testing
+}
+
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Access-Control-Allow-Credentials: true');
 
 // Handle preflight requests
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
-}
-
-// Set CORS headers
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-$allowedOrigins = $GLOBALS['ALLOWED_ORIGINS'] ?? [];
-if (in_array($origin, $allowedOrigins)) {
-    header("Access-Control-Allow-Origin: $origin");
 }
 
 require_once 'config.php';
@@ -293,6 +305,234 @@ try {
     if ($action === 'system_activity') {
         $user = Auth::requireUserType(['admin']);
         sendResponse(getAdminActivity($db));
+    }
+    
+    // ===== CALENDAR/MEETINGS ENDPOINTS =====
+    
+    // POST ?action=create_meeting
+    if ($method === 'POST' && $action === 'create_meeting') {
+        $user = Auth::requireAuth();
+        
+        require_once 'calendar-service.php';
+        $calendar = new CalendarService($db);
+        
+        $meetingData = [
+            'user_id' => $user['user_id'],
+            'attendee_email' => $data['attendee_email'] ?? '',
+            'title' => $data['title'] ?? 'Meeting',
+            'description' => $data['description'] ?? '',
+            'start_time' => $data['start_time'] ?? '',
+            'end_time' => $data['end_time'] ?? '',
+            'location' => $data['location'] ?? 'Virtual Meeting',
+            'organizer_email' => $user['email'],
+            'organizer_name' => $user['name'],
+            'attendee_name' => $data['attendee_name'] ?? '',
+            'created_by' => $user['user_id']
+        ];
+        
+        $result = $calendar->createMeeting($meetingData);
+        
+        if ($result['success']) {
+            sendResponse($result);
+        } else {
+            sendError($result['error'] ?? 'Failed to create meeting', 400);
+        }
+    }
+    
+    // GET ?action=list_meetings
+    if ($action === 'list_meetings') {
+        $user = Auth::requireAuth();
+        
+        require_once 'calendar-service.php';
+        $calendar = new CalendarService($db);
+        
+        $startDate = $_GET['start'] ?? null;
+        $endDate = $_GET['end'] ?? null;
+        $status = $_GET['status'] ?? null;
+        
+        $meetings = $calendar->listMeetings($user['user_id'], $startDate, $endDate, $status);
+        sendResponse($meetings);
+    }
+    
+    // POST ?action=cancel_meeting
+    if ($method === 'POST' && $action === 'cancel_meeting') {
+        $user = Auth::requireAuth();
+        
+        require_once 'calendar-service.php';
+        $calendar = new CalendarService($db);
+        
+        $meetingId = $data['meeting_id'] ?? $_GET['id'] ?? null;
+        $reason = $data['reason'] ?? '';
+        
+        if (!$meetingId) {
+            sendError('Meeting ID required', 400);
+        }
+        
+        $result = $calendar->cancelMeeting($meetingId, $reason);
+        
+        if ($result['success']) {
+            sendResponse($result);
+        } else {
+            sendError($result['error'] ?? 'Failed to cancel meeting', 400);
+        }
+    }
+    
+    // ===== PAYMENT RECEIPT ENDPOINTS =====
+    
+    // POST ?action=upload_payment_receipt
+    if ($method === 'POST' && $action === 'upload_payment_receipt') {
+        $user = Auth::requireAuth();
+        
+        require_once 'receipt-analyzer.php';
+        $analyzer = new ReceiptAnalyzer();
+        
+        if (!isset($_FILES['receipt'])) {
+            sendError('No file uploaded', 400);
+        }
+        
+        $policyId = $_POST['policy_id'] ?? $data['policy_id'] ?? null;
+        $paymentDate = $_POST['payment_date'] ?? $data['payment_date'] ?? null;
+        $reference = $_POST['reference'] ?? $data['reference'] ?? '';
+        
+        if (!$policyId || !$paymentDate) {
+            sendError('Policy ID and payment date required', 400);
+        }
+        
+        // Process the receipt
+        $result = $analyzer->processReceipt($_FILES['receipt'], $policyId, $user['user_id'], $paymentDate, $reference);
+        
+        if (!$result['success']) {
+            sendError($result['error'], 400);
+        }
+        
+        // Save to database
+        $stmt = $db->prepare("
+            INSERT INTO payment_receipts (
+                policy_id, user_id, file_path, file_name, file_size, mime_type,
+                extracted_amount, extracted_date, extracted_reference, extracted_bank,
+                verification_status
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')
+        ");
+        
+        $extracted = $result['extracted_data'];
+        $stmt->execute([
+            $policyId,
+            $user['user_id'],
+            $result['file_path'],
+            $result['file_name'],
+            $result['file_size'],
+            $result['mime_type'],
+            $extracted['amount'],
+            $extracted['date'],
+            $extracted['reference'] ?: $reference,
+            $extracted['bank']
+        ]);
+        
+        $receiptId = $db->lastInsertId();
+        
+        // Send notification to admin
+        $emailService = new EmailService();
+        $emailService->sendEmail(
+            'admin@ksinsurancee.com',
+            'Nuevo Comprobante de Pago Recibido',
+            "Usuario: {$user['name']}<br>Póliza ID: $policyId<br>Monto detectado: \${$extracted['amount']}<br>Requiere verificación."
+        );
+        
+        sendResponse([
+            'success' => true,
+            'receipt_id' => $receiptId,
+            'extracted_data' => $extracted,
+            'confidence' => $analyzer->getConfidenceDescription($extracted['confidence']),
+            'message' => 'Receipt uploaded successfully. Verification pending.'
+        ]);
+    }
+    
+    // ===== CLAIM COMMENTS ENDPOINTS =====
+    
+    // GET ?action=claim_details
+    if ($action === 'claim_details') {
+        $user = Auth::requireAuth();
+        $claimId = $_GET['id'] ?? null;
+        
+        if (!$claimId) {
+            sendError('Claim ID required', 400);
+        }
+        
+        // Get claim details
+        $stmt = $db->prepare("
+            SELECT c.*, p.policy_number, p.policy_type,
+                   u.name as client_name, u.email as client_email
+            FROM claims c
+            JOIN policies p ON c.policy_id = p.id
+            JOIN users u ON c.user_id = u.id
+            WHERE c.id = ?
+        ");
+        $stmt->execute([$claimId]);
+        $claim = $stmt->fetch();
+        
+        if (!$claim) {
+            sendError('Claim not found', 404);
+        }
+        
+        // Get comments
+        $stmt = $db->prepare("
+            SELECT cc.*, u.name as from_name
+            FROM claim_comments cc
+            JOIN users u ON cc.user_id = u.id
+            WHERE cc.claim_id = ?
+            ORDER BY cc.created_at ASC
+        ");
+        $stmt->execute([$claimId]);
+        $comments = $stmt->fetchAll();
+        
+        $claim['comments'] = $comments;
+        sendResponse($claim);
+    }
+    
+    // POST ?action=add_claim_comment
+    if ($method === 'POST' && $action === 'add_claim_comment') {
+        $user = Auth::requireAuth();
+        
+        $claimId = $data['id'] ?? $_GET['id'] ?? null;
+        $message = $data['message'] ?? '';
+        
+        if (!$claimId || !$message) {
+            sendError('Claim ID and message required', 400);
+        }
+        
+        // Determine user type
+        $userType = $user['user_type'] === 'agent' ? 'agent' : ($user['user_type'] === 'admin' ? 'admin' : 'client');
+        
+        // Insert comment
+        $stmt = $db->prepare("
+            INSERT INTO claim_comments (claim_id, user_id, user_type, message)
+            VALUES (?, ?, ?, ?)
+        ");
+        $stmt->execute([$claimId, $user['user_id'], $userType, $message]);
+        
+        // Get claim owner email for notification
+        $stmt = $db->prepare("
+            SELECT u.email, u.name, c.claim_number
+            FROM claims c
+            JOIN users u ON c.user_id = u.id
+            WHERE c.id = ?
+        ");
+        $stmt->execute([$claimId]);
+        $claim = $stmt->fetch();
+        
+        if ($claim && $claim['email'] !== $user['email']) {
+            $emailService = new EmailService();
+            $emailService->sendEmail(
+                $claim['email'],
+                "Nuevo comentario en siniestro #{$claim['claim_number']}",
+                "{$user['name']} ha agregado un comentario:<br><br>\"$message\"<br><br>Ingresa al dashboard para responder."
+            );
+        }
+        
+        sendResponse([
+            'success' => true,
+            'message' => 'Comment added and notification sent'
+        ]);
     }
     
     // Default: Not found

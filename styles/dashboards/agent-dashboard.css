@@ -1,15 +1,15 @@
 /* Agent Dashboard Styles */
 .agent-dashboard {
-    min-height: calc(100vh - var(--nav-height));
+    min-height: 100vh;
     color: var(--theme-text-primary);
-    padding: calc(var(--nav-height) - var(--dashboard-padding-top-offset)) var(--dashboard-padding-x) var(--dashboard-padding-bottom);
+    padding: 0;
+    /* Sin padding - el spacing lo manejan los contenedores internos */
 }
 
 .agent-dashboard .dashboard-container {
     width: 100%;
     max-width: var(--dashboard-container-max-agent, var(--dashboard-container-max));
     margin: 0 auto;
-    padding: 0 var(--dashboard-padding-x);
 }
 
 /* Roadmap tabs */

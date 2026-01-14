@@ -58,10 +58,41 @@ class Auth {
     
     // Get token from request headers
     public static function getTokenFromRequest() {
-        $headers = getallheaders();
+        // Try getallheaders() first
+        if (function_exists('getallheaders')) {
+            $headers = getallheaders();
+            
+            if (isset($headers['Authorization'])) {
+                $authHeader = $headers['Authorization'];
+                if (preg_match('/Bearer\s+(.*)$/i', $authHeader, $matches)) {
+                    return $matches[1];
+                }
+            }
+        }
         
-        if (isset($headers['Authorization'])) {
-            $authHeader = $headers['Authorization'];
+        // Fallback: Try apache_request_headers()
+        if (function_exists('apache_request_headers')) {
+            $headers = apache_request_headers();
+            
+            if (isset($headers['Authorization'])) {
+                $authHeader = $headers['Authorization'];
+                if (preg_match('/Bearer\s+(.*)$/i', $authHeader, $matches)) {
+                    return $matches[1];
+                }
+            }
+        }
+        
+        // Fallback: Try $_SERVER
+        if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+            $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
+            if (preg_match('/Bearer\s+(.*)$/i', $authHeader, $matches)) {
+                return $matches[1];
+            }
+        }
+        
+        // Fallback: Check for redirect authorization header
+        if (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+            $authHeader = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
             if (preg_match('/Bearer\s+(.*)$/i', $authHeader, $matches)) {
                 return $matches[1];
             }

@@ -1,0 +1,345 @@
+/* Enhanced Table Styles - Professional data tables with borders */
+
+/* Base table container */
+.data-table-container {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--card-bg, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin: 20px 0;
+}
+
+/* Table element */
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+}
+
+/* Table header */
+.data-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.data-table thead th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    font-weight: 600;
+    text-align: left;
+    padding: 16px 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.data-table thead th:last-child {
+    border-right: none;
+}
+
+/* Sortable headers */
+.data-table thead th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+.data-table thead th.sortable:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
+}
+
+.data-table thead th.sortable::after {
+    content: '⇅';
+    margin-left: 8px;
+    opacity: 0.5;
+    font-size: 12px;
+}
+
+.data-table thead th.sorted-asc::after {
+    content: '↑';
+    opacity: 1;
+}
+
+.data-table thead th.sorted-desc::after {
+    content: '↓';
+    opacity: 1;
+}
+
+/* Table body */
+.data-table tbody tr {
+    transition: background-color 0.15s ease;
+    border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(102, 126, 234, 0.05);
+}
+
+.data-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.data-table tbody td {
+    padding: 14px 20px;
+    border-right: 1px solid var(--border-color, #e0e0e0);
+    color: var(--text-primary, #333333);
+}
+
+.data-table tbody td:last-child {
+    border-right: none;
+}
+
+/* Alternating row colors */
+.data-table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Cell alignments */
+.data-table .text-center {
+    text-align: center;
+}
+
+.data-table .text-right {
+    text-align: right;
+}
+
+.data-table .text-nowrap {
+    white-space: nowrap;
+}
+
+/* Action buttons in tables */
+.data-table .table-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.data-table .table-action-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.data-table .table-action-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Status badges in tables */
+.data-table .status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.status-badge.status-active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.status-inactive {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Empty state */
+.data-table tbody .empty-row {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary, #888);
+    font-style: italic;
+}
+
+/* Pagination */
+.table-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-top: 1px solid var(--border-color);
+    background: var(--card-bg);
+}
+
+.pagination-info {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.pagination-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--border-color);
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pagination-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Table filters */
+.table-filters {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--card-bg);
+    border-bottom: 2px solid var(--primary-color);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.table-filter-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-filter-item label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.table-filter-item select,
+.table-filter-item input {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 13px;
+    background: white;
+    min-width: 150px;
+}
+
+.table-filter-item .search-input {
+    min-width: 250px;
+}
+
+/* Dark theme overrides */
+html[data-theme="dark-forest"] .data-table-container {
+    background: rgba(20, 30, 25, 0.7);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="dark-forest"] .data-table thead th {
+    background: linear-gradient(135deg, #2d4a3e 0%, #1f3329 100%);
+    border-right-color: rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme="dark-forest"] .data-table tbody tr {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark-forest"] .data-table tbody td {
+    border-right-color: rgba(255, 255, 255, 0.08);
+    color: var(--df-text-primary);
+}
+
+html[data-theme="dark-forest"] .data-table tbody tr:hover {
+    background-color: rgba(45, 74, 62, 0.3);
+}
+
+html[data-theme="dark-forest"] .data-table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="dark-forest"] .table-filter-item select,
+html[data-theme="dark-forest"] .table-filter-item input {
+    background: rgba(30, 45, 35, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--df-text-primary);
+}
+
+/* Responsive tables */
+@media (max-width: 768px) {
+    .data-table {
+        font-size: 12px;
+    }
+
+    .data-table thead th,
+    .data-table tbody td {
+        padding: 10px 12px;
+    }
+
+    .table-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table-filter-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table-filter-item select,
+    .table-filter-item input {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+/* Loading state */
+.data-table.loading tbody {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.data-table .loading-row {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(102, 126, 234, 0.2);
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes spinner-rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}

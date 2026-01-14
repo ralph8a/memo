@@ -1,0 +1,645 @@
+/* ============================================
+   PAYMENT SYSTEM STYLES
+   Sistema de seguimiento de pagos de pólizas
+   ============================================ */
+
+/* ============================================
+   PAYMENT SCHEDULE - Lista de Pagos
+   ============================================ */
+
+.payment-schedule-container {
+    padding: 20px;
+    background: var(--background-secondary, #f8f9fa);
+    border-radius: 12px;
+}
+
+.payment-schedule-container h3 {
+    margin: 0 0 20px 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.payment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.payment-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-left: 4px solid #e0e0e0;
+}
+
+.payment-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Status Colors */
+.payment-card.status-pending {
+    border-left-color: #ffa726;
+}
+
+.payment-card.status-processing {
+    border-left-color: #42a5f5;
+}
+
+.payment-card.status-rejected {
+    border-left-color: #ef5350;
+}
+
+.payment-card.status-awaiting {
+    border-left-color: #ffca28;
+}
+
+.payment-card.status-review {
+    border-left-color: #26c6da;
+}
+
+.payment-card.status-paid {
+    border-left-color: #66bb6a;
+}
+
+.payment-card.status-completed {
+    border-left-color: #4caf50;
+    opacity: 0.8;
+}
+
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.installment-number {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary, #1a1a1a);
+}
+
+.payment-status {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payment-status.status-pending {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.payment-status.status-processing {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.payment-status.status-rejected {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.payment-status.status-awaiting {
+    background: #fff9c4;
+    color: #f57f17;
+}
+
+.payment-status.status-review {
+    background: #e0f7fa;
+    color: #00838f;
+}
+
+.payment-status.status-paid {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.payment-status.status-completed {
+    background: #f1f8e9;
+    color: #558b2f;
+}
+
+.payment-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-row .label {
+    color: var(--text-secondary, #666);
+    font-size: 0.9rem;
+}
+
+.detail-row .value {
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1rem;
+}
+
+.payment-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.btn-upload-proof {
+    flex: 1;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-upload-proof:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.proof-indicator {
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* ============================================
+   NOTIFICATIONS - Notificaciones
+   ============================================ */
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: start;
+    gap: 12px;
+    padding: 16px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease;
+    border-left: 4px solid #e0e0e0;
+}
+
+.notification-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateX(4px);
+}
+
+.notification-item.notification-info {
+    border-left-color: #2196f3;
+}
+
+.notification-item.notification-warning {
+    border-left-color: #ff9800;
+}
+
+.notification-item.notification-success {
+    border-left-color: #4caf50;
+}
+
+.notification-item.notification-error {
+    border-left-color: #f44336;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    min-width: 32px;
+    text-align: center;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-content p {
+    margin: 0 0 6px 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.notification-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary, #999);
+}
+
+.no-notifications {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-secondary, #999);
+    font-style: italic;
+}
+
+/* ============================================
+   PROOF REVIEW - Revisión de Comprobantes (Agente)
+   ============================================ */
+
+.proof-reviews-container {
+    padding: 20px;
+}
+
+.proof-reviews-container h3 {
+    margin: 0 0 20px 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.proof-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.proof-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid #e0e0e0;
+}
+
+.proof-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    border-color: #667eea;
+}
+
+.proof-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.proof-header h4 {
+    margin: 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1.1rem;
+}
+
+.upload-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #999);
+}
+
+.proof-details {
+    margin-bottom: 16px;
+}
+
+.proof-details p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary, #666);
+}
+
+.proof-details strong {
+    color: var(--text-primary, #1a1a1a);
+    font-weight: 600;
+}
+
+.proof-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.proof-actions button {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-view-proof {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-view-proof:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.btn-approve-proof {
+    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+    color: white;
+}
+
+.btn-approve-proof:hover {
+    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-reject-proof {
+    background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+    color: white;
+}
+
+.btn-reject-proof:hover {
+    box-shadow: 0 4px 12px rgba(239, 83, 80, 0.4);
+    transform: translateY(-2px);
+}
+
+.no-pending-reviews {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-secondary, #999);
+    font-size: 1.1rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================
+   MODAL - Upload de Comprobantes
+   ============================================ */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content h3 {
+    margin: 0 0 12px 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    margin: 0 0 24px 0;
+    color: var(--text-secondary, #666);
+}
+
+.modal-content input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-content input[type="file"]:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+/* ============================================
+   ERROR MESSAGES
+   ============================================ */
+
+.error-message {
+    padding: 20px;
+    background: #ffebee;
+    color: #c62828;
+    border-radius: 8px;
+    border-left: 4px solid #c62828;
+    font-weight: 500;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .proof-list {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-schedule-container,
+    .proof-reviews-container {
+        padding: 16px;
+    }
+
+    .modal-content {
+        padding: 24px;
+    }
+
+    .proof-actions {
+        flex-direction: column;
+    }
+
+    .proof-actions button {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+    .payment-schedule-container {
+        background: #1e1e1e;
+    }
+
+    .payment-card,
+    .notification-item,
+    .proof-card,
+    .modal-content,
+    .no-pending-reviews {
+        background: #2a2a2a;
+        color: #e0e0e0;
+    }
+
+    .payment-card:hover,
+    .proof-card:hover {
+        background: #333;
+    }
+
+    .installment-number,
+    .detail-row .value,
+    .proof-header h4 {
+        color: #e0e0e0;
+    }
+
+    .detail-row .label,
+    .notification-content p,
+    .proof-details p {
+        color: #b0b0b0;
+    }
+
+    .btn-view-proof {
+        background: #3a3a3a;
+        color: #e0e0e0;
+    }
+
+    .btn-view-proof:hover {
+        background: #4a4a4a;
+    }
+
+    .btn-secondary {
+        background: #3a3a3a;
+        color: #e0e0e0;
+    }
+
+    .btn-secondary:hover {
+        background: #4a4a4a;
+    }
+}
+
+/* ============================================
+   LOADING STATES
+   ============================================ */
+
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============================================
+   BADGES Y INDICADORES
+   ============================================ */
+
+.payment-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payment-badge.urgent {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.payment-badge.due-soon {
+    background: #fff9c4;
+    color: #f57f17;
+}
+
+.payment-badge.on-time {
+    background: #e8f5e9;
+    color: #2e7d32;
+}

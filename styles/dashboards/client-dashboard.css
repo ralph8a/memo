@@ -1,11 +1,12 @@
 /* Client Dashboard Styles */
-.dashboard-section {
-    min-height: calc(100vh - var(--nav-height));
+.client-dashboard {
+    min-height: 100vh;
     color: var(--theme-text-primary);
-    padding: calc(var(--nav-height) - var(--dashboard-padding-top-offset)) var(--dashboard-padding-x) var(--dashboard-padding-bottom);
+    padding: 0;
+    /* Sin padding - hero está fuera del layout */
 }
 
-.dashboard-container {
+.client-dashboard .dashboard-container {
     width: 100%;
     max-width: var(--dashboard-container-max-client, var(--dashboard-container-max));
     margin: 0 auto;

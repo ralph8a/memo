@@ -1,11 +1,17 @@
 /**
  * Meeting Scheduling Module
  * Manages calendar events, reservations, and meeting bookings
+ * Now with backend integration and monthly/yearly views
  */
 
-// In-memory storage (replace with API calls for production)
+import { apiService, API_CONFIG } from '../api-integration.js';
+import { showNotification } from './notifications.js';
+import { NOTIFICATION_TYPES } from '../utils/constants.js';
+
+// In-memory storage (synced with backend)
 let meetings = [];
 let agentAvailability = {};
+let currentView = 'week'; // 'day', 'week', 'month', 'year'
 
 /**
  * Meeting data structure
@@ -120,54 +126,44 @@ export async function requestMeeting(request) {
         startTime,
         endTime,
         type,
-        notes
+        notes,
+        location
     } = request;
 
     // Validate
-    if (!agentId || !clientId || !startTime || !endTime) {
+    if (!startTime || !endTime || !clientEmail) {
         throw new Error('Missing required fields');
     }
 
-    // Check for conflicts
-    const conflicting = meetings.find(m =>
-        m.agentId === agentId &&
-        m.status !== 'cancelled' &&
-        new Date(m.startTime) < new Date(endTime) &&
-        new Date(m.endTime) > new Date(startTime)
-    );
+    try {
+        const result = await apiService.request(
+            API_CONFIG.ENDPOINTS.CREATE_MEETING,
+            {
+                method: 'POST',
+                body: {
+                    title: type ? `${type.charAt(0).toUpperCase() + type.slice(1)} - ${clientName}` : `Meeting with ${clientName}`,
+                    description: notes || '',
+                    start_time: startTime,
+                    end_time: endTime,
+                    location: location || 'Virtual Meeting',
+                    attendee_email: clientEmail,
+                    attendee_name: clientName,
+                    organizer_email: agentName ? 'agent@ksinsurancee.com' : 'admin@ksinsurancee.com',
+                    organizer_name: agentName || 'Krause Insurance'
+                }
+            },
+            { useCache: false }
+        );
 
-    if (conflicting) {
-        throw new Error('Agent has a conflict at that time');
+        // Add to local cache
+        await loadMeetingsFromBackend();
+
+        showNotification('Meeting created and invitation sent via email', NOTIFICATION_TYPES.SUCCESS);
+        return result;
+    } catch (error) {
+        showNotification('Failed to create meeting: ' + error.message, NOTIFICATION_TYPES.ERROR);
+        throw error;
     }
-
-    const meeting = {
-        id: `mtg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        agentId,
-        agentName,
-        clientId,
-        clientName,
-        clientEmail,
-        startTime: new Date(startTime),
-        endTime: new Date(endTime),
-        type: type || 'consultation',
-        status: 'requested',
-        notes: notes || '',
-        confirmations: {
-            agent: false,
-            client: false
-        },
-        reminders: {
-            agent: '24h',
-            client: '24h'
-        }
-    };
-
-    meetings.push(meeting);
-
-    // Trigger notification to agent
-    scheduleReminder(meeting, 'agent');
-
-    return meeting;
 }
 
 /**
@@ -316,6 +312,116 @@ export function getAvailableAgents(startTime, endTime) {
         );
         return !conflict;
     });
+}
+
+/**
+ * Load meetings from backend
+ */
+export async function loadMeetingsFromBackend(startDate = null, endDate = null) {
+    try {
+        const params = {};
+        if (startDate) params.start = startDate;
+        if (endDate) params.end = endDate;
+
+        const result = await apiService.request(
+            API_CONFIG.ENDPOINTS.LIST_MEETINGS,
+            { method: 'GET', queryParams: params }
+        );
+
+        meetings = result.map(m => ({
+            id: m.id,
+            agentId: m.user_id,
+            agentName: m.organizer_name || 'Krause Insurance',
+            clientId: m.attendee_id,
+            clientName: m.attendee_name,
+            clientEmail: m.attendee_email,
+            startTime: new Date(m.start_time),
+            endTime: new Date(m.end_time),
+            type: m.title.toLowerCase().includes('quote') ? 'quote' : 'consultation',
+            status: m.status,
+            notes: m.description || '',
+            location: m.location,
+            confirmations: {
+                agent: m.status !== 'pending',
+                client: m.status === 'confirmed'
+            },
+            reminders: { agent: '24h', client: '24h' }
+        }));
+
+        return meetings;
+    } catch (error) {
+        console.error('Failed to load meetings:', error);
+        return [];
+    }
+}
+
+/**
+ * Change calendar view
+ */
+export function setCalendarView(view) {
+    if (['day', 'week', 'month', 'year'].includes(view)) {
+        currentView = view;
+        return currentView;
+    }
+    throw new Error('Invalid view. Use: day, week, month, or year');
+}
+
+/**
+ * Get current calendar view
+ */
+export function getCalendarView() {
+    return currentView;
+}
+
+/**
+ * Get meetings for month view
+ */
+export function getMonthMeetings(year, month) {
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+
+    return meetings.filter(m => {
+        const meetingDate = new Date(m.startTime);
+        return meetingDate >= firstDay && meetingDate <= lastDay;
+    }).sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+}
+
+/**
+ * Get meetings for year view (grouped by month)
+ */
+export function getYearMeetings(year) {
+    const yearMeetings = {};
+
+    for (let month = 0; month < 12; month++) {
+        const monthName = new Date(year, month, 1).toLocaleString('es', { month: 'long' });
+        yearMeetings[monthName] = getMonthMeetings(year, month);
+    }
+
+    return yearMeetings;
+}
+
+/**
+ * Get meeting statistics for a period
+ */
+export function getMeetingStats(startDate, endDate) {
+    const filtered = meetings.filter(m => {
+        const meetingDate = new Date(m.startTime);
+        return meetingDate >= new Date(startDate) && meetingDate <= new Date(endDate);
+    });
+
+    return {
+        total: filtered.length,
+        confirmed: filtered.filter(m => m.status === 'confirmed').length,
+        pending: filtered.filter(m => m.status === 'pending').length,
+        completed: filtered.filter(m => m.status === 'completed').length,
+        cancelled: filtered.filter(m => m.status === 'cancelled').length,
+        byType: {
+            quote: filtered.filter(m => m.type === 'quote').length,
+            consultation: filtered.filter(m => m.type === 'consultation').length,
+            renewal: filtered.filter(m => m.type === 'renewal').length,
+            support: filtered.filter(m => m.type === 'support').length
+        }
+    };
 }
 
 /**

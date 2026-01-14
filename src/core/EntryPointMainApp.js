@@ -3,6 +3,7 @@
 import '../../styles/acrylic.css';
 import '../../styles/auth.css';
 import '../../styles/notifications.css';
+import '../../styles/notification-modal.css'; // NEW: Sistema de notificaciones modal
 import '../../styles/pages/home.css';
 import '../../styles/pages/services.css';
 import '../../styles/pages/quote.css';
@@ -15,6 +16,8 @@ import '../../styles/dashboards/admin-dashboard.css';
 import '../../styles/dashboard-components.css';
 import '../../styles/chart-modals.css'; // Chart modal styles
 import '../../styles/scheduling.css'; // Calendar & scheduling styles
+import '../../styles/payments.css'; // NEW: Sistema de pagos
+import '../../styles/scroll-modal-fixes.css'; // NEW: Fixes de scroll y modales
 import '../../styles/app.css'; // Base styles
 import '../../styles/dark-forest.css'; // Theme overrides MUST load last
 
@@ -34,12 +37,17 @@ import { renderAllLogos } from '../utils/logo.js';
 import { initScrollCollapse } from '../utils/scrollCollapse.js';
 import * as chartModals from '../modules/chartModals.js';
 
+// NEW: Import payment and notification systems
+import { NotificationModal } from '../modules/notificationModal.js';
+import { PaymentAPI, PaymentScheduleComponent, PaymentNotificationsComponent, ProofReviewComponent } from '../modules/paymentIntegration.js';
+
 // API service and dashboard loaders - loaded dynamically when needed
 let apiService = null;
 let API_CONFIG = null;
 let apiAvailable = false;
 let loadAgentDashboard = null;
 let loadClientDashboard = null;
+let loadAdminDashboard = null;
 let loadClientDetailsData = null;
 
 // Initialize API and dashboard loaders
@@ -57,6 +65,7 @@ let loadClientDetailsData = null;
     const dashboardModule = await import('../modules/dashboardLoaders.js');
     loadAgentDashboard = dashboardModule.loadAgentDashboard;
     loadClientDashboard = dashboardModule.loadClientDashboard;
+    loadAdminDashboard = dashboardModule.loadAdminDashboard;
     loadClientDetailsData = dashboardModule.loadClientDetails;
   } catch (e) {
     console.warn('Dashboard loaders not available, using stubs');
@@ -67,6 +76,9 @@ let loadClientDetailsData = null;
     loadClientDashboard = () => {
       const container = document.querySelector('.policies-list');
       if (container) container.innerHTML = '<p class="empty-state">Modo demo - sin datos del backend</p>';
+    };
+    loadAdminDashboard = () => {
+      console.log('Admin dashboard - stub mode');
     };
     loadClientDetailsData = async () => ({ client: {}, policies: [], claims: [] });
   }
@@ -110,6 +122,7 @@ window.appHandlers = {
   // New dashboard data loaders
   loadAgentDashboard,
   loadClientDashboard,
+  loadAdminDashboard,
   refreshDashboard,
   // Chart modals
   openPaymentTrendsModal: chartModals.openPaymentTrendsModal,
@@ -249,13 +262,20 @@ async function refreshDashboard() {
   if (!user) return;
 
   const isAgent = user.type === 'agent';
-  const message = isAgent ? 'Actualizando panel de agente' : 'Actualizando panel de cliente';
+  const isAdmin = user.type === 'admin';
+  const message = isAdmin
+    ? 'Actualizando panel de administración'
+    : isAgent
+      ? 'Actualizando panel de agente'
+      : 'Actualizando panel de cliente';
 
   document.body.classList.add('skeleton-mode');
 
   try {
     await withLoading(async () => {
-      if (isAgent && loadAgentDashboard) {
+      if (isAdmin && loadAdminDashboard) {
+        await loadAdminDashboard();
+      } else if (isAgent && loadAgentDashboard) {
         await loadAgentDashboard();
       } else if (!isAgent && loadClientDashboard) {
         await loadClientDashboard();
@@ -921,12 +941,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   console.log('🏛️ Krause Insurance App cargada correctamente (Modular)');
-  // Service worker disabled during testing
-  // if ('serviceWorker' in navigator) {
-  //   window.addEventListener('load', () => {
-  //     navigator.serviceWorker.register('/service-worker.js')
-  //       .then(reg => console.log('ServiceWorker registered with scope:', reg.scope))
-  //       .catch(err => console.warn('ServiceWorker registration failed:', err));
-  //   });
-  // }
+
+  // Service worker DESACTIVADO durante testing
+  // Desregistrar cualquier service worker existente para limpiar caché
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      for (let registration of registrations) {
+        registration.unregister();
+        console.log('✅ Service Worker desregistrado durante testing');
+      }
+    });
+  }
 });

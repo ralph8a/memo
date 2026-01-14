@@ -78,15 +78,15 @@ function getClientClaims($db, $client_id) {
             c.claim_type as type,
             c.status,
             c.claim_amount as amount,
-            c.filed_date,
-            c.resolution_date,
+            c.submitted_at,
+            c.resolved_at,
             c.description,
             p.policy_number,
             p.policy_type
         FROM claims c
         JOIN policies p ON c.policy_id = p.id
         WHERE p.client_id = ?
-        ORDER BY c.filed_date DESC
+        ORDER BY c.submitted_at DESC
         LIMIT 20
     ");
     $stmt->execute([$client_id]);
@@ -214,14 +214,14 @@ function getAgentClaims($db, $agent_id) {
             c.claim_type as type,
             c.status,
             c.claim_amount as amount,
-            c.filed_date,
+            c.submitted_at,
             CONCAT(u.first_name, ' ', u.last_name) as client_name,
             p.policy_number
         FROM claims c
         JOIN policies p ON c.policy_id = p.id
         JOIN users u ON p.client_id = u.id
         WHERE p.agent_id = ?
-        ORDER BY c.filed_date DESC
+        ORDER BY c.submitted_at DESC
         LIMIT 50
     ");
     $stmt->execute([$agent_id]);
@@ -375,11 +375,11 @@ function getAdminActivity($db) {
             CONCAT(u.first_name, ' ', u.last_name) as user_name,
             c.claim_type,
             c.status,
-            c.filed_date as timestamp
+            c.submitted_at as timestamp
         FROM claims c
         JOIN policies p ON c.policy_id = p.id
         JOIN users u ON p.client_id = u.id
-        ORDER BY c.filed_date DESC
+        ORDER BY c.submitted_at DESC
         LIMIT 10
     ");
     $activities = array_merge($activities, $stmt->fetchAll(PDO::FETCH_ASSOC));

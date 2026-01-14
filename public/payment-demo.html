@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pagos - Demo</title>
+    
+    <!-- Payment System Styles -->
+    <link rel="stylesheet" href="../styles/payments.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Seguimiento de Pagos</h1>
+            <p>Demo de componentes cliente y agente</p>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="cliente">Vista Cliente</button>
+            <button class="tab-button" data-tab="agente">Vista Agente</button>
+        </div>
+
+        <!-- CLIENTE TAB -->
+        <div id="cliente" class="tab-content active">
+            <div class="section">
+                <h2>📅 Mi Calendario de Pagos</h2>
+                <div id="payment-schedule-container"></div>
+            </div>
+
+            <div class="section">
+                <h2>🔔 Notificaciones</h2>
+                <div id="notifications-container"></div>
+            </div>
+        </div>
+
+        <!-- AGENTE TAB -->
+        <div id="agente" class="tab-content">
+            <div class="section">
+                <h2>📋 Comprobantes Pendientes de Revisión</h2>
+                <div id="proof-reviews-container"></div>
+            </div>
+
+            <div class="section">
+                <h2>📄 Subir Póliza de Aseguradora</h2>
+                <p style="margin-bottom: 20px; color: #666;">
+                    Sube el documento PDF de la póliza. El sistema extraerá automáticamente los datos y generará el calendario de pagos.
+                </p>
+                <form id="upload-policy-form">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Cliente:</label>
+                        <select id="client-id" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem;">
+                            <option value="">Seleccionar cliente...</option>
+                            <!-- En producción, cargar desde API -->
+                            <option value="1">Juan Pérez García</option>
+                            <option value="2">María López Hernández</option>
+                            <option value="3">Carlos Ramírez Sánchez</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Documento de Póliza (PDF):</label>
+                        <input 
+                            type="file" 
+                            id="policy-file" 
+                            accept=".pdf,.jpg,.jpeg,.png" 
+                            required 
+                            style="width: 100%; padding: 12px; border: 2px dashed #667eea; border-radius: 8px; cursor: pointer; background: #f8f9ff;">
+                        <small style="color: #666; display: block; margin-top: 8px;">
+                            Acepta PDF (preferido) o imágenes JPG/PNG. El sistema extraerá automáticamente: número de póliza, aseguradora, prima total, frecuencia de pago, fechas de vigencia.
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn-upload-proof" style="width: 100%;">
+                        📤 Subir Póliza y Generar Calendario
+                    </button>
+                </form>
+
+                <div id="extraction-result" style="display: none; margin-top: 20px; padding: 20px; border-radius: 8px;"></div>
+            </div>
+
+            <div class="section" style="display: none;" id="manual-entry-section">
+                <h2>⚠️ Entrada Manual (Fallback)</h2>
+                <p style="margin-bottom: 15px; color: #666;">
+                    Si el sistema no pudo extraer los datos automáticamente, ingresalos manualmente aquí:
+                </p>
+                <form id="generate-schedule-form">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <label>Póliza ID:</label>
+                            <input type="number" id="policy-id" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                        </div>
+                        <div>
+                            <label>Prima Total:</label>
+                            <input type="number" id="total-premium" step="0.01" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                        </div>
+                        <div>
+                            <label>Frecuencia de Pago:</label>
+                            <select id="payment-frequency" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                <option value="1">Anual (1 pago)</option>
+                                <option value="2">Semestral (2 pagos)</option>
+                                <option value="4">Trimestral (4 pagos)</option>
+                                <option value="12">Mensual (12 pagos)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Fecha de Inicio:</label>
+                            <input type="date" id="start-date" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-upload-proof" style="width: 100%;">
+                        Generar Calendario Manualmente
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment System Integration -->
+    <script src="../src/modules/paymentIntegration.js"></script>
+
+    <script>
+        // ============================================
+        // TAB SWITCHING
+        // ============================================
+        
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tab = button.dataset.tab;
+                
+                // Update buttons
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                
+                // Update content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tab).classList.add('active');
+            });
+        });
+
+        // ============================================
+        // INITIALIZE COMPONENTS
+        // ============================================
+
+        // Simular datos de sesión (en producción viene de auth)
+        sessionStorage.setItem('auth_token', 'demo_token_123');
+
+        // CLIENTE COMPONENTS
+        const paymentSchedule = new PaymentScheduleComponent(
+            1, // policyId - cambiar según la póliza seleccionada
+            'payment-schedule-container'
+        );
+
+        const notifications = new PaymentNotificationsComponent(
+            'notifications-container'
+        );
+
+        // AGENTE COMPONENTS
+        const proofReviews = new ProofReviewComponent(
+            'proof-reviews-container'
+        );
+
+        // Renderizar componentes
+        async function initializeClientView() {
+            await paymentSchedule.render();
+            await notifications.render();
+        }
+
+        async function initializeAgentView() {
+            await proofReviews.render();
+        }
+
+        // ============================================
+        // FORM HANDLER - Subir Póliza (Agente) - PRINCIPAL
+        // ============================================
+
+        document.getElementById('upload-policy-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const api = new PaymentAPI();
+            
+            const clientId = document.getElementById('client-id').value;
+            const policyFile = document.getElementById('policy-file').files[0];
+
+            if (!policyFile) {
+                alert('Por favor selecciona un archivo');
+                return;
+            }
+
+            // Mostrar loading
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '⏳ Analizando documento...';
+            submitBtn.disabled = true;
+
+            try {
+                const result = await api.uploadPolicyDocument(clientId, policyFile);
+
+                const resultDiv = document.getElementById('extraction-result');
+                
+                if (result.success) {
+                    if (result.requires_review) {
+                        // Datos extraídos con baja confianza
+                        resultDiv.style.display = 'block';
+                        resultDiv.style.background = '#fff9c4';
+                        resultDiv.style.borderLeft = '4px solid #f57f17';
+                        resultDiv.innerHTML = `
+                            <h4 style="margin-bottom: 10px;">⚠️ Datos Extraídos - Requiere Revisión</h4>
+                            <p>Confianza: <strong>${result.confidence}</strong></p>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                <li>Número de póliza: ${result.data.policy_number || 'No detectado'}</li>
+                                <li>Aseguradora: ${result.data.insurer_name || 'No detectada'}</li>
+                                <li>Prima total: $${result.data.total_premium || '0.00'}</li>
+                                <li>Frecuencia: ${result.data.payment_frequency ? getFrequencyName(result.data.payment_frequency) : 'No detectada'}</li>
+                                <li>Fecha inicio: ${result.data.start_date || 'No detectada'}</li>
+                            </ul>
+                            <p style="margin-top: 10px; color: #666;">
+                                Por favor revisa los datos y corrígelos manualmente si es necesario.
+                            </p>
+                        `;
+                        
+                        // Mostrar formulario manual con datos pre-llenados
+                        document.getElementById('manual-entry-section').style.display = 'block';
+                        
+                    } else {
+                        // Éxito total
+                        resultDiv.style.display = 'block';
+                        resultDiv.style.background = '#e8f5e9';
+                        resultDiv.style.borderLeft = '4px solid #4caf50';
+                        resultDiv.innerHTML = `
+                            <h4 style="margin-bottom: 10px;">✅ ${result.message}</h4>
+                            <p>Confianza: <strong>${result.confidence}</strong></p>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                <li>Póliza ID: ${result.policy_id}</li>
+                                <li>Número: ${result.data.policy_number}</li>
+                                <li>Aseguradora: ${result.data.insurer_name}</li>
+                                <li>Prima total: $${result.data.total_premium}</li>
+                                <li>Pagos: ${result.data.payment_frequency} ${getFrequencyName(result.data.payment_frequency)}</li>
+                            </ul>
+                            <p style="margin-top: 10px; color: #2e7d32; font-weight: 600;">
+                                Calendario de pagos generado automáticamente ✓
+                            </p>
+                        `;
+                        
+                        // Limpiar formulario
+                        e.target.reset();
+                    }
+                } else {
+                    if (result.manual_entry) {
+                        // Error en análisis, mostrar formulario manual
+                        resultDiv.style.display = 'block';
+                        resultDiv.style.background = '#ffebee';
+                        resultDiv.style.borderLeft = '4px solid #c62828';
+                        resultDiv.innerHTML = `
+                            <h4 style="margin-bottom: 10px;">❌ ${result.error}</h4>
+                            <p>Por favor ingresa los datos manualmente abajo:</p>
+                        `;
+                        
+                        document.getElementById('manual-entry-section').style.display = 'block';
+                    } else {
+                        alert('Error: ' + result.error);
+                    }
+                }
+
+            } catch (error) {
+                alert('Error al procesar póliza: ' + error.message);
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Helper: Obtener nombre de frecuencia
+        function getFrequencyName(freq) {
+            const names = {
+                1: 'Anual',
+                2: 'Semestral',
+                4: 'Trimestral',
+                12: 'Mensual'
+            };
+            return names[freq] || freq;
+        }
+
+        // ============================================
+        // FORM HANDLER - Generar Calendario Manual (Fallback)
+        // ============================================
+
+        document.getElementById('generate-schedule-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const api = new PaymentAPI();
+            
+            const policyId = document.getElementById('policy-id').value;
+            const totalPremium = document.getElementById('total-premium').value;
+            const paymentFrequency = parseInt(document.getElementById('payment-frequency').value);
+            const startDate = document.getElementById('start-date').value;
+
+            try {
+                const result = await api.generatePaymentSchedule(
+                    policyId,
+                    parseFloat(totalPremium),
+                    paymentFrequency,
+                    startDate
+                );
+
+                alert(result.message);
+                
+                // Si estamos viendo la póliza generada, actualizar vista
+                if (paymentSchedule.policyId == policyId) {
+                    await paymentSchedule.render();
+                }
+
+                // Limpiar formulario
+                e.target.reset();
+                document.getElementById('manual-entry-section').style.display = 'none';
+
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+
+        // ============================================
+        // AUTO-REFRESH - Actualizar cada 30 segundos
+        // ============================================
+
+        setInterval(async () => {
+            const activeTab = document.querySelector('.tab-content.active').id;
+
+            if (activeTab === 'cliente') {
+                await notifications.render();
+            } else if (activeTab === 'agente') {
+                await proofReviews.render();
+            }
+        }, 30000); // 30 segundos
+
+        // ============================================
+        // INITIAL LOAD
+        // ============================================
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            console.log('Inicializando sistema de pagos...');
+            
+            try {
+                await initializeClientView();
+                console.log('Vista cliente cargada');
+            } catch (error) {
+                console.error('Error cargando vista cliente:', error);
+            }
+        });
+
+        // ============================================
+        // EJEMPLO DE USO DIRECTO DEL API
+        // ============================================
+
+        // Ejemplo 1: Obtener calendario de una póliza
+        async function ejemploGetSchedule() {
+            const api = new PaymentAPI();
+            const result = await api.getPaymentSchedule(1);
+            console.log('Calendario de pagos:', result.schedules);
+        }
+
+        // Ejemplo 2: Subir comprobante
+        async function ejemploUploadProof(file) {
+            const api = new PaymentAPI();
+            const result = await api.uploadPaymentProof(
+                1,  // scheduleId
+                1,  // policyId
+                file
+            );
+            console.log('Comprobante subido:', result);
+        }
+
+        // Ejemplo 3: Obtener notificaciones
+        async function ejemploGetNotifications() {
+            const api = new PaymentAPI();
+            const result = await api.getNotifications(10);
+            console.log('Notificaciones:', result.notifications);
+        }
+
+        // Ejemplo 4: Revisar comprobante (Agente)
+        async function ejemploReviewProof(proofId, approved) {
+            const api = new PaymentAPI();
+            const result = await api.reviewPaymentProof(
+                proofId,
+                approved,
+                approved ? 'Aprobado' : 'Rechazado por datos incorrectos'
+            );
+            console.log('Revisión completada:', result);
+        }
+
+        // Ejemplo 5: Subir factura (Agente)
+        async function ejemploUploadInvoice(file) {
+            const api = new PaymentAPI();
+            const result = await api.uploadInsurerInvoice(
+                1,  // scheduleId
+                1,  // policyId
+                'INV-2024-001',  // invoiceNumber
+                file
+            );
+            console.log('Factura subida:', result);
+        }
+
+        // Hacer disponibles en consola para testing
+        window.ejemplos = {
+            getSchedule: ejemploGetSchedule,
+            uploadProof: ejemploUploadProof,
+            getNotifications: ejemploGetNotifications,
+            reviewProof: ejemploReviewProof,
+            uploadInvoice: ejemploUploadInvoice
+        };
+
+        console.log('💡 Tip: Usa window.ejemplos para probar funciones en la consola');
+    </script>
+</body>
+</html>

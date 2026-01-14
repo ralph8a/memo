@@ -5,8 +5,8 @@
 const API_CONFIG = {
   // Update these URLs when deploying to GoDaddy
   BASE_URL: window.location.hostname === 'localhost'
-    ? 'http://localhost/backend'
-    : window.location.protocol + '//' + window.location.hostname + '/backend',
+    ? 'http://localhost/backend/index.php'
+    : 'https://' + window.location.hostname + '/backend/index.php', // Forzar HTTPS en producción
 
   ENDPOINTS: {
     // Authentication
@@ -29,13 +29,17 @@ const API_CONFIG = {
     GET_CLAIMS: '?action=claims',
     GET_USER_CLAIMS: '?action=user_claims',
     CREATE_CLAIM: '?action=submit_claim',
+    SUBMIT_CLAIM: '?action=submit_claim',
     GET_CLAIM_DETAILS: '?action=claim_details',
+    ADD_CLAIM_COMMENT: '?action=add_claim_comment',
     UPLOAD_CLAIM_DOCUMENT: '?action=upload_claim_doc',
     ASSIGN_CLAIM: '?action=assign_claim',
 
     // Payments
     GET_PAYMENT_HISTORY: '?action=payment_history',
     PROCESS_PAYMENT: '?action=process_payment',
+    UPLOAD_PAYMENT_RECEIPT: '?action=upload_payment_receipt',
+    VERIFY_PAYMENT_RECEIPT: '?action=verify_payment_receipt',
     DOWNLOAD_RECEIPT: '?action=download_receipt',
 
     // Documents
@@ -70,6 +74,12 @@ const API_CONFIG = {
     COMPLETE_QUESTIONNAIRE: '/questionnaires/:id/complete',
     GET_ROADMAP: '/agents/clients/:id/roadmap',
 
+
+    // Calendar/Meetings
+    CREATE_MEETING: '?action=create_meeting',
+    LIST_MEETINGS: '?action=list_meetings',
+    UPDATE_MEETING: '?action=update_meeting',
+    CANCEL_MEETING: '?action=cancel_meeting',
     // Notifications
     SEND_NOTIFICATION: '/notifications/email',
 
@@ -87,8 +97,14 @@ const API_CONFIG = {
 // API Service with caching
 class APIService {
   constructor() {
-    this.cache = window.cacheManager || new CacheManager();
-    this.fileManager = window.fileManager || new FileManager();
+    // Use cache manager if available, otherwise use simple localStorage
+    this.cache = window.cacheManager || {
+      get: () => null,
+      set: () => { },
+      clearUserCache: () => { },
+      CACHE_DURATION: { SHORT: 60, MEDIUM: 300, LONG: 3600 }
+    };
+    this.fileManager = window.fileManager || null;
   }
 
   // Build full URL
@@ -122,13 +138,15 @@ class APIService {
 
     const url = this.buildUrl(endpoint, params);
 
-    // Add query parameters
-    const urlObj = new URL(url);
-    Object.keys(queryParams).forEach(key => {
-      urlObj.searchParams.append(key, queryParams[key]);
-    });
-
-    const fullUrl = urlObj.toString();
+    // Add query parameters - handle both absolute and relative URLs
+    let fullUrl = url;
+    if (Object.keys(queryParams).length > 0) {
+      const separator = url.includes('?') ? '&' : '?';
+      const queryString = Object.keys(queryParams)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`)
+        .join('&');
+      fullUrl = url + separator + queryString;
+    }
 
     // Cache identifier
     const cacheIdentifier = `api_${method}_${endpoint}_${JSON.stringify(params)}_${JSON.stringify(queryParams)}`;
@@ -251,11 +269,32 @@ class APIService {
     // Auto-handled by loading screen
   }
 
+  // HTTP Method Helpers
+  async get(endpoint, params = {}, cacheOptions = {}) {
+    return this.request(endpoint, { method: 'GET', params }, cacheOptions);
+  }
+
+  async post(endpoint, body, params = {}) {
+    return this.request(endpoint, { method: 'POST', body, params }, { useCache: false });
+  }
+
+  async put(endpoint, body, params = {}) {
+    return this.request(endpoint, { method: 'PUT', body, params }, { useCache: false });
+  }
+
+  async delete(endpoint, params = {}) {
+    return this.request(endpoint, { method: 'DELETE', params }, { useCache: false });
+  }
+
   // Upload file with progress
   async uploadFile(endpoint, file, onProgress, params = {}) {
     const url = this.buildUrl(endpoint, params);
 
     try {
+      if (!this.fileManager) {
+        throw new Error('File manager not available');
+      }
+
       const result = await this.fileManager.uploadFile(url, file, (percent) => {
         if (onProgress) onProgress(percent);
       });
@@ -275,6 +314,10 @@ class APIService {
     const url = this.buildUrl(endpoint, params);
 
     try {
+      if (!this.fileManager) {
+        throw new Error('File manager not available');
+      }
+
       const result = await this.fileManager.downloadFile(url, filename, (percent) => {
         if (onProgress) onProgress(percent);
       });
@@ -304,7 +347,7 @@ async function loginUser(email, password) {
       },
       {
         useCache: false,
-        showLoading: true
+        showLoading: false // No usar loading screen automático, el auth module ya maneja el loading
       }
     );
 

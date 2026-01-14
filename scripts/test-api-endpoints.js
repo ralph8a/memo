@@ -7,7 +7,10 @@
 const https = require('https');
 const http = require('http');
 
-const API_BASE_URL = 'http://ksinsurancee.com/backend/index.php';
+const API_BASE_URL = 'https://ksinsurancee.com/backend/index.php';
+
+// Permitir certificados auto-firmados (solo para desarrollo)
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 // Test credentials (all use password: Admin123!)
 const TEST_USERS = {

@@ -100,17 +100,55 @@ try {
     const ftpUser = process.env.FTP_USER || '';
     const ftpPass = process.env.FTP_PASSWORD || '';
     const ftpRemotePath = process.env.FTP_REMOTE_PATH || 'public_html';
+    const sshKeyPathEnv = process.env.SSH_KEY_PATH || '';
+    const sshKeyPassphrase = process.env.SSH_KEY_PASSPHRASE || '';
 
     if (!ftpUser) throw new Error('FTP_USER no definido');
     if (!ftpHost) throw new Error('FTP_HOST no definido');
 
-    // Construir script temporal de WinSCP usando credenciales del .env (password preferido)
+    // Resolver ruta de la llave privada
+    const projectRoot = path.join(__dirname, '..');
+    const keyCandidates = [];
+    if (sshKeyPathEnv) {
+        const base = path.isAbsolute(sshKeyPathEnv) ? sshKeyPathEnv : path.join(projectRoot, sshKeyPathEnv);
+        if (!path.extname(base)) {
+            // Prioridad: .ppk > base (openssh) > .pem
+            keyCandidates.push(`${base}.ppk`);
+            keyCandidates.push(base);
+            keyCandidates.push(`${base}.pem`);
+        } else {
+            keyCandidates.push(base);
+        }
+    }
+    // Intentar con nombres conocidos si no se encontró aún (prioridad .ppk)
+    keyCandidates.push(path.join(projectRoot, 'nhs13h5k0x0j.ppk'));
+    keyCandidates.push(path.join(projectRoot, 'nhs13h5k0x0j_pem'));
+    keyCandidates.push(path.join(projectRoot, 'nhs13h5k0x0j.pem'));
+
+    const sshKeyPath = keyCandidates.find(p => fs.existsSync(p));
+    if (!sshKeyPath) {
+        throw new Error('No se encontró la llave SSH. Revisa SSH_KEY_PATH en .env');
+    }
+
+    // Construir script temporal de WinSCP usando llave SSH (password solo como respaldo)
     const remotePath = ftpRemotePath.startsWith('/') ? ftpRemotePath : `./${ftpRemotePath}`;
+
+    const openParts = [
+        `${ftpProtocol}://${ftpUser}@${ftpHost}:${ftpPort}/`,
+        `-privatekey="${sshKeyPath}"`
+    ];
+    if (sshKeyPassphrase) {
+        openParts.push(`-passphrase="${sshKeyPassphrase}"`);
+    }
+    if (ftpPass) {
+        // Proveer contraseña siempre para evitar prompt interactivo si la llave falla
+        openParts.push(`-password="${ftpPass}"`);
+    }
 
     const scriptLines = [
         'option batch abort',
         'option confirm off',
-        `open ${ftpProtocol}://${ftpUser}:${ftpPass}@${ftpHost}:${ftpPort}/`,
+        `open ${openParts.join(' ')}`,
         `cd ${remotePath}`,
         'put -delete dist\\*',
         'exit'

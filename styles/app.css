@@ -702,15 +702,18 @@ body[data-page="home"] #particles-canvas {
 body[data-page="services"] #particles-canvas,
 body[data-page="about"] #particles-canvas,
 body[data-page="contact"] #particles-canvas,
-/* Dashboards are work surfaces: keep them distraction-free */
-body[data-page="client-dashboard"] #particles-canvas,
-body[data-page="agent-dashboard"] #particles-canvas,
-body[data-page="admin-dashboard"] #particles-canvas,
-/* Auth screens also read cleaner without animated canvas behind */
+/* Auth screens read cleaner without animated canvas behind */
 body[data-page="login"] #particles-canvas,
 body[data-page="agent-login"] #particles-canvas {
   display: none;
   pointer-events: none;
+}
+
+/* Dashboards: reduce opacity for subtle ambient effect */
+body[data-page="client-dashboard"] #particles-canvas,
+body[data-page="agent-dashboard"] #particles-canvas,
+body[data-page="admin-dashboard"] #particles-canvas {
+  opacity: 0.35;
 }
 
 /* Sub Navigation */
@@ -1183,6 +1186,14 @@ body.no-footer .footer {
    Add top padding only on home so sections (esp. Cotiza logo/title) are not cut. */
 body[data-page="home"] .main-content {
   padding-top: var(--subnav-height);
+}
+
+/* Dashboards sin navbar: usar todo el alto disponible sin offset del nav */
+body[data-page="client-dashboard"] .main-content,
+body[data-page="agent-dashboard"] .main-content,
+body[data-page="admin-dashboard"] .main-content {
+  top: 0;
+  padding-top: 0;
 }
 
 

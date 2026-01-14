@@ -26,7 +26,7 @@ export async function login(credentials, type = 'client') {
 
     const result = await apiModule.loginUser(email, password);
 
-    if (result && result.success) {
+    if (result && result.token) {
       // Store user from API
       const user = {
         ...result.user,
