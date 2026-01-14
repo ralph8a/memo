@@ -1,0 +1,483 @@
+/**
+ * Dashboard Actions Styles
+ * Estilos para modales, tabs y componentes de acciones
+ */
+
+/* ============================================================================
+   MODAL SYSTEM - Sistema unificado de modales
+   ============================================================================ */
+
+.app-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.app-modal {
+    background: var(--background-primary);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal sizes */
+.app-modal-sm {
+    width: 100%;
+    max-width: 400px;
+}
+
+.app-modal-md {
+    width: 100%;
+    max-width: 600px;
+}
+
+.app-modal-lg {
+    width: 100%;
+    max-width: 900px;
+}
+
+.app-modal-xl {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Modal header */
+.app-modal-header {
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.app-modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.app-modal-close {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-modal-close:hover {
+    background: var(--background-tertiary);
+    color: var(--text-primary);
+}
+
+/* Modal body */
+.app-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Forms dentro de modales */
+.app-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--background-secondary);
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group small {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 8px;
+}
+
+/* ============================================================================
+   CLIENT DETAILS TABS - Sistema de tabs para detalles de cliente
+   ============================================================================ */
+
+.client-detail-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 24px;
+    padding-bottom: 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.client-detail-tabs::-webkit-scrollbar {
+    height: 4px;
+}
+
+.client-detail-tabs::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    position: relative;
+    margin-bottom: -2px;
+}
+
+.tab-btn svg {
+    flex-shrink: 0;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+    background: var(--background-tertiary);
+}
+
+.tab-btn.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+.client-detail-content {
+    min-height: 400px;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.2s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Client info grid */
+.client-info-grid {
+    background: var(--background-secondary);
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.client-info-grid dl {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px 24px;
+    margin: 0;
+}
+
+.client-info-grid dt {
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.client-info-grid dd {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+/* Data table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--background-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.data-table thead {
+    background: var(--background-tertiary);
+}
+
+.data-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-table td {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+.data-table tbody tr:hover {
+    background: var(--background-tertiary);
+}
+
+/* Files grid */
+.files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.file-card {
+    background: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.file-card:hover {
+    background: var(--background-tertiary);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.file-card svg {
+    color: var(--accent-color);
+    margin-bottom: 12px;
+}
+
+.file-card p {
+    margin: 8px 0 4px;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+.file-card small {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+/* ============================================================================
+   POLICY DETAILS - Detalles de póliza
+   ============================================================================ */
+
+.policy-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.detail-section {
+    background: var(--background-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.detail-section h3 {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 8px;
+}
+
+.detail-section dl {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.detail-section dt {
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    margin-bottom: 4px;
+}
+
+.detail-section dd {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+.detail-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-section ul li {
+    padding: 8px 0;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.detail-section ul li::before {
+    content: '•';
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    .app-modal-overlay {
+        padding: 10px;
+    }
+
+    .app-modal {
+        max-height: 95vh;
+    }
+
+    .app-modal-header {
+        padding: 16px;
+    }
+
+    .app-modal-title {
+        font-size: 1.25rem;
+    }
+
+    .app-modal-body {
+        padding: 16px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .client-info-grid dl {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .client-info-grid dt {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .policy-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .files-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .data-table {
+        font-size: 0.875rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 10px 12px;
+    }
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+    .app-modal-overlay {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .app-modal {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+}

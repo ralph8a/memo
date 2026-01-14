@@ -17,6 +17,7 @@ import '../../styles/dashboard-components.css';
 import '../../styles/chart-modals.css'; // Chart modal styles
 import '../../styles/scheduling.css'; // Calendar & scheduling styles
 import '../../styles/payments.css'; // NEW: Sistema de pagos
+import '../../styles/dashboard-actions.css'; // NEW: Acciones y modales de dashboards
 import '../../styles/scroll-modal-fixes.css'; // NEW: Fixes de scroll y modales
 import '../../styles/app.css'; // Base styles
 import '../../styles/dark-forest.css'; // Theme overrides MUST load last
@@ -40,6 +41,9 @@ import * as chartModals from '../modules/chartModals.js';
 // NEW: Import payment and notification systems
 import { NotificationModal } from '../modules/notificationModal.js';
 import { PaymentAPI, PaymentScheduleComponent, PaymentNotificationsComponent, ProofReviewComponent } from '../modules/paymentIntegration.js';
+
+// NEW: Import dashboard actions - Sistema completo de acciones
+import * as dashboardActions from '../modules/dashboardActions.js';
 
 // API service and dashboard loaders - loaded dynamically when needed
 let apiService = null;
@@ -96,19 +100,23 @@ window.appHandlers = {
   handleContactSubmit,
   logout: handleLogout,
   toggleTheme,
-  // Dashboard placeholders
-  viewPolicy,
-  makePayment,
-  fileClaim,
-  updateInfo,
-  contactAgent,
-  downloadPaymentHistory,
+  // Dashboard actions - NUEVAS ACCIONES CONECTADAS
+  ...dashboardActions,
+  // Dashboard placeholders (legacy - algunos serán reemplazados por dashboardActions)
+  viewPolicy: dashboardActions.viewPolicy,
+  makePayment: dashboardActions.makePayment,
+  fileClaim: dashboardActions.fileClaim,
+  updateInfo: dashboardActions.updateInfo,
+  contactAgent: dashboardActions.contactAgent,
+  downloadPaymentHistory: dashboardActions.downloadPaymentHistory,
+  viewClientDetails: dashboardActions.viewClientDetails,
+  createQuote: dashboardActions.createQuote,
+  addClient: dashboardActions.addClient,
+  scheduleAppointment: dashboardActions.scheduleAppointment,
   openQuoteModal,
-  addNewClient,
-  viewClientDetails,
+  addNewClient: dashboardActions.addClient,
   editClient,
   processQuote,
-  createQuote,
   submitQuote,
   processRenewal,
   viewReports,
@@ -116,7 +124,6 @@ window.appHandlers = {
   viewCommissionDetails,
   showAgentRegistration,
   // Scheduling & Contacts handlers
-  scheduleAppointment,
   viewAgentDirectory,
   handleAgentContact,
   // New dashboard data loaders
@@ -231,31 +238,8 @@ function handleLogout() {
   hideLoading(200);
 }
 
-// Dashboard placeholder functions
-function viewPolicy(policyId) {
-  notify(`Mostrando detalles de póliza ${policyId}`, NOTIFICATION_TYPES.INFO);
-}
-
-function makePayment() {
-  notify('Redirigiendo a pasarela de pago...', NOTIFICATION_TYPES.INFO);
-}
-
-function fileClaim() {
-  notify('Abriendo formulario de siniestros...', NOTIFICATION_TYPES.INFO);
-}
-
-function updateInfo() {
-  notify('Abriendo formulario de actualización...', NOTIFICATION_TYPES.INFO);
-}
-
-function contactAgent() {
-  // Allow navigation to contact page when triggered from an agent action
-  window.__allowContact = true;
-  notify('Abriendo chat con agente...', NOTIFICATION_TYPES.INFO);
-  navigateTo('contact');
-  // Clear temporary flag shortly after navigation
-  setTimeout(() => { window.__allowContact = false; }, 500);
-}
+// Dashboard placeholder functions - LEGACY (ahora manejadas por dashboardActions.js)
+// Mantenidas solo para compatibilidad temporal
 
 async function refreshDashboard() {
   const user = getUser();
