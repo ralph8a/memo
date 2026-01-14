@@ -5,6 +5,14 @@
  */
 
 header('Content-Type: application/json');
+
+// Helper para unificar autenticación con JWT
+function requireAuthUser($allowedTypes = null) {
+    if ($allowedTypes) {
+        return Auth::requireUserType($allowedTypes);
+    }
+    return Auth::requireAuth();
+}
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
@@ -38,7 +46,7 @@ try {
         
         case 'get-schedule':
             // GET /payment-api.php/get-schedule/{policy_id}
-            requireAuth();
+            $user = requireAuthUser();
             $policyId = $pathParts[2] ?? null;
             
             if (!$policyId) {
@@ -46,8 +54,8 @@ try {
             }
             
             // Validar que el cliente tenga acceso a esta póliza
-            $userRole = $_SESSION['user_role'] ?? null;
-            $userId = $_SESSION['user_id'] ?? null;
+            $userRole = $user['user_type'] ?? null;
+            $userId = $user['user_id'] ?? null;
             
             if ($userRole === 'client') {
                 // Verificar ownership
@@ -67,7 +75,7 @@ try {
             
         case 'upload-proof':
             // POST /payment-api.php/upload-proof
-            requireAuth();
+            $user = requireAuthUser();
             
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 sendError('Método no permitido', 405);
@@ -75,7 +83,7 @@ try {
             
             $scheduleId = $_POST['schedule_id'] ?? null;
             $policyId = $_POST['policy_id'] ?? null;
-            $clientId = $_SESSION['user_id'];
+            $clientId = $user['user_id'];
             
             if (!$scheduleId || !$policyId || !isset($_FILES['proof_file'])) {
                 sendError('Datos incompletos', 400);
@@ -103,9 +111,9 @@ try {
             
         case 'get-notifications':
             // GET /payment-api.php/get-notifications
-            requireAuth();
+            $user = requireAuthUser();
             
-            $clientId = $_SESSION['user_id'];
+            $clientId = $user['user_id'] ?? null;
             $limit = $_GET['limit'] ?? 20;
             
             $notifications = $paymentService->getClientNotifications($clientId, $limit);
@@ -118,12 +126,12 @@ try {
             
         case 'download-file':
             // GET /payment-api.php/download-file/{type}/{id}
-            requireAuth();
+            $user = requireAuthUser();
             
             $fileType = $pathParts[2] ?? null; // 'proof' o 'invoice'
             $fileId = $pathParts[3] ?? null;
-            $userId = $_SESSION['user_id'];
-            $userType = $_SESSION['user_role'];
+            $userId = $user['user_id'] ?? null;
+            $userType = $user['user_type'] ?? null;
             
             if (!$fileType || !$fileId) {
                 sendError('Parámetros inválidos', 400);
@@ -150,7 +158,7 @@ try {
         case 'upload-policy':
             // POST /payment-api.php/upload-policy
             // Agente sube documento de póliza, se extrae info automáticamente
-            requireAuth(['agent']);
+            $user = requireAuthUser(['agent']);
             
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 sendError('Método no permitido', 405);
@@ -160,7 +168,7 @@ try {
                 sendError('Archivo de póliza requerido', 400);
             }
             
-            $agentId = $_SESSION['user_id'];
+            $agentId = $user['user_id'];
             $clientId = $_POST['client_id'] ?? null;
             
             if (!$clientId) {
@@ -311,7 +319,7 @@ try {
         case 'generate-schedule':
             // POST /payment-api.php/generate-schedule
             // Método manual (fallback si el análisis automático falla)
-            requireAuth(['agent']);
+            requireAuthUser(['agent']);
             
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 sendError('Método no permitido', 405);
@@ -345,9 +353,9 @@ try {
             
         case 'get-pending-reviews':
             // GET /payment-api.php/get-pending-reviews
-            requireAuth(['agent']);
+            $user = requireAuthUser(['agent']);
             
-            $agentId = $_SESSION['user_id'];
+            $agentId = $user['user_id'] ?? null;
             $result = $paymentService->getPendingProofReviews($agentId);
             
             sendResponse($result);
@@ -355,7 +363,7 @@ try {
             
         case 'review-proof':
             // POST /payment-api.php/review-proof
-            requireAuth(['agent']);
+            $user = requireAuthUser(['agent']);
             
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 sendError('Método no permitido', 405);
@@ -366,7 +374,7 @@ try {
             $proofId = $data['proof_id'] ?? null;
             $approved = $data['approved'] ?? null;
             $notes = $data['notes'] ?? null;
-            $agentId = $_SESSION['user_id'];
+            $agentId = $user['user_id'];
             
             if ($proofId === null || $approved === null) {
                 sendError('Datos incompletos', 400);
@@ -384,7 +392,7 @@ try {
             
         case 'upload-invoice':
             // POST /payment-api.php/upload-invoice
-            requireAuth(['agent']);
+            $user = requireAuthUser(['agent']);
             
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 sendError('Método no permitido', 405);
@@ -393,7 +401,7 @@ try {
             $scheduleId = $_POST['schedule_id'] ?? null;
             $policyId = $_POST['policy_id'] ?? null;
             $invoiceNumber = $_POST['invoice_number'] ?? null;
-            $agentId = $_SESSION['user_id'];
+            $agentId = $user['user_id'] ?? null;
             
             if (!$scheduleId || !$policyId || !$invoiceNumber || !isset($_FILES['invoice_file'])) {
                 sendError('Datos incompletos', 400);
@@ -412,7 +420,7 @@ try {
             
         case 'update-status':
             // POST /payment-api.php/update-status
-            requireAuth(['agent']);
+            $user = requireAuthUser(['agent']);
             
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 sendError('Método no permitido', 405);
@@ -423,7 +431,7 @@ try {
             $scheduleId = $data['schedule_id'] ?? null;
             $newStatus = $data['status'] ?? null;
             $notes = $data['notes'] ?? null;
-            $agentId = $_SESSION['user_id'];
+            $agentId = $user['user_id'] ?? null;
             
             if (!$scheduleId || !$newStatus) {
                 sendError('Datos incompletos', 400);
@@ -450,7 +458,7 @@ try {
             } else {
                 sendError('Error al actualizar estado', 500);
             }
-            break;
+                $agentId = $user['user_id'];
             
         default:
             sendError('Endpoint no encontrado', 404);

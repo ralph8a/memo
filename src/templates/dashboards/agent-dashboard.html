@@ -675,21 +675,38 @@
       });
     }
 
-    // Initialize Payment Proof Review Component
+    // Initialize Payment Proof Review Component SOLO si hay sesión de agente
     if (typeof ProofReviewComponent !== 'undefined') {
+      // Verificar que haya usuario logueado como agente
+      const userSession = sessionStorage.getItem('user');
+      if (!userSession) {
+        console.log('No agent session - skipping proof review initialization');
+        return;
+      }
+
+      const user = JSON.parse(userSession);
+      if (user.type !== 'agent') {
+        console.log('User is not an agent - skipping proof review initialization');
+        return;
+      }
+
       const proofContainer = document.getElementById('proof-review-container');
       if (proofContainer) {
-        const proofReview = new ProofReviewComponent(proofContainer);
-        proofReview.render();
-        
-        // Update badge with count
-        proofReview.onCountUpdate = (count) => {
-          const badge = document.getElementById('proof-count-badge');
-          if (badge) badge.textContent = count;
-        };
-        
-        // Auto-refresh every 30 seconds
-        setInterval(() => proofReview.render(), 30000);
+        try {
+          const proofReview = new ProofReviewComponent('proof-review-container');
+          proofReview.render();
+          
+          // Update badge with count
+          proofReview.onCountUpdate = (count) => {
+            const badge = document.getElementById('proof-count-badge');
+            if (badge) badge.textContent = count;
+          };
+          
+          // Auto-refresh every 30 seconds
+          setInterval(() => proofReview.render(), 30000);
+        } catch (error) {
+          console.error('Error initializing proof review:', error);
+        }
       }
     } else {
       console.warn('ProofReviewComponent not loaded. Make sure paymentIntegration.js is included.');

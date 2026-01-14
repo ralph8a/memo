@@ -107,7 +107,6 @@ window.appHandlers = {
   makePayment: dashboardActions.makePayment,
   fileClaim: dashboardActions.fileClaim,
   updateInfo: dashboardActions.updateInfo,
-  contactAgent: dashboardActions.contactAgent,
   downloadPaymentHistory: dashboardActions.downloadPaymentHistory,
   viewClientDetails: dashboardActions.viewClientDetails,
   createQuote: dashboardActions.createQuote,
@@ -144,12 +143,17 @@ window.toggleFooter = toggleFooter;
 window.handleContactSubmit = handleContactSubmit;
 window.handleClientLogin = handleClientLogin;
 window.handleAgentLogin = handleAgentLogin;
-window.contactAgent = contactAgent;
+window.contactAgent = dashboardActions.contactAgent;
 window.toggleTheme = toggleTheme;
 window.submitQuote = submitQuote;
 window.logout = handleLogout;
 window.scheduleAppointment = scheduleAppointment;
 window.viewAgentDirectory = viewAgentDirectory;
+window.makePayment = dashboardActions.makePayment;
+window.downloadPaymentHistory = dashboardActions.downloadPaymentHistory;
+window.updateInfo = dashboardActions.updateInfo;
+window.viewPolicy = dashboardActions.viewPolicy;
+window.fileClaim = dashboardActions.fileClaim;
 // Expose notification helper for quick console testing / legacy inline calls
 window.showNotification = showNotification;
 

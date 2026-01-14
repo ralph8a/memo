@@ -9,6 +9,7 @@ require_once 'config.php';
 require_once 'database.php';
 require_once 'policy-analyzer.php';
 require_once 'email-service.php';
+require_once 'payment-schedule-generator.php';
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -24,11 +25,13 @@ class ClientFromPolicyService {
     private $db;
     private $analyzer;
     private $emailService;
+    private $scheduleGenerator;
     
     public function __construct() {
         $this->db = Database::getInstance()->getConnection();
         $this->analyzer = new PolicyAnalyzer();
         $this->emailService = new EmailService();
+        $this->scheduleGenerator = new PaymentScheduleGenerator();
     }
     
     /**
@@ -315,7 +318,20 @@ class ClientFromPolicyService {
             $renewalDate
         ]);
         
-        return $this->db->lastInsertId();
+        $policyId = $this->db->lastInsertId();
+        
+        // GENERAR CALENDARIO DE PAGOS AUTOMÁTICAMENTE
+        $scheduleResult = $this->scheduleGenerator->generateSchedule([
+            'total_premium' => $data['total_premium'],
+            'payment_frequency' => $data['payment_frequency'] ?? 12,
+            'start_date' => $startDate
+        ], $policyId, $this->db);
+        
+        if (!$scheduleResult['success']) {
+            error_log("Error generando calendario de pagos para póliza $policyId: " . $scheduleResult['error']);
+        }
+        
+        return $policyId;
     }
     
     /**

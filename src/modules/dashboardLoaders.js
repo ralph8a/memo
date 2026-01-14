@@ -382,7 +382,9 @@ function updateClientStats(stats) {
 
 function renderClientPolicies(policies) {
     const container = document.querySelector('.policies-list');
-    if (!container || !policies || policies.length === 0) {
+    if (!container) return;
+
+    if (!policies || policies.length === 0) {
         container.innerHTML = '<p class="empty-state">No tienes pólizas activas</p>';
         return;
     }
@@ -396,28 +398,54 @@ function renderClientPolicies(policies) {
         'other': '📄'
     };
 
-    const html = policies.map(policy => `
-    <div class="policy-item" data-policy-id="${policy.id}">
-      <div class="policy-icon">${policyIcons[policy.policy_type] || '📄'}</div>
-      <div class="policy-info">
-        <h4>Seguro de ${getPolicyTypeName(policy.policy_type)}</h4>
-        <p>Póliza #${policy.policy_number}</p>
-        <div class="policy-meta">
-          <span class="badge badge-${policy.status === 'active' ? 'success' : 'warning'}">
-            ${policy.status}
-          </span>
-          <span>Vence: ${new Date(policy.end_date || policy.renewal_date).toLocaleDateString()}</span>
-        </div>
-      </div>
-      <div class="policy-actions">
-        <button class="btn btn-sm btn-outline" onclick="window.appHandlers.viewPolicy('${policy.id}')">
-          Ver Detalles
-        </button>
-      </div>
-    </div>
-  `).join('');
+    // Normaliza claves del backend (type vs policy_type)
+    const html = policies.map(policy => {
+        const policyType = policy.policy_type || policy.type || 'other';
+        const endDate = policy.end_date || policy.renewal_date;
+        const status = (policy.status || 'active').toLowerCase();
+        return `
+                <div class="policy-item" data-policy-id="${policy.id}" data-policy-number="${policy.policy_number}">
+                    <div class="policy-icon">${policyIcons[policyType] || '📄'}</div>
+                    <div class="policy-info">
+                        <h4>Seguro de ${getPolicyTypeName(policyType)}</h4>
+                        <p>Póliza #${policy.policy_number}</p>
+                        <div class="policy-meta">
+                            <span class="badge badge-${status === 'active' ? 'success' : status === 'expired' ? 'danger' : 'warning'}">
+                                ${status}
+                            </span>
+                            <span>${endDate ? 'Vence: ' + new Date(endDate).toLocaleDateString() : ''}</span>
+                        </div>
+                    </div>
+                    <div class="policy-actions">
+                        <button class="btn btn-sm btn-outline" data-action="view-policy" data-policy-id="${policy.id}">
+                            Ver Detalles
+                        </button>
+                    </div>
+                </div>`;
+    }).join('');
 
     container.innerHTML = html;
+
+    // Bind clicks a cada póliza
+    container.querySelectorAll('[data-action="view-policy"]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const policyId = e.currentTarget.dataset.policyId;
+            if (window.appHandlers?.viewPolicy) {
+                window.appHandlers.viewPolicy(policyId);
+            }
+        });
+    });
+
+    // Permitir click en todo el item
+    container.querySelectorAll('.policy-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            if (e.target.closest('button')) return;
+            const policyId = item.dataset.policyId;
+            if (window.appHandlers?.viewPolicy) {
+                window.appHandlers.viewPolicy(policyId);
+            }
+        });
+    });
 }
 
 function renderClientClaims(claims) {
@@ -459,7 +487,7 @@ function renderPaymentHistory(payments) {
     const html = payments.slice(0, 10).map(payment => `
     <div class="payment-item" data-payment-id="${payment.id}">
       <div class="payment-info">
-        <p class="payment-date">${new Date(payment.payment_date).toLocaleDateString()}</p>
+                <p class="payment-date">${new Date(payment.payment_date || payment.date).toLocaleDateString()}</p>
         <p class="payment-amount">$${parseFloat(payment.amount).toFixed(2)}</p>
         <span class="badge badge-${payment.status === 'completed' ? 'success' : 'warning'}">
           ${payment.status}

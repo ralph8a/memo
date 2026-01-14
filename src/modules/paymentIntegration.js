@@ -197,10 +197,31 @@ class PaymentScheduleComponent {
     constructor(policyId, containerId) {
         this.policyId = policyId;
         this.container = document.getElementById(containerId);
+
+        if (!this.container) {
+            console.warn(`Payment schedule container '${containerId}' not found`);
+        }
+
+        if (!this.policyId) {
+            console.warn('Payment schedule initialized without policy_id');
+        }
+
         this.api = new PaymentAPI();
     }
 
     async render() {
+        // Verificar que el container exista
+        if (!this.container) {
+            console.warn('Cannot render payment schedule: container is null');
+            return;
+        }
+
+        // Verificar que haya policy_id
+        if (!this.policyId) {
+            this.container.innerHTML = '<div class="empty-state">No hay póliza seleccionada</div>';
+            return;
+        }
+
         try {
             const response = await this.api.getPaymentSchedule(this.policyId);
             const schedules = response.schedules;
@@ -372,10 +393,21 @@ class PaymentScheduleComponent {
 class PaymentNotificationsComponent {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
+
+        if (!this.container) {
+            console.warn(`Payment notifications container '${containerId}' not found`);
+        }
+
         this.api = new PaymentAPI();
     }
 
     async render() {
+        // Verificar que el container exista
+        if (!this.container) {
+            console.warn('Cannot render notifications: container is null');
+            return;
+        }
+
         try {
             const response = await this.api.getNotifications(10);
             const notifications = response.notifications;
@@ -467,13 +499,30 @@ class PaymentNotificationsComponent {
 class ProofReviewComponent {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
+
+        if (!this.container) {
+            console.warn(`Proof review container '${containerId}' not found`);
+        }
+
         this.api = new PaymentAPI();
+        this.onCountUpdate = null;
     }
 
     async render() {
+        // Verificar que el container exista
+        if (!this.container) {
+            console.warn('Cannot render proof reviews: container is null');
+            return;
+        }
+
         try {
             const response = await this.api.getPendingProofReviews();
             const proofs = response.proofs;
+
+            // Notificar el contador al callback si existe
+            if (typeof this.onCountUpdate === 'function') {
+                this.onCountUpdate(proofs.length);
+            }
 
             if (proofs.length === 0) {
                 this.container.innerHTML = `

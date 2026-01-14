@@ -103,6 +103,7 @@ class PolicyAnalyzer {
             'end_date' => null,
             'total_premium' => null,
             'payment_frequency' => null,
+            'payment_due_day' => null,
             'coverage_type' => null
         ];
         
@@ -137,6 +138,13 @@ class PolicyAnalyzer {
             'payment_frequency' => [
                 '/Forma de Pago:?\s*(Anual|Semestral|Trimestral|Mensual)/i',
                 '/Periodicidad:?\s*(Anual|Semestral|Trimestral|Mensual)/i'
+            ],
+            'payment_due_day' => [
+                '/Vencimiento:?\s*d[íi]a\s*(\d{1,2})/i',
+                '/Pago el d[íi]a:?\s*(\d{1,2})/i',
+                '/Cuota mensual:?\s*d[íi]a\s*(\d{1,2})/i',
+                '/Vence:?\s*d[íi]a\s*(\d{1,2})\s*de\s*cada\s*mes/i',
+                '/Fecha de pago:?\s*(\d{1,2})\s*de\s*cada\s*mes/i'
             ]
         ];
         
@@ -152,6 +160,12 @@ class PolicyAnalyzer {
                         $value = floatval($value);
                     } else if ($field === 'payment_frequency') {
                         $value = $this->normalizeFrequency($value);
+                    } else if ($field === 'payment_due_day') {
+                        $value = intval($value);
+                        // Validar día válido (1-31)
+                        if ($value < 1 || $value > 31) {
+                            $value = null;
+                        }
                     }
                     
                     $data[$field] = $value;

@@ -9,6 +9,20 @@ import { NOTIFICATION_TYPES, PAGES } from '../utils/constants.js';
 import { navigateTo } from './simpleRouter.js';
 import { setPendingQuoteType } from './quoteFlow.js';
 import { PaymentAPI } from './paymentIntegration.js';
+import { apiService, API_CONFIG } from '../api-integration.js';
+
+const POLICY_TYPE_LABELS = {
+    'auto': 'Auto',
+    'home': 'Hogar',
+    'life': 'Vida',
+    'health': 'Salud',
+    'business': 'Comercial',
+    'other': 'Otro'
+};
+
+function formatPolicyType(type) {
+    return POLICY_TYPE_LABELS[type] || type || 'Póliza';
+}
 
 // Initialize Payment API
 const paymentAPI = new PaymentAPI();
@@ -164,63 +178,91 @@ export function contactAgent() {
 /**
  * Ver detalles de póliza
  */
-export function viewPolicy(policyId = null) {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
-    <div class="app-modal app-modal-lg">
-      <div class="app-modal-header">
-        <h2 class="app-modal-title">Detalles de Póliza ${policyId || 'POL-001'}</h2>
-        <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-      <div class="app-modal-body">
-        <div class="policy-details-grid">
-          <div class="detail-section">
-            <h3>Información General</h3>
-            <dl>
-              <dt>Número de póliza:</dt><dd>${policyId || 'POL-001'}</dd>
-              <dt>Tipo:</dt><dd>Auto</dd>
-              <dt>Estado:</dt><dd><span class="badge badge-success">Activa</span></dd>
-              <dt>Prima mensual:</dt><dd>$350.00</dd>
-            </dl>
+export async function viewPolicy(policyId = null) {
+    try {
+        if (!policyId) {
+            showNotification('Selecciona una póliza para ver detalles', NOTIFICATION_TYPES.WARNING);
+            return;
+        }
+
+        // Buscar en cache de dashboard
+        let policies = window.dashboardData?.policies || [];
+        if (!policies.length) {
+            // Cargar desde backend
+            policies = await apiService.request(API_CONFIG.ENDPOINTS.CLIENT_POLICIES, { method: 'GET' });
+            window.dashboardData = { ...(window.dashboardData || {}), policies };
+        }
+
+        const policy = policies.find(p => String(p.id) === String(policyId));
+
+        if (!policy) {
+            showNotification('No se encontró la póliza seleccionada', NOTIFICATION_TYPES.ERROR);
+            return;
+        }
+
+        const policyType = policy.policy_type || policy.type || 'other';
+        const status = (policy.status || '').toLowerCase();
+        const premium = policy.premium_amount || policy.premium || 0;
+        const coverage = policy.coverage_amount || 0;
+        const startDate = policy.start_date ? new Date(policy.start_date).toLocaleDateString() : '—';
+        const endDate = policy.end_date ? new Date(policy.end_date).toLocaleDateString() : (policy.renewal_date ? new Date(policy.renewal_date).toLocaleDateString() : '—');
+
+        const modal = document.createElement('div');
+        modal.className = 'app-modal-overlay';
+        modal.innerHTML = `
+        <div class="app-modal app-modal-lg">
+          <div class="app-modal-header">
+            <h2 class="app-modal-title">Póliza #${policy.policy_number}</h2>
+            <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
           </div>
-          <div class="detail-section">
-            <h3>Cobertura</h3>
-            <ul>
-              <li>Responsabilidad civil: $1,000,000</li>
-              <li>Daños materiales: $500,000</li>
-              <li>Robo total: Valor comercial</li>
-              <li>Gastos médicos: $100,000</li>
-            </ul>
-          </div>
-          <div class="detail-section">
-            <h3>Vehículo Asegurado</h3>
-            <dl>
-              <dt>Marca/Modelo:</dt><dd>Toyota Camry 2020</dd>
-              <dt>Placas:</dt><dd>ABC-123-XYZ</dd>
-              <dt>VIN:</dt><dd>1HGBH41JXMN109186</dd>
-            </dl>
+          <div class="app-modal-body">
+            <div class="policy-details-grid">
+              <div class="detail-section">
+                <h3>Información General</h3>
+                <dl>
+                  <dt>Tipo:</dt><dd>${formatPolicyType(policyType)}</dd>
+                  <dt>Estado:</dt><dd><span class="badge badge-${status === 'active' ? 'success' : status === 'expired' ? 'danger' : 'warning'}">${status || '—'}</span></dd>
+                  <dt>Prima mensual:</dt><dd>${premium ? `$${Number(premium).toFixed(2)}` : '—'}</dd>
+                  <dt>Vigencia:</dt><dd>${startDate} - ${endDate}</dd>
+                </dl>
+              </div>
+              <div class="detail-section">
+                <h3>Cobertura</h3>
+                <ul>
+                  <li>Cobertura: ${coverage ? `$${Number(coverage).toLocaleString()}` : '—'}</li>
+                  <li>Renovación: ${endDate}</li>
+                  <li>Agente: ${policy.agent_name || '—'} (${policy.agent_email || '—'})</li>
+                  <li>Contacto: ${policy.agent_phone || '—'}</li>
+                </ul>
+              </div>
+              <div class="detail-section">
+                <h3>Acciones</h3>
+                <p>Puedes subir comprobantes, consultar pagos o descargar documentos.</p>
+                <div class="pill-actions" style="gap:8px;">
+                  <button class="btn btn-sm" onclick="window.dashboardActions?.makePayment('${policyId}')">Subir comprobante</button>
+                  <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.downloadPaymentHistory?.()">Historial de pagos</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="form-actions">
-          <button class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cerrar</button>
-          <button class="btn btn-primary" onclick="window.dashboardActions?.makePayment('${policyId || 'POL-001'}')">Realizar pago</button>
-        </div>
-      </div>
-    </div>
-  `;
+      `;
 
-    document.body.appendChild(modal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
+        document.body.appendChild(modal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.remove();
+        });
 
-    showNotification('Detalles de póliza cargados', NOTIFICATION_TYPES.INFO);
+        showNotification('Detalles de póliza cargados', NOTIFICATION_TYPES.INFO);
+    } catch (error) {
+        console.error('Error al cargar póliza:', error);
+        showNotification('No se pudo cargar la póliza', NOTIFICATION_TYPES.ERROR);
+    }
 }
 
 /**

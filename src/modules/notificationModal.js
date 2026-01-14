@@ -2,12 +2,14 @@
  * Sistema de notificaciones con modal
  * Reemplaza el sistema de banner con un modal completo para notificaciones detalladas
  */
+import { PaymentAPI } from './paymentIntegration.js';
 
 export class NotificationModal {
     constructor() {
         this.modal = null;
         this.notifications = [];
         this.unreadCount = 0;
+        this.paymentApi = null;
         this.init();
     }
 
@@ -112,42 +114,38 @@ export class NotificationModal {
     }
 
     async loadNotifications() {
-        // En producción, esto cargará desde el backend
-        // Por ahora, mostrar notificaciones de ejemplo y del sistema de pagos
+        // En producción, esto cargará desde el backend. Si falla, caemos a demo según rol.
+        const userType = localStorage.getItem('krauser_user') ?
+            JSON.parse(localStorage.getItem('krauser_user')).type : 'client';
 
         try {
-            const userType = localStorage.getItem('krauser_user') ?
-                JSON.parse(localStorage.getItem('krauser_user')).type : 'client';
-
-            // Si existe PaymentAPI, obtener notificaciones de pagos
-            if (window.PaymentAPI) {
-                const paymentNotifications = await window.PaymentAPI.getNotifications();
-                if (paymentNotifications.success) {
-                    this.notifications = paymentNotifications.notifications.map(n => ({
-                        id: `payment-${n.id}`,
-                        type: 'payment',
-                        title: n.title,
-                        message: n.message,
-                        time: this.formatTime(n.created_at),
-                        read: n.read_at !== null,
-                        priority: n.priority,
-                        actions: this.getPaymentActions(n)
-                    }));
-                }
+            if (!this.paymentApi) {
+                this.paymentApi = new PaymentAPI();
             }
 
-            // Agregar notificaciones de ejemplo si no hay del sistema
-            if (this.notifications.length === 0) {
-                this.notifications = this.getDemoNotifications(userType);
+            const paymentNotifications = await this.paymentApi.getNotifications();
+            if (paymentNotifications?.success) {
+                this.notifications = paymentNotifications.notifications.map(n => ({
+                    id: `payment-${n.id}`,
+                    type: 'payment',
+                    title: n.title,
+                    message: n.message,
+                    time: this.formatTime(n.created_at),
+                    read: n.read_at !== null,
+                    priority: n.priority,
+                    actions: this.getPaymentActions(n)
+                }));
             }
-
-            this.renderNotifications();
-            this.updateFilterCounts();
         } catch (error) {
             console.error('Error loading notifications:', error);
-            this.notifications = this.getDemoNotifications('client');
-            this.renderNotifications();
         }
+
+        if (this.notifications.length === 0) {
+            this.notifications = this.getDemoNotifications(userType);
+        }
+
+        this.renderNotifications();
+        this.updateFilterCounts();
     }
 
     getDemoNotifications(userType) {
@@ -393,9 +391,9 @@ export class NotificationModal {
             this.renderNotifications();
 
             // Si es del sistema de pagos, marcar en backend
-            if (notificationId.startsWith('payment-') && window.PaymentAPI) {
+            if (notificationId.startsWith('payment-') && this.paymentApi?.markNotificationAsRead) {
                 const id = notificationId.replace('payment-', '');
-                window.PaymentAPI.markNotificationAsRead(id);
+                this.paymentApi.markNotificationAsRead(id);
             }
         }
     }
@@ -405,8 +403,8 @@ export class NotificationModal {
         this.renderNotifications();
 
         // Marcar todas en backend si es necesario
-        if (window.PaymentAPI) {
-            window.PaymentAPI.markAllNotificationsAsRead();
+        if (this.paymentApi?.markAllNotificationsAsRead) {
+            this.paymentApi.markAllNotificationsAsRead();
         }
     }
 
@@ -430,8 +428,8 @@ export class NotificationModal {
 
             case 'viewPolicy':
                 // Ver detalles de póliza
-                if (window.appHandlers?.viewPolicyDetails) {
-                    window.appHandlers.viewPolicyDetails(data.policyId);
+                if (window.appHandlers?.viewPolicy) {
+                    window.appHandlers.viewPolicy(data.policyId);
                 }
                 break;
 

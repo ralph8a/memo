@@ -1,14 +1,23 @@
 -- Insert test data for Krause Insurance Dashboard
 -- Run this after database-schema.sql
 
--- Ensure we have users (client id=9, agent id=2)
--- These should already exist from previous scripts
+-- Ensure Maria (testing client) exists (id=9 preferred)
+INSERT INTO users (id, email, password_hash, user_type, first_name, last_name, phone, status)
+VALUES (9, 'maria.garcia@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'client', 'María', 'García', '+1-555-000-1234', 'active')
+ON DUPLICATE KEY UPDATE email = VALUES(email), user_type = 'client', status = 'active';
+
+-- Ensure default agent exists (id=2) for assignment
+INSERT INTO users (id, email, password_hash, user_type, first_name, last_name, phone, status)
+VALUES (2, 'agent@ksinsurancee.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'agent', 'Agente', 'Krause', '+1-555-000-2000', 'active')
+ON DUPLICATE KEY UPDATE email = VALUES(email), user_type = 'agent', status = 'active';
 
 -- Insert sample policies for client maria.garcia@example.com (id=9)
 INSERT INTO policies (policy_number, client_id, agent_id, policy_type, status, premium_amount, coverage_amount, start_date, end_date, renewal_date) VALUES
 ('POL-2024-001', 9, 2, 'auto', 'active', 125.50, 50000.00, '2024-01-15', '2025-01-15', '2025-01-15'),
 ('POL-2024-002', 9, 2, 'home', 'active', 89.99, 250000.00, '2024-03-01', '2025-03-01', '2025-03-01'),
-('POL-2024-003', 9, 2, 'life', 'active', 75.00, 100000.00, '2024-06-10', '2025-06-10', '2025-06-10')
+('POL-2024-003', 9, 2, 'life', 'active', 75.00, 100000.00, '2024-06-10', '2025-06-10', '2025-06-10'),
+('POL-2025-004', 9, 2, 'auto', 'active', 132.40, 60000.00, '2025-02-01', '2026-02-01', '2026-02-01'),
+('POL-2025-005', 9, 2, 'home', 'active', 95.10, 275000.00, '2025-05-15', '2026-05-15', '2026-05-15')
 ON DUPLICATE KEY UPDATE policy_number=policy_number;
 
 -- Insert sample claims for the client
