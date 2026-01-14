@@ -60,7 +60,7 @@ html[data-theme="dark-forest"] {
     width: 100vw;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /* SCROLL UNIVERSAL: overflow-y manejado por scroll-modal-fixes.css */
     display: flex;
     flex-direction: column;
 }
@@ -86,12 +86,11 @@ html[data-theme="dark-forest"] .dashboard-section {
     max-width: 100vw;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */
 }
 
 .dashboard-section .dashboard-main-wrapper {
-    height: 100%;
-    overflow: hidden;
+    /* SCROLL UNIVERSAL: height y overflow manejados por scroll-modal-fixes.css */
     min-width: 0;
     width: 100%;
 }
@@ -174,17 +173,16 @@ body[data-page="admin-dashboard"] .navbar-header {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
+    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */
+    overflow: visible;
+    height: auto;
     padding: 0 12px 12px 12px;
-    scroll-behavior: smooth;
 }
 
 /* Scroll collapse behavior:
    When user scrolls down past threshold (80px), hero-surface collapses.
    Controlled by scrollCollapse.js which adds/removes COLLAPSE_CLASS.
-   Target: .dashboard-stage (this container handles all scrolling)
+   Target: .dashboard-section (scroll universal)
 */
 
 .stage-main {
@@ -200,18 +198,16 @@ body[data-page="admin-dashboard"] .navbar-header {
 
 /* Slim Sidebar Navigation */
 .dashboard-section .dashboard-sidebar {
-    position: sticky;
-    top: 0;
+    /* SCROLL UNIVERSAL: No sticky, no overflow */
     width: var(--sidebar-width);
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     padding: 0;
 }
 
 .dashboard-section .dashboard-sidebar .sidebar-surface {
-    height: 100%;
+    /* SCROLL UNIVERSAL: height auto */
+    height: auto;
 }
 
 .sidebar-stack {
@@ -251,9 +247,9 @@ body[data-page="admin-dashboard"] .navbar-header {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     padding: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
+    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */
+    overflow: visible;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -987,22 +983,17 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 }
 
 .dashboard-rail.right-rail {
-    position: sticky;
-    top: 0;
+    /* SCROLL UNIVERSAL: No sticky, no overflow */
     display: flex;
     flex-direction: column;
     gap: 12px;
     padding: 12px 12px 12px 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100vh;
-    max-height: 100vh;
+    /* overflow manejado por scroll-modal-fixes.css */
 }
 
 .mimic-col.side-left,
 .mimic-col.side-right {
-    position: sticky;
-    top: 12px;
+    /* SCROLL UNIVERSAL: No sticky */
 }
 
 .mimic-wrap {

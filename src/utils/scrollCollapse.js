@@ -1,6 +1,7 @@
 /**
  * Scroll Collapse Handler for Dashboard Surfaces
- * Collapses hero-surface and dashboard-card elements when scrolling down
+ * Compatible con estrategia de SCROLL UNIVERSAL
+ * Escucha scroll en .dashboard-section (único scroll)
  */
 
 let lastScrollY = 0;
@@ -9,8 +10,10 @@ const COLLAPSE_CLASS = 'scrolled-collapsed';
 let scrollHandler = null;
 
 function initScrollCollapse() {
-    const mainWrapper = document.querySelector('.dashboard-stage');
-    if (!mainWrapper) {
+    // SCROLL UNIVERSAL: Escuchar en dashboard-section
+    const scrollContainer = document.querySelector('.dashboard-section');
+
+    if (!scrollContainer) {
         // Reintentar después de un delay si no existe aún
         setTimeout(initScrollCollapse, 200);
         return;
@@ -19,15 +22,18 @@ function initScrollCollapse() {
     const heroSurface = document.querySelector('.hero-surface');
     const dashboardCards = document.querySelectorAll('.dashboard-card, .stat-card');
 
-    if (!heroSurface && dashboardCards.length === 0) return;
+    if (!heroSurface && dashboardCards.length === 0) {
+        console.warn('[scrollCollapse] No hay elementos para colapsar');
+        return;
+    }
 
     // Remover listener anterior si existe
     if (scrollHandler) {
-        mainWrapper.removeEventListener('scroll', scrollHandler);
+        scrollContainer.removeEventListener('scroll', scrollHandler);
     }
 
     scrollHandler = () => {
-        const currentScrollY = mainWrapper.scrollTop;
+        const currentScrollY = scrollContainer.scrollTop;
         const isScrollingDown = currentScrollY > lastScrollY;
         const hasScrolledEnough = currentScrollY > SCROLL_THRESHOLD;
 
@@ -52,7 +58,9 @@ function initScrollCollapse() {
         lastScrollY = currentScrollY;
     };
 
-    mainWrapper.addEventListener('scroll', scrollHandler, { passive: true });
+    scrollContainer.addEventListener('scroll', scrollHandler, { passive: true });
+
+    console.log('[scrollCollapse] Inicializado en .dashboard-section (scroll universal)');
 }
 
 export { initScrollCollapse };

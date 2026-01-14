@@ -1,126 +1,178 @@
 /**
- * Estilos para estandarizar scroll y modales
- * Soluciona inconsistencias entre dashboards y mejora posicionamiento de modales
+ * Estilos para scroll universal y modales
+ * ESTRATEGIA: Un solo scroll en .dashboard-section
+ * Todos los elementos internos se adaptan al contenido más largo
  */
 
-/* ========== SCROLL STANDARDIZATION ========== */
+/* ========== SCROLL UNIVERSAL ========== */
 
-/* Asegurar que el dashboard-section tenga scroll consistente */
+/**
+ * CONTENEDOR PRINCIPAL - ÚNICO CON SCROLL
+ * Este es el ÚNICO elemento que tiene overflow: auto
+ * Todo el contenido (sidebar, main, rail) se mueve junto
+ */
 .dashboard-section {
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    overflow-y: auto;
+    /* ← ÚNICO SCROLL AQUÍ */
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* El layout debe expandirse pero no hacer overflow */
+/**
+ * LAYOUT - Grid que se expande según contenido
+ * El grid tiene altura mínima de viewport pero puede crecer
+ */
 .dashboard-section .dashboard-layout {
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);
+    grid-template-rows: 1fr;
+    /* Una sola fila de altura automática */
+    gap: 0;
+    width: 100%;
+    overflow: visible;
+    /* Sin scroll aquí */
 }
 
-/* El wrapper principal debe manejar scroll vertical */
-.dashboard-section .dashboard-main-wrapper {
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    /* Smooth scroll en iOS */
-    scroll-behavior: smooth;
-}
-
-/* Dashboard stage y body deben expandirse naturalmente */
-.dashboard-section .dashboard-stage {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.dashboard-section .dashboard-body {
-    flex: 1;
-    min-height: 0;
-}
-
-/* Sidebar debe tener su propio scroll independiente */
-.dashboard-section .dashboard-sidebar {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.dashboard-section .dashboard-sidebar .sidebar-surface {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-}
-
-/* Rail lateral debe tener scroll independiente si es necesario */
+/**
+ * COLUMNAS - Sin scroll individual, altura automática
+ * Cada columna crece según su contenido
+ */
+.dashboard-section .dashboard-sidebar,
+.dashboard-section .dashboard-main-wrapper,
 .dashboard-section .dashboard-rail {
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    overflow: visible;
+    /* SIN scroll individual */
+    height: auto;
+    /* Altura según contenido */
+    min-height: 100vh;
+    /* Mínimo altura de viewport */
 }
 
-/* Evitar doble scrollbar en contenedores internos */
-.dashboard-section .main-surface,
-.dashboard-section .mimic-wrap {
+/**
+ * SUPERFICIES INTERNAS - Sin scroll, se expanden naturalmente
+ */
+.dashboard-section .sidebar-surface,
+.dashboard-section .dashboard-stage,
+.dashboard-section .rail-content {
+    height: auto;
     overflow: visible;
 }
 
-/* Custom scrollbar styling para mejor apariencia */
-.dashboard-main-wrapper::-webkit-scrollbar,
-.sidebar-surface::-webkit-scrollbar,
-.dashboard-rail::-webkit-scrollbar {
-    width: 8px;
+/**
+ * SIDEBAR STACK - Crece con contenido
+ */
+.dashboard-section .sidebar-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: visible;
 }
 
-.dashboard-main-wrapper::-webkit-scrollbar-track,
-.sidebar-surface::-webkit-scrollbar-track,
-.dashboard-rail::-webkit-scrollbar-track {
+/**
+ * CASOS ESPECIALES - Widgets con límite de altura
+ * Solo estos tienen scroll interno si exceden max-height
+ */
+.sidebar-widget-group,
+.recent-clients-pills,
+.rail-activity-list {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Scrollbar para widgets limitados */
+.sidebar-widget-group::-webkit-scrollbar,
+.recent-clients-pills::-webkit-scrollbar,
+.rail-activity-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-widget-group::-webkit-scrollbar-track,
+.recent-clients-pills::-webkit-scrollbar-track,
+.rail-activity-list::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.dashboard-main-wrapper::-webkit-scrollbar-thumb,
-.sidebar-surface::-webkit-scrollbar-thumb,
-.dashboard-rail::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
+.sidebar-widget-group::-webkit-scrollbar-thumb,
+.recent-clients-pills::-webkit-scrollbar-thumb,
+.rail-activity-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+}
+
+body.dark-mode .sidebar-widget-group::-webkit-scrollbar-thumb,
+body.dark-mode .recent-clients-pills::-webkit-scrollbar-thumb,
+body.dark-mode .rail-activity-list::-webkit-scrollbar-thumb,
+body.dark-forest .sidebar-widget-group::-webkit-scrollbar-thumb,
+body.dark-forest .recent-clients-pills::-webkit-scrollbar-thumb,
+body.dark-forest .rail-activity-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/**
+ * SCROLLBAR PRINCIPAL - Dashboard Section
+ * Scrollbar estilizada para el scroll universal
+ */
+.dashboard-section::-webkit-scrollbar {
+    width: 10px;
+}
+
+.dashboard-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dashboard-section::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
     border: 2px solid transparent;
     background-clip: padding-box;
 }
 
-.dashboard-main-wrapper::-webkit-scrollbar-thumb:hover,
-.sidebar-surface::-webkit-scrollbar-thumb:hover,
-.dashboard-rail::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3);
+.dashboard-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.35);
     background-clip: padding-box;
 }
 
-/* Dark mode scrollbar */
-body.dark-mode .dashboard-main-wrapper::-webkit-scrollbar-thumb,
-body.dark-mode .sidebar-surface::-webkit-scrollbar-thumb,
-body.dark-mode .dashboard-rail::-webkit-scrollbar-thumb,
-body.dark-forest .dashboard-main-wrapper::-webkit-scrollbar-thumb,
-body.dark-forest .sidebar-surface::-webkit-scrollbar-thumb,
-body.dark-forest .dashboard-rail::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+/* Dark mode scrollbar principal */
+body.dark-mode .dashboard-section::-webkit-scrollbar-thumb,
+body.dark-forest .dashboard-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
     background-clip: padding-box;
 }
 
-body.dark-mode .dashboard-main-wrapper::-webkit-scrollbar-thumb:hover,
-body.dark-mode .sidebar-surface::-webkit-scrollbar-thumb:hover,
-body.dark-mode .dashboard-rail::-webkit-scrollbar-thumb:hover,
-body.dark-forest .dashboard-main-wrapper::-webkit-scrollbar-thumb:hover,
-body.dark-forest .sidebar-surface::-webkit-scrollbar-thumb:hover,
-body.dark-forest .dashboard-rail::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+body.dark-mode .dashboard-section::-webkit-scrollbar-thumb:hover,
+body.dark-forest .dashboard-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.35);
     background-clip: padding-box;
+}
+
+/**
+ * CONTENT PADDING - Espacio al final para mejor UX
+ */
+.dashboard-section .dashboard-layout::after {
+    content: '';
+    display: block;
+    height: 40px;
+    grid-column: 1 / -1;
+}
+
+/**
+ * SCROLL PADDING - Para anchor links y smooth scroll
+ */
+.dashboard-section {
+    scroll-padding-top: 20px;
+    scroll-padding-bottom: 20px;
+}
+
+.content-card,
+.chart-card,
+.stat-card {
+    scroll-margin-top: 20px;
 }
 
 /* ========== MODAL STANDARDIZATION ========== */
