@@ -1,0 +1,14 @@
+# WinSCP Script para configurar cronjobs
+# Ejecutar: winscp.com /script=setup-cronjobs-winscp.txt
+
+option batch on
+option confirm off
+
+open sftp://nhs13h5k0x0j:Inspiron1999%23@208.109.62.140:22 -privatekey="C:\react\nhs13h5k0x0j.ppk"
+
+# Ejecutar comandos remotos
+call mkdir -p /home/nhs13h5k0x0j/logs
+call mkdir -p /home/nhs13h5k0x0j/backups
+
+close
+exit
