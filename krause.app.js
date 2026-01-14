@@ -1248,15 +1248,18 @@ body[data-page="home"] #particles-canvas {
 body[data-page="services"] #particles-canvas,
 body[data-page="about"] #particles-canvas,
 body[data-page="contact"] #particles-canvas,
-/* Dashboards are work surfaces: keep them distraction-free */
-body[data-page="client-dashboard"] #particles-canvas,
-body[data-page="agent-dashboard"] #particles-canvas,
-body[data-page="admin-dashboard"] #particles-canvas,
-/* Auth screens also read cleaner without animated canvas behind */
+/* Auth screens read cleaner without animated canvas behind */
 body[data-page="login"] #particles-canvas,
 body[data-page="agent-login"] #particles-canvas {
   display: none;
   pointer-events: none;
+}
+
+/* Dashboards: reduce opacity for subtle ambient effect */
+body[data-page="client-dashboard"] #particles-canvas,
+body[data-page="agent-dashboard"] #particles-canvas,
+body[data-page="admin-dashboard"] #particles-canvas {
+  opacity: 0.35;
 }
 
 /* Sub Navigation */
@@ -1731,6 +1734,14 @@ body[data-page="home"] .main-content {
   padding-top: var(--subnav-height);
 }
 
+/* Dashboards sin navbar: usar todo el alto disponible sin offset del nav */
+body[data-page="client-dashboard"] .main-content,
+body[data-page="agent-dashboard"] .main-content,
+body[data-page="admin-dashboard"] .main-content {
+  top: 0;
+  padding-top: 0;
+}
+
 
 
 /* Sub Navigation */
@@ -1845,7 +1856,7 @@ body[data-page="home"] .main-content {
    
    This app.css file now contains ONLY base/global styles.
    See index.html for CSS module links.
-*/`, "",{"version":3,"sources":["webpack://./styles/app.css"],"names":[],"mappings":"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","sourcesContent":["/* Krause Insurance App - Main Stylesheet */\n/* CSS now loaded via webpack imports in EntryPointMainApp.js */\n/* All imports removed - webpack handles module order */\n\n/* Global design tokens */\n:root {\n  /* Brand palette (shared by all logo renders) */\n  --brand-maroon: #8b2348;\n  --brand-purple: #9b59b6;\n  --wine: #722f37;\n  --baby-pink: #fef5f9;\n\n  --text-dark: #1a1a1a;\n  --text-light: #4a4f5c;\n  --white: #ffffff;\n  --gray-100: #f5f5f5;\n  --gray-200: #e0e0e0;\n  --gray-300: #ccc;\n  --success: #28a745;\n  --warning: #ffc107;\n  --danger: #dc3545;\n  --info: #17a2b8;\n  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);\n  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);\n  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);\n  --gradient-start: #631832;\n  --gradient-mid: #521a38;\n  --gradient-end: #401a59;\n  /* Unified logo sizing + contrast tokens */\n  --logo-size-sm: 56px;\n  --logo-size-md: 64px;\n  --logo-size-lg: 96px;\n  --logo-contrast-primary: var(--brand-maroon);\n  --logo-contrast-ink: #0f172a;\n  --logo-contrast-on-dark: #ffffff;\n  --logo-contrast-muted: var(--theme-text-secondary);\n  /* Layout measurements to keep padding off the global background */\n  --nav-height: 90px;\n  /* header */\n  --subnav-height: 56px;\n  /* secondary navigation */\n  --footer-height: 56px;\n  /* reserve space so content doesn't go under the collapsed footer */\n  /* Acrylic/Frosted Glass Effects - Default Theme */\n  --acrylic-blur: 20px;\n  --acrylic-blur-strong: 30px;\n  --acrylic-blur-subtle: 15px;\n  --acrylic-saturate: 170%;\n  --acrylic-saturate-strong: 180%;\n  --acrylic-saturate-subtle: 150%;\n  --acrylic-bg-light: rgba(255, 255, 255, 0.08);\n  --acrylic-bg-medium: rgba(255, 255, 255, 0.12);\n  --acrylic-bg-dark: rgba(99, 24, 50, 0.15);\n  --acrylic-border-light: rgba(255, 255, 255, 0.15);\n\n  /* Footer glass tokens (theme-overridable) */\n  /* Slightly stronger by default; themes can override for more/less glass. */\n  --footer-acrylic-bg: rgba(99, 24, 50, 0.7);\n  --footer-acrylic-blur: 32px;\n  --footer-acrylic-saturate: 200%;\n\n  /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */\n  --theme-surface-bg: rgba(255, 255, 255, 0.98);\n  --theme-surface-bg-solid: #ffffff;\n  --theme-surface-border: rgba(99, 24, 50, 0.14);\n  --theme-surface-border-strong: rgba(99, 24, 50, 0.20);\n\n  /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */\n  --theme-accent-border-subtle: rgba(64, 26, 89, 0.20);\n  --theme-accent-border: rgba(64, 26, 89, 0.30);\n  --theme-accent-bg-soft: rgba(64, 26, 89, 0.18);\n  --theme-accent-shadow-soft: rgba(64, 26, 89, 0.10);\n  --theme-accent-shadow-strong: rgba(64, 26, 89, 0.30);\n  --theme-accent-color-hover: #4d216a;\n\n  /* RGBA helpers for acrylic gradients (avoid hard-coded brand rgba() in components) */\n  --theme-primary-rgba-70: rgba(99, 24, 50, 0.70);\n  --theme-secondary-rgba-70: rgba(91, 36, 43, 0.70);\n  --theme-primary-rgba-95: rgba(99, 24, 50, 0.95);\n  --theme-secondary-rgba-95: rgba(91, 36, 43, 0.95);\n\n  /* Navbar link pill background (active/hover) */\n  --theme-navlink-active-bg: rgba(99, 24, 50, 0.08);\n  /* Theme accent colors for components */\n  --theme-primary-color: var(--brand-maroon);\n  --theme-secondary-color: var(--wine);\n  --theme-accent-color: var(--brand-purple);\n  --theme-text-primary: var(--text-dark);\n  --theme-text-secondary: #4a4f5c;\n  --theme-shadow: var(--shadow);\n\n  /* Dashboard layout tokens (shared) */\n  --dashboard-padding-top-offset: 12px;\n  --dashboard-padding-x: 8px;\n  --dashboard-padding-bottom: 16px;\n  --dashboard-grid-gap: 12px;\n  --dashboard-main-gap: 12px;\n  --dashboard-main-col-min: 240px;\n  --dashboard-stat-min: 240px;\n  --dashboard-stat-gap: 12px;\n  --dashboard-stat-padding: 12px 16px;\n  --dashboard-stat-radius: 16px;\n  --dashboard-card-padding: 16px 18px;\n  --dashboard-card-header-margin: 12px;\n  --dashboard-card-header-padding: 10px;\n  --dashboard-quick-actions-gap: 8px;\n  --dashboard-container-max: 1880px;\n  --dashboard-container-max-client: 1800px;\n  --dashboard-container-max-agent: 1880px;\n  --dashboard-container-max-admin: 1920px;\n\n  /* Highlights / glows (avoid hard-coded pink/gold values in components) */\n  --theme-highlight-soft: #ffc4d6;\n  --theme-highlight-light: var(--baby-pink);\n  --theme-highlight-strong: #ffd700;\n  --theme-highlight-strong-border: rgba(255, 215, 0, 0.10);\n  --theme-highlight-glow: rgba(254, 245, 249, 0.6);\n  --theme-highlight-glow-subtle: rgba(254, 245, 249, 0.18);\n  --theme-highlight-border: rgba(254, 245, 249, 0.36);\n  --theme-primary-shadow-color: rgba(99, 24, 50, 0.35);\n\n  /* High-contrast ink (default/light uses brand ink; dark themes override) */\n  --theme-contrast-strong: var(--brand-maroon);\n\n  /* Text-on-color tokens (avoid hard-coded #fff / black in components) */\n  --theme-on-success: var(--white);\n  --theme-on-danger: var(--white);\n  /* Warning background is bright (yellow), so text should stay dark even on dark themes */\n  --theme-on-warning: rgba(0, 0, 0, 0.85);\n\n  /* Progress bar tokens */\n  --theme-progress-edge: rgba(254, 245, 249, 0.8);\n  --theme-progress-center: rgba(255, 255, 255, 0.95);\n  --theme-progress-glow-strong: rgba(254, 245, 249, 0.7);\n  --theme-progress-glow-soft: rgba(254, 245, 249, 0.4);\n\n  /* Particles overlay tuning */\n  --particles-opacity: 0.55;\n  --particles-opacity-home: 0.70;\n  /* `screen` can become effectively invisible over light UI surfaces.\n     Default theme uses `normal` for consistent visibility; dark-forest overrides this. */\n  --particles-blend-mode: normal;\n}\n\n/* Dark-forest accessibility overrides */\nhtml[data-theme=\"dark-forest\"] {\n  --text-dark: #f8fafc;\n  --text-light: rgba(255, 255, 255, 0.82);\n  --theme-text-primary: #f8fafc;\n  --theme-text-secondary: rgba(255, 255, 255, 0.82);\n  --theme-text-tertiary: rgba(255, 255, 255, 0.68);\n  --theme-contrast-strong: #ffffff;\n}\n\n/* Hidden class for page sections (show/hide navigation) */\n.page-section.hidden {\n  display: none !important;\n}\n\n/* Loading modal overlay - Complete version with progress and animations */\nbody.loading-locked {\n  overflow: hidden;\n}\n\nhtml[data-theme=\"dark-forest\"] {\n  --theme-text-secondary: rgba(255, 255, 255, 0.82);\n  --theme-text-tertiary: rgba(255, 255, 255, 0.68);\n}\n\n.loading-modal {\n  position: fixed;\n  inset: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 9999;\n  background: rgba(6, 4, 6, 0.55);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  opacity: 0;\n  pointer-events: none;\n  transition: opacity 0.6s ease;\n}\n\n.loading-modal.visible {\n  opacity: 1;\n  pointer-events: auto;\n}\n\n.modal-card {\n  width: min(820px, calc(100% - 48px));\n  background: rgba(255, 255, 255, 0.94);\n  border-radius: 14px;\n  padding: 20px;\n  box-shadow: 0 30px 80px rgba(10, 10, 10, 0.16), 0 10px 30px rgba(10, 10, 10, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.72);\n  color: #0f172a;\n  border: 1px solid rgba(0, 0, 0, 0.06);\n  backdrop-filter: blur(12px) saturate(1.02);\n  -webkit-backdrop-filter: blur(12px) saturate(1.02);\n  position: relative;\n  transform: scale(0.985);\n  opacity: 0.96;\n  transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.55s ease;\n}\n\n.loading-modal.visible .modal-card {\n  transform: scale(1);\n  opacity: 1;\n}\n\n.logo-and-info {\n  display: flex;\n  gap: 20px;\n  align-items: center;\n  width: 100%;\n}\n\n.modal-info {\n  flex: 1;\n  min-width: 0;\n}\n\n/* Shared logo renderer slots (keeps size + contrast consistent across pages) */\n.logo-slot {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  color: var(--logo-contrast-primary, var(--brand-maroon));\n}\n\n.logo-slot[data-logo-contrast=\"ink\"] {\n  color: var(--logo-contrast-ink, #0f172a);\n}\n\n.logo-slot[data-logo-contrast=\"on-dark\"] {\n  color: var(--logo-contrast-on-dark, #ffffff);\n  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);\n}\n\n.logo-slot[data-logo-contrast=\"muted\"] {\n  color: var(--logo-contrast-muted, rgba(15, 23, 42, 0.72));\n}\n\n.krause-shield {\n  display: block;\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  color: inherit;\n  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));\n}\n\n.logo-slot[data-logo-size=\"sm\"] .krause-shield,\n.krause-shield.logo-size-sm {\n  width: var(--logo-size-sm);\n  height: var(--logo-size-sm);\n}\n\n.logo-slot[data-logo-size=\"md\"] .krause-shield,\n.krause-shield.logo-size-md {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n}\n\n.logo-slot[data-logo-size=\"lg\"] .krause-shield,\n.krause-shield.logo-size-lg {\n  width: var(--logo-size-lg);\n  height: var(--logo-size-lg);\n}\n\n.logo-shield,\n.shield-svg {\n  color: inherit;\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n}\n\n.logo-shield-footer {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  color: inherit;\n}\n\n/* Particles floating in background */\n.bg-particles {\n  position: absolute;\n  inset: 0;\n  pointer-events: none;\n  z-index: 1100;\n  overflow: hidden;\n}\n\n.particle {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: rgba(139, 35, 72, 0.12);\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);\n  transform: translateY(0);\n  will-change: transform, opacity;\n  opacity: 0.9;\n}\n\n@keyframes floatUp {\n  0% {\n    transform: translateY(20px) scale(0.9);\n    opacity: 0.7;\n  }\n\n  50% {\n    opacity: 0.95;\n  }\n\n  100% {\n    transform: translateY(-24px) scale(1.05);\n    opacity: 0.45;\n  }\n}\n\n/* Official logo parts stroke draw for LOADING MODAL ONLY */\n/* Shield primitives pick up currentColor for consistent contrast */\n.loading-modal .shield-circle,\n.loading-modal .shield-diamond,\n.loading-modal .shield-arc,\n.loading-modal .shield-line {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 3;\n  stroke-dasharray: 220;\n  stroke-dashoffset: 220;\n  opacity: 0;\n  transition: opacity 0.4s ease;\n  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.12));\n}\n\n.loading-modal .shield-circle.active,\n.loading-modal .shield-diamond.active,\n.loading-modal .shield-arc.active,\n.loading-modal .shield-line.active {\n  animation: loadingDrawStroke 0.9s ease-out forwards;\n  opacity: 1;\n}\n\n.loading-modal .shield-center {\n  fill: currentColor;\n  opacity: 0;\n  transform-origin: 50% 50%;\n}\n\n.loading-modal .shield-center.active {\n  animation: centerPop 0.6s ease-out forwards;\n}\n\n@keyframes loadingDrawStroke {\n  from {\n    stroke-dashoffset: 220;\n    opacity: 0.2;\n  }\n\n  to {\n    stroke-dashoffset: 0;\n    opacity: 1;\n  }\n}\n\n@keyframes centerPop {\n  0% {\n    transform: scale(0.4);\n    opacity: 0;\n  }\n\n  60% {\n    transform: scale(1.12);\n    opacity: 1;\n  }\n\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n\n.modal-info h2 {\n  font-family: 'Cinzel', serif;\n  margin-bottom: 8px;\n  font-size: 1.4rem;\n  color: #111;\n  font-weight: 700;\n}\n\n.progress-percentage {\n  font-size: 2.2rem;\n  font-weight: 700;\n  font-family: 'Cinzel', serif;\n  margin-top: 8px;\n  color: #0f172a;\n  line-height: 1;\n}\n\n.status-text {\n  margin-top: 8px;\n  color: rgba(15, 23, 42, 0.82);\n  font-size: 0.95rem;\n  font-weight: 500;\n}\n\n.progress-bar-container {\n  width: 100%;\n  height: 8px;\n  background: rgba(0, 0, 0, 0.06);\n  border-radius: 999px;\n  overflow: hidden;\n  margin-top: 12px;\n  border: 1px solid rgba(0, 0, 0, 0.02);\n  box-shadow: inset 0 -2px 8px rgba(0, 0, 0, 0.06);\n}\n\n.progress-bar-fill {\n  height: 100%;\n  width: 0%;\n  background: linear-gradient(90deg, #8b2348 0%, #9b59b6 50%, #8b2348 100%);\n  transition: width 260ms linear;\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.12);\n}\n\n.did-you-know {\n  margin-top: 14px;\n  background: #ffffff;\n  padding: 12px;\n  border-radius: 10px;\n  color: #111;\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);\n}\n\n.did-you-know-title {\n  font-weight: 700;\n  margin-bottom: 6px;\n  color: #0f172a;\n}\n\n#funFact {\n  color: rgba(15, 23, 42, 0.85);\n  font-size: 0.9rem;\n  line-height: 1.5;\n}\n\n@media (max-width: 700px) {\n  .logo-and-info {\n    flex-direction: row;\n  }\n\n  .logo-slot[data-logo-size=\"lg\"] .krause-shield,\n  .shield-svg.logo-size-lg,\n  .shield-svg {\n    width: var(--logo-size-md);\n    height: var(--logo-size-md);\n  }\n}\n\n/* Footer (restored) */\n.footer {\n  background: var(--footer-acrylic-bg, var(--acrylic-bg-dark));\n  backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\n  color: white;\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 9996;\n  transition: transform 0.3s ease;\n  border-top: 1px solid rgba(255, 255, 255, 0.15);\n  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);\n  pointer-events: auto;\n}\n\n/* Ensure home page also renders the acrylic footer (some browsers drop backdrop-filter without a scoped reassertion) */\nbody[data-page=\"home\"] .footer {\n  background: var(--footer-acrylic-bg);\n  backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\n}\n\n.footer.collapsed .footer-container {\n  display: none;\n}\n\n.footer-toggle {\n  background: transparent;\n  border: none;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n  color: white;\n  padding: 12px 24px;\n  width: 100%;\n  text-align: center;\n  cursor: pointer;\n  font-weight: 600;\n  font-size: clamp(13px, 2vw, 15px);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  transition: all 0.3s ease;\n}\n\n.footer-toggle:hover {\n  background: rgba(255, 255, 255, 0.15);\n  border-bottom-color: rgba(255, 255, 255, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),\n    0 2px 8px rgba(255, 255, 255, 0.1);\n}\n\n.footer-toggle svg {\n  transition: transform 0.3s ease;\n}\n\n.footer.collapsed .footer-toggle svg {\n  transform: rotate(180deg);\n}\n\n.footer-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: clamp(12px, 2vh, 18px) clamp(16px, 3vw, 24px);\n}\n\n.footer-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: clamp(20px, 3vw, 32px);\n  margin-bottom: clamp(12px, 2vh, 16px);\n  padding-bottom: clamp(12px, 2vh, 16px);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n}\n\n.footer-section h4 {\n  font-family: 'Cinzel', serif;\n  font-size: clamp(0.95rem, 1.8vw, 1.1rem);\n  margin-bottom: clamp(10px, 1.5vh, 14px);\n  color: rgba(255, 255, 255, 0.95);\n}\n\n.footer-section ul {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.footer-section li {\n  margin-bottom: clamp(6px, 1vh, 9px);\n}\n\n.footer-section a {\n  color: rgba(255, 255, 255, 0.85);\n  text-decoration: none;\n  transition: color 0.3s ease;\n  font-size: clamp(0.8rem, 1.4vw, 0.9rem);\n}\n\n.footer-section a:hover {\n  color: white;\n}\n\n.footer-brand {\n  display: flex;\n  flex-direction: column;\n  gap: clamp(8px, 1.2vh, 12px);\n  align-items: center;\n  /* center logo and text horizontally */\n  text-align: center;\n}\n\n.logo-shield-footer {\n  color: white;\n  margin-bottom: clamp(6px, 1vh, 10px);\n  width: clamp(52px, 7vw, 64px);\n  height: clamp(52px, 7vw, 64px);\n  display: block;\n  flex-shrink: 0;\n}\n\n/* Page visibility control */\n/* Page visibility control */\n#mainContent>[data-page] {\n  width: 100%;\n}\n\n/* Hide by default using utility class */\n.d-none {\n  display: none !important;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nhtml {\n  margin: 0 !important;\n  padding: 0 !important;\n  height: 100% !important;\n  overflow: hidden !important;\n  width: 100% !important;\n}\n\nbody {\n  margin: 0 !important;\n  padding: 0 !important;\n  font-family: 'Aptos Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  line-height: 1.65;\n  color: var(--text-dark);\n  background: linear-gradient(135deg,\n      var(--gradient-start) 0%,\n      var(--gradient-mid) 40%,\n      var(--gradient-end) 100%);\n  background-size: 300% 300%;\n  background-attachment: fixed !important;\n  height: 100vh !important;\n  overflow: hidden !important;\n  width: 100vw !important;\n  position: fixed !important;\n  top: 0 !important;\n  left: 0 !important;\n  animation: gradientShift 20s ease infinite;\n  transition: background-position 1.5s ease-in-out;\n}\n\n/* Slightly larger body copy for descriptive sections */\np,\n.section-description,\n.hero-description,\n.feature-box p,\n.service-card p,\n.about-section p,\n.contact-info p,\n.quote-lead,\n.quote-footnote,\n.quote-benefits,\n.stat-box p,\n.agent-card p {\n  font-size: 1.04rem;\n  line-height: 1.65;\n}\n\n@keyframes gradientShift {\n  0% {\n    background-position: 0% 50%;\n  }\n\n  25% {\n    background-position: 50% 25%;\n  }\n\n  50% {\n    background-position: 100% 50%;\n  }\n\n  75% {\n    background-position: 50% 75%;\n  }\n\n  100% {\n    background-position: 0% 50%;\n  }\n}\n\nbody.section-hero {\n  background-position: 0% 30%;\n}\n\nbody.section-parade {\n  background-position: 50% 50%;\n}\n\nbody.section-cta {\n  background-position: 100% 70%;\n}\n\n/* Particles */\n#particles-canvas {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  /* Above page backgrounds (dashboards use solid surfaces) but below navbar/subnav */\n  z-index: 50;\n  opacity: var(--particles-opacity);\n  mix-blend-mode: var(--particles-blend-mode);\n  transition: opacity 0.3s ease;\n}\n\nbody[data-page=\"home\"] #particles-canvas {\n  opacity: var(--particles-opacity-home);\n}\n\n/* Hide particles on fullpage sections (route-aware).\n   NOTE: We can't use :has(.services-fullpage) here because templates are injected\n   into the DOM (hidden) and would permanently match, hiding particles everywhere. */\nbody[data-page=\"services\"] #particles-canvas,\nbody[data-page=\"about\"] #particles-canvas,\nbody[data-page=\"contact\"] #particles-canvas,\n/* Dashboards are work surfaces: keep them distraction-free */\nbody[data-page=\"client-dashboard\"] #particles-canvas,\nbody[data-page=\"agent-dashboard\"] #particles-canvas,\nbody[data-page=\"admin-dashboard\"] #particles-canvas,\n/* Auth screens also read cleaner without animated canvas behind */\nbody[data-page=\"login\"] #particles-canvas,\nbody[data-page=\"agent-login\"] #particles-canvas {\n  display: none;\n  pointer-events: none;\n}\n\n/* Sub Navigation */\n.sub-navigation {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  width: 100%;\n  z-index: 9998;\n  background: var(--acrylic-bg-dark);\n  backdrop-filter: blur(25px) saturate(180%);\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\n  height: var(--subnav-height);\n  transition: all 0.3s ease;\n}\n\n.sub-nav-btn {\n  position: relative;\n  padding: 18px 32px;\n  background: transparent;\n  border: none;\n  border-radius: 0 !important;\n  font-size: 13px;\n  font-weight: 600;\n  color: rgba(255, 255, 255, 0.85);\n  cursor: pointer;\n  will-change: transform, opacity;\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  font-family: inherit;\n  text-transform: uppercase;\n  letter-spacing: 1.5px;\n  overflow: hidden;\n  height: 56px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.sub-nav-btn::before {\n  content: '';\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: 3px;\n  background: linear-gradient(90deg, transparent, var(--baby-pink), transparent);\n  opacity: 0;\n  transform: scaleX(0);\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n  pointer-events: none;\n}\n\n.sub-nav-btn:hover {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(20px) saturate(160%);\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\n  color: white;\n}\n\n.sub-nav-btn:hover::before {\n  opacity: 0.5;\n  transform: scaleX(1);\n}\n\n.sub-nav-btn.active {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(25px) saturate(170%);\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\n  color: white;\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n}\n\n.sub-nav-btn.active::before {\n  opacity: 1;\n  transform: scaleX(1);\n  box-shadow: 0 0 15px rgba(254, 245, 249, 0.6);\n}\n\n.sub-nav-btn:not(:last-child)::after {\n  content: '|';\n  position: absolute;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  color: rgba(255, 255, 255, 0.25);\n  font-weight: 300;\n  font-size: 18px;\n  pointer-events: none;\n  width: 1px;\n  height: 100%;\n}\n\n.sub-navigation.show {\n  animation: subNavSlideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;\n}\n\n@keyframes subNavSlideDown {\n  from {\n    opacity: 0;\n    transform: translateY(-10px);\n  }\n\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n/* Navbar */\n.navbar {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: var(--nav-height);\n  z-index: 9999;\n  background: rgba(255, 255, 255, 0.95);\n  backdrop-filter: blur(20px);\n  border-bottom: 1px solid rgba(0, 0, 0, 0.06);\n  padding: 0;\n  margin: 0;\n  transition: all 0.3s ease;\n  box-shadow: var(--shadow-sm);\n  display: flex;\n  align-items: center;\n}\n\n.navbar.scrolled {\n  box-shadow: var(--shadow);\n}\n\n.nav-container {\n  max-width: 100%;\n  width: 100%;\n  height: 100%;\n  margin: 0 auto;\n  padding: 0 48px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  box-sizing: border-box;\n}\n\n.nav-brand {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  cursor: pointer;\n  transition: transform 0.3s ease;\n}\n\n.nav-brand .krause-shield {\n  width: var(--logo-size-sm);\n  height: var(--logo-size-sm);\n}\n\n.nav-brand:hover {\n  transform: translateY(-2px);\n}\n\n\n.logo-shield {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  max-width: calc(var(--logo-size-lg) - 16px);\n  max-height: calc(var(--logo-size-lg) - 16px);\n  color: inherit;\n  filter: drop-shadow(0 2px 4px var(--theme-primary-shadow-color));\n}\n\n/* Logo general - SIN auto-animación, solo estilos base */\n.krause-shield .shield-circle,\n.krause-shield .shield-diamond,\n.krause-shield .shield-arc,\n.krause-shield .shield-line {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 3;\n  /* NO auto-animar - dejar que sean estáticos o controlados por JS */\n}\n\n/* Hover solo cuando NO está en loading */\nbody:not(.loading-locked) .krause-shield:hover .shield-circle,\nbody:not(.loading-locked) .krause-shield:hover .shield-diamond,\nbody:not(.loading-locked) .krause-shield:hover .shield-arc,\nbody:not(.loading-locked) .krause-shield:hover .shield-line {\n  animation: logoPulse 0.6s ease-in-out;\n}\n\n@keyframes logoPulse {\n\n  0%,\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  50% {\n    transform: scale(1.05);\n    opacity: 0.8;\n  }\n}\n\n.brand-text {\n  display: flex;\n  flex-direction: column;\n  gap: 2px;\n}\n\n.brand-name {\n  font-family: 'Cinzel', serif;\n  font-size: 22px;\n  font-weight: 600;\n  color: var(--brand-maroon);\n  line-height: 1;\n}\n\n.brand-tagline {\n  font-size: 11px;\n  color: var(--text-light);\n  font-weight: 500;\n  letter-spacing: 0.5px;\n  text-transform: uppercase;\n}\n\n.mobile-menu-toggle {\n  display: none;\n  flex-direction: column;\n  gap: 5px;\n  background: none;\n  border: none;\n  cursor: pointer;\n  padding: 8px;\n}\n\n.mobile-menu-toggle span {\n  width: 25px;\n  height: 3px;\n  background: var(--brand-maroon);\n  border-radius: 2px;\n  transition: all 0.3s ease;\n}\n\n.nav-menu {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n\n.nav-link {\n  padding: 10px 20px;\n  color: var(--text-dark);\n  text-decoration: none;\n  font-weight: 500;\n  transition: all 0.3s ease;\n  border-radius: 8px;\n  font-size: 16px;\n}\n\n.nav-link:hover,\n.nav-link.active {\n  color: var(--brand-maroon);\n  background: var(--theme-navlink-active-bg);\n  backdrop-filter: blur(15px) saturate(150%);\n  -webkit-backdrop-filter: blur(15px) saturate(150%);\n}\n\n.nav-buttons {\n  display: flex;\n  gap: 12px;\n  margin-left: 20px;\n}\n\n/* Generic buttons (used in Home CTA + Auth forms) */\n.btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  padding: 12px 18px;\n  border-radius: 12px;\n  border: 1px solid transparent;\n  font-family: inherit;\n  font-weight: 700;\n  font-size: 0.95rem;\n  line-height: 1;\n  cursor: pointer;\n  user-select: none;\n  text-decoration: none;\n  background: transparent;\n  color: inherit;\n  transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s ease,\n    border-color 0.25s ease, color 0.25s ease, filter 0.25s ease;\n}\n\n.btn:hover {\n  transform: translateY(-1px);\n}\n\n.btn:active {\n  transform: translateY(0);\n}\n\n.btn:disabled,\n.btn[disabled] {\n  opacity: 0.65;\n  cursor: not-allowed;\n  transform: none;\n}\n\n.btn:focus-visible {\n  outline: 2px solid var(--theme-highlight-light);\n  outline-offset: 2px;\n}\n\n.btn-lg {\n  padding: 14px 22px;\n  border-radius: 14px;\n  font-size: 1rem;\n}\n\n.btn-block {\n  width: 100%;\n}\n\n.btn-primary {\n  background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 70%);\n  color: var(--white);\n  border-color: rgba(255, 255, 255, 0.16);\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), 0 10px 24px var(--theme-primary-shadow-color);\n}\n\n.btn.is-loading,\n.btn[aria-busy=\"true\"] {\n  position: relative;\n  pointer-events: none;\n  color: var(--theme-contrast-strong, var(--brand-maroon));\n  border-color: var(--theme-contrast-glow, rgba(255, 255, 255, 0.25));\n  filter: brightness(1.02);\n}\n\n.btn.is-loading::after,\n.btn[aria-busy=\"true\"]::after {\n  content: '';\n  position: absolute;\n  inset: 6px;\n  border-radius: inherit;\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));\n  animation: loading-pulse 0.9s ease-in-out infinite;\n  mix-blend-mode: screen;\n}\n\n@keyframes loading-pulse {\n\n  0%,\n  100% {\n    opacity: 0.35;\n    transform: scale(0.98);\n  }\n\n  50% {\n    opacity: 0.75;\n    transform: scale(1.02);\n  }\n}\n\n.btn-primary:hover {\n  filter: brightness(1.05);\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26), 0 14px 34px var(--theme-primary-shadow-color);\n}\n\n.btn-secondary {\n  background: rgba(255, 255, 255, 0.14);\n  color: white;\n  border-color: rgba(255, 255, 255, 0.20);\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);\n}\n\n.btn-secondary:hover {\n  background: rgba(255, 255, 255, 0.18);\n  border-color: rgba(255, 255, 255, 0.26);\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);\n}\n\n.btn-outline {\n  background: transparent;\n  color: var(--theme-primary-color);\n  border-color: rgba(255, 255, 255, 0.35);\n}\n\n.btn-outline:hover {\n  background: rgba(255, 255, 255, 0.12);\n  color: var(--theme-secondary-color);\n}\n\n.btn-nav {\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-weight: 600;\n  font-size: 15px;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  border: none;\n  font-family: inherit;\n}\n\n.btn-login {\n  background: transparent;\n  color: var(--brand-maroon);\n  border: 2px solid var(--brand-maroon);\n}\n\n.btn-login:hover {\n  background: var(--brand-maroon);\n  color: white;\n}\n\n.btn-agent {\n  background: var(--brand-maroon);\n  color: white;\n  border: 2px solid var(--brand-maroon);\n}\n\n.btn-agent:hover {\n  background: var(--wine);\n  border-color: var(--wine);\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px var(--theme-primary-shadow-color);\n}\n\n/* Main Content */\n.main-content {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 10;\n  height: auto;\n  width: 100%;\n  box-sizing: border-box;\n  overflow-y: auto;\n  overflow-x: hidden;\n}\n\nbody:not(.no-footer) .main-content {\n  padding-bottom: var(--footer-height);\n}\n\nbody.no-footer .main-content {\n  padding-bottom: 0;\n}\n\nbody.no-footer .footer {\n  display: none !important;\n}\n\n/* Home has a fixed sub-navigation that overlays the scroll container.\n   Add top padding only on home so sections (esp. Cotiza logo/title) are not cut. */\nbody[data-page=\"home\"] .main-content {\n  padding-top: var(--subnav-height);\n}\n\n\n\n/* Sub Navigation */\n.sub-navigation {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  width: 100%;\n  z-index: 9998;\n  background: var(--acrylic-bg-dark);\n  backdrop-filter: blur(25px) saturate(180%);\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\n  height: var(--subnav-height);\n  transition: all 0.3s ease;\n}\n\n.sub-nav-btn {\n  position: relative;\n  padding: 18px 32px;\n  background: transparent;\n  border: none;\n  border-radius: 0 !important;\n  font-size: 13px;\n  font-weight: 600;\n  color: rgba(255, 255, 255, 0.85);\n  cursor: pointer;\n  will-change: transform, opacity;\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  font-family: inherit;\n  text-transform: uppercase;\n  letter-spacing: 1.5px;\n  overflow: hidden;\n  height: 56px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.sub-nav-btn::before {\n  content: '';\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: 3px;\n  background: linear-gradient(90deg, transparent, var(--theme-highlight-light), transparent);\n  opacity: 0;\n  transform: scaleX(0);\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n  pointer-events: none;\n}\n\n.sub-nav-btn:hover {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(20px) saturate(160%);\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\n  color: white;\n}\n\n.sub-nav-btn:hover::before {\n  opacity: 0.5;\n  transform: scaleX(1);\n}\n\n.sub-nav-btn.active {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(25px) saturate(170%);\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\n  color: white;\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n}\n\n.sub-nav-btn.active::before {\n  opacity: 1;\n  transform: scaleX(1);\n  box-shadow: 0 0 15px var(--theme-highlight-glow);\n}\n\n/* Button separators */\n.sub-nav-btn:not(:last-child)::after {\n  content: '|';\n  position: absolute;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  color: rgba(255, 255, 255, 0.25);\n  font-weight: 300;\n  font-size: 18px;\n  pointer-events: none;\n  width: 1px;\n  height: 100%;\n}\n\n/* \n   PAGE-SPECIFIC STYLES HAVE BEEN EXTRACTED TO SEPARATE FILES:\n   - styles/pages/home.css: Home page sections (hero, features, cta, agents)\n   - styles/pages/services.css: Services grid and cards\n   - styles/pages/about.css: About content and team\n   - styles/pages/contact.css: Contact form and info\n   - styles/auth.css: Auth login forms\n   - styles/dashboards.css: Dashboard layouts\n   \n   This app.css file now contains ONLY base/global styles.\n   See index.html for CSS module links.\n*/"],"sourceRoot":""}]);
+*/`, "",{"version":3,"sources":["webpack://./styles/app.css"],"names":[],"mappings":"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","sourcesContent":["/* Krause Insurance App - Main Stylesheet */\n/* CSS now loaded via webpack imports in EntryPointMainApp.js */\n/* All imports removed - webpack handles module order */\n\n/* Global design tokens */\n:root {\n  /* Brand palette (shared by all logo renders) */\n  --brand-maroon: #8b2348;\n  --brand-purple: #9b59b6;\n  --wine: #722f37;\n  --baby-pink: #fef5f9;\n\n  --text-dark: #1a1a1a;\n  --text-light: #4a4f5c;\n  --white: #ffffff;\n  --gray-100: #f5f5f5;\n  --gray-200: #e0e0e0;\n  --gray-300: #ccc;\n  --success: #28a745;\n  --warning: #ffc107;\n  --danger: #dc3545;\n  --info: #17a2b8;\n  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);\n  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);\n  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);\n  --gradient-start: #631832;\n  --gradient-mid: #521a38;\n  --gradient-end: #401a59;\n  /* Unified logo sizing + contrast tokens */\n  --logo-size-sm: 56px;\n  --logo-size-md: 64px;\n  --logo-size-lg: 96px;\n  --logo-contrast-primary: var(--brand-maroon);\n  --logo-contrast-ink: #0f172a;\n  --logo-contrast-on-dark: #ffffff;\n  --logo-contrast-muted: var(--theme-text-secondary);\n  /* Layout measurements to keep padding off the global background */\n  --nav-height: 90px;\n  /* header */\n  --subnav-height: 56px;\n  /* secondary navigation */\n  --footer-height: 56px;\n  /* reserve space so content doesn't go under the collapsed footer */\n  /* Acrylic/Frosted Glass Effects - Default Theme */\n  --acrylic-blur: 20px;\n  --acrylic-blur-strong: 30px;\n  --acrylic-blur-subtle: 15px;\n  --acrylic-saturate: 170%;\n  --acrylic-saturate-strong: 180%;\n  --acrylic-saturate-subtle: 150%;\n  --acrylic-bg-light: rgba(255, 255, 255, 0.08);\n  --acrylic-bg-medium: rgba(255, 255, 255, 0.12);\n  --acrylic-bg-dark: rgba(99, 24, 50, 0.15);\n  --acrylic-border-light: rgba(255, 255, 255, 0.15);\n\n  /* Footer glass tokens (theme-overridable) */\n  /* Slightly stronger by default; themes can override for more/less glass. */\n  --footer-acrylic-bg: rgba(99, 24, 50, 0.7);\n  --footer-acrylic-blur: 32px;\n  --footer-acrylic-saturate: 200%;\n\n  /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */\n  --theme-surface-bg: rgba(255, 255, 255, 0.98);\n  --theme-surface-bg-solid: #ffffff;\n  --theme-surface-border: rgba(99, 24, 50, 0.14);\n  --theme-surface-border-strong: rgba(99, 24, 50, 0.20);\n\n  /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */\n  --theme-accent-border-subtle: rgba(64, 26, 89, 0.20);\n  --theme-accent-border: rgba(64, 26, 89, 0.30);\n  --theme-accent-bg-soft: rgba(64, 26, 89, 0.18);\n  --theme-accent-shadow-soft: rgba(64, 26, 89, 0.10);\n  --theme-accent-shadow-strong: rgba(64, 26, 89, 0.30);\n  --theme-accent-color-hover: #4d216a;\n\n  /* RGBA helpers for acrylic gradients (avoid hard-coded brand rgba() in components) */\n  --theme-primary-rgba-70: rgba(99, 24, 50, 0.70);\n  --theme-secondary-rgba-70: rgba(91, 36, 43, 0.70);\n  --theme-primary-rgba-95: rgba(99, 24, 50, 0.95);\n  --theme-secondary-rgba-95: rgba(91, 36, 43, 0.95);\n\n  /* Navbar link pill background (active/hover) */\n  --theme-navlink-active-bg: rgba(99, 24, 50, 0.08);\n  /* Theme accent colors for components */\n  --theme-primary-color: var(--brand-maroon);\n  --theme-secondary-color: var(--wine);\n  --theme-accent-color: var(--brand-purple);\n  --theme-text-primary: var(--text-dark);\n  --theme-text-secondary: #4a4f5c;\n  --theme-shadow: var(--shadow);\n\n  /* Dashboard layout tokens (shared) */\n  --dashboard-padding-top-offset: 12px;\n  --dashboard-padding-x: 8px;\n  --dashboard-padding-bottom: 16px;\n  --dashboard-grid-gap: 12px;\n  --dashboard-main-gap: 12px;\n  --dashboard-main-col-min: 240px;\n  --dashboard-stat-min: 240px;\n  --dashboard-stat-gap: 12px;\n  --dashboard-stat-padding: 12px 16px;\n  --dashboard-stat-radius: 16px;\n  --dashboard-card-padding: 16px 18px;\n  --dashboard-card-header-margin: 12px;\n  --dashboard-card-header-padding: 10px;\n  --dashboard-quick-actions-gap: 8px;\n  --dashboard-container-max: 1880px;\n  --dashboard-container-max-client: 1800px;\n  --dashboard-container-max-agent: 1880px;\n  --dashboard-container-max-admin: 1920px;\n\n  /* Highlights / glows (avoid hard-coded pink/gold values in components) */\n  --theme-highlight-soft: #ffc4d6;\n  --theme-highlight-light: var(--baby-pink);\n  --theme-highlight-strong: #ffd700;\n  --theme-highlight-strong-border: rgba(255, 215, 0, 0.10);\n  --theme-highlight-glow: rgba(254, 245, 249, 0.6);\n  --theme-highlight-glow-subtle: rgba(254, 245, 249, 0.18);\n  --theme-highlight-border: rgba(254, 245, 249, 0.36);\n  --theme-primary-shadow-color: rgba(99, 24, 50, 0.35);\n\n  /* High-contrast ink (default/light uses brand ink; dark themes override) */\n  --theme-contrast-strong: var(--brand-maroon);\n\n  /* Text-on-color tokens (avoid hard-coded #fff / black in components) */\n  --theme-on-success: var(--white);\n  --theme-on-danger: var(--white);\n  /* Warning background is bright (yellow), so text should stay dark even on dark themes */\n  --theme-on-warning: rgba(0, 0, 0, 0.85);\n\n  /* Progress bar tokens */\n  --theme-progress-edge: rgba(254, 245, 249, 0.8);\n  --theme-progress-center: rgba(255, 255, 255, 0.95);\n  --theme-progress-glow-strong: rgba(254, 245, 249, 0.7);\n  --theme-progress-glow-soft: rgba(254, 245, 249, 0.4);\n\n  /* Particles overlay tuning */\n  --particles-opacity: 0.55;\n  --particles-opacity-home: 0.70;\n  /* `screen` can become effectively invisible over light UI surfaces.\n     Default theme uses `normal` for consistent visibility; dark-forest overrides this. */\n  --particles-blend-mode: normal;\n}\n\n/* Dark-forest accessibility overrides */\nhtml[data-theme=\"dark-forest\"] {\n  --text-dark: #f8fafc;\n  --text-light: rgba(255, 255, 255, 0.82);\n  --theme-text-primary: #f8fafc;\n  --theme-text-secondary: rgba(255, 255, 255, 0.82);\n  --theme-text-tertiary: rgba(255, 255, 255, 0.68);\n  --theme-contrast-strong: #ffffff;\n}\n\n/* Hidden class for page sections (show/hide navigation) */\n.page-section.hidden {\n  display: none !important;\n}\n\n/* Loading modal overlay - Complete version with progress and animations */\nbody.loading-locked {\n  overflow: hidden;\n}\n\nhtml[data-theme=\"dark-forest\"] {\n  --theme-text-secondary: rgba(255, 255, 255, 0.82);\n  --theme-text-tertiary: rgba(255, 255, 255, 0.68);\n}\n\n.loading-modal {\n  position: fixed;\n  inset: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 9999;\n  background: rgba(6, 4, 6, 0.55);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  opacity: 0;\n  pointer-events: none;\n  transition: opacity 0.6s ease;\n}\n\n.loading-modal.visible {\n  opacity: 1;\n  pointer-events: auto;\n}\n\n.modal-card {\n  width: min(820px, calc(100% - 48px));\n  background: rgba(255, 255, 255, 0.94);\n  border-radius: 14px;\n  padding: 20px;\n  box-shadow: 0 30px 80px rgba(10, 10, 10, 0.16), 0 10px 30px rgba(10, 10, 10, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.72);\n  color: #0f172a;\n  border: 1px solid rgba(0, 0, 0, 0.06);\n  backdrop-filter: blur(12px) saturate(1.02);\n  -webkit-backdrop-filter: blur(12px) saturate(1.02);\n  position: relative;\n  transform: scale(0.985);\n  opacity: 0.96;\n  transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.55s ease;\n}\n\n.loading-modal.visible .modal-card {\n  transform: scale(1);\n  opacity: 1;\n}\n\n.logo-and-info {\n  display: flex;\n  gap: 20px;\n  align-items: center;\n  width: 100%;\n}\n\n.modal-info {\n  flex: 1;\n  min-width: 0;\n}\n\n/* Shared logo renderer slots (keeps size + contrast consistent across pages) */\n.logo-slot {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  color: var(--logo-contrast-primary, var(--brand-maroon));\n}\n\n.logo-slot[data-logo-contrast=\"ink\"] {\n  color: var(--logo-contrast-ink, #0f172a);\n}\n\n.logo-slot[data-logo-contrast=\"on-dark\"] {\n  color: var(--logo-contrast-on-dark, #ffffff);\n  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);\n}\n\n.logo-slot[data-logo-contrast=\"muted\"] {\n  color: var(--logo-contrast-muted, rgba(15, 23, 42, 0.72));\n}\n\n.krause-shield {\n  display: block;\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  color: inherit;\n  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));\n}\n\n.logo-slot[data-logo-size=\"sm\"] .krause-shield,\n.krause-shield.logo-size-sm {\n  width: var(--logo-size-sm);\n  height: var(--logo-size-sm);\n}\n\n.logo-slot[data-logo-size=\"md\"] .krause-shield,\n.krause-shield.logo-size-md {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n}\n\n.logo-slot[data-logo-size=\"lg\"] .krause-shield,\n.krause-shield.logo-size-lg {\n  width: var(--logo-size-lg);\n  height: var(--logo-size-lg);\n}\n\n.logo-shield,\n.shield-svg {\n  color: inherit;\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n}\n\n.logo-shield-footer {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  color: inherit;\n}\n\n/* Particles floating in background */\n.bg-particles {\n  position: absolute;\n  inset: 0;\n  pointer-events: none;\n  z-index: 1100;\n  overflow: hidden;\n}\n\n.particle {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: rgba(139, 35, 72, 0.12);\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);\n  transform: translateY(0);\n  will-change: transform, opacity;\n  opacity: 0.9;\n}\n\n@keyframes floatUp {\n  0% {\n    transform: translateY(20px) scale(0.9);\n    opacity: 0.7;\n  }\n\n  50% {\n    opacity: 0.95;\n  }\n\n  100% {\n    transform: translateY(-24px) scale(1.05);\n    opacity: 0.45;\n  }\n}\n\n/* Official logo parts stroke draw for LOADING MODAL ONLY */\n/* Shield primitives pick up currentColor for consistent contrast */\n.loading-modal .shield-circle,\n.loading-modal .shield-diamond,\n.loading-modal .shield-arc,\n.loading-modal .shield-line {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 3;\n  stroke-dasharray: 220;\n  stroke-dashoffset: 220;\n  opacity: 0;\n  transition: opacity 0.4s ease;\n  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.12));\n}\n\n.loading-modal .shield-circle.active,\n.loading-modal .shield-diamond.active,\n.loading-modal .shield-arc.active,\n.loading-modal .shield-line.active {\n  animation: loadingDrawStroke 0.9s ease-out forwards;\n  opacity: 1;\n}\n\n.loading-modal .shield-center {\n  fill: currentColor;\n  opacity: 0;\n  transform-origin: 50% 50%;\n}\n\n.loading-modal .shield-center.active {\n  animation: centerPop 0.6s ease-out forwards;\n}\n\n@keyframes loadingDrawStroke {\n  from {\n    stroke-dashoffset: 220;\n    opacity: 0.2;\n  }\n\n  to {\n    stroke-dashoffset: 0;\n    opacity: 1;\n  }\n}\n\n@keyframes centerPop {\n  0% {\n    transform: scale(0.4);\n    opacity: 0;\n  }\n\n  60% {\n    transform: scale(1.12);\n    opacity: 1;\n  }\n\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n\n.modal-info h2 {\n  font-family: 'Cinzel', serif;\n  margin-bottom: 8px;\n  font-size: 1.4rem;\n  color: #111;\n  font-weight: 700;\n}\n\n.progress-percentage {\n  font-size: 2.2rem;\n  font-weight: 700;\n  font-family: 'Cinzel', serif;\n  margin-top: 8px;\n  color: #0f172a;\n  line-height: 1;\n}\n\n.status-text {\n  margin-top: 8px;\n  color: rgba(15, 23, 42, 0.82);\n  font-size: 0.95rem;\n  font-weight: 500;\n}\n\n.progress-bar-container {\n  width: 100%;\n  height: 8px;\n  background: rgba(0, 0, 0, 0.06);\n  border-radius: 999px;\n  overflow: hidden;\n  margin-top: 12px;\n  border: 1px solid rgba(0, 0, 0, 0.02);\n  box-shadow: inset 0 -2px 8px rgba(0, 0, 0, 0.06);\n}\n\n.progress-bar-fill {\n  height: 100%;\n  width: 0%;\n  background: linear-gradient(90deg, #8b2348 0%, #9b59b6 50%, #8b2348 100%);\n  transition: width 260ms linear;\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.12);\n}\n\n.did-you-know {\n  margin-top: 14px;\n  background: #ffffff;\n  padding: 12px;\n  border-radius: 10px;\n  color: #111;\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);\n}\n\n.did-you-know-title {\n  font-weight: 700;\n  margin-bottom: 6px;\n  color: #0f172a;\n}\n\n#funFact {\n  color: rgba(15, 23, 42, 0.85);\n  font-size: 0.9rem;\n  line-height: 1.5;\n}\n\n@media (max-width: 700px) {\n  .logo-and-info {\n    flex-direction: row;\n  }\n\n  .logo-slot[data-logo-size=\"lg\"] .krause-shield,\n  .shield-svg.logo-size-lg,\n  .shield-svg {\n    width: var(--logo-size-md);\n    height: var(--logo-size-md);\n  }\n}\n\n/* Footer (restored) */\n.footer {\n  background: var(--footer-acrylic-bg, var(--acrylic-bg-dark));\n  backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\n  color: white;\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 9996;\n  transition: transform 0.3s ease;\n  border-top: 1px solid rgba(255, 255, 255, 0.15);\n  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);\n  pointer-events: auto;\n}\n\n/* Ensure home page also renders the acrylic footer (some browsers drop backdrop-filter without a scoped reassertion) */\nbody[data-page=\"home\"] .footer {\n  background: var(--footer-acrylic-bg);\n  backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\n}\n\n.footer.collapsed .footer-container {\n  display: none;\n}\n\n.footer-toggle {\n  background: transparent;\n  border: none;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n  color: white;\n  padding: 12px 24px;\n  width: 100%;\n  text-align: center;\n  cursor: pointer;\n  font-weight: 600;\n  font-size: clamp(13px, 2vw, 15px);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  transition: all 0.3s ease;\n}\n\n.footer-toggle:hover {\n  background: rgba(255, 255, 255, 0.15);\n  border-bottom-color: rgba(255, 255, 255, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),\n    0 2px 8px rgba(255, 255, 255, 0.1);\n}\n\n.footer-toggle svg {\n  transition: transform 0.3s ease;\n}\n\n.footer.collapsed .footer-toggle svg {\n  transform: rotate(180deg);\n}\n\n.footer-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: clamp(12px, 2vh, 18px) clamp(16px, 3vw, 24px);\n}\n\n.footer-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: clamp(20px, 3vw, 32px);\n  margin-bottom: clamp(12px, 2vh, 16px);\n  padding-bottom: clamp(12px, 2vh, 16px);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n}\n\n.footer-section h4 {\n  font-family: 'Cinzel', serif;\n  font-size: clamp(0.95rem, 1.8vw, 1.1rem);\n  margin-bottom: clamp(10px, 1.5vh, 14px);\n  color: rgba(255, 255, 255, 0.95);\n}\n\n.footer-section ul {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.footer-section li {\n  margin-bottom: clamp(6px, 1vh, 9px);\n}\n\n.footer-section a {\n  color: rgba(255, 255, 255, 0.85);\n  text-decoration: none;\n  transition: color 0.3s ease;\n  font-size: clamp(0.8rem, 1.4vw, 0.9rem);\n}\n\n.footer-section a:hover {\n  color: white;\n}\n\n.footer-brand {\n  display: flex;\n  flex-direction: column;\n  gap: clamp(8px, 1.2vh, 12px);\n  align-items: center;\n  /* center logo and text horizontally */\n  text-align: center;\n}\n\n.logo-shield-footer {\n  color: white;\n  margin-bottom: clamp(6px, 1vh, 10px);\n  width: clamp(52px, 7vw, 64px);\n  height: clamp(52px, 7vw, 64px);\n  display: block;\n  flex-shrink: 0;\n}\n\n/* Page visibility control */\n/* Page visibility control */\n#mainContent>[data-page] {\n  width: 100%;\n}\n\n/* Hide by default using utility class */\n.d-none {\n  display: none !important;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nhtml {\n  margin: 0 !important;\n  padding: 0 !important;\n  height: 100% !important;\n  overflow: hidden !important;\n  width: 100% !important;\n}\n\nbody {\n  margin: 0 !important;\n  padding: 0 !important;\n  font-family: 'Aptos Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  line-height: 1.65;\n  color: var(--text-dark);\n  background: linear-gradient(135deg,\n      var(--gradient-start) 0%,\n      var(--gradient-mid) 40%,\n      var(--gradient-end) 100%);\n  background-size: 300% 300%;\n  background-attachment: fixed !important;\n  height: 100vh !important;\n  overflow: hidden !important;\n  width: 100vw !important;\n  position: fixed !important;\n  top: 0 !important;\n  left: 0 !important;\n  animation: gradientShift 20s ease infinite;\n  transition: background-position 1.5s ease-in-out;\n}\n\n/* Slightly larger body copy for descriptive sections */\np,\n.section-description,\n.hero-description,\n.feature-box p,\n.service-card p,\n.about-section p,\n.contact-info p,\n.quote-lead,\n.quote-footnote,\n.quote-benefits,\n.stat-box p,\n.agent-card p {\n  font-size: 1.04rem;\n  line-height: 1.65;\n}\n\n@keyframes gradientShift {\n  0% {\n    background-position: 0% 50%;\n  }\n\n  25% {\n    background-position: 50% 25%;\n  }\n\n  50% {\n    background-position: 100% 50%;\n  }\n\n  75% {\n    background-position: 50% 75%;\n  }\n\n  100% {\n    background-position: 0% 50%;\n  }\n}\n\nbody.section-hero {\n  background-position: 0% 30%;\n}\n\nbody.section-parade {\n  background-position: 50% 50%;\n}\n\nbody.section-cta {\n  background-position: 100% 70%;\n}\n\n/* Particles */\n#particles-canvas {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  /* Above page backgrounds (dashboards use solid surfaces) but below navbar/subnav */\n  z-index: 50;\n  opacity: var(--particles-opacity);\n  mix-blend-mode: var(--particles-blend-mode);\n  transition: opacity 0.3s ease;\n}\n\nbody[data-page=\"home\"] #particles-canvas {\n  opacity: var(--particles-opacity-home);\n}\n\n/* Hide particles on fullpage sections (route-aware).\n   NOTE: We can't use :has(.services-fullpage) here because templates are injected\n   into the DOM (hidden) and would permanently match, hiding particles everywhere. */\nbody[data-page=\"services\"] #particles-canvas,\nbody[data-page=\"about\"] #particles-canvas,\nbody[data-page=\"contact\"] #particles-canvas,\n/* Auth screens read cleaner without animated canvas behind */\nbody[data-page=\"login\"] #particles-canvas,\nbody[data-page=\"agent-login\"] #particles-canvas {\n  display: none;\n  pointer-events: none;\n}\n\n/* Dashboards: reduce opacity for subtle ambient effect */\nbody[data-page=\"client-dashboard\"] #particles-canvas,\nbody[data-page=\"agent-dashboard\"] #particles-canvas,\nbody[data-page=\"admin-dashboard\"] #particles-canvas {\n  opacity: 0.35;\n}\n\n/* Sub Navigation */\n.sub-navigation {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  width: 100%;\n  z-index: 9998;\n  background: var(--acrylic-bg-dark);\n  backdrop-filter: blur(25px) saturate(180%);\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\n  height: var(--subnav-height);\n  transition: all 0.3s ease;\n}\n\n.sub-nav-btn {\n  position: relative;\n  padding: 18px 32px;\n  background: transparent;\n  border: none;\n  border-radius: 0 !important;\n  font-size: 13px;\n  font-weight: 600;\n  color: rgba(255, 255, 255, 0.85);\n  cursor: pointer;\n  will-change: transform, opacity;\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  font-family: inherit;\n  text-transform: uppercase;\n  letter-spacing: 1.5px;\n  overflow: hidden;\n  height: 56px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.sub-nav-btn::before {\n  content: '';\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: 3px;\n  background: linear-gradient(90deg, transparent, var(--baby-pink), transparent);\n  opacity: 0;\n  transform: scaleX(0);\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n  pointer-events: none;\n}\n\n.sub-nav-btn:hover {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(20px) saturate(160%);\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\n  color: white;\n}\n\n.sub-nav-btn:hover::before {\n  opacity: 0.5;\n  transform: scaleX(1);\n}\n\n.sub-nav-btn.active {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(25px) saturate(170%);\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\n  color: white;\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n}\n\n.sub-nav-btn.active::before {\n  opacity: 1;\n  transform: scaleX(1);\n  box-shadow: 0 0 15px rgba(254, 245, 249, 0.6);\n}\n\n.sub-nav-btn:not(:last-child)::after {\n  content: '|';\n  position: absolute;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  color: rgba(255, 255, 255, 0.25);\n  font-weight: 300;\n  font-size: 18px;\n  pointer-events: none;\n  width: 1px;\n  height: 100%;\n}\n\n.sub-navigation.show {\n  animation: subNavSlideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;\n}\n\n@keyframes subNavSlideDown {\n  from {\n    opacity: 0;\n    transform: translateY(-10px);\n  }\n\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n/* Navbar */\n.navbar {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: var(--nav-height);\n  z-index: 9999;\n  background: rgba(255, 255, 255, 0.95);\n  backdrop-filter: blur(20px);\n  border-bottom: 1px solid rgba(0, 0, 0, 0.06);\n  padding: 0;\n  margin: 0;\n  transition: all 0.3s ease;\n  box-shadow: var(--shadow-sm);\n  display: flex;\n  align-items: center;\n}\n\n.navbar.scrolled {\n  box-shadow: var(--shadow);\n}\n\n.nav-container {\n  max-width: 100%;\n  width: 100%;\n  height: 100%;\n  margin: 0 auto;\n  padding: 0 48px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  box-sizing: border-box;\n}\n\n.nav-brand {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  cursor: pointer;\n  transition: transform 0.3s ease;\n}\n\n.nav-brand .krause-shield {\n  width: var(--logo-size-sm);\n  height: var(--logo-size-sm);\n}\n\n.nav-brand:hover {\n  transform: translateY(-2px);\n}\n\n\n.logo-shield {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  max-width: calc(var(--logo-size-lg) - 16px);\n  max-height: calc(var(--logo-size-lg) - 16px);\n  color: inherit;\n  filter: drop-shadow(0 2px 4px var(--theme-primary-shadow-color));\n}\n\n/* Logo general - SIN auto-animación, solo estilos base */\n.krause-shield .shield-circle,\n.krause-shield .shield-diamond,\n.krause-shield .shield-arc,\n.krause-shield .shield-line {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 3;\n  /* NO auto-animar - dejar que sean estáticos o controlados por JS */\n}\n\n/* Hover solo cuando NO está en loading */\nbody:not(.loading-locked) .krause-shield:hover .shield-circle,\nbody:not(.loading-locked) .krause-shield:hover .shield-diamond,\nbody:not(.loading-locked) .krause-shield:hover .shield-arc,\nbody:not(.loading-locked) .krause-shield:hover .shield-line {\n  animation: logoPulse 0.6s ease-in-out;\n}\n\n@keyframes logoPulse {\n\n  0%,\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  50% {\n    transform: scale(1.05);\n    opacity: 0.8;\n  }\n}\n\n.brand-text {\n  display: flex;\n  flex-direction: column;\n  gap: 2px;\n}\n\n.brand-name {\n  font-family: 'Cinzel', serif;\n  font-size: 22px;\n  font-weight: 600;\n  color: var(--brand-maroon);\n  line-height: 1;\n}\n\n.brand-tagline {\n  font-size: 11px;\n  color: var(--text-light);\n  font-weight: 500;\n  letter-spacing: 0.5px;\n  text-transform: uppercase;\n}\n\n.mobile-menu-toggle {\n  display: none;\n  flex-direction: column;\n  gap: 5px;\n  background: none;\n  border: none;\n  cursor: pointer;\n  padding: 8px;\n}\n\n.mobile-menu-toggle span {\n  width: 25px;\n  height: 3px;\n  background: var(--brand-maroon);\n  border-radius: 2px;\n  transition: all 0.3s ease;\n}\n\n.nav-menu {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n\n.nav-link {\n  padding: 10px 20px;\n  color: var(--text-dark);\n  text-decoration: none;\n  font-weight: 500;\n  transition: all 0.3s ease;\n  border-radius: 8px;\n  font-size: 16px;\n}\n\n.nav-link:hover,\n.nav-link.active {\n  color: var(--brand-maroon);\n  background: var(--theme-navlink-active-bg);\n  backdrop-filter: blur(15px) saturate(150%);\n  -webkit-backdrop-filter: blur(15px) saturate(150%);\n}\n\n.nav-buttons {\n  display: flex;\n  gap: 12px;\n  margin-left: 20px;\n}\n\n/* Generic buttons (used in Home CTA + Auth forms) */\n.btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  padding: 12px 18px;\n  border-radius: 12px;\n  border: 1px solid transparent;\n  font-family: inherit;\n  font-weight: 700;\n  font-size: 0.95rem;\n  line-height: 1;\n  cursor: pointer;\n  user-select: none;\n  text-decoration: none;\n  background: transparent;\n  color: inherit;\n  transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s ease,\n    border-color 0.25s ease, color 0.25s ease, filter 0.25s ease;\n}\n\n.btn:hover {\n  transform: translateY(-1px);\n}\n\n.btn:active {\n  transform: translateY(0);\n}\n\n.btn:disabled,\n.btn[disabled] {\n  opacity: 0.65;\n  cursor: not-allowed;\n  transform: none;\n}\n\n.btn:focus-visible {\n  outline: 2px solid var(--theme-highlight-light);\n  outline-offset: 2px;\n}\n\n.btn-lg {\n  padding: 14px 22px;\n  border-radius: 14px;\n  font-size: 1rem;\n}\n\n.btn-block {\n  width: 100%;\n}\n\n.btn-primary {\n  background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 70%);\n  color: var(--white);\n  border-color: rgba(255, 255, 255, 0.16);\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), 0 10px 24px var(--theme-primary-shadow-color);\n}\n\n.btn.is-loading,\n.btn[aria-busy=\"true\"] {\n  position: relative;\n  pointer-events: none;\n  color: var(--theme-contrast-strong, var(--brand-maroon));\n  border-color: var(--theme-contrast-glow, rgba(255, 255, 255, 0.25));\n  filter: brightness(1.02);\n}\n\n.btn.is-loading::after,\n.btn[aria-busy=\"true\"]::after {\n  content: '';\n  position: absolute;\n  inset: 6px;\n  border-radius: inherit;\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));\n  animation: loading-pulse 0.9s ease-in-out infinite;\n  mix-blend-mode: screen;\n}\n\n@keyframes loading-pulse {\n\n  0%,\n  100% {\n    opacity: 0.35;\n    transform: scale(0.98);\n  }\n\n  50% {\n    opacity: 0.75;\n    transform: scale(1.02);\n  }\n}\n\n.btn-primary:hover {\n  filter: brightness(1.05);\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26), 0 14px 34px var(--theme-primary-shadow-color);\n}\n\n.btn-secondary {\n  background: rgba(255, 255, 255, 0.14);\n  color: white;\n  border-color: rgba(255, 255, 255, 0.20);\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);\n}\n\n.btn-secondary:hover {\n  background: rgba(255, 255, 255, 0.18);\n  border-color: rgba(255, 255, 255, 0.26);\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);\n}\n\n.btn-outline {\n  background: transparent;\n  color: var(--theme-primary-color);\n  border-color: rgba(255, 255, 255, 0.35);\n}\n\n.btn-outline:hover {\n  background: rgba(255, 255, 255, 0.12);\n  color: var(--theme-secondary-color);\n}\n\n.btn-nav {\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-weight: 600;\n  font-size: 15px;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  border: none;\n  font-family: inherit;\n}\n\n.btn-login {\n  background: transparent;\n  color: var(--brand-maroon);\n  border: 2px solid var(--brand-maroon);\n}\n\n.btn-login:hover {\n  background: var(--brand-maroon);\n  color: white;\n}\n\n.btn-agent {\n  background: var(--brand-maroon);\n  color: white;\n  border: 2px solid var(--brand-maroon);\n}\n\n.btn-agent:hover {\n  background: var(--wine);\n  border-color: var(--wine);\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px var(--theme-primary-shadow-color);\n}\n\n/* Main Content */\n.main-content {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 10;\n  height: auto;\n  width: 100%;\n  box-sizing: border-box;\n  overflow-y: auto;\n  overflow-x: hidden;\n}\n\nbody:not(.no-footer) .main-content {\n  padding-bottom: var(--footer-height);\n}\n\nbody.no-footer .main-content {\n  padding-bottom: 0;\n}\n\nbody.no-footer .footer {\n  display: none !important;\n}\n\n/* Home has a fixed sub-navigation that overlays the scroll container.\n   Add top padding only on home so sections (esp. Cotiza logo/title) are not cut. */\nbody[data-page=\"home\"] .main-content {\n  padding-top: var(--subnav-height);\n}\n\n/* Dashboards sin navbar: usar todo el alto disponible sin offset del nav */\nbody[data-page=\"client-dashboard\"] .main-content,\nbody[data-page=\"agent-dashboard\"] .main-content,\nbody[data-page=\"admin-dashboard\"] .main-content {\n  top: 0;\n  padding-top: 0;\n}\n\n\n\n/* Sub Navigation */\n.sub-navigation {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  width: 100%;\n  z-index: 9998;\n  background: var(--acrylic-bg-dark);\n  backdrop-filter: blur(25px) saturate(180%);\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\n  height: var(--subnav-height);\n  transition: all 0.3s ease;\n}\n\n.sub-nav-btn {\n  position: relative;\n  padding: 18px 32px;\n  background: transparent;\n  border: none;\n  border-radius: 0 !important;\n  font-size: 13px;\n  font-weight: 600;\n  color: rgba(255, 255, 255, 0.85);\n  cursor: pointer;\n  will-change: transform, opacity;\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  font-family: inherit;\n  text-transform: uppercase;\n  letter-spacing: 1.5px;\n  overflow: hidden;\n  height: 56px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.sub-nav-btn::before {\n  content: '';\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: 3px;\n  background: linear-gradient(90deg, transparent, var(--theme-highlight-light), transparent);\n  opacity: 0;\n  transform: scaleX(0);\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n  pointer-events: none;\n}\n\n.sub-nav-btn:hover {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(20px) saturate(160%);\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\n  color: white;\n}\n\n.sub-nav-btn:hover::before {\n  opacity: 0.5;\n  transform: scaleX(1);\n}\n\n.sub-nav-btn.active {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(25px) saturate(170%);\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\n  color: white;\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n}\n\n.sub-nav-btn.active::before {\n  opacity: 1;\n  transform: scaleX(1);\n  box-shadow: 0 0 15px var(--theme-highlight-glow);\n}\n\n/* Button separators */\n.sub-nav-btn:not(:last-child)::after {\n  content: '|';\n  position: absolute;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  color: rgba(255, 255, 255, 0.25);\n  font-weight: 300;\n  font-size: 18px;\n  pointer-events: none;\n  width: 1px;\n  height: 100%;\n}\n\n/* \n   PAGE-SPECIFIC STYLES HAVE BEEN EXTRACTED TO SEPARATE FILES:\n   - styles/pages/home.css: Home page sections (hero, features, cta, agents)\n   - styles/pages/services.css: Services grid and cards\n   - styles/pages/about.css: About content and team\n   - styles/pages/contact.css: Contact form and info\n   - styles/auth.css: Auth login forms\n   - styles/dashboards.css: Dashboard layouts\n   \n   This app.css file now contains ONLY base/global styles.\n   See index.html for CSS module links.\n*/"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3901,24 +3912,43 @@ html[data-theme="dark-forest"] {
 /* Dashboard shell & layout */
 .dashboard-section {
     background: var(--bg-dashboard);
-    min-height: 100vh;
-    max-height: 100vh;
+    height: 100vh;
     width: 100vw;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /* SCROLL UNIVERSAL: overflow-y manejado por scroll-modal-fixes.css */
+    display: flex;
+    flex-direction: column;
+}
+
+html[data-theme="dark-forest"] .dashboard-section {
+    background: #060b0a;
+}
+
+/* Hero Container - Full Width Outside Grid */
+.dashboard-section .dashboard-hero-container {
+    width: 100%;
+    flex-shrink: 0;
+    padding: 12px 12px 12px 12px;
 }
 
 .dashboard-section .dashboard-layout {
     display: grid;
     grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);
     gap: 0;
-    min-height: 100vh;
-    max-height: 100vh;
+    flex: 1;
+    min-height: 0;
     width: 100%;
+    max-width: 100vw;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */
+}
+
+.dashboard-section .dashboard-main-wrapper {
+    /* SCROLL UNIVERSAL: height y overflow manejados por scroll-modal-fixes.css */
+    min-width: 0;
+    width: 100%;
 }
 
 .dashboard-shell {
@@ -3938,47 +3968,22 @@ html[data-theme="dark-forest"] {
 }
 
 /* Floating right rail */
-.dashboard-right-rail {
-    position: sticky;
-    top: 0;
-    width: var(--rail-width);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 12px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    z-index: 90;
-}
-
-.dashboard-right-rail .content-card {
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.12);
-}
-
-.dashboard-right-rail .card-body-scroll {
-    max-height: 180px;
-}
-
 .dashboard-section.no-sidebar .dashboard-shell {
-    padding: 28px 20px 36px;
+    padding: 0 20px 36px;
 }
 
 /* ===== DASHBOARD HEADER - SHARED ACROSS ALL DASHBOARDS ===== */
 .dashboard-section .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--theme-surface-border-strong);
+    display: none !important;
 }
 
-/* Ocultar header principal en dashboards con hero propio */
-.agent-dashboard .dashboard-header,
-.client-dashboard .dashboard-header {
+/* Ocultar navbar global cuando se navega a dashboards (evita header doble) */
+body[data-page="client-dashboard"] .navbar,
+body[data-page="agent-dashboard"] .navbar,
+body[data-page="admin-dashboard"] .navbar,
+body[data-page="client-dashboard"] .navbar-header,
+body[data-page="agent-dashboard"] .navbar-header,
+body[data-page="admin-dashboard"] .navbar-header {
     display: none !important;
 }
 
@@ -4024,18 +4029,16 @@ html[data-theme="dark-forest"] {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100vh;
-    padding: 12px;
-    padding-right: 16px;
-    scroll-behavior: smooth;
+    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */
+    overflow: visible;
+    height: auto;
+    padding: 0 12px 12px 12px;
 }
 
 /* Scroll collapse behavior:
    When user scrolls down past threshold (80px), hero-surface collapses.
    Controlled by scrollCollapse.js which adds/removes COLLAPSE_CLASS.
-   Target: .dashboard-stage (this container handles all scrolling)
+   Target: .dashboard-section (scroll universal)
 */
 
 .stage-main {
@@ -4051,29 +4054,82 @@ html[data-theme="dark-forest"] {
 
 /* Slim Sidebar Navigation */
 .dashboard-section .dashboard-sidebar {
-    position: sticky;
-    top: 0;
+    /* SCROLL UNIVERSAL: No sticky, no overflow */
     width: var(--sidebar-width);
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    padding: 0;
+}
+
+.dashboard-section .dashboard-sidebar .sidebar-surface {
+    /* SCROLL UNIVERSAL: height auto */
+    height: auto;
+}
+
+.sidebar-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+}
+
+.sidebar-block .sidebar-header,
+.sidebar-block .sidebar-quick-actions,
+.sidebar-block .sidebar-widget-group,
+.sidebar-block .sidebar-widget {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-block .sidebar-qa-header {
+    margin-bottom: 8px;
+}
+
+.sidebar-block .qa-btn,
+.sidebar-block .client-pill,
+.sidebar-block .widget-mini-item,
+.sidebar-block .sidebar-logout {
+    width: 100%;
 }
 
 .sidebar-surface {
-    background: rgba(255, 255, 255, 0.75);
+    background: transparent;
     border-radius: 20px;
-    border: 1px solid rgba(226, 232, 240, 0.6);
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(28px) saturate(1.5);
-    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     padding: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
+    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */
+    overflow: visible;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 0;
+}
+
+html[data-theme="dark-forest"] .sidebar-surface,
+html[data-theme="dark-forest"] .rail-surface {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: var(--theme-text-primary);
+}
+
+.sidebar-block {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+}
+
+html[data-theme="dark-forest"] .sidebar-block {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
 }
 
 .dashboard-section .sidebar-header {
@@ -4149,18 +4205,24 @@ html[data-theme="dark-forest"] {
 
 .sidebar-quick-actions,
 .sidebar-widget-group {
-    margin: 12px;
     padding: 12px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    border: 1px solid rgba(226, 232, 240, 0.5);
-    background: linear-gradient(135deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.4) 100%);
+    border: 0;
+    background: transparent;
     border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     flex-shrink: 0;
+}
+
+html[data-theme="dark-forest"] .sidebar-quick-actions,
+html[data-theme="dark-forest"] .sidebar-widget-group {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
 }
 
 .sidebar-qa-header,
@@ -4182,12 +4244,57 @@ html[data-theme="dark-forest"] {
     padding: 8px 10px;
     border-radius: 12px;
     border: 1px solid rgba(0, 0, 0, 0.10);
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.45) !important;
     color: var(--theme-text-primary);
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: var(--dashboard-font-semibold);
     text-align: left;
+    box-shadow: none !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+html[data-theme="dark-forest"] .qa-btn,
+html[data-theme="dark-forest"] .client-pill,
+html[data-theme="dark-forest"] .widget-mini-item {
+    background: rgba(10, 22, 19, 0.35) !important;
+    border: 1px solid rgba(76, 201, 191, 0.16) !important;
+    color: var(--theme-text-primary);
+    box-shadow: none !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Ajuste de badges en tema oscuro: gradiente y legibilidad */
+html[data-theme="dark-forest"] .card-badge,
+html[data-theme="dark-forest"] .badge,
+html[data-theme="dark-forest"] .badge.badge-accent,
+html[data-theme="dark-forest"] .badge.badge-light,
+html[data-theme="dark-forest"] .badge.badge-primary,
+html[data-theme="dark-forest"] .badge.badge-warning,
+html[data-theme="dark-forest"] .badge.badge-success {
+    background: linear-gradient(135deg, rgba(76, 201, 191, 0.18), rgba(155, 89, 182, 0.28));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--theme-text-primary);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.32);
+}
+
+/* Evitar contenedor extra en sidebar widgets (light & dark) */
+.sidebar-quick-actions,
+.sidebar-widget-group {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+.sidebar-block.sidebar-logout-block {
+    display: flex;
+    padding: 10px 10px 6px;
+}
+
+.sidebar-block.sidebar-brand-block .sidebar-header {
+    align-items: center;
 }
 
 .qa-btn:hover,
@@ -4196,6 +4303,14 @@ html[data-theme="dark-forest"] {
     background: var(--theme-accent-bg-soft);
     border-color: var(--theme-accent-border);
     transform: translateY(-2px);
+}
+
+html[data-theme="dark-forest"] .qa-btn:hover,
+html[data-theme="dark-forest"] .client-pill:hover,
+html[data-theme="dark-forest"] .widget-mini-item:hover {
+    background: rgba(76, 201, 191, 0.12);
+    border-color: rgba(76, 201, 191, 0.32);
+    transform: translateY(-1px);
 }
 
 /* Ajuste específico para client-pill y widget-mini-item */
@@ -4243,7 +4358,6 @@ html[data-theme="dark-forest"] {
 }
 
 .dashboard-section .sidebar-logout {
-    margin: 12px;
     padding: 12px;
     background: rgba(245, 87, 108, 0.08);
     border: 1px solid rgba(245, 87, 108, 0.25);
@@ -4267,14 +4381,13 @@ html[data-theme="dark-forest"] {
 }
 
 .sidebar-widget {
-    margin: 0 12px 12px;
     padding: 12px;
     border-radius: 14px;
-    background: linear-gradient(135deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.4) 100%);
-    border: 1px solid rgba(226, 232, 240, 0.5);
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     color: var(--theme-text-primary);
     flex-shrink: 0;
     display: flex;
@@ -4312,13 +4425,15 @@ html[data-theme="dark-forest"] {
 }
 
 .sidebar-widget .contact-chip {
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.85);
     color: var(--theme-text-primary);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.10);
     padding: 8px 10px;
     border-radius: 12px;
     text-align: left;
     width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 /* Main Content Wrapper */
@@ -4382,14 +4497,22 @@ html[data-theme="dark-forest"] {
 .hero-divider {
     color: var(--dashboard-text-tertiary);
     opacity: 0.4;
+    font-size: 14px;
 }
 
 .hero-welcome {
     color: var(--dashboard-hero-title);
-    font-weight: var(--dashboard-font-black);
+    font-weight: var(--dashboard-font-bold);
     font-family: 'Cinzel', serif;
-    font-size: 32px;
+    font-size: 20px;
     letter-spacing: 0.5px;
+}
+
+.hero-welcome span[data-user-name],
+.hero-welcome span[data-hero-user],
+.hero-welcome span[data-agent-name] {
+    font-weight: var(--dashboard-font-black);
+    color: var(--dashboard-hero-title);
 }
 
 .hero-description {
@@ -4411,11 +4534,13 @@ html[data-theme="dark-forest"] {
 
 .hero-surface {
     position: relative;
-    border-radius: 20px;
-    padding: 12px 16px;
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin: 0;
+    width: 100%;
     background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);
     border: 1px solid rgba(226, 232, 240, 0.6);
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(28px) saturate(1.4);
     -webkit-backdrop-filter: blur(28px) saturate(1.4);
     overflow: hidden;
@@ -4445,26 +4570,45 @@ html[data-theme="dark-forest"] {
 }
 
 .hero-surface .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.18fr) minmax(300px, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 12px;
-    align-items: center;
 }
 
 .hero-surface .hero-copy {
-    text-align: left;
+    text-align: justify;
     align-items: flex-start;
+    display: flex;
+    flex-direction: column;
     gap: 8px;
+    width: 100%;
 }
 
-.hero-surface .hero-description {
-    max-width: 880px;
-    margin: 4px 0 0;
+.hero-surface .hero-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.hero-surface .hero-welcome {
+    margin-left: 0;
+}
+
+.hero-surface .hero-title-row .hero-description {
+    flex: 1;
+    margin: 0;
+    margin-left: auto;
+    text-align: justify;
+    min-width: 300px;
 }
 
 .hero-surface .hero-search {
     width: 100%;
-    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .search-hero .search-bar.stretch {
@@ -4695,19 +4839,17 @@ html[data-theme="dark-forest"] {
 }
 
 .dashboard-rail.right-rail {
-    position: sticky;
-    top: 12px;
+    /* SCROLL UNIVERSAL: No sticky, no overflow */
     display: flex;
     flex-direction: column;
     gap: 12px;
-    height: fit-content;
-    max-height: calc(100vh - 24px);
+    padding: 12px 12px 12px 0;
+    /* overflow manejado por scroll-modal-fixes.css */
 }
 
 .mimic-col.side-left,
 .mimic-col.side-right {
-    position: sticky;
-    top: 12px;
+    /* SCROLL UNIVERSAL: No sticky */
 }
 
 .mimic-wrap {
@@ -6442,28 +6584,24 @@ html[data-theme="dark-forest"] {
 html[data-theme="dark-forest"] .dashboard-section,
 html[data-theme="dark-forest"] .agent-dashboard,
 html[data-theme="dark-forest"] .admin-dashboard {
-    background:
-        radial-gradient(90% 80% at 12% 18%, rgba(76, 201, 191, 0.32), transparent 58%),
-        radial-gradient(85% 70% at 88% 22%, rgba(113, 220, 201, 0.24), transparent 62%),
-        radial-gradient(95% 80% at 18% 88%, rgba(76, 150, 220, 0.22), transparent 68%),
-        linear-gradient(155deg, #0f2c35 0%, #0c1f2c 46%, #0a1724 100%);
+    background: #060b0a;
     color: var(--theme-text-primary);
 }
 
 /* Sidebar dark theme overrides */
 html[data-theme="dark-forest"] .dashboard-section .dashboard-sidebar {
-    background: linear-gradient(160deg, rgba(10, 26, 36, 0.92), rgba(10, 26, 36, 0.86));
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
 }
 
 html[data-theme="dark-forest"] .sidebar-surface {
-    background: rgba(15, 43, 36, 0.45) !important;
-    border: 1px solid rgba(242, 234, 220, 0.12) !important;
+    background: transparent !important;
+    border: 0 !important;
     border-radius: 20px !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-    backdrop-filter: blur(32px) saturate(1.3) !important;
-    -webkit-backdrop-filter: blur(32px) saturate(1.3) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
 html[data-theme="dark-forest"] .dashboard-section .sidebar-header {
@@ -6482,26 +6620,13 @@ html[data-theme="dark-forest"] .sidebar-branding .brand-text-sidebar .brand-tagl
     color: rgba(255, 255, 255, 0.72);
 }
 
-html[data-theme="dark-forest"] .sidebar-quick-actions {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.04);
-    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
-}
+/* sidebar-quick-actions ya usa estilos unificados - sin background extra */
 
 html[data-theme="dark-forest"] .sidebar-qa-header {
     color: rgba(255, 255, 255, 0.7);
 }
 
-html[data-theme="dark-forest"] .qa-btn {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.92);
-}
-
-html[data-theme="dark-forest"] .qa-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.16);
-}
+/* Unificado con los demás botones de sidebar */
 
 html[data-theme="dark-forest"] .dashboard-section .nav-item {
     color: rgba(255, 255, 255, 0.7);
@@ -6514,9 +6639,9 @@ html[data-theme="dark-forest"] .dashboard-section .nav-item.active {
 }
 
 html[data-theme="dark-forest"] .sidebar-widget {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
     color: white;
 }
 
@@ -6524,41 +6649,42 @@ html[data-theme="dark-forest"] .sidebar-widget h4 {
     color: rgba(255, 255, 255, 0.82);
 }
 
-/* Dashboard cards - force dark backgrounds */
+/* Dashboard cards - unified dark backgrounds for consistency */
 html[data-theme="dark-forest"] .dashboard-card {
-    background: linear-gradient(160deg, rgba(15, 43, 36, 0.14), rgba(27, 63, 71, 0.08)) !important;
-    border: 1px solid rgba(242, 234, 220, 0.16) !important;
-    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(16px) saturate(1.1) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(1.1) !important;
+    background: rgba(15, 43, 36, 0.25) !important;
+    border: 1px solid rgba(242, 234, 220, 0.12) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(20px) saturate(1.2) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
 }
 
 html[data-theme="dark-forest"] .sidebar-surface .dashboard-card {
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Stat cards - force dark backgrounds */
+/* Stat cards - same background as dashboard-card for consistency */
 html[data-theme="dark-forest"] .dashboard-section .stat-card {
-    background: linear-gradient(145deg, rgba(15, 43, 36, 0.18) 0%, rgba(27, 63, 71, 0.12) 100%) !important;
-    border: 1px solid rgba(242, 234, 220, 0.16) !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    background: rgba(15, 43, 36, 0.25) !important;
+    border: 1px solid rgba(242, 234, 220, 0.12) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
     backdrop-filter: blur(28px) saturate(1.3) !important;
     -webkit-backdrop-filter: blur(28px) saturate(1.3) !important;
 }
 
 html[data-theme="dark-forest"] .client-dashboard .stat-card {
-    background: linear-gradient(145deg, rgba(15, 43, 36, 0.16) 0%, rgba(27, 63, 71, 0.10) 100%) !important;
-    border: 1px solid rgba(242, 234, 220, 0.14) !important;
+    background: rgba(15, 43, 36, 0.25) !important;
+    border: 1px solid rgba(242, 234, 220, 0.12) !important;
 }
 
-/* Hero surface - force dark background */
+/* Hero surface - unified dark background */
 html[data-theme="dark-forest"] .hero-surface {
-    background: linear-gradient(160deg, rgba(15, 43, 36, 0.22) 0%, rgba(27, 63, 71, 0.16) 100%) !important;
-    border: 1px solid rgba(242, 234, 220, 0.18) !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.40), 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-    backdrop-filter: blur(28px) saturate(1.2) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(1.2) !important;
+    background: rgba(15, 43, 36, 0.3) !important;
+    border: 1px solid rgba(242, 234, 220, 0.14) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(32px) saturate(1.3) !important;
+    -webkit-backdrop-filter: blur(32px) saturate(1.3) !important;
 }
 
 html[data-theme="dark-forest"] .sidebar-widget .card-badge {
@@ -6572,9 +6698,10 @@ html[data-theme="dark-forest"] .sidebar-widget ul {
 }
 
 html[data-theme="dark-forest"] .sidebar-widget .contact-chip {
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(10, 22, 19, 0.65);
+    border: 1px solid rgba(76, 201, 191, 0.16);
+    color: var(--theme-text-primary);
+    box-shadow: none;
 }
 
 html[data-theme="dark-forest"] .dashboard-header {
@@ -6604,12 +6731,12 @@ html[data-theme="dark-forest"] .admin-dashboard .dashboard-header .btn,
 html[data-theme="dark-forest"] .dashboard-section .btn-primary,
 html[data-theme="dark-forest"] .agent-dashboard .btn-primary,
 html[data-theme="dark-forest"] .admin-dashboard .btn-primary {
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    color: var(--theme-text-primary);
-    border: 1px solid var(--theme-accent-border);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));
-    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));
+    background: linear-gradient(135deg, rgba(76, 201, 191, 0.28) 0%, rgba(113, 220, 201, 0.22) 100%);
+    color: #e8f4ef;
+    border: 1px solid rgba(76, 201, 191, 0.35);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), 0 4px 12px rgba(76, 201, 191, 0.25);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
 }
 
 html[data-theme="dark-forest"] .dashboard-header .btn:hover,
@@ -6618,10 +6745,38 @@ html[data-theme="dark-forest"] .admin-dashboard .dashboard-header .btn:hover,
 html[data-theme="dark-forest"] .dashboard-section .btn-primary:hover,
 html[data-theme="dark-forest"] .agent-dashboard .btn-primary:hover,
 html[data-theme="dark-forest"] .admin-dashboard .btn-primary:hover {
-    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
-    border-color: var(--theme-accent-border);
-    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), 0 0 0 1px var(--theme-accent-border);
-    filter: none;
+    background: linear-gradient(135deg, rgba(76, 201, 191, 0.38) 0%, rgba(113, 220, 201, 0.32) 100%);
+    border-color: rgba(76, 201, 191, 0.45);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), 0 6px 18px rgba(76, 201, 191, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Normalizar tamaño y densidad de CTAs en dark theme (evita botones gigantes como "Abrir") */
+html[data-theme="dark-forest"] .dashboard-section .btn,
+html[data-theme="dark-forest"] .dashboard-section button,
+html[data-theme="dark-forest"] .dashboard-section .cta .btn,
+html[data-theme="dark-forest"] .dashboard-section .btn-primary,
+html[data-theme="dark-forest"] .dashboard-section .action-btn,
+html[data-theme="dark-forest"] .dashboard-section .card .btn,
+html[data-theme="dark-forest"] .dashboard-section .card .cta,
+html[data-theme="dark-forest"] .dashboard-section .card .cta .btn {
+    border: 1px solid rgba(76, 201, 191, 0.32);
+    background: radial-gradient(circle at 20% 20%, rgba(76, 201, 191, 0.18), rgba(0, 0, 0, 0.32));
+    color: var(--theme-text-primary);
+    transition: all 0.2s ease;
+}
+
+html[data-theme="dark-forest"] .dashboard-section .btn:hover,
+html[data-theme="dark-forest"] .dashboard-section button:hover,
+html[data-theme="dark-forest"] .dashboard-section .cta .btn:hover,
+html[data-theme="dark-forest"] .dashboard-section .btn-primary:hover,
+html[data-theme="dark-forest"] .dashboard-section .action-btn:hover,
+html[data-theme="dark-forest"] .dashboard-section .card .btn:hover,
+html[data-theme="dark-forest"] .dashboard-section .card .cta:hover,
+html[data-theme="dark-forest"] .dashboard-section .card .cta .btn:hover {
+    border-color: rgba(76, 201, 191, 0.55);
+    background: radial-gradient(circle at 20% 20%, rgba(76, 201, 191, 0.25), rgba(0, 0, 0, 0.4));
+    transform: translateY(-1px);
 }
 
 html[data-theme="dark-forest"] .btn-icon {
@@ -6650,10 +6805,12 @@ html[data-theme="dark-forest"] .admin-dashboard .dashboard-stat-card {
 
 html[data-theme="dark-forest"] .dashboard-section .content-card,
 html[data-theme="dark-forest"] .dashboard-section .widget-card {
-    background: linear-gradient(165deg, rgba(10, 26, 36, 0.86), rgba(10, 26, 36, 0.78));
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    background: rgba(15, 43, 36, 0.25) !important;
+    border: 1px solid rgba(242, 234, 220, 0.12);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     color: var(--theme-text-primary);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
 }
 
 html[data-theme="dark-forest"] .dashboard-section .text-muted,
@@ -6751,35 +6908,42 @@ html[data-theme="dark-forest"] .dashboard-card {
 }
 
 html[data-theme="dark-forest"] .mini-table-row {
-    background: linear-gradient(150deg, rgba(10, 26, 36, 0.82), rgba(10, 26, 36, 0.72));
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(15, 43, 36, 0.2) !important;
+    border: 1px solid rgba(242, 234, 220, 0.1);
     box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);
 }
 
 html[data-theme="dark-forest"] .floating-header-bar {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(15, 43, 36, 0.3) !important;
+    border: 1px solid rgba(242, 234, 220, 0.12);
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.32);
 }
 
 html[data-theme="dark-forest"] .contact-chip {
-    background: linear-gradient(145deg, rgba(118, 75, 162, 0.18), rgba(102, 126, 234, 0.12));
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(76, 201, 191, 0.15) !important;
+    border: 1px solid rgba(76, 201, 191, 0.25);
     color: var(--theme-text-primary);
+}
+
+html[data-theme="dark-forest"] .contact-chip:hover {
+    background: rgba(76, 201, 191, 0.25) !important;
+    border-color: rgba(76, 201, 191, 0.35);
 }
 
 html[data-theme="dark-forest"] .doc-item,
 html[data-theme="dark-forest"] .contact-detail {
-    background: linear-gradient(150deg, rgba(10, 26, 36, 0.82), rgba(10, 26, 36, 0.72));
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(15, 43, 36, 0.2) !important;
+    border: 1px solid rgba(242, 234, 220, 0.1);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
     color: var(--theme-text-primary);
 }
 
 html[data-theme="dark-forest"] .modal-card {
-    background: linear-gradient(160deg, rgba(10, 26, 36, 0.94), rgba(10, 26, 36, 0.86));
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(15, 43, 36, 0.85) !important;
+    border: 1px solid rgba(242, 234, 220, 0.18);
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(28px) saturate(1.3);
+    -webkit-backdrop-filter: blur(28px) saturate(1.3);
 }
 
 html[data-theme="dark-forest"] .donut-track {
@@ -6840,6 +7004,8 @@ html[data-theme="dark-forest"] .status-dot {
 @media (max-width: 768px) {
     .dashboard-section .dashboard-layout {
         grid-template-columns: var(--sidebar-slim-width) 1fr;
+        gap: 4px;
+        padding: 4px;
     }
 
     .dashboard-section .dashboard-sidebar {
@@ -6855,11 +7021,16 @@ html[data-theme="dark-forest"] .status-dot {
     }
 
     .sidebar-surface {
-        padding: 8px;
+        padding: 8px 4px;
     }
 
     .dashboard-section .stats-grid {
         grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 12px;
     }
 
     .dashboard-section .dashboard-top-header {
@@ -6868,20 +7039,197 @@ html[data-theme="dark-forest"] .status-dot {
         gap: 12px;
     }
 
+    .hero-surface {
+        padding: 12px;
+    }
+
+    .hero-surface .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
     .dashboard-tabs {
         width: 100%;
         justify-content: space-between;
-        gap: 6px;
+        gap: 4px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .dashboard-tab {
-        flex: 1 1 45%;
+        flex: 1 1 auto;
+        min-width: 80px;
         text-align: center;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        padding: 8px 12px;
+        white-space: nowrap;
     }
 
     .dashboard-stage {
-        padding: 12px 8px;
+        padding: 8px 4px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .dashboard-card {
+        margin-bottom: 8px;
+    }
+
+    .monitor-wrapper .monitor-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .monitor-visual {
+        grid-template-columns: 100px 1fr;
+        border-right: none;
+        border-bottom: 1px solid var(--dashboard-border);
+        padding-bottom: 12px;
+    }
+}
+
+/* Mobile phones - stack everything */
+@media (max-width: 480px) {
+    .dashboard-section .dashboard-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0;
+    }
+
+    .dashboard-section .dashboard-sidebar {
+        display: none;
+    }
+
+    .dashboard-section .dashboard-right-rail {
+        display: none;
+    }
+
+    .dashboard-main-wrapper {
+        width: 100%;
+        padding: 0;
+    }
+
+    .dashboard-stage {
+        padding: 8px;
+    }
+
+    .hero-surface {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .hero-welcome {
+        font-size: 24px;
+    }
+
+    .hero-title-row .eyebrow {
+        font-size: 16px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .dashboard-tabs {
+        padding: 8px 4px;
+        gap: 4px;
+    }
+
+    .dashboard-tab {
+        font-size: 0.75rem;
+        padding: 6px 8px;
+        min-width: 70px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 10px;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .monitor-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .monitor-title {
+        font-size: 18px;
+    }
+
+    .expand-all-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .monitor-card {
+        grid-template-columns: 1fr;
+        padding: 12px;
+    }
+
+    .monitor-visual {
+        grid-template-columns: 1fr;
+        text-align: center;
+        border-right: none;
+        border-bottom: 1px solid var(--dashboard-border);
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+    }
+
+    .donut-figure {
+        margin: 0 auto 12px;
+    }
+
+    .monitor-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-card {
+        padding: 12px;
+        margin-bottom: 8px;
+    }
+
+    .card-header-modern {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    /* Add mobile menu toggle button */
+    .dashboard-mobile-menu-toggle {
+        display: flex;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        background: var(--theme-accent-color);
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        border: none;
+        color: white;
+        cursor: pointer;
     }
 }
 
@@ -6918,42 +7266,21 @@ html[data-theme="dark-forest"] .status-dot {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     flex-wrap: wrap;
+    width: 100%;
 }
 
-.agent-dashboard .eyebrow {
-    font-size: 0.75rem;
-    color: var(--theme-text-secondary);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.agent-dashboard .hero-divider {
-    color: var(--theme-text-secondary);
-    font-weight: 300;
-    opacity: 0.3;
-    font-size: 0.75rem;
-}
-
-.agent-dashboard .hero-welcome {
-    font-size: 0.875rem;
-    color: var(--theme-text-primary);
-    font-weight: 500;
-}
-
-.agent-dashboard .hero-welcome span[data-agent-name] {
-    font-weight: 700;
-    color: var(--theme-text-primary);
-}
+/* Estilos unificados en selectores base - no necesita sobrescritura */
 
 .agent-dashboard .hero-description {
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--theme-text-secondary);
     margin: 0;
-    max-width: 600px;
+    flex: 1;
+    margin-left: auto;
+    text-align: justify;
 }
 
 /* Sidebar pills and widgets */
@@ -7181,6 +7508,77 @@ html[data-theme="dark-forest"] .status-dot {
 .agent-dashboard .roadmap-step .step-action:hover {
     background: rgba(79, 172, 254, 0.18);
     border-color: var(--theme-accent-color);
+}
+
+/* Roadmap + steps en modo oscuro: superficies más profundas y contrastadas */
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-body {
+    background: rgba(10, 20, 17, 0.88);
+    border: 1px solid rgba(76, 201, 191, 0.22);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
+    color: var(--theme-text-primary);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-tab {
+    background: rgba(12, 24, 20, 0.9);
+    border: 1px solid rgba(76, 201, 191, 0.22);
+    color: var(--theme-text-primary);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-tab:hover {
+    background: rgba(76, 201, 191, 0.14);
+    border-color: rgba(76, 201, 191, 0.38);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-tab.active {
+    background: linear-gradient(135deg, rgba(76, 201, 191, 0.28), rgba(155, 89, 182, 0.24));
+    border-color: rgba(76, 201, 191, 0.42);
+    color: var(--theme-text-primary);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-step {
+    background: rgba(8, 16, 14, 0.9);
+    border: 1px solid rgba(76, 201, 191, 0.16);
+    border-left-color: rgba(76, 201, 191, 0.3);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-step::before {
+    background: rgba(76, 201, 191, 0.8);
+    border: 2px solid rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 0 4px rgba(76, 201, 191, 0.12);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-step.done {
+    border-left-color: #38ef7d;
+    border-color: rgba(56, 239, 125, 0.25);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-step.done::before {
+    background: #38ef7d;
+    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.2);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-step.in-progress {
+    background: rgba(10, 20, 17, 0.9);
+    border-left-color: #feca57;
+    border-color: rgba(254, 202, 87, 0.28);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-step.in-progress::before {
+    background: #feca57;
+    box-shadow: 0 0 0 4px rgba(254, 202, 87, 0.2);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-step .step-action {
+    background: rgba(76, 201, 191, 0.12);
+    border-color: rgba(76, 201, 191, 0.28);
+    color: var(--theme-text-primary);
+}
+
+html[data-theme="dark-forest"] .agent-dashboard .roadmap-step .step-action:hover {
+    background: rgba(76, 201, 191, 0.2);
+    border-color: rgba(76, 201, 191, 0.42);
+    color: var(--theme-text-primary);
 }
 
 @keyframes pulse {
@@ -7414,6 +7812,44 @@ html[data-theme="dark-forest"] .status-dot {
     color: var(--theme-accent-color);
 }
 
+/* Claims/siniestros: superficies oscuras para legibilidad en dark theme */
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item {
+    background: rgba(8, 16, 14, 0.9);
+    border: 1px solid rgba(76, 201, 191, 0.18);
+    border-left: 3px solid rgba(76, 201, 191, 0.42);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
+    color: var(--theme-text-primary);
+}
+
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item:hover {
+    background: rgba(10, 20, 17, 0.92);
+    border-color: rgba(76, 201, 191, 0.26);
+}
+
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item.warn,
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item.urgent,
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item.ok {
+    border-left-width: 3px;
+}
+
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item.warn .claim-icon,
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item.warn .claim-status {
+    background: rgba(254, 202, 87, 0.14);
+    color: #feca57;
+}
+
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item.ok .claim-icon,
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item.ok .claim-status {
+    background: rgba(56, 239, 125, 0.14);
+    color: #38ef7d;
+}
+
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item.urgent .claim-icon,
+html[data-theme="dark-forest"] .claims-interactive-list .claim-item.urgent .claim-status {
+    background: rgba(245, 87, 108, 0.16);
+    color: #f5576c;
+}
+
 /* Sidebar surface fix - remove double background */
 .agent-dashboard .sidebar-surface {
     background: rgba(255, 255, 255, 0.75) !important;
@@ -7442,23 +7878,7 @@ html[data-theme="dark-forest"] .status-dot {
     margin-bottom: 16px;
 }
 
-/* Hide unwanted duplicate elements */
-.agent-dashboard .hero-surface .eyebrow {
-    font-size: 0.8rem;
-    color: var(--theme-text-secondary);
-    font-weight: 500;
-}
-
-.agent-dashboard .hero-welcome {
-    font-size: 0.9rem;
-    color: var(--theme-text-primary);
-    font-weight: 500;
-}
-
-.agent-dashboard .hero-welcome span[data-agent-name] {
-    font-weight: 700;
-    color: var(--theme-accent-color);
-}
+/* Estilos hero unificados en selectores base */
 
 /* Ensure compact spacing throughout */
 .agent-dashboard .mimic-wrap {
@@ -7496,7 +7916,7 @@ html[data-theme="dark-forest"] .status-dot {
    ADMIN DASHBOARD SPECIFIC STYLES  
    ═══════════════════════════════════════════════════════════════════ */
 
-/* Admin styles will go here */`, "",{"version":3,"sources":["webpack://./styles/dashboards.css"],"names":[],"mappings":"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","sourcesContent":["/* Shared Dashboard UI (restored from backup, tokenized)\n   This file provides the missing layout/components for dashboards:\n   - grid layout\n   - cards + headers\n   - lists (policies/quotes)\n   - tables\n   - badges\n   - icon buttons\n   - sidebar widgets\n*/\n\n/* Import Font Manager for centralized typography & colors */\n@import './Font-Manager.css';\n\n:root {\n    /* Modern Dashboard Colors - Aligned with Brand Palette */\n    --sidebar-width: 300px;\n    --sidebar-slim-width: 80px;\n    --rail-width: 300px;\n    --dashboard-max-width: 1680px;\n    --dashboard-content-width: 90%;\n\n    /* Brand gradients */\n    --color-primary: linear-gradient(135deg, #8b2348 0%, #9b59b6 100%);\n    --color-success: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n    --color-warning: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);\n    --color-info: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);\n\n    /* Background & Surface Colors */\n    --bg-main: #f8f9fa;\n    --bg-card: #ffffff;\n    --bg-sidebar: #0d1117;\n    --bg-dashboard: linear-gradient(135deg, #f6f7fb 0%, #eef1f7 45%, #e7ebf3 100%);\n\n    /* Legacy compatibility */\n    --dashboard-bg-light: var(--bg-main);\n    --dashboard-stat-gap-shared: 14px;\n    --dashboard-stat-icon-size-shared: 60px;\n    --dashboard-stat-icon-radius-shared: 14px;\n    --dashboard-stat-transition-shared: all 0.42s cubic-bezier(0.33, 1, 0.68, 1);\n\n    /* Theme-adaptive variables for high contrast */\n    --dashboard-bg-surface: rgba(255, 255, 255, 0.92);\n    --dashboard-border: rgba(0, 0, 0, 0.06);\n    --dashboard-border-subtle: rgba(0, 0, 0, 0.08);\n    --dashboard-radius-lg: 18px;\n}\n\n/* Dark theme overrides */\nhtml[data-theme=\"dark-forest\"] {\n    --dashboard-bg-surface: rgba(20, 30, 25, 0.88);\n    --dashboard-border: rgba(255, 255, 255, 0.1);\n    --dashboard-border-subtle: rgba(255, 255, 255, 0.12);\n}\n\n/* Dashboard shell & layout */\n.dashboard-section {\n    background: var(--bg-dashboard);\n    min-height: 100vh;\n    max-height: 100vh;\n    width: 100vw;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n}\n\n.dashboard-section .dashboard-layout {\n    display: grid;\n    grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);\n    gap: 0;\n    min-height: 100vh;\n    max-height: 100vh;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    overflow: hidden;\n}\n\n.dashboard-shell {\n    width: 100%;\n    margin: 0;\n    padding: 0;\n}\n\n.dashboard-section.no-sidebar .dashboard-layout {\n    display: block;\n}\n\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\n    margin-left: 0;\n    padding: 0;\n    max-width: none;\n}\n\n/* Floating right rail */\n.dashboard-right-rail {\n    position: sticky;\n    top: 0;\n    width: var(--rail-width);\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 12px;\n    overflow-y: auto;\n    overflow-x: hidden;\n    z-index: 90;\n}\n\n.dashboard-right-rail .content-card {\n    background: rgba(255, 255, 255, 0.94);\n    border: 1px solid rgba(0, 0, 0, 0.05);\n    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.12);\n}\n\n.dashboard-right-rail .card-body-scroll {\n    max-height: 180px;\n}\n\n.dashboard-section.no-sidebar .dashboard-shell {\n    padding: 28px 20px 36px;\n}\n\n/* ===== DASHBOARD HEADER - SHARED ACROSS ALL DASHBOARDS ===== */\n.dashboard-section .dashboard-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 12px;\n    padding-bottom: 10px;\n    border-bottom: 2px solid var(--theme-surface-border-strong);\n}\n\n/* Ocultar header principal en dashboards con hero propio */\n.agent-dashboard .dashboard-header,\n.client-dashboard .dashboard-header {\n    display: none !important;\n}\n\n.dashboard-section .dashboard-header>div:first-child h1 {\n    font-family: var(--dashboard-font-family-primary);\n    font-size: var(--dashboard-text-2xl);\n    color: var(--theme-accent-color);\n    margin: 0 0 8px 0;\n    font-weight: var(--dashboard-font-bold);\n    text-shadow: 0 2px 8px var(--theme-primary-shadow-color);\n}\n\n.dashboard-section .dashboard-header>div:first-child p {\n    color: var(--theme-text-secondary);\n    font-size: var(--dashboard-text-md);\n    margin: 0;\n}\n\n.dashboard-section .dashboard-header .btn {\n    padding: 12px 26px;\n    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 12px;\n    cursor: pointer;\n    font-weight: var(--dashboard-font-semibold);\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14);\n    transition: all 0.3s ease;\n}\n\n.dashboard-section .dashboard-header .btn:hover {\n    transform: translateY(-3px);\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--theme-accent-border);\n}\n\n/* ===== END DASHBOARD HEADER ===== */\n\n/* Integrated content without additional rail wrapping */\n.dashboard-stage {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    overflow-y: auto;\n    overflow-x: hidden;\n    height: 100vh;\n    padding: 12px;\n    padding-right: 16px;\n    scroll-behavior: smooth;\n}\n\n/* Scroll collapse behavior:\n   When user scrolls down past threshold (80px), hero-surface collapses.\n   Controlled by scrollCollapse.js which adds/removes COLLAPSE_CLASS.\n   Target: .dashboard-stage (this container handles all scrolling)\n*/\n\n.stage-main {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.dashboard-body {\n    display: block;\n    margin-top: 8px;\n}\n\n/* Slim Sidebar Navigation */\n.dashboard-section .dashboard-sidebar {\n    position: sticky;\n    top: 0;\n    width: var(--sidebar-width);\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.sidebar-surface {\n    background: rgba(255, 255, 255, 0.75);\n    border-radius: 20px;\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(28px) saturate(1.5);\n    -webkit-backdrop-filter: blur(28px) saturate(1.5);\n    padding: 0;\n    overflow-y: auto;\n    overflow-x: hidden;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    gap: 0;\n}\n\n.dashboard-section .sidebar-header {\n    padding: 14px 16px;\n    border-bottom: 1px solid rgba(15, 23, 42, 0.08);\n    text-align: center;\n    flex-shrink: 0;\n}\n\n.dashboard-section .user-avatar {\n    width: 60px;\n    height: 60px;\n    margin: 0 auto 12px;\n    border-radius: 50%;\n    overflow: hidden;\n    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);\n}\n\n.dashboard-section .sidebar-header h3 {\n    color: var(--dashboard-text-primary);\n    font-size: var(--dashboard-text-md);\n    font-weight: var(--dashboard-font-semibold);\n    margin: 0;\n}\n\n.dashboard-section .sidebar-header.sidebar-branding {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 10px;\n    padding: 16px 16px 14px;\n    flex-shrink: 0;\n}\n\n.sidebar-branding .logo-slot-nav {\n    width: 64px;\n    height: 64px;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    color: var(--theme-primary-color);\n}\n\n.sidebar-branding .brand-text-sidebar {\n    text-align: center;\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n}\n\n.sidebar-branding .brand-text-sidebar .brand-name {\n    color: var(--theme-text-primary);\n    font-size: var(--dashboard-text-md);\n    letter-spacing: 0.04em;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.sidebar-branding .brand-text-sidebar .brand-tagline {\n    color: var(--theme-text-secondary);\n    font-size: var(--dashboard-text-xs);\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n}\n\n.dashboard-section .sidebar-nav {\n    color: var(--theme-text-primary);\n    padding: 8px 0;\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n    flex-shrink: 0;\n}\n\n.sidebar-quick-actions,\n.sidebar-widget-group {\n    margin: 12px;\n    padding: 12px;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    border: 1px solid rgba(226, 232, 240, 0.5);\n    background: linear-gradient(135deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.4) 100%);\n    border-radius: 14px;\n    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.4);\n    backdrop-filter: blur(10px);\n    -webkit-backdrop-filter: blur(10px);\n    flex-shrink: 0;\n}\n\n.sidebar-qa-header,\n.sidebar-widget-group .sidebar-qa-header {\n    font-size: var(--dashboard-text-sm);\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    color: var(--theme-text-secondary);\n    margin-bottom: 6px;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.qa-btn,\n.client-pill,\n.widget-mini-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 8px 10px;\n    border-radius: 12px;\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    background: rgba(255, 255, 255, 0.85);\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-weight: var(--dashboard-font-semibold);\n    text-align: left;\n}\n\n.qa-btn:hover,\n.client-pill:hover,\n.widget-mini-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateY(-2px);\n}\n\n/* Ajuste específico para client-pill y widget-mini-item */\n.client-pill,\n.widget-mini-item {\n    gap: 8px;\n}\n\n.dashboard-section .nav-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 10px 16px;\n    color: var(--theme-text-secondary);\n    text-decoration: none;\n    transition: all 0.2s ease;\n    position: relative;\n}\n\n.dashboard-section .nav-item::before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 50%;\n    transform: translateY(-50%);\n    width: 3px;\n    height: 0;\n    background: linear-gradient(180deg, #667eea, #764ba2);\n    border-radius: 0 2px 2px 0;\n    transition: height 0.2s ease;\n}\n\n.dashboard-section .nav-item:hover,\n.dashboard-section .nav-item.active {\n    color: var(--theme-text-primary);\n    background: var(--theme-accent-bg-soft);\n}\n\n.dashboard-section .nav-item.active::before {\n    height: 70%;\n}\n\n.dashboard-section .nav-item svg {\n    flex-shrink: 0;\n}\n\n.dashboard-section .sidebar-logout {\n    margin: 12px;\n    padding: 12px;\n    background: rgba(245, 87, 108, 0.08);\n    border: 1px solid rgba(245, 87, 108, 0.25);\n    border-radius: 12px;\n    color: #f5576c;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 8px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-size: var(--dashboard-text-base);\n    font-weight: var(--dashboard-font-medium);\n    flex-shrink: 0;\n    margin-top: auto;\n}\n\n.dashboard-section .sidebar-logout:hover {\n    background: rgba(245, 87, 108, 0.2);\n    border-color: rgba(245, 87, 108, 0.4);\n}\n\n.sidebar-widget {\n    margin: 0 12px 12px;\n    padding: 12px;\n    border-radius: 14px;\n    background: linear-gradient(135deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.4) 100%);\n    border: 1px solid rgba(226, 232, 240, 0.5);\n    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.4);\n    backdrop-filter: blur(10px);\n    -webkit-backdrop-filter: blur(10px);\n    color: var(--theme-text-primary);\n    flex-shrink: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.sidebar-widget h4 {\n    margin: 0;\n    font-size: var(--dashboard-text-base);\n    letter-spacing: 0.3px;\n    text-transform: uppercase;\n    color: var(--theme-text-secondary);\n    font-weight: var(--dashboard-font-bold);\n}\n\n.sidebar-widget .card-badge {\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-accent-color);\n    border: 1px solid var(--theme-accent-border);\n}\n\n.sidebar-widget ul {\n    margin: 0;\n    padding-left: 16px;\n    color: var(--theme-text-primary);\n    display: grid;\n    gap: 6px;\n    font-size: var(--dashboard-text-base);\n}\n\n.sidebar-widget .contact-chips {\n    display: grid;\n    gap: 8px;\n}\n\n.sidebar-widget .contact-chip {\n    background: rgba(255, 255, 255, 0.65);\n    color: var(--theme-text-primary);\n    border: 1px solid rgba(0, 0, 0, 0.08);\n    padding: 8px 10px;\n    border-radius: 12px;\n    text-align: left;\n    width: 100%;\n}\n\n/* Main Content Wrapper */\n.dashboard-section .dashboard-main-wrapper {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    min-width: 0;\n}\n\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\n    margin-left: 0;\n    padding: 0;\n    max-width: none;\n}\n\n/* Top Header */\n.dashboard-section .dashboard-top-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 22px;\n    gap: 14px;\n}\n\n.dashboard-section .mimic-header {\n    align-items: flex-start;\n}\n\n.search-hero {\n    flex-direction: column;\n    align-items: stretch;\n    gap: 12px;\n}\n\n.search-hero .hero-copy {\n    text-align: center;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n}\n\n.hero-title-row {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    gap: 12px;\n    font-weight: var(--dashboard-font-extrabold);\n    font-size: 16px;\n    letter-spacing: 0.4px;\n}\n\n.hero-title-row .eyebrow {\n    color: var(--dashboard-hero-eyebrow);\n    font-size: 14px;\n    font-weight: var(--dashboard-font-semibold);\n    text-transform: uppercase;\n    letter-spacing: 1.2px;\n}\n\n.hero-divider {\n    color: var(--dashboard-text-tertiary);\n    opacity: 0.4;\n}\n\n.hero-welcome {\n    color: var(--dashboard-hero-title);\n    font-weight: var(--dashboard-font-black);\n    font-family: 'Cinzel', serif;\n    font-size: 32px;\n    letter-spacing: 0.5px;\n}\n\n.hero-description {\n    margin: 6px 0 0;\n    color: var(--dashboard-hero-subtitle);\n    max-width: 760px;\n    align-self: center;\n    line-height: 1.5;\n    font-size: 15px;\n    font-weight: var(--dashboard-font-regular);\n}\n\n.search-hero .hero-search {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    width: 100%;\n}\n\n.hero-surface {\n    position: relative;\n    border-radius: 20px;\n    padding: 12px 16px;\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n    overflow: hidden;\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, max-height 0.3s ease;\n    transform-origin: top center;\n}\n\n.hero-surface.scrolled-collapsed {\n    transform: scaleY(0.75) translateY(-12px);\n    opacity: 0.6;\n    max-height: 60px;\n    overflow: hidden;\n}\n\n.hero-surface::before {\n    content: '';\n    position: absolute;\n    inset: -32% -38% auto auto;\n    width: 280px;\n    height: 180px;\n    background:\n        radial-gradient(circle at 22% 42%, rgba(102, 126, 234, 0.26), transparent 58%),\n        radial-gradient(circle at 74% 60%, rgba(118, 75, 162, 0.22), transparent 60%);\n    filter: blur(6px);\n    opacity: 0.8;\n    pointer-events: none;\n}\n\n.hero-surface .hero-grid {\n    display: grid;\n    grid-template-columns: minmax(0, 1.18fr) minmax(300px, 1fr);\n    gap: 12px;\n    align-items: center;\n}\n\n.hero-surface .hero-copy {\n    text-align: left;\n    align-items: flex-start;\n    gap: 8px;\n}\n\n.hero-surface .hero-description {\n    max-width: 880px;\n    margin: 4px 0 0;\n}\n\n.hero-surface .hero-search {\n    width: 100%;\n    justify-content: flex-end;\n}\n\n.search-hero .search-bar.stretch {\n    flex: 1;\n    width: 100%;\n}\n\n.dashboard-section .mimic-header .top-left h1 {\n    color: var(--theme-text-primary);\n}\n\n.dashboard-section .top-right {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    flex-wrap: wrap;\n    justify-content: flex-end;\n    align-self: flex-start;\n}\n\n.floating-header-bar {\n    display: inline-flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.85);\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 16px;\n    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);\n    backdrop-filter: blur(14px) saturate(1.05);\n    -webkit-backdrop-filter: blur(14px) saturate(1.05);\n}\n\n.pill-actions {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n}\n\n.search-bar {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.92);\n    border: 1px solid rgba(0, 0, 0, 0.08);\n    border-radius: 14px;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);\n    min-width: 320px;\n    backdrop-filter: blur(12px) saturate(1.05);\n}\n\n.search-bar input {\n    border: none;\n    background: transparent;\n    outline: none;\n    width: 100%;\n    font-size: var(--dashboard-text-base);\n    color: var(--theme-text-primary);\n}\n\n.search-bar input::placeholder {\n    color: #64748b;\n}\n\n.header-actions.tight {\n    gap: 10px;\n}\n\n.icon-pill {\n    position: relative;\n    width: 38px;\n    height: 38px;\n    border-radius: 12px;\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    background: rgba(255, 255, 255, 0.94);\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);\n    cursor: pointer;\n    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;\n    color: var(--theme-text-primary);\n}\n\n.icon-pill:hover {\n    transform: translateY(-2px);\n    border-color: rgba(0, 0, 0, 0.12);\n    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);\n}\n\n.icon-pill .dot {\n    position: absolute;\n    top: 8px;\n    right: 8px;\n    width: 8px;\n    height: 8px;\n    background: #f5576c;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.15);\n}\n\n.badge.ghost {\n    background: rgba(255, 255, 255, 0.94);\n    color: var(--theme-text-primary);\n    border: 1px solid rgba(0, 0, 0, 0.12);\n    backdrop-filter: blur(8px);\n}\n\n.dashboard-section .dashboard-top-header .eyebrow {\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    font-size: var(--dashboard-text-xs);\n    color: var(--text-secondary);\n    margin: 0 0 6px 0;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.dashboard-section .dashboard-top-header .header-actions {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-wrap: wrap;\n    justify-content: flex-end;\n}\n\n.dashboard-section .dashboard-top-header .btn-refresh {\n    display: none;\n}\n\n.dashboard-tabs {\n    display: none;\n}\n\n.dashboard-tab {\n    border: none;\n    background: transparent;\n    color: var(--text-secondary);\n    padding: 10px 14px;\n    border-radius: 12px;\n    font-weight: var(--dashboard-font-semibold);\n    cursor: pointer;\n    transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);\n}\n\n.dashboard-tab:hover {\n    color: var(--text-primary);\n    background: rgba(102, 126, 234, 0.06);\n}\n\n.dashboard-tab.active {\n    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(118, 75, 162, 0.18));\n    color: #4a3b91;\n    box-shadow: 0 10px 26px rgba(102, 126, 234, 0.18);\n}\n\n.tab-panels {\n    width: 100%;\n}\n\n.tab-panels .tab-panel {\n    display: none !important;\n    width: 100%;\n    gap: 18px;\n}\n\n.tab-panels .tab-panel.active {\n    display: block !important;\n}\n\n.panel-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 14px;\n}\n\n.mimic-grid {\n    display: grid;\n    grid-template-columns: 1.65fr 1fr;\n    gap: 14px;\n    align-items: start;\n    margin-top: 12px;\n}\n\n.mimic-col {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.mimic-col.main {\n    display: grid;\n    grid-template-columns: repeat(4, minmax(0, 1fr));\n    gap: 12px;\n}\n\n.mimic-col.main>.content-card,\n.mimic-col.main>.chart-card,\n.mimic-col.main>.subgrid {\n    grid-column: span 2;\n}\n\n.mimic-col.main>.list-card,\n.mimic-col.main>.subgrid.two {\n    grid-column: span 4;\n}\n\n.dashboard-body.with-rail {\n    display: grid;\n    grid-template-columns: 1fr var(--rail-width, 320px);\n    gap: 16px;\n    align-items: start;\n    margin-top: 12px;\n}\n\n.dashboard-body .main-surface {\n    height: 100%;\n    padding: 0;\n}\n\n.rail-surface {\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));\n    border: 1px solid rgba(255, 255, 255, 0.06);\n    border-radius: 18px;\n    padding: 10px;\n    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);\n}\n\n.dashboard-rail.right-rail {\n    position: sticky;\n    top: 12px;\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    height: fit-content;\n    max-height: calc(100vh - 24px);\n}\n\n.mimic-col.side-left,\n.mimic-col.side-right {\n    position: sticky;\n    top: 12px;\n}\n\n.mimic-wrap {\n    background: transparent;\n    border: none;\n    border-radius: 20px;\n    padding: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n}\n\n.mimic-wrap-inner {\n    background: transparent;\n    border: none;\n    border-radius: 18px;\n    padding: 0;\n    box-shadow: none;\n}\n\n.subgrid.two {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 12px;\n}\n\n.mimic-col.main .content-card,\n.mimic-col.charts .chart-card,\n.mimic-col.rail .content-card {\n    width: 100%;\n}\n\n.panel-grid.two-columns {\n    grid-template-columns: 1.25fr 1fr;\n}\n\n.panel-grid.stacked {\n    align-items: start;\n}\n\n.dashboard-section .dashboard-top-header h1 {\n    font-size: var(--dashboard-text-2xl);\n    font-weight: var(--dashboard-font-bold);\n    color: var(--text-primary);\n    margin: 0 0 4px 0;\n    color: var(--theme-text-secondary);\n}\n\n.dashboard-section .text-muted {\n    color: var(--text-secondary);\n    font-size: var(--dashboard-text-base);\n    margin: 0;\n}\n\n.dashboard-section .btn-refresh {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 10px 20px;\n    background: white;\n    border: 1px solid var(--border-color);\n    border-radius: 10px;\n    color: var(--text-primary);\n    font-size: var(--dashboard-text-base);\n    font-weight: var(--dashboard-font-medium);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    box-shadow: var(--shadow-sm);\n}\n\n.dashboard-section .btn-refresh:hover {\n    border-color: #667eea;\n    color: #667eea;\n    box-shadow: var(--shadow-md);\n    transform: translateY(-2px);\n}\n\n.dashboard-section .btn-refresh svg {\n    transition: transform 0.4s ease;\n}\n\n.dashboard-section .btn-refresh:hover svg {\n    transform: rotate(180deg);\n}\n\n/* Stats Grid with Color Pops */\n.dashboard-section .stats-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\n    gap: 14px;\n    margin-bottom: 20px;\n}\n\n.dashboard-section .stats-grid .stat-card.stat-summary {\n    grid-column: 1 / -1;\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));\n    gap: 14px;\n    align-items: start;\n    padding: 18px;\n}\n\n.monitor-card {\n    grid-column: 1 / -1;\n    display: grid;\n    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.1fr);\n    gap: 16px;\n    align-items: start;\n    padding: 16px;\n}\n\n.monitor-wrapper {\n    grid-column: 1 / -1;\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n.monitor-header-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n    padding: 0 4px;\n}\n\n.monitor-title {\n    font-family: 'Cinzel', serif;\n    font-size: 22px;\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-text-primary);\n    margin: 0;\n    letter-spacing: 0.3px;\n}\n\n.expand-all-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    padding: 8px 14px;\n    background: rgba(139, 35, 72, 0.08);\n    border: 1px solid rgba(139, 35, 72, 0.18);\n    border-radius: 12px;\n    color: var(--theme-accent-color);\n    font-size: 13px;\n    font-weight: var(--dashboard-font-semibold);\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.expand-all-btn:hover {\n    background: rgba(139, 35, 72, 0.14);\n    border-color: var(--theme-accent-color);\n    transform: translateY(-1px);\n}\n\n.expand-all-btn svg {\n    transition: transform 0.2s ease;\n}\n\n.expand-all-btn[data-expanded=\"true\"] svg {\n    transform: rotate(180deg);\n}\n\n.pending-count {\n    display: inline-block;\n    padding: 2px 8px;\n    background: var(--theme-accent-color);\n    color: white;\n    border-radius: 8px;\n    font-size: 11px;\n    font-weight: var(--dashboard-font-bold);\n    margin-left: 2px;\n}\n\n.monitor-visual {\n    display: grid;\n    grid-template-columns: 120px 1fr;\n    gap: 12px;\n    align-items: center;\n    padding: 12px;\n    border-right: 1px solid var(--dashboard-border);\n}\n\n.monitor-actions {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n    gap: 12px;\n}\n\n.summary-block {\n    padding: 10px;\n    border-left: 2px solid var(--dashboard-border-subtle);\n}\n\n.summary-head-inline {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 8px;\n}\n\n.summary-title {\n    color: var(--dashboard-card-heading);\n    font-weight: var(--dashboard-font-bold);\n    font-size: var(--dashboard-text-base);\n}\n\n.summary-list.compact li {\n    padding: 9px 10px;\n    color: var(--dashboard-card-text);\n}\n\n.donut-heading {\n    color: var(--dashboard-card-heading);\n    font-weight: 700;\n}\n\n.donut-desc {\n    color: var(--dashboard-card-meta);\n}\n\n.link-btn.subtle {\n    margin-top: 6px;\n    font-weight: var(--dashboard-font-semibold);\n    color: var(--theme-text-secondary);\n}\n\n.link-btn.subtle:hover {\n    color: var(--theme-accent-color, #3b82f6);\n    background: rgba(59, 130, 246, 0.08);\n}\n\n.stat-summary .summary-head {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n}\n\n.stat-summary .summary-head h3 {\n    margin: 2px 0 0;\n    font-size: var(--dashboard-text-lg);\n}\n\n.stat-summary .summary-columns {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n    gap: 14px;\n}\n\n.stat-summary .summary-title {\n    margin: 0 0 6px;\n    font-weight: var(--dashboard-font-bold);\n    color: var(--theme-text-primary);\n}\n\n.stat-summary .summary-list {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n    display: grid;\n    gap: 8px;\n}\n\n.stat-summary .summary-list li {\n    display: grid;\n    grid-template-columns: auto 1fr auto;\n    align-items: center;\n    gap: 8px;\n    background: rgba(255, 255, 255, 0.6);\n    border: 1px solid rgba(15, 23, 42, 0.06);\n    border-radius: 12px;\n    padding: 10px 12px;\n    color: var(--text-primary);\n}\n\n.stat-summary .summary-list .dot {\n    width: 9px;\n    height: 9px;\n}\n\n.stat-summary .summary-list .dot.info {\n    background: var(--theme-accent-color, #3b82f6);\n    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);\n}\n\n.stat-summary .summary-list .dot.warn {\n    background: #f59e0b;\n    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.14);\n}\n\n.stat-summary .summary-list .dot.ok {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.14);\n}\n\n.stat-summary .link-btn {\n    border: none;\n    background: transparent;\n    color: var(--theme-accent-color, #3b82f6);\n    font-weight: 700;\n    cursor: pointer;\n    padding: 4px 8px;\n    border-radius: 10px;\n    transition: background 0.2s ease, color 0.2s ease;\n}\n\n.stat-summary .link-btn:hover {\n    background: rgba(59, 130, 246, 0.1);\n}\n\n.dashboard-section .stats-grid.compact {\n    gap: 16px;\n    margin-bottom: 12px;\n}\n\n.dashboard-section .stat-card {\n    background: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border-radius: 16px;\n    padding: 14px;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    position: relative;\n    overflow: hidden;\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    backdrop-filter: blur(28px) saturate(1.5);\n    -webkit-backdrop-filter: blur(28px) saturate(1.5);\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.dashboard-section .stat-card::before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 4px;\n    opacity: 0;\n    transition: opacity 0.3s ease;\n}\n\n.dashboard-section .stat-card.stat-primary::before {\n    background: var(--color-primary);\n}\n\n.dashboard-section .stat-card.stat-success::before {\n    background: var(--color-success);\n}\n\n.dashboard-section .stat-card.stat-warning::before {\n    background: var(--color-warning);\n}\n\n.dashboard-section .stat-card.stat-info::before {\n    background: var(--color-info);\n}\n\n.dashboard-section .stat-card:hover {\n    transform: translateY(-4px);\n    box-shadow: var(--shadow-lg);\n}\n\n.dashboard-section .stat-card:hover::before {\n    opacity: 1;\n}\n\n.dashboard-section .stat-card.stat-graph {\n    align-items: center;\n    gap: 16px;\n}\n\n.stat-donut-card {\n    min-height: 140px;\n}\n\n.donut-figure {\n    width: 120px;\n    height: 120px;\n    position: relative;\n    flex-shrink: 0;\n}\n\n.donut-svg {\n    width: 100%;\n    height: 100%;\n}\n\n.donut-track {\n    fill: none;\n    stroke: rgba(15, 23, 42, 0.12);\n    stroke-width: 12;\n}\n\n.donut-segment {\n    fill: none;\n    stroke-width: 12;\n    stroke-linecap: round;\n    transform: rotate(-90deg);\n    transform-origin: center;\n}\n\n.donut-segment.active {\n    stroke: #16a34a;\n}\n\n.donut-segment.renew {\n    stroke: #f59e0b;\n}\n\n.donut-segment.risk {\n    stroke: #e11d48;\n}\n\n.donut-title {\n    font-size: var(--dashboard-text-lg);\n    font-weight: var(--dashboard-font-extrabold);\n    fill: var(--theme-text-primary);\n}\n\n.donut-sub {\n    font-size: var(--dashboard-text-sm);\n    fill: var(--theme-text-secondary);\n    letter-spacing: 0.04em;\n}\n\n.donut-meta {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n}\n\n.donut-heading {\n    font-weight: var(--dashboard-font-bold);\n    color: var(--theme-text-primary);\n}\n\n.donut-desc {\n    margin: 0;\n    color: var(--theme-text-secondary);\n    font-size: var(--dashboard-text-base);\n}\n\n.donut-legend {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 10px;\n}\n\n.donut-key {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n}\n\n.donut-key .dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04);\n}\n\n.donut-key .dot.active {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.18);\n}\n\n.donut-key .dot.renew {\n    background: #f8c547;\n    box-shadow: 0 0 0 4px rgba(248, 197, 71, 0.18);\n}\n\n.donut-key .dot.risk {\n    background: #f5576c;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.18);\n}\n\n.dashboard-section .stat-icon-wrapper {\n    width: 60px;\n    height: 60px;\n    border-radius: 12px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.dashboard-section .stat-primary .stat-icon-wrapper {\n    background: var(--color-primary);\n}\n\n.dashboard-section .stat-success .stat-icon-wrapper {\n    background: var(--color-success);\n}\n\n.dashboard-section .stat-warning .stat-icon-wrapper {\n    background: var(--color-warning);\n}\n\n.dashboard-section .stat-info .stat-icon-wrapper {\n    background: var(--color-info);\n}\n\n.dashboard-section .stat-icon-wrapper svg {\n    stroke: white;\n}\n\n.dashboard-section .stat-content {\n    flex: 1;\n}\n\n.dashboard-section .stat-value {\n    font-size: var(--dashboard-text-2xl);\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-stat-value);\n    margin: 0 0 4px 0;\n    line-height: 1;\n}\n\n.dashboard-section .stat-label {\n    font-size: var(--dashboard-text-base);\n    color: var(--dashboard-stat-label);\n    font-weight: var(--dashboard-font-semibold);\n}\n\n.dashboard-section .stat-trend,\n.dashboard-section .stat-badge {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    font-size: var(--dashboard-text-sm);\n    font-weight: var(--dashboard-font-semibold);\n    padding: 4px 10px;\n    border-radius: 20px;\n}\n\n.dashboard-section .stat-trend.positive {\n    color: #1e8449;\n    background: rgba(45, 189, 99, 0.15);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-trend.negative {\n    color: #c0392b;\n    background: rgba(192, 57, 43, 0.15);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-badge.success {\n    color: #1e8449;\n    background: rgba(45, 189, 99, 0.15);\n    border: 1px solid rgba(45, 189, 99, 0.3);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-badge.warning {\n    color: #fee140;\n    background: rgba(254, 225, 64, 0.15);\n}\n\n/* Content Grid */\n.dashboard-section .content-grid {\n    display: grid;\n    grid-template-columns: 1fr 360px;\n    gap: 16px;\n}\n\n.client-dashboard .content-grid,\n.agent-dashboard .content-grid {\n    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n    gap: 14px;\n}\n\n.dashboard-section .content-main {\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n}\n\n/* Content Cards */\n.dashboard-section .content-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border-radius: 16px;\n    padding: 18px 18px 16px;\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n}\n\n.dashboard-section .content-card.compact,\n.dashboard-section .widget-card.compact {\n    padding: 18px 18px 16px;\n    border-radius: 14px;\n}\n\n.card-body-scroll {\n    max-height: 340px;\n    overflow: auto;\n    padding-right: 4px;\n    scrollbar-width: thin;\n}\n\n.card-body-scroll::-webkit-scrollbar {\n    width: 8px;\n}\n\n.card-body-scroll::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.12);\n    border-radius: 10px;\n}\n\n.dashboard-section .card-header-modern {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 20px;\n}\n\n.dashboard-section .card-header-modern h3 {\n    font-size: 18px;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0;\n}\n\n.dashboard-section .card-badge {\n    padding: 6px 12px;\n    background: var(--color-primary);\n    color: white;\n    border-radius: 20px;\n    font-size: 12px;\n    font-weight: 600;\n}\n\n.dashboard-section .btn-icon-sm {\n    width: 32px;\n    height: 32px;\n    border-radius: 8px;\n    border: 1px solid var(--border-color);\n    background: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.dashboard-section .btn-icon-sm:hover {\n    border-color: #667eea;\n    background: #f7fafc;\n}\n\n/* Sidebar Widgets */\n.dashboard-section .content-sidebar {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.dashboard-section .widget-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.74));\n    border-radius: 16px;\n    padding: 20px;\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-md);\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    backdrop-filter: blur(14px) saturate(1.1);\n    -webkit-backdrop-filter: blur(14px) saturate(1.1);\n}\n\n.dashboard-section .widget-card h4 {\n    font-size: 16px;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0 0 16px 0;\n}\n\n/* Chart & data visuals */\n.chart-card {\n    position: relative;\n    padding: 16px;\n    border-radius: 14px;\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n    cursor: pointer;\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.chart-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16), 0 12px 32px rgba(139, 35, 72, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border-color: var(--theme-accent-color);\n}\n\n.calendar-card .calendar-grid {\n    display: grid;\n    grid-template-columns: repeat(5, 1fr);\n    gap: 8px;\n    font-size: 13px;\n}\n\n.calendar-card .cal-day {\n    padding: 10px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.12);\n    text-align: center;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n}\n\n.calendar-card .cal-day.muted {\n    opacity: 0.72;\n}\n\n.calendar-card .cal-slot {\n    grid-column: span 5;\n    padding: 10px 12px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n}\n\n.calendar-card .cal-slot.accent {\n    background: rgba(118, 75, 162, 0.12);\n    border-color: rgba(118, 75, 162, 0.24);\n}\n\n.chart-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 10px;\n}\n\n.chart-title {\n    font-size: 15px;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    margin: 0;\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.chart-legend {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.chart-legend-item {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    font-size: 14px;\n    color: var(--theme-text-secondary);\n}\n\n.chart-legend-dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: var(--theme-accent-color);\n    box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.12);\n}\n\n.chart-body {\n    position: relative;\n    margin-top: 6px;\n    min-height: 140px;\n    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.28));\n    border-radius: 12px;\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    overflow: hidden;\n}\n\n.sparkline-placeholder {\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.14), rgba(155, 89, 182, 0.12));\n    opacity: 0.55;\n}\n\n.chart-metrics {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n    gap: 10px;\n    margin-top: 12px;\n}\n\n.chart-metric {\n    background: rgba(255, 255, 255, 0.82);\n    border: 1px solid rgba(255, 255, 255, 0.22);\n    border-radius: 10px;\n    padding: 10px 12px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 10px;\n    box-shadow: 0 8px 22px rgba(139, 35, 72, 0.10);\n}\n\n.chart-metric .label {\n    font-size: 14px;\n    color: var(--theme-text-secondary);\n}\n\n.chart-metric .value {\n    font-size: 16px;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n}\n\n.list-card .mini-table {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.mini-table-row {\n    display: grid;\n    grid-template-columns: 1.2fr 0.9fr 0.7fr 0.7fr 0.9fr;\n    align-items: center;\n    gap: 10px;\n    padding: 12px 10px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.76);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);\n}\n\n.mini-table-head {\n    background: rgba(255, 255, 255, 0.54);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    font-weight: 700;\n    color: var(--theme-text-secondary);\n    text-transform: uppercase;\n    font-size: 12px;\n    letter-spacing: 0.08em;\n}\n\n.mini-table-row span {\n    color: var(--theme-text-primary);\n    font-size: 14px;\n}\n\n.mini-table-row .cell-strong {\n    font-weight: 700;\n}\n\n.chip {\n    display: inline-flex;\n    align-items: center;\n    padding: 4px 10px;\n    border-radius: 999px;\n    font-weight: 700;\n    font-size: 12px;\n    border: 1px solid transparent;\n}\n\n.chip-low {\n    background: rgba(56, 239, 125, 0.14);\n    color: #1c7d4f;\n    border-color: rgba(56, 239, 125, 0.28);\n}\n\n.chip-medium {\n    background: rgba(248, 197, 71, 0.16);\n    color: #8a5b00;\n    border-color: rgba(248, 197, 71, 0.28);\n}\n\n.chip-high {\n    background: rgba(245, 87, 108, 0.16);\n    color: #982b3a;\n    border-color: rgba(245, 87, 108, 0.3);\n}\n\n.contact-chips {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 8px;\n}\n\n.contact-chip {\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    background: linear-gradient(145deg, rgba(118, 75, 162, 0.08), rgba(102, 126, 234, 0.08));\n    color: var(--theme-text-primary);\n    padding: 8px 12px;\n    border-radius: 999px;\n    font-weight: 700;\n    font-size: 13px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);\n}\n\n.contact-chip:hover,\n.contact-chip:focus-visible {\n    outline: none;\n    border-color: var(--theme-accent-color);\n    box-shadow: 0 12px 30px rgba(118, 75, 162, 0.16);\n    transform: translateY(-1px);\n}\n\n.contact-chip:active {\n    transform: translateY(0);\n}\n\n.status-dot {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    font-weight: 600;\n}\n\n.status-dot::before {\n    content: '';\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);\n}\n\n.status-dot.ok::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.14);\n}\n\n.status-dot.warn::before {\n    background: #f8c547;\n    box-shadow: 0 0 0 4px rgba(248, 197, 71, 0.18);\n}\n\n.status-dot.risk::before {\n    background: #f5576c;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.16);\n}\n\n.icon-animated {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    width: 28px;\n    height: 28px;\n    margin-right: 4px;\n    color: var(--theme-primary-color);\n}\n\n.icon-animated svg {\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    overflow: visible;\n}\n\n.icon-animated svg * {\n    stroke-dasharray: 120;\n    stroke-dashoffset: 120;\n    animation: line-draw 1.2s ease forwards;\n    animation-delay: 0.05s;\n}\n\n@keyframes line-draw {\n    to {\n        stroke-dashoffset: 0;\n    }\n}\n\n.dashboard-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.78));\n    border: 1px solid rgba(255, 255, 255, 0.6);\n    border-radius: 16px;\n    padding: var(--dashboard-card-padding);\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-sm);\n    backdrop-filter: blur(12px) saturate(1.08);\n    -webkit-backdrop-filter: blur(12px) saturate(1.08);\n    margin-bottom: 12px;\n    color: var(--theme-text-primary);\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;\n}\n\n.dashboard-card.scrolled-collapsed {\n    transform: scale(0.98);\n    opacity: 0.85;\n}\n\n/* Obsoleto - tabs antiguos ocultos usan .dashboard-card */\n/* .agent-dashboard .dashboard-card {\n    padding: 18px 16px;\n    border-radius: 14px;\n}\n\n.agent-dashboard .dashboard-stats {\n    gap: 12px;\n    margin-bottom: 12px;\n} */\n\n/* Simple card title when no .card-header is used (sidebar cards) */\n.dashboard-card>h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.25rem;\n    color: var(--theme-text-primary);\n    margin: 0 0 16px 0;\n}\n\n.card-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n    margin-bottom: var(--dashboard-card-header-margin);\n    padding-bottom: var(--dashboard-card-header-padding);\n    border-bottom: 2px solid var(--theme-surface-border);\n}\n\n.card-header h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.25rem;\n    color: var(--theme-text-primary);\n    margin: 0;\n}\n\n/* Lists */\n.policies-list,\n.quotes-list,\n.documents-list,\n.tasks-list,\n.alert-list,\n.activity-list,\n.prelaunch-checklist {\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n}\n\n.task-item,\n.alert-item,\n.activity-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 14px 16px;\n    background: var(--acrylic-bg-light);\n    border: 1px solid var(--theme-accent-border-subtle);\n    border-radius: 12px;\n    color: var(--theme-text-primary);\n}\n\n.task-title,\n.alert-title,\n.activity-title {\n    margin: 0 0 4px 0;\n    font-weight: 700;\n}\n\n.task-meta,\n.alert-meta,\n.activity-meta {\n    margin: 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.9rem;\n}\n\n.quick-actions {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n/* Skeleton loading states for dashboards */\n.skeleton-mode .dashboard-stat-card,\n.skeleton-mode .task-item,\n.skeleton-mode .alert-item,\n.skeleton-mode .activity-item {\n    position: relative;\n    overflow: hidden;\n    color: transparent !important;\n}\n\n.skeleton-mode .dashboard-stat-card::after,\n.skeleton-mode .task-item::after,\n.skeleton-mode .alert-item::after,\n.skeleton-mode .activity-item::after {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(90deg,\n            rgba(255, 255, 255, 0.04) 0%,\n            rgba(255, 255, 255, 0.08) 40%,\n            rgba(255, 255, 255, 0.04) 80%);\n    animation: skeleton-shimmer 1.2s infinite;\n}\n\n.skeleton-mode .dashboard-stat-card .stat-icon,\n.skeleton-mode .dashboard-stat-card .stat-value,\n.skeleton-mode .dashboard-stat-card .stat-label,\n.skeleton-mode .task-item *,\n.skeleton-mode .alert-item *,\n.skeleton-mode .activity-item * {\n    color: transparent !important;\n}\n\n@keyframes skeleton-shimmer {\n    0% {\n        transform: translateX(-60%);\n    }\n\n    100% {\n        transform: translateX(60%);\n    }\n}\n\n.badge-light {\n    background: rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-surface-border);\n}\n\n.prelaunch-checklist {\n    padding-left: 18px;\n    margin: 0;\n    color: var(--theme-text-secondary);\n}\n\n.prelaunch-checklist li {\n    margin-bottom: 8px;\n}\n\n.policy-item,\n.quote-item {\n    display: flex;\n    align-items: center;\n    gap: 16px;\n    padding: 18px;\n    background: rgba(255, 255, 255, 0.92);\n    border: 1px solid rgba(255, 255, 255, 0.26);\n    border-radius: 12px;\n    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;\n}\n\n.policy-item:hover,\n.quote-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(3px);\n    box-shadow: var(--shadow);\n}\n\n.policy-icon {\n    font-size: 2rem;\n    width: 52px;\n    height: 52px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: var(--acrylic-bg-light);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    flex-shrink: 0;\n}\n\n.policy-info,\n.quote-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.policy-actions {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-shrink: 0;\n}\n\n.policy-info h4,\n.quote-info h4 {\n    font-size: 1.05rem;\n    color: var(--theme-text-primary);\n    margin: 0 0 6px 0;\n}\n\n.policy-info p,\n.quote-info p {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n    margin: 0 0 10px 0;\n}\n\n.policy-meta {\n    display: flex;\n    align-items: center;\n    flex-wrap: wrap;\n    gap: 10px;\n    font-size: 0.85rem;\n    color: var(--theme-text-secondary);\n}\n\n.quote-date {\n    font-size: 0.85rem;\n    color: var(--theme-text-secondary);\n}\n\n.recent-docs-list {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n.doc-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px 14px;\n    background: rgba(255, 255, 255, 0.82);\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 12px;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);\n}\n\n.doc-meta {\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n}\n\n.doc-meta strong {\n    font-size: 14px;\n    color: var(--theme-text-primary);\n}\n\n.doc-meta span {\n    color: var(--theme-text-secondary);\n    font-size: 12px;\n}\n\n.doc-actions {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n}\n\n.contact-modal {\n    position: fixed;\n    inset: 0;\n    display: none;\n    align-items: center;\n    justify-content: center;\n    z-index: 200;\n}\n\n.contact-modal.is-open {\n    display: flex;\n}\n\n.modal-backdrop {\n    position: absolute;\n    inset: 0;\n    background: rgba(0, 0, 0, 0.35);\n    backdrop-filter: blur(6px);\n    -webkit-backdrop-filter: blur(6px);\n}\n\n.modal-card {\n    position: relative;\n    width: min(420px, 92vw);\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.88));\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 16px;\n    padding: 16px;\n    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);\n    backdrop-filter: blur(10px) saturate(1.05);\n    -webkit-backdrop-filter: blur(10px) saturate(1.05);\n}\n\n.modal-card-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    margin-bottom: 10px;\n}\n\n.modal-card-body {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    margin-bottom: 12px;\n}\n\n.contact-detail {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.7);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    border-radius: 12px;\n}\n\n.contact-detail span {\n    color: var(--theme-text-secondary);\n    font-size: 13px;\n}\n\n.contact-detail strong {\n    color: var(--theme-text-primary);\n}\n\n.modal-card-actions {\n    display: flex;\n    justify-content: flex-end;\n    gap: 10px;\n}\n\n/* Badges */\n.badge {\n    padding: 4px 12px;\n    border-radius: 999px;\n    font-size: 0.72rem;\n    font-weight: 700;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.badge-success {\n    background: var(--success);\n    color: var(--theme-on-success);\n}\n\n.badge-warning {\n    background: var(--warning);\n    color: var(--theme-on-warning);\n}\n\n.badge-danger {\n    background: var(--danger);\n    color: var(--theme-on-danger);\n}\n\n.badge-primary {\n    background: var(--theme-primary-color);\n    color: var(--theme-highlight-light);\n}\n\n.badge-accent {\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-accent-color);\n    border: 1px solid var(--theme-accent-border);\n}\n\n/* Tables */\n.payments-table table,\n.clients-table table {\n    width: 100%;\n    border-collapse: collapse;\n}\n\n.payments-table th,\n.payments-table td,\n.clients-table th,\n.clients-table td {\n    padding: 14px 12px;\n    text-align: left;\n    border-bottom: 1px solid var(--theme-surface-border);\n}\n\n.payments-table th,\n.clients-table th {\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    background: var(--theme-navlink-active-bg);\n    font-size: 0.9rem;\n}\n\n.payments-table td,\n.clients-table td {\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n.client-cell {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.client-avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\n    color: var(--white);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-weight: 800;\n    font-size: 0.9rem;\n    flex-shrink: 0;\n}\n\n.client-name {\n    font-weight: 700;\n    color: var(--theme-text-primary);\n}\n\n.client-email {\n    font-size: 0.85rem;\n    color: var(--theme-text-secondary);\n}\n\n/* Sidebar */\n.dashboard-sidebar .dashboard-card {\n    position: sticky;\n    top: calc(var(--nav-height) + 14px);\n}\n\n.quick-actions {\n    display: flex;\n    flex-direction: column;\n    gap: var(--dashboard-quick-actions-gap);\n}\n\n.agent-info {\n    text-align: center;\n}\n\n.agent-avatar {\n    width: 80px;\n    height: 80px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\n    color: var(--white);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-family: 'Cinzel', serif;\n    font-size: 2rem;\n    font-weight: 800;\n    margin: 0 auto 16px;\n    box-shadow: 0 10px 26px var(--theme-primary-shadow-color);\n}\n\n.agent-info h4 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.15rem;\n    margin: 0 0 6px 0;\n    color: var(--theme-text-primary);\n}\n\n.agent-info p {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n    margin: 0 0 14px 0;\n}\n\n.agent-contact {\n    margin: 14px 0;\n    padding: 14px;\n    background: var(--theme-navlink-active-bg);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    text-align: left;\n}\n\n.agent-contact p {\n    margin: 6px 0;\n    font-size: 0.92rem;\n    color: var(--theme-text-secondary);\n}\n\n/* Shared stat grid + cards */\n.dashboard-stats {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(var(--dashboard-stat-min), 1fr));\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\n    margin-top: 0;\n    margin-bottom: 12px;\n}\n\n.dashboard-stat-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\n    padding: var(--dashboard-stat-padding);\n    border-radius: var(--dashboard-stat-radius);\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: var(--dashboard-stat-shadow, var(--dashboard-stat-shadow-shared));\n    transition: var(--dashboard-stat-transition, var(--dashboard-stat-transition-shared));\n    display: flex;\n    align-items: center;\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\n    position: relative;\n    overflow: hidden;\n    transition: transform 0.42s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.42s cubic-bezier(0.33, 1, 0.68, 1), background 0.42s cubic-bezier(0.33, 1, 0.68, 1), border-color 0.42s cubic-bezier(0.33, 1, 0.68, 1);\n}\n\n.dashboard-stat-card:hover {\n    transform: translateY(var(--dashboard-stat-hover-lift, var(--dashboard-stat-hover-lift-shared)));\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\n    box-shadow: var(--dashboard-stat-hover-shadow, var(--dashboard-stat-hover-shadow-shared));\n}\n\n.dashboard-stat-card .stat-icon {\n    font-size: var(--dashboard-stat-icon-font, var(--dashboard-stat-icon-font-shared));\n    width: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\n    height: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));\n    border-radius: var(--dashboard-stat-icon-radius, var(--dashboard-stat-icon-radius-shared));\n    border: 1px solid rgba(255, 255, 255, 0.28);\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 1.05)) saturate(calc(var(--acrylic-saturate) * 1.18));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 1.05)) saturate(calc(var(--acrylic-saturate) * 1.18));\n    box-shadow: 0 10px 28px rgba(139, 35, 72, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.26);\n    flex-shrink: 0;\n}\n\n.stat-info {\n    flex: 1;\n}\n\n.stat-value {\n    font-family: 'Cinzel', serif;\n    font-size: 2rem;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    line-height: 1;\n    margin-bottom: 6px;\n}\n\n.stat-label {\n    font-size: 0.95rem;\n    color: var(--theme-text-secondary);\n    font-weight: 500;\n}\n\n.document-link {\n    padding: 12px 14px;\n    background: var(--theme-navlink-active-bg);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 10px;\n    text-decoration: none;\n    color: var(--theme-text-primary);\n    font-size: 0.92rem;\n    transition: transform 0.2s ease, background 0.2s ease;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.document-link:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(3px);\n}\n\n.task-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 12px;\n    background: rgba(255, 255, 255, 0.94);\n    border: 1px solid rgba(255, 255, 255, 0.26);\n    border-radius: 10px;\n    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;\n}\n\n.task-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(2px);\n}\n\n.task-item input[type=\"checkbox\"] {\n    width: 18px;\n    height: 18px;\n    cursor: pointer;\n}\n\n.commissions-info {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.commission-row {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 10px 0;\n    border-bottom: 1px solid var(--theme-surface-border);\n    color: var(--theme-text-secondary);\n}\n\n.commission-row strong {\n    color: var(--theme-text-primary);\n}\n\n/* Responsive */\n@media (max-width: 1480px) {\n    .dashboard-grid {\n        grid-template-columns: repeat(2, minmax(300px, 1fr));\n    }\n\n    .dashboard-main {\n        grid-column: span 2;\n        grid-template-columns: repeat(2, minmax(var(--dashboard-main-col-min), 1fr));\n    }\n\n    .dashboard-sidebar {\n        grid-column: span 2;\n    }\n}\n\n@media (max-width: 1100px) {\n    .dashboard-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-stage.with-rail {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-main {\n        grid-column: span 1;\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-sidebar {\n        grid-column: span 1;\n    }\n\n    .dashboard-sidebar .dashboard-card {\n        position: static;\n    }\n\n    .mimic-col.main {\n        grid-template-columns: repeat(2, minmax(0, 1fr));\n    }\n\n    .mimic-col.main>.content-card,\n    .mimic-col.main>.chart-card,\n    .mimic-col.main>.subgrid {\n        grid-column: span 1;\n    }\n\n    .mimic-col.main>.list-card,\n    .mimic-col.main>.subgrid.two {\n        grid-column: span 2;\n    }\n\n    .dashboard-body.with-rail {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-rail.right-rail {\n        position: static;\n        order: 2;\n    }\n\n    .hero-surface .hero-grid {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n}\n\n@media (max-width: 560px) {\n    .dashboard-card {\n        padding: 20px;\n    }\n\n    .mimic-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.rail {\n        grid-column: 1;\n    }\n\n    .policy-item,\n    .quote-item {\n        flex-direction: column;\n        align-items: flex-start;\n    }\n\n    .mimic-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.rail,\n    .mimic-col.charts,\n    .mimic-col.main {\n        grid-column: 1;\n    }\n\n    .mimic-col.main {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.main>.content-card,\n    .mimic-col.main>.chart-card,\n    .mimic-col.main>.subgrid,\n    .mimic-col.main>.list-card,\n    .mimic-col.main>.subgrid.two {\n        grid-column: span 1;\n    }\n\n    .dashboard-rail.right-rail {\n        position: static;\n        order: 2;\n    }\n}\n\n/* ===== Dark-Forest Dashboard Overrides (moved from theme file for load priority) ===== */\nhtml[data-theme=\"dark-forest\"] .dashboard-section,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard {\n    background:\n        radial-gradient(90% 80% at 12% 18%, rgba(76, 201, 191, 0.32), transparent 58%),\n        radial-gradient(85% 70% at 88% 22%, rgba(113, 220, 201, 0.24), transparent 62%),\n        radial-gradient(95% 80% at 18% 88%, rgba(76, 150, 220, 0.22), transparent 68%),\n        linear-gradient(155deg, #0f2c35 0%, #0c1f2c 46%, #0a1724 100%);\n    color: var(--theme-text-primary);\n}\n\n/* Sidebar dark theme overrides */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .dashboard-sidebar {\n    background: linear-gradient(160deg, rgba(10, 26, 36, 0.92), rgba(10, 26, 36, 0.86));\n    border: 1px solid rgba(255, 255, 255, 0.06);\n    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface {\n    background: rgba(15, 43, 36, 0.45) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n    border-radius: 20px !important;\n    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;\n    backdrop-filter: blur(32px) saturate(1.3) !important;\n    -webkit-backdrop-filter: blur(32px) saturate(1.3) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .sidebar-header {\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .logo-slot-nav {\n    color: #fff;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .brand-text-sidebar .brand-name {\n    color: #fff;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .brand-text-sidebar .brand-tagline {\n    color: rgba(255, 255, 255, 0.72);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-quick-actions {\n    border-top: 1px solid rgba(255, 255, 255, 0.08);\n    background: rgba(255, 255, 255, 0.04);\n    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-qa-header {\n    color: rgba(255, 255, 255, 0.7);\n}\n\nhtml[data-theme=\"dark-forest\"] .qa-btn {\n    border: 1px solid rgba(255, 255, 255, 0.08);\n    background: rgba(255, 255, 255, 0.06);\n    color: rgba(255, 255, 255, 0.92);\n}\n\nhtml[data-theme=\"dark-forest\"] .qa-btn:hover {\n    background: rgba(255, 255, 255, 0.12);\n    border-color: rgba(255, 255, 255, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item {\n    color: rgba(255, 255, 255, 0.7);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item.active {\n    color: white;\n    background: rgba(255, 255, 255, 0.05);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.08);\n    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);\n    color: white;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget h4 {\n    color: rgba(255, 255, 255, 0.82);\n}\n\n/* Dashboard cards - force dark backgrounds */\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\n    background: linear-gradient(160deg, rgba(15, 43, 36, 0.14), rgba(27, 63, 71, 0.08)) !important;\n    border: 1px solid rgba(242, 234, 220, 0.16) !important;\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;\n    backdrop-filter: blur(16px) saturate(1.1) !important;\n    -webkit-backdrop-filter: blur(16px) saturate(1.1) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface .dashboard-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)) !important;\n    border: 1px solid rgba(255, 255, 255, 0.1) !important;\n}\n\n/* Stat cards - force dark backgrounds */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-card {\n    background: linear-gradient(145deg, rgba(15, 43, 36, 0.18) 0%, rgba(27, 63, 71, 0.12) 100%) !important;\n    border: 1px solid rgba(242, 234, 220, 0.16) !important;\n    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;\n    backdrop-filter: blur(28px) saturate(1.3) !important;\n    -webkit-backdrop-filter: blur(28px) saturate(1.3) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .client-dashboard .stat-card {\n    background: linear-gradient(145deg, rgba(15, 43, 36, 0.16) 0%, rgba(27, 63, 71, 0.10) 100%) !important;\n    border: 1px solid rgba(242, 234, 220, 0.14) !important;\n}\n\n/* Hero surface - force dark background */\nhtml[data-theme=\"dark-forest\"] .hero-surface {\n    background: linear-gradient(160deg, rgba(15, 43, 36, 0.22) 0%, rgba(27, 63, 71, 0.16) 100%) !important;\n    border: 1px solid rgba(242, 234, 220, 0.18) !important;\n    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.40), 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;\n    backdrop-filter: blur(28px) saturate(1.2) !important;\n    -webkit-backdrop-filter: blur(28px) saturate(1.2) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget .card-badge {\n    background: rgba(255, 255, 255, 0.12);\n    color: white;\n    border: 1px solid rgba(255, 255, 255, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget ul {\n    color: rgba(255, 255, 255, 0.9);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget .contact-chip {\n    background: rgba(255, 255, 255, 0.08);\n    color: white;\n    border: 1px solid rgba(255, 255, 255, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header {\n    border-bottom: 2px solid rgba(223, 243, 237, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child h1,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child h1 {\n    color: var(--theme-contrast-strong);\n    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child p,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child p {\n    color: var(--theme-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary {\n    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary:hover {\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\n    border-color: var(--theme-accent-border);\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), 0 0 0 1px var(--theme-accent-border);\n    filter: none;\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-icon {\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.15) 0%, rgba(155, 89, 182, 0.1) 100%);\n    border: 2px solid var(--theme-primary-color);\n    color: var(--theme-primary-color);\n    box-shadow: 0 4px 12px rgba(139, 35, 72, 0.25);\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-icon:hover {\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.25) 0%, rgba(155, 89, 182, 0.2) 100%);\n    border-color: var(--theme-accent-color);\n    box-shadow: 0 6px 16px rgba(139, 35, 72, 0.35);\n    transform: translateY(-2px);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .content-card,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .widget-card {\n    background: linear-gradient(165deg, rgba(10, 26, 36, 0.86), rgba(10, 26, 36, 0.78));\n    border: 1px solid rgba(255, 255, 255, 0.18);\n    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .text-muted,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-header h3,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-header-modern h3,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-label,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-value,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-trend,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-badge,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info h4,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info h4,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-badge,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .widget-card h4 {\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .text-muted,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-label {\n    color: var(--theme-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-item {\n    background: linear-gradient(150deg, rgba(10, 26, 36, 0.82), rgba(10, 26, 36, 0.72));\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-card {\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28), 0 12px 28px rgba(139, 35, 72, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-metric {\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card:hover {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\n    border-color: var(--theme-accent-border);\n    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card .stat-icon,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card .stat-icon,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card .stat-icon {\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-accent-border);\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\n    box-shadow: 0 10px 28px var(--theme-primary-shadow-color), inset 0 1px 0 rgba(255, 255, 255, 0.24);\n}\n\nhtml[data-theme=\"dark-forest\"] .stat-value,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-value,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-value {\n    color: var(--theme-contrast-strong);\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n}\n\nhtml[data-theme=\"dark-forest\"] .stat-label,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-label,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-label {\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));\n    border: 1px solid var(--theme-accent-border);\n    color: var(--theme-text-primary);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-row {\n    background: linear-gradient(150deg, rgba(10, 26, 36, 0.82), rgba(10, 26, 36, 0.72));\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .floating-header-bar {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.32);\n}\n\nhtml[data-theme=\"dark-forest\"] .contact-chip {\n    background: linear-gradient(145deg, rgba(118, 75, 162, 0.18), rgba(102, 126, 234, 0.12));\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .doc-item,\nhtml[data-theme=\"dark-forest\"] .contact-detail {\n    background: linear-gradient(150deg, rgba(10, 26, 36, 0.82), rgba(10, 26, 36, 0.72));\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .modal-card {\n    background: linear-gradient(160deg, rgba(10, 26, 36, 0.94), rgba(10, 26, 36, 0.86));\n    border: 1px solid rgba(255, 255, 255, 0.18);\n    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38);\n}\n\nhtml[data-theme=\"dark-forest\"] .donut-track {\n    stroke: rgba(255, 255, 255, 0.18);\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-head {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.08);\n    color: var(--theme-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .search-bar,\nhtml[data-theme=\"dark-forest\"] .icon-pill,\nhtml[data-theme=\"dark-forest\"] .badge.ghost {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-row span,\nhtml[data-theme=\"dark-forest\"] .cell-strong,\nhtml[data-theme=\"dark-forest\"] .chip-low,\nhtml[data-theme=\"dark-forest\"] .chip-medium,\nhtml[data-theme=\"dark-forest\"] .chip-high,\nhtml[data-theme=\"dark-forest\"] .status-dot {\n    color: var(--theme-text-primary);\n}\n\n/* Responsive Design */\n@media (max-width: 1200px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: var(--sidebar-width) 1fr;\n    }\n\n    .dashboard-right-rail {\n        display: none;\n    }\n\n    .dashboard-section .content-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-section .content-sidebar {\n        grid-column: 1;\n    }\n\n    .panel-grid.two-columns {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-stage {\n        padding: 16px;\n    }\n}\n\n@media (max-width: 768px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: var(--sidebar-slim-width) 1fr;\n    }\n\n    .dashboard-section .dashboard-sidebar {\n        width: var(--sidebar-slim-width);\n    }\n\n    .dashboard-section .nav-item span,\n    .dashboard-section .sidebar-header h3,\n    .sidebar-branding .brand-text,\n    .sidebar-quick-actions,\n    .sidebar-widget {\n        display: none;\n    }\n\n    .sidebar-surface {\n        padding: 8px;\n    }\n\n    .dashboard-section .stats-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-section .dashboard-top-header {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 12px;\n    }\n\n    .dashboard-tabs {\n        width: 100%;\n        justify-content: space-between;\n        gap: 6px;\n    }\n\n    .dashboard-tab {\n        flex: 1 1 45%;\n        text-align: center;\n        font-size: 0.85rem;\n    }\n\n    .dashboard-stage {\n        padding: 12px 8px;\n    }\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   CLIENT DASHBOARD SPECIFIC STYLES\n   ═══════════════════════════════════════════════════════════════════ */\n\n.client-dashboard .stat-card {\n    padding: 12px;\n    border-radius: 14px;\n    gap: 10px;\n}\n\n.client-dashboard .stat-card .stat-content .stat-value {\n    font-size: 1.45rem;\n}\n\n.client-dashboard .stat-card .stat-icon-wrapper {\n    width: 38px;\n    height: 38px;\n    border-radius: 12px;\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   AGENT DASHBOARD SPECIFIC STYLES\n   ═══════════════════════════════════════════════════════════════════ */\n\n/* Hero header layout - siguiendo patrón de client dashboard */\n.agent-dashboard .hero-surface {\n    background: linear-gradient(135deg, rgba(79, 172, 254, 0.08) 0%, rgba(0, 242, 254, 0.08) 100%);\n}\n\n.agent-dashboard .hero-title-row {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin-bottom: 8px;\n    flex-wrap: wrap;\n}\n\n.agent-dashboard .eyebrow {\n    font-size: 0.75rem;\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.agent-dashboard .hero-divider {\n    color: var(--theme-text-secondary);\n    font-weight: 300;\n    opacity: 0.3;\n    font-size: 0.75rem;\n}\n\n.agent-dashboard .hero-welcome {\n    font-size: 0.875rem;\n    color: var(--theme-text-primary);\n    font-weight: 500;\n}\n\n.agent-dashboard .hero-welcome span[data-agent-name] {\n    font-weight: 700;\n    color: var(--theme-text-primary);\n}\n\n.agent-dashboard .hero-description {\n    font-size: 0.875rem;\n    line-height: 1.5;\n    color: var(--theme-text-secondary);\n    margin: 0;\n    max-width: 600px;\n}\n\n/* Sidebar pills and widgets */\n.agent-dashboard .recent-clients-pills,\n.agent-dashboard .widget-mini-list {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.agent-dashboard .agent-dashboard .client-pill-avatar {\n    width: 28px;\n    height: 28px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 11px;\n    font-weight: bold;\n    color: white;\n    flex-shrink: 0;\n}\n\n.agent-dashboard .client-pill-name {\n    font-size: 0.85rem;\n    font-weight: 600;\n    color: var(--theme-text-primary);\n}\n\n/* Botones y pills del sidebar: igualar estilo de quick actions */\n.agent-dashboard .client-pill,\n.agent-dashboard .widget-mini-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    border-radius: 12px;\n    border: 1px solid var(--theme-accent-border);\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-weight: var(--dashboard-font-semibold);\n    text-align: left;\n    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);\n    backdrop-filter: blur(8px);\n}\n\n.agent-dashboard .client-pill:hover,\n.agent-dashboard .widget-mini-item:hover {\n    background: rgba(79, 172, 254, 0.12);\n    border-color: var(--theme-accent-color);\n    transform: translateY(-2px);\n}\n\n.agent-dashboard .widget-mini-item svg {\n    flex-shrink: 0;\n    color: var(--theme-accent-color);\n}\n\n.agent-dashboard .widget-mini-item span {\n    flex: 1;\n    font-size: 0.82rem;\n    font-weight: 600;\n    color: var(--theme-text-primary);\n}\n\n.agent-dashboard .widget-mini-badge {\n    background: rgba(79, 172, 254, 0.12);\n    color: var(--theme-accent-color);\n    font-size: 0.75rem;\n    font-weight: 700;\n    padding: 2px 8px;\n    border-radius: 12px;\n    border: 1px solid currentColor;\n}\n\n.agent-dashboard .widget-mini-badge.warn {\n    background: rgba(245, 87, 108, 0.12);\n    color: #f5576c;\n    border-color: #f5576c;\n}\n\n/* Roadmap de Suscripción - pasos de registro del cliente */\n.agent-dashboard .roadmap-tabs {\n    display: flex;\n    gap: 6px;\n    margin-bottom: 12px;\n}\n\n.agent-dashboard .roadmap-tab {\n    padding: 8px 12px;\n    border-radius: 10px;\n    border: 1px solid var(--theme-accent-border);\n    background: var(--theme-accent-bg-soft);\n    font-size: 0.78rem;\n    font-weight: 700;\n    color: var(--theme-text-secondary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.agent-dashboard .roadmap-tab:hover {\n    background: rgba(79, 172, 254, 0.12);\n    border-color: var(--theme-accent-color);\n}\n\n.agent-dashboard .roadmap-tab.active {\n    background: rgba(79, 172, 254, 0.18);\n    border-color: var(--theme-accent-color);\n    color: var(--theme-accent-color);\n}\n\n.agent-dashboard .roadmap-body {\n    position: relative;\n    background: rgba(255, 255, 255, 0.9);\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 14px;\n    padding: 12px;\n    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);\n    backdrop-filter: blur(10px);\n}\n\n.agent-dashboard .roadmap-status {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.agent-dashboard .roadmap-status.hidden {\n    display: none;\n}\n\n.agent-dashboard .roadmap-step {\n    position: relative;\n    padding: 12px 12px 12px 36px;\n    border-left: 2px solid rgba(0, 0, 0, 0.08);\n    border: 1px solid var(--dashboard-border, rgba(0, 0, 0, 0.06));\n    border-radius: 10px;\n    background: rgba(255, 255, 255, 0.86);\n    transition: all 0.2s ease;\n    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);\n}\n\n.agent-dashboard .roadmap-step:first-child {\n    padding-top: 6px;\n}\n\n.agent-dashboard .roadmap-step:last-child {\n    border-left-color: transparent;\n    padding-bottom: 6px;\n}\n\n.agent-dashboard .roadmap-step::before {\n    content: '';\n    position: absolute;\n    left: 12px;\n    top: 16px;\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: rgba(0, 0, 0, 0.15);\n    border: 2px solid white;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .roadmap-step.done {\n    border-left-color: #38ef7d;\n    border-color: rgba(56, 239, 125, 0.35);\n}\n\n.agent-dashboard .roadmap-step.done::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.15);\n}\n\n.agent-dashboard .roadmap-step.in-progress {\n    border-left-color: #feca57;\n    background: rgba(254, 202, 87, 0.04);\n    border-color: rgba(254, 202, 87, 0.35);\n}\n\n.agent-dashboard .roadmap-step.in-progress::before {\n    background: #feca57;\n    box-shadow: 0 0 0 4px rgba(254, 202, 87, 0.15);\n    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;\n}\n\n.agent-dashboard .roadmap-step.pending {\n    opacity: 0.6;\n}\n\n.agent-dashboard .roadmap-step .step-label {\n    display: block;\n    font-size: 0.85rem;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    margin-bottom: 2px;\n}\n\n.agent-dashboard .roadmap-step .step-meta {\n    display: block;\n    font-size: 0.7rem;\n    color: var(--theme-text-secondary);\n    font-weight: 500;\n}\n\n.agent-dashboard .roadmap-step .step-action {\n    position: absolute;\n    right: 10px;\n    top: 10px;\n    padding: 4px 8px;\n    border-radius: 8px;\n    border: 1px solid var(--theme-accent-border);\n    background: rgba(79, 172, 254, 0.12);\n    color: var(--theme-accent-color);\n    font-size: 0.7rem;\n    font-weight: 700;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .roadmap-step .step-action:hover {\n    background: rgba(79, 172, 254, 0.18);\n    border-color: var(--theme-accent-color);\n}\n\n@keyframes pulse {\n\n    0%,\n    100% {\n        opacity: 1;\n    }\n\n    50% {\n        opacity: 0.5;\n    }\n}\n\n/* Old roadmap timeline styles - deprecated */\n.roadmap-timeline {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding: 6px 0;\n}\n\n.timeline-item {\n    display: flex;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.35);\n    border-left: 3px solid transparent;\n    border-radius: 8px;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.timeline-item.urgent {\n    border-left-color: #f5576c;\n    background: rgba(245, 87, 108, 0.06);\n}\n\n.timeline-item.soon {\n    border-left-color: #feca57;\n    background: rgba(254, 202, 87, 0.06);\n}\n\n.timeline-item.ok {\n    border-left-color: #38ef7d;\n    background: rgba(56, 239, 125, 0.06);\n}\n\n.timeline-item:hover {\n    transform: translateX(4px);\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);\n}\n\n.timeline-marker {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: var(--theme-accent-color);\n    margin-top: 4px;\n    flex-shrink: 0;\n}\n\n.timeline-item.urgent .timeline-marker {\n    background: #f5576c;\n}\n\n.timeline-item.soon .timeline-marker {\n    background: #feca57;\n}\n\n.timeline-item.ok .timeline-marker {\n    background: #38ef7d;\n}\n\n.timeline-content {\n    flex: 1;\n}\n\n.timeline-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 4px;\n}\n\n.timeline-header strong {\n    font-size: 0.85rem;\n    color: var(--theme-text-primary);\n    font-weight: 700;\n}\n\n.timeline-date {\n    font-size: 0.7rem;\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n}\n\n.timeline-content>p {\n    font-size: 0.75rem;\n    color: var(--theme-text-secondary);\n    margin: 2px 0 6px 0;\n    font-weight: 500;\n}\n\n.timeline-actions {\n    display: flex;\n    gap: 6px;\n}\n\n/* Claims interactive list */\n.claims-interactive-list {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding: 6px 0;\n}\n\n.claim-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.35);\n    border-left: 3px solid transparent;\n    border: 1px solid rgba(0, 0, 0, 0.05);\n    border-radius: 8px;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.claim-item:hover {\n    background: rgba(255, 255, 255, 0.45);\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);\n    transform: translateX(3px);\n}\n\n.claim-item.warn {\n    border-left: 3px solid #feca57;\n}\n\n.claim-item.ok {\n    border-left: 3px solid #38ef7d;\n}\n\n.claim-item.urgent {\n    border-left: 3px solid #f5576c;\n}\n\n.claim-icon {\n    width: 34px;\n    height: 34px;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.claim-item.warn .claim-icon {\n    background: rgba(254, 202, 87, 0.18);\n    color: #feca57;\n}\n\n.claim-item.ok .claim-icon {\n    background: rgba(56, 239, 125, 0.18);\n    color: #38ef7d;\n}\n\n.claim-item.urgent .claim-icon {\n    background: rgba(245, 87, 108, 0.18);\n    color: #f5576c;\n}\n\n.claim-content {\n    flex: 1;\n}\n\n.claim-header {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 4px;\n}\n\n.claim-header strong {\n    font-size: 0.85rem;\n    color: var(--theme-text-primary);\n    font-weight: 700;\n}\n\n.claim-status {\n    font-size: 0.65rem;\n    font-weight: 700;\n    padding: 2px 8px;\n    border-radius: 10px;\n}\n\n.claim-status.warn {\n    background: rgba(254, 202, 87, 0.18);\n    color: #feca57;\n}\n\n.claim-status.ok {\n    background: rgba(56, 239, 125, 0.18);\n    color: #38ef7d;\n}\n\n.claim-status.urgent {\n    background: rgba(245, 87, 108, 0.18);\n    color: #f5576c;\n}\n\n.claim-content>p {\n    font-size: 0.75rem;\n    color: var(--theme-text-secondary);\n    margin: 2px 0;\n    font-weight: 500;\n}\n\n.claim-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 0.7rem;\n    color: var(--theme-text-secondary);\n    margin-top: 4px;\n    font-weight: 600;\n}\n\n.claim-amount {\n    font-weight: 600;\n    color: var(--theme-accent-color);\n}\n\n/* Sidebar surface fix - remove double background */\n.agent-dashboard .sidebar-surface {\n    background: rgba(255, 255, 255, 0.75) !important;\n    border-radius: 20px !important;\n}\n\n/* Content organization and visibility controls */\n.agent-dashboard .stats-grid {\n    margin-bottom: 24px;\n}\n\n.agent-dashboard .dashboard-2col {\n    gap: 20px;\n    margin-bottom: 20px;\n}\n\n.agent-dashboard .content-card {\n    background: rgba(255, 255, 255, 0.75);\n    backdrop-filter: blur(10px);\n    border-radius: 16px;\n    padding: 20px;\n    border: 1px solid rgba(0, 0, 0, 0.08);\n}\n\n.agent-dashboard .content-card .card-header {\n    margin-bottom: 16px;\n}\n\n/* Hide unwanted duplicate elements */\n.agent-dashboard .hero-surface .eyebrow {\n    font-size: 0.8rem;\n    color: var(--theme-text-secondary);\n    font-weight: 500;\n}\n\n.agent-dashboard .hero-welcome {\n    font-size: 0.9rem;\n    color: var(--theme-text-primary);\n    font-weight: 500;\n}\n\n.agent-dashboard .hero-welcome span[data-agent-name] {\n    font-weight: 700;\n    color: var(--theme-accent-color);\n}\n\n/* Ensure compact spacing throughout */\n.agent-dashboard .mimic-wrap {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.agent-dashboard .chart-card {\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .chart-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);\n}\n\n/* Control rail spacing */\n.agent-dashboard .dashboard-rail {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n}\n\n.agent-dashboard .rail-card {\n    background: rgba(255, 255, 255, 0.75);\n    backdrop-filter: blur(10px);\n    border-radius: 16px;\n    padding: 18px;\n    border: 1px solid rgba(0, 0, 0, 0.08);\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   ADMIN DASHBOARD SPECIFIC STYLES  \n   ═══════════════════════════════════════════════════════════════════ */\n\n/* Admin styles will go here */"],"sourceRoot":""}]);
+/* Admin styles will go here */`, "",{"version":3,"sources":["webpack://./styles/dashboards.css"],"names":[],"mappings":"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","sourcesContent":["/* Shared Dashboard UI (restored from backup, tokenized)\n   This file provides the missing layout/components for dashboards:\n   - grid layout\n   - cards + headers\n   - lists (policies/quotes)\n   - tables\n   - badges\n   - icon buttons\n   - sidebar widgets\n*/\n\n/* Import Font Manager for centralized typography & colors */\n@import './Font-Manager.css';\n\n:root {\n    /* Modern Dashboard Colors - Aligned with Brand Palette */\n    --sidebar-width: 300px;\n    --sidebar-slim-width: 80px;\n    --rail-width: 300px;\n    --dashboard-max-width: 1680px;\n    --dashboard-content-width: 90%;\n\n    /* Brand gradients */\n    --color-primary: linear-gradient(135deg, #8b2348 0%, #9b59b6 100%);\n    --color-success: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n    --color-warning: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);\n    --color-info: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);\n\n    /* Background & Surface Colors */\n    --bg-main: #f8f9fa;\n    --bg-card: #ffffff;\n    --bg-sidebar: #0d1117;\n    --bg-dashboard: linear-gradient(135deg, #f6f7fb 0%, #eef1f7 45%, #e7ebf3 100%);\n\n    /* Legacy compatibility */\n    --dashboard-bg-light: var(--bg-main);\n    --dashboard-stat-gap-shared: 14px;\n    --dashboard-stat-icon-size-shared: 60px;\n    --dashboard-stat-icon-radius-shared: 14px;\n    --dashboard-stat-transition-shared: all 0.42s cubic-bezier(0.33, 1, 0.68, 1);\n\n    /* Theme-adaptive variables for high contrast */\n    --dashboard-bg-surface: rgba(255, 255, 255, 0.92);\n    --dashboard-border: rgba(0, 0, 0, 0.06);\n    --dashboard-border-subtle: rgba(0, 0, 0, 0.08);\n    --dashboard-radius-lg: 18px;\n}\n\n/* Dark theme overrides */\nhtml[data-theme=\"dark-forest\"] {\n    --dashboard-bg-surface: rgba(20, 30, 25, 0.88);\n    --dashboard-border: rgba(255, 255, 255, 0.1);\n    --dashboard-border-subtle: rgba(255, 255, 255, 0.12);\n}\n\n/* Dashboard shell & layout */\n.dashboard-section {\n    background: var(--bg-dashboard);\n    height: 100vh;\n    width: 100vw;\n    margin: 0;\n    padding: 0;\n    /* SCROLL UNIVERSAL: overflow-y manejado por scroll-modal-fixes.css */\n    display: flex;\n    flex-direction: column;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section {\n    background: #060b0a;\n}\n\n/* Hero Container - Full Width Outside Grid */\n.dashboard-section .dashboard-hero-container {\n    width: 100%;\n    flex-shrink: 0;\n    padding: 12px 12px 12px 12px;\n}\n\n.dashboard-section .dashboard-layout {\n    display: grid;\n    grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);\n    gap: 0;\n    flex: 1;\n    min-height: 0;\n    width: 100%;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0;\n    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */\n}\n\n.dashboard-section .dashboard-main-wrapper {\n    /* SCROLL UNIVERSAL: height y overflow manejados por scroll-modal-fixes.css */\n    min-width: 0;\n    width: 100%;\n}\n\n.dashboard-shell {\n    width: 100%;\n    margin: 0;\n    padding: 0;\n}\n\n.dashboard-section.no-sidebar .dashboard-layout {\n    display: block;\n}\n\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\n    margin-left: 0;\n    padding: 0;\n    max-width: none;\n}\n\n/* Floating right rail */\n.dashboard-section.no-sidebar .dashboard-shell {\n    padding: 0 20px 36px;\n}\n\n/* ===== DASHBOARD HEADER - SHARED ACROSS ALL DASHBOARDS ===== */\n.dashboard-section .dashboard-header {\n    display: none !important;\n}\n\n/* Ocultar navbar global cuando se navega a dashboards (evita header doble) */\nbody[data-page=\"client-dashboard\"] .navbar,\nbody[data-page=\"agent-dashboard\"] .navbar,\nbody[data-page=\"admin-dashboard\"] .navbar,\nbody[data-page=\"client-dashboard\"] .navbar-header,\nbody[data-page=\"agent-dashboard\"] .navbar-header,\nbody[data-page=\"admin-dashboard\"] .navbar-header {\n    display: none !important;\n}\n\n.dashboard-section .dashboard-header>div:first-child h1 {\n    font-family: var(--dashboard-font-family-primary);\n    font-size: var(--dashboard-text-2xl);\n    color: var(--theme-accent-color);\n    margin: 0 0 8px 0;\n    font-weight: var(--dashboard-font-bold);\n    text-shadow: 0 2px 8px var(--theme-primary-shadow-color);\n}\n\n.dashboard-section .dashboard-header>div:first-child p {\n    color: var(--theme-text-secondary);\n    font-size: var(--dashboard-text-md);\n    margin: 0;\n}\n\n.dashboard-section .dashboard-header .btn {\n    padding: 12px 26px;\n    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 12px;\n    cursor: pointer;\n    font-weight: var(--dashboard-font-semibold);\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14);\n    transition: all 0.3s ease;\n}\n\n.dashboard-section .dashboard-header .btn:hover {\n    transform: translateY(-3px);\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--theme-accent-border);\n}\n\n/* ===== END DASHBOARD HEADER ===== */\n\n/* Integrated content without additional rail wrapping */\n.dashboard-stage {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */\n    overflow: visible;\n    height: auto;\n    padding: 0 12px 12px 12px;\n}\n\n/* Scroll collapse behavior:\n   When user scrolls down past threshold (80px), hero-surface collapses.\n   Controlled by scrollCollapse.js which adds/removes COLLAPSE_CLASS.\n   Target: .dashboard-section (scroll universal)\n*/\n\n.stage-main {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.dashboard-body {\n    display: block;\n    margin-top: 8px;\n}\n\n/* Slim Sidebar Navigation */\n.dashboard-section .dashboard-sidebar {\n    /* SCROLL UNIVERSAL: No sticky, no overflow */\n    width: var(--sidebar-width);\n    display: flex;\n    flex-direction: column;\n    padding: 0;\n}\n\n.dashboard-section .dashboard-sidebar .sidebar-surface {\n    /* SCROLL UNIVERSAL: height auto */\n    height: auto;\n}\n\n.sidebar-stack {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 12px;\n}\n\n.sidebar-block .sidebar-header,\n.sidebar-block .sidebar-quick-actions,\n.sidebar-block .sidebar-widget-group,\n.sidebar-block .sidebar-widget {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    padding: 0;\n    margin: 0;\n}\n\n.sidebar-block .sidebar-qa-header {\n    margin-bottom: 8px;\n}\n\n.sidebar-block .qa-btn,\n.sidebar-block .client-pill,\n.sidebar-block .widget-mini-item,\n.sidebar-block .sidebar-logout {\n    width: 100%;\n}\n\n.sidebar-surface {\n    background: transparent;\n    border-radius: 20px;\n    border: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n    padding: 0;\n    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */\n    overflow: visible;\n    height: auto;\n    display: flex;\n    flex-direction: column;\n    gap: 0;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface,\nhtml[data-theme=\"dark-forest\"] .rail-surface {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    color: var(--theme-text-primary);\n}\n\n.sidebar-block {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    padding: 0;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-block {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\n.dashboard-section .sidebar-header {\n    padding: 14px 16px;\n    border-bottom: 1px solid rgba(15, 23, 42, 0.08);\n    text-align: center;\n    flex-shrink: 0;\n}\n\n.dashboard-section .user-avatar {\n    width: 60px;\n    height: 60px;\n    margin: 0 auto 12px;\n    border-radius: 50%;\n    overflow: hidden;\n    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);\n}\n\n.dashboard-section .sidebar-header h3 {\n    color: var(--dashboard-text-primary);\n    font-size: var(--dashboard-text-md);\n    font-weight: var(--dashboard-font-semibold);\n    margin: 0;\n}\n\n.dashboard-section .sidebar-header.sidebar-branding {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 10px;\n    padding: 16px 16px 14px;\n    flex-shrink: 0;\n}\n\n.sidebar-branding .logo-slot-nav {\n    width: 64px;\n    height: 64px;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    color: var(--theme-primary-color);\n}\n\n.sidebar-branding .brand-text-sidebar {\n    text-align: center;\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n}\n\n.sidebar-branding .brand-text-sidebar .brand-name {\n    color: var(--theme-text-primary);\n    font-size: var(--dashboard-text-md);\n    letter-spacing: 0.04em;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.sidebar-branding .brand-text-sidebar .brand-tagline {\n    color: var(--theme-text-secondary);\n    font-size: var(--dashboard-text-xs);\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n}\n\n.dashboard-section .sidebar-nav {\n    color: var(--theme-text-primary);\n    padding: 8px 0;\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n    flex-shrink: 0;\n}\n\n.sidebar-quick-actions,\n.sidebar-widget-group {\n    padding: 12px;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    border: 0;\n    background: transparent;\n    border-radius: 14px;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n    flex-shrink: 0;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-quick-actions,\nhtml[data-theme=\"dark-forest\"] .sidebar-widget-group {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\n.sidebar-qa-header,\n.sidebar-widget-group .sidebar-qa-header {\n    font-size: var(--dashboard-text-sm);\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    color: var(--theme-text-secondary);\n    margin-bottom: 6px;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.qa-btn,\n.client-pill,\n.widget-mini-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 8px 10px;\n    border-radius: 12px;\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    background: rgba(255, 255, 255, 0.45) !important;\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-weight: var(--dashboard-font-semibold);\n    text-align: left;\n    box-shadow: none !important;\n    backdrop-filter: blur(8px);\n    -webkit-backdrop-filter: blur(8px);\n}\n\nhtml[data-theme=\"dark-forest\"] .qa-btn,\nhtml[data-theme=\"dark-forest\"] .client-pill,\nhtml[data-theme=\"dark-forest\"] .widget-mini-item {\n    background: rgba(10, 22, 19, 0.35) !important;\n    border: 1px solid rgba(76, 201, 191, 0.16) !important;\n    color: var(--theme-text-primary);\n    box-shadow: none !important;\n    backdrop-filter: blur(8px);\n    -webkit-backdrop-filter: blur(8px);\n}\n\n/* Ajuste de badges en tema oscuro: gradiente y legibilidad */\nhtml[data-theme=\"dark-forest\"] .card-badge,\nhtml[data-theme=\"dark-forest\"] .badge,\nhtml[data-theme=\"dark-forest\"] .badge.badge-accent,\nhtml[data-theme=\"dark-forest\"] .badge.badge-light,\nhtml[data-theme=\"dark-forest\"] .badge.badge-primary,\nhtml[data-theme=\"dark-forest\"] .badge.badge-warning,\nhtml[data-theme=\"dark-forest\"] .badge.badge-success {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.18), rgba(155, 89, 182, 0.28));\n    border: 1px solid rgba(255, 255, 255, 0.08);\n    color: var(--theme-text-primary);\n    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.32);\n}\n\n/* Evitar contenedor extra en sidebar widgets (light & dark) */\n.sidebar-quick-actions,\n.sidebar-widget-group {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\n.sidebar-block.sidebar-logout-block {\n    display: flex;\n    padding: 10px 10px 6px;\n}\n\n.sidebar-block.sidebar-brand-block .sidebar-header {\n    align-items: center;\n}\n\n.qa-btn:hover,\n.client-pill:hover,\n.widget-mini-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateY(-2px);\n}\n\nhtml[data-theme=\"dark-forest\"] .qa-btn:hover,\nhtml[data-theme=\"dark-forest\"] .client-pill:hover,\nhtml[data-theme=\"dark-forest\"] .widget-mini-item:hover {\n    background: rgba(76, 201, 191, 0.12);\n    border-color: rgba(76, 201, 191, 0.32);\n    transform: translateY(-1px);\n}\n\n/* Ajuste específico para client-pill y widget-mini-item */\n.client-pill,\n.widget-mini-item {\n    gap: 8px;\n}\n\n.dashboard-section .nav-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 10px 16px;\n    color: var(--theme-text-secondary);\n    text-decoration: none;\n    transition: all 0.2s ease;\n    position: relative;\n}\n\n.dashboard-section .nav-item::before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 50%;\n    transform: translateY(-50%);\n    width: 3px;\n    height: 0;\n    background: linear-gradient(180deg, #667eea, #764ba2);\n    border-radius: 0 2px 2px 0;\n    transition: height 0.2s ease;\n}\n\n.dashboard-section .nav-item:hover,\n.dashboard-section .nav-item.active {\n    color: var(--theme-text-primary);\n    background: var(--theme-accent-bg-soft);\n}\n\n.dashboard-section .nav-item.active::before {\n    height: 70%;\n}\n\n.dashboard-section .nav-item svg {\n    flex-shrink: 0;\n}\n\n.dashboard-section .sidebar-logout {\n    padding: 12px;\n    background: rgba(245, 87, 108, 0.08);\n    border: 1px solid rgba(245, 87, 108, 0.25);\n    border-radius: 12px;\n    color: #f5576c;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 8px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-size: var(--dashboard-text-base);\n    font-weight: var(--dashboard-font-medium);\n    flex-shrink: 0;\n    margin-top: auto;\n}\n\n.dashboard-section .sidebar-logout:hover {\n    background: rgba(245, 87, 108, 0.2);\n    border-color: rgba(245, 87, 108, 0.4);\n}\n\n.sidebar-widget {\n    padding: 12px;\n    border-radius: 14px;\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n    color: var(--theme-text-primary);\n    flex-shrink: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.sidebar-widget h4 {\n    margin: 0;\n    font-size: var(--dashboard-text-base);\n    letter-spacing: 0.3px;\n    text-transform: uppercase;\n    color: var(--theme-text-secondary);\n    font-weight: var(--dashboard-font-bold);\n}\n\n.sidebar-widget .card-badge {\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-accent-color);\n    border: 1px solid var(--theme-accent-border);\n}\n\n.sidebar-widget ul {\n    margin: 0;\n    padding-left: 16px;\n    color: var(--theme-text-primary);\n    display: grid;\n    gap: 6px;\n    font-size: var(--dashboard-text-base);\n}\n\n.sidebar-widget .contact-chips {\n    display: grid;\n    gap: 8px;\n}\n\n.sidebar-widget .contact-chip {\n    background: rgba(255, 255, 255, 0.85);\n    color: var(--theme-text-primary);\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    padding: 8px 10px;\n    border-radius: 12px;\n    text-align: left;\n    width: 100%;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n/* Main Content Wrapper */\n.dashboard-section .dashboard-main-wrapper {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    min-width: 0;\n}\n\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\n    margin-left: 0;\n    padding: 0;\n    max-width: none;\n}\n\n/* Top Header */\n.dashboard-section .dashboard-top-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 22px;\n    gap: 14px;\n}\n\n.dashboard-section .mimic-header {\n    align-items: flex-start;\n}\n\n.search-hero {\n    flex-direction: column;\n    align-items: stretch;\n    gap: 12px;\n}\n\n.search-hero .hero-copy {\n    text-align: center;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n}\n\n.hero-title-row {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    gap: 12px;\n    font-weight: var(--dashboard-font-extrabold);\n    font-size: 16px;\n    letter-spacing: 0.4px;\n}\n\n.hero-title-row .eyebrow {\n    color: var(--dashboard-hero-eyebrow);\n    font-size: 14px;\n    font-weight: var(--dashboard-font-semibold);\n    text-transform: uppercase;\n    letter-spacing: 1.2px;\n}\n\n.hero-divider {\n    color: var(--dashboard-text-tertiary);\n    opacity: 0.4;\n    font-size: 14px;\n}\n\n.hero-welcome {\n    color: var(--dashboard-hero-title);\n    font-weight: var(--dashboard-font-bold);\n    font-family: 'Cinzel', serif;\n    font-size: 20px;\n    letter-spacing: 0.5px;\n}\n\n.hero-welcome span[data-user-name],\n.hero-welcome span[data-hero-user],\n.hero-welcome span[data-agent-name] {\n    font-weight: var(--dashboard-font-black);\n    color: var(--dashboard-hero-title);\n}\n\n.hero-description {\n    margin: 6px 0 0;\n    color: var(--dashboard-hero-subtitle);\n    max-width: 760px;\n    align-self: center;\n    line-height: 1.5;\n    font-size: 15px;\n    font-weight: var(--dashboard-font-regular);\n}\n\n.search-hero .hero-search {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    width: 100%;\n}\n\n.hero-surface {\n    position: relative;\n    border-radius: 16px;\n    padding: 16px 20px;\n    margin: 0;\n    width: 100%;\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n    overflow: hidden;\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, max-height 0.3s ease;\n    transform-origin: top center;\n}\n\n.hero-surface.scrolled-collapsed {\n    transform: scaleY(0.75) translateY(-12px);\n    opacity: 0.6;\n    max-height: 60px;\n    overflow: hidden;\n}\n\n.hero-surface::before {\n    content: '';\n    position: absolute;\n    inset: -32% -38% auto auto;\n    width: 280px;\n    height: 180px;\n    background:\n        radial-gradient(circle at 22% 42%, rgba(102, 126, 234, 0.26), transparent 58%),\n        radial-gradient(circle at 74% 60%, rgba(118, 75, 162, 0.22), transparent 60%);\n    filter: blur(6px);\n    opacity: 0.8;\n    pointer-events: none;\n}\n\n.hero-surface .hero-grid {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.hero-surface .hero-copy {\n    text-align: justify;\n    align-items: flex-start;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    width: 100%;\n}\n\n.hero-surface .hero-title-row {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-wrap: wrap;\n    width: 100%;\n}\n\n.hero-surface .hero-welcome {\n    margin-left: 0;\n}\n\n.hero-surface .hero-title-row .hero-description {\n    flex: 1;\n    margin: 0;\n    margin-left: auto;\n    text-align: justify;\n    min-width: 300px;\n}\n\n.hero-surface .hero-search {\n    width: 100%;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.search-hero .search-bar.stretch {\n    flex: 1;\n    width: 100%;\n}\n\n.dashboard-section .mimic-header .top-left h1 {\n    color: var(--theme-text-primary);\n}\n\n.dashboard-section .top-right {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    flex-wrap: wrap;\n    justify-content: flex-end;\n    align-self: flex-start;\n}\n\n.floating-header-bar {\n    display: inline-flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.85);\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 16px;\n    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);\n    backdrop-filter: blur(14px) saturate(1.05);\n    -webkit-backdrop-filter: blur(14px) saturate(1.05);\n}\n\n.pill-actions {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n}\n\n.search-bar {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.92);\n    border: 1px solid rgba(0, 0, 0, 0.08);\n    border-radius: 14px;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);\n    min-width: 320px;\n    backdrop-filter: blur(12px) saturate(1.05);\n}\n\n.search-bar input {\n    border: none;\n    background: transparent;\n    outline: none;\n    width: 100%;\n    font-size: var(--dashboard-text-base);\n    color: var(--theme-text-primary);\n}\n\n.search-bar input::placeholder {\n    color: #64748b;\n}\n\n.header-actions.tight {\n    gap: 10px;\n}\n\n.icon-pill {\n    position: relative;\n    width: 38px;\n    height: 38px;\n    border-radius: 12px;\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    background: rgba(255, 255, 255, 0.94);\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);\n    cursor: pointer;\n    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;\n    color: var(--theme-text-primary);\n}\n\n.icon-pill:hover {\n    transform: translateY(-2px);\n    border-color: rgba(0, 0, 0, 0.12);\n    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);\n}\n\n.icon-pill .dot {\n    position: absolute;\n    top: 8px;\n    right: 8px;\n    width: 8px;\n    height: 8px;\n    background: #f5576c;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.15);\n}\n\n.badge.ghost {\n    background: rgba(255, 255, 255, 0.94);\n    color: var(--theme-text-primary);\n    border: 1px solid rgba(0, 0, 0, 0.12);\n    backdrop-filter: blur(8px);\n}\n\n.dashboard-section .dashboard-top-header .eyebrow {\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    font-size: var(--dashboard-text-xs);\n    color: var(--text-secondary);\n    margin: 0 0 6px 0;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.dashboard-section .dashboard-top-header .header-actions {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-wrap: wrap;\n    justify-content: flex-end;\n}\n\n.dashboard-section .dashboard-top-header .btn-refresh {\n    display: none;\n}\n\n.dashboard-tabs {\n    display: none;\n}\n\n.dashboard-tab {\n    border: none;\n    background: transparent;\n    color: var(--text-secondary);\n    padding: 10px 14px;\n    border-radius: 12px;\n    font-weight: var(--dashboard-font-semibold);\n    cursor: pointer;\n    transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);\n}\n\n.dashboard-tab:hover {\n    color: var(--text-primary);\n    background: rgba(102, 126, 234, 0.06);\n}\n\n.dashboard-tab.active {\n    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(118, 75, 162, 0.18));\n    color: #4a3b91;\n    box-shadow: 0 10px 26px rgba(102, 126, 234, 0.18);\n}\n\n.tab-panels {\n    width: 100%;\n}\n\n.tab-panels .tab-panel {\n    display: none !important;\n    width: 100%;\n    gap: 18px;\n}\n\n.tab-panels .tab-panel.active {\n    display: block !important;\n}\n\n.panel-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 14px;\n}\n\n.mimic-grid {\n    display: grid;\n    grid-template-columns: 1.65fr 1fr;\n    gap: 14px;\n    align-items: start;\n    margin-top: 12px;\n}\n\n.mimic-col {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.mimic-col.main {\n    display: grid;\n    grid-template-columns: repeat(4, minmax(0, 1fr));\n    gap: 12px;\n}\n\n.mimic-col.main>.content-card,\n.mimic-col.main>.chart-card,\n.mimic-col.main>.subgrid {\n    grid-column: span 2;\n}\n\n.mimic-col.main>.list-card,\n.mimic-col.main>.subgrid.two {\n    grid-column: span 4;\n}\n\n.dashboard-body.with-rail {\n    display: grid;\n    grid-template-columns: 1fr var(--rail-width, 320px);\n    gap: 16px;\n    align-items: start;\n    margin-top: 12px;\n}\n\n.dashboard-body .main-surface {\n    height: 100%;\n    padding: 0;\n}\n\n.rail-surface {\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));\n    border: 1px solid rgba(255, 255, 255, 0.06);\n    border-radius: 18px;\n    padding: 10px;\n    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);\n}\n\n.dashboard-rail.right-rail {\n    /* SCROLL UNIVERSAL: No sticky, no overflow */\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 12px 12px 12px 0;\n    /* overflow manejado por scroll-modal-fixes.css */\n}\n\n.mimic-col.side-left,\n.mimic-col.side-right {\n    /* SCROLL UNIVERSAL: No sticky */\n}\n\n.mimic-wrap {\n    background: transparent;\n    border: none;\n    border-radius: 20px;\n    padding: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n}\n\n.mimic-wrap-inner {\n    background: transparent;\n    border: none;\n    border-radius: 18px;\n    padding: 0;\n    box-shadow: none;\n}\n\n.subgrid.two {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 12px;\n}\n\n.mimic-col.main .content-card,\n.mimic-col.charts .chart-card,\n.mimic-col.rail .content-card {\n    width: 100%;\n}\n\n.panel-grid.two-columns {\n    grid-template-columns: 1.25fr 1fr;\n}\n\n.panel-grid.stacked {\n    align-items: start;\n}\n\n.dashboard-section .dashboard-top-header h1 {\n    font-size: var(--dashboard-text-2xl);\n    font-weight: var(--dashboard-font-bold);\n    color: var(--text-primary);\n    margin: 0 0 4px 0;\n    color: var(--theme-text-secondary);\n}\n\n.dashboard-section .text-muted {\n    color: var(--text-secondary);\n    font-size: var(--dashboard-text-base);\n    margin: 0;\n}\n\n.dashboard-section .btn-refresh {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 10px 20px;\n    background: white;\n    border: 1px solid var(--border-color);\n    border-radius: 10px;\n    color: var(--text-primary);\n    font-size: var(--dashboard-text-base);\n    font-weight: var(--dashboard-font-medium);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    box-shadow: var(--shadow-sm);\n}\n\n.dashboard-section .btn-refresh:hover {\n    border-color: #667eea;\n    color: #667eea;\n    box-shadow: var(--shadow-md);\n    transform: translateY(-2px);\n}\n\n.dashboard-section .btn-refresh svg {\n    transition: transform 0.4s ease;\n}\n\n.dashboard-section .btn-refresh:hover svg {\n    transform: rotate(180deg);\n}\n\n/* Stats Grid with Color Pops */\n.dashboard-section .stats-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\n    gap: 14px;\n    margin-bottom: 20px;\n}\n\n.dashboard-section .stats-grid .stat-card.stat-summary {\n    grid-column: 1 / -1;\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));\n    gap: 14px;\n    align-items: start;\n    padding: 18px;\n}\n\n.monitor-card {\n    grid-column: 1 / -1;\n    display: grid;\n    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.1fr);\n    gap: 16px;\n    align-items: start;\n    padding: 16px;\n}\n\n.monitor-wrapper {\n    grid-column: 1 / -1;\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n.monitor-header-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n    padding: 0 4px;\n}\n\n.monitor-title {\n    font-family: 'Cinzel', serif;\n    font-size: 22px;\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-text-primary);\n    margin: 0;\n    letter-spacing: 0.3px;\n}\n\n.expand-all-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    padding: 8px 14px;\n    background: rgba(139, 35, 72, 0.08);\n    border: 1px solid rgba(139, 35, 72, 0.18);\n    border-radius: 12px;\n    color: var(--theme-accent-color);\n    font-size: 13px;\n    font-weight: var(--dashboard-font-semibold);\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.expand-all-btn:hover {\n    background: rgba(139, 35, 72, 0.14);\n    border-color: var(--theme-accent-color);\n    transform: translateY(-1px);\n}\n\n.expand-all-btn svg {\n    transition: transform 0.2s ease;\n}\n\n.expand-all-btn[data-expanded=\"true\"] svg {\n    transform: rotate(180deg);\n}\n\n.pending-count {\n    display: inline-block;\n    padding: 2px 8px;\n    background: var(--theme-accent-color);\n    color: white;\n    border-radius: 8px;\n    font-size: 11px;\n    font-weight: var(--dashboard-font-bold);\n    margin-left: 2px;\n}\n\n.monitor-visual {\n    display: grid;\n    grid-template-columns: 120px 1fr;\n    gap: 12px;\n    align-items: center;\n    padding: 12px;\n    border-right: 1px solid var(--dashboard-border);\n}\n\n.monitor-actions {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n    gap: 12px;\n}\n\n.summary-block {\n    padding: 10px;\n    border-left: 2px solid var(--dashboard-border-subtle);\n}\n\n.summary-head-inline {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 8px;\n}\n\n.summary-title {\n    color: var(--dashboard-card-heading);\n    font-weight: var(--dashboard-font-bold);\n    font-size: var(--dashboard-text-base);\n}\n\n.summary-list.compact li {\n    padding: 9px 10px;\n    color: var(--dashboard-card-text);\n}\n\n.donut-heading {\n    color: var(--dashboard-card-heading);\n    font-weight: 700;\n}\n\n.donut-desc {\n    color: var(--dashboard-card-meta);\n}\n\n.link-btn.subtle {\n    margin-top: 6px;\n    font-weight: var(--dashboard-font-semibold);\n    color: var(--theme-text-secondary);\n}\n\n.link-btn.subtle:hover {\n    color: var(--theme-accent-color, #3b82f6);\n    background: rgba(59, 130, 246, 0.08);\n}\n\n.stat-summary .summary-head {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n}\n\n.stat-summary .summary-head h3 {\n    margin: 2px 0 0;\n    font-size: var(--dashboard-text-lg);\n}\n\n.stat-summary .summary-columns {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n    gap: 14px;\n}\n\n.stat-summary .summary-title {\n    margin: 0 0 6px;\n    font-weight: var(--dashboard-font-bold);\n    color: var(--theme-text-primary);\n}\n\n.stat-summary .summary-list {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n    display: grid;\n    gap: 8px;\n}\n\n.stat-summary .summary-list li {\n    display: grid;\n    grid-template-columns: auto 1fr auto;\n    align-items: center;\n    gap: 8px;\n    background: rgba(255, 255, 255, 0.6);\n    border: 1px solid rgba(15, 23, 42, 0.06);\n    border-radius: 12px;\n    padding: 10px 12px;\n    color: var(--text-primary);\n}\n\n.stat-summary .summary-list .dot {\n    width: 9px;\n    height: 9px;\n}\n\n.stat-summary .summary-list .dot.info {\n    background: var(--theme-accent-color, #3b82f6);\n    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);\n}\n\n.stat-summary .summary-list .dot.warn {\n    background: #f59e0b;\n    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.14);\n}\n\n.stat-summary .summary-list .dot.ok {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.14);\n}\n\n.stat-summary .link-btn {\n    border: none;\n    background: transparent;\n    color: var(--theme-accent-color, #3b82f6);\n    font-weight: 700;\n    cursor: pointer;\n    padding: 4px 8px;\n    border-radius: 10px;\n    transition: background 0.2s ease, color 0.2s ease;\n}\n\n.stat-summary .link-btn:hover {\n    background: rgba(59, 130, 246, 0.1);\n}\n\n.dashboard-section .stats-grid.compact {\n    gap: 16px;\n    margin-bottom: 12px;\n}\n\n.dashboard-section .stat-card {\n    background: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border-radius: 16px;\n    padding: 14px;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    position: relative;\n    overflow: hidden;\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    backdrop-filter: blur(28px) saturate(1.5);\n    -webkit-backdrop-filter: blur(28px) saturate(1.5);\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.dashboard-section .stat-card::before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 4px;\n    opacity: 0;\n    transition: opacity 0.3s ease;\n}\n\n.dashboard-section .stat-card.stat-primary::before {\n    background: var(--color-primary);\n}\n\n.dashboard-section .stat-card.stat-success::before {\n    background: var(--color-success);\n}\n\n.dashboard-section .stat-card.stat-warning::before {\n    background: var(--color-warning);\n}\n\n.dashboard-section .stat-card.stat-info::before {\n    background: var(--color-info);\n}\n\n.dashboard-section .stat-card:hover {\n    transform: translateY(-4px);\n    box-shadow: var(--shadow-lg);\n}\n\n.dashboard-section .stat-card:hover::before {\n    opacity: 1;\n}\n\n.dashboard-section .stat-card.stat-graph {\n    align-items: center;\n    gap: 16px;\n}\n\n.stat-donut-card {\n    min-height: 140px;\n}\n\n.donut-figure {\n    width: 120px;\n    height: 120px;\n    position: relative;\n    flex-shrink: 0;\n}\n\n.donut-svg {\n    width: 100%;\n    height: 100%;\n}\n\n.donut-track {\n    fill: none;\n    stroke: rgba(15, 23, 42, 0.12);\n    stroke-width: 12;\n}\n\n.donut-segment {\n    fill: none;\n    stroke-width: 12;\n    stroke-linecap: round;\n    transform: rotate(-90deg);\n    transform-origin: center;\n}\n\n.donut-segment.active {\n    stroke: #16a34a;\n}\n\n.donut-segment.renew {\n    stroke: #f59e0b;\n}\n\n.donut-segment.risk {\n    stroke: #e11d48;\n}\n\n.donut-title {\n    font-size: var(--dashboard-text-lg);\n    font-weight: var(--dashboard-font-extrabold);\n    fill: var(--theme-text-primary);\n}\n\n.donut-sub {\n    font-size: var(--dashboard-text-sm);\n    fill: var(--theme-text-secondary);\n    letter-spacing: 0.04em;\n}\n\n.donut-meta {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n}\n\n.donut-heading {\n    font-weight: var(--dashboard-font-bold);\n    color: var(--theme-text-primary);\n}\n\n.donut-desc {\n    margin: 0;\n    color: var(--theme-text-secondary);\n    font-size: var(--dashboard-text-base);\n}\n\n.donut-legend {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 10px;\n}\n\n.donut-key {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n}\n\n.donut-key .dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04);\n}\n\n.donut-key .dot.active {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.18);\n}\n\n.donut-key .dot.renew {\n    background: #f8c547;\n    box-shadow: 0 0 0 4px rgba(248, 197, 71, 0.18);\n}\n\n.donut-key .dot.risk {\n    background: #f5576c;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.18);\n}\n\n.dashboard-section .stat-icon-wrapper {\n    width: 60px;\n    height: 60px;\n    border-radius: 12px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.dashboard-section .stat-primary .stat-icon-wrapper {\n    background: var(--color-primary);\n}\n\n.dashboard-section .stat-success .stat-icon-wrapper {\n    background: var(--color-success);\n}\n\n.dashboard-section .stat-warning .stat-icon-wrapper {\n    background: var(--color-warning);\n}\n\n.dashboard-section .stat-info .stat-icon-wrapper {\n    background: var(--color-info);\n}\n\n.dashboard-section .stat-icon-wrapper svg {\n    stroke: white;\n}\n\n.dashboard-section .stat-content {\n    flex: 1;\n}\n\n.dashboard-section .stat-value {\n    font-size: var(--dashboard-text-2xl);\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-stat-value);\n    margin: 0 0 4px 0;\n    line-height: 1;\n}\n\n.dashboard-section .stat-label {\n    font-size: var(--dashboard-text-base);\n    color: var(--dashboard-stat-label);\n    font-weight: var(--dashboard-font-semibold);\n}\n\n.dashboard-section .stat-trend,\n.dashboard-section .stat-badge {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    font-size: var(--dashboard-text-sm);\n    font-weight: var(--dashboard-font-semibold);\n    padding: 4px 10px;\n    border-radius: 20px;\n}\n\n.dashboard-section .stat-trend.positive {\n    color: #1e8449;\n    background: rgba(45, 189, 99, 0.15);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-trend.negative {\n    color: #c0392b;\n    background: rgba(192, 57, 43, 0.15);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-badge.success {\n    color: #1e8449;\n    background: rgba(45, 189, 99, 0.15);\n    border: 1px solid rgba(45, 189, 99, 0.3);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-badge.warning {\n    color: #fee140;\n    background: rgba(254, 225, 64, 0.15);\n}\n\n/* Content Grid */\n.dashboard-section .content-grid {\n    display: grid;\n    grid-template-columns: 1fr 360px;\n    gap: 16px;\n}\n\n.client-dashboard .content-grid,\n.agent-dashboard .content-grid {\n    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n    gap: 14px;\n}\n\n.dashboard-section .content-main {\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n}\n\n/* Content Cards */\n.dashboard-section .content-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border-radius: 16px;\n    padding: 18px 18px 16px;\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n}\n\n.dashboard-section .content-card.compact,\n.dashboard-section .widget-card.compact {\n    padding: 18px 18px 16px;\n    border-radius: 14px;\n}\n\n.card-body-scroll {\n    max-height: 340px;\n    overflow: auto;\n    padding-right: 4px;\n    scrollbar-width: thin;\n}\n\n.card-body-scroll::-webkit-scrollbar {\n    width: 8px;\n}\n\n.card-body-scroll::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.12);\n    border-radius: 10px;\n}\n\n.dashboard-section .card-header-modern {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 20px;\n}\n\n.dashboard-section .card-header-modern h3 {\n    font-size: 18px;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0;\n}\n\n.dashboard-section .card-badge {\n    padding: 6px 12px;\n    background: var(--color-primary);\n    color: white;\n    border-radius: 20px;\n    font-size: 12px;\n    font-weight: 600;\n}\n\n.dashboard-section .btn-icon-sm {\n    width: 32px;\n    height: 32px;\n    border-radius: 8px;\n    border: 1px solid var(--border-color);\n    background: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.dashboard-section .btn-icon-sm:hover {\n    border-color: #667eea;\n    background: #f7fafc;\n}\n\n/* Sidebar Widgets */\n.dashboard-section .content-sidebar {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.dashboard-section .widget-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.74));\n    border-radius: 16px;\n    padding: 20px;\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-md);\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    backdrop-filter: blur(14px) saturate(1.1);\n    -webkit-backdrop-filter: blur(14px) saturate(1.1);\n}\n\n.dashboard-section .widget-card h4 {\n    font-size: 16px;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0 0 16px 0;\n}\n\n/* Chart & data visuals */\n.chart-card {\n    position: relative;\n    padding: 16px;\n    border-radius: 14px;\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n    cursor: pointer;\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.chart-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16), 0 12px 32px rgba(139, 35, 72, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border-color: var(--theme-accent-color);\n}\n\n.calendar-card .calendar-grid {\n    display: grid;\n    grid-template-columns: repeat(5, 1fr);\n    gap: 8px;\n    font-size: 13px;\n}\n\n.calendar-card .cal-day {\n    padding: 10px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.12);\n    text-align: center;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n}\n\n.calendar-card .cal-day.muted {\n    opacity: 0.72;\n}\n\n.calendar-card .cal-slot {\n    grid-column: span 5;\n    padding: 10px 12px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n}\n\n.calendar-card .cal-slot.accent {\n    background: rgba(118, 75, 162, 0.12);\n    border-color: rgba(118, 75, 162, 0.24);\n}\n\n.chart-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 10px;\n}\n\n.chart-title {\n    font-size: 15px;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    margin: 0;\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.chart-legend {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.chart-legend-item {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    font-size: 14px;\n    color: var(--theme-text-secondary);\n}\n\n.chart-legend-dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: var(--theme-accent-color);\n    box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.12);\n}\n\n.chart-body {\n    position: relative;\n    margin-top: 6px;\n    min-height: 140px;\n    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.28));\n    border-radius: 12px;\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    overflow: hidden;\n}\n\n.sparkline-placeholder {\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.14), rgba(155, 89, 182, 0.12));\n    opacity: 0.55;\n}\n\n.chart-metrics {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n    gap: 10px;\n    margin-top: 12px;\n}\n\n.chart-metric {\n    background: rgba(255, 255, 255, 0.82);\n    border: 1px solid rgba(255, 255, 255, 0.22);\n    border-radius: 10px;\n    padding: 10px 12px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 10px;\n    box-shadow: 0 8px 22px rgba(139, 35, 72, 0.10);\n}\n\n.chart-metric .label {\n    font-size: 14px;\n    color: var(--theme-text-secondary);\n}\n\n.chart-metric .value {\n    font-size: 16px;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n}\n\n.list-card .mini-table {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.mini-table-row {\n    display: grid;\n    grid-template-columns: 1.2fr 0.9fr 0.7fr 0.7fr 0.9fr;\n    align-items: center;\n    gap: 10px;\n    padding: 12px 10px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.76);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);\n}\n\n.mini-table-head {\n    background: rgba(255, 255, 255, 0.54);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    font-weight: 700;\n    color: var(--theme-text-secondary);\n    text-transform: uppercase;\n    font-size: 12px;\n    letter-spacing: 0.08em;\n}\n\n.mini-table-row span {\n    color: var(--theme-text-primary);\n    font-size: 14px;\n}\n\n.mini-table-row .cell-strong {\n    font-weight: 700;\n}\n\n.chip {\n    display: inline-flex;\n    align-items: center;\n    padding: 4px 10px;\n    border-radius: 999px;\n    font-weight: 700;\n    font-size: 12px;\n    border: 1px solid transparent;\n}\n\n.chip-low {\n    background: rgba(56, 239, 125, 0.14);\n    color: #1c7d4f;\n    border-color: rgba(56, 239, 125, 0.28);\n}\n\n.chip-medium {\n    background: rgba(248, 197, 71, 0.16);\n    color: #8a5b00;\n    border-color: rgba(248, 197, 71, 0.28);\n}\n\n.chip-high {\n    background: rgba(245, 87, 108, 0.16);\n    color: #982b3a;\n    border-color: rgba(245, 87, 108, 0.3);\n}\n\n.contact-chips {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 8px;\n}\n\n.contact-chip {\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    background: linear-gradient(145deg, rgba(118, 75, 162, 0.08), rgba(102, 126, 234, 0.08));\n    color: var(--theme-text-primary);\n    padding: 8px 12px;\n    border-radius: 999px;\n    font-weight: 700;\n    font-size: 13px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);\n}\n\n.contact-chip:hover,\n.contact-chip:focus-visible {\n    outline: none;\n    border-color: var(--theme-accent-color);\n    box-shadow: 0 12px 30px rgba(118, 75, 162, 0.16);\n    transform: translateY(-1px);\n}\n\n.contact-chip:active {\n    transform: translateY(0);\n}\n\n.status-dot {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    font-weight: 600;\n}\n\n.status-dot::before {\n    content: '';\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);\n}\n\n.status-dot.ok::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.14);\n}\n\n.status-dot.warn::before {\n    background: #f8c547;\n    box-shadow: 0 0 0 4px rgba(248, 197, 71, 0.18);\n}\n\n.status-dot.risk::before {\n    background: #f5576c;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.16);\n}\n\n.icon-animated {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    width: 28px;\n    height: 28px;\n    margin-right: 4px;\n    color: var(--theme-primary-color);\n}\n\n.icon-animated svg {\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    overflow: visible;\n}\n\n.icon-animated svg * {\n    stroke-dasharray: 120;\n    stroke-dashoffset: 120;\n    animation: line-draw 1.2s ease forwards;\n    animation-delay: 0.05s;\n}\n\n@keyframes line-draw {\n    to {\n        stroke-dashoffset: 0;\n    }\n}\n\n.dashboard-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.78));\n    border: 1px solid rgba(255, 255, 255, 0.6);\n    border-radius: 16px;\n    padding: var(--dashboard-card-padding);\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-sm);\n    backdrop-filter: blur(12px) saturate(1.08);\n    -webkit-backdrop-filter: blur(12px) saturate(1.08);\n    margin-bottom: 12px;\n    color: var(--theme-text-primary);\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;\n}\n\n.dashboard-card.scrolled-collapsed {\n    transform: scale(0.98);\n    opacity: 0.85;\n}\n\n/* Obsoleto - tabs antiguos ocultos usan .dashboard-card */\n/* .agent-dashboard .dashboard-card {\n    padding: 18px 16px;\n    border-radius: 14px;\n}\n\n.agent-dashboard .dashboard-stats {\n    gap: 12px;\n    margin-bottom: 12px;\n} */\n\n/* Simple card title when no .card-header is used (sidebar cards) */\n.dashboard-card>h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.25rem;\n    color: var(--theme-text-primary);\n    margin: 0 0 16px 0;\n}\n\n.card-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n    margin-bottom: var(--dashboard-card-header-margin);\n    padding-bottom: var(--dashboard-card-header-padding);\n    border-bottom: 2px solid var(--theme-surface-border);\n}\n\n.card-header h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.25rem;\n    color: var(--theme-text-primary);\n    margin: 0;\n}\n\n/* Lists */\n.policies-list,\n.quotes-list,\n.documents-list,\n.tasks-list,\n.alert-list,\n.activity-list,\n.prelaunch-checklist {\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n}\n\n.task-item,\n.alert-item,\n.activity-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 14px 16px;\n    background: var(--acrylic-bg-light);\n    border: 1px solid var(--theme-accent-border-subtle);\n    border-radius: 12px;\n    color: var(--theme-text-primary);\n}\n\n.task-title,\n.alert-title,\n.activity-title {\n    margin: 0 0 4px 0;\n    font-weight: 700;\n}\n\n.task-meta,\n.alert-meta,\n.activity-meta {\n    margin: 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.9rem;\n}\n\n.quick-actions {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n/* Skeleton loading states for dashboards */\n.skeleton-mode .dashboard-stat-card,\n.skeleton-mode .task-item,\n.skeleton-mode .alert-item,\n.skeleton-mode .activity-item {\n    position: relative;\n    overflow: hidden;\n    color: transparent !important;\n}\n\n.skeleton-mode .dashboard-stat-card::after,\n.skeleton-mode .task-item::after,\n.skeleton-mode .alert-item::after,\n.skeleton-mode .activity-item::after {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(90deg,\n            rgba(255, 255, 255, 0.04) 0%,\n            rgba(255, 255, 255, 0.08) 40%,\n            rgba(255, 255, 255, 0.04) 80%);\n    animation: skeleton-shimmer 1.2s infinite;\n}\n\n.skeleton-mode .dashboard-stat-card .stat-icon,\n.skeleton-mode .dashboard-stat-card .stat-value,\n.skeleton-mode .dashboard-stat-card .stat-label,\n.skeleton-mode .task-item *,\n.skeleton-mode .alert-item *,\n.skeleton-mode .activity-item * {\n    color: transparent !important;\n}\n\n@keyframes skeleton-shimmer {\n    0% {\n        transform: translateX(-60%);\n    }\n\n    100% {\n        transform: translateX(60%);\n    }\n}\n\n.badge-light {\n    background: rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-surface-border);\n}\n\n.prelaunch-checklist {\n    padding-left: 18px;\n    margin: 0;\n    color: var(--theme-text-secondary);\n}\n\n.prelaunch-checklist li {\n    margin-bottom: 8px;\n}\n\n.policy-item,\n.quote-item {\n    display: flex;\n    align-items: center;\n    gap: 16px;\n    padding: 18px;\n    background: rgba(255, 255, 255, 0.92);\n    border: 1px solid rgba(255, 255, 255, 0.26);\n    border-radius: 12px;\n    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;\n}\n\n.policy-item:hover,\n.quote-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(3px);\n    box-shadow: var(--shadow);\n}\n\n.policy-icon {\n    font-size: 2rem;\n    width: 52px;\n    height: 52px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: var(--acrylic-bg-light);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    flex-shrink: 0;\n}\n\n.policy-info,\n.quote-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.policy-actions {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-shrink: 0;\n}\n\n.policy-info h4,\n.quote-info h4 {\n    font-size: 1.05rem;\n    color: var(--theme-text-primary);\n    margin: 0 0 6px 0;\n}\n\n.policy-info p,\n.quote-info p {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n    margin: 0 0 10px 0;\n}\n\n.policy-meta {\n    display: flex;\n    align-items: center;\n    flex-wrap: wrap;\n    gap: 10px;\n    font-size: 0.85rem;\n    color: var(--theme-text-secondary);\n}\n\n.quote-date {\n    font-size: 0.85rem;\n    color: var(--theme-text-secondary);\n}\n\n.recent-docs-list {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n.doc-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px 14px;\n    background: rgba(255, 255, 255, 0.82);\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 12px;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);\n}\n\n.doc-meta {\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n}\n\n.doc-meta strong {\n    font-size: 14px;\n    color: var(--theme-text-primary);\n}\n\n.doc-meta span {\n    color: var(--theme-text-secondary);\n    font-size: 12px;\n}\n\n.doc-actions {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n}\n\n.contact-modal {\n    position: fixed;\n    inset: 0;\n    display: none;\n    align-items: center;\n    justify-content: center;\n    z-index: 200;\n}\n\n.contact-modal.is-open {\n    display: flex;\n}\n\n.modal-backdrop {\n    position: absolute;\n    inset: 0;\n    background: rgba(0, 0, 0, 0.35);\n    backdrop-filter: blur(6px);\n    -webkit-backdrop-filter: blur(6px);\n}\n\n.modal-card {\n    position: relative;\n    width: min(420px, 92vw);\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.88));\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 16px;\n    padding: 16px;\n    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);\n    backdrop-filter: blur(10px) saturate(1.05);\n    -webkit-backdrop-filter: blur(10px) saturate(1.05);\n}\n\n.modal-card-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    margin-bottom: 10px;\n}\n\n.modal-card-body {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    margin-bottom: 12px;\n}\n\n.contact-detail {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.7);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    border-radius: 12px;\n}\n\n.contact-detail span {\n    color: var(--theme-text-secondary);\n    font-size: 13px;\n}\n\n.contact-detail strong {\n    color: var(--theme-text-primary);\n}\n\n.modal-card-actions {\n    display: flex;\n    justify-content: flex-end;\n    gap: 10px;\n}\n\n/* Badges */\n.badge {\n    padding: 4px 12px;\n    border-radius: 999px;\n    font-size: 0.72rem;\n    font-weight: 700;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.badge-success {\n    background: var(--success);\n    color: var(--theme-on-success);\n}\n\n.badge-warning {\n    background: var(--warning);\n    color: var(--theme-on-warning);\n}\n\n.badge-danger {\n    background: var(--danger);\n    color: var(--theme-on-danger);\n}\n\n.badge-primary {\n    background: var(--theme-primary-color);\n    color: var(--theme-highlight-light);\n}\n\n.badge-accent {\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-accent-color);\n    border: 1px solid var(--theme-accent-border);\n}\n\n/* Tables */\n.payments-table table,\n.clients-table table {\n    width: 100%;\n    border-collapse: collapse;\n}\n\n.payments-table th,\n.payments-table td,\n.clients-table th,\n.clients-table td {\n    padding: 14px 12px;\n    text-align: left;\n    border-bottom: 1px solid var(--theme-surface-border);\n}\n\n.payments-table th,\n.clients-table th {\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    background: var(--theme-navlink-active-bg);\n    font-size: 0.9rem;\n}\n\n.payments-table td,\n.clients-table td {\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n.client-cell {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.client-avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\n    color: var(--white);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-weight: 800;\n    font-size: 0.9rem;\n    flex-shrink: 0;\n}\n\n.client-name {\n    font-weight: 700;\n    color: var(--theme-text-primary);\n}\n\n.client-email {\n    font-size: 0.85rem;\n    color: var(--theme-text-secondary);\n}\n\n/* Sidebar */\n.dashboard-sidebar .dashboard-card {\n    position: sticky;\n    top: calc(var(--nav-height) + 14px);\n}\n\n.quick-actions {\n    display: flex;\n    flex-direction: column;\n    gap: var(--dashboard-quick-actions-gap);\n}\n\n.agent-info {\n    text-align: center;\n}\n\n.agent-avatar {\n    width: 80px;\n    height: 80px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\n    color: var(--white);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-family: 'Cinzel', serif;\n    font-size: 2rem;\n    font-weight: 800;\n    margin: 0 auto 16px;\n    box-shadow: 0 10px 26px var(--theme-primary-shadow-color);\n}\n\n.agent-info h4 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.15rem;\n    margin: 0 0 6px 0;\n    color: var(--theme-text-primary);\n}\n\n.agent-info p {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n    margin: 0 0 14px 0;\n}\n\n.agent-contact {\n    margin: 14px 0;\n    padding: 14px;\n    background: var(--theme-navlink-active-bg);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    text-align: left;\n}\n\n.agent-contact p {\n    margin: 6px 0;\n    font-size: 0.92rem;\n    color: var(--theme-text-secondary);\n}\n\n/* Shared stat grid + cards */\n.dashboard-stats {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(var(--dashboard-stat-min), 1fr));\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\n    margin-top: 0;\n    margin-bottom: 12px;\n}\n\n.dashboard-stat-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\n    padding: var(--dashboard-stat-padding);\n    border-radius: var(--dashboard-stat-radius);\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: var(--dashboard-stat-shadow, var(--dashboard-stat-shadow-shared));\n    transition: var(--dashboard-stat-transition, var(--dashboard-stat-transition-shared));\n    display: flex;\n    align-items: center;\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\n    position: relative;\n    overflow: hidden;\n    transition: transform 0.42s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.42s cubic-bezier(0.33, 1, 0.68, 1), background 0.42s cubic-bezier(0.33, 1, 0.68, 1), border-color 0.42s cubic-bezier(0.33, 1, 0.68, 1);\n}\n\n.dashboard-stat-card:hover {\n    transform: translateY(var(--dashboard-stat-hover-lift, var(--dashboard-stat-hover-lift-shared)));\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\n    box-shadow: var(--dashboard-stat-hover-shadow, var(--dashboard-stat-hover-shadow-shared));\n}\n\n.dashboard-stat-card .stat-icon {\n    font-size: var(--dashboard-stat-icon-font, var(--dashboard-stat-icon-font-shared));\n    width: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\n    height: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));\n    border-radius: var(--dashboard-stat-icon-radius, var(--dashboard-stat-icon-radius-shared));\n    border: 1px solid rgba(255, 255, 255, 0.28);\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 1.05)) saturate(calc(var(--acrylic-saturate) * 1.18));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 1.05)) saturate(calc(var(--acrylic-saturate) * 1.18));\n    box-shadow: 0 10px 28px rgba(139, 35, 72, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.26);\n    flex-shrink: 0;\n}\n\n.stat-info {\n    flex: 1;\n}\n\n.stat-value {\n    font-family: 'Cinzel', serif;\n    font-size: 2rem;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    line-height: 1;\n    margin-bottom: 6px;\n}\n\n.stat-label {\n    font-size: 0.95rem;\n    color: var(--theme-text-secondary);\n    font-weight: 500;\n}\n\n.document-link {\n    padding: 12px 14px;\n    background: var(--theme-navlink-active-bg);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 10px;\n    text-decoration: none;\n    color: var(--theme-text-primary);\n    font-size: 0.92rem;\n    transition: transform 0.2s ease, background 0.2s ease;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.document-link:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(3px);\n}\n\n.task-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 12px;\n    background: rgba(255, 255, 255, 0.94);\n    border: 1px solid rgba(255, 255, 255, 0.26);\n    border-radius: 10px;\n    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;\n}\n\n.task-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(2px);\n}\n\n.task-item input[type=\"checkbox\"] {\n    width: 18px;\n    height: 18px;\n    cursor: pointer;\n}\n\n.commissions-info {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.commission-row {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 10px 0;\n    border-bottom: 1px solid var(--theme-surface-border);\n    color: var(--theme-text-secondary);\n}\n\n.commission-row strong {\n    color: var(--theme-text-primary);\n}\n\n/* Responsive */\n@media (max-width: 1480px) {\n    .dashboard-grid {\n        grid-template-columns: repeat(2, minmax(300px, 1fr));\n    }\n\n    .dashboard-main {\n        grid-column: span 2;\n        grid-template-columns: repeat(2, minmax(var(--dashboard-main-col-min), 1fr));\n    }\n\n    .dashboard-sidebar {\n        grid-column: span 2;\n    }\n}\n\n@media (max-width: 1100px) {\n    .dashboard-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-stage.with-rail {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-main {\n        grid-column: span 1;\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-sidebar {\n        grid-column: span 1;\n    }\n\n    .dashboard-sidebar .dashboard-card {\n        position: static;\n    }\n\n    .mimic-col.main {\n        grid-template-columns: repeat(2, minmax(0, 1fr));\n    }\n\n    .mimic-col.main>.content-card,\n    .mimic-col.main>.chart-card,\n    .mimic-col.main>.subgrid {\n        grid-column: span 1;\n    }\n\n    .mimic-col.main>.list-card,\n    .mimic-col.main>.subgrid.two {\n        grid-column: span 2;\n    }\n\n    .dashboard-body.with-rail {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-rail.right-rail {\n        position: static;\n        order: 2;\n    }\n\n    .hero-surface .hero-grid {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n}\n\n@media (max-width: 560px) {\n    .dashboard-card {\n        padding: 20px;\n    }\n\n    .mimic-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.rail {\n        grid-column: 1;\n    }\n\n    .policy-item,\n    .quote-item {\n        flex-direction: column;\n        align-items: flex-start;\n    }\n\n    .mimic-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.rail,\n    .mimic-col.charts,\n    .mimic-col.main {\n        grid-column: 1;\n    }\n\n    .mimic-col.main {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.main>.content-card,\n    .mimic-col.main>.chart-card,\n    .mimic-col.main>.subgrid,\n    .mimic-col.main>.list-card,\n    .mimic-col.main>.subgrid.two {\n        grid-column: span 1;\n    }\n\n    .dashboard-rail.right-rail {\n        position: static;\n        order: 2;\n    }\n}\n\n/* ===== Dark-Forest Dashboard Overrides (moved from theme file for load priority) ===== */\nhtml[data-theme=\"dark-forest\"] .dashboard-section,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard {\n    background: #060b0a;\n    color: var(--theme-text-primary);\n}\n\n/* Sidebar dark theme overrides */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .dashboard-sidebar {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface {\n    background: transparent !important;\n    border: 0 !important;\n    border-radius: 20px !important;\n    box-shadow: none !important;\n    backdrop-filter: none !important;\n    -webkit-backdrop-filter: none !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .sidebar-header {\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .logo-slot-nav {\n    color: #fff;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .brand-text-sidebar .brand-name {\n    color: #fff;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .brand-text-sidebar .brand-tagline {\n    color: rgba(255, 255, 255, 0.72);\n}\n\n/* sidebar-quick-actions ya usa estilos unificados - sin background extra */\n\nhtml[data-theme=\"dark-forest\"] .sidebar-qa-header {\n    color: rgba(255, 255, 255, 0.7);\n}\n\n/* Unificado con los demás botones de sidebar */\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item {\n    color: rgba(255, 255, 255, 0.7);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item.active {\n    color: white;\n    background: rgba(255, 255, 255, 0.05);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    color: white;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget h4 {\n    color: rgba(255, 255, 255, 0.82);\n}\n\n/* Dashboard cards - unified dark backgrounds for consistency */\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;\n    backdrop-filter: blur(20px) saturate(1.2) !important;\n    -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface .dashboard-card {\n    background: rgba(255, 255, 255, 0.05) !important;\n    border: 1px solid rgba(255, 255, 255, 0.08) !important;\n}\n\n/* Stat cards - same background as dashboard-card for consistency */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;\n    backdrop-filter: blur(28px) saturate(1.3) !important;\n    -webkit-backdrop-filter: blur(28px) saturate(1.3) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .client-dashboard .stat-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n}\n\n/* Hero surface - unified dark background */\nhtml[data-theme=\"dark-forest\"] .hero-surface {\n    background: rgba(15, 43, 36, 0.3) !important;\n    border: 1px solid rgba(242, 234, 220, 0.14) !important;\n    border-radius: 16px !important;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;\n    backdrop-filter: blur(32px) saturate(1.3) !important;\n    -webkit-backdrop-filter: blur(32px) saturate(1.3) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget .card-badge {\n    background: rgba(255, 255, 255, 0.12);\n    color: white;\n    border: 1px solid rgba(255, 255, 255, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget ul {\n    color: rgba(255, 255, 255, 0.9);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget .contact-chip {\n    background: rgba(10, 22, 19, 0.65);\n    border: 1px solid rgba(76, 201, 191, 0.16);\n    color: var(--theme-text-primary);\n    box-shadow: none;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header {\n    border-bottom: 2px solid rgba(223, 243, 237, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child h1,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child h1 {\n    color: var(--theme-contrast-strong);\n    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child p,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child p {\n    color: var(--theme-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.28) 0%, rgba(113, 220, 201, 0.22) 100%);\n    color: #e8f4ef;\n    border: 1px solid rgba(76, 201, 191, 0.35);\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), 0 4px 12px rgba(76, 201, 191, 0.25);\n    backdrop-filter: blur(12px) saturate(1.4);\n    -webkit-backdrop-filter: blur(12px) saturate(1.4);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary:hover {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.38) 0%, rgba(113, 220, 201, 0.32) 100%);\n    border-color: rgba(76, 201, 191, 0.45);\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), 0 6px 18px rgba(76, 201, 191, 0.35);\n    transform: translateY(-2px);\n}\n\n/* Normalizar tamaño y densidad de CTAs en dark theme (evita botones gigantes como \"Abrir\") */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section button,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .cta .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta .btn {\n    border: 1px solid rgba(76, 201, 191, 0.32);\n    background: radial-gradient(circle at 20% 20%, rgba(76, 201, 191, 0.18), rgba(0, 0, 0, 0.32));\n    color: var(--theme-text-primary);\n    transition: all 0.2s ease;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section button:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .cta .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta .btn:hover {\n    border-color: rgba(76, 201, 191, 0.55);\n    background: radial-gradient(circle at 20% 20%, rgba(76, 201, 191, 0.25), rgba(0, 0, 0, 0.4));\n    transform: translateY(-1px);\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-icon {\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.15) 0%, rgba(155, 89, 182, 0.1) 100%);\n    border: 2px solid var(--theme-primary-color);\n    color: var(--theme-primary-color);\n    box-shadow: 0 4px 12px rgba(139, 35, 72, 0.25);\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-icon:hover {\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.25) 0%, rgba(155, 89, 182, 0.2) 100%);\n    border-color: var(--theme-accent-color);\n    box-shadow: 0 6px 16px rgba(139, 35, 72, 0.35);\n    transform: translateY(-2px);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .content-card,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .widget-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);\n    color: var(--theme-text-primary);\n    backdrop-filter: blur(20px) saturate(1.2);\n    -webkit-backdrop-filter: blur(20px) saturate(1.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .text-muted,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-header h3,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-header-modern h3,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-label,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-value,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-trend,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-badge,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info h4,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info h4,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-badge,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .widget-card h4 {\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .text-muted,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-label {\n    color: var(--theme-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-item {\n    background: linear-gradient(150deg, rgba(10, 26, 36, 0.82), rgba(10, 26, 36, 0.72));\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-card {\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28), 0 12px 28px rgba(139, 35, 72, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-metric {\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card:hover {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\n    border-color: var(--theme-accent-border);\n    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card .stat-icon,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card .stat-icon,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card .stat-icon {\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-accent-border);\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\n    box-shadow: 0 10px 28px var(--theme-primary-shadow-color), inset 0 1px 0 rgba(255, 255, 255, 0.24);\n}\n\nhtml[data-theme=\"dark-forest\"] .stat-value,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-value,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-value {\n    color: var(--theme-contrast-strong);\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n}\n\nhtml[data-theme=\"dark-forest\"] .stat-label,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-label,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-label {\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));\n    border: 1px solid var(--theme-accent-border);\n    color: var(--theme-text-primary);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-row {\n    background: rgba(15, 43, 36, 0.2) !important;\n    border: 1px solid rgba(242, 234, 220, 0.1);\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .floating-header-bar {\n    background: rgba(15, 43, 36, 0.3) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12);\n    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.32);\n}\n\nhtml[data-theme=\"dark-forest\"] .contact-chip {\n    background: rgba(76, 201, 191, 0.15) !important;\n    border: 1px solid rgba(76, 201, 191, 0.25);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .contact-chip:hover {\n    background: rgba(76, 201, 191, 0.25) !important;\n    border-color: rgba(76, 201, 191, 0.35);\n}\n\nhtml[data-theme=\"dark-forest\"] .doc-item,\nhtml[data-theme=\"dark-forest\"] .contact-detail {\n    background: rgba(15, 43, 36, 0.2) !important;\n    border: 1px solid rgba(242, 234, 220, 0.1);\n    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .modal-card {\n    background: rgba(15, 43, 36, 0.85) !important;\n    border: 1px solid rgba(242, 234, 220, 0.18);\n    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38);\n    backdrop-filter: blur(28px) saturate(1.3);\n    -webkit-backdrop-filter: blur(28px) saturate(1.3);\n}\n\nhtml[data-theme=\"dark-forest\"] .donut-track {\n    stroke: rgba(255, 255, 255, 0.18);\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-head {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.08);\n    color: var(--theme-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .search-bar,\nhtml[data-theme=\"dark-forest\"] .icon-pill,\nhtml[data-theme=\"dark-forest\"] .badge.ghost {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-row span,\nhtml[data-theme=\"dark-forest\"] .cell-strong,\nhtml[data-theme=\"dark-forest\"] .chip-low,\nhtml[data-theme=\"dark-forest\"] .chip-medium,\nhtml[data-theme=\"dark-forest\"] .chip-high,\nhtml[data-theme=\"dark-forest\"] .status-dot {\n    color: var(--theme-text-primary);\n}\n\n/* Responsive Design */\n@media (max-width: 1200px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: var(--sidebar-width) 1fr;\n    }\n\n    .dashboard-right-rail {\n        display: none;\n    }\n\n    .dashboard-section .content-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-section .content-sidebar {\n        grid-column: 1;\n    }\n\n    .panel-grid.two-columns {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-stage {\n        padding: 16px;\n    }\n}\n\n@media (max-width: 768px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: var(--sidebar-slim-width) 1fr;\n        gap: 4px;\n        padding: 4px;\n    }\n\n    .dashboard-section .dashboard-sidebar {\n        width: var(--sidebar-slim-width);\n    }\n\n    .dashboard-section .nav-item span,\n    .dashboard-section .sidebar-header h3,\n    .sidebar-branding .brand-text,\n    .sidebar-quick-actions,\n    .sidebar-widget {\n        display: none;\n    }\n\n    .sidebar-surface {\n        padding: 8px 4px;\n    }\n\n    .dashboard-section .stats-grid {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .stat-card {\n        padding: 12px;\n    }\n\n    .dashboard-section .dashboard-top-header {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 12px;\n    }\n\n    .hero-surface {\n        padding: 12px;\n    }\n\n    .hero-surface .hero-grid {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n\n    .search-bar {\n        width: 100%;\n    }\n\n    .dashboard-tabs {\n        width: 100%;\n        justify-content: space-between;\n        gap: 4px;\n        overflow-x: auto;\n        -webkit-overflow-scrolling: touch;\n    }\n\n    .dashboard-tab {\n        flex: 1 1 auto;\n        min-width: 80px;\n        text-align: center;\n        font-size: 0.8rem;\n        padding: 8px 12px;\n        white-space: nowrap;\n    }\n\n    .dashboard-stage {\n        padding: 8px 4px;\n    }\n\n    .content-grid {\n        grid-template-columns: 1fr !important;\n        gap: 12px;\n    }\n\n    .dashboard-card {\n        margin-bottom: 8px;\n    }\n\n    .monitor-wrapper .monitor-card {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n\n    .monitor-visual {\n        grid-template-columns: 100px 1fr;\n        border-right: none;\n        border-bottom: 1px solid var(--dashboard-border);\n        padding-bottom: 12px;\n    }\n}\n\n/* Mobile phones - stack everything */\n@media (max-width: 480px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: 1fr;\n        gap: 0;\n        padding: 0;\n    }\n\n    .dashboard-section .dashboard-sidebar {\n        display: none;\n    }\n\n    .dashboard-section .dashboard-right-rail {\n        display: none;\n    }\n\n    .dashboard-main-wrapper {\n        width: 100%;\n        padding: 0;\n    }\n\n    .dashboard-stage {\n        padding: 8px;\n    }\n\n    .hero-surface {\n        padding: 12px;\n        border-radius: 12px;\n    }\n\n    .hero-welcome {\n        font-size: 24px;\n    }\n\n    .hero-title-row .eyebrow {\n        font-size: 16px;\n    }\n\n    .hero-description {\n        font-size: 14px;\n    }\n\n    .dashboard-tabs {\n        padding: 8px 4px;\n        gap: 4px;\n    }\n\n    .dashboard-tab {\n        font-size: 0.75rem;\n        padding: 6px 8px;\n        min-width: 70px;\n    }\n\n    .stats-grid {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .stat-card {\n        padding: 10px;\n    }\n\n    .stat-value {\n        font-size: 1.5rem;\n    }\n\n    .stat-label {\n        font-size: 0.8rem;\n    }\n\n    .monitor-header-row {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 8px;\n    }\n\n    .monitor-title {\n        font-size: 18px;\n    }\n\n    .expand-all-btn {\n        width: 100%;\n        justify-content: center;\n    }\n\n    .monitor-card {\n        grid-template-columns: 1fr;\n        padding: 12px;\n    }\n\n    .monitor-visual {\n        grid-template-columns: 1fr;\n        text-align: center;\n        border-right: none;\n        border-bottom: 1px solid var(--dashboard-border);\n        padding-bottom: 12px;\n        margin-bottom: 12px;\n    }\n\n    .donut-figure {\n        margin: 0 auto 12px;\n    }\n\n    .monitor-actions {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-card {\n        padding: 12px;\n        margin-bottom: 8px;\n    }\n\n    .card-header-modern {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 8px;\n    }\n\n    /* Add mobile menu toggle button */\n    .dashboard-mobile-menu-toggle {\n        display: flex;\n        position: fixed;\n        bottom: 20px;\n        right: 20px;\n        width: 56px;\n        height: 56px;\n        background: var(--theme-accent-color);\n        border-radius: 50%;\n        align-items: center;\n        justify-content: center;\n        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n        z-index: 1000;\n        border: none;\n        color: white;\n        cursor: pointer;\n    }\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   CLIENT DASHBOARD SPECIFIC STYLES\n   ═══════════════════════════════════════════════════════════════════ */\n\n.client-dashboard .stat-card {\n    padding: 12px;\n    border-radius: 14px;\n    gap: 10px;\n}\n\n.client-dashboard .stat-card .stat-content .stat-value {\n    font-size: 1.45rem;\n}\n\n.client-dashboard .stat-card .stat-icon-wrapper {\n    width: 38px;\n    height: 38px;\n    border-radius: 12px;\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   AGENT DASHBOARD SPECIFIC STYLES\n   ═══════════════════════════════════════════════════════════════════ */\n\n/* Hero header layout - siguiendo patrón de client dashboard */\n.agent-dashboard .hero-surface {\n    background: linear-gradient(135deg, rgba(79, 172, 254, 0.08) 0%, rgba(0, 242, 254, 0.08) 100%);\n}\n\n.agent-dashboard .hero-title-row {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin-bottom: 0;\n    flex-wrap: wrap;\n    width: 100%;\n}\n\n/* Estilos unificados en selectores base - no necesita sobrescritura */\n\n.agent-dashboard .hero-description {\n    font-size: 0.875rem;\n    line-height: 1.5;\n    color: var(--theme-text-secondary);\n    margin: 0;\n    flex: 1;\n    margin-left: auto;\n    text-align: justify;\n}\n\n/* Sidebar pills and widgets */\n.agent-dashboard .recent-clients-pills,\n.agent-dashboard .widget-mini-list {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.agent-dashboard .agent-dashboard .client-pill-avatar {\n    width: 28px;\n    height: 28px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 11px;\n    font-weight: bold;\n    color: white;\n    flex-shrink: 0;\n}\n\n.agent-dashboard .client-pill-name {\n    font-size: 0.85rem;\n    font-weight: 600;\n    color: var(--theme-text-primary);\n}\n\n/* Botones y pills del sidebar: igualar estilo de quick actions */\n.agent-dashboard .client-pill,\n.agent-dashboard .widget-mini-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    border-radius: 12px;\n    border: 1px solid var(--theme-accent-border);\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-weight: var(--dashboard-font-semibold);\n    text-align: left;\n    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);\n    backdrop-filter: blur(8px);\n}\n\n.agent-dashboard .client-pill:hover,\n.agent-dashboard .widget-mini-item:hover {\n    background: rgba(79, 172, 254, 0.12);\n    border-color: var(--theme-accent-color);\n    transform: translateY(-2px);\n}\n\n.agent-dashboard .widget-mini-item svg {\n    flex-shrink: 0;\n    color: var(--theme-accent-color);\n}\n\n.agent-dashboard .widget-mini-item span {\n    flex: 1;\n    font-size: 0.82rem;\n    font-weight: 600;\n    color: var(--theme-text-primary);\n}\n\n.agent-dashboard .widget-mini-badge {\n    background: rgba(79, 172, 254, 0.12);\n    color: var(--theme-accent-color);\n    font-size: 0.75rem;\n    font-weight: 700;\n    padding: 2px 8px;\n    border-radius: 12px;\n    border: 1px solid currentColor;\n}\n\n.agent-dashboard .widget-mini-badge.warn {\n    background: rgba(245, 87, 108, 0.12);\n    color: #f5576c;\n    border-color: #f5576c;\n}\n\n/* Roadmap de Suscripción - pasos de registro del cliente */\n.agent-dashboard .roadmap-tabs {\n    display: flex;\n    gap: 6px;\n    margin-bottom: 12px;\n}\n\n.agent-dashboard .roadmap-tab {\n    padding: 8px 12px;\n    border-radius: 10px;\n    border: 1px solid var(--theme-accent-border);\n    background: var(--theme-accent-bg-soft);\n    font-size: 0.78rem;\n    font-weight: 700;\n    color: var(--theme-text-secondary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.agent-dashboard .roadmap-tab:hover {\n    background: rgba(79, 172, 254, 0.12);\n    border-color: var(--theme-accent-color);\n}\n\n.agent-dashboard .roadmap-tab.active {\n    background: rgba(79, 172, 254, 0.18);\n    border-color: var(--theme-accent-color);\n    color: var(--theme-accent-color);\n}\n\n.agent-dashboard .roadmap-body {\n    position: relative;\n    background: rgba(255, 255, 255, 0.9);\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 14px;\n    padding: 12px;\n    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);\n    backdrop-filter: blur(10px);\n}\n\n.agent-dashboard .roadmap-status {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.agent-dashboard .roadmap-status.hidden {\n    display: none;\n}\n\n.agent-dashboard .roadmap-step {\n    position: relative;\n    padding: 12px 12px 12px 36px;\n    border-left: 2px solid rgba(0, 0, 0, 0.08);\n    border: 1px solid var(--dashboard-border, rgba(0, 0, 0, 0.06));\n    border-radius: 10px;\n    background: rgba(255, 255, 255, 0.86);\n    transition: all 0.2s ease;\n    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);\n}\n\n.agent-dashboard .roadmap-step:first-child {\n    padding-top: 6px;\n}\n\n.agent-dashboard .roadmap-step:last-child {\n    border-left-color: transparent;\n    padding-bottom: 6px;\n}\n\n.agent-dashboard .roadmap-step::before {\n    content: '';\n    position: absolute;\n    left: 12px;\n    top: 16px;\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: rgba(0, 0, 0, 0.15);\n    border: 2px solid white;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .roadmap-step.done {\n    border-left-color: #38ef7d;\n    border-color: rgba(56, 239, 125, 0.35);\n}\n\n.agent-dashboard .roadmap-step.done::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.15);\n}\n\n.agent-dashboard .roadmap-step.in-progress {\n    border-left-color: #feca57;\n    background: rgba(254, 202, 87, 0.04);\n    border-color: rgba(254, 202, 87, 0.35);\n}\n\n.agent-dashboard .roadmap-step.in-progress::before {\n    background: #feca57;\n    box-shadow: 0 0 0 4px rgba(254, 202, 87, 0.15);\n    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;\n}\n\n.agent-dashboard .roadmap-step.pending {\n    opacity: 0.6;\n}\n\n.agent-dashboard .roadmap-step .step-label {\n    display: block;\n    font-size: 0.85rem;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    margin-bottom: 2px;\n}\n\n.agent-dashboard .roadmap-step .step-meta {\n    display: block;\n    font-size: 0.7rem;\n    color: var(--theme-text-secondary);\n    font-weight: 500;\n}\n\n.agent-dashboard .roadmap-step .step-action {\n    position: absolute;\n    right: 10px;\n    top: 10px;\n    padding: 4px 8px;\n    border-radius: 8px;\n    border: 1px solid var(--theme-accent-border);\n    background: rgba(79, 172, 254, 0.12);\n    color: var(--theme-accent-color);\n    font-size: 0.7rem;\n    font-weight: 700;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .roadmap-step .step-action:hover {\n    background: rgba(79, 172, 254, 0.18);\n    border-color: var(--theme-accent-color);\n}\n\n/* Roadmap + steps en modo oscuro: superficies más profundas y contrastadas */\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-body {\n    background: rgba(10, 20, 17, 0.88);\n    border: 1px solid rgba(76, 201, 191, 0.22);\n    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-tab {\n    background: rgba(12, 24, 20, 0.9);\n    border: 1px solid rgba(76, 201, 191, 0.22);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-tab:hover {\n    background: rgba(76, 201, 191, 0.14);\n    border-color: rgba(76, 201, 191, 0.38);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-tab.active {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.28), rgba(155, 89, 182, 0.24));\n    border-color: rgba(76, 201, 191, 0.42);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step {\n    background: rgba(8, 16, 14, 0.9);\n    border: 1px solid rgba(76, 201, 191, 0.16);\n    border-left-color: rgba(76, 201, 191, 0.3);\n    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step::before {\n    background: rgba(76, 201, 191, 0.8);\n    border: 2px solid rgba(0, 0, 0, 0.35);\n    box-shadow: 0 0 0 4px rgba(76, 201, 191, 0.12);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.done {\n    border-left-color: #38ef7d;\n    border-color: rgba(56, 239, 125, 0.25);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.done::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.in-progress {\n    background: rgba(10, 20, 17, 0.9);\n    border-left-color: #feca57;\n    border-color: rgba(254, 202, 87, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.in-progress::before {\n    background: #feca57;\n    box-shadow: 0 0 0 4px rgba(254, 202, 87, 0.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step .step-action {\n    background: rgba(76, 201, 191, 0.12);\n    border-color: rgba(76, 201, 191, 0.28);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step .step-action:hover {\n    background: rgba(76, 201, 191, 0.2);\n    border-color: rgba(76, 201, 191, 0.42);\n    color: var(--theme-text-primary);\n}\n\n@keyframes pulse {\n\n    0%,\n    100% {\n        opacity: 1;\n    }\n\n    50% {\n        opacity: 0.5;\n    }\n}\n\n/* Old roadmap timeline styles - deprecated */\n.roadmap-timeline {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding: 6px 0;\n}\n\n.timeline-item {\n    display: flex;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.35);\n    border-left: 3px solid transparent;\n    border-radius: 8px;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.timeline-item.urgent {\n    border-left-color: #f5576c;\n    background: rgba(245, 87, 108, 0.06);\n}\n\n.timeline-item.soon {\n    border-left-color: #feca57;\n    background: rgba(254, 202, 87, 0.06);\n}\n\n.timeline-item.ok {\n    border-left-color: #38ef7d;\n    background: rgba(56, 239, 125, 0.06);\n}\n\n.timeline-item:hover {\n    transform: translateX(4px);\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);\n}\n\n.timeline-marker {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: var(--theme-accent-color);\n    margin-top: 4px;\n    flex-shrink: 0;\n}\n\n.timeline-item.urgent .timeline-marker {\n    background: #f5576c;\n}\n\n.timeline-item.soon .timeline-marker {\n    background: #feca57;\n}\n\n.timeline-item.ok .timeline-marker {\n    background: #38ef7d;\n}\n\n.timeline-content {\n    flex: 1;\n}\n\n.timeline-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 4px;\n}\n\n.timeline-header strong {\n    font-size: 0.85rem;\n    color: var(--theme-text-primary);\n    font-weight: 700;\n}\n\n.timeline-date {\n    font-size: 0.7rem;\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n}\n\n.timeline-content>p {\n    font-size: 0.75rem;\n    color: var(--theme-text-secondary);\n    margin: 2px 0 6px 0;\n    font-weight: 500;\n}\n\n.timeline-actions {\n    display: flex;\n    gap: 6px;\n}\n\n/* Claims interactive list */\n.claims-interactive-list {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding: 6px 0;\n}\n\n.claim-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.35);\n    border-left: 3px solid transparent;\n    border: 1px solid rgba(0, 0, 0, 0.05);\n    border-radius: 8px;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.claim-item:hover {\n    background: rgba(255, 255, 255, 0.45);\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);\n    transform: translateX(3px);\n}\n\n.claim-item.warn {\n    border-left: 3px solid #feca57;\n}\n\n.claim-item.ok {\n    border-left: 3px solid #38ef7d;\n}\n\n.claim-item.urgent {\n    border-left: 3px solid #f5576c;\n}\n\n.claim-icon {\n    width: 34px;\n    height: 34px;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.claim-item.warn .claim-icon {\n    background: rgba(254, 202, 87, 0.18);\n    color: #feca57;\n}\n\n.claim-item.ok .claim-icon {\n    background: rgba(56, 239, 125, 0.18);\n    color: #38ef7d;\n}\n\n.claim-item.urgent .claim-icon {\n    background: rgba(245, 87, 108, 0.18);\n    color: #f5576c;\n}\n\n.claim-content {\n    flex: 1;\n}\n\n.claim-header {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 4px;\n}\n\n.claim-header strong {\n    font-size: 0.85rem;\n    color: var(--theme-text-primary);\n    font-weight: 700;\n}\n\n.claim-status {\n    font-size: 0.65rem;\n    font-weight: 700;\n    padding: 2px 8px;\n    border-radius: 10px;\n}\n\n.claim-status.warn {\n    background: rgba(254, 202, 87, 0.18);\n    color: #feca57;\n}\n\n.claim-status.ok {\n    background: rgba(56, 239, 125, 0.18);\n    color: #38ef7d;\n}\n\n.claim-status.urgent {\n    background: rgba(245, 87, 108, 0.18);\n    color: #f5576c;\n}\n\n.claim-content>p {\n    font-size: 0.75rem;\n    color: var(--theme-text-secondary);\n    margin: 2px 0;\n    font-weight: 500;\n}\n\n.claim-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 0.7rem;\n    color: var(--theme-text-secondary);\n    margin-top: 4px;\n    font-weight: 600;\n}\n\n.claim-amount {\n    font-weight: 600;\n    color: var(--theme-accent-color);\n}\n\n/* Claims/siniestros: superficies oscuras para legibilidad en dark theme */\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item {\n    background: rgba(8, 16, 14, 0.9);\n    border: 1px solid rgba(76, 201, 191, 0.18);\n    border-left: 3px solid rgba(76, 201, 191, 0.42);\n    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item:hover {\n    background: rgba(10, 20, 17, 0.92);\n    border-color: rgba(76, 201, 191, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.warn,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.urgent,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.ok {\n    border-left-width: 3px;\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.warn .claim-icon,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.warn .claim-status {\n    background: rgba(254, 202, 87, 0.14);\n    color: #feca57;\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.ok .claim-icon,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.ok .claim-status {\n    background: rgba(56, 239, 125, 0.14);\n    color: #38ef7d;\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.urgent .claim-icon,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.urgent .claim-status {\n    background: rgba(245, 87, 108, 0.16);\n    color: #f5576c;\n}\n\n/* Sidebar surface fix - remove double background */\n.agent-dashboard .sidebar-surface {\n    background: rgba(255, 255, 255, 0.75) !important;\n    border-radius: 20px !important;\n}\n\n/* Content organization and visibility controls */\n.agent-dashboard .stats-grid {\n    margin-bottom: 24px;\n}\n\n.agent-dashboard .dashboard-2col {\n    gap: 20px;\n    margin-bottom: 20px;\n}\n\n.agent-dashboard .content-card {\n    background: rgba(255, 255, 255, 0.75);\n    backdrop-filter: blur(10px);\n    border-radius: 16px;\n    padding: 20px;\n    border: 1px solid rgba(0, 0, 0, 0.08);\n}\n\n.agent-dashboard .content-card .card-header {\n    margin-bottom: 16px;\n}\n\n/* Estilos hero unificados en selectores base */\n\n/* Ensure compact spacing throughout */\n.agent-dashboard .mimic-wrap {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.agent-dashboard .chart-card {\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .chart-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);\n}\n\n/* Control rail spacing */\n.agent-dashboard .dashboard-rail {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n}\n\n.agent-dashboard .rail-card {\n    background: rgba(255, 255, 255, 0.75);\n    backdrop-filter: blur(10px);\n    border-radius: 16px;\n    padding: 18px;\n    border: 1px solid rgba(0, 0, 0, 0.08);\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   ADMIN DASHBOARD SPECIFIC STYLES  \n   ═══════════════════════════════════════════════════════════════════ */\n\n/* Admin styles will go here */"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7599,16 +8019,16 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `/* Agent Dashboard Styles */
 .agent-dashboard {
-    min-height: calc(100vh - var(--nav-height));
+    min-height: 100vh;
     color: var(--theme-text-primary);
-    padding: calc(var(--nav-height) - var(--dashboard-padding-top-offset)) var(--dashboard-padding-x) var(--dashboard-padding-bottom);
+    padding: 0;
+    /* Sin padding - el spacing lo manejan los contenedores internos */
 }
 
 .agent-dashboard .dashboard-container {
     width: 100%;
     max-width: var(--dashboard-container-max-agent, var(--dashboard-container-max));
     margin: 0 auto;
-    padding: 0 var(--dashboard-padding-x);
 }
 
 /* Roadmap tabs */
@@ -7757,7 +8177,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Agent Dashboard Styles */
 .tasks-list.compact .task-meta {
     font-size: 0.9rem;
     color: var(--theme-text-secondary);
-}`, "",{"version":3,"sources":["webpack://./styles/dashboards/agent-dashboard.css"],"names":[],"mappings":"AAAA,2BAA2B;AAC3B;IACI,2CAA2C;IAC3C,gCAAgC;IAChC,iIAAiI;AACrI;;AAEA;IACI,WAAW;IACX,+EAA+E;IAC/E,cAAc;IACd,qCAAqC;AACzC;;AAEA,iBAAiB;AACjB;IACI,aAAa;IACb,QAAQ;IACR,eAAe;AACnB;;AAEA;IACI,iBAAiB;IACjB,4CAA4C;IAC5C,mBAAmB;IACnB,0CAA0C;IAC1C,gCAAgC;IAChC,eAAe;IACf,2EAA2E;AAC/E;;AAEA;IACI,uCAAuC;IACvC,4BAA4B;IAC5B,2BAA2B;AAC/B;;AAEA;IACI,aAAa;IACb,SAAS;AACb;;AAEA;IACI,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,mBAAmB;IACnB,kBAAkB;IAClB,6CAA6C;IAC7C,mBAAmB;IACnB,mCAAmC;AACvC;;AAEA;IACI,qCAAqC;IACrC,uFAAuF;AAC3F;;AAEA;IACI,qCAAqC;IACrC,uFAAuF;AAC3F;;AAEA;IACI,YAAY;AAChB;;AAEA;IACI,gBAAgB;AACpB;;AAEA;IACI,kCAAkC;IAClC,kBAAkB;AACtB;;AAEA,wBAAwB;AACxB;IACI,WAAW;IACX,yBAAyB;AAC7B;;AAEA;;IAEI,iBAAiB;IACjB,oDAAoD;IACpD,gBAAgB;IAChB,gCAAgC;AACpC;;AAEA;IACI,iBAAiB;IACjB,gBAAgB;IAChB,0CAA0C;AAC9C;;AAEA;IACI,gBAAgB;IAChB,iBAAiB;IACjB,kCAAkC;AACtC;;AAEA,iBAAiB;AACjB;IACI,aAAa;IACb,sBAAsB;IACtB,SAAS;AACb;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,SAAS;IACT,aAAa;IACb,6CAA6C;IAC7C,mBAAmB;IACnB,mCAAmC;AACvC;;AAEA;IACI,eAAe;IACf,kCAAkC;IAClC,kBAAkB;AACtB;;AAEA,yBAAyB;AACzB;IACI,aAAa;IACb,sBAAsB;IACtB,SAAS;AACb;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,SAAS;IACT,aAAa;IACb,6CAA6C;IAC7C,mBAAmB;IACnB,mCAAmC;AACvC;;AAEA;IACI,eAAe;IACf,kCAAkC;IAClC,kBAAkB;AACtB;;AAEA;IACI,uBAAuB;IACvB,QAAQ;IACR,sBAAsB;AAC1B;;AAEA;IACI,iBAAiB;IACjB,kCAAkC;AACtC","sourcesContent":["/* Agent Dashboard Styles */\n.agent-dashboard {\n    min-height: calc(100vh - var(--nav-height));\n    color: var(--theme-text-primary);\n    padding: calc(var(--nav-height) - var(--dashboard-padding-top-offset)) var(--dashboard-padding-x) var(--dashboard-padding-bottom);\n}\n\n.agent-dashboard .dashboard-container {\n    width: 100%;\n    max-width: var(--dashboard-container-max-agent, var(--dashboard-container-max));\n    margin: 0 auto;\n    padding: 0 var(--dashboard-padding-x);\n}\n\n/* Roadmap tabs */\n.roadmap-tabs {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.roadmap-tab {\n    padding: 8px 12px;\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 10px;\n    background: var(--theme-navlink-active-bg);\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;\n}\n\n.roadmap-tab.active {\n    background: var(--theme-accent-bg-soft);\n    box-shadow: var(--shadow-sm);\n    transform: translateY(-1px);\n}\n\n.roadmap-body {\n    display: grid;\n    gap: 10px;\n}\n\n.roadmap-status.hidden {\n    display: none;\n}\n\n.roadmap-step {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.roadmap-step.done {\n    border-color: rgba(67, 160, 71, 0.35);\n    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(255, 255, 255, 0.02));\n}\n\n.roadmap-step.in-progress {\n    border-color: rgba(255, 193, 7, 0.35);\n    background: linear-gradient(135deg, rgba(255, 193, 7, 0.10), rgba(255, 255, 255, 0.02));\n}\n\n.roadmap-step.pending {\n    opacity: 0.9;\n}\n\n.step-label {\n    font-weight: 700;\n}\n\n.step-meta {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n}\n\n/* Claims / Siniestros */\n.claims-table table {\n    width: 100%;\n    border-collapse: collapse;\n}\n\n.claims-table th,\n.claims-table td {\n    padding: 10px 8px;\n    border-bottom: 1px solid var(--theme-surface-border);\n    text-align: left;\n    color: var(--theme-text-primary);\n}\n\n.claims-table th {\n    font-size: 0.9rem;\n    font-weight: 700;\n    background: var(--theme-navlink-active-bg);\n}\n\n.notify-hint {\n    margin: 10px 0 0;\n    font-size: 0.9rem;\n    color: var(--theme-text-secondary);\n}\n\n/* Support list */\n.support-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.support-item {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.support-item p {\n    margin: 4px 0 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n/* Alerts & expirations */\n.alerts-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.alert-item {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.alert-meta {\n    margin: 4px 0 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n.tasks-list.compact .task-item {\n    align-items: flex-start;\n    gap: 8px;\n    flex-direction: column;\n}\n\n.tasks-list.compact .task-meta {\n    font-size: 0.9rem;\n    color: var(--theme-text-secondary);\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/dashboards/agent-dashboard.css"],"names":[],"mappings":"AAAA,2BAA2B;AAC3B;IACI,iBAAiB;IACjB,gCAAgC;IAChC,UAAU;IACV,kEAAkE;AACtE;;AAEA;IACI,WAAW;IACX,+EAA+E;IAC/E,cAAc;AAClB;;AAEA,iBAAiB;AACjB;IACI,aAAa;IACb,QAAQ;IACR,eAAe;AACnB;;AAEA;IACI,iBAAiB;IACjB,4CAA4C;IAC5C,mBAAmB;IACnB,0CAA0C;IAC1C,gCAAgC;IAChC,eAAe;IACf,2EAA2E;AAC/E;;AAEA;IACI,uCAAuC;IACvC,4BAA4B;IAC5B,2BAA2B;AAC/B;;AAEA;IACI,aAAa;IACb,SAAS;AACb;;AAEA;IACI,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,mBAAmB;IACnB,kBAAkB;IAClB,6CAA6C;IAC7C,mBAAmB;IACnB,mCAAmC;AACvC;;AAEA;IACI,qCAAqC;IACrC,uFAAuF;AAC3F;;AAEA;IACI,qCAAqC;IACrC,uFAAuF;AAC3F;;AAEA;IACI,YAAY;AAChB;;AAEA;IACI,gBAAgB;AACpB;;AAEA;IACI,kCAAkC;IAClC,kBAAkB;AACtB;;AAEA,wBAAwB;AACxB;IACI,WAAW;IACX,yBAAyB;AAC7B;;AAEA;;IAEI,iBAAiB;IACjB,oDAAoD;IACpD,gBAAgB;IAChB,gCAAgC;AACpC;;AAEA;IACI,iBAAiB;IACjB,gBAAgB;IAChB,0CAA0C;AAC9C;;AAEA;IACI,gBAAgB;IAChB,iBAAiB;IACjB,kCAAkC;AACtC;;AAEA,iBAAiB;AACjB;IACI,aAAa;IACb,sBAAsB;IACtB,SAAS;AACb;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,SAAS;IACT,aAAa;IACb,6CAA6C;IAC7C,mBAAmB;IACnB,mCAAmC;AACvC;;AAEA;IACI,eAAe;IACf,kCAAkC;IAClC,kBAAkB;AACtB;;AAEA,yBAAyB;AACzB;IACI,aAAa;IACb,sBAAsB;IACtB,SAAS;AACb;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,SAAS;IACT,aAAa;IACb,6CAA6C;IAC7C,mBAAmB;IACnB,mCAAmC;AACvC;;AAEA;IACI,eAAe;IACf,kCAAkC;IAClC,kBAAkB;AACtB;;AAEA;IACI,uBAAuB;IACvB,QAAQ;IACR,sBAAsB;AAC1B;;AAEA;IACI,iBAAiB;IACjB,kCAAkC;AACtC","sourcesContent":["/* Agent Dashboard Styles */\n.agent-dashboard {\n    min-height: 100vh;\n    color: var(--theme-text-primary);\n    padding: 0;\n    /* Sin padding - el spacing lo manejan los contenedores internos */\n}\n\n.agent-dashboard .dashboard-container {\n    width: 100%;\n    max-width: var(--dashboard-container-max-agent, var(--dashboard-container-max));\n    margin: 0 auto;\n}\n\n/* Roadmap tabs */\n.roadmap-tabs {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.roadmap-tab {\n    padding: 8px 12px;\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 10px;\n    background: var(--theme-navlink-active-bg);\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;\n}\n\n.roadmap-tab.active {\n    background: var(--theme-accent-bg-soft);\n    box-shadow: var(--shadow-sm);\n    transform: translateY(-1px);\n}\n\n.roadmap-body {\n    display: grid;\n    gap: 10px;\n}\n\n.roadmap-status.hidden {\n    display: none;\n}\n\n.roadmap-step {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.roadmap-step.done {\n    border-color: rgba(67, 160, 71, 0.35);\n    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(255, 255, 255, 0.02));\n}\n\n.roadmap-step.in-progress {\n    border-color: rgba(255, 193, 7, 0.35);\n    background: linear-gradient(135deg, rgba(255, 193, 7, 0.10), rgba(255, 255, 255, 0.02));\n}\n\n.roadmap-step.pending {\n    opacity: 0.9;\n}\n\n.step-label {\n    font-weight: 700;\n}\n\n.step-meta {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n}\n\n/* Claims / Siniestros */\n.claims-table table {\n    width: 100%;\n    border-collapse: collapse;\n}\n\n.claims-table th,\n.claims-table td {\n    padding: 10px 8px;\n    border-bottom: 1px solid var(--theme-surface-border);\n    text-align: left;\n    color: var(--theme-text-primary);\n}\n\n.claims-table th {\n    font-size: 0.9rem;\n    font-weight: 700;\n    background: var(--theme-navlink-active-bg);\n}\n\n.notify-hint {\n    margin: 10px 0 0;\n    font-size: 0.9rem;\n    color: var(--theme-text-secondary);\n}\n\n/* Support list */\n.support-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.support-item {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.support-item p {\n    margin: 4px 0 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n/* Alerts & expirations */\n.alerts-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.alert-item {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.alert-meta {\n    margin: 4px 0 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n.tasks-list.compact .task-item {\n    align-items: flex-start;\n    gap: 8px;\n    flex-direction: column;\n}\n\n.tasks-list.compact .task-meta {\n    font-size: 0.9rem;\n    color: var(--theme-text-secondary);\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7784,19 +8204,609 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `/* Client Dashboard Styles */
-.dashboard-section {
-    min-height: calc(100vh - var(--nav-height));
+.client-dashboard {
+    min-height: 100vh;
     color: var(--theme-text-primary);
-    padding: calc(var(--nav-height) - var(--dashboard-padding-top-offset)) var(--dashboard-padding-x) var(--dashboard-padding-bottom);
+    padding: 0;
+    /* Sin padding - hero está fuera del layout */
 }
 
-.dashboard-container {
+.client-dashboard .dashboard-container {
     width: 100%;
     max-width: var(--dashboard-container-max-client, var(--dashboard-container-max));
     margin: 0 auto;
 }
 
-/* Stats Grid */`, "",{"version":3,"sources":["webpack://./styles/dashboards/client-dashboard.css"],"names":[],"mappings":"AAAA,4BAA4B;AAC5B;IACI,2CAA2C;IAC3C,gCAAgC;IAChC,iIAAiI;AACrI;;AAEA;IACI,WAAW;IACX,gFAAgF;IAChF,cAAc;AAClB;;AAEA,eAAe","sourcesContent":["/* Client Dashboard Styles */\n.dashboard-section {\n    min-height: calc(100vh - var(--nav-height));\n    color: var(--theme-text-primary);\n    padding: calc(var(--nav-height) - var(--dashboard-padding-top-offset)) var(--dashboard-padding-x) var(--dashboard-padding-bottom);\n}\n\n.dashboard-container {\n    width: 100%;\n    max-width: var(--dashboard-container-max-client, var(--dashboard-container-max));\n    margin: 0 auto;\n}\n\n/* Stats Grid */"],"sourceRoot":""}]);
+/* Stats Grid */`, "",{"version":3,"sources":["webpack://./styles/dashboards/client-dashboard.css"],"names":[],"mappings":"AAAA,4BAA4B;AAC5B;IACI,iBAAiB;IACjB,gCAAgC;IAChC,UAAU;IACV,6CAA6C;AACjD;;AAEA;IACI,WAAW;IACX,gFAAgF;IAChF,cAAc;AAClB;;AAEA,eAAe","sourcesContent":["/* Client Dashboard Styles */\n.client-dashboard {\n    min-height: 100vh;\n    color: var(--theme-text-primary);\n    padding: 0;\n    /* Sin padding - hero está fuera del layout */\n}\n\n.client-dashboard .dashboard-container {\n    width: 100%;\n    max-width: var(--dashboard-container-max-client, var(--dashboard-container-max));\n    margin: 0 auto;\n}\n\n/* Stats Grid */"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./styles/notification-modal.css":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./styles/notification-modal.css ***!
+  \*****************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `/**
+ * Sistema de notificaciones modal
+ * Estilos para el modal de notificaciones detalladas
+ */
+
+/* ========== MODAL CONTAINER ========== */
+.notification-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.notification-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ========== OVERLAY ========== */
+.notification-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+}
+
+/* ========== MODAL CONTENT ========== */
+.notification-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    background: var(--surface-primary, #ffffff);
+    border-radius: 16px;
+    box-shadow:
+        0 24px 48px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.notification-modal.active .notification-modal-content {
+    transform: scale(1) translateY(0);
+}
+
+/* Dark mode */
+body.dark-mode .notification-modal-content,
+body.dark-forest .notification-modal-content {
+    background: var(--surface-primary, #1a1a1a);
+    box-shadow:
+        0 24px 48px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* ========== HEADER ========== */
+.notification-modal-header {
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface-secondary, #f8f9fa);
+}
+
+body.dark-mode .notification-modal-header,
+body.dark-forest .notification-modal-header {
+    background: var(--surface-secondary, #222);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.notification-modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+body.dark-mode .notification-modal-title,
+body.dark-forest .notification-modal-title {
+    color: var(--text-primary, #ffffff);
+}
+
+.notification-modal-title svg {
+    color: var(--accent-primary, #2c5f4f);
+}
+
+.notification-count-badge {
+    display: inline-block;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+    background: var(--accent-primary, #2c5f4f);
+    color: white;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: center;
+}
+
+.notification-modal-close {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-secondary, #666);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.notification-modal-close:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-primary, #1a1a1a);
+}
+
+body.dark-mode .notification-modal-close:hover,
+body.dark-forest .notification-modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary, #ffffff);
+}
+
+/* ========== FILTERS ========== */
+.notification-modal-filters {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: var(--surface-primary, #ffffff);
+}
+
+body.dark-mode .notification-modal-filters,
+body.dark-forest .notification-modal-filters {
+    background: var(--surface-primary, #1a1a1a);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.notification-filter {
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary, #666);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.notification-filter:hover {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: var(--accent-primary, #2c5f4f);
+}
+
+.notification-filter.active {
+    background: var(--accent-primary, #2c5f4f);
+    border-color: var(--accent-primary, #2c5f4f);
+    color: white;
+}
+
+body.dark-mode .notification-filter,
+body.dark-forest .notification-filter {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary, #aaa);
+}
+
+body.dark-mode .notification-filter:hover,
+body.dark-forest .notification-filter:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.filter-count {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+}
+
+.notification-filter.active .filter-count {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========== BODY ========== */
+.notification-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 24px;
+    background: var(--surface-primary, #ffffff);
+}
+
+body.dark-mode .notification-modal-body,
+body.dark-forest .notification-modal-body {
+    background: var(--surface-primary, #1a1a1a);
+}
+
+/* Custom scrollbar */
+.notification-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notification-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.notification-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+body.dark-mode .notification-modal-body::-webkit-scrollbar-thumb,
+body.dark-forest .notification-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ========== NOTIFICATION ITEM ========== */
+.notification-item {
+    position: relative;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: var(--surface-secondary, #f8f9fa);
+    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
+    border-radius: 12px;
+    display: flex;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+body.dark-mode .notification-item,
+body.dark-forest .notification-item {
+    background: var(--surface-secondary, #222);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.notification-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.notification-item.unread {
+    background: var(--surface-accent, #e8f5f0);
+    border-color: var(--accent-primary, #2c5f4f);
+    border-left-width: 4px;
+}
+
+body.dark-mode .notification-item.unread,
+body.dark-forest .notification-item.unread {
+    background: rgba(44, 95, 79, 0.15);
+    border-color: var(--accent-primary, #3d7a63);
+}
+
+/* Priority indicators */
+.notification-item.priority-high {
+    border-left-color: #d32f2f;
+}
+
+.notification-item.priority-normal {
+    border-left-color: var(--accent-primary, #2c5f4f);
+}
+
+.notification-item.priority-low {
+    border-left-color: #757575;
+}
+
+/* ========== NOTIFICATION ICON ========== */
+.notification-item-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    background: var(--accent-primary, #2c5f4f);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.notification-item-icon.type-payment {
+    background: #2c5f4f;
+}
+
+.notification-item-icon.type-policy {
+    background: #1565c0;
+}
+
+.notification-item-icon.type-comment {
+    background: #7b1fa2;
+}
+
+.notification-item-icon.type-system {
+    background: #616161;
+}
+
+/* ========== NOTIFICATION CONTENT ========== */
+.notification-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-item-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.notification-item-title {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+}
+
+body.dark-mode .notification-item-title,
+body.dark-forest .notification-item-title {
+    color: var(--text-primary, #ffffff);
+}
+
+.notification-item-time {
+    font-size: 0.75rem;
+    color: var(--text-tertiary, #999);
+    white-space: nowrap;
+}
+
+.notification-item-message {
+    margin: 0 0 12px;
+    font-size: 0.875rem;
+    color: var(--text-secondary, #666);
+    line-height: 1.5;
+}
+
+body.dark-mode .notification-item-message,
+body.dark-forest .notification-item-message {
+    color: var(--text-secondary, #aaa);
+}
+
+/* ========== NOTIFICATION ACTIONS ========== */
+.notification-item-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.notification-action-btn {
+    padding: 6px 14px;
+    background: var(--accent-primary, #2c5f4f);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.notification-action-btn:hover {
+    background: var(--accent-hover, #3d7a63);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(44, 95, 79, 0.3);
+}
+
+.notification-action-btn.secondary {
+    background: transparent;
+    color: var(--accent-primary, #2c5f4f);
+    border: 1px solid var(--accent-primary, #2c5f4f);
+}
+
+.notification-action-btn.secondary:hover {
+    background: rgba(44, 95, 79, 0.1);
+    transform: none;
+}
+
+body.dark-mode .notification-action-btn.secondary,
+body.dark-forest .notification-action-btn.secondary {
+    color: var(--accent-light, #4a9975);
+    border-color: var(--accent-light, #4a9975);
+}
+
+/* ========== MARK AS READ BUTTON ========== */
+.notification-mark-read {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));
+    border-radius: 6px;
+    color: var(--text-secondary, #666);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.notification-mark-read:hover {
+    background: var(--accent-primary, #2c5f4f);
+    border-color: var(--accent-primary, #2c5f4f);
+    color: white;
+}
+
+/* ========== EMPTY STATE ========== */
+.notification-empty {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-tertiary, #999);
+}
+
+.notification-empty svg {
+    margin-bottom: 16px;
+    opacity: 0.3;
+}
+
+.notification-empty p {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+/* ========== FOOTER ========== */
+.notification-modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
+    background: var(--surface-secondary, #f8f9fa);
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+body.dark-mode .notification-modal-footer,
+body.dark-forest .notification-modal-footer {
+    background: var(--surface-secondary, #222);
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ========== NOTIFICATION BELL BADGE ========== */
+.icon-pill .dot {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 8px;
+    height: 8px;
+    background: #d32f2f;
+    border: 2px solid var(--surface-primary, #ffffff);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s ease;
+}
+
+.icon-pill .dot.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.icon-pill .dot[data-count]::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -12px;
+    right: -8px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    background: #d32f2f;
+    color: white;
+    border-radius: 9px;
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 640px) {
+    .notification-modal-content {
+        width: 100%;
+        max-width: none;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .notification-modal-header,
+    .notification-modal-filters,
+    .notification-modal-body,
+    .notification-modal-footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .notification-modal-title {
+        font-size: 1.125rem;
+    }
+
+    .notification-item {
+        padding: 12px;
+    }
+
+    .notification-item-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .notification-item-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .notification-modal-footer {
+        flex-direction: column;
+    }
+
+    .notification-action-btn {
+        width: 100%;
+    }
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes notificationPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.icon-pill .dot.active {
+    animation: notificationPulse 2s infinite;
+}`, "",{"version":3,"sources":["webpack://./styles/notification-modal.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Sistema de notificaciones modal\n * Estilos para el modal de notificaciones detalladas\n */\n\n/* ========== MODAL CONTAINER ========== */\n.notification-modal {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 10000;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n}\n\n.notification-modal.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* ========== OVERLAY ========== */\n.notification-modal-overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.6);\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    cursor: pointer;\n}\n\n/* ========== MODAL CONTENT ========== */\n.notification-modal-content {\n    position: relative;\n    width: 90%;\n    max-width: 600px;\n    max-height: 85vh;\n    background: var(--surface-primary, #ffffff);\n    border-radius: 16px;\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.2),\n        0 0 0 1px rgba(0, 0, 0, 0.1);\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    transform: scale(0.9) translateY(20px);\n    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n\n.notification-modal.active .notification-modal-content {\n    transform: scale(1) translateY(0);\n}\n\n/* Dark mode */\nbody.dark-mode .notification-modal-content,\nbody.dark-forest .notification-modal-content {\n    background: var(--surface-primary, #1a1a1a);\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.6),\n        0 0 0 1px rgba(255, 255, 255, 0.1);\n}\n\n/* ========== HEADER ========== */\n.notification-modal-header {\n    padding: 24px 24px 20px;\n    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    background: var(--surface-secondary, #f8f9fa);\n}\n\nbody.dark-mode .notification-modal-header,\nbody.dark-forest .notification-modal-header {\n    background: var(--surface-secondary, #222);\n    border-bottom-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-modal-title {\n    margin: 0;\n    font-size: 1.25rem;\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\nbody.dark-mode .notification-modal-title,\nbody.dark-forest .notification-modal-title {\n    color: var(--text-primary, #ffffff);\n}\n\n.notification-modal-title svg {\n    color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-count-badge {\n    display: inline-block;\n    min-width: 24px;\n    height: 24px;\n    padding: 0 8px;\n    background: var(--accent-primary, #2c5f4f);\n    color: white;\n    border-radius: 12px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 24px;\n    text-align: center;\n}\n\n.notification-modal-close {\n    width: 36px;\n    height: 36px;\n    padding: 0;\n    background: transparent;\n    border: none;\n    border-radius: 8px;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.notification-modal-close:hover {\n    background: rgba(0, 0, 0, 0.05);\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-mode .notification-modal-close:hover,\nbody.dark-forest .notification-modal-close:hover {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-primary, #ffffff);\n}\n\n/* ========== FILTERS ========== */\n.notification-modal-filters {\n    padding: 16px 24px;\n    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n    background: var(--surface-primary, #ffffff);\n}\n\nbody.dark-mode .notification-modal-filters,\nbody.dark-forest .notification-modal-filters {\n    background: var(--surface-primary, #1a1a1a);\n    border-bottom-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-filter {\n    padding: 8px 16px;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));\n    border-radius: 20px;\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.notification-filter:hover {\n    background: rgba(0, 0, 0, 0.03);\n    border-color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-filter.active {\n    background: var(--accent-primary, #2c5f4f);\n    border-color: var(--accent-primary, #2c5f4f);\n    color: white;\n}\n\nbody.dark-mode .notification-filter,\nbody.dark-forest .notification-filter {\n    border-color: rgba(255, 255, 255, 0.2);\n    color: var(--text-secondary, #aaa);\n}\n\nbody.dark-mode .notification-filter:hover,\nbody.dark-forest .notification-filter:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\n.filter-count {\n    min-width: 20px;\n    height: 20px;\n    padding: 0 6px;\n    background: rgba(0, 0, 0, 0.1);\n    border-radius: 10px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 20px;\n    text-align: center;\n}\n\n.notification-filter.active .filter-count {\n    background: rgba(255, 255, 255, 0.3);\n}\n\n/* ========== BODY ========== */\n.notification-modal-body {\n    flex: 1;\n    overflow-y: auto;\n    padding: 16px 24px;\n    background: var(--surface-primary, #ffffff);\n}\n\nbody.dark-mode .notification-modal-body,\nbody.dark-forest .notification-modal-body {\n    background: var(--surface-primary, #1a1a1a);\n}\n\n/* Custom scrollbar */\n.notification-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.notification-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.2);\n    border-radius: 4px;\n}\n\nbody.dark-mode .notification-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.2);\n}\n\n/* ========== NOTIFICATION ITEM ========== */\n.notification-item {\n    position: relative;\n    padding: 16px;\n    margin-bottom: 12px;\n    background: var(--surface-secondary, #f8f9fa);\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    border-radius: 12px;\n    display: flex;\n    gap: 12px;\n    transition: all 0.2s ease;\n}\n\nbody.dark-mode .notification-item,\nbody.dark-forest .notification-item {\n    background: var(--surface-secondary, #222);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-item:hover {\n    transform: translateX(4px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.notification-item.unread {\n    background: var(--surface-accent, #e8f5f0);\n    border-color: var(--accent-primary, #2c5f4f);\n    border-left-width: 4px;\n}\n\nbody.dark-mode .notification-item.unread,\nbody.dark-forest .notification-item.unread {\n    background: rgba(44, 95, 79, 0.15);\n    border-color: var(--accent-primary, #3d7a63);\n}\n\n/* Priority indicators */\n.notification-item.priority-high {\n    border-left-color: #d32f2f;\n}\n\n.notification-item.priority-normal {\n    border-left-color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-item.priority-low {\n    border-left-color: #757575;\n}\n\n/* ========== NOTIFICATION ICON ========== */\n.notification-item-icon {\n    width: 40px;\n    height: 40px;\n    flex-shrink: 0;\n    background: var(--accent-primary, #2c5f4f);\n    border-radius: 10px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n}\n\n.notification-item-icon.type-payment {\n    background: #2c5f4f;\n}\n\n.notification-item-icon.type-policy {\n    background: #1565c0;\n}\n\n.notification-item-icon.type-comment {\n    background: #7b1fa2;\n}\n\n.notification-item-icon.type-system {\n    background: #616161;\n}\n\n/* ========== NOTIFICATION CONTENT ========== */\n.notification-item-content {\n    flex: 1;\n    min-width: 0;\n}\n\n.notification-item-header {\n    display: flex;\n    align-items: flex-start;\n    justify-content: space-between;\n    gap: 12px;\n    margin-bottom: 6px;\n}\n\n.notification-item-title {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-mode .notification-item-title,\nbody.dark-forest .notification-item-title {\n    color: var(--text-primary, #ffffff);\n}\n\n.notification-item-time {\n    font-size: 0.75rem;\n    color: var(--text-tertiary, #999);\n    white-space: nowrap;\n}\n\n.notification-item-message {\n    margin: 0 0 12px;\n    font-size: 0.875rem;\n    color: var(--text-secondary, #666);\n    line-height: 1.5;\n}\n\nbody.dark-mode .notification-item-message,\nbody.dark-forest .notification-item-message {\n    color: var(--text-secondary, #aaa);\n}\n\n/* ========== NOTIFICATION ACTIONS ========== */\n.notification-item-actions {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.notification-action-btn {\n    padding: 6px 14px;\n    background: var(--accent-primary, #2c5f4f);\n    color: white;\n    border: none;\n    border-radius: 6px;\n    font-size: 0.8125rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.notification-action-btn:hover {\n    background: var(--accent-hover, #3d7a63);\n    transform: translateY(-1px);\n    box-shadow: 0 2px 8px rgba(44, 95, 79, 0.3);\n}\n\n.notification-action-btn.secondary {\n    background: transparent;\n    color: var(--accent-primary, #2c5f4f);\n    border: 1px solid var(--accent-primary, #2c5f4f);\n}\n\n.notification-action-btn.secondary:hover {\n    background: rgba(44, 95, 79, 0.1);\n    transform: none;\n}\n\nbody.dark-mode .notification-action-btn.secondary,\nbody.dark-forest .notification-action-btn.secondary {\n    color: var(--accent-light, #4a9975);\n    border-color: var(--accent-light, #4a9975);\n}\n\n/* ========== MARK AS READ BUTTON ========== */\n.notification-mark-read {\n    width: 32px;\n    height: 32px;\n    flex-shrink: 0;\n    padding: 0;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));\n    border-radius: 6px;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.notification-mark-read:hover {\n    background: var(--accent-primary, #2c5f4f);\n    border-color: var(--accent-primary, #2c5f4f);\n    color: white;\n}\n\n/* ========== EMPTY STATE ========== */\n.notification-empty {\n    padding: 48px 24px;\n    text-align: center;\n    color: var(--text-tertiary, #999);\n}\n\n.notification-empty svg {\n    margin-bottom: 16px;\n    opacity: 0.3;\n}\n\n.notification-empty p {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 500;\n}\n\n/* ========== FOOTER ========== */\n.notification-modal-footer {\n    padding: 16px 24px;\n    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    background: var(--surface-secondary, #f8f9fa);\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n}\n\nbody.dark-mode .notification-modal-footer,\nbody.dark-forest .notification-modal-footer {\n    background: var(--surface-secondary, #222);\n    border-top-color: rgba(255, 255, 255, 0.1);\n}\n\n/* ========== NOTIFICATION BELL BADGE ========== */\n.icon-pill .dot {\n    position: absolute;\n    top: 4px;\n    right: 4px;\n    width: 8px;\n    height: 8px;\n    background: #d32f2f;\n    border: 2px solid var(--surface-primary, #ffffff);\n    border-radius: 50%;\n    opacity: 0;\n    transform: scale(0);\n    transition: all 0.2s ease;\n}\n\n.icon-pill .dot.active {\n    opacity: 1;\n    transform: scale(1);\n}\n\n.icon-pill .dot[data-count]::after {\n    content: attr(data-count);\n    position: absolute;\n    top: -12px;\n    right: -8px;\n    min-width: 18px;\n    height: 18px;\n    padding: 0 4px;\n    background: #d32f2f;\n    color: white;\n    border-radius: 9px;\n    font-size: 0.625rem;\n    font-weight: 700;\n    line-height: 18px;\n    text-align: center;\n}\n\n/* ========== RESPONSIVE ========== */\n@media (max-width: 640px) {\n    .notification-modal-content {\n        width: 100%;\n        max-width: none;\n        max-height: 100vh;\n        border-radius: 0;\n    }\n\n    .notification-modal-header,\n    .notification-modal-filters,\n    .notification-modal-body,\n    .notification-modal-footer {\n        padding-left: 16px;\n        padding-right: 16px;\n    }\n\n    .notification-modal-title {\n        font-size: 1.125rem;\n    }\n\n    .notification-item {\n        padding: 12px;\n    }\n\n    .notification-item-icon {\n        width: 36px;\n        height: 36px;\n    }\n\n    .notification-item-icon svg {\n        width: 18px;\n        height: 18px;\n    }\n\n    .notification-modal-footer {\n        flex-direction: column;\n    }\n\n    .notification-action-btn {\n        width: 100%;\n    }\n}\n\n/* ========== ANIMATIONS ========== */\n@keyframes notificationPulse {\n\n    0%,\n    100% {\n        transform: scale(1);\n    }\n\n    50% {\n        transform: scale(1.1);\n    }\n}\n\n.icon-pill .dot.active {\n    animation: notificationPulse 2s infinite;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11700,6 +12710,676 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Services Section - Full Page Layout
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./styles/payments.css":
+/*!*******************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./styles/payments.css ***!
+  \*******************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `/* ============================================
+   PAYMENT SYSTEM STYLES
+   Sistema de seguimiento de pagos de pólizas
+   ============================================ */
+
+/* ============================================
+   PAYMENT SCHEDULE - Lista de Pagos
+   ============================================ */
+
+.payment-schedule-container {
+    padding: 20px;
+    background: var(--background-secondary, #f8f9fa);
+    border-radius: 12px;
+}
+
+.payment-schedule-container h3 {
+    margin: 0 0 20px 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.payment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.payment-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-left: 4px solid #e0e0e0;
+}
+
+.payment-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Status Colors */
+.payment-card.status-pending {
+    border-left-color: #ffa726;
+}
+
+.payment-card.status-processing {
+    border-left-color: #42a5f5;
+}
+
+.payment-card.status-rejected {
+    border-left-color: #ef5350;
+}
+
+.payment-card.status-awaiting {
+    border-left-color: #ffca28;
+}
+
+.payment-card.status-review {
+    border-left-color: #26c6da;
+}
+
+.payment-card.status-paid {
+    border-left-color: #66bb6a;
+}
+
+.payment-card.status-completed {
+    border-left-color: #4caf50;
+    opacity: 0.8;
+}
+
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.installment-number {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary, #1a1a1a);
+}
+
+.payment-status {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payment-status.status-pending {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.payment-status.status-processing {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.payment-status.status-rejected {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.payment-status.status-awaiting {
+    background: #fff9c4;
+    color: #f57f17;
+}
+
+.payment-status.status-review {
+    background: #e0f7fa;
+    color: #00838f;
+}
+
+.payment-status.status-paid {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.payment-status.status-completed {
+    background: #f1f8e9;
+    color: #558b2f;
+}
+
+.payment-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-row .label {
+    color: var(--text-secondary, #666);
+    font-size: 0.9rem;
+}
+
+.detail-row .value {
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1rem;
+}
+
+.payment-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.btn-upload-proof {
+    flex: 1;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-upload-proof:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.proof-indicator {
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* ============================================
+   NOTIFICATIONS - Notificaciones
+   ============================================ */
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: start;
+    gap: 12px;
+    padding: 16px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease;
+    border-left: 4px solid #e0e0e0;
+}
+
+.notification-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateX(4px);
+}
+
+.notification-item.notification-info {
+    border-left-color: #2196f3;
+}
+
+.notification-item.notification-warning {
+    border-left-color: #ff9800;
+}
+
+.notification-item.notification-success {
+    border-left-color: #4caf50;
+}
+
+.notification-item.notification-error {
+    border-left-color: #f44336;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    min-width: 32px;
+    text-align: center;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-content p {
+    margin: 0 0 6px 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.notification-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary, #999);
+}
+
+.no-notifications {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-secondary, #999);
+    font-style: italic;
+}
+
+/* ============================================
+   PROOF REVIEW - Revisión de Comprobantes (Agente)
+   ============================================ */
+
+.proof-reviews-container {
+    padding: 20px;
+}
+
+.proof-reviews-container h3 {
+    margin: 0 0 20px 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.proof-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.proof-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid #e0e0e0;
+}
+
+.proof-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    border-color: #667eea;
+}
+
+.proof-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.proof-header h4 {
+    margin: 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1.1rem;
+}
+
+.upload-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #999);
+}
+
+.proof-details {
+    margin-bottom: 16px;
+}
+
+.proof-details p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary, #666);
+}
+
+.proof-details strong {
+    color: var(--text-primary, #1a1a1a);
+    font-weight: 600;
+}
+
+.proof-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.proof-actions button {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-view-proof {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-view-proof:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.btn-approve-proof {
+    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+    color: white;
+}
+
+.btn-approve-proof:hover {
+    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-reject-proof {
+    background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+    color: white;
+}
+
+.btn-reject-proof:hover {
+    box-shadow: 0 4px 12px rgba(239, 83, 80, 0.4);
+    transform: translateY(-2px);
+}
+
+.no-pending-reviews {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-secondary, #999);
+    font-size: 1.1rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================
+   MODAL - Upload de Comprobantes
+   ============================================ */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content h3 {
+    margin: 0 0 12px 0;
+    color: var(--text-primary, #1a1a1a);
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    margin: 0 0 24px 0;
+    color: var(--text-secondary, #666);
+}
+
+.modal-content input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-content input[type="file"]:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+/* ============================================
+   ERROR MESSAGES
+   ============================================ */
+
+.error-message {
+    padding: 20px;
+    background: #ffebee;
+    color: #c62828;
+    border-radius: 8px;
+    border-left: 4px solid #c62828;
+    font-weight: 500;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .proof-list {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-schedule-container,
+    .proof-reviews-container {
+        padding: 16px;
+    }
+
+    .modal-content {
+        padding: 24px;
+    }
+
+    .proof-actions {
+        flex-direction: column;
+    }
+
+    .proof-actions button {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+    .payment-schedule-container {
+        background: #1e1e1e;
+    }
+
+    .payment-card,
+    .notification-item,
+    .proof-card,
+    .modal-content,
+    .no-pending-reviews {
+        background: #2a2a2a;
+        color: #e0e0e0;
+    }
+
+    .payment-card:hover,
+    .proof-card:hover {
+        background: #333;
+    }
+
+    .installment-number,
+    .detail-row .value,
+    .proof-header h4 {
+        color: #e0e0e0;
+    }
+
+    .detail-row .label,
+    .notification-content p,
+    .proof-details p {
+        color: #b0b0b0;
+    }
+
+    .btn-view-proof {
+        background: #3a3a3a;
+        color: #e0e0e0;
+    }
+
+    .btn-view-proof:hover {
+        background: #4a4a4a;
+    }
+
+    .btn-secondary {
+        background: #3a3a3a;
+        color: #e0e0e0;
+    }
+
+    .btn-secondary:hover {
+        background: #4a4a4a;
+    }
+}
+
+/* ============================================
+   LOADING STATES
+   ============================================ */
+
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============================================
+   BADGES Y INDICADORES
+   ============================================ */
+
+.payment-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payment-badge.urgent {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.payment-badge.due-soon {
+    background: #fff9c4;
+    color: #f57f17;
+}
+
+.payment-badge.on-time {
+    background: #e8f5e9;
+    color: #2e7d32;
+}`, "",{"version":3,"sources":["webpack://./styles/payments.css"],"names":[],"mappings":"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","sourcesContent":["/* ============================================\n   PAYMENT SYSTEM STYLES\n   Sistema de seguimiento de pagos de pólizas\n   ============================================ */\n\n/* ============================================\n   PAYMENT SCHEDULE - Lista de Pagos\n   ============================================ */\n\n.payment-schedule-container {\n    padding: 20px;\n    background: var(--background-secondary, #f8f9fa);\n    border-radius: 12px;\n}\n\n.payment-schedule-container h3 {\n    margin: 0 0 20px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.5rem;\n    font-weight: 600;\n}\n\n.payment-list {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n}\n\n.payment-card {\n    background: white;\n    border-radius: 10px;\n    padding: 20px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);\n    transition: all 0.3s ease;\n    border-left: 4px solid #e0e0e0;\n}\n\n.payment-card:hover {\n    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);\n    transform: translateY(-2px);\n}\n\n/* Status Colors */\n.payment-card.status-pending {\n    border-left-color: #ffa726;\n}\n\n.payment-card.status-processing {\n    border-left-color: #42a5f5;\n}\n\n.payment-card.status-rejected {\n    border-left-color: #ef5350;\n}\n\n.payment-card.status-awaiting {\n    border-left-color: #ffca28;\n}\n\n.payment-card.status-review {\n    border-left-color: #26c6da;\n}\n\n.payment-card.status-paid {\n    border-left-color: #66bb6a;\n}\n\n.payment-card.status-completed {\n    border-left-color: #4caf50;\n    opacity: 0.8;\n}\n\n.payment-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 16px;\n    padding-bottom: 12px;\n    border-bottom: 1px solid #e0e0e0;\n}\n\n.installment-number {\n    font-weight: 600;\n    font-size: 1.1rem;\n    color: var(--text-primary, #1a1a1a);\n}\n\n.payment-status {\n    padding: 6px 14px;\n    border-radius: 20px;\n    font-size: 0.85rem;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.payment-status.status-pending {\n    background: #fff3e0;\n    color: #f57c00;\n}\n\n.payment-status.status-processing {\n    background: #e3f2fd;\n    color: #1976d2;\n}\n\n.payment-status.status-rejected {\n    background: #ffebee;\n    color: #c62828;\n}\n\n.payment-status.status-awaiting {\n    background: #fff9c4;\n    color: #f57f17;\n}\n\n.payment-status.status-review {\n    background: #e0f7fa;\n    color: #00838f;\n}\n\n.payment-status.status-paid {\n    background: #e8f5e9;\n    color: #2e7d32;\n}\n\n.payment-status.status-completed {\n    background: #f1f8e9;\n    color: #558b2f;\n}\n\n.payment-details {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    margin-bottom: 16px;\n}\n\n.detail-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\n.detail-row .label {\n    color: var(--text-secondary, #666);\n    font-size: 0.9rem;\n}\n\n.detail-row .value {\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1rem;\n}\n\n.payment-actions {\n    display: flex;\n    gap: 12px;\n    margin-top: 16px;\n    padding-top: 16px;\n    border-top: 1px solid #e0e0e0;\n}\n\n.btn-upload-proof {\n    flex: 1;\n    padding: 12px 24px;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n    border: none;\n    border-radius: 8px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.3s ease;\n}\n\n.btn-upload-proof:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);\n}\n\n.proof-indicator {\n    margin-top: 12px;\n    padding: 8px 12px;\n    background: #e8f5e9;\n    color: #2e7d32;\n    border-radius: 6px;\n    font-size: 0.85rem;\n    text-align: center;\n}\n\n/* ============================================\n   NOTIFICATIONS - Notificaciones\n   ============================================ */\n\n.notifications-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 16px;\n}\n\n.notification-item {\n    display: flex;\n    align-items: start;\n    gap: 12px;\n    padding: 16px;\n    background: white;\n    border-radius: 10px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);\n    transition: all 0.2s ease;\n    border-left: 4px solid #e0e0e0;\n}\n\n.notification-item:hover {\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n    transform: translateX(4px);\n}\n\n.notification-item.notification-info {\n    border-left-color: #2196f3;\n}\n\n.notification-item.notification-warning {\n    border-left-color: #ff9800;\n}\n\n.notification-item.notification-success {\n    border-left-color: #4caf50;\n}\n\n.notification-item.notification-error {\n    border-left-color: #f44336;\n}\n\n.notification-icon {\n    font-size: 1.5rem;\n    min-width: 32px;\n    text-align: center;\n}\n\n.notification-content {\n    flex: 1;\n}\n\n.notification-content p {\n    margin: 0 0 6px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 0.95rem;\n    line-height: 1.5;\n}\n\n.notification-time {\n    font-size: 0.8rem;\n    color: var(--text-secondary, #999);\n}\n\n.no-notifications {\n    padding: 40px 20px;\n    text-align: center;\n    color: var(--text-secondary, #999);\n    font-style: italic;\n}\n\n/* ============================================\n   PROOF REVIEW - Revisión de Comprobantes (Agente)\n   ============================================ */\n\n.proof-reviews-container {\n    padding: 20px;\n}\n\n.proof-reviews-container h3 {\n    margin: 0 0 20px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.5rem;\n    font-weight: 600;\n}\n\n.proof-list {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));\n    gap: 20px;\n}\n\n.proof-card {\n    background: white;\n    border-radius: 12px;\n    padding: 20px;\n    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);\n    transition: all 0.3s ease;\n    border: 2px solid #e0e0e0;\n}\n\n.proof-card:hover {\n    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);\n    border-color: #667eea;\n}\n\n.proof-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: start;\n    margin-bottom: 16px;\n    padding-bottom: 12px;\n    border-bottom: 2px solid #f0f0f0;\n}\n\n.proof-header h4 {\n    margin: 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.1rem;\n}\n\n.upload-date {\n    font-size: 0.85rem;\n    color: var(--text-secondary, #999);\n}\n\n.proof-details {\n    margin-bottom: 16px;\n}\n\n.proof-details p {\n    margin: 8px 0;\n    font-size: 0.95rem;\n    color: var(--text-secondary, #666);\n}\n\n.proof-details strong {\n    color: var(--text-primary, #1a1a1a);\n    font-weight: 600;\n}\n\n.proof-actions {\n    display: flex;\n    gap: 10px;\n    flex-wrap: wrap;\n}\n\n.proof-actions button {\n    flex: 1;\n    min-width: 100px;\n    padding: 10px 16px;\n    border: none;\n    border-radius: 8px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    font-size: 0.9rem;\n}\n\n.btn-view-proof {\n    background: #f0f0f0;\n    color: #333;\n}\n\n.btn-view-proof:hover {\n    background: #e0e0e0;\n    transform: translateY(-2px);\n}\n\n.btn-approve-proof {\n    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);\n    color: white;\n}\n\n.btn-approve-proof:hover {\n    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.4);\n    transform: translateY(-2px);\n}\n\n.btn-reject-proof {\n    background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);\n    color: white;\n}\n\n.btn-reject-proof:hover {\n    box-shadow: 0 4px 12px rgba(239, 83, 80, 0.4);\n    transform: translateY(-2px);\n}\n\n.no-pending-reviews {\n    padding: 60px 20px;\n    text-align: center;\n    color: var(--text-secondary, #999);\n    font-size: 1.1rem;\n    background: white;\n    border-radius: 12px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);\n}\n\n/* ============================================\n   MODAL - Upload de Comprobantes\n   ============================================ */\n\n.modal-overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: rgba(0, 0, 0, 0.6);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 10000;\n    animation: fadeIn 0.3s ease;\n}\n\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n.modal-content {\n    background: white;\n    border-radius: 16px;\n    padding: 32px;\n    max-width: 500px;\n    width: 90%;\n    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);\n    animation: slideUp 0.3s ease;\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(40px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n.modal-content h3 {\n    margin: 0 0 12px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.5rem;\n}\n\n.modal-content p {\n    margin: 0 0 24px 0;\n    color: var(--text-secondary, #666);\n}\n\n.modal-content input[type=\"file\"] {\n    width: 100%;\n    padding: 12px;\n    border: 2px dashed #ccc;\n    border-radius: 8px;\n    margin-bottom: 24px;\n    cursor: pointer;\n    transition: all 0.3s ease;\n}\n\n.modal-content input[type=\"file\"]:hover {\n    border-color: #667eea;\n    background: #f8f9ff;\n}\n\n.modal-actions {\n    display: flex;\n    gap: 12px;\n}\n\n.modal-actions button {\n    flex: 1;\n    padding: 14px 24px;\n    border: none;\n    border-radius: 8px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    font-size: 1rem;\n}\n\n.btn-primary {\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n}\n\n.btn-primary:hover {\n    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);\n    transform: translateY(-2px);\n}\n\n.btn-secondary {\n    background: #f0f0f0;\n    color: #333;\n}\n\n.btn-secondary:hover {\n    background: #e0e0e0;\n}\n\n/* ============================================\n   ERROR MESSAGES\n   ============================================ */\n\n.error-message {\n    padding: 20px;\n    background: #ffebee;\n    color: #c62828;\n    border-radius: 8px;\n    border-left: 4px solid #c62828;\n    font-weight: 500;\n}\n\n/* ============================================\n   RESPONSIVE\n   ============================================ */\n\n@media (max-width: 768px) {\n    .proof-list {\n        grid-template-columns: 1fr;\n    }\n\n    .payment-schedule-container,\n    .proof-reviews-container {\n        padding: 16px;\n    }\n\n    .modal-content {\n        padding: 24px;\n    }\n\n    .proof-actions {\n        flex-direction: column;\n    }\n\n    .proof-actions button {\n        width: 100%;\n    }\n}\n\n/* ============================================\n   DARK MODE SUPPORT\n   ============================================ */\n\n@media (prefers-color-scheme: dark) {\n    .payment-schedule-container {\n        background: #1e1e1e;\n    }\n\n    .payment-card,\n    .notification-item,\n    .proof-card,\n    .modal-content,\n    .no-pending-reviews {\n        background: #2a2a2a;\n        color: #e0e0e0;\n    }\n\n    .payment-card:hover,\n    .proof-card:hover {\n        background: #333;\n    }\n\n    .installment-number,\n    .detail-row .value,\n    .proof-header h4 {\n        color: #e0e0e0;\n    }\n\n    .detail-row .label,\n    .notification-content p,\n    .proof-details p {\n        color: #b0b0b0;\n    }\n\n    .btn-view-proof {\n        background: #3a3a3a;\n        color: #e0e0e0;\n    }\n\n    .btn-view-proof:hover {\n        background: #4a4a4a;\n    }\n\n    .btn-secondary {\n        background: #3a3a3a;\n        color: #e0e0e0;\n    }\n\n    .btn-secondary:hover {\n        background: #4a4a4a;\n    }\n}\n\n/* ============================================\n   LOADING STATES\n   ============================================ */\n\n.loading-skeleton {\n    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);\n    background-size: 200% 100%;\n    animation: loading 1.5s infinite;\n    border-radius: 8px;\n}\n\n@keyframes loading {\n    0% {\n        background-position: 200% 0;\n    }\n\n    100% {\n        background-position: -200% 0;\n    }\n}\n\n/* ============================================\n   BADGES Y INDICADORES\n   ============================================ */\n\n.payment-badge {\n    display: inline-block;\n    padding: 4px 10px;\n    border-radius: 12px;\n    font-size: 0.75rem;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.payment-badge.urgent {\n    background: #ffebee;\n    color: #c62828;\n}\n\n.payment-badge.due-soon {\n    background: #fff9c4;\n    color: #f57f17;\n}\n\n.payment-badge.on-time {\n    background: #e8f5e9;\n    color: #2e7d32;\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./styles/scheduling.css":
 /*!*********************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./styles/scheduling.css ***!
@@ -12458,6 +14138,523 @@ html[data-theme="dark-forest"] .calendar-nav button:hover {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./styles/scroll-modal-fixes.css":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./styles/scroll-modal-fixes.css ***!
+  \*****************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `/**
+ * Estilos para scroll universal y modales
+ * ESTRATEGIA: Un solo scroll en .dashboard-section
+ * Todos los elementos internos se adaptan al contenido más largo
+ */
+
+/* ========== SCROLL UNIVERSAL ========== */
+
+/**
+ * CONTENEDOR PRINCIPAL - ÚNICO CON SCROLL
+ * Este es el ÚNICO elemento que tiene overflow: auto
+ * Todo el contenido (sidebar, main, rail) se mueve junto
+ */
+.dashboard-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    /* ← ÚNICO SCROLL AQUÍ */
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * LAYOUT - Grid que se expande según contenido
+ * El grid tiene altura mínima de viewport pero puede crecer
+ */
+.dashboard-section .dashboard-layout {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);
+    grid-template-rows: 1fr;
+    /* Una sola fila de altura automática */
+    gap: 0;
+    width: 100%;
+    overflow: visible;
+    /* Sin scroll aquí */
+}
+
+/**
+ * COLUMNAS - Sin scroll individual, altura automática
+ * Cada columna crece según su contenido
+ */
+.dashboard-section .dashboard-sidebar,
+.dashboard-section .dashboard-main-wrapper,
+.dashboard-section .dashboard-rail {
+    overflow: visible;
+    /* SIN scroll individual */
+    height: auto;
+    /* Altura según contenido */
+    min-height: 100vh;
+    /* Mínimo altura de viewport */
+}
+
+/**
+ * SUPERFICIES INTERNAS - Sin scroll, se expanden naturalmente
+ */
+.dashboard-section .sidebar-surface,
+.dashboard-section .dashboard-stage,
+.dashboard-section .rail-content {
+    height: auto;
+    overflow: visible;
+}
+
+/**
+ * SIDEBAR STACK - Crece con contenido
+ */
+.dashboard-section .sidebar-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: visible;
+}
+
+/**
+ * CASOS ESPECIALES - Widgets con límite de altura
+ * Solo estos tienen scroll interno si exceden max-height
+ */
+.sidebar-widget-group,
+.recent-clients-pills,
+.rail-activity-list {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Scrollbar para widgets limitados */
+.sidebar-widget-group::-webkit-scrollbar,
+.recent-clients-pills::-webkit-scrollbar,
+.rail-activity-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-widget-group::-webkit-scrollbar-track,
+.recent-clients-pills::-webkit-scrollbar-track,
+.rail-activity-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-widget-group::-webkit-scrollbar-thumb,
+.recent-clients-pills::-webkit-scrollbar-thumb,
+.rail-activity-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+}
+
+body.dark-mode .sidebar-widget-group::-webkit-scrollbar-thumb,
+body.dark-mode .recent-clients-pills::-webkit-scrollbar-thumb,
+body.dark-mode .rail-activity-list::-webkit-scrollbar-thumb,
+body.dark-forest .sidebar-widget-group::-webkit-scrollbar-thumb,
+body.dark-forest .recent-clients-pills::-webkit-scrollbar-thumb,
+body.dark-forest .rail-activity-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/**
+ * SCROLLBAR PRINCIPAL - Dashboard Section
+ * Scrollbar estilizada para el scroll universal
+ */
+.dashboard-section::-webkit-scrollbar {
+    width: 10px;
+}
+
+.dashboard-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dashboard-section::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.dashboard-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.35);
+    background-clip: padding-box;
+}
+
+/* Dark mode scrollbar principal */
+body.dark-mode .dashboard-section::-webkit-scrollbar-thumb,
+body.dark-forest .dashboard-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    background-clip: padding-box;
+}
+
+body.dark-mode .dashboard-section::-webkit-scrollbar-thumb:hover,
+body.dark-forest .dashboard-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.35);
+    background-clip: padding-box;
+}
+
+/**
+ * CONTENT PADDING - Espacio al final para mejor UX
+ */
+.dashboard-section .dashboard-layout::after {
+    content: '';
+    display: block;
+    height: 40px;
+    grid-column: 1 / -1;
+}
+
+/**
+ * SCROLL PADDING - Para anchor links y smooth scroll
+ */
+.dashboard-section {
+    scroll-padding-top: 20px;
+    scroll-padding-bottom: 20px;
+}
+
+.content-card,
+.chart-card,
+.stat-card {
+    scroll-margin-top: 20px;
+}
+
+/* ========== MODAL STANDARDIZATION ========== */
+
+/* Base modal overlay - cubre todo el viewport */
+.app-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.app-modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Modal content container */
+.app-modal {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    background: var(--surface-primary, #ffffff);
+    border-radius: 16px;
+    box-shadow:
+        0 24px 48px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.app-modal-overlay.active .app-modal {
+    transform: scale(1) translateY(0);
+}
+
+/* Dark mode modal */
+body.dark-mode .app-modal,
+body.dark-forest .app-modal {
+    background: var(--surface-primary, #1a1a1a);
+    box-shadow:
+        0 24px 48px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Modal header */
+.app-modal-header {
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
+    background: var(--surface-secondary, #f8f9fa);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body.dark-mode .app-modal-header,
+body.dark-forest .app-modal-header {
+    background: var(--surface-secondary, #222);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.app-modal-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+}
+
+body.dark-mode .app-modal-title,
+body.dark-forest .app-modal-title {
+    color: var(--text-primary, #ffffff);
+}
+
+.app-modal-close {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-secondary, #666);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.app-modal-close:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-primary, #1a1a1a);
+}
+
+body.dark-mode .app-modal-close:hover,
+body.dark-forest .app-modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary, #ffffff);
+}
+
+/* Modal body - scrollable content */
+.app-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 24px;
+    background: var(--surface-primary, #ffffff);
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+body.dark-mode .app-modal-body,
+body.dark-forest .app-modal-body {
+    background: var(--surface-primary, #1a1a1a);
+}
+
+/* Custom scrollbar para modal body */
+.app-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.app-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.app-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+body.dark-mode .app-modal-body::-webkit-scrollbar-thumb,
+body.dark-forest .app-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Modal footer */
+.app-modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
+    background: var(--surface-secondary, #f8f9fa);
+    flex-shrink: 0;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+body.dark-mode .app-modal-footer,
+body.dark-forest .app-modal-footer {
+    background: var(--surface-secondary, #222);
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ========== MODAL SIZE VARIATIONS ========== */
+
+.app-modal.modal-small {
+    max-width: 500px;
+}
+
+.app-modal.modal-medium {
+    max-width: 800px;
+}
+
+.app-modal.modal-large {
+    max-width: 1200px;
+}
+
+.app-modal.modal-fullscreen {
+    width: 100%;
+    max-width: none;
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+}
+
+/* ========== RESPONSIVE BEHAVIOR ========== */
+
+@media (max-width: 768px) {
+
+    /* En móvil, todos los modales son fullscreen */
+    .app-modal {
+        width: 100%;
+        max-width: none;
+        max-height: 100vh;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .app-modal-header,
+    .app-modal-body,
+    .app-modal-footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .app-modal-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* ========== UTILITY CLASSES ========== */
+
+/* Prevenir scroll del body cuando modal está abierto */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Clase para ocultar elementos */
+.hidden {
+    display: none !important;
+}
+
+/* Clase para hacer elementos visibles */
+.visible {
+    display: block !important;
+}
+
+/* ========== ANIMATIONS ========== */
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease;
+}
+
+/* ========== FIX ESPECÍFICO PARA DASHBOARDS ========== */
+
+/* Asegurar que client-dashboard y agent-dashboard tengan el mismo comportamiento de scroll */
+.client-dashboard,
+.agent-dashboard,
+.admin-dashboard {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hacer que stats-grid y demás elementos no afecten el scroll */
+.stats-grid,
+.mimic-wrap,
+.dashboard-body {
+    flex-shrink: 0;
+    overflow: visible;
+}
+
+/* Asegurar que el contenido principal tenga espacio suficiente */
+.dashboard-section .dashboard-main-wrapper {
+    padding-bottom: 40px;
+    /* Espacio al final para evitar cortar contenido */
+}
+
+/* Suavizar transiciones de scroll */
+.dashboard-main-wrapper,
+.sidebar-surface,
+.dashboard-rail {
+    scroll-padding: 20px;
+}
+
+/* Hacer que las tarjetas de contenido se comporten bien con scroll */
+.content-card,
+.chart-card,
+.stat-card {
+    scroll-margin-top: 20px;
+}`, "",{"version":3,"sources":["webpack://./styles/scroll-modal-fixes.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Estilos para scroll universal y modales\n * ESTRATEGIA: Un solo scroll en .dashboard-section\n * Todos los elementos internos se adaptan al contenido más largo\n */\n\n/* ========== SCROLL UNIVERSAL ========== */\n\n/**\n * CONTENEDOR PRINCIPAL - ÚNICO CON SCROLL\n * Este es el ÚNICO elemento que tiene overflow: auto\n * Todo el contenido (sidebar, main, rail) se mueve junto\n */\n.dashboard-section {\n    position: relative;\n    width: 100%;\n    height: 100vh;\n    overflow-y: auto;\n    /* ← ÚNICO SCROLL AQUÍ */\n    overflow-x: hidden;\n    scroll-behavior: smooth;\n    -webkit-overflow-scrolling: touch;\n}\n\n/**\n * LAYOUT - Grid que se expande según contenido\n * El grid tiene altura mínima de viewport pero puede crecer\n */\n.dashboard-section .dashboard-layout {\n    min-height: 100vh;\n    display: grid;\n    grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);\n    grid-template-rows: 1fr;\n    /* Una sola fila de altura automática */\n    gap: 0;\n    width: 100%;\n    overflow: visible;\n    /* Sin scroll aquí */\n}\n\n/**\n * COLUMNAS - Sin scroll individual, altura automática\n * Cada columna crece según su contenido\n */\n.dashboard-section .dashboard-sidebar,\n.dashboard-section .dashboard-main-wrapper,\n.dashboard-section .dashboard-rail {\n    overflow: visible;\n    /* SIN scroll individual */\n    height: auto;\n    /* Altura según contenido */\n    min-height: 100vh;\n    /* Mínimo altura de viewport */\n}\n\n/**\n * SUPERFICIES INTERNAS - Sin scroll, se expanden naturalmente\n */\n.dashboard-section .sidebar-surface,\n.dashboard-section .dashboard-stage,\n.dashboard-section .rail-content {\n    height: auto;\n    overflow: visible;\n}\n\n/**\n * SIDEBAR STACK - Crece con contenido\n */\n.dashboard-section .sidebar-stack {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    overflow: visible;\n}\n\n/**\n * CASOS ESPECIALES - Widgets con límite de altura\n * Solo estos tienen scroll interno si exceden max-height\n */\n.sidebar-widget-group,\n.recent-clients-pills,\n.rail-activity-list {\n    max-height: 400px;\n    overflow-y: auto;\n    overflow-x: hidden;\n}\n\n/* Scrollbar para widgets limitados */\n.sidebar-widget-group::-webkit-scrollbar,\n.recent-clients-pills::-webkit-scrollbar,\n.rail-activity-list::-webkit-scrollbar {\n    width: 6px;\n}\n\n.sidebar-widget-group::-webkit-scrollbar-track,\n.recent-clients-pills::-webkit-scrollbar-track,\n.rail-activity-list::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.sidebar-widget-group::-webkit-scrollbar-thumb,\n.recent-clients-pills::-webkit-scrollbar-thumb,\n.rail-activity-list::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.15);\n    border-radius: 3px;\n}\n\nbody.dark-mode .sidebar-widget-group::-webkit-scrollbar-thumb,\nbody.dark-mode .recent-clients-pills::-webkit-scrollbar-thumb,\nbody.dark-mode .rail-activity-list::-webkit-scrollbar-thumb,\nbody.dark-forest .sidebar-widget-group::-webkit-scrollbar-thumb,\nbody.dark-forest .recent-clients-pills::-webkit-scrollbar-thumb,\nbody.dark-forest .rail-activity-list::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.15);\n}\n\n/**\n * SCROLLBAR PRINCIPAL - Dashboard Section\n * Scrollbar estilizada para el scroll universal\n */\n.dashboard-section::-webkit-scrollbar {\n    width: 10px;\n}\n\n.dashboard-section::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.dashboard-section::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.25);\n    border-radius: 5px;\n    border: 2px solid transparent;\n    background-clip: padding-box;\n}\n\n.dashboard-section::-webkit-scrollbar-thumb:hover {\n    background: rgba(0, 0, 0, 0.35);\n    background-clip: padding-box;\n}\n\n/* Dark mode scrollbar principal */\nbody.dark-mode .dashboard-section::-webkit-scrollbar-thumb,\nbody.dark-forest .dashboard-section::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.25);\n    background-clip: padding-box;\n}\n\nbody.dark-mode .dashboard-section::-webkit-scrollbar-thumb:hover,\nbody.dark-forest .dashboard-section::-webkit-scrollbar-thumb:hover {\n    background: rgba(255, 255, 255, 0.35);\n    background-clip: padding-box;\n}\n\n/**\n * CONTENT PADDING - Espacio al final para mejor UX\n */\n.dashboard-section .dashboard-layout::after {\n    content: '';\n    display: block;\n    height: 40px;\n    grid-column: 1 / -1;\n}\n\n/**\n * SCROLL PADDING - Para anchor links y smooth scroll\n */\n.dashboard-section {\n    scroll-padding-top: 20px;\n    scroll-padding-bottom: 20px;\n}\n\n.content-card,\n.chart-card,\n.stat-card {\n    scroll-margin-top: 20px;\n}\n\n/* ========== MODAL STANDARDIZATION ========== */\n\n/* Base modal overlay - cubre todo el viewport */\n.app-modal-overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 9999;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: rgba(0, 0, 0, 0.5);\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n}\n\n.app-modal-overlay.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* Modal content container */\n.app-modal {\n    position: relative;\n    width: 90%;\n    max-width: 800px;\n    max-height: 90vh;\n    background: var(--surface-primary, #ffffff);\n    border-radius: 16px;\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.2),\n        0 0 0 1px rgba(0, 0, 0, 0.1);\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    transform: scale(0.9) translateY(20px);\n    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n\n.app-modal-overlay.active .app-modal {\n    transform: scale(1) translateY(0);\n}\n\n/* Dark mode modal */\nbody.dark-mode .app-modal,\nbody.dark-forest .app-modal {\n    background: var(--surface-primary, #1a1a1a);\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.6),\n        0 0 0 1px rgba(255, 255, 255, 0.1);\n}\n\n/* Modal header */\n.app-modal-header {\n    padding: 24px 24px 20px;\n    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    background: var(--surface-secondary, #f8f9fa);\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n\nbody.dark-mode .app-modal-header,\nbody.dark-forest .app-modal-header {\n    background: var(--surface-secondary, #222);\n    border-bottom-color: rgba(255, 255, 255, 0.1);\n}\n\n.app-modal-title {\n    margin: 0;\n    font-size: 1.5rem;\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-mode .app-modal-title,\nbody.dark-forest .app-modal-title {\n    color: var(--text-primary, #ffffff);\n}\n\n.app-modal-close {\n    width: 36px;\n    height: 36px;\n    padding: 0;\n    background: transparent;\n    border: none;\n    border-radius: 8px;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.app-modal-close:hover {\n    background: rgba(0, 0, 0, 0.05);\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-mode .app-modal-close:hover,\nbody.dark-forest .app-modal-close:hover {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-primary, #ffffff);\n}\n\n/* Modal body - scrollable content */\n.app-modal-body {\n    flex: 1;\n    overflow-y: auto;\n    overflow-x: hidden;\n    padding: 24px;\n    background: var(--surface-primary, #ffffff);\n    -webkit-overflow-scrolling: touch;\n    scroll-behavior: smooth;\n}\n\nbody.dark-mode .app-modal-body,\nbody.dark-forest .app-modal-body {\n    background: var(--surface-primary, #1a1a1a);\n}\n\n/* Custom scrollbar para modal body */\n.app-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.app-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.app-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.2);\n    border-radius: 4px;\n}\n\nbody.dark-mode .app-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .app-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.2);\n}\n\n/* Modal footer */\n.app-modal-footer {\n    padding: 16px 24px;\n    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    background: var(--surface-secondary, #f8f9fa);\n    flex-shrink: 0;\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n}\n\nbody.dark-mode .app-modal-footer,\nbody.dark-forest .app-modal-footer {\n    background: var(--surface-secondary, #222);\n    border-top-color: rgba(255, 255, 255, 0.1);\n}\n\n/* ========== MODAL SIZE VARIATIONS ========== */\n\n.app-modal.modal-small {\n    max-width: 500px;\n}\n\n.app-modal.modal-medium {\n    max-width: 800px;\n}\n\n.app-modal.modal-large {\n    max-width: 1200px;\n}\n\n.app-modal.modal-fullscreen {\n    width: 100%;\n    max-width: none;\n    max-height: 100vh;\n    height: 100vh;\n    border-radius: 0;\n}\n\n/* ========== RESPONSIVE BEHAVIOR ========== */\n\n@media (max-width: 768px) {\n\n    /* En móvil, todos los modales son fullscreen */\n    .app-modal {\n        width: 100%;\n        max-width: none;\n        max-height: 100vh;\n        height: 100vh;\n        border-radius: 0;\n    }\n\n    .app-modal-header,\n    .app-modal-body,\n    .app-modal-footer {\n        padding-left: 16px;\n        padding-right: 16px;\n    }\n\n    .app-modal-title {\n        font-size: 1.25rem;\n    }\n}\n\n/* ========== UTILITY CLASSES ========== */\n\n/* Prevenir scroll del body cuando modal está abierto */\nbody.modal-open {\n    overflow: hidden;\n}\n\n/* Clase para ocultar elementos */\n.hidden {\n    display: none !important;\n}\n\n/* Clase para hacer elementos visibles */\n.visible {\n    display: block !important;\n}\n\n/* ========== ANIMATIONS ========== */\n\n@keyframes spin {\n    from {\n        transform: rotate(0deg);\n    }\n\n    to {\n        transform: rotate(360deg);\n    }\n}\n\n/* Fade in animation */\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n/* Slide up animation */\n@keyframes slideUp {\n    from {\n        transform: translateY(20px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n.fade-in {\n    animation: fadeIn 0.3s ease;\n}\n\n.slide-up {\n    animation: slideUp 0.3s ease;\n}\n\n/* ========== FIX ESPECÍFICO PARA DASHBOARDS ========== */\n\n/* Asegurar que client-dashboard y agent-dashboard tengan el mismo comportamiento de scroll */\n.client-dashboard,\n.agent-dashboard,\n.admin-dashboard {\n    position: relative;\n    width: 100%;\n    height: 100vh;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n}\n\n/* Hacer que stats-grid y demás elementos no afecten el scroll */\n.stats-grid,\n.mimic-wrap,\n.dashboard-body {\n    flex-shrink: 0;\n    overflow: visible;\n}\n\n/* Asegurar que el contenido principal tenga espacio suficiente */\n.dashboard-section .dashboard-main-wrapper {\n    padding-bottom: 40px;\n    /* Espacio al final para evitar cortar contenido */\n}\n\n/* Suavizar transiciones de scroll */\n.dashboard-main-wrapper,\n.sidebar-surface,\n.dashboard-rail {\n    scroll-padding: 20px;\n}\n\n/* Hacer que las tarjetas de contenido se comporten bien con scroll */\n.content-card,\n.chart-card,\n.stat-card {\n    scroll-margin-top: 20px;\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/runtime/api.js":
 /*!*****************************************************!*\
   !*** ./node_modules/css-loader/dist/runtime/api.js ***!
@@ -12841,6 +15038,1024 @@ function styleTagTransform(css, styleElement) {
   }
 }
 module.exports = styleTagTransform;
+
+/***/ }),
+
+/***/ "./src/api-integration.js":
+/*!********************************!*\
+  !*** ./src/api-integration.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   APIService: () => (/* binding */ APIService),
+/* harmony export */   API_CONFIG: () => (/* binding */ API_CONFIG),
+/* harmony export */   apiService: () => (/* binding */ apiService),
+/* harmony export */   downloadPaymentReceipt: () => (/* binding */ downloadPaymentReceipt),
+/* harmony export */   getAdminActivity: () => (/* binding */ getAdminActivity),
+/* harmony export */   getAdminDashboardData: () => (/* binding */ getAdminDashboardData),
+/* harmony export */   getAdminStats: () => (/* binding */ getAdminStats),
+/* harmony export */   getAgentClients: () => (/* binding */ getAgentClients),
+/* harmony export */   getAgentDashboardData: () => (/* binding */ getAgentDashboardData),
+/* harmony export */   getAgentStats: () => (/* binding */ getAgentStats),
+/* harmony export */   getClientClaims: () => (/* binding */ getClientClaims),
+/* harmony export */   getClientDashboardData: () => (/* binding */ getClientDashboardData),
+/* harmony export */   getClientDocuments: () => (/* binding */ getClientDocuments),
+/* harmony export */   getClientPayments: () => (/* binding */ getClientPayments),
+/* harmony export */   getClientPolicies: () => (/* binding */ getClientPolicies),
+/* harmony export */   getUserPolicies: () => (/* binding */ getUserPolicies),
+/* harmony export */   loginUser: () => (/* binding */ loginUser),
+/* harmony export */   logoutUser: () => (/* binding */ logoutUser),
+/* harmony export */   uploadClaimDocument: () => (/* binding */ uploadClaimDocument)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+// API Integration Layer for Krause Insurance
+// GoDaddy Server + Database Integration
+
+// API Configuration
+var API_CONFIG = {
+  // Update these URLs when deploying to GoDaddy
+  BASE_URL: window.location.hostname === 'localhost' ? 'http://localhost/backend/index.php' : 'https://' + window.location.hostname + '/backend/index.php',
+  // Forzar HTTPS en producción
+
+  ENDPOINTS: {
+    // Authentication
+    LOGIN: '?action=login',
+    LOGOUT: '?action=logout',
+    VERIFY_TOKEN: '?action=verify_token',
+    // User Management
+    GET_USER_PROFILE: '?action=user_profile',
+    UPDATE_USER_PROFILE: '?action=update_profile',
+    GET_USER_POLICIES: '?action=user_policies',
+    // Policies
+    GET_POLICIES: '?action=policies',
+    GET_POLICY_DETAILS: '?action=policy_details',
+    CREATE_POLICY: '?action=create_policy',
+    UPDATE_POLICY: '?action=update_policy',
+    // Claims
+    GET_CLAIMS: '?action=claims',
+    GET_USER_CLAIMS: '?action=user_claims',
+    CREATE_CLAIM: '?action=submit_claim',
+    SUBMIT_CLAIM: '?action=submit_claim',
+    GET_CLAIM_DETAILS: '?action=claim_details',
+    ADD_CLAIM_COMMENT: '?action=add_claim_comment',
+    UPLOAD_CLAIM_DOCUMENT: '?action=upload_claim_doc',
+    ASSIGN_CLAIM: '?action=assign_claim',
+    // Payments
+    GET_PAYMENT_HISTORY: '?action=payment_history',
+    PROCESS_PAYMENT: '?action=process_payment',
+    UPLOAD_PAYMENT_RECEIPT: '?action=upload_payment_receipt',
+    VERIFY_PAYMENT_RECEIPT: '?action=verify_payment_receipt',
+    DOWNLOAD_RECEIPT: '?action=download_receipt',
+    // Documents
+    UPLOAD_DOCUMENT: '?action=upload_document',
+    DOWNLOAD_DOCUMENT: '?action=download_document',
+    LIST_DOCUMENTS: '?action=recent_documents',
+    DELETE_DOCUMENT: '?action=delete_document',
+    // Quotes
+    REQUEST_QUOTE: '?action=submit_quote',
+    GET_QUOTES: '?action=quotes',
+    // Dashboard Endpoints
+    CLIENT_DASHBOARD: '?action=client_dashboard',
+    CLIENT_PAYMENTS: '?action=payment_history',
+    CLIENT_POLICIES: '?action=user_policies',
+    CLIENT_CLAIMS: '?action=user_claims',
+    CLIENT_DOCUMENTS: '?action=recent_documents',
+    AGENT_DASHBOARD: '?action=agent_dashboard',
+    AGENT_CLIENTS: '?action=agent_clients',
+    AGENT_STATS: '?action=agent_stats',
+    ADMIN_DASHBOARD: '?action=admin_dashboard',
+    ADMIN_STATS: '?action=admin_stats',
+    ADMIN_ACTIVITY: '?action=system_activity',
+    // Questionnaires / Roadmap
+    GET_QUESTIONNAIRES: '/questionnaires',
+    SEND_QUESTIONNAIRE: '/questionnaires/send',
+    RESEND_QUESTIONNAIRE: '/questionnaires/:id/resend',
+    COMPLETE_QUESTIONNAIRE: '/questionnaires/:id/complete',
+    GET_ROADMAP: '/agents/clients/:id/roadmap',
+    // Calendar/Meetings
+    CREATE_MEETING: '?action=create_meeting',
+    LIST_MEETINGS: '?action=list_meetings',
+    UPDATE_MEETING: '?action=update_meeting',
+    CANCEL_MEETING: '?action=cancel_meeting',
+    // Notifications
+    SEND_NOTIFICATION: '/notifications/email',
+    // Agents (for agent portal)
+    GET_CLIENTS: '/agents/clients',
+    GET_CLIENT_DETAILS: '/agents/clients/:id',
+    UPDATE_CLIENT: '/agents/clients/:id',
+    // Analytics
+    GET_DASHBOARD_STATS: '/analytics/dashboard',
+    GET_AGENT_PERFORMANCE: '/analytics/agent/:id'
+  }
+};
+
+// API Service with caching
+var APIService = /*#__PURE__*/function () {
+  function APIService() {
+    _classCallCheck(this, APIService);
+    // Use cache manager if available, otherwise use simple localStorage
+    this.cache = window.cacheManager || {
+      get: function get() {
+        return null;
+      },
+      set: function set() {},
+      clearUserCache: function clearUserCache() {},
+      CACHE_DURATION: {
+        SHORT: 60,
+        MEDIUM: 300,
+        LONG: 3600
+      }
+    };
+    this.fileManager = window.fileManager || null;
+  }
+
+  // Build full URL
+  return _createClass(APIService, [{
+    key: "buildUrl",
+    value: function buildUrl(endpoint) {
+      var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var url = API_CONFIG.BASE_URL + endpoint;
+
+      // Replace path parameters
+      Object.keys(params).forEach(function (key) {
+        url = url.replace(":".concat(key), params[key]);
+      });
+      return url;
+    }
+
+    // Make API request with caching
+  }, {
+    key: "request",
+    value: function () {
+      var _request = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(endpoint) {
+        var options,
+          cacheOptions,
+          _options$method,
+          method,
+          _options$body,
+          body,
+          _options$headers,
+          headers,
+          _options$params,
+          params,
+          _options$queryParams,
+          queryParams,
+          _cacheOptions$useCach,
+          useCache,
+          _cacheOptions$cacheDu,
+          cacheDuration,
+          _cacheOptions$forceRe,
+          forceRefresh,
+          _cacheOptions$showLoa,
+          showLoading,
+          url,
+          fullUrl,
+          separator,
+          queryString,
+          cacheIdentifier,
+          userId,
+          cached,
+          token,
+          requestOptions,
+          response,
+          data,
+          _args = arguments,
+          _t;
+        return _regenerator().w(function (_context) {
+          while (1) switch (_context.p = _context.n) {
+            case 0:
+              options = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
+              cacheOptions = _args.length > 2 && _args[2] !== undefined ? _args[2] : {};
+              _options$method = options.method, method = _options$method === void 0 ? 'GET' : _options$method, _options$body = options.body, body = _options$body === void 0 ? null : _options$body, _options$headers = options.headers, headers = _options$headers === void 0 ? {} : _options$headers, _options$params = options.params, params = _options$params === void 0 ? {} : _options$params, _options$queryParams = options.queryParams, queryParams = _options$queryParams === void 0 ? {} : _options$queryParams;
+              _cacheOptions$useCach = cacheOptions.useCache, useCache = _cacheOptions$useCach === void 0 ? true : _cacheOptions$useCach, _cacheOptions$cacheDu = cacheOptions.cacheDuration, cacheDuration = _cacheOptions$cacheDu === void 0 ? this.cache.CACHE_DURATION.MEDIUM : _cacheOptions$cacheDu, _cacheOptions$forceRe = cacheOptions.forceRefresh, forceRefresh = _cacheOptions$forceRe === void 0 ? false : _cacheOptions$forceRe, _cacheOptions$showLoa = cacheOptions.showLoading, showLoading = _cacheOptions$showLoa === void 0 ? false : _cacheOptions$showLoa;
+              url = this.buildUrl(endpoint, params); // Add query parameters - handle both absolute and relative URLs
+              fullUrl = url;
+              if (Object.keys(queryParams).length > 0) {
+                separator = url.includes('?') ? '&' : '?';
+                queryString = Object.keys(queryParams).map(function (key) {
+                  return "".concat(encodeURIComponent(key), "=").concat(encodeURIComponent(queryParams[key]));
+                }).join('&');
+                fullUrl = url + separator + queryString;
+              }
+
+              // Cache identifier
+              cacheIdentifier = "api_".concat(method, "_").concat(endpoint, "_").concat(JSON.stringify(params), "_").concat(JSON.stringify(queryParams));
+              userId = this.getCurrentUserId(); // Check cache for GET requests
+              if (!(method === 'GET' && useCache && !forceRefresh)) {
+                _context.n = 1;
+                break;
+              }
+              cached = this.cache.get(cacheIdentifier, userId);
+              if (!cached) {
+                _context.n = 1;
+                break;
+              }
+              console.log('✅ API Cache hit:', cacheIdentifier);
+              return _context.a(2, cached);
+            case 1:
+              // Show loading if needed
+              if (showLoading) {
+                this.showLoadingScreen();
+              }
+              _context.p = 2;
+              // Get auth token
+              token = this.getAuthToken();
+              requestOptions = {
+                method: method,
+                headers: _objectSpread({
+                  'Content-Type': 'application/json',
+                  'Authorization': token ? "Bearer ".concat(token) : ''
+                }, headers)
+              };
+              if (body && method !== 'GET') {
+                requestOptions.body = JSON.stringify(body);
+              }
+              _context.n = 3;
+              return fetch(fullUrl, requestOptions);
+            case 3:
+              response = _context.v;
+              if (response.ok) {
+                _context.n = 4;
+                break;
+              }
+              throw new Error("API Error: ".concat(response.status, " ").concat(response.statusText));
+            case 4:
+              _context.n = 5;
+              return response.json();
+            case 5:
+              data = _context.v;
+              // Cache successful GET requests
+              if (method === 'GET' && useCache) {
+                this.cache.set(cacheIdentifier, data, cacheDuration, userId);
+              }
+
+              // Invalidate related cache on mutations
+              if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(method)) {
+                this.invalidateRelatedCache(endpoint);
+              }
+              if (showLoading) {
+                this.hideLoadingScreen();
+              }
+              return _context.a(2, data);
+            case 6:
+              _context.p = 6;
+              _t = _context.v;
+              console.error('API Request failed:', _t);
+              if (showLoading) {
+                this.hideLoadingScreen();
+              }
+              throw _t;
+            case 7:
+              return _context.a(2);
+          }
+        }, _callee, this, [[2, 6]]);
+      }));
+      function request(_x) {
+        return _request.apply(this, arguments);
+      }
+      return request;
+    }() // Invalidate related cache after mutations
+  }, {
+    key: "invalidateRelatedCache",
+    value: function invalidateRelatedCache(endpoint) {
+      // Clear cache entries related to this endpoint
+      var keys = Object.keys(localStorage);
+      keys.forEach(function (key) {
+        if (key.includes(endpoint.split('/')[1])) {
+          localStorage.removeItem(key);
+        }
+      });
+    }
+
+    // Get current user ID from session
+  }, {
+    key: "getCurrentUserId",
+    value: function getCurrentUserId() {
+      try {
+        var user = localStorage.getItem('krauser_user');
+        if (user) {
+          var userData = JSON.parse(user);
+          return userData.id || userData.email;
+        }
+      } catch (error) {
+        return null;
+      }
+      return null;
+    }
+
+    // Get auth token
+  }, {
+    key: "getAuthToken",
+    value: function getAuthToken() {
+      return localStorage.getItem('auth_token');
+    }
+
+    // Set auth token
+  }, {
+    key: "setAuthToken",
+    value: function setAuthToken(token) {
+      localStorage.setItem('auth_token', token);
+    }
+
+    // Clear auth token
+  }, {
+    key: "clearAuthToken",
+    value: function clearAuthToken() {
+      localStorage.removeItem('auth_token');
+    }
+
+    // Show loading screen
+  }, {
+    key: "showLoadingScreen",
+    value: function showLoadingScreen() {
+      var currentUrl = encodeURIComponent(window.location.href);
+      window.location.href = "loading.html?redirect=".concat(currentUrl);
+    }
+
+    // Hide loading screen (handled by loading.html)
+  }, {
+    key: "hideLoadingScreen",
+    value: function hideLoadingScreen() {
+      // Auto-handled by loading screen
+    }
+
+    // HTTP Method Helpers
+  }, {
+    key: "get",
+    value: function () {
+      var _get = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(endpoint) {
+        var params,
+          cacheOptions,
+          _args2 = arguments;
+        return _regenerator().w(function (_context2) {
+          while (1) switch (_context2.n) {
+            case 0:
+              params = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : {};
+              cacheOptions = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : {};
+              return _context2.a(2, this.request(endpoint, {
+                method: 'GET',
+                params: params
+              }, cacheOptions));
+          }
+        }, _callee2, this);
+      }));
+      function get(_x2) {
+        return _get.apply(this, arguments);
+      }
+      return get;
+    }()
+  }, {
+    key: "post",
+    value: function () {
+      var _post = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(endpoint, body) {
+        var params,
+          _args3 = arguments;
+        return _regenerator().w(function (_context3) {
+          while (1) switch (_context3.n) {
+            case 0:
+              params = _args3.length > 2 && _args3[2] !== undefined ? _args3[2] : {};
+              return _context3.a(2, this.request(endpoint, {
+                method: 'POST',
+                body: body,
+                params: params
+              }, {
+                useCache: false
+              }));
+          }
+        }, _callee3, this);
+      }));
+      function post(_x3, _x4) {
+        return _post.apply(this, arguments);
+      }
+      return post;
+    }()
+  }, {
+    key: "put",
+    value: function () {
+      var _put = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(endpoint, body) {
+        var params,
+          _args4 = arguments;
+        return _regenerator().w(function (_context4) {
+          while (1) switch (_context4.n) {
+            case 0:
+              params = _args4.length > 2 && _args4[2] !== undefined ? _args4[2] : {};
+              return _context4.a(2, this.request(endpoint, {
+                method: 'PUT',
+                body: body,
+                params: params
+              }, {
+                useCache: false
+              }));
+          }
+        }, _callee4, this);
+      }));
+      function put(_x5, _x6) {
+        return _put.apply(this, arguments);
+      }
+      return put;
+    }()
+  }, {
+    key: "delete",
+    value: function () {
+      var _delete2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(endpoint) {
+        var params,
+          _args5 = arguments;
+        return _regenerator().w(function (_context5) {
+          while (1) switch (_context5.n) {
+            case 0:
+              params = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : {};
+              return _context5.a(2, this.request(endpoint, {
+                method: 'DELETE',
+                params: params
+              }, {
+                useCache: false
+              }));
+          }
+        }, _callee5, this);
+      }));
+      function _delete(_x7) {
+        return _delete2.apply(this, arguments);
+      }
+      return _delete;
+    }() // Upload file with progress
+  }, {
+    key: "uploadFile",
+    value: function () {
+      var _uploadFile = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(endpoint, file, onProgress) {
+        var params,
+          url,
+          result,
+          _args6 = arguments,
+          _t2;
+        return _regenerator().w(function (_context6) {
+          while (1) switch (_context6.p = _context6.n) {
+            case 0:
+              params = _args6.length > 3 && _args6[3] !== undefined ? _args6[3] : {};
+              url = this.buildUrl(endpoint, params);
+              _context6.p = 1;
+              if (this.fileManager) {
+                _context6.n = 2;
+                break;
+              }
+              throw new Error('File manager not available');
+            case 2:
+              _context6.n = 3;
+              return this.fileManager.uploadFile(url, file, function (percent) {
+                if (onProgress) onProgress(percent);
+              });
+            case 3:
+              result = _context6.v;
+              // Invalidate document cache
+              this.invalidateRelatedCache('/documents');
+              return _context6.a(2, result);
+            case 4:
+              _context6.p = 4;
+              _t2 = _context6.v;
+              console.error('File upload failed:', _t2);
+              throw _t2;
+            case 5:
+              return _context6.a(2);
+          }
+        }, _callee6, this, [[1, 4]]);
+      }));
+      function uploadFile(_x8, _x9, _x0) {
+        return _uploadFile.apply(this, arguments);
+      }
+      return uploadFile;
+    }() // Download file with progress
+  }, {
+    key: "downloadFile",
+    value: function () {
+      var _downloadFile = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(endpoint, filename, onProgress) {
+        var params,
+          url,
+          result,
+          _args7 = arguments,
+          _t3;
+        return _regenerator().w(function (_context7) {
+          while (1) switch (_context7.p = _context7.n) {
+            case 0:
+              params = _args7.length > 3 && _args7[3] !== undefined ? _args7[3] : {};
+              url = this.buildUrl(endpoint, params);
+              _context7.p = 1;
+              if (this.fileManager) {
+                _context7.n = 2;
+                break;
+              }
+              throw new Error('File manager not available');
+            case 2:
+              _context7.n = 3;
+              return this.fileManager.downloadFile(url, filename, function (percent) {
+                if (onProgress) onProgress(percent);
+              });
+            case 3:
+              result = _context7.v;
+              return _context7.a(2, result);
+            case 4:
+              _context7.p = 4;
+              _t3 = _context7.v;
+              console.error('File download failed:', _t3);
+              throw _t3;
+            case 5:
+              return _context7.a(2);
+          }
+        }, _callee7, this, [[1, 4]]);
+      }));
+      function downloadFile(_x1, _x10, _x11) {
+        return _downloadFile.apply(this, arguments);
+      }
+      return downloadFile;
+    }()
+  }]);
+}(); // Initialize and export API Service immediately
+var apiService = new APIService();
+
+
+// Example usage functions for common operations
+
+// Login with caching
+function loginUser(_x12, _x13) {
+  return _loginUser.apply(this, arguments);
+} // Get user policies with caching
+function _loginUser() {
+  _loginUser = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(email, password) {
+    var response, _t4;
+    return _regenerator().w(function (_context8) {
+      while (1) switch (_context8.p = _context8.n) {
+        case 0:
+          _context8.p = 0;
+          _context8.n = 1;
+          return apiService.request(API_CONFIG.ENDPOINTS.LOGIN, {
+            method: 'POST',
+            body: {
+              email: email,
+              password: password
+            }
+          }, {
+            useCache: false,
+            showLoading: false // No usar loading screen automático, el auth module ya maneja el loading
+          });
+        case 1:
+          response = _context8.v;
+          if (response.token) {
+            apiService.setAuthToken(response.token);
+            apiService.cache.set('user_profile', response.user, apiService.cache.CACHE_DURATION.LONG, response.user.id);
+          }
+          return _context8.a(2, response);
+        case 2:
+          _context8.p = 2;
+          _t4 = _context8.v;
+          throw new Error('Login failed: ' + _t4.message);
+        case 3:
+          return _context8.a(2);
+      }
+    }, _callee8, null, [[0, 2]]);
+  }));
+  return _loginUser.apply(this, arguments);
+}
+function getUserPolicies() {
+  return _getUserPolicies.apply(this, arguments);
+} // Upload claim document with progress
+function _getUserPolicies() {
+  _getUserPolicies = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
+    var forceRefresh,
+      policies,
+      _args9 = arguments,
+      _t5;
+    return _regenerator().w(function (_context9) {
+      while (1) switch (_context9.p = _context9.n) {
+        case 0:
+          forceRefresh = _args9.length > 0 && _args9[0] !== undefined ? _args9[0] : false;
+          _context9.p = 1;
+          _context9.n = 2;
+          return apiService.request(API_CONFIG.ENDPOINTS.GET_USER_POLICIES, {
+            method: 'GET'
+          }, {
+            useCache: true,
+            cacheDuration: apiService.cache.CACHE_DURATION.MEDIUM,
+            forceRefresh: forceRefresh,
+            showLoading: !forceRefresh
+          });
+        case 2:
+          policies = _context9.v;
+          return _context9.a(2, policies);
+        case 3:
+          _context9.p = 3;
+          _t5 = _context9.v;
+          console.error('Failed to get policies:', _t5);
+          return _context9.a(2, []);
+      }
+    }, _callee9, null, [[1, 3]]);
+  }));
+  return _getUserPolicies.apply(this, arguments);
+}
+function uploadClaimDocument(_x14, _x15, _x16) {
+  return _uploadClaimDocument.apply(this, arguments);
+} // Download payment receipt
+function _uploadClaimDocument() {
+  _uploadClaimDocument = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(claimId, file, onProgress) {
+    var result, _t6;
+    return _regenerator().w(function (_context0) {
+      while (1) switch (_context0.p = _context0.n) {
+        case 0:
+          _context0.p = 0;
+          _context0.n = 1;
+          return apiService.uploadFile(API_CONFIG.ENDPOINTS.UPLOAD_CLAIM_DOCUMENT, file, onProgress, {
+            id: claimId
+          });
+        case 1:
+          result = _context0.v;
+          return _context0.a(2, result);
+        case 2:
+          _context0.p = 2;
+          _t6 = _context0.v;
+          throw new Error('Document upload failed: ' + _t6.message);
+        case 3:
+          return _context0.a(2);
+      }
+    }, _callee0, null, [[0, 2]]);
+  }));
+  return _uploadClaimDocument.apply(this, arguments);
+}
+function downloadPaymentReceipt(_x17, _x18) {
+  return _downloadPaymentReceipt.apply(this, arguments);
+} // Clear user cache on logout
+function _downloadPaymentReceipt() {
+  _downloadPaymentReceipt = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(paymentId, onProgress) {
+    var filename, result, _t7;
+    return _regenerator().w(function (_context1) {
+      while (1) switch (_context1.p = _context1.n) {
+        case 0:
+          _context1.p = 0;
+          filename = "recibo_pago_".concat(paymentId, ".pdf");
+          _context1.n = 1;
+          return apiService.downloadFile(API_CONFIG.ENDPOINTS.DOWNLOAD_RECEIPT, filename, onProgress, {
+            id: paymentId
+          });
+        case 1:
+          result = _context1.v;
+          return _context1.a(2, result);
+        case 2:
+          _context1.p = 2;
+          _t7 = _context1.v;
+          throw new Error('Receipt download failed: ' + _t7.message);
+        case 3:
+          return _context1.a(2);
+      }
+    }, _callee1, null, [[0, 2]]);
+  }));
+  return _downloadPaymentReceipt.apply(this, arguments);
+}
+function logoutUser() {
+  var userId = apiService.getCurrentUserId();
+  if (userId) {
+    apiService.cache.clearUserCache(userId);
+  }
+  apiService.clearAuthToken();
+  localStorage.removeItem('krauser_user');
+}
+
+// ===== DASHBOARD DATA FETCHERS =====
+
+/**
+ * CLIENT DASHBOARD
+ */
+function getClientDashboardData() {
+  return _getClientDashboardData.apply(this, arguments);
+}
+function _getClientDashboardData() {
+  _getClientDashboardData = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10() {
+    var clientId,
+      endpoint,
+      _args10 = arguments,
+      _t8;
+    return _regenerator().w(function (_context10) {
+      while (1) switch (_context10.p = _context10.n) {
+        case 0:
+          clientId = _args10.length > 0 && _args10[0] !== undefined ? _args10[0] : null;
+          _context10.p = 1;
+          endpoint = clientId ? "".concat(API_CONFIG.ENDPOINTS.CLIENT_DASHBOARD, "/").concat(clientId) : API_CONFIG.ENDPOINTS.CLIENT_DASHBOARD;
+          _context10.n = 2;
+          return apiService.get(endpoint);
+        case 2:
+          return _context10.a(2, _context10.v);
+        case 3:
+          _context10.p = 3;
+          _t8 = _context10.v;
+          console.error('Failed to load client dashboard:', _t8);
+          throw _t8;
+        case 4:
+          return _context10.a(2);
+      }
+    }, _callee10, null, [[1, 3]]);
+  }));
+  return _getClientDashboardData.apply(this, arguments);
+}
+function getClientPayments() {
+  return _getClientPayments.apply(this, arguments);
+}
+function _getClientPayments() {
+  _getClientPayments = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11() {
+    var clientId,
+      endpoint,
+      _args11 = arguments,
+      _t9;
+    return _regenerator().w(function (_context11) {
+      while (1) switch (_context11.p = _context11.n) {
+        case 0:
+          clientId = _args11.length > 0 && _args11[0] !== undefined ? _args11[0] : null;
+          _context11.p = 1;
+          endpoint = clientId ? "".concat(API_CONFIG.ENDPOINTS.CLIENT_PAYMENTS, "/").concat(clientId) : API_CONFIG.ENDPOINTS.CLIENT_PAYMENTS;
+          _context11.n = 2;
+          return apiService.get(endpoint);
+        case 2:
+          return _context11.a(2, _context11.v);
+        case 3:
+          _context11.p = 3;
+          _t9 = _context11.v;
+          console.error('Failed to load payment history:', _t9);
+          return _context11.a(2, []);
+      }
+    }, _callee11, null, [[1, 3]]);
+  }));
+  return _getClientPayments.apply(this, arguments);
+}
+function getClientPolicies() {
+  return _getClientPolicies.apply(this, arguments);
+}
+function _getClientPolicies() {
+  _getClientPolicies = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12() {
+    var clientId,
+      endpoint,
+      _args12 = arguments,
+      _t0;
+    return _regenerator().w(function (_context12) {
+      while (1) switch (_context12.p = _context12.n) {
+        case 0:
+          clientId = _args12.length > 0 && _args12[0] !== undefined ? _args12[0] : null;
+          _context12.p = 1;
+          endpoint = clientId ? "".concat(API_CONFIG.ENDPOINTS.CLIENT_POLICIES, "/").concat(clientId) : API_CONFIG.ENDPOINTS.CLIENT_POLICIES;
+          _context12.n = 2;
+          return apiService.get(endpoint);
+        case 2:
+          return _context12.a(2, _context12.v);
+        case 3:
+          _context12.p = 3;
+          _t0 = _context12.v;
+          console.error('Failed to load policies:', _t0);
+          return _context12.a(2, []);
+      }
+    }, _callee12, null, [[1, 3]]);
+  }));
+  return _getClientPolicies.apply(this, arguments);
+}
+function getClientClaims() {
+  return _getClientClaims.apply(this, arguments);
+}
+function _getClientClaims() {
+  _getClientClaims = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee13() {
+    var clientId,
+      endpoint,
+      _args13 = arguments,
+      _t1;
+    return _regenerator().w(function (_context13) {
+      while (1) switch (_context13.p = _context13.n) {
+        case 0:
+          clientId = _args13.length > 0 && _args13[0] !== undefined ? _args13[0] : null;
+          _context13.p = 1;
+          endpoint = clientId ? "".concat(API_CONFIG.ENDPOINTS.CLIENT_CLAIMS, "/").concat(clientId) : API_CONFIG.ENDPOINTS.CLIENT_CLAIMS;
+          _context13.n = 2;
+          return apiService.get(endpoint);
+        case 2:
+          return _context13.a(2, _context13.v);
+        case 3:
+          _context13.p = 3;
+          _t1 = _context13.v;
+          console.error('Failed to load claims:', _t1);
+          return _context13.a(2, []);
+      }
+    }, _callee13, null, [[1, 3]]);
+  }));
+  return _getClientClaims.apply(this, arguments);
+}
+function getClientDocuments() {
+  return _getClientDocuments.apply(this, arguments);
+}
+/**
+ * AGENT DASHBOARD
+ */
+function _getClientDocuments() {
+  _getClientDocuments = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee14() {
+    var clientId,
+      endpoint,
+      _args14 = arguments,
+      _t10;
+    return _regenerator().w(function (_context14) {
+      while (1) switch (_context14.p = _context14.n) {
+        case 0:
+          clientId = _args14.length > 0 && _args14[0] !== undefined ? _args14[0] : null;
+          _context14.p = 1;
+          endpoint = clientId ? "".concat(API_CONFIG.ENDPOINTS.CLIENT_DOCUMENTS, "/").concat(clientId) : API_CONFIG.ENDPOINTS.CLIENT_DOCUMENTS;
+          _context14.n = 2;
+          return apiService.get(endpoint);
+        case 2:
+          return _context14.a(2, _context14.v);
+        case 3:
+          _context14.p = 3;
+          _t10 = _context14.v;
+          console.error('Failed to load documents:', _t10);
+          return _context14.a(2, []);
+      }
+    }, _callee14, null, [[1, 3]]);
+  }));
+  return _getClientDocuments.apply(this, arguments);
+}
+function getAgentDashboardData() {
+  return _getAgentDashboardData.apply(this, arguments);
+}
+function _getAgentDashboardData() {
+  _getAgentDashboardData = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee15() {
+    var agentId,
+      endpoint,
+      _args15 = arguments,
+      _t11;
+    return _regenerator().w(function (_context15) {
+      while (1) switch (_context15.p = _context15.n) {
+        case 0:
+          agentId = _args15.length > 0 && _args15[0] !== undefined ? _args15[0] : null;
+          _context15.p = 1;
+          endpoint = agentId ? "".concat(API_CONFIG.ENDPOINTS.AGENT_DASHBOARD, "/").concat(agentId) : API_CONFIG.ENDPOINTS.AGENT_DASHBOARD;
+          _context15.n = 2;
+          return apiService.get(endpoint);
+        case 2:
+          return _context15.a(2, _context15.v);
+        case 3:
+          _context15.p = 3;
+          _t11 = _context15.v;
+          console.error('Failed to load agent dashboard:', _t11);
+          throw _t11;
+        case 4:
+          return _context15.a(2);
+      }
+    }, _callee15, null, [[1, 3]]);
+  }));
+  return _getAgentDashboardData.apply(this, arguments);
+}
+function getAgentClients() {
+  return _getAgentClients.apply(this, arguments);
+}
+function _getAgentClients() {
+  _getAgentClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee16() {
+    var agentId,
+      endpoint,
+      _args16 = arguments,
+      _t12;
+    return _regenerator().w(function (_context16) {
+      while (1) switch (_context16.p = _context16.n) {
+        case 0:
+          agentId = _args16.length > 0 && _args16[0] !== undefined ? _args16[0] : null;
+          _context16.p = 1;
+          endpoint = agentId ? "".concat(API_CONFIG.ENDPOINTS.AGENT_CLIENTS, "/").concat(agentId) : API_CONFIG.ENDPOINTS.AGENT_CLIENTS;
+          _context16.n = 2;
+          return apiService.get(endpoint);
+        case 2:
+          return _context16.a(2, _context16.v);
+        case 3:
+          _context16.p = 3;
+          _t12 = _context16.v;
+          console.error('Failed to load clients:', _t12);
+          return _context16.a(2, []);
+      }
+    }, _callee16, null, [[1, 3]]);
+  }));
+  return _getAgentClients.apply(this, arguments);
+}
+function getAgentStats() {
+  return _getAgentStats.apply(this, arguments);
+}
+/**
+ * ADMIN DASHBOARD
+ */
+function _getAgentStats() {
+  _getAgentStats = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee17() {
+    var agentId,
+      endpoint,
+      _args17 = arguments,
+      _t13;
+    return _regenerator().w(function (_context17) {
+      while (1) switch (_context17.p = _context17.n) {
+        case 0:
+          agentId = _args17.length > 0 && _args17[0] !== undefined ? _args17[0] : null;
+          _context17.p = 1;
+          endpoint = agentId ? "".concat(API_CONFIG.ENDPOINTS.AGENT_STATS, "/").concat(agentId) : API_CONFIG.ENDPOINTS.AGENT_STATS;
+          _context17.n = 2;
+          return apiService.get(endpoint);
+        case 2:
+          return _context17.a(2, _context17.v);
+        case 3:
+          _context17.p = 3;
+          _t13 = _context17.v;
+          console.error('Failed to load agent stats:', _t13);
+          return _context17.a(2, {
+            total_clients: 0,
+            active_policies: 0,
+            pending_claims: 0,
+            monthly_revenue: 0
+          });
+      }
+    }, _callee17, null, [[1, 3]]);
+  }));
+  return _getAgentStats.apply(this, arguments);
+}
+function getAdminDashboardData() {
+  return _getAdminDashboardData.apply(this, arguments);
+}
+function _getAdminDashboardData() {
+  _getAdminDashboardData = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee18() {
+    var _t14;
+    return _regenerator().w(function (_context18) {
+      while (1) switch (_context18.p = _context18.n) {
+        case 0:
+          _context18.p = 0;
+          _context18.n = 1;
+          return apiService.get(API_CONFIG.ENDPOINTS.ADMIN_DASHBOARD);
+        case 1:
+          return _context18.a(2, _context18.v);
+        case 2:
+          _context18.p = 2;
+          _t14 = _context18.v;
+          console.error('Failed to load admin dashboard:', _t14);
+          throw _t14;
+        case 3:
+          return _context18.a(2);
+      }
+    }, _callee18, null, [[0, 2]]);
+  }));
+  return _getAdminDashboardData.apply(this, arguments);
+}
+function getAdminStats() {
+  return _getAdminStats.apply(this, arguments);
+}
+function _getAdminStats() {
+  _getAdminStats = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee19() {
+    var _t15;
+    return _regenerator().w(function (_context19) {
+      while (1) switch (_context19.p = _context19.n) {
+        case 0:
+          _context19.p = 0;
+          _context19.n = 1;
+          return apiService.get(API_CONFIG.ENDPOINTS.ADMIN_STATS);
+        case 1:
+          return _context19.a(2, _context19.v);
+        case 2:
+          _context19.p = 2;
+          _t15 = _context19.v;
+          console.error('Failed to load admin stats:', _t15);
+          return _context19.a(2, {});
+      }
+    }, _callee19, null, [[0, 2]]);
+  }));
+  return _getAdminStats.apply(this, arguments);
+}
+function getAdminActivity() {
+  return _getAdminActivity.apply(this, arguments);
+} // Export for use (ES6 modules)
+function _getAdminActivity() {
+  _getAdminActivity = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee20() {
+    var _t16;
+    return _regenerator().w(function (_context20) {
+      while (1) switch (_context20.p = _context20.n) {
+        case 0:
+          _context20.p = 0;
+          _context20.n = 1;
+          return apiService.get(API_CONFIG.ENDPOINTS.ADMIN_ACTIVITY);
+        case 1:
+          return _context20.a(2, _context20.v);
+        case 2:
+          _context20.p = 2;
+          _t16 = _context20.v;
+          console.error('Failed to load admin activity:', _t16);
+          return _context20.a(2, []);
+      }
+    }, _callee20, null, [[0, 2]]);
+  }));
+  return _getAdminActivity.apply(this, arguments);
+}
+
 
 /***/ }),
 
@@ -13485,7 +16700,7 @@ function _login() {
           type = _args.length > 1 && _args[1] !== undefined ? _args[1] : 'client';
           _context.p = 1;
           _context.n = 2;
-          return __webpack_require__.e(/*! import() */ "src_api-integration_js").then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js"));
+          return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js"));
         case 2:
           apiModule = _context.v;
           apiService = apiModule.apiService;
@@ -13502,7 +16717,7 @@ function _login() {
           return apiModule.loginUser(email, password);
         case 4:
           result = _context.v;
-          if (!(result && result.success)) {
+          if (!(result && result.token)) {
             _context.n = 5;
             break;
           }
@@ -13546,7 +16761,7 @@ function logout() {
   localStorage.removeItem('auth_token');
 
   // Import and call API logout if available
-  __webpack_require__.e(/*! import() */ "src_api-integration_js").then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js")).then(function (_ref) {
+  Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js")).then(function (_ref) {
     var logoutUser = _ref.logoutUser;
     logoutUser();
   })["catch"](function () {});
@@ -14788,6 +18003,507 @@ function setStatus(message) {
 
 /***/ }),
 
+/***/ "./src/modules/notificationModal.js":
+/*!******************************************!*\
+  !*** ./src/modules/notificationModal.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NotificationModal: () => (/* binding */ NotificationModal)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+/**
+ * Sistema de notificaciones con modal
+ * Reemplaza el sistema de banner con un modal completo para notificaciones detalladas
+ */
+
+var NotificationModal = /*#__PURE__*/function () {
+  function NotificationModal() {
+    _classCallCheck(this, NotificationModal);
+    this.modal = null;
+    this.notifications = [];
+    this.unreadCount = 0;
+    this.init();
+  }
+  return _createClass(NotificationModal, [{
+    key: "init",
+    value: function init() {
+      this.createModal();
+      this.attachEventListeners();
+      this.updateBadge();
+    }
+  }, {
+    key: "createModal",
+    value: function createModal() {
+      var modalHTML = "\n            <div id=\"notification-modal\" class=\"notification-modal\" aria-modal=\"true\" role=\"dialog\">\n                <div class=\"notification-modal-overlay\" data-close-modal></div>\n                <div class=\"notification-modal-content\">\n                    <div class=\"notification-modal-header\">\n                        <h2 class=\"notification-modal-title\">\n                            <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                                <path d=\"M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9\" />\n                                <path d=\"M13.73 21a2 2 0 0 1-3.46 0\" />\n                            </svg>\n                            Notificaciones\n                            <span class=\"notification-count-badge\" data-notification-count></span>\n                        </h2>\n                        <button class=\"notification-modal-close\" data-close-modal aria-label=\"Cerrar notificaciones\">\n                            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                                <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\" />\n                                <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\" />\n                            </svg>\n                        </button>\n                    </div>\n                    \n                    <div class=\"notification-modal-filters\">\n                        <button class=\"notification-filter active\" data-filter=\"all\">\n                            Todas <span class=\"filter-count\" data-count=\"all\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"payment\">\n                            Pagos <span class=\"filter-count\" data-count=\"payment\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"policy\">\n                            P\xF3lizas <span class=\"filter-count\" data-count=\"policy\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"comment\">\n                            Comentarios <span class=\"filter-count\" data-count=\"comment\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"system\">\n                            Sistema <span class=\"filter-count\" data-count=\"system\">0</span>\n                        </button>\n                    </div>\n\n                    <div class=\"notification-modal-body\" data-notification-list>\n                        <!-- Notifications will be injected here -->\n                    </div>\n\n                    <div class=\"notification-modal-footer\">\n                        <button class=\"notification-action-btn secondary\" onclick=\"window.notificationModal?.markAllAsRead()\">\n                            Marcar todas como le\xEDdas\n                        </button>\n                        <button class=\"notification-action-btn secondary\" onclick=\"window.notificationModal?.clearAll()\">\n                            Limpiar todas\n                        </button>\n                    </div>\n                </div>\n            </div>\n        ";
+      var container = document.createElement('div');
+      container.innerHTML = modalHTML;
+      this.modal = container.firstElementChild;
+      document.body.appendChild(this.modal);
+    }
+  }, {
+    key: "attachEventListeners",
+    value: function attachEventListeners() {
+      var _this = this;
+      // Close modal on overlay click or close button
+      this.modal.querySelectorAll('[data-close-modal]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          return _this.close();
+        });
+      });
+
+      // Close on ESC key
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && _this.modal.classList.contains('active')) {
+          _this.close();
+        }
+      });
+
+      // Filter buttons
+      this.modal.querySelectorAll('[data-filter]').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          _this.setActiveFilter(e.target.dataset.filter);
+        });
+      });
+    }
+  }, {
+    key: "open",
+    value: function open() {
+      this.modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      this.loadNotifications();
+    }
+  }, {
+    key: "close",
+    value: function close() {
+      this.modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }, {
+    key: "loadNotifications",
+    value: function () {
+      var _loadNotifications = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+        var _this2 = this;
+        var userType, paymentNotifications, _t;
+        return _regenerator().w(function (_context) {
+          while (1) switch (_context.p = _context.n) {
+            case 0:
+              _context.p = 0;
+              userType = localStorage.getItem('krauser_user') ? JSON.parse(localStorage.getItem('krauser_user')).type : 'client'; // Si existe PaymentAPI, obtener notificaciones de pagos
+              if (!window.PaymentAPI) {
+                _context.n = 2;
+                break;
+              }
+              _context.n = 1;
+              return window.PaymentAPI.getNotifications();
+            case 1:
+              paymentNotifications = _context.v;
+              if (paymentNotifications.success) {
+                this.notifications = paymentNotifications.notifications.map(function (n) {
+                  return {
+                    id: "payment-".concat(n.id),
+                    type: 'payment',
+                    title: n.title,
+                    message: n.message,
+                    time: _this2.formatTime(n.created_at),
+                    read: n.read_at !== null,
+                    priority: n.priority,
+                    actions: _this2.getPaymentActions(n)
+                  };
+                });
+              }
+            case 2:
+              // Agregar notificaciones de ejemplo si no hay del sistema
+              if (this.notifications.length === 0) {
+                this.notifications = this.getDemoNotifications(userType);
+              }
+              this.renderNotifications();
+              this.updateFilterCounts();
+              _context.n = 4;
+              break;
+            case 3:
+              _context.p = 3;
+              _t = _context.v;
+              console.error('Error loading notifications:', _t);
+              this.notifications = this.getDemoNotifications('client');
+              this.renderNotifications();
+            case 4:
+              return _context.a(2);
+          }
+        }, _callee, this, [[0, 3]]);
+      }));
+      function loadNotifications() {
+        return _loadNotifications.apply(this, arguments);
+      }
+      return loadNotifications;
+    }()
+  }, {
+    key: "getDemoNotifications",
+    value: function getDemoNotifications(userType) {
+      var demoNotifications = {
+        client: [{
+          id: 'demo-1',
+          type: 'payment',
+          title: 'Pago próximo a vencer',
+          message: 'Tu pago de póliza #POL-001 vence en 3 días',
+          time: 'Hace 2 horas',
+          read: false,
+          priority: 'high',
+          actions: [{
+            label: 'Realizar pago',
+            action: 'payment',
+            policyId: 'POL-001'
+          }, {
+            label: 'Ver póliza',
+            action: 'viewPolicy',
+            policyId: 'POL-001'
+          }]
+        }, {
+          id: 'demo-2',
+          type: 'comment',
+          title: 'Nuevo comentario del agente',
+          message: 'Tu agente Guillermo Krause ha dejado un comentario en tu póliza',
+          time: 'Hace 5 horas',
+          read: false,
+          priority: 'normal',
+          actions: [{
+            label: 'Ver comentario',
+            action: 'viewComments',
+            policyId: 'POL-001'
+          }]
+        }, {
+          id: 'demo-3',
+          type: 'policy',
+          title: 'Póliza renovada',
+          message: 'Tu póliza de Auto ha sido renovada exitosamente',
+          time: 'Ayer',
+          read: true,
+          priority: 'normal',
+          actions: [{
+            label: 'Descargar póliza',
+            action: 'download',
+            policyId: 'POL-002'
+          }]
+        }],
+        agent: [{
+          id: 'demo-1',
+          type: 'payment',
+          title: 'Comprobante de pago pendiente',
+          message: 'María González ha subido un comprobante de pago para revisión',
+          time: 'Hace 1 hora',
+          read: false,
+          priority: 'high',
+          actions: [{
+            label: 'Revisar comprobante',
+            action: 'reviewProof',
+            clientId: 'CL-001'
+          }, {
+            label: 'Ver detalles',
+            action: 'viewClient',
+            clientId: 'CL-001'
+          }]
+        }, {
+          id: 'demo-2',
+          type: 'comment',
+          title: 'Nuevo comentario de cliente',
+          message: 'Carlos Ruiz tiene una pregunta sobre su póliza',
+          time: 'Hace 3 horas',
+          read: false,
+          priority: 'normal',
+          actions: [{
+            label: 'Responder',
+            action: 'reply',
+            clientId: 'CL-002'
+          }]
+        }, {
+          id: 'demo-3',
+          type: 'system',
+          title: 'Reporte semanal disponible',
+          message: 'Tu reporte semanal de comisiones está listo',
+          time: 'Hace 1 día',
+          read: true,
+          priority: 'low',
+          actions: [{
+            label: 'Ver reporte',
+            action: 'viewReport'
+          }]
+        }]
+      };
+      return demoNotifications[userType] || demoNotifications.client;
+    }
+  }, {
+    key: "getPaymentActions",
+    value: function getPaymentActions(notification) {
+      var actions = [];
+      if (notification.type === 'payment_due') {
+        actions.push({
+          label: 'Realizar pago',
+          action: 'payment',
+          policyId: notification.policy_id
+        });
+      } else if (notification.type === 'proof_reviewed') {
+        actions.push({
+          label: 'Ver estado',
+          action: 'viewPayment',
+          scheduleId: notification.payment_schedule_id
+        });
+      } else if (notification.type === 'proof_uploaded') {
+        actions.push({
+          label: 'Revisar comprobante',
+          action: 'reviewProof',
+          proofId: notification.payment_proof_id
+        });
+      }
+      actions.push({
+        label: 'Ver póliza',
+        action: 'viewPolicy',
+        policyId: notification.policy_id
+      });
+      return actions;
+    }
+  }, {
+    key: "renderNotifications",
+    value: function renderNotifications() {
+      var _this3 = this;
+      var filter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'all';
+      var list = this.modal.querySelector('[data-notification-list]');
+      var filteredNotifications = filter === 'all' ? this.notifications : this.notifications.filter(function (n) {
+        return n.type === filter;
+      });
+      if (filteredNotifications.length === 0) {
+        list.innerHTML = "\n                <div class=\"notification-empty\">\n                    <svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\">\n                        <path d=\"M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9\" />\n                        <path d=\"M13.73 21a2 2 0 0 1-3.46 0\" />\n                    </svg>\n                    <p>No hay notificaciones</p>\n                </div>\n            ";
+        return;
+      }
+      list.innerHTML = filteredNotifications.map(function (notification) {
+        return "\n            <div class=\"notification-item ".concat(notification.read ? 'read' : 'unread', " priority-").concat(notification.priority, "\" \n                 data-notification-id=\"").concat(notification.id, "\">\n                <div class=\"notification-item-icon type-").concat(notification.type, "\">\n                    ").concat(_this3.getIconForType(notification.type), "\n                </div>\n                <div class=\"notification-item-content\">\n                    <div class=\"notification-item-header\">\n                        <h3 class=\"notification-item-title\">").concat(notification.title, "</h3>\n                        <span class=\"notification-item-time\">").concat(notification.time, "</span>\n                    </div>\n                    <p class=\"notification-item-message\">").concat(notification.message, "</p>\n                    ").concat(notification.actions && notification.actions.length > 0 ? "\n                        <div class=\"notification-item-actions\">\n                            ".concat(notification.actions.map(function (action) {
+          return "\n                                <button class=\"notification-action-btn\" \n                                        onclick=\"window.notificationModal?.handleAction('".concat(action.action, "', ").concat(JSON.stringify(action).replace(/"/g, '&quot;'), ")\">\n                                    ").concat(action.label, "\n                                </button>\n                            ");
+        }).join(''), "\n                        </div>\n                    ") : '', "\n                </div>\n                ").concat(!notification.read ? "\n                    <button class=\"notification-mark-read\" \n                            onclick=\"window.notificationModal?.markAsRead('".concat(notification.id, "')\" \n                            aria-label=\"Marcar como le\xEDda\">\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <polyline points=\"20 6 9 17 4 12\" />\n                        </svg>\n                    </button>\n                ") : '', "\n            </div>\n        ");
+      }).join('');
+      this.updateUnreadCount();
+    }
+  }, {
+    key: "getIconForType",
+    value: function getIconForType(type) {
+      var icons = {
+        payment: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" /></svg>',
+        policy: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>',
+        comment: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>',
+        system: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" /></svg>'
+      };
+      return icons[type] || icons.system;
+    }
+  }, {
+    key: "setActiveFilter",
+    value: function setActiveFilter(filter) {
+      this.modal.querySelectorAll('[data-filter]').forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+      });
+      this.renderNotifications(filter);
+    }
+  }, {
+    key: "updateFilterCounts",
+    value: function updateFilterCounts() {
+      var _this4 = this;
+      var counts = {
+        all: this.notifications.length,
+        payment: this.notifications.filter(function (n) {
+          return n.type === 'payment';
+        }).length,
+        policy: this.notifications.filter(function (n) {
+          return n.type === 'policy';
+        }).length,
+        comment: this.notifications.filter(function (n) {
+          return n.type === 'comment';
+        }).length,
+        system: this.notifications.filter(function (n) {
+          return n.type === 'system';
+        }).length
+      };
+      Object.keys(counts).forEach(function (type) {
+        var el = _this4.modal.querySelector("[data-count=\"".concat(type, "\"]"));
+        if (el) el.textContent = counts[type];
+      });
+    }
+  }, {
+    key: "updateUnreadCount",
+    value: function updateUnreadCount() {
+      this.unreadCount = this.notifications.filter(function (n) {
+        return !n.read;
+      }).length;
+      this.updateBadge();
+    }
+  }, {
+    key: "updateBadge",
+    value: function updateBadge() {
+      var _this5 = this;
+      // Actualizar badge en la campana del header
+      document.querySelectorAll('.icon-pill .dot').forEach(function (dot) {
+        if (_this5.unreadCount > 0) {
+          dot.classList.add('active');
+          dot.setAttribute('data-count', _this5.unreadCount);
+        } else {
+          dot.classList.remove('active');
+          dot.removeAttribute('data-count');
+        }
+      });
+
+      // Actualizar badge en el modal
+      var badge = this.modal.querySelector('[data-notification-count]');
+      if (badge) {
+        if (this.unreadCount > 0) {
+          badge.textContent = this.unreadCount;
+          badge.style.display = 'inline-block';
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+    }
+  }, {
+    key: "markAsRead",
+    value: function markAsRead(notificationId) {
+      var notification = this.notifications.find(function (n) {
+        return n.id === notificationId;
+      });
+      if (notification) {
+        notification.read = true;
+        this.renderNotifications();
+
+        // Si es del sistema de pagos, marcar en backend
+        if (notificationId.startsWith('payment-') && window.PaymentAPI) {
+          var id = notificationId.replace('payment-', '');
+          window.PaymentAPI.markNotificationAsRead(id);
+        }
+      }
+    }
+  }, {
+    key: "markAllAsRead",
+    value: function markAllAsRead() {
+      this.notifications.forEach(function (n) {
+        return n.read = true;
+      });
+      this.renderNotifications();
+
+      // Marcar todas en backend si es necesario
+      if (window.PaymentAPI) {
+        window.PaymentAPI.markAllNotificationsAsRead();
+      }
+    }
+  }, {
+    key: "clearAll",
+    value: function clearAll() {
+      if (confirm('¿Estás seguro de que deseas eliminar todas las notificaciones?')) {
+        this.notifications = [];
+        this.renderNotifications();
+      }
+    }
+  }, {
+    key: "handleAction",
+    value: function handleAction(action, data) {
+      var _window$appHandlers, _window$appHandlers2, _window$appHandlers3, _window$appHandlers4, _window$appHandlers5, _window$appHandlers6, _window$appHandlers7, _window$appHandlers8;
+      console.log('Notification action:', action, data);
+      switch (action) {
+        case 'payment':
+          // Abrir modal de pago rápido
+          if ((_window$appHandlers = window.appHandlers) !== null && _window$appHandlers !== void 0 && _window$appHandlers.makePayment) {
+            window.appHandlers.makePayment(data.policyId);
+          }
+          break;
+        case 'viewPolicy':
+          // Ver detalles de póliza
+          if ((_window$appHandlers2 = window.appHandlers) !== null && _window$appHandlers2 !== void 0 && _window$appHandlers2.viewPolicyDetails) {
+            window.appHandlers.viewPolicyDetails(data.policyId);
+          }
+          break;
+        case 'viewComments':
+          // Abrir sección de comentarios
+          if ((_window$appHandlers3 = window.appHandlers) !== null && _window$appHandlers3 !== void 0 && _window$appHandlers3.openComments) {
+            window.appHandlers.openComments(data.policyId);
+          }
+          break;
+        case 'reviewProof':
+          // Para agentes: revisar comprobante
+          if ((_window$appHandlers4 = window.appHandlers) !== null && _window$appHandlers4 !== void 0 && _window$appHandlers4.reviewPaymentProof) {
+            window.appHandlers.reviewPaymentProof(data.proofId || data.clientId);
+          }
+          break;
+        case 'viewClient':
+          // Para agentes: ver detalles de cliente
+          if ((_window$appHandlers5 = window.appHandlers) !== null && _window$appHandlers5 !== void 0 && _window$appHandlers5.viewClientDetails) {
+            window.appHandlers.viewClientDetails(data.clientId);
+          }
+          break;
+        case 'reply':
+          // Responder comentario
+          if ((_window$appHandlers6 = window.appHandlers) !== null && _window$appHandlers6 !== void 0 && _window$appHandlers6.replyToClient) {
+            window.appHandlers.replyToClient(data.clientId);
+          }
+          break;
+        case 'download':
+          // Descargar documento
+          if ((_window$appHandlers7 = window.appHandlers) !== null && _window$appHandlers7 !== void 0 && _window$appHandlers7.downloadPolicy) {
+            window.appHandlers.downloadPolicy(data.policyId);
+          }
+          break;
+        case 'viewReport':
+          // Ver reporte
+          if ((_window$appHandlers8 = window.appHandlers) !== null && _window$appHandlers8 !== void 0 && _window$appHandlers8.viewReport) {
+            window.appHandlers.viewReport();
+          }
+          break;
+        default:
+          console.warn('Acción no implementada:', action);
+      }
+      this.close();
+    }
+  }, {
+    key: "formatTime",
+    value: function formatTime(timestamp) {
+      if (!timestamp) return 'Hace un momento';
+      var now = new Date();
+      var time = new Date(timestamp);
+      var diffMs = now - time;
+      var diffMins = Math.floor(diffMs / 60000);
+      var diffHours = Math.floor(diffMs / 3600000);
+      var diffDays = Math.floor(diffMs / 86400000);
+      if (diffMins < 1) return 'Hace un momento';
+      if (diffMins < 60) return "Hace ".concat(diffMins, " minuto").concat(diffMins > 1 ? 's' : '');
+      if (diffHours < 24) return "Hace ".concat(diffHours, " hora").concat(diffHours > 1 ? 's' : '');
+      if (diffDays === 1) return 'Ayer';
+      if (diffDays < 7) return "Hace ".concat(diffDays, " d\xEDas");
+      return time.toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'short'
+      });
+    }
+  }]);
+}();
+
+// Inicializar el sistema de notificaciones cuando cargue el DOM
+if (typeof window !== 'undefined') {
+  window.addEventListener('DOMContentLoaded', function () {
+    window.notificationModal = new NotificationModal();
+
+    // Exponer handler global para la campana
+    if (!window.appHandlers) window.appHandlers = {};
+    window.appHandlers.openNotifications = function () {
+      window.notificationModal.open();
+    };
+  });
+}
+
+/***/ }),
+
 /***/ "./src/modules/notifications.js":
 /*!**************************************!*\
   !*** ./src/modules/notifications.js ***!
@@ -15286,6 +19002,858 @@ function stopParticles() {
 
 /***/ }),
 
+/***/ "./src/modules/paymentIntegration.js":
+/*!*******************************************!*\
+  !*** ./src/modules/paymentIntegration.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PaymentAPI: () => (/* binding */ PaymentAPI),
+/* harmony export */   PaymentNotificationsComponent: () => (/* binding */ PaymentNotificationsComponent),
+/* harmony export */   PaymentScheduleComponent: () => (/* binding */ PaymentScheduleComponent),
+/* harmony export */   ProofReviewComponent: () => (/* binding */ ProofReviewComponent)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+/**
+ * Payment System Integration
+ * Cliente y Agente
+ */
+var PaymentAPI = /*#__PURE__*/function () {
+  function PaymentAPI() {
+    _classCallCheck(this, PaymentAPI);
+    this.baseURL = '/backend/payment-api.php';
+    this.token = sessionStorage.getItem('auth_token');
+  }
+
+  /**
+   * Helper para peticiones HTTP
+   */
+  return _createClass(PaymentAPI, [{
+    key: "request",
+    value: (function () {
+      var _request = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(endpoint) {
+        var options,
+          url,
+          defaultOptions,
+          response,
+          data,
+          _args = arguments;
+        return _regenerator().w(function (_context) {
+          while (1) switch (_context.n) {
+            case 0:
+              options = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
+              url = "".concat(this.baseURL, "/").concat(endpoint);
+              defaultOptions = {
+                headers: {
+                  'Authorization': "Bearer ".concat(this.token)
+                }
+              }; // Para FormData no establecer Content-Type (lo hace automático)
+              if (!(options.body instanceof FormData)) {
+                defaultOptions.headers['Content-Type'] = 'application/json';
+              }
+              _context.n = 1;
+              return fetch(url, _objectSpread(_objectSpread({}, defaultOptions), options));
+            case 1:
+              response = _context.v;
+              if (!(options.responseType === 'blob')) {
+                _context.n = 2;
+                break;
+              }
+              return _context.a(2, response.blob());
+            case 2:
+              _context.n = 3;
+              return response.json();
+            case 3:
+              data = _context.v;
+              if (response.ok) {
+                _context.n = 4;
+                break;
+              }
+              throw new Error(data.error || 'Error en la petición');
+            case 4:
+              return _context.a(2, data);
+          }
+        }, _callee, this);
+      }));
+      function request(_x) {
+        return _request.apply(this, arguments);
+      }
+      return request;
+    }() // ============================================
+    // ENDPOINTS CLIENTE
+    // ============================================
+    /**
+     * Obtener calendario de pagos de una póliza
+     */
+    )
+  }, {
+    key: "getPaymentSchedule",
+    value: function () {
+      var _getPaymentSchedule = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(policyId) {
+        return _regenerator().w(function (_context2) {
+          while (1) switch (_context2.n) {
+            case 0:
+              _context2.n = 1;
+              return this.request("get-schedule/".concat(policyId), {
+                method: 'GET'
+              });
+            case 1:
+              return _context2.a(2, _context2.v);
+          }
+        }, _callee2, this);
+      }));
+      function getPaymentSchedule(_x2) {
+        return _getPaymentSchedule.apply(this, arguments);
+      }
+      return getPaymentSchedule;
+    }()
+    /**
+     * Subir comprobante de pago
+     */
+  }, {
+    key: "uploadPaymentProof",
+    value: (function () {
+      var _uploadPaymentProof = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(scheduleId, policyId, file) {
+        var formData;
+        return _regenerator().w(function (_context3) {
+          while (1) switch (_context3.n) {
+            case 0:
+              formData = new FormData();
+              formData.append('schedule_id', scheduleId);
+              formData.append('policy_id', policyId);
+              formData.append('proof_file', file);
+              _context3.n = 1;
+              return this.request('upload-proof', {
+                method: 'POST',
+                body: formData
+              });
+            case 1:
+              return _context3.a(2, _context3.v);
+          }
+        }, _callee3, this);
+      }));
+      function uploadPaymentProof(_x3, _x4, _x5) {
+        return _uploadPaymentProof.apply(this, arguments);
+      }
+      return uploadPaymentProof;
+    }()
+    /**
+     * Obtener notificaciones del cliente
+     */
+    )
+  }, {
+    key: "getNotifications",
+    value: (function () {
+      var _getNotifications = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
+        var limit,
+          _args4 = arguments;
+        return _regenerator().w(function (_context4) {
+          while (1) switch (_context4.n) {
+            case 0:
+              limit = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : 20;
+              _context4.n = 1;
+              return this.request("get-notifications?limit=".concat(limit), {
+                method: 'GET'
+              });
+            case 1:
+              return _context4.a(2, _context4.v);
+          }
+        }, _callee4, this);
+      }));
+      function getNotifications() {
+        return _getNotifications.apply(this, arguments);
+      }
+      return getNotifications;
+    }()
+    /**
+     * Descargar comprobante o factura
+     */
+    )
+  }, {
+    key: "downloadFile",
+    value: (function () {
+      var _downloadFile = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(type, fileId) {
+        var blob, url, a;
+        return _regenerator().w(function (_context5) {
+          while (1) switch (_context5.n) {
+            case 0:
+              _context5.n = 1;
+              return this.request("download-file/".concat(type, "/").concat(fileId), {
+                method: 'GET',
+                responseType: 'blob'
+              });
+            case 1:
+              blob = _context5.v;
+              // Crear link de descarga
+              url = window.URL.createObjectURL(blob);
+              a = document.createElement('a');
+              a.href = url;
+              a.download = "".concat(type, "_").concat(fileId, ".pdf");
+              document.body.appendChild(a);
+              a.click();
+              window.URL.revokeObjectURL(url);
+              document.body.removeChild(a);
+            case 2:
+              return _context5.a(2);
+          }
+        }, _callee5, this);
+      }));
+      function downloadFile(_x6, _x7) {
+        return _downloadFile.apply(this, arguments);
+      }
+      return downloadFile;
+    }() // ============================================
+    // ENDPOINTS AGENTE
+    // ============================================
+    /**
+     * Subir documento de póliza y extraer datos automáticamente
+     */
+    )
+  }, {
+    key: "uploadPolicyDocument",
+    value: function () {
+      var _uploadPolicyDocument = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(clientId, policyFile) {
+        var formData;
+        return _regenerator().w(function (_context6) {
+          while (1) switch (_context6.n) {
+            case 0:
+              formData = new FormData();
+              formData.append('client_id', clientId);
+              formData.append('policy_file', policyFile);
+              _context6.n = 1;
+              return this.request('upload-policy', {
+                method: 'POST',
+                body: formData
+              });
+            case 1:
+              return _context6.a(2, _context6.v);
+          }
+        }, _callee6, this);
+      }));
+      function uploadPolicyDocument(_x8, _x9) {
+        return _uploadPolicyDocument.apply(this, arguments);
+      }
+      return uploadPolicyDocument;
+    }()
+    /**
+     * Generar calendario de pagos manualmente (fallback)
+     */
+  }, {
+    key: "generatePaymentSchedule",
+    value: (function () {
+      var _generatePaymentSchedule = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(policyId, totalPremium, paymentFrequency, startDate) {
+        return _regenerator().w(function (_context7) {
+          while (1) switch (_context7.n) {
+            case 0:
+              _context7.n = 1;
+              return this.request('generate-schedule', {
+                method: 'POST',
+                body: JSON.stringify({
+                  policy_id: policyId,
+                  total_premium: totalPremium,
+                  payment_frequency: paymentFrequency,
+                  // 1, 2, 4, o 12
+                  start_date: startDate // YYYY-MM-DD
+                })
+              });
+            case 1:
+              return _context7.a(2, _context7.v);
+          }
+        }, _callee7, this);
+      }));
+      function generatePaymentSchedule(_x0, _x1, _x10, _x11) {
+        return _generatePaymentSchedule.apply(this, arguments);
+      }
+      return generatePaymentSchedule;
+    }()
+    /**
+     * Obtener comprobantes pendientes de revisión
+     */
+    )
+  }, {
+    key: "getPendingProofReviews",
+    value: (function () {
+      var _getPendingProofReviews = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
+        return _regenerator().w(function (_context8) {
+          while (1) switch (_context8.n) {
+            case 0:
+              _context8.n = 1;
+              return this.request('get-pending-reviews', {
+                method: 'GET'
+              });
+            case 1:
+              return _context8.a(2, _context8.v);
+          }
+        }, _callee8, this);
+      }));
+      function getPendingProofReviews() {
+        return _getPendingProofReviews.apply(this, arguments);
+      }
+      return getPendingProofReviews;
+    }()
+    /**
+     * Revisar comprobante de pago
+     */
+    )
+  }, {
+    key: "reviewPaymentProof",
+    value: (function () {
+      var _reviewPaymentProof = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(proofId, approved) {
+        var notes,
+          _args9 = arguments;
+        return _regenerator().w(function (_context9) {
+          while (1) switch (_context9.n) {
+            case 0:
+              notes = _args9.length > 2 && _args9[2] !== undefined ? _args9[2] : null;
+              _context9.n = 1;
+              return this.request('review-proof', {
+                method: 'POST',
+                body: JSON.stringify({
+                  proof_id: proofId,
+                  approved: approved,
+                  notes: notes
+                })
+              });
+            case 1:
+              return _context9.a(2, _context9.v);
+          }
+        }, _callee9, this);
+      }));
+      function reviewPaymentProof(_x12, _x13) {
+        return _reviewPaymentProof.apply(this, arguments);
+      }
+      return reviewPaymentProof;
+    }()
+    /**
+     * Subir factura de aseguradora
+     */
+    )
+  }, {
+    key: "uploadInsurerInvoice",
+    value: (function () {
+      var _uploadInsurerInvoice = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(scheduleId, policyId, invoiceNumber, file) {
+        var formData;
+        return _regenerator().w(function (_context0) {
+          while (1) switch (_context0.n) {
+            case 0:
+              formData = new FormData();
+              formData.append('schedule_id', scheduleId);
+              formData.append('policy_id', policyId);
+              formData.append('invoice_number', invoiceNumber);
+              formData.append('invoice_file', file);
+              _context0.n = 1;
+              return this.request('upload-invoice', {
+                method: 'POST',
+                body: formData
+              });
+            case 1:
+              return _context0.a(2, _context0.v);
+          }
+        }, _callee0, this);
+      }));
+      function uploadInsurerInvoice(_x14, _x15, _x16, _x17) {
+        return _uploadInsurerInvoice.apply(this, arguments);
+      }
+      return uploadInsurerInvoice;
+    }()
+    /**
+     * Actualizar estado de pago manualmente
+     */
+    )
+  }, {
+    key: "updatePaymentStatus",
+    value: (function () {
+      var _updatePaymentStatus = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(scheduleId, newStatus) {
+        var notes,
+          _args1 = arguments;
+        return _regenerator().w(function (_context1) {
+          while (1) switch (_context1.n) {
+            case 0:
+              notes = _args1.length > 2 && _args1[2] !== undefined ? _args1[2] : null;
+              _context1.n = 1;
+              return this.request('update-status', {
+                method: 'POST',
+                body: JSON.stringify({
+                  schedule_id: scheduleId,
+                  status: newStatus,
+                  notes: notes
+                })
+              });
+            case 1:
+              return _context1.a(2, _context1.v);
+          }
+        }, _callee1, this);
+      }));
+      function updatePaymentStatus(_x18, _x19) {
+        return _updatePaymentStatus.apply(this, arguments);
+      }
+      return updatePaymentStatus;
+    }())
+  }]);
+}(); // ============================================
+// COMPONENTES UI - CLIENTE
+// ============================================
+/**
+ * Componente: Lista de Pagos de una Póliza
+ */
+var PaymentScheduleComponent = /*#__PURE__*/function () {
+  function PaymentScheduleComponent(policyId, containerId) {
+    _classCallCheck(this, PaymentScheduleComponent);
+    this.policyId = policyId;
+    this.container = document.getElementById(containerId);
+    this.api = new PaymentAPI();
+  }
+  return _createClass(PaymentScheduleComponent, [{
+    key: "render",
+    value: function () {
+      var _render = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10() {
+        var _this = this;
+        var response, schedules, _t;
+        return _regenerator().w(function (_context10) {
+          while (1) switch (_context10.p = _context10.n) {
+            case 0:
+              _context10.p = 0;
+              _context10.n = 1;
+              return this.api.getPaymentSchedule(this.policyId);
+            case 1:
+              response = _context10.v;
+              schedules = response.schedules;
+              this.container.innerHTML = "\n                <div class=\"payment-schedule-container\">\n                    <h3>Calendario de Pagos</h3>\n                    <div class=\"payment-list\">\n                        ".concat(schedules.map(function (schedule) {
+                return _this.renderPaymentCard(schedule);
+              }).join(''), "\n                    </div>\n                </div>\n            ");
+
+              // Agregar event listeners
+              this.attachEventListeners();
+              _context10.n = 3;
+              break;
+            case 2:
+              _context10.p = 2;
+              _t = _context10.v;
+              console.error('Error cargando calendario:', _t);
+              this.container.innerHTML = "\n                <div class=\"error-message\">\n                    Error al cargar calendario de pagos\n                </div>\n            ";
+            case 3:
+              return _context10.a(2);
+          }
+        }, _callee10, this, [[0, 2]]);
+      }));
+      function render() {
+        return _render.apply(this, arguments);
+      }
+      return render;
+    }()
+  }, {
+    key: "renderPaymentCard",
+    value: function renderPaymentCard(schedule) {
+      var statusClass = this.getStatusClass(schedule.status);
+      var statusText = this.getStatusText(schedule.status);
+      var showUploadButton = ['awaiting_proof', 'payment_rejected'].includes(schedule.status);
+      return "\n            <div class=\"payment-card ".concat(statusClass, "\" data-schedule-id=\"").concat(schedule.schedule_id, "\">\n                <div class=\"payment-header\">\n                    <span class=\"installment-number\">Pago ").concat(schedule.installment_number, "</span>\n                    <span class=\"payment-status ").concat(statusClass, "\">").concat(statusText, "</span>\n                </div>\n                <div class=\"payment-details\">\n                    <div class=\"detail-row\">\n                        <span class=\"label\">Fecha de vencimiento:</span>\n                        <span class=\"value\">").concat(this.formatDate(schedule.due_date), "</span>\n                    </div>\n                    <div class=\"detail-row\">\n                        <span class=\"label\">Monto:</span>\n                        <span class=\"value\">$").concat(parseFloat(schedule.amount_due).toFixed(2), "</span>\n                    </div>\n                    <div class=\"detail-row\">\n                        <span class=\"label\">M\xE9todo de pago:</span>\n                        <span class=\"value\">").concat(schedule.payment_method, "</span>\n                    </div>\n                </div>\n                ").concat(showUploadButton ? "\n                    <div class=\"payment-actions\">\n                        <button class=\"btn-upload-proof\" data-schedule-id=\"".concat(schedule.schedule_id, "\">\n                            Subir Comprobante\n                        </button>\n                    </div>\n                ") : '', "\n                ").concat(schedule.proof_count > 0 ? "\n                    <div class=\"proof-indicator\">\n                        ".concat(schedule.proof_count, " comprobante(s) subido(s)\n                    </div>\n                ") : '', "\n            </div>\n        ");
+    }
+  }, {
+    key: "getStatusClass",
+    value: function getStatusClass(status) {
+      var classes = {
+        'pending': 'status-pending',
+        'payment_attempted': 'status-processing',
+        'payment_rejected': 'status-rejected',
+        'awaiting_proof': 'status-awaiting',
+        'in_review': 'status-review',
+        'paid': 'status-paid',
+        'liquidated': 'status-completed'
+      };
+      return classes[status] || 'status-default';
+    }
+  }, {
+    key: "getStatusText",
+    value: function getStatusText(status) {
+      var texts = {
+        'pending': 'Pendiente',
+        'payment_attempted': 'Procesando Cargo',
+        'payment_rejected': 'Cargo Rechazado',
+        'awaiting_proof': 'Esperando Comprobante',
+        'in_review': 'En Revisión',
+        'paid': 'Pagado',
+        'liquidated': 'Completado'
+      };
+      return texts[status] || status;
+    }
+  }, {
+    key: "formatDate",
+    value: function formatDate(dateString) {
+      var date = new Date(dateString);
+      return date.toLocaleDateString('es-MX', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+  }, {
+    key: "attachEventListeners",
+    value: function attachEventListeners() {
+      var _this2 = this;
+      var uploadButtons = this.container.querySelectorAll('.btn-upload-proof');
+      uploadButtons.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          var scheduleId = e.target.dataset.scheduleId;
+          _this2.showUploadModal(scheduleId);
+        });
+      });
+    }
+  }, {
+    key: "showUploadModal",
+    value: function showUploadModal(scheduleId) {
+      var _this3 = this;
+      // Crear modal para subir archivo
+      var modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      modal.innerHTML = "\n            <div class=\"modal-content\">\n                <h3>Subir Comprobante de Pago</h3>\n                <p>Selecciona tu comprobante (PDF, JPG o PNG - M\xE1x 5MB)</p>\n                <form id=\"upload-proof-form\">\n                    <input type=\"file\" id=\"proof-file\" accept=\".pdf,.jpg,.jpeg,.png\" required>\n                    <div class=\"modal-actions\">\n                        <button type=\"submit\" class=\"btn-primary\">Subir</button>\n                        <button type=\"button\" class=\"btn-secondary close-modal\">Cancelar</button>\n                    </div>\n                </form>\n            </div>\n        ";
+      document.body.appendChild(modal);
+
+      // Event listeners del modal
+      modal.querySelector('.close-modal').addEventListener('click', function () {
+        modal.remove();
+      });
+      modal.querySelector('#upload-proof-form').addEventListener('submit', /*#__PURE__*/function () {
+        var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11(e) {
+          var fileInput, file, result, _t2;
+          return _regenerator().w(function (_context11) {
+            while (1) switch (_context11.p = _context11.n) {
+              case 0:
+                e.preventDefault();
+                fileInput = modal.querySelector('#proof-file');
+                file = fileInput.files[0];
+                if (file) {
+                  _context11.n = 1;
+                  break;
+                }
+                alert('Por favor selecciona un archivo');
+                return _context11.a(2);
+              case 1:
+                _context11.p = 1;
+                _context11.n = 2;
+                return _this3.api.uploadPaymentProof(scheduleId, _this3.policyId, file);
+              case 2:
+                result = _context11.v;
+                alert(result.message);
+                modal.remove();
+                _this3.render(); // Recargar lista
+                _context11.n = 4;
+                break;
+              case 3:
+                _context11.p = 3;
+                _t2 = _context11.v;
+                alert('Error al subir comprobante: ' + _t2.message);
+              case 4:
+                return _context11.a(2);
+            }
+          }, _callee11, null, [[1, 3]]);
+        }));
+        return function (_x20) {
+          return _ref.apply(this, arguments);
+        };
+      }());
+    }
+  }]);
+}();
+/**
+ * Componente: Notificaciones de Pagos
+ */
+var PaymentNotificationsComponent = /*#__PURE__*/function () {
+  function PaymentNotificationsComponent(containerId) {
+    _classCallCheck(this, PaymentNotificationsComponent);
+    this.container = document.getElementById(containerId);
+    this.api = new PaymentAPI();
+  }
+  return _createClass(PaymentNotificationsComponent, [{
+    key: "render",
+    value: function () {
+      var _render2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12() {
+        var _this4 = this;
+        var response, notifications, _t3;
+        return _regenerator().w(function (_context12) {
+          while (1) switch (_context12.p = _context12.n) {
+            case 0:
+              _context12.p = 0;
+              _context12.n = 1;
+              return this.api.getNotifications(10);
+            case 1:
+              response = _context12.v;
+              notifications = response.notifications;
+              if (!(notifications.length === 0)) {
+                _context12.n = 2;
+                break;
+              }
+              this.container.innerHTML = "\n                    <div class=\"no-notifications\">\n                        No tienes notificaciones nuevas\n                    </div>\n                ";
+              return _context12.a(2);
+            case 2:
+              this.container.innerHTML = "\n                <div class=\"notifications-list\">\n                    ".concat(notifications.map(function (n) {
+                return _this4.renderNotification(n);
+              }).join(''), "\n                </div>\n            ");
+              _context12.n = 4;
+              break;
+            case 3:
+              _context12.p = 3;
+              _t3 = _context12.v;
+              console.error('Error cargando notificaciones:', _t3);
+            case 4:
+              return _context12.a(2);
+          }
+        }, _callee12, this, [[0, 3]]);
+      }));
+      function render() {
+        return _render2.apply(this, arguments);
+      }
+      return render;
+    }()
+  }, {
+    key: "renderNotification",
+    value: function renderNotification(notification) {
+      var data = JSON.parse(notification.notification_data);
+      var typeClass = this.getNotificationType(notification.notification_type);
+      return "\n            <div class=\"notification-item ".concat(typeClass, "\">\n                <div class=\"notification-icon\">\n                    ").concat(this.getNotificationIcon(notification.notification_type), "\n                </div>\n                <div class=\"notification-content\">\n                    <p>").concat(data.message || 'Nueva notificación', "</p>\n                    <span class=\"notification-time\">").concat(this.formatTime(notification.sent_at), "</span>\n                </div>\n            </div>\n        ");
+    }
+  }, {
+    key: "getNotificationType",
+    value: function getNotificationType(type) {
+      var types = {
+        'due_date_reminder': 'notification-info',
+        'overdue_payment': 'notification-warning',
+        'proof_uploaded': 'notification-success',
+        'proof_approved': 'notification-success',
+        'proof_rejected': 'notification-error',
+        'verification_required': 'notification-info'
+      };
+      return types[type] || 'notification-default';
+    }
+  }, {
+    key: "getNotificationIcon",
+    value: function getNotificationIcon(type) {
+      var icons = {
+        'due_date_reminder': '🔔',
+        'overdue_payment': '⚠️',
+        'proof_uploaded': '📤',
+        'proof_approved': '✅',
+        'proof_rejected': '❌',
+        'verification_required': 'ℹ️'
+      };
+      return icons[type] || '📬';
+    }
+  }, {
+    key: "formatTime",
+    value: function formatTime(timestamp) {
+      var date = new Date(timestamp);
+      var now = new Date();
+      var diffMs = now - date;
+      var diffMins = Math.floor(diffMs / 60000);
+      var diffHours = Math.floor(diffMs / 3600000);
+      var diffDays = Math.floor(diffMs / 86400000);
+      if (diffMins < 1) return 'Ahora';
+      if (diffMins < 60) return "Hace ".concat(diffMins, " min");
+      if (diffHours < 24) return "Hace ".concat(diffHours, "h");
+      if (diffDays < 7) return "Hace ".concat(diffDays, "d");
+      return date.toLocaleDateString('es-MX');
+    }
+  }]);
+}(); // ============================================
+// COMPONENTES UI - AGENTE
+// ============================================
+/**
+ * Componente: Revisión de Comprobantes (Agente)
+ */
+var ProofReviewComponent = /*#__PURE__*/function () {
+  function ProofReviewComponent(containerId) {
+    _classCallCheck(this, ProofReviewComponent);
+    this.container = document.getElementById(containerId);
+    this.api = new PaymentAPI();
+  }
+  return _createClass(ProofReviewComponent, [{
+    key: "render",
+    value: function () {
+      var _render3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee13() {
+        var _this5 = this;
+        var response, proofs, _t4;
+        return _regenerator().w(function (_context13) {
+          while (1) switch (_context13.p = _context13.n) {
+            case 0:
+              _context13.p = 0;
+              _context13.n = 1;
+              return this.api.getPendingProofReviews();
+            case 1:
+              response = _context13.v;
+              proofs = response.proofs;
+              if (!(proofs.length === 0)) {
+                _context13.n = 2;
+                break;
+              }
+              this.container.innerHTML = "\n                    <div class=\"no-pending-reviews\">\n                        No hay comprobantes pendientes de revisi\xF3n\n                    </div>\n                ";
+              return _context13.a(2);
+            case 2:
+              this.container.innerHTML = "\n                <div class=\"proof-reviews-container\">\n                    <h3>Comprobantes Pendientes (".concat(proofs.length, ")</h3>\n                    <div class=\"proof-list\">\n                        ").concat(proofs.map(function (proof) {
+                return _this5.renderProofCard(proof);
+              }).join(''), "\n                    </div>\n                </div>\n            ");
+              this.attachEventListeners();
+              _context13.n = 4;
+              break;
+            case 3:
+              _context13.p = 3;
+              _t4 = _context13.v;
+              console.error('Error cargando comprobantes:', _t4);
+              this.container.innerHTML = "\n                <div class=\"error-message\">\n                    Error al cargar comprobantes pendientes\n                </div>\n            ";
+            case 4:
+              return _context13.a(2);
+          }
+        }, _callee13, this, [[0, 3]]);
+      }));
+      function render() {
+        return _render3.apply(this, arguments);
+      }
+      return render;
+    }()
+  }, {
+    key: "renderProofCard",
+    value: function renderProofCard(proof) {
+      return "\n            <div class=\"proof-card\" data-proof-id=\"".concat(proof.proof_id, "\">\n                <div class=\"proof-header\">\n                    <h4>P\xF3liza: ").concat(proof.policy_number, "</h4>\n                    <span class=\"upload-date\">").concat(this.formatDate(proof.upload_date), "</span>\n                </div>\n                <div class=\"proof-details\">\n                    <p><strong>Cliente:</strong> ").concat(proof.client_name, "</p>\n                    <p><strong>Monto:</strong> $").concat(parseFloat(proof.amount_due).toFixed(2), "</p>\n                    <p><strong>Vencimiento:</strong> ").concat(this.formatDate(proof.due_date), "</p>\n                    <p><strong>Archivo:</strong> ").concat(proof.file_name, "</p>\n                </div>\n                <div class=\"proof-actions\">\n                    <button class=\"btn-view-proof\" data-proof-id=\"").concat(proof.proof_id, "\" data-file=\"").concat(proof.file_name, "\">\n                        Ver Comprobante\n                    </button>\n                    <button class=\"btn-approve-proof\" data-proof-id=\"").concat(proof.proof_id, "\">\n                        Aprobar\n                    </button>\n                    <button class=\"btn-reject-proof\" data-proof-id=\"").concat(proof.proof_id, "\">\n                        Rechazar\n                    </button>\n                </div>\n            </div>\n        ");
+    }
+  }, {
+    key: "formatDate",
+    value: function formatDate(dateString) {
+      var date = new Date(dateString);
+      return date.toLocaleDateString('es-MX');
+    }
+  }, {
+    key: "attachEventListeners",
+    value: function attachEventListeners() {
+      var _this6 = this;
+      // Ver comprobante
+      this.container.querySelectorAll('.btn-view-proof').forEach(function (btn) {
+        btn.addEventListener('click', /*#__PURE__*/function () {
+          var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee14(e) {
+            var proofId;
+            return _regenerator().w(function (_context14) {
+              while (1) switch (_context14.n) {
+                case 0:
+                  proofId = e.target.dataset.proofId;
+                  _context14.n = 1;
+                  return _this6.api.downloadFile('proof', proofId);
+                case 1:
+                  return _context14.a(2);
+              }
+            }, _callee14);
+          }));
+          return function (_x21) {
+            return _ref2.apply(this, arguments);
+          };
+        }());
+      });
+
+      // Aprobar
+      this.container.querySelectorAll('.btn-approve-proof').forEach(function (btn) {
+        btn.addEventListener('click', /*#__PURE__*/function () {
+          var _ref3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee15(e) {
+            var proofId;
+            return _regenerator().w(function (_context15) {
+              while (1) switch (_context15.n) {
+                case 0:
+                  proofId = e.target.dataset.proofId;
+                  _context15.n = 1;
+                  return _this6.handleReview(proofId, true);
+                case 1:
+                  return _context15.a(2);
+              }
+            }, _callee15);
+          }));
+          return function (_x22) {
+            return _ref3.apply(this, arguments);
+          };
+        }());
+      });
+
+      // Rechazar
+      this.container.querySelectorAll('.btn-reject-proof').forEach(function (btn) {
+        btn.addEventListener('click', /*#__PURE__*/function () {
+          var _ref4 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee16(e) {
+            var proofId;
+            return _regenerator().w(function (_context16) {
+              while (1) switch (_context16.n) {
+                case 0:
+                  proofId = e.target.dataset.proofId;
+                  _context16.n = 1;
+                  return _this6.handleReview(proofId, false);
+                case 1:
+                  return _context16.a(2);
+              }
+            }, _callee16);
+          }));
+          return function (_x23) {
+            return _ref4.apply(this, arguments);
+          };
+        }());
+      });
+    }
+  }, {
+    key: "handleReview",
+    value: function () {
+      var _handleReview = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee17(proofId, approved) {
+        var notes, result, _t5;
+        return _regenerator().w(function (_context17) {
+          while (1) switch (_context17.p = _context17.n) {
+            case 0:
+              notes = approved ? prompt('Notas (opcional):') : prompt('Razón del rechazo:');
+              if (!(notes === null)) {
+                _context17.n = 1;
+                break;
+              }
+              return _context17.a(2);
+            case 1:
+              _context17.p = 1;
+              _context17.n = 2;
+              return this.api.reviewPaymentProof(proofId, approved, notes || null);
+            case 2:
+              result = _context17.v;
+              alert(result.message);
+              this.render(); // Recargar lista
+              _context17.n = 4;
+              break;
+            case 3:
+              _context17.p = 3;
+              _t5 = _context17.v;
+              alert('Error al revisar comprobante: ' + _t5.message);
+            case 4:
+              return _context17.a(2);
+          }
+        }, _callee17, this, [[1, 3]]);
+      }));
+      function handleReview(_x24, _x25) {
+        return _handleReview.apply(this, arguments);
+      }
+      return handleReview;
+    }()
+  }]);
+}(); // Exportar para uso global
+window.PaymentAPI = PaymentAPI;
+window.PaymentScheduleComponent = PaymentScheduleComponent;
+window.PaymentNotificationsComponent = PaymentNotificationsComponent;
+window.ProofReviewComponent = ProofReviewComponent;
+
+// ES6 exports para webpack
+
+
+/***/ }),
+
 /***/ "./src/modules/quoteFlow.js":
 /*!**********************************!*\
   !*** ./src/modules/quoteFlow.js ***!
@@ -15447,12 +20015,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getAgentAvailability: () => (/* binding */ getAgentAvailability),
 /* harmony export */   getAgentMeetings: () => (/* binding */ getAgentMeetings),
 /* harmony export */   getAvailableAgents: () => (/* binding */ getAvailableAgents),
+/* harmony export */   getCalendarView: () => (/* binding */ getCalendarView),
 /* harmony export */   getClientMeetings: () => (/* binding */ getClientMeetings),
 /* harmony export */   getMeetingById: () => (/* binding */ getMeetingById),
+/* harmony export */   getMeetingStats: () => (/* binding */ getMeetingStats),
+/* harmony export */   getMonthMeetings: () => (/* binding */ getMonthMeetings),
 /* harmony export */   getPendingRequests: () => (/* binding */ getPendingRequests),
+/* harmony export */   getYearMeetings: () => (/* binding */ getYearMeetings),
 /* harmony export */   initializeMockMeetings: () => (/* binding */ initializeMockMeetings),
-/* harmony export */   requestMeeting: () => (/* binding */ requestMeeting)
+/* harmony export */   loadMeetingsFromBackend: () => (/* binding */ loadMeetingsFromBackend),
+/* harmony export */   requestMeeting: () => (/* binding */ requestMeeting),
+/* harmony export */   setCalendarView: () => (/* binding */ setCalendarView)
 /* harmony export */ });
+/* harmony import */ var _api_integration_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-integration.js */ "./src/api-integration.js");
+/* harmony import */ var _notifications_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notifications.js */ "./src/modules/notifications.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -15460,11 +20037,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 /**
  * Meeting Scheduling Module
  * Manages calendar events, reservations, and meeting bookings
+ * Now with backend integration and monthly/yearly views
  */
 
-// In-memory storage (replace with API calls for production)
+
+
+
+
+// In-memory storage (synced with backend)
 var meetings = [];
 var agentAvailability = {};
+var currentView = 'week'; // 'day', 'week', 'month', 'year'
 
 /**
  * Meeting data structure
@@ -15593,55 +20176,51 @@ function requestMeeting(_x) {
  */
 function _requestMeeting() {
   _requestMeeting = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(request) {
-    var agentId, agentName, clientId, clientName, clientEmail, startTime, endTime, type, notes, conflicting, meeting;
+    var agentId, agentName, clientId, clientName, clientEmail, startTime, endTime, type, notes, location, result, _t;
     return _regenerator().w(function (_context) {
-      while (1) switch (_context.n) {
+      while (1) switch (_context.p = _context.n) {
         case 0:
-          agentId = request.agentId, agentName = request.agentName, clientId = request.clientId, clientName = request.clientName, clientEmail = request.clientEmail, startTime = request.startTime, endTime = request.endTime, type = request.type, notes = request.notes; // Validate
-          if (!(!agentId || !clientId || !startTime || !endTime)) {
+          agentId = request.agentId, agentName = request.agentName, clientId = request.clientId, clientName = request.clientName, clientEmail = request.clientEmail, startTime = request.startTime, endTime = request.endTime, type = request.type, notes = request.notes, location = request.location; // Validate
+          if (!(!startTime || !endTime || !clientEmail)) {
             _context.n = 1;
             break;
           }
           throw new Error('Missing required fields');
         case 1:
-          // Check for conflicts
-          conflicting = meetings.find(function (m) {
-            return m.agentId === agentId && m.status !== 'cancelled' && new Date(m.startTime) < new Date(endTime) && new Date(m.endTime) > new Date(startTime);
-          });
-          if (!conflicting) {
-            _context.n = 2;
-            break;
-          }
-          throw new Error('Agent has a conflict at that time');
-        case 2:
-          meeting = {
-            id: "mtg_".concat(Date.now(), "_").concat(Math.random().toString(36).substr(2, 9)),
-            agentId: agentId,
-            agentName: agentName,
-            clientId: clientId,
-            clientName: clientName,
-            clientEmail: clientEmail,
-            startTime: new Date(startTime),
-            endTime: new Date(endTime),
-            type: type || 'consultation',
-            status: 'requested',
-            notes: notes || '',
-            confirmations: {
-              agent: false,
-              client: false
-            },
-            reminders: {
-              agent: '24h',
-              client: '24h'
+          _context.p = 1;
+          _context.n = 2;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.CREATE_MEETING, {
+            method: 'POST',
+            body: {
+              title: type ? "".concat(type.charAt(0).toUpperCase() + type.slice(1), " - ").concat(clientName) : "Meeting with ".concat(clientName),
+              description: notes || '',
+              start_time: startTime,
+              end_time: endTime,
+              location: location || 'Virtual Meeting',
+              attendee_email: clientEmail,
+              attendee_name: clientName,
+              organizer_email: agentName ? 'agent@ksinsurancee.com' : 'admin@ksinsurancee.com',
+              organizer_name: agentName || 'Krause Insurance'
             }
-          };
-          meetings.push(meeting);
-
-          // Trigger notification to agent
-          scheduleReminder(meeting, 'agent');
-          return _context.a(2, meeting);
+          }, {
+            useCache: false
+          });
+        case 2:
+          result = _context.v;
+          _context.n = 3;
+          return loadMeetingsFromBackend();
+        case 3:
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Meeting created and invitation sent via email', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.SUCCESS);
+          return _context.a(2, result);
+        case 4:
+          _context.p = 4;
+          _t = _context.v;
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Failed to create meeting: ' + _t.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
+          throw _t;
+        case 5:
+          return _context.a(2);
       }
-    }, _callee);
+    }, _callee, null, [[1, 4]]);
   }));
   return _requestMeeting.apply(this, arguments);
 }
@@ -15844,6 +20423,157 @@ function getAvailableAgents(startTime, endTime) {
     });
     return !conflict;
   });
+}
+
+/**
+ * Load meetings from backend
+ */
+function loadMeetingsFromBackend() {
+  return _loadMeetingsFromBackend.apply(this, arguments);
+}
+
+/**
+ * Change calendar view
+ */
+function _loadMeetingsFromBackend() {
+  _loadMeetingsFromBackend = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+    var startDate,
+      endDate,
+      params,
+      result,
+      _args5 = arguments,
+      _t2;
+    return _regenerator().w(function (_context5) {
+      while (1) switch (_context5.p = _context5.n) {
+        case 0:
+          startDate = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : null;
+          endDate = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : null;
+          _context5.p = 1;
+          params = {};
+          if (startDate) params.start = startDate;
+          if (endDate) params.end = endDate;
+          _context5.n = 2;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.LIST_MEETINGS, {
+            method: 'GET',
+            queryParams: params
+          });
+        case 2:
+          result = _context5.v;
+          meetings = result.map(function (m) {
+            return {
+              id: m.id,
+              agentId: m.user_id,
+              agentName: m.organizer_name || 'Krause Insurance',
+              clientId: m.attendee_id,
+              clientName: m.attendee_name,
+              clientEmail: m.attendee_email,
+              startTime: new Date(m.start_time),
+              endTime: new Date(m.end_time),
+              type: m.title.toLowerCase().includes('quote') ? 'quote' : 'consultation',
+              status: m.status,
+              notes: m.description || '',
+              location: m.location,
+              confirmations: {
+                agent: m.status !== 'pending',
+                client: m.status === 'confirmed'
+              },
+              reminders: {
+                agent: '24h',
+                client: '24h'
+              }
+            };
+          });
+          return _context5.a(2, meetings);
+        case 3:
+          _context5.p = 3;
+          _t2 = _context5.v;
+          console.error('Failed to load meetings:', _t2);
+          return _context5.a(2, []);
+      }
+    }, _callee5, null, [[1, 3]]);
+  }));
+  return _loadMeetingsFromBackend.apply(this, arguments);
+}
+function setCalendarView(view) {
+  if (['day', 'week', 'month', 'year'].includes(view)) {
+    currentView = view;
+    return currentView;
+  }
+  throw new Error('Invalid view. Use: day, week, month, or year');
+}
+
+/**
+ * Get current calendar view
+ */
+function getCalendarView() {
+  return currentView;
+}
+
+/**
+ * Get meetings for month view
+ */
+function getMonthMeetings(year, month) {
+  var firstDay = new Date(year, month, 1);
+  var lastDay = new Date(year, month + 1, 0);
+  return meetings.filter(function (m) {
+    var meetingDate = new Date(m.startTime);
+    return meetingDate >= firstDay && meetingDate <= lastDay;
+  }).sort(function (a, b) {
+    return new Date(a.startTime) - new Date(b.startTime);
+  });
+}
+
+/**
+ * Get meetings for year view (grouped by month)
+ */
+function getYearMeetings(year) {
+  var yearMeetings = {};
+  for (var month = 0; month < 12; month++) {
+    var monthName = new Date(year, month, 1).toLocaleString('es', {
+      month: 'long'
+    });
+    yearMeetings[monthName] = getMonthMeetings(year, month);
+  }
+  return yearMeetings;
+}
+
+/**
+ * Get meeting statistics for a period
+ */
+function getMeetingStats(startDate, endDate) {
+  var filtered = meetings.filter(function (m) {
+    var meetingDate = new Date(m.startTime);
+    return meetingDate >= new Date(startDate) && meetingDate <= new Date(endDate);
+  });
+  return {
+    total: filtered.length,
+    confirmed: filtered.filter(function (m) {
+      return m.status === 'confirmed';
+    }).length,
+    pending: filtered.filter(function (m) {
+      return m.status === 'pending';
+    }).length,
+    completed: filtered.filter(function (m) {
+      return m.status === 'completed';
+    }).length,
+    cancelled: filtered.filter(function (m) {
+      return m.status === 'cancelled';
+    }).length,
+    byType: {
+      quote: filtered.filter(function (m) {
+        return m.type === 'quote';
+      }).length,
+      consultation: filtered.filter(function (m) {
+        return m.type === 'consultation';
+      }).length,
+      renewal: filtered.filter(function (m) {
+        return m.type === 'renewal';
+      }).length,
+      support: filtered.filter(function (m) {
+        return m.type === 'support';
+      }).length
+    }
+  };
 }
 
 /**
@@ -16399,11 +21129,9 @@ function navigateTo(page, event) {
   }
   if (!page) page = 'home';
 
-  // Contact page restriction
-  if (page === _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.PAGES.CONTACT && !window.__allowContact) {
-    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_3__.showNotification)('La sección de Contacto sólo se abre desde el contacto con un agente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-    return;
-  }
+  // Contact page is now public - restriction removed
+  // Client communication happens through portal comments and notifications
+
   var shouldShowModal = PAGES_WITH_MODAL_LOADING.includes(page);
   if (shouldShowModal) {
     var loadingConfig = LOADING_MESSAGES[page] || {
@@ -16560,13 +21288,34 @@ function navigateTo(page, event) {
       }, _callee2, null, [[0, 2]]);
     })), 200);
   }
-
-  // Clear contact flag
-  if (page === _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.PAGES.CONTACT) {
-    setTimeout(function () {
-      window.__allowContact = false;
-    }, 500);
+  if (page === 'admin-dashboard' || page === _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.PAGES.ADMIN_DASHBOARD) {
+    setTimeout(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+      var _t3;
+      return _regenerator().w(function (_context3) {
+        while (1) switch (_context3.p = _context3.n) {
+          case 0:
+            _context3.p = 0;
+            if (!(window.appHandlers && typeof window.appHandlers.loadAdminDashboard === 'function')) {
+              _context3.n = 1;
+              break;
+            }
+            _context3.n = 1;
+            return window.appHandlers.loadAdminDashboard();
+          case 1:
+            _context3.n = 3;
+            break;
+          case 2:
+            _context3.p = 2;
+            _t3 = _context3.v;
+            console.warn('Could not load admin dashboard data:', _t3);
+          case 3:
+            return _context3.a(2);
+        }
+      }, _callee3, null, [[0, 2]]);
+    })), 200);
   }
+
+  // Contact page is now always accessible (no flag clearing needed)
 
   // Scroll to top
   window.scrollTo({
@@ -16618,15 +21367,15 @@ function initializeTemplates() {
  * Get current page
  */
 function _initializeTemplates() {
-  _initializeTemplates = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
-    return _regenerator().w(function (_context3) {
-      while (1) switch (_context3.n) {
+  _initializeTemplates = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
+    return _regenerator().w(function (_context4) {
+      while (1) switch (_context4.n) {
         case 0:
           console.log('[ROUTER] Templates already injected in index.html by webpack');
         case 1:
-          return _context3.a(2);
+          return _context4.a(2);
       }
-    }, _callee3);
+    }, _callee4);
   }));
   return _initializeTemplates.apply(this, arguments);
 }
@@ -17047,7 +21796,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /**
  * Scroll Collapse Handler for Dashboard Surfaces
- * Collapses hero-surface and dashboard-card elements when scrolling down
+ * Compatible con estrategia de SCROLL UNIVERSAL
+ * Escucha scroll en .dashboard-section (único scroll)
  */
 
 var lastScrollY = 0;
@@ -17055,22 +21805,26 @@ var SCROLL_THRESHOLD = 80;
 var COLLAPSE_CLASS = 'scrolled-collapsed';
 var scrollHandler = null;
 function initScrollCollapse() {
-  var mainWrapper = document.querySelector('.dashboard-stage');
-  if (!mainWrapper) {
+  // SCROLL UNIVERSAL: Escuchar en dashboard-section
+  var scrollContainer = document.querySelector('.dashboard-section');
+  if (!scrollContainer) {
     // Reintentar después de un delay si no existe aún
     setTimeout(initScrollCollapse, 200);
     return;
   }
   var heroSurface = document.querySelector('.hero-surface');
   var dashboardCards = document.querySelectorAll('.dashboard-card, .stat-card');
-  if (!heroSurface && dashboardCards.length === 0) return;
+  if (!heroSurface && dashboardCards.length === 0) {
+    console.warn('[scrollCollapse] No hay elementos para colapsar');
+    return;
+  }
 
   // Remover listener anterior si existe
   if (scrollHandler) {
-    mainWrapper.removeEventListener('scroll', scrollHandler);
+    scrollContainer.removeEventListener('scroll', scrollHandler);
   }
   scrollHandler = function scrollHandler() {
-    var currentScrollY = mainWrapper.scrollTop;
+    var currentScrollY = scrollContainer.scrollTop;
     var isScrollingDown = currentScrollY > lastScrollY;
     var hasScrolledEnough = currentScrollY > SCROLL_THRESHOLD;
     if (isScrollingDown && hasScrolledEnough) {
@@ -17092,9 +21846,10 @@ function initScrollCollapse() {
     }
     lastScrollY = currentScrollY;
   };
-  mainWrapper.addEventListener('scroll', scrollHandler, {
+  scrollContainer.addEventListener('scroll', scrollHandler, {
     passive: true
   });
+  console.log('[scrollCollapse] Inicializado en .dashboard-section (scroll universal)');
 }
 
 
@@ -17715,6 +22470,58 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./styles/notification-modal.css":
+/*!***************************************!*\
+  !*** ./styles/notification-modal.css ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_notification_modal_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./notification-modal.css */ "./node_modules/css-loader/dist/cjs.js!./styles/notification-modal.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_notification_modal_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_notification_modal_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_notification_modal_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_notification_modal_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
 /***/ "./styles/notifications.css":
 /*!**********************************!*\
   !*** ./styles/notifications.css ***!
@@ -18027,6 +22834,58 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./styles/payments.css":
+/*!*****************************!*\
+  !*** ./styles/payments.css ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_payments_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./payments.css */ "./node_modules/css-loader/dist/cjs.js!./styles/payments.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_payments_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_payments_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_payments_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_payments_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
 /***/ "./styles/scheduling.css":
 /*!*******************************!*\
   !*** ./styles/scheduling.css ***!
@@ -18075,6 +22934,58 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_scheduling_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_scheduling_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_scheduling_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./styles/scroll-modal-fixes.css":
+/*!***************************************!*\
+  !*** ./styles/scroll-modal-fixes.css ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./scroll-modal-fixes.css */ "./node_modules/css-loader/dist/cjs.js!./styles/scroll-modal-fixes.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ })
@@ -18327,40 +23238,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_acrylic_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../styles/acrylic.css */ "./styles/acrylic.css");
 /* harmony import */ var _styles_auth_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/auth.css */ "./styles/auth.css");
 /* harmony import */ var _styles_notifications_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../styles/notifications.css */ "./styles/notifications.css");
-/* harmony import */ var _styles_pages_home_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../styles/pages/home.css */ "./styles/pages/home.css");
-/* harmony import */ var _styles_pages_services_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../styles/pages/services.css */ "./styles/pages/services.css");
-/* harmony import */ var _styles_pages_quote_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../styles/pages/quote.css */ "./styles/pages/quote.css");
-/* harmony import */ var _styles_pages_about_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../styles/pages/about.css */ "./styles/pages/about.css");
-/* harmony import */ var _styles_pages_contact_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../styles/pages/contact.css */ "./styles/pages/contact.css");
-/* harmony import */ var _styles_dashboards_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../styles/dashboards.css */ "./styles/dashboards.css");
-/* harmony import */ var _styles_dashboards_client_dashboard_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../styles/dashboards/client-dashboard.css */ "./styles/dashboards/client-dashboard.css");
-/* harmony import */ var _styles_dashboards_agent_dashboard_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../styles/dashboards/agent-dashboard.css */ "./styles/dashboards/agent-dashboard.css");
-/* harmony import */ var _styles_dashboards_admin_dashboard_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../styles/dashboards/admin-dashboard.css */ "./styles/dashboards/admin-dashboard.css");
-/* harmony import */ var _styles_dashboard_components_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../styles/dashboard-components.css */ "./styles/dashboard-components.css");
-/* harmony import */ var _styles_chart_modals_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../styles/chart-modals.css */ "./styles/chart-modals.css");
-/* harmony import */ var _styles_scheduling_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../styles/scheduling.css */ "./styles/scheduling.css");
-/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../styles/app.css */ "./styles/app.css");
-/* harmony import */ var _styles_dark_forest_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../styles/dark-forest.css */ "./styles/dark-forest.css");
-/* harmony import */ var _modules_particles_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../modules/particles.js */ "./src/modules/particles.js");
-/* harmony import */ var _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../modules/simpleRouter.js */ "./src/modules/simpleRouter.js");
-/* harmony import */ var _modules_auth_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../modules/auth.js */ "./src/modules/auth.js");
-/* harmony import */ var _modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../modules/loadingModal.js */ "./src/modules/loadingModal.js");
-/* harmony import */ var _modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../modules/notifications.js */ "./src/modules/notifications.js");
-/* harmony import */ var _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../modules/homeAnimations.js */ "./src/modules/homeAnimations.js");
-/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./state.js */ "./src/core/state.js");
-/* harmony import */ var _modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../modules/quoteFlow.js */ "./src/modules/quoteFlow.js");
-/* harmony import */ var _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../modules/scheduling.js */ "./src/modules/scheduling.js");
-/* harmony import */ var _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../modules/contactsManager.js */ "./src/modules/contactsManager.js");
-/* harmony import */ var _utils_logo_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../utils/logo.js */ "./src/utils/logo.js");
-/* harmony import */ var _utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../utils/scrollCollapse.js */ "./src/utils/scrollCollapse.js");
-/* harmony import */ var _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../modules/chartModals.js */ "./src/modules/chartModals.js");
+/* harmony import */ var _styles_notification_modal_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../styles/notification-modal.css */ "./styles/notification-modal.css");
+/* harmony import */ var _styles_pages_home_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../styles/pages/home.css */ "./styles/pages/home.css");
+/* harmony import */ var _styles_pages_services_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../styles/pages/services.css */ "./styles/pages/services.css");
+/* harmony import */ var _styles_pages_quote_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../styles/pages/quote.css */ "./styles/pages/quote.css");
+/* harmony import */ var _styles_pages_about_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../styles/pages/about.css */ "./styles/pages/about.css");
+/* harmony import */ var _styles_pages_contact_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../styles/pages/contact.css */ "./styles/pages/contact.css");
+/* harmony import */ var _styles_dashboards_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../styles/dashboards.css */ "./styles/dashboards.css");
+/* harmony import */ var _styles_dashboards_client_dashboard_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../styles/dashboards/client-dashboard.css */ "./styles/dashboards/client-dashboard.css");
+/* harmony import */ var _styles_dashboards_agent_dashboard_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../styles/dashboards/agent-dashboard.css */ "./styles/dashboards/agent-dashboard.css");
+/* harmony import */ var _styles_dashboards_admin_dashboard_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../styles/dashboards/admin-dashboard.css */ "./styles/dashboards/admin-dashboard.css");
+/* harmony import */ var _styles_dashboard_components_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../styles/dashboard-components.css */ "./styles/dashboard-components.css");
+/* harmony import */ var _styles_chart_modals_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../styles/chart-modals.css */ "./styles/chart-modals.css");
+/* harmony import */ var _styles_scheduling_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../styles/scheduling.css */ "./styles/scheduling.css");
+/* harmony import */ var _styles_payments_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../styles/payments.css */ "./styles/payments.css");
+/* harmony import */ var _styles_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../styles/scroll-modal-fixes.css */ "./styles/scroll-modal-fixes.css");
+/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../styles/app.css */ "./styles/app.css");
+/* harmony import */ var _styles_dark_forest_css__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../styles/dark-forest.css */ "./styles/dark-forest.css");
+/* harmony import */ var _modules_particles_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../modules/particles.js */ "./src/modules/particles.js");
+/* harmony import */ var _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../modules/simpleRouter.js */ "./src/modules/simpleRouter.js");
+/* harmony import */ var _modules_auth_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../modules/auth.js */ "./src/modules/auth.js");
+/* harmony import */ var _modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../modules/loadingModal.js */ "./src/modules/loadingModal.js");
+/* harmony import */ var _modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../modules/notifications.js */ "./src/modules/notifications.js");
+/* harmony import */ var _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../modules/homeAnimations.js */ "./src/modules/homeAnimations.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
+/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./state.js */ "./src/core/state.js");
+/* harmony import */ var _modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../modules/quoteFlow.js */ "./src/modules/quoteFlow.js");
+/* harmony import */ var _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../modules/scheduling.js */ "./src/modules/scheduling.js");
+/* harmony import */ var _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../modules/contactsManager.js */ "./src/modules/contactsManager.js");
+/* harmony import */ var _utils_logo_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../utils/logo.js */ "./src/utils/logo.js");
+/* harmony import */ var _utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../utils/scrollCollapse.js */ "./src/utils/scrollCollapse.js");
+/* harmony import */ var _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../modules/chartModals.js */ "./src/modules/chartModals.js");
+/* harmony import */ var _modules_notificationModal_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../modules/notificationModal.js */ "./src/modules/notificationModal.js");
+/* harmony import */ var _modules_paymentIntegration_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ../modules/paymentIntegration.js */ "./src/modules/paymentIntegration.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -18370,6 +23287,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 
 
+ // NEW: Sistema de notificaciones modal
 
 
 
@@ -18382,6 +23300,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
  // Chart modal styles
  // Calendar & scheduling styles
+ // NEW: Sistema de pagos
+ // NEW: Fixes de scroll y modales
  // Base styles
  // Theme overrides MUST load last
 
@@ -18401,12 +23321,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 
 
+// NEW: Import payment and notification systems
+
+
+
 // API service and dashboard loaders - loaded dynamically when needed
 var apiService = null;
 var API_CONFIG = null;
 var apiAvailable = false;
 var loadAgentDashboard = null;
 var loadClientDashboard = null;
+var loadAdminDashboard = null;
 var loadClientDetailsData = null;
 
 // Initialize API and dashboard loaders
@@ -18417,7 +23342,7 @@ _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
       case 0:
         _context2.p = 0;
         _context2.n = 1;
-        return __webpack_require__.e(/*! import() */ "src_api-integration_js").then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js"));
+        return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js"));
       case 1:
         apiModule = _context2.v;
         apiService = apiModule.apiService;
@@ -18432,11 +23357,12 @@ _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
       case 3:
         _context2.p = 3;
         _context2.n = 4;
-        return Promise.all(/*! import() */[__webpack_require__.e("src_api-integration_js"), __webpack_require__.e("src_modules_dashboardLoaders_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../modules/dashboardLoaders.js */ "./src/modules/dashboardLoaders.js"));
+        return __webpack_require__.e(/*! import() */ "src_modules_dashboardLoaders_js").then(__webpack_require__.bind(__webpack_require__, /*! ../modules/dashboardLoaders.js */ "./src/modules/dashboardLoaders.js"));
       case 4:
         dashboardModule = _context2.v;
         loadAgentDashboard = dashboardModule.loadAgentDashboard;
         loadClientDashboard = dashboardModule.loadClientDashboard;
+        loadAdminDashboard = dashboardModule.loadAdminDashboard;
         loadClientDetailsData = dashboardModule.loadClientDetails;
         _context2.n = 6;
         break;
@@ -18451,6 +23377,9 @@ _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
         loadClientDashboard = function loadClientDashboard() {
           var container = document.querySelector('.policies-list');
           if (container) container.innerHTML = '<p class="empty-state">Modo demo - sin datos del backend</p>';
+        };
+        loadAdminDashboard = function loadAdminDashboard() {
+          console.log('Admin dashboard - stub mode');
         };
         loadClientDetailsData = /*#__PURE__*/function () {
           var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
@@ -18477,11 +23406,11 @@ _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
 
 // Expose handlers globally for onclick handlers in templates
 window.appHandlers = {
-  navigateTo: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo,
-  toggleMobileMenu: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.toggleMobileMenu,
-  toggleFooter: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.toggleFooter,
-  skipToFinalState: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_22__.skipToFinalState,
-  showHomeSection: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_22__.showHomeSection,
+  navigateTo: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo,
+  toggleMobileMenu: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.toggleMobileMenu,
+  toggleFooter: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.toggleFooter,
+  skipToFinalState: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_25__.skipToFinalState,
+  showHomeSection: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_25__.showHomeSection,
   handleClientLogin: handleClientLogin,
   handleAgentLogin: handleAgentLogin,
   handleContactSubmit: handleContactSubmit,
@@ -18513,17 +23442,18 @@ window.appHandlers = {
   // New dashboard data loaders
   loadAgentDashboard: loadAgentDashboard,
   loadClientDashboard: loadClientDashboard,
+  loadAdminDashboard: loadAdminDashboard,
   refreshDashboard: refreshDashboard,
   // Chart modals
-  openPaymentTrendsModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_30__.openPaymentTrendsModal,
-  openPolicyHealthModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_30__.openPolicyHealthModal,
-  closeChartModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_30__.closeChartModal
+  openPaymentTrendsModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_33__.openPaymentTrendsModal,
+  openPolicyHealthModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_33__.openPolicyHealthModal,
+  closeChartModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_33__.closeChartModal
 };
 
 // Also expose common helpers as globals for legacy inline onclicks
-window.navigateTo = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo;
-window.toggleMobileMenu = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.toggleMobileMenu;
-window.toggleFooter = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.toggleFooter;
+window.navigateTo = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo;
+window.toggleMobileMenu = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.toggleMobileMenu;
+window.toggleFooter = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.toggleFooter;
 window.handleContactSubmit = handleContactSubmit;
 window.handleClientLogin = handleClientLogin;
 window.handleAgentLogin = handleAgentLogin;
@@ -18534,7 +23464,7 @@ window.logout = handleLogout;
 window.scheduleAppointment = scheduleAppointment;
 window.viewAgentDirectory = viewAgentDirectory;
 // Expose notification helper for quick console testing / legacy inline calls
-window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification;
+window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification;
 function delay(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
@@ -18544,7 +23474,7 @@ function delay(ms) {
 // Form handlers
 function handleContactSubmit(e) {
   e.preventDefault();
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Mensaje enviado exitosamente. Te contactaremos pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Mensaje enviado exitosamente. Te contactaremos pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
   e.target.reset();
 }
 function _handleClientLoginAsync(_x) {
@@ -18558,22 +23488,22 @@ function _handleClientLoginAsync2() {
         case 0:
           email = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.showLoading)('Autenticando cliente', 'Verificando credenciales', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Autenticando cliente', 'Verificando credenciales', true);
           _context3.n = 1;
           return delay(200);
         case 1:
           _context3.n = 2;
-          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_19__.login)({
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_22__.login)({
             email: email,
             password: password
           }, 'client');
         case 2:
           user = _context3.v;
           if (user) {
-            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo)('client-dashboard');
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(250);
+            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)('client-dashboard');
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(250);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
           }
         case 3:
           return _context3.a(2);
@@ -18586,7 +23516,7 @@ function handleClientLogin(e) {
   e.preventDefault();
   _handleClientLoginAsync(e)["catch"](function (err) {
     console.error('Client login error:', err);
-    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(150);
+    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
   });
   return false;
 }
@@ -18601,7 +23531,7 @@ function _handleAgentLoginAsync2() {
         case 0:
           agentId = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.showLoading)('Autenticando agente', 'Verificando credenciales', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Autenticando agente', 'Verificando credenciales', true);
           _context4.n = 1;
           return delay(200);
         case 1:
@@ -18615,22 +23545,22 @@ function _handleAgentLoginAsync2() {
             loggedAt: Date.now()
           }));
           // Use a relative URL so it works both locally and under a subpath (e.g. /memo/ on GitHub Pages)
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
           window.location.href = 'admin.html';
           return _context4.a(2);
         case 2:
           _context4.n = 3;
-          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_19__.login)({
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_22__.login)({
             agentId: agentId,
             password: password
           }, 'agent');
         case 3:
           user = _context4.v;
           if (user) {
-            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo)('agent-dashboard');
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(250);
+            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)('agent-dashboard');
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(250);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
           }
         case 4:
           return _context4.a(2);
@@ -18643,41 +23573,41 @@ function handleAgentLogin(e) {
   e.preventDefault();
   _handleAgentLoginAsync(e)["catch"](function (err) {
     console.error('Agent login error:', err);
-    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(150);
+    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
   });
   return false;
 }
 function handleLogout() {
-  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.showLoading)('Cerrando sesión', 'Limpiando sesión');
-  (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_19__.logout)();
+  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Cerrando sesión', 'Limpiando sesión');
+  (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_22__.logout)();
   try {
     localStorage.removeItem('krause_admin');
   } catch (e) {
     // Non-fatal cleanup
   }
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.PAGES.HOME);
-  (0,_modules_particles_js__WEBPACK_IMPORTED_MODULE_17__.startParticles)();
-  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(200);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.HOME);
+  (0,_modules_particles_js__WEBPACK_IMPORTED_MODULE_20__.startParticles)();
+  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(200);
 }
 
 // Dashboard placeholder functions
 function viewPolicy(policyId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)("Mostrando detalles de p\xF3liza ".concat(policyId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Mostrando detalles de p\xF3liza ".concat(policyId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function makePayment() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Redirigiendo a pasarela de pago...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Redirigiendo a pasarela de pago...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function fileClaim() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Abriendo formulario de siniestros...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo formulario de siniestros...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function updateInfo() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Abriendo formulario de actualización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo formulario de actualización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function contactAgent() {
   // Allow navigation to contact page when triggered from an agent action
   window.__allowContact = true;
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Abriendo chat con agente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo)('contact');
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo chat con agente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)('contact');
   // Clear temporary flag shortly after navigation
   setTimeout(function () {
     window.__allowContact = false;
@@ -18688,11 +23618,11 @@ function refreshDashboard() {
 }
 function _refreshDashboard() {
   _refreshDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
-    var user, isAgent, message, _t3;
+    var user, isAgent, isAdmin, message, _t3;
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_24__.getUser)();
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_27__.getUser)();
           if (user) {
             _context6.n = 1;
             break;
@@ -18700,34 +23630,45 @@ function _refreshDashboard() {
           return _context6.a(2);
         case 1:
           isAgent = user.type === 'agent';
-          message = isAgent ? 'Actualizando panel de agente' : 'Actualizando panel de cliente';
+          isAdmin = user.type === 'admin';
+          message = isAdmin ? 'Actualizando panel de administración' : isAgent ? 'Actualizando panel de agente' : 'Actualizando panel de cliente';
           document.body.classList.add('skeleton-mode');
           _context6.p = 2;
           _context6.n = 3;
-          return (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.withLoading)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+          return (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.withLoading)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
             return _regenerator().w(function (_context5) {
               while (1) switch (_context5.n) {
                 case 0:
-                  if (!(isAgent && loadAgentDashboard)) {
+                  if (!(isAdmin && loadAdminDashboard)) {
                     _context5.n = 2;
                     break;
                   }
                   _context5.n = 1;
-                  return loadAgentDashboard();
+                  return loadAdminDashboard();
                 case 1:
-                  _context5.n = 3;
+                  _context5.n = 5;
                   break;
                 case 2:
-                  if (!(!isAgent && loadClientDashboard)) {
-                    _context5.n = 3;
+                  if (!(isAgent && loadAgentDashboard)) {
+                    _context5.n = 4;
                     break;
                   }
                   _context5.n = 3;
-                  return loadClientDashboard();
+                  return loadAgentDashboard();
                 case 3:
-                  _context5.n = 4;
-                  return delay(200);
+                  _context5.n = 5;
+                  break;
                 case 4:
+                  if (!(!isAgent && loadClientDashboard)) {
+                    _context5.n = 5;
+                    break;
+                  }
+                  _context5.n = 5;
+                  return loadClientDashboard();
+                case 5:
+                  _context5.n = 6;
+                  return delay(200);
+                case 6:
                   return _context5.a(2);
               }
             }, _callee5);
@@ -18737,14 +23678,14 @@ function _refreshDashboard() {
             minDelay: 420
           });
         case 3:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Datos actualizados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Datos actualizados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
           _context6.n = 5;
           break;
         case 4:
           _context6.p = 4;
           _t3 = _context6.v;
           console.warn('Could not refresh dashboard:', _t3);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
         case 5:
           _context6.p = 5;
           document.body.classList.remove('skeleton-mode');
@@ -18769,11 +23710,11 @@ function _viewClientDetails() {
             _context7.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Detalles no disponibles en modo demo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Detalles no disponibles en modo demo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
           return _context7.a(2);
         case 1:
           _context7.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
           _context7.n = 2;
           return loadClientDetailsData(clientId);
         case 2:
@@ -18786,7 +23727,7 @@ function _viewClientDetails() {
         case 3:
           _context7.p = 3;
           _t4 = _context7.v;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context7.a(2);
       }
@@ -18811,26 +23752,26 @@ function showClientDetailsModal(data) {
   });
 }
 function downloadPaymentHistory() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Descargando historial...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Descargando historial...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function openQuoteModal(type) {
   var normalized = (type || 'auto').toLowerCase();
-  (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_25__.setPendingQuoteType)(normalized);
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.PAGES.QUOTE);
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)("Preparando formulario para seguro de ".concat(normalized), _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.setPendingQuoteType)(normalized);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.QUOTE);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Preparando formulario para seguro de ".concat(normalized), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function addNewClient() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Abriendo formulario de nuevo cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo formulario de nuevo cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function editClient(clientId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)("Editando cliente ".concat(clientId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Editando cliente ".concat(clientId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function processQuote(quoteId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)("Procesando cotizaci\xF3n ".concat(quoteId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Procesando cotizaci\xF3n ".concat(quoteId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function createQuote() {
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.PAGES.QUOTE);
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Creando nueva cotización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.QUOTE);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Creando nueva cotización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function submitQuote(_x4) {
   return _submitQuote.apply(this, arguments);
@@ -18862,21 +23803,21 @@ function _submitQuote() {
             _context8.n = 2;
             break;
           }
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.showLoading)('Procesando cotización', 'Calculando cobertura y prima', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Procesando cotización', 'Calculando cobertura y prima', true);
           _context8.n = 1;
           return delay(800);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(200);
-          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_25__.notifyQuoteSuccess)(label);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(200);
+          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.notifyQuoteSuccess)(label);
           form.reset();
           hiddenType = form.querySelector('input[name="quoteType"]');
           if (hiddenType) hiddenType.value = quoteType;
-          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_25__.setPendingQuoteType)(quoteType);
+          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.setPendingQuoteType)(quoteType);
           return _context8.a(2);
         case 2:
           _context8.p = 2;
           // Send quote request to API
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.showLoading)('Enviando cotización', 'Procesando solicitud', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Enviando cotización', 'Procesando solicitud', true);
           _context8.n = 3;
           return apiService.request(API_CONFIG.ENDPOINTS.REQUEST_QUOTE, {
             method: 'POST',
@@ -18894,14 +23835,14 @@ function _submitQuote() {
         case 3:
           response = _context8.v;
           if (response.success) {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(200);
-            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_25__.notifyQuoteSuccess)(label);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(200);
+            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.notifyQuoteSuccess)(label);
             form.reset();
             _hiddenType = form.querySelector('input[name="quoteType"]');
             if (_hiddenType) _hiddenType.value = quoteType;
-            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_25__.setPendingQuoteType)(quoteType);
+            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_28__.setPendingQuoteType)(quoteType);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
           }
           _context8.n = 5;
           break;
@@ -18909,8 +23850,8 @@ function _submitQuote() {
           _context8.p = 4;
           _t5 = _context8.v;
           console.error('Quote submission error:', _t5);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(150);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Error al enviar cotización. Por favor intenta de nuevo.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al enviar cotización. Por favor intenta de nuevo.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context8.a(2);
       }
@@ -18919,16 +23860,16 @@ function _submitQuote() {
   return _submitQuote.apply(this, arguments);
 }
 function processRenewal() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Abriendo renovaciones pendientes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Abriendo renovaciones pendientes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function viewReports() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Generando reportes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Generando reportes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 function completeTask(taskId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Tarea completada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Tarea completada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
 }
 function viewCommissionDetails() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Mostrando detalle de comisiones...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Mostrando detalle de comisiones...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 
 // --- Agent dashboard wiring ---
@@ -18945,11 +23886,11 @@ function _assignClaimToAgent() {
             _context9.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Siniestro asignado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Siniestro asignado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
           return _context9.a(2);
         case 1:
           _context9.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Asignando siniestro y notificando...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Asignando siniestro y notificando...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
           _context9.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.ASSIGN_CLAIM, {
             method: 'POST',
@@ -18976,14 +23917,14 @@ function _assignClaimToAgent() {
             useCache: false
           });
         case 3:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Siniestro asignado y notificación enviada.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Siniestro asignado y notificación enviada.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
           _context9.n = 5;
           break;
         case 4:
           _context9.p = 4;
           _t6 = _context9.v;
           console.error('Assign claim failed', _t6);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Error al asignar o notificar el siniestro.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al asignar o notificar el siniestro.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context9.a(2);
       }
@@ -19007,11 +23948,11 @@ function _sendQuestionnaire() {
             _context0.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Cuestionario enviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario enviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
           return _context0.a(2);
         case 1:
           _context0.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Enviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Enviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
           _context0.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.SEND_QUESTIONNAIRE, {
             method: 'POST',
@@ -19022,14 +23963,14 @@ function _sendQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Cuestionario enviado al cliente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario enviado al cliente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
           _context0.n = 4;
           break;
         case 3:
           _context0.p = 3;
           _t7 = _context0.v;
           console.error('Send questionnaire failed', _t7);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('No se pudo enviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('No se pudo enviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context0.a(2);
       }
@@ -19050,11 +23991,11 @@ function _resendQuestionnaire() {
             _context1.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Cuestionario reenviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario reenviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
           return _context1.a(2);
         case 1:
           _context1.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Reenviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Reenviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
           _context1.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.RESEND_QUESTIONNAIRE, {
             method: 'POST',
@@ -19065,14 +24006,14 @@ function _resendQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Cuestionario reenviado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario reenviado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
           _context1.n = 4;
           break;
         case 3:
           _context1.p = 3;
           _t8 = _context1.v;
           console.error('Resend questionnaire failed', _t8);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('No se pudo reenviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('No se pudo reenviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context1.a(2);
       }
@@ -19093,11 +24034,11 @@ function _completeQuestionnaire() {
             _context10.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Cuestionario completado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario completado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
           return _context10.a(2);
         case 1:
           _context10.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Marcando cuestionario como completado...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Marcando cuestionario como completado...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
           _context10.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.COMPLETE_QUESTIONNAIRE, {
             method: 'POST',
@@ -19108,14 +24049,14 @@ function _completeQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Cuestionario completado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Cuestionario completado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
           _context10.n = 4;
           break;
         case 3:
           _context10.p = 3;
           _t9 = _context10.v;
           console.error('Complete questionnaire failed', _t9);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('No se pudo completar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('No se pudo completar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context10.a(2);
       }
@@ -19131,7 +24072,7 @@ function _reviewQuestionnaire() {
     return _regenerator().w(function (_context11) {
       while (1) switch (_context11.n) {
         case 0:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)("Abriendo revisi\xF3n del cuestionario ".concat(id, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Abriendo revisi\xF3n del cuestionario ".concat(id, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
         case 1:
           return _context11.a(2);
       }
@@ -19148,7 +24089,7 @@ function _openSupport() {
     return _regenerator().w(function (_context12) {
       while (1) switch (_context12.p = _context12.n) {
         case 0:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)("Abriendo caso de soporte (".concat(type, ")..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Abriendo caso de soporte (".concat(type, ")..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
             _context12.n = 1;
             break;
@@ -19182,7 +24123,7 @@ function _openSupport() {
   return _openSupport.apply(this, arguments);
 }
 function showAgentRegistration() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Contacta al administrador para solicitar acceso como agente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Contacta al administrador para solicitar acceso como agente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
 }
 
 // ========== SCHEDULING HANDLERS ==========
@@ -19195,31 +24136,31 @@ function _scheduleAppointment() {
     return _regenerator().w(function (_context13) {
       while (1) switch (_context13.p = _context13.n) {
         case 0:
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_24__.getUser)();
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_27__.getUser)();
           if (user) {
             _context13.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Debes iniciar sesión para agendar citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Debes iniciar sesión para agendar citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
           return _context13.a(2);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.showLoading)('Cargando calendario', 'Buscando agentes disponibles', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Cargando calendario', 'Buscando agentes disponibles', true);
           _context13.n = 2;
           return delay(300);
         case 2:
           _context13.p = 2;
-          availableAgents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_27__.getAgents({
+          availableAgents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_30__.getAgents({
             status: 'available'
           });
           if (!(availableAgents.length === 0)) {
             _context13.n = 3;
             break;
           }
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('No hay agentes disponibles en este momento', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.WARNING);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('No hay agentes disponibles en este momento', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.WARNING);
           return _context13.a(2);
         case 3:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
           openSchedulingModal(availableAgents);
           _context13.n = 5;
           break;
@@ -19227,8 +24168,8 @@ function _scheduleAppointment() {
           _context13.p = 4;
           _t1 = _context13.v;
           console.error('Error loading agents:', _t1);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Error al cargar agentes disponibles', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al cargar agentes disponibles', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context13.a(2);
       }
@@ -19267,18 +24208,18 @@ function _confirmSchedulingSubmit() {
             _context14.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Por favor completa todos los campos requeridos', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.WARNING);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Por favor completa todos los campos requeridos', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.WARNING);
           return _context14.a(2);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.showLoading)('Procesando solicitud', 'Solicitando cita con agente', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Procesando solicitud', 'Solicitando cita con agente', true);
           _context14.p = 2;
-          agent = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_27__.getAgentById(agentId);
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_24__.getUser)();
+          agent = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_30__.getAgentById(agentId);
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_27__.getUser)();
           _meetingTime$split = meetingTime.split(':'), _meetingTime$split2 = _slicedToArray(_meetingTime$split, 2), hours = _meetingTime$split2[0], minutes = _meetingTime$split2[1];
           startTime = new Date("".concat(meetingDate, "T").concat(meetingTime, ":00"));
           endTime = new Date(startTime.getTime() + 30 * 60000);
           _context14.n = 3;
-          return _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_26__.requestMeeting({
+          return _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_29__.requestMeeting({
             agentId: agentId,
             agentName: agent.name,
             clientId: user.id,
@@ -19294,17 +24235,17 @@ function _confirmSchedulingSubmit() {
           _context14.n = 4;
           return delay(400);
         case 4:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(150);
           (_document$querySelect2 = document.querySelector('.booking-modal')) === null || _document$querySelect2 === void 0 || _document$querySelect2.remove();
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)("Solicitud enviada a ".concat(agent.name, ". Te notificaremos cuando confirme."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Solicitud enviada a ".concat(agent.name, ". Te notificaremos cuando confirme."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.SUCCESS);
           _context14.n = 6;
           break;
         case 5:
           _context14.p = 5;
           _t10 = _context14.v;
           console.error('Scheduling error:', _t10);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Error al agendar la cita: ' + _t10.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al agendar la cita: ' + _t10.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
         case 6:
           return _context14.a(2);
       }
@@ -19321,18 +24262,18 @@ function _viewAgentDirectory() {
     return _regenerator().w(function (_context15) {
       while (1) switch (_context15.n) {
         case 0:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.showLoading)('Cargando directorio', 'Buscando agentes disponibles', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.showLoading)('Cargando directorio', 'Buscando agentes disponibles', true);
           _context15.n = 1;
           return delay(250);
         case 1:
           try {
-            agents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_27__.getAgents();
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(100);
+            agents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_30__.getAgents();
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
             openAgentDirectoryModal(agents);
           } catch (error) {
             console.error('Error loading agents:', error);
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_20__.hideLoading)(100);
-            (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Error al cargar directorio de agentes', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.ERROR);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_23__.hideLoading)(100);
+            (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Error al cargar directorio de agentes', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.ERROR);
           }
         case 2:
           return _context15.a(2);
@@ -19363,7 +24304,7 @@ function openAgentDirectoryModal(agents) {
 function handleAgentContact(agentId, agentName) {
   var _document$querySelect;
   (_document$querySelect = document.querySelector('.booking-modal')) === null || _document$querySelect === void 0 || _document$querySelect.remove();
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)("Iniciando contacto con ".concat(agentName, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)("Iniciando contacto con ".concat(agentName, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO);
   scheduleAppointment();
 }
 
@@ -19425,7 +24366,7 @@ document.addEventListener('DOMContentLoaded', function () {
   applyTheme(normalizedSaved || 'dark-forest');
 
   // Render all shared logo slots (navbar, footer, auth, etc.) with consistent sizing/contrast
-  (0,_utils_logo_js__WEBPACK_IMPORTED_MODULE_28__.renderAllLogos)();
+  (0,_utils_logo_js__WEBPACK_IMPORTED_MODULE_31__.renderAllLogos)();
 
   // Keep theme toggle on the header logo (stays consistent even with dynamic renders)
   var headerLogo = document.querySelector('.nav-brand .krause-shield');
@@ -19449,16 +24390,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // If a session exists, offer redirect or logout
   try {
-    var existingUser = (0,_state_js__WEBPACK_IMPORTED_MODULE_24__.getUser)();
+    var existingUser = (0,_state_js__WEBPACK_IMPORTED_MODULE_27__.getUser)();
     if (existingUser) {
-      (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_21__.showNotification)('Tienes una sesión activa. ¿Quieres ir a tu panel o cerrar sesión?', _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.NOTIFICATION_TYPES.INFO, {
+      (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_24__.showNotification)('Tienes una sesión activa. ¿Quieres ir a tu panel o cerrar sesión?', _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.NOTIFICATION_TYPES.INFO, {
         duration: 0
       });
       setTimeout(function () {
         var goToPanel = window.confirm('Sesión activa detectada. ¿Ir a tu panel ahora?');
         if (goToPanel) {
-          var target = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_19__.getRedirectPage)(existingUser) || _utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.PAGES.HOME;
-          (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo)(target);
+          var target = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_22__.getRedirectPage)(existingUser) || _utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.HOME;
+          (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(target);
           return;
         }
         var shouldLogout = window.confirm('¿Deseas cerrar sesión?');
@@ -19472,10 +24413,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Always land on Home (Inicio) first; keep session info for optional redirects later
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_18__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_23__.PAGES.HOME);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_21__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_26__.PAGES.HOME);
 
   // Initialize scroll collapse for dashboards (will retry if dashboard not loaded yet)
-  (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_29__.initScrollCollapse)();
+  (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_32__.initScrollCollapse)();
 
   // Re-initialize scroll collapse whenever page changes
   var originalNavigateTo = window.navigateTo;
@@ -19488,20 +24429,32 @@ document.addEventListener('DOMContentLoaded', function () {
       // Reinit scroll collapse after navigation completes
       setTimeout(function () {
         if (args[0] && args[0].includes('dashboard')) {
-          (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_29__.initScrollCollapse)();
+          (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_32__.initScrollCollapse)();
         }
       }, 300);
     };
   }
   console.log('🏛️ Krause Insurance App cargada correctamente (Modular)');
-  // Service worker disabled during testing
-  // if ('serviceWorker' in navigator) {
-  //   window.addEventListener('load', () => {
-  //     navigator.serviceWorker.register('/service-worker.js')
-  //       .then(reg => console.log('ServiceWorker registered with scope:', reg.scope))
-  //       .catch(err => console.warn('ServiceWorker registration failed:', err));
-  //   });
-  // }
+
+  // Service worker DESACTIVADO durante testing
+  // Desregistrar cualquier service worker existente para limpiar caché
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+      var _iterator = _createForOfIteratorHelper(registrations),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var registration = _step.value;
+          registration.unregister();
+          console.log('✅ Service Worker desregistrado durante testing');
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    });
+  }
 });
 })();
 

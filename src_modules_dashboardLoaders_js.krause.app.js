@@ -9,15 +9,17 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadAdminDashboard: () => (/* binding */ loadAdminDashboard),
 /* harmony export */   loadAgentClients: () => (/* binding */ loadAgentClients),
 /* harmony export */   loadAgentDashboard: () => (/* binding */ loadAgentDashboard),
-/* harmony export */   loadClaims: () => (/* binding */ loadClaims),
+/* harmony export */   loadClientClaims: () => (/* binding */ loadClientClaims),
 /* harmony export */   loadClientDashboard: () => (/* binding */ loadClientDashboard),
 /* harmony export */   loadClientDetails: () => (/* binding */ loadClientDetails),
 /* harmony export */   loadClientPolicies: () => (/* binding */ loadClientPolicies),
 /* harmony export */   loadDashboardStats: () => (/* binding */ loadDashboardStats),
 /* harmony export */   loadPaymentHistory: () => (/* binding */ loadPaymentHistory),
-/* harmony export */   loadQuotes: () => (/* binding */ loadQuotes)
+/* harmony export */   loadQuotes: () => (/* binding */ loadQuotes),
+/* harmony export */   updateUserNameInHeader: () => (/* binding */ updateUserNameInHeader)
 /* harmony export */ });
 /* harmony import */ var _api_integration_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-integration.js */ "./src/api-integration.js");
 /* harmony import */ var _notifications_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notifications.js */ "./src/modules/notifications.js");
@@ -38,6 +40,36 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 
 // ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+/**
+ * Update user name in dashboard hero header
+ * Gets user data from localStorage and updates the UI
+ */
+function updateUserNameInHeader() {
+  try {
+    var userStr = localStorage.getItem('krauser_user');
+    if (!userStr) return;
+    var user = JSON.parse(userStr);
+    var emailPart = user.email ? user.email.split('@')[0] : 'Usuario';
+    var userName = user.full_name || user.name || emailPart;
+
+    // Update all possible hero header selectors
+    var selectors = ['[data-hero-user]', '[data-user-name]', '[data-agent-name]', '[data-admin-name]'];
+    selectors.forEach(function (selector) {
+      var element = document.querySelector(selector);
+      if (element) {
+        element.textContent = userName;
+      }
+    });
+    console.log('✅ User name updated in header:', userName);
+  } catch (error) {
+    console.error('Error updating user name in header:', error);
+  }
+}
+
+// ============================================
 // AGENT DASHBOARD LOADERS
 // ============================================
 
@@ -46,28 +78,30 @@ function loadAgentDashboard() {
 }
 function _loadAgentDashboard() {
   _loadAgentDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-    var _yield$Promise$all, _yield$Promise$all2, clients, claims, stats, _t;
+    var dashboardData, _t;
     return _regenerator().w(function (_context) {
       while (1) switch (_context.p = _context.n) {
         case 0:
           _context.p = 0;
+          // Update user name in header first
+          updateUserNameInHeader();
+
+          // Load dashboard data from backend
           _context.n = 1;
-          return Promise.all([loadAgentClients(), loadClaims(), loadDashboardStats()]);
-        case 1:
-          _yield$Promise$all = _context.v;
-          _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 3);
-          clients = _yield$Promise$all2[0];
-          claims = _yield$Promise$all2[1];
-          stats = _yield$Promise$all2[2];
-          // Update UI
-          if (clients) renderAgentClients(clients);
-          if (claims) renderAgentClaims(claims);
-          if (stats) updateAgentStats(stats);
-          return _context.a(2, {
-            clients: clients,
-            claims: claims,
-            stats: stats
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.AGENT_DASHBOARD, {
+            method: 'GET'
+          }, {
+            cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.SHORT,
+            useCache: true
           });
+        case 1:
+          dashboardData = _context.v;
+          // Update UI with real data
+          if (dashboardData.stats) updateAgentStats(dashboardData.stats);
+          if (dashboardData.clients) renderAgentClients(dashboardData.clients);
+          if (dashboardData.claims) renderAgentClaims(dashboardData.claims);
+          console.log('✅ Agent dashboard loaded with real data');
+          return _context.a(2, dashboardData);
         case 2:
           _context.p = 2;
           _t = _context.v;
@@ -91,7 +125,7 @@ function _loadAgentClients() {
         case 0:
           _context2.p = 0;
           _context2.n = 1;
-          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.GET_CLIENTS, {
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.AGENT_CLIENTS, {
             method: 'GET'
           }, {
             cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.SHORT,
@@ -180,36 +214,55 @@ function loadClientDashboard() {
 }
 function _loadClientDashboard() {
   _loadClientDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
-    var _yield$Promise$all3, _yield$Promise$all4, policies, claims, payments, _t5;
+    var dashboardData, _yield$Promise$all, _yield$Promise$all2, policies, claims, payments, _t5;
     return _regenerator().w(function (_context5) {
       while (1) switch (_context5.p = _context5.n) {
         case 0:
           _context5.p = 0;
+          // Update user name in header first
+          updateUserNameInHeader();
+
+          // Load dashboard data from backend
           _context5.n = 1;
-          return Promise.all([loadClientPolicies(), loadClaims(), loadPaymentHistory()]);
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.CLIENT_DASHBOARD, {
+            method: 'GET'
+          }, {
+            cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.SHORT,
+            useCache: true
+          });
         case 1:
-          _yield$Promise$all3 = _context5.v;
-          _yield$Promise$all4 = _slicedToArray(_yield$Promise$all3, 3);
-          policies = _yield$Promise$all4[0];
-          claims = _yield$Promise$all4[1];
-          payments = _yield$Promise$all4[2];
+          dashboardData = _context5.v;
+          _context5.n = 2;
+          return Promise.all([loadClientPolicies(), loadClientClaims(), loadPaymentHistory()]);
+        case 2:
+          _yield$Promise$all = _context5.v;
+          _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 3);
+          policies = _yield$Promise$all2[0];
+          claims = _yield$Promise$all2[1];
+          payments = _yield$Promise$all2[2];
+          // Update stats from dashboard data
+          if (dashboardData.stats) updateClientStats(dashboardData.stats);
+
+          // Render lists
           if (policies) renderClientPolicies(policies);
           if (claims) renderClientClaims(claims);
           if (payments) renderPaymentHistory(payments);
+          console.log('✅ Client dashboard loaded with real data');
           return _context5.a(2, {
+            dashboardData: dashboardData,
             policies: policies,
             claims: claims,
             payments: payments
           });
-        case 2:
-          _context5.p = 2;
+        case 3:
+          _context5.p = 3;
           _t5 = _context5.v;
           console.error('Error loading client dashboard:', _t5);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
-        case 3:
+        case 4:
           return _context5.a(2);
       }
-    }, _callee5, null, [[0, 2]]);
+    }, _callee5, null, [[0, 3]]);
   }));
   return _loadClientDashboard.apply(this, arguments);
 }
@@ -224,7 +277,7 @@ function _loadClientPolicies() {
         case 0:
           _context6.p = 0;
           _context6.n = 1;
-          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.GET_USER_POLICIES, {
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.CLIENT_POLICIES, {
             method: 'GET'
           }, {
             cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.MEDIUM,
@@ -248,7 +301,7 @@ function loadPaymentHistory() {
 }
 
 // ============================================
-// SHARED LOADERS
+// ADMIN DASHBOARD LOADERS
 // ============================================
 function _loadPaymentHistory() {
   _loadPaymentHistory = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
@@ -258,7 +311,7 @@ function _loadPaymentHistory() {
         case 0:
           _context7.p = 0;
           _context7.n = 1;
-          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.GET_PAYMENT_HISTORY, {
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.CLIENT_PAYMENTS, {
             method: 'GET'
           }, {
             cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.MEDIUM,
@@ -277,35 +330,79 @@ function _loadPaymentHistory() {
   }));
   return _loadPaymentHistory.apply(this, arguments);
 }
-function loadClaims() {
-  return _loadClaims.apply(this, arguments);
+function loadAdminDashboard() {
+  return _loadAdminDashboard.apply(this, arguments);
 }
-function _loadClaims() {
-  _loadClaims = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
-    var claims, _t8;
+
+// ============================================
+// SHARED LOADERS
+// ============================================
+function _loadAdminDashboard() {
+  _loadAdminDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
+    var dashboardData, _t8;
     return _regenerator().w(function (_context8) {
       while (1) switch (_context8.p = _context8.n) {
         case 0:
           _context8.p = 0;
+          // Update user name in header first
+          updateUserNameInHeader();
+
+          // Load admin dashboard data from backend
           _context8.n = 1;
-          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.GET_CLAIMS, {
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.ADMIN_DASHBOARD, {
             method: 'GET'
           }, {
             cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.SHORT,
             useCache: true
           });
         case 1:
-          claims = _context8.v;
-          return _context8.a(2, claims);
+          dashboardData = _context8.v;
+          // Update UI with real data
+          if (dashboardData.stats) updateAdminStats(dashboardData.stats);
+          if (dashboardData.activity) renderAdminActivity(dashboardData.activity);
+          console.log('✅ Admin dashboard loaded with real data');
+          return _context8.a(2, dashboardData);
         case 2:
           _context8.p = 2;
           _t8 = _context8.v;
-          console.error('Error loading claims:', _t8);
-          return _context8.a(2, []);
+          console.error('Error loading admin dashboard:', _t8);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar dashboard de administración', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
+        case 3:
+          return _context8.a(2);
       }
     }, _callee8, null, [[0, 2]]);
   }));
-  return _loadClaims.apply(this, arguments);
+  return _loadAdminDashboard.apply(this, arguments);
+}
+function loadClientClaims() {
+  return _loadClientClaims.apply(this, arguments);
+}
+function _loadClientClaims() {
+  _loadClientClaims = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
+    var claims, _t9;
+    return _regenerator().w(function (_context9) {
+      while (1) switch (_context9.p = _context9.n) {
+        case 0:
+          _context9.p = 0;
+          _context9.n = 1;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.CLIENT_CLAIMS, {
+            method: 'GET'
+          }, {
+            cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.SHORT,
+            useCache: true
+          });
+        case 1:
+          claims = _context9.v;
+          return _context9.a(2, claims);
+        case 2:
+          _context9.p = 2;
+          _t9 = _context9.v;
+          console.error('Error loading claims:', _t9);
+          return _context9.a(2, []);
+      }
+    }, _callee9, null, [[0, 2]]);
+  }));
+  return _loadClientClaims.apply(this, arguments);
 }
 function loadDashboardStats() {
   return _loadDashboardStats.apply(this, arguments);
@@ -315,13 +412,13 @@ function loadDashboardStats() {
 // RENDERERS - AGENT
 // ============================================
 function _loadDashboardStats() {
-  _loadDashboardStats = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
-    var stats, _t9;
-    return _regenerator().w(function (_context9) {
-      while (1) switch (_context9.p = _context9.n) {
+  _loadDashboardStats = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
+    var stats, _t0;
+    return _regenerator().w(function (_context0) {
+      while (1) switch (_context0.p = _context0.n) {
         case 0:
-          _context9.p = 0;
-          _context9.n = 1;
+          _context0.p = 0;
+          _context0.n = 1;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.GET_DASHBOARD_STATS, {
             method: 'GET'
           }, {
@@ -329,15 +426,15 @@ function _loadDashboardStats() {
             useCache: true
           });
         case 1:
-          stats = _context9.v;
-          return _context9.a(2, stats);
+          stats = _context0.v;
+          return _context0.a(2, stats);
         case 2:
-          _context9.p = 2;
-          _t9 = _context9.v;
-          console.error('Error loading dashboard stats:', _t9);
-          return _context9.a(2, null);
+          _context0.p = 2;
+          _t0 = _context0.v;
+          console.error('Error loading dashboard stats:', _t0);
+          return _context0.a(2, null);
       }
-    }, _callee9, null, [[0, 2]]);
+    }, _callee0, null, [[0, 2]]);
   }));
   return _loadDashboardStats.apply(this, arguments);
 }
@@ -382,6 +479,28 @@ function updateAgentStats(stats) {
 // RENDERERS - CLIENT
 // ============================================
 
+function updateClientStats(stats) {
+  if (!stats) return;
+
+  // Update stat cards with real data from backend
+  var statsSelectors = {
+    '[data-stat-policies]': stats.active_policies || 0,
+    '[data-stat-claims]': stats.pending_claims || 0,
+    '[data-stat-payments]': stats.payment_status || 'current',
+    '[data-next-payment]': stats.next_payment_date ? new Date(stats.next_payment_date).toLocaleDateString() : 'N/A',
+    '[data-total-monthly]': stats.total_monthly ? "$".concat(parseFloat(stats.total_monthly).toFixed(2)) : '$0.00'
+  };
+  Object.entries(statsSelectors).forEach(function (_ref3) {
+    var _ref4 = _slicedToArray(_ref3, 2),
+      selector = _ref4[0],
+      value = _ref4[1];
+    var element = document.querySelector(selector);
+    if (element) {
+      element.textContent = value;
+    }
+  });
+  console.log('✅ Client stats updated:', stats);
+}
 function renderClientPolicies(policies) {
   var container = document.querySelector('.policies-list');
   if (!container || !policies || policies.length === 0) {
@@ -422,6 +541,48 @@ function renderPaymentHistory(payments) {
   }
   var html = payments.slice(0, 10).map(function (payment) {
     return "\n    <div class=\"payment-item\" data-payment-id=\"".concat(payment.id, "\">\n      <div class=\"payment-info\">\n        <p class=\"payment-date\">").concat(new Date(payment.payment_date).toLocaleDateString(), "</p>\n        <p class=\"payment-amount\">$").concat(parseFloat(payment.amount).toFixed(2), "</p>\n        <span class=\"badge badge-").concat(payment.status === 'completed' ? 'success' : 'warning', "\">\n          ").concat(payment.status, "\n        </span>\n      </div>\n    </div>\n  ");
+  }).join('');
+  container.innerHTML = html;
+}
+
+// ============================================
+// RENDERERS - ADMIN
+// ============================================
+
+function updateAdminStats(stats) {
+  if (!stats) return;
+
+  // Update admin stat cards with real data
+  var statsSelectors = {
+    '[data-stat-users]': (stats.users_client || 0) + (stats.users_agent || 0) + (stats.users_admin || 0),
+    '[data-stat-clients]': stats.users_client || 0,
+    '[data-stat-agents]': stats.users_agent || 0,
+    '[data-stat-policies]': stats.policies_active || 0,
+    '[data-stat-claims]': stats.pending_claims || 0,
+    '[data-stat-revenue]': stats.monthly_revenue ? "$".concat(parseFloat(stats.monthly_revenue).toLocaleString()) : '$0'
+  };
+  Object.entries(statsSelectors).forEach(function (_ref5) {
+    var _ref6 = _slicedToArray(_ref5, 2),
+      selector = _ref6[0],
+      value = _ref6[1];
+    var element = document.querySelector(selector);
+    if (element) {
+      element.textContent = value;
+    }
+  });
+  console.log('✅ Admin stats updated:', stats);
+}
+function renderAdminActivity(activities) {
+  var container = document.querySelector('[data-admin-activity]');
+  if (!container) return;
+  if (!activities || activities.length === 0) {
+    container.innerHTML = '<p class="empty-state">No hay actividad reciente</p>';
+    return;
+  }
+  var html = activities.map(function (activity) {
+    var icon = activity.type === 'policy' ? '📄' : '🔔';
+    var date = new Date(activity.timestamp).toLocaleDateString();
+    return "\n        <div class=\"activity-item\">\n            <div class=\"activity-icon\">".concat(icon, "</div>\n            <div class=\"activity-info\">\n                <p><strong>").concat(activity.user_name, "</strong> ").concat(activity.type === 'policy' ? 'creó una póliza' : 'presentó un reclamo', "</p>\n                <p class=\"activity-meta\">").concat(activity.type === 'policy' ? activity.policy_type : activity.claim_type, " - ").concat(activity.status, "</p>\n                <span class=\"activity-date\">").concat(date, "</span>\n            </div>\n        </div>\n        ");
   }).join('');
   container.innerHTML = html;
 }
