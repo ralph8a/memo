@@ -26,12 +26,16 @@
               </svg>
               <span class="dot"></span>
             </button>
-            <button class="icon-pill" aria-label="Mensajes" onclick="window.appHandlers?.contactAgent?.()">
+            <button class="icon-pill" aria-label="Direct Messages" onclick="window.directMessages?.openModal()" title="Mensajes directos con tu agente">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg>
+              <span class="badge-count" data-dm-badge style="display: none;">0</span>
             </button>
-            <span class="badge badge-accent ghost">Sesión segura</span>
+            <span class="badge badge-accent ghost" onclick="window.directMessages?.openModal()" style="cursor: pointer;" title="Mensajes directos">
+              Direct
+              <span class="badge-count" data-dm-badge style="display: none; margin-left: 4px;">0</span>
+            </span>
           </div>
         </div>
       </header>
@@ -347,20 +351,12 @@
       <aside class="dashboard-rail right-rail rail-surface">
             <div class="content-card compact calendar-card">
                 <div class="card-header-modern">
-                  <h3>Calendario</h3>
-                  <span class="card-badge">Semana</span>
+                  <h3>📅 Calendario de Pagos</h3>
+                  <span class="card-badge">Mes</span>
                 </div>
-                <div class="calendar-grid" aria-hidden="true">
-                  <div class="cal-day muted">Lun</div>
-                  <div class="cal-day">Mar</div>
-                  <div class="cal-day">Mié</div>
-                  <div class="cal-day">Jue</div>
-                  <div class="cal-day">Vie</div>
-                  <div class="cal-slot">09:00 - Llamada</div>
-                  <div class="cal-slot accent">11:00 - Renovación</div>
-                  <div class="cal-slot">14:00 - Consulta</div>
-                  <div class="cal-slot">16:30 - Pago</div>
-                  <div class="cal-slot muted">Libre</div>
+                <div class="calendar-grid" aria-hidden="false">
+                  <!-- Generado dinámicamente por paymentCalendar.js -->
+                  <p class="loading-state">Cargando calendario...</p>
                 </div>
               </div>
 

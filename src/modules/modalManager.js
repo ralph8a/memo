@@ -34,11 +34,6 @@ function createModal(title, content, actions = []) {
         </div>
     `;
 
-    // Close on outside click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
-
     // Close on ESC key
     const handleEscape = (e) => {
         if (e.key === 'Escape') {
@@ -512,11 +507,154 @@ function getClaimStatusLabel(status) {
     return labels[status] || status;
 }
 
-// Export modal functions
-export {
-    createModal,
-    openPolicyModal,
-    openFileClaimModal,
-    openClaimDetailsModal,
-    openMakePaymentModal
-};
+/**
+ * Make Payment Modal (Quick Action)
+ */
+export async function openMakePaymentActionModal(policyId = null, scheduleId = null) {
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay active';
+    modal.innerHTML = `
+        <div class="app-modal app-modal-md">
+            <div class="app-modal-header">
+                <h2 class="app-modal-title">Subir Comprobante de Pago</h2>
+                <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="app-modal-body">
+                <form id="makePaymentForm" class="payment-form" onsubmit="window.submitPaymentForm?.(event)" data-policy="${policyId || ''}" data-schedule="${scheduleId || ''}">
+                    <div class="form-group">
+                        <label for="payment-proof-file">Comprobante de pago</label>
+                        <input type="file" id="payment-proof-file" accept="image/*,.pdf" required>
+                        <small>Formatos aceptados: JPG, PNG, PDF (máx 5MB)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-reference">Referencia de pago (opcional)</label>
+                        <input type="text" id="payment-reference" placeholder="Número de referencia o folio">
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-notes">Notas adicionales (opcional)</label>
+                        <textarea id="payment-notes" rows="3" placeholder="Información adicional sobre el pago"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Subir comprobante</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+}
+
+/**
+ * File Claim Modal Quick Action
+ */
+export async function openFileClaimActionModal(policyId = null) {
+    const policies = await apiService.request(
+        API_CONFIG.ENDPOINTS.CLIENT_POLICIES,
+        { method: 'GET' }
+    ).catch(() => []);
+
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay active';
+    modal.innerHTML = `
+        <div class="app-modal app-modal-lg">
+            <div class="app-modal-header">
+                <h2 class="app-modal-title">Nuevo Siniestro</h2>
+                <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="app-modal-body">
+                <form id="fileClaimForm" class="claim-form" onsubmit="window.submitClaimForm?.(event)">
+                    <div class="form-group">
+                        <label for="claim-policy">Póliza Afectada *</label>
+                        <select id="claim-policy" required>
+                            <option value="">Selecciona una póliza</option>
+                            ${policies.map(p => `
+                                <option value="${p.id}" ${p.id == policyId ? 'selected' : ''}>
+                                    ${p.policy_number} - ${p.policy_type}
+                                </option>
+                            `).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="claim-type">Tipo de Siniestro *</label>
+                        <input type="text" id="claim-type" placeholder="Ej: Accidente, Daño, Robo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="claim-date">Fecha del Incidente *</label>
+                        <input type="date" id="claim-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="claim-description">Descripción del incidente</label>
+                        <textarea id="claim-description" rows="4" placeholder="Describa lo ocurrido..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="claim-files">Documentos adjuntos (fotos, reportes)</label>
+                        <input type="file" id="claim-files" multiple accept="image/*,.pdf">
+                        <small>Máximo 5 archivos. Formatos: JPG, PNG, PDF</small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Enviar siniestro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+}
+
+/**
+ * Update Info Modal Quick Action
+ */
+export function openUpdateInfoModal() {
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay active';
+    modal.innerHTML = `
+        <div class="app-modal app-modal-md">
+            <div class="app-modal-header">
+                <h2 class="app-modal-title">Actualizar Información</h2>
+                <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="app-modal-body">
+                <form id="updateInfoForm" class="update-info-form" onsubmit="window.submitInfoForm?.(event)">
+                    <div class="form-group">
+                        <label for="update-phone">Teléfono</label>
+                        <input type="tel" id="update-phone" placeholder="+1 (555) 000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-email">Email</label>
+                        <input type="email" id="update-email" placeholder="email@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-address">Dirección</label>
+                        <textarea id="update-address" rows="3" placeholder="Calle, número, ciudad, estado, código postal"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+}
+

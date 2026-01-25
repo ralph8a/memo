@@ -60,10 +60,12 @@ export function updateUserNameInHeader() {
 // ============================================
 
 export async function loadAgentDashboard() {
+    console.log('🔄 loadAgentDashboard() called');
     try {
         // Update user name in header first
         updateUserNameInHeader();
 
+        console.log('📡 Requesting agent dashboard data from API...');
         // Load dashboard data from backend
         const dashboardData = await apiService.request(
             API_CONFIG.ENDPOINTS.AGENT_DASHBOARD,
@@ -74,16 +76,28 @@ export async function loadAgentDashboard() {
             }
         );
 
+        console.log('📊 Agent dashboard data received:', dashboardData);
+
         // Update UI with real data
-        if (dashboardData.stats) updateAgentStats(dashboardData.stats);
-        if (dashboardData.clients) renderAgentClients(dashboardData.clients);
-        if (dashboardData.claims) renderAgentClaims(dashboardData.claims);
+        if (dashboardData.stats) {
+            console.log('Updating agent stats...');
+            updateAgentStats(dashboardData.stats);
+        }
+        if (dashboardData.clients) {
+            console.log('Rendering agent clients...');
+            renderAgentClients(dashboardData.clients);
+        }
+        if (dashboardData.claims) {
+            console.log('Rendering agent claims...');
+            renderAgentClaims(dashboardData.claims);
+        }
 
         console.log('✅ Agent dashboard loaded with real data');
         return dashboardData;
     } catch (error) {
-        console.error('Error loading agent dashboard:', error);
+        console.error('❌ Error loading agent dashboard:', error);
         showNotification('Error al cargar datos del dashboard', NOTIFICATION_TYPES.ERROR);
+        throw error;
     }
 }
 export async function loadAgentClients() {
@@ -142,10 +156,12 @@ export async function loadQuotes() {
 // ============================================
 
 export async function loadClientDashboard() {
+    console.log('🔄 loadClientDashboard() called');
     try {
         // Update user name in header first
         updateUserNameInHeader();
 
+        console.log('📡 Requesting client dashboard data from API...');
         // Load dashboard data from backend
         const dashboardData = await apiService.request(
             API_CONFIG.ENDPOINTS.CLIENT_DASHBOARD,
@@ -156,26 +172,44 @@ export async function loadClientDashboard() {
             }
         );
 
+        console.log('📊 Client dashboard data received:', dashboardData);
+
         // Load additional data in parallel
+        console.log('📡 Loading policies, claims, and payments...');
         const [policies, claims, payments] = await Promise.all([
             loadClientPolicies(),
             loadClientClaims(),
             loadPaymentHistory()
         ]);
 
+        console.log('📊 Data loaded - Policies:', policies?.length, 'Claims:', claims?.length, 'Payments:', payments?.length);
+
         // Update stats from dashboard data
-        if (dashboardData.stats) updateClientStats(dashboardData.stats);
+        if (dashboardData.stats) {
+            console.log('Updating client stats...');
+            updateClientStats(dashboardData.stats);
+        }
 
         // Render lists
-        if (policies) renderClientPolicies(policies);
-        if (claims) renderClientClaims(claims);
-        if (payments) renderPaymentHistory(payments);
+        if (policies) {
+            console.log('Rendering policies...');
+            renderClientPolicies(policies);
+        }
+        if (claims) {
+            console.log('Rendering claims...');
+            renderClientClaims(claims);
+        }
+        if (payments) {
+            console.log('Rendering payment history...');
+            renderPaymentHistory(payments);
+        }
 
         console.log('✅ Client dashboard loaded with real data');
         return { dashboardData, policies, claims, payments };
     } catch (error) {
-        console.error('Error loading client dashboard:', error);
+        console.error('❌ Error loading client dashboard:', error);
         showNotification('Error al cargar datos del dashboard', NOTIFICATION_TYPES.ERROR);
+        throw error;
     }
 }
 

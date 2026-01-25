@@ -146,10 +146,14 @@ export function navigateTo(page, event) {
         setTimeout(async () => {
             try {
                 if (window.appHandlers && typeof window.appHandlers.loadClientDashboard === 'function') {
+                    console.log('🔄 Loading client dashboard data...');
                     await window.appHandlers.loadClientDashboard();
+                    console.log('✅ Client dashboard data loaded');
+                } else {
+                    console.warn('⚠️ loadClientDashboard not available yet');
                 }
             } catch (e) {
-                console.warn('Could not load client dashboard data:', e);
+                console.error('❌ Could not load client dashboard data:', e);
                 const container = document.querySelector('.policies-list');
                 if (container) {
                     container.innerHTML = '<p class="empty-state">Error al cargar datos - modo demo activo</p>';
@@ -162,10 +166,14 @@ export function navigateTo(page, event) {
         setTimeout(async () => {
             try {
                 if (window.appHandlers && typeof window.appHandlers.loadAgentDashboard === 'function') {
+                    console.log('🔄 Loading agent dashboard data...');
                     await window.appHandlers.loadAgentDashboard();
+                    console.log('✅ Agent dashboard data loaded');
+                } else {
+                    console.warn('⚠️ loadAgentDashboard not available yet');
                 }
             } catch (e) {
-                console.warn('Could not load agent dashboard data:', e);
+                console.error('❌ Could not load agent dashboard data:', e);
                 const container = document.querySelector('[data-clients-list]');
                 if (container) {
                     container.innerHTML = '<p class="empty-state">Error al cargar datos - modo demo activo</p>';

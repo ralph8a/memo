@@ -1,0 +1,3164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krause Insurance - Protection Beyond The Limits</title>
+  <base href="/">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- CSS now loaded via webpack through EntryPointMainApp.js -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Aptos+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script defer src="/krause.app.js"></script></head>
+<body>
+  <!-- Particles Background -->
+  <canvas id="particles-canvas"></canvas>
+  
+  <!-- Navigation Bar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <div class="logo-slot logo-slot-nav" data-render-logo data-logo-size="sm" data-logo-contrast="primary" data-logo-class="logo-shield" aria-label="Krause Insurance">
+        <!-- Fallback inline logo so navbar never renders empty if JS cache is stale -->
+        <svg class="krause-shield logo-shield logo-size-sm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+          <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+          <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+          <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+          <circle class="shield-center" cx="40" cy="40" r="6" fill="currentColor" />
+        </svg>
+      </div>
+      <div class="brand-text" onclick="navigateTo('home', event)">
+        <span class="brand-name">Krause Insurance</span>
+        <span class="brand-tagline">Protection Beyond The Limits</span>
+      </div>
+    </div>
+    
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <div class="nav-menu" id="navMenu">
+      <a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home', event)">Inicio</a>
+      <a href="#" class="nav-link" data-page="services" onclick="navigateTo('services', event)">Servicios</a>
+      <a href="#" class="nav-link" data-page="about" onclick="navigateTo('about', event)">Nosotros</a>
+      <a href="#" class="nav-link" data-page="contact" onclick="navigateTo('contact', event)">Contacto</a>
+      <div class="nav-buttons">
+        <button class="btn-nav btn-login" onclick="navigateTo('client-login')">Acceso Clientes</button>
+        <button class="btn-nav btn-agent" onclick="navigateTo('agent-login')">Portal Agentes</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Main Content Container with Page Sections (injected by webpack) -->
+  <main id="mainContent" class="main-content">
+    <!-- Home Page -->
+    <div id="page-home" class="page-section">
+      <div class="animation-progress-bar" id="animation-progress">
+  <div class="progress-fill"></div>
+</div>
+
+<nav class="sub-navigation sub-nav-hidden" id="sub-nav">
+  <button class="sub-nav-btn active" data-section="hero" onclick="window.appHandlers.showHomeSection('hero')">Hero</button>
+  <button class="sub-nav-btn" data-section="eleccion" onclick="window.appHandlers.showHomeSection('eleccion')">Elección</button>
+  <button class="sub-nav-btn" data-section="cotiza" onclick="window.appHandlers.showHomeSection('cotiza')">Proteger</button>
+</nav>
+
+<section class="hero-section hero-intro home-section active" id="hero-section">
+<div class="hero-content">
+  <h1 class="hero-title">
+    <span class="title-word">Protection</span>
+    <span class="title-word accent">Beyond</span>
+    <span class="title-word">The Limits</span>
+  </h1>
+  <p class="hero-subtitle">
+    Más de 25 años protegiendo lo que más valoras. 
+    Seguros personalizados respaldados por experiencia y compromiso.
+  </p>
+  
+  <div class="hero-stats">
+    <div class="stat-box stat-pulse">
+      <div class="stat-icon-mini">⏳</div>
+      <div class="stat-number" data-target="25">0</div>
+      <div class="stat-label">Años de Experiencia</div>
+    </div>
+    <div class="stat-box stat-pulse" style="animation-delay: 0.1s">
+      <div class="stat-icon-mini">👥</div>
+      <div class="stat-number" data-target="5000">0</div>
+      <div class="stat-label">Clientes Activos</div>
+    </div>
+    <div class="stat-box stat-pulse" style="animation-delay: 0.2s">
+      <div class="stat-icon-mini">📝</div>
+      <div class="stat-number" data-target="10000">0</div>
+      <div class="stat-label">Pólizas Vigentes</div>
+    </div>
+    <div class="stat-box stat-pulse" style="animation-delay: 0.3s">
+      <div class="stat-icon-mini">⭐</div>
+      <div class="stat-number" data-target="98">0</div>
+      <div class="stat-label">% Satisfacción</div>
+    </div>
+  </div>
+  
+    <button class="btn-home-start" onclick="window.appHandlers.skipToFinalState()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+    Saltar Animación
+  </button>
+</div>
+</section>
+
+<section class="features-section features-parade home-section" id="eleccion-section">
+<div class="features-content">
+  <h2 class="section-title">¿Por Qué Elegirnos?</h2>
+  <div class="features-grid">
+    <div class="feature-box feature-card-1">
+      <div class="feature-icon icon-bounce">🛡️</div>
+      <h3>Cobertura Integral</h3>
+      <p>Protección completa adaptada a tus necesidades específicas</p>
+    </div>
+    <div class="feature-box feature-card-2">
+      <div class="feature-icon icon-pulse">⚡</div>
+      <h3>Respuesta Inmediata</h3>
+      <p>Atención 24/7 cuando más nos necesitas</p>
+    </div>
+    <div class="feature-box feature-card-3">
+      <div class="feature-icon icon-shake">💰</div>
+      <h3>Mejores Precios</h3>
+      <p>Cotizamos con múltiples aseguradoras para ti</p>
+    </div>
+    <div class="feature-box feature-card-4">
+      <div class="feature-icon icon-bounce">👨‍💼</div>
+      <h3>Asesoría Experta</h3>
+      <p>25+ años de experiencia a tu servicio</p>
+    </div>
+  </div>
+  
+  <div class="testimonials-container">
+    <div class="testimonial-quick">
+      <div class="testimonial-avatar">👨</div>
+      <div class="testimonial-content">
+        <p class="testimonial-text">"Excelente servicio y atención. Me ayudaron a encontrar la mejor cobertura para mi familia."</p>
+        <p class="testimonial-author">- Roberto M., Cliente desde 2018</p>
+      </div>
+    </div>
+    
+    <div class="testimonial-quick" style="animation-delay: 0.7s">
+      <div class="testimonial-avatar">👩</div>
+      <div class="testimonial-content">
+        <p class="testimonial-text">"Profesionales y confiables. Resolvieron mi siniestro en tiempo récord."</p>
+        <p class="testimonial-author">- María L., Cliente desde 2020</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="cta-section final-cta home-section" id="cotiza-section">
+<div class="container">
+  <div class="cta-hero-title">
+    <svg class="cta-logo-large" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+      <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+      <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+      <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+    </svg>
+    <h2 class="animated-title main-hero">
+      <span class="title-line">¿Listo para</span>
+      <span class="title-line highlight">Proteger</span>
+      <span class="title-line">tu Futuro?</span>
+    </h2>
+    <div class="title-underline"></div>
+  </div>
+  
+  <p class="cta-subtitle">Obtén una cotización personalizada sin compromiso</p>
+  
+  <div class="cta-buttons cta-main-buttons">
+    <button class="btn btn-primary btn-lg btn-pulse" onclick="navigateTo('quote')">
+      <span>📝 Solicitar Cotización Gratis</span>
+    </button>
+    <button class="btn btn-secondary btn-lg" onclick="navigateTo('services')">
+      <span>🛡️ Ver Servicios</span>
+    </button>
+  </div>
+  
+  <div class="section-divider"></div>
+  
+  <h3 class="agents-section-title">Contacta a Nuestros Agentes</h3>
+  
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-avatar">👨‍💼</div>
+      <h4>Carlos Méndez</h4>
+      <p class="agent-title">Agente Senior</p>
+      <a href="tel:+525512345678" class="agent-contact">📞 (55) 1234-5678</a>
+    </div>
+    
+    <div class="agent-card">
+      <div class="agent-avatar">👩‍💼</div>
+      <h4>Ana Rodríguez</h4>
+      <p class="agent-title">Especialista Vida</p>
+      <a href="tel:+525598765432" class="agent-contact">📞 (55) 9876-5432</a>
+    </div>
+    
+    <div class="agent-card">
+      <div class="agent-avatar">👨‍💼</div>
+      <h4>Miguel Torres</h4>
+      <p class="agent-title">Seguros Auto</p>
+      <a href="tel:+525555551234" class="agent-contact">📞 (55) 5555-1234</a>
+    </div>
+    
+    <div class="agent-card">
+      <div class="agent-avatar">👩‍💼</div>
+      <h4>Laura Gómez</h4>
+      <p class="agent-title">Seguros Hogar</p>
+      <a href="tel:+525544445555" class="agent-contact">📞 (55) 4444-5555</a>
+    </div>
+  </div>
+</div>
+</section>
+
+    </div>
+
+    <!-- Services Page -->
+    <div id="page-services" class="page-section hidden">
+          <section class="services-fullpage">
+      <div class="services-container">
+        <div class="services-extended">
+          <h1 class="services-page-title">Servicios</h1>
+          <div class="services-tech" aria-label="Servicios y contenido técnico">
+            <nav class="services-tech-nav" aria-label="Módulos técnicos">
+              <a class="services-tech-link" href="#services-panel-products">Seguros</a>
+              <a class="services-tech-link" href="#services-panel-guide">Guía</a>
+              <a class="services-tech-link" href="#services-panel-process">Proceso</a>
+              <a class="services-tech-link" href="#services-panel-compare">Comparador</a>
+              <a class="services-tech-link" href="#services-panel-claims">Siniestros</a>
+              <a class="services-tech-link" href="#services-panel-faq">FAQ</a>
+            </nav>
+
+            <p class="services-tech-hint">Tip: usa el menú para cambiar de módulo (en móvil también puedes deslizar).</p>
+
+            <div class="services-tech-panels" role="region" aria-label="Módulos técnicos" tabindex="0">
+              <section id="services-panel-products" class="services-section services-panel services-panel--cards" aria-label="Seguros disponibles">
+                <h2 class="services-section-title">Seguros disponibles</h2>
+                <p class="services-section-subtitle">Selecciona una categoría y cotiza al instante.</p>
+
+                <div class="services-grid-compact">
+                  <div class="service-card-compact card-1">
+                    <div class="service-icon-compact">🚗</div>
+                    <h3 class="service-name-compact">Seguros de Auto</h3>
+                    <p class="service-desc-compact">Protección completa para tu vehículo con las mejores coberturas del mercado.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Responsabilidad Civil</li>
+                      <li>✓ Cobertura amplia</li>
+                      <li>✓ Asistencia vial 24/7</li>
+                      <li>✓ Cristales y robo</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('auto')">Solicitar asesoría</button>
+                  </div>
+
+                  <div class="service-card-compact card-2 featured-compact">
+                    <div class="badge-compact">MÁS POPULAR</div>
+                    <div class="service-icon-compact">🏠</div>
+                    <h3 class="service-name-compact">Seguros de Hogar</h3>
+                    <p class="service-desc-compact">Tu patrimonio protegido contra todo tipo de riesgos y eventualidades.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Daños estructurales</li>
+                      <li>✓ Contenido y bienes</li>
+                      <li>✓ Responsabilidad civil</li>
+                      <li>✓ Robo y vandalismo</li>
+                    </ul>
+                    <button class="btn-compact primary-compact" onclick="window.appHandlers.openQuoteModal('hogar')">Solicitar asesoría</button>
+                  </div>
+
+                  <div class="service-card-compact card-3">
+                    <div class="service-icon-compact">❤️</div>
+                    <h3 class="service-name-compact">Seguros de Vida</h3>
+                    <p class="service-desc-compact">Asegura el futuro de tus seres queridos con planes flexibles y accesibles.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Cobertura familiar</li>
+                      <li>✓ Planes personalizados</li>
+                      <li>✓ Invalidez</li>
+                      <li>✓ Enfermedades graves</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('vida')">Solicitar asesoría</button>
+                  </div>
+
+                  <div class="service-card-compact card-4">
+                    <div class="service-icon-compact">🏢</div>
+                    <h3 class="service-name-compact">Seguros Comerciales</h3>
+                    <p class="service-desc-compact">Protección integral para tu negocio y continuidad operativa.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Responsabilidad general</li>
+                      <li>✓ Propiedad comercial</li>
+                      <li>✓ Interrupción de negocio</li>
+                      <li>✓ Cyber seguridad</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('comercial')">Solicitar asesoría</button>
+                  </div>
+
+                  <div class="service-card-compact card-5">
+                    <div class="service-icon-compact">💼</div>
+                    <h3 class="service-name-compact">Seguros de Salud</h3>
+                    <p class="service-desc-compact">Acceso a los mejores servicios médicos con cobertura amplia.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Hospitalización</li>
+                      <li>✓ Cirugías</li>
+                      <li>✓ Medicamentos</li>
+                      <li>✓ Red médica</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('salud')">Solicitar asesoría</button>
+                  </div>
+
+                  <div class="service-card-compact card-6">
+                    <div class="service-icon-compact">✈️</div>
+                    <h3 class="service-name-compact">Seguros de Viaje</h3>
+                    <p class="service-desc-compact">Viaja tranquilo con cobertura internacional completa.</p>
+                    <ul class="service-features-compact">
+                      <li>✓ Asistencia mundial</li>
+                      <li>✓ Gastos médicos</li>
+                      <li>✓ Equipaje protegido</li>
+                      <li>✓ Repatriación</li>
+                    </ul>
+                    <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('viaje')">Solicitar asesoría</button>
+                  </div>
+                </div>
+              </section>
+
+              <section id="services-panel-guide" class="services-section services-panel services-panel--guide" aria-label="Guía técnica rápida">
+                <h2 class="services-section-title">Guía técnica rápida</h2>
+                <p class="services-section-subtitle">
+                  Conceptos clave para comparar pólizas. Los nombres exactos pueden variar por aseguradora, pero la lógica es la misma.
+                </p>
+
+                <div class="services-info-grid">
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Suma asegurada</h3>
+                    <p class="services-info-text">
+                      Es el tope máximo que la póliza pagará por una cobertura. En autos suele aplicarse por daños/robo; en hogar por estructura y contenido;
+                      en vida por el monto contratado.
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Deducible</h3>
+                    <p class="services-info-text">
+                      Es la parte del siniestro que pagas tú. Normalmente se expresa como porcentaje (p. ej. 5%) o monto fijo.
+                      A menor deducible, mayor prima.
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Coaseguro (Salud)</h3>
+                    <p class="services-info-text">
+                      Porcentaje del gasto que asume el asegurado después del deducible, hasta un tope.
+                      Ejemplo: deducible + 10% de coaseguro (hasta $X).
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Carencias y preexistencias</h3>
+                    <p class="services-info-text">
+                      Algunas coberturas pueden tener periodos de espera (carencias). Las condiciones preexistentes suelen tener reglas especiales o exclusiones.
+                      Es clave declararlo correctamente.
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Exclusiones</h3>
+                    <p class="services-info-text">
+                      Situaciones que la póliza no cubre (p. ej. uso distinto al declarado, dolo, falta de mantenimiento, deportes extremos en viaje, etc.).
+                      Leer exclusiones evita sorpresas.
+                    </p>
+                  </div>
+
+                  <div class="services-info-card">
+                    <h3 class="services-info-title">Endosos / adicionales</h3>
+                    <p class="services-info-text">
+                      Coberturas opcionales que “se agregan” a la póliza: auto sustituto, equipo especial, asistencia ampliada, coberturas internacionales, etc.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <section id="services-panel-process" class="services-section services-panel services-panel--process" aria-label="Proceso">
+                <h2 class="services-section-title">Cómo se arma una póliza (paso a paso)</h2>
+                <p class="services-section-subtitle">
+                  Un proceso claro para que sepas qué información se usa y por qué.
+                </p>
+
+                <ol class="services-steps">
+                  <li class="services-step">
+                    <div class="services-step-badge">1</div>
+                    <div class="services-step-body">
+                      <h3>Cotización</h3>
+                      <p>Recopilamos datos básicos: quién asegura, qué se asegura, uso/riesgo, ubicación, historial (si aplica).</p>
+                    </div>
+                  </li>
+                  <li class="services-step">
+                    <div class="services-step-badge">2</div>
+                    <div class="services-step-body">
+                      <h3>Evaluación de riesgo</h3>
+                      <p>Se define prima y condiciones: suma asegurada, deducibles/coaseguro, exclusiones, asistencias y adicionales.</p>
+                    </div>
+                  </li>
+                  <li class="services-step">
+                    <div class="services-step-badge">3</div>
+                    <div class="services-step-body">
+                      <h3>Emisión</h3>
+                      <p>Se emite póliza y carátula. Verificamos datos y dejamos por escrito coberturas y límites.</p>
+                    </div>
+                  </li>
+                  <li class="services-step">
+                    <div class="services-step-badge">4</div>
+                    <div class="services-step-body">
+                      <h3>Vigencia y renovaciones</h3>
+                      <p>Durante la vigencia puedes ajustar coberturas (endosos). Al renovar se recalcula según siniestralidad y mercado.</p>
+                    </div>
+                  </li>
+                </ol>
+              </section>
+
+              <section id="services-panel-compare" class="services-section services-panel services-panel--compare" aria-label="Comparación de planes">
+                <h2 class="services-section-title">Comparación de planes (por seguro)</h2>
+                <p class="services-section-subtitle">
+                  Niveles técnicos de ejemplo para comparar. La póliza final depende de suma asegurada, deducible/coaseguro, endosos y condiciones de la aseguradora.
+                </p>
+
+                <div class="services-compare-grid">
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">🚗 Auto</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('auto')">Solicitar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de auto" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">RC (daños a terceros)</th><td>Limitado</td><td>Alto</td><td>Muy alto</td></tr>
+                          <tr><th scope="row">Robo total</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Daños materiales</th><td>—</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Cristales</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Asistencia vial</th><td>Básica</td><td>Plus</td><td>Premium</td></tr>
+                          <tr><th scope="row">Auto sustituto</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Deducible típico (daños)</th><td>Medio/alto</td><td>Medio</td><td>Bajo/medio</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">🏠 Hogar</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('hogar')">Solicitar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de hogar" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">Estructura (incendio/daños)</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Contenido / bienes</th><td>Limitado</td><td>Medio</td><td>Alto</td></tr>
+                          <tr><th scope="row">Robo</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">RC familiar</th><td>Básico</td><td>Medio</td><td>Alto</td></tr>
+                          <tr><th scope="row">Desastres naturales</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Hospedaje temporal</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Deducible típico</th><td>Medio/alto</td><td>Medio</td><td>Bajo/medio</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">❤️ Vida</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('vida')">Solicitar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de vida" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">Fallecimiento (suma asegurada)</th><td>Media</td><td>Alta</td><td>Muy alta</td></tr>
+                          <tr><th scope="row">Invalidez total</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Enfermedades graves</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Anticipos por diagnóstico</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Ahorro / inversión</th><td>—</td><td>Opcional</td><td>Opcional/✓</td></tr>
+                          <tr><th scope="row">Asistencia funeraria</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Requisitos médicos</th><td>Bajos</td><td>Medios</td><td>Medios/Altos</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">🏢 Comercial</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('comercial')">Solicitar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes comerciales" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">RC general</th><td>Básico</td><td>Alto</td><td>Muy alto</td></tr>
+                          <tr><th scope="row">Propiedad (incendio/daños)</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Equipo / maquinaria</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Interrupción de negocio</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Robo / valores</th><td>Opcional</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Cyber (según giro)</th><td>—</td><td>Opcional</td><td>Opcional/✓</td></tr>
+                          <tr><th scope="row">Inspección / requisitos</th><td>Medios</td><td>Medios/Altos</td><td>Altos</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">💼 Salud</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('salud')">Solicitar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de salud" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">Hospitalización</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Red hospitalaria</th><td>Limitada</td><td>Amplia</td><td>Amplia+</td></tr>
+                          <tr><th scope="row">Deducible</th><td>Alto</td><td>Medio</td><td>Bajo</td></tr>
+                          <tr><th scope="row">Coaseguro</th><td>Más alto</td><td>Medio</td><td>Más bajo</td></tr>
+                          <tr><th scope="row">Tope de coaseguro</th><td>Alto</td><td>Medio</td><td>Bajo</td></tr>
+                          <tr><th scope="row">Maternidad</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Carencias (ejemplo)</th><td>Más largas</td><td>Medias</td><td>Más cortas</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="services-compare-card">
+                    <div class="services-compare-header">
+                      <h3 class="services-compare-title">✈️ Viaje</h3>
+                      <button class="btn-compact services-compare-btn" onclick="window.appHandlers.openQuoteModal('viaje')">Solicitar</button>
+                    </div>
+                    <div class="services-compare-table-wrapper" role="region" aria-label="Comparación de planes de viaje" tabindex="0">
+                      <table class="services-compare-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Componente</th>
+                            <th scope="col">Básico</th>
+                            <th scope="col">Estándar</th>
+                            <th scope="col">Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">Gastos médicos</th><td>Medio</td><td>Alto</td><td>Muy alto</td></tr>
+                          <tr><th scope="row">Asistencia 24/7</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Cancelación de viaje</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Equipaje</th><td>Básico</td><td>Medio</td><td>Alto</td></tr>
+                          <tr><th scope="row">Deportes / actividades</th><td>—</td><td>Opcional</td><td>✓</td></tr>
+                          <tr><th scope="row">Asistencia legal</th><td>—</td><td>✓</td><td>✓</td></tr>
+                          <tr><th scope="row">Repatriación</th><td>✓</td><td>✓</td><td>✓</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="services-compare-footnote">
+                  Nota: “✓” indica que normalmente viene incluido en ese nivel. “Opcional” depende de endosos. Los límites y deducibles reales se definen en la carátula.
+                </p>
+              </section>
+
+              <section id="services-panel-claims" class="services-section services-panel services-panel--claims" aria-label="Asistencia y siniestros">
+                <h2 class="services-section-title">Asistencia y siniestros (checklists)</h2>
+                <p class="services-section-subtitle">
+                  En un siniestro, ganar tiempo es clave. Esto es lo que normalmente se necesita (puede variar por aseguradora y cobertura).
+                </p>
+
+                <div class="services-claims-grid">
+                  <div class="services-claim-card">
+                    <h3>🚗 Auto: accidente</h3>
+                    <ul>
+                      <li>Ubicación y fotos (placas, daños, señales)</li>
+                      <li>Datos de terceros (nombre, teléfono, placas)</li>
+                      <li>Licencia y tarjeta de circulación</li>
+                      <li>No admitas responsabilidad sin asesoría</li>
+                    </ul>
+                  </div>
+
+                  <div class="services-claim-card">
+                    <h3>🏠 Hogar: daño o robo</h3>
+                    <ul>
+                      <li>Fotos/Video del evento y daños</li>
+                      <li>Inventario de bienes (si aplica)</li>
+                      <li>Denuncia/acta (en caso de robo)</li>
+                      <li>Facturas o comprobantes (cuando existan)</li>
+                    </ul>
+                  </div>
+
+                  <div class="services-claim-card">
+                    <h3>💼 Salud: atención médica</h3>
+                    <ul>
+                      <li>Diagnóstico e informes médicos</li>
+                      <li>Presupuestos/Facturas (hospital, médicos, meds)</li>
+                      <li>Autorizaciones (según red y procedimiento)</li>
+                      <li>Revisión de deducible y coaseguro</li>
+                    </ul>
+                  </div>
+
+                  <div class="services-claim-card">
+                    <h3>✈️ Viaje: emergencia</h3>
+                    <ul>
+                      <li>Póliza/certificado y número de asistencia</li>
+                      <li>Reportar antes de incurrir gastos grandes</li>
+                      <li>Comprobantes del gasto</li>
+                      <li>Reportes (aerolínea por equipaje, etc.)</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="services-cta-row">
+                  <button class="btn-compact" onclick="window.appHandlers.contactAgent()">Contactar a un agente</button>
+                  <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('auto')">Solicitar Auto</button>
+                  <button class="btn-compact" onclick="window.appHandlers.openQuoteModal('hogar')">Solicitar Hogar</button>
+                </div>
+              </section>
+
+              <section id="services-panel-faq" class="services-section services-panel services-panel--faq" aria-label="Preguntas frecuentes">
+                <h2 class="services-section-title">FAQ técnico</h2>
+                <p class="services-section-subtitle">Respuestas cortas, sin “marketing”: lo que realmente importa al contratar.</p>
+
+                <div class="services-faq">
+                  <details class="services-faq-item">
+                    <summary>¿Qué diferencia hay entre “cobertura amplia” y “limitada” (Auto)?</summary>
+                    <div class="services-faq-body">
+                      <p>En general, “amplia” incluye daños materiales al vehículo además de robo y RC; “limitada” suele enfocarse en RC + robo total y asistencias. Revisa límites y deducibles.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Por qué dos autos iguales pueden pagar distinto?</summary>
+                    <div class="services-faq-body">
+                      <p>Influyen zona de circulación, edad/conductor, historial, uso (particular/ride-share), valor comercial, deducibles, y siniestralidad local.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Qué es “valor comercial” vs “valor convenido”?</summary>
+                    <div class="services-faq-body">
+                      <p>Valor comercial se ajusta al mercado; valor convenido se fija por contrato (con reglas). El costo de prima y condiciones cambian según la opción.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Qué cubre la Responsabilidad Civil (RC)?</summary>
+                    <div class="services-faq-body">
+                      <p>Cubre daños a terceros (personas/bienes) hasta el límite contratado. No sustituye coberturas para tu propio vehículo o patrimonio (eso va aparte).</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Qué documentos suelen pedir para emitir (Hogar/Comercial)?</summary>
+                    <div class="services-faq-body">
+                      <p>Ubicación, características del inmueble, suma asegurada deseada, inventario aproximado (contenido), y en comerciales: giro, medidas de seguridad y valores expuestos.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Qué significa “interrupción de negocio”?</summary>
+                    <div class="services-faq-body">
+                      <p>Es una cobertura que busca compensar ingresos/gastos fijos cuando un siniestro cubierto impide operar. Aplica con reglas y periodos de espera.</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>¿Cómo se calcula el deducible en %?</summary>
+                    <div class="services-faq-body">
+                      <p>Normalmente es un porcentaje del monto del daño o del valor asegurado (según cobertura). Ejemplo: 5% de $100,000 = $5,000 (antes de otros ajustes).</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>En Salud: ¿qué es coaseguro y tope de coaseguro?</summary>
+                    <div class="services-faq-body">
+                      <p>Tras el deducible, el coaseguro es el % que pagas. El “tope” limita cuánto pagarás como máximo por coaseguro en un evento/periodo (según condiciones).</p>
+                    </div>
+                  </details>
+
+                  <details class="services-faq-item">
+                    <summary>En Viaje: ¿por qué es importante llamar a asistencia primero?</summary>
+                    <div class="services-faq-body">
+                      <p>Porque la cobertura suele operar mejor con coordinación: hospitales de red, autorizaciones, y control de costos. Si pagas por tu cuenta, el reembolso puede tener límites o requisitos.</p>
+                    </div>
+                  </details>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <!-- Quote Page -->
+    <div id="page-quote" class="page-section hidden">
+          <section class="quote-page">
+      <div class="quote-hero">
+        <div class="quote-hero-copy">
+          <p class="quote-eyebrow">Plantilla rápida de cotización</p>
+          <h1 class="quote-title">Cotiza tu seguro en minutos</h1>
+          <p class="quote-lead">Selecciona el tipo de seguro, comparte los datos clave y recibe comparativos con asesores humanos (sin bots invasivos).</p>
+
+          <div class="quote-pill-row">
+            <span class="quote-pill">⏱️ Respuesta en 10-20 min</span>
+            <span class="quote-pill">🧑‍💼 Asesor dedicado</span>
+            <span class="quote-pill">🔒 Datos protegidos</span>
+          </div>
+
+          <div class="quote-tabs" role="tablist" aria-label="Tipos de seguro disponibles">
+            <button class="quote-tab active" data-quote-tab="auto">🚗 Auto</button>
+            <button class="quote-tab" data-quote-tab="hogar">🏠 Hogar</button>
+            <button class="quote-tab" data-quote-tab="vida">❤️ Vida</button>
+            <button class="quote-tab" data-quote-tab="salud">💼 Salud</button>
+            <button class="quote-tab" data-quote-tab="viaje">✈️ Viaje</button>
+            <button class="quote-tab" data-quote-tab="comercial">🏢 Comercial</button>
+          </div>
+          <p class="quote-tab-hint">Elige un tipo de seguro y completa el formulario específico. Podemos continuar la cotización por WhatsApp o correo.</p>
+        </div>
+
+        <div class="quote-hero-card" aria-label="Resumen de beneficios">
+          <div class="quote-card-header">
+            <span class="quote-pill">Benchmark multi-aseguradora</span>
+            <span class="quote-pill success">Incluye comparativo</span>
+          </div>
+          <h3>Cobertura diseñada para ti</h3>
+          <ul class="quote-benefits">
+            <li>Personalizamos suma asegurada, deducible y asistencias.</li>
+            <li>Checklist de emisión y acompañamiento en siniestros.</li>
+            <li>Renovaciones con ajuste inteligente para proteger tu prima.</li>
+          </ul>
+          <div class="quote-hero-meta">
+            <div>
+              <small>Tiempo promedio</small>
+              <strong>10-20 min</strong>
+            </div>
+            <div>
+              <small>Cotizaciones/mes</small>
+              <strong>500+</strong>
+            </div>
+            <div>
+              <small>Experiencia</small>
+              <strong>25 años</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-layout">
+        <div class="quote-forms" role="tabpanel">
+          <form class="quote-form active" data-quote-type="auto" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Auto</p>
+                <h3>Datos del vehículo</h3>
+              </div>
+              <span class="quote-chip">Requiere 3-4 datos</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="auto">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Código Postal</span>
+                <input type="text" name="postalCode" placeholder="00000" required>
+              </label>
+              <label class="quote-field">
+                <span>Año / Modelo</span>
+                <input type="text" name="vehicleModel" placeholder="2021 - Mazda 3" required>
+              </label>
+              <label class="quote-field">
+                <span>Uso</span>
+                <select name="usage" required>
+                  <option value="">Selecciona</option>
+                  <option value="personal">Personal</option>
+                  <option value="uber">Ride-hailing / Uber</option>
+                  <option value="comercial">Comercial</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Tiempo estimado de respuesta: 10-15 minutos.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="hogar" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Hogar</p>
+                <h3>Protege tu patrimonio</h3>
+              </div>
+              <span class="quote-chip">Incluye RC familiar</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="hogar">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Código Postal</span>
+                <input type="text" name="postalCode" placeholder="00000" required>
+              </label>
+              <label class="quote-field">
+                <span>Tipo de inmueble</span>
+                <select name="propertyType" required>
+                  <option value="">Selecciona</option>
+                  <option value="casa">Casa</option>
+                  <option value="departamento">Departamento</option>
+                  <option value="oficina">Oficina/Local</option>
+                </select>
+              </label>
+              <label class="quote-field">
+                <span>Valor aproximado</span>
+                <input type="text" name="propertyValue" placeholder="$2,500,000" required>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Incluimos RC familiar y opciones para robo, terremoto y asistencias.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="vida" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Vida</p>
+                <h3>Protección a largo plazo</h3>
+              </div>
+              <span class="quote-chip">Planes flexibles</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="vida">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Año de nacimiento</span>
+                <input type="number" name="birthYear" placeholder="1988" required>
+              </label>
+              <label class="quote-field">
+                <span>Suma asegurada deseada</span>
+                <select name="coverage" required>
+                  <option value="">Selecciona</option>
+                  <option value="500k">$500k MXN</option>
+                  <option value="1m">$1M MXN</option>
+                  <option value="2m">$2M MXN</option>
+                  <option value="usd">USD u otra moneda</option>
+                </select>
+              </label>
+              <label class="quote-field">
+                <span>Dependientes</span>
+                <select name="dependents" required>
+                  <option value="">Selecciona</option>
+                  <option value="0">0</option>
+                  <option value="1-2">1-2</option>
+                  <option value="3-4">3-4</option>
+                  <option value="5+">5+</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Podemos incluir coberturas de invalidez y enfermedades graves.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="salud" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Salud</p>
+                <h3>Cobertura médica</h3>
+              </div>
+              <span class="quote-chip">Red médica + deducible</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="salud">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Edad</span>
+                <input type="number" name="age" placeholder="34" required>
+              </label>
+              <label class="quote-field">
+                <span>Cobertura</span>
+                <select name="healthCoverage" required>
+                  <option value="">Selecciona</option>
+                  <option value="nacional">Nacional</option>
+                  <option value="internacional">Internacional</option>
+                  <option value="mixta">Mixta</option>
+                </select>
+              </label>
+              <label class="quote-field">
+                <span>Condiciones preexistentes</span>
+                <input type="text" name="conditions" placeholder="Opcional (diabetes, etc)">
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Incluimos opciones de deducible, coaseguro y tope.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="viaje" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Viaje</p>
+                <h3>Viaja con tranquilidad</h3>
+              </div>
+              <span class="quote-chip">Incluye asistencia 24/7</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="viaje">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Destino</span>
+                <input type="text" name="destination" placeholder="Europa / USA" required>
+              </label>
+              <label class="quote-field">
+                <span>Fecha salida</span>
+                <input type="date" name="startDate" required>
+              </label>
+              <label class="quote-field">
+                <span>Fecha regreso</span>
+                <input type="date" name="endDate" required>
+              </label>
+              <label class="quote-field">
+                <span>Viajeros</span>
+                <input type="number" name="travelers" min="1" placeholder="2" required>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Podemos incluir deportes, cancelación y equipaje.</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+
+          <form class="quote-form" data-quote-type="comercial" onsubmit="window.appHandlers.submitQuote(event)">
+            <div class="quote-form-head">
+              <div>
+                <p class="quote-eyebrow">Comercial</p>
+                <h3>Protección para tu negocio</h3>
+              </div>
+              <span class="quote-chip">RC + Property</span>
+            </div>
+
+            <input type="hidden" name="quoteType" value="comercial">
+
+            <div class="quote-form-grid">
+              <label class="quote-field">
+                <span>Nombre completo</span>
+                <input type="text" name="fullName" placeholder="Tu nombre" required>
+              </label>
+              <label class="quote-field">
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="tu@email.com" required>
+              </label>
+              <label class="quote-field">
+                <span>Teléfono</span>
+                <input type="tel" name="phone" placeholder="55 0000 0000" required>
+              </label>
+              <label class="quote-field">
+                <span>Giro del negocio</span>
+                <input type="text" name="businessType" placeholder="Restaurante, oficina, taller" required>
+              </label>
+              <label class="quote-field">
+                <span>Ubicación / CP</span>
+                <input type="text" name="businessPostal" placeholder="00000" required>
+              </label>
+              <label class="quote-field">
+                <span>Valor aproximado / inventario</span>
+                <input type="text" name="assetValue" placeholder="$5,000,000" required>
+              </label>
+            </div>
+
+            <div class="quote-form-footer">
+              <p class="quote-footnote">Incluimos RC, daños, robo, equipo electrónico y cyber (opcional).</p>
+              <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="quote-summary" aria-live="polite">
+          <div class="quote-summary-card">
+            <p class="quote-eyebrow">Resumen activo</p>
+            <h3 data-summary-title>Seguro de Auto</h3>
+            <p data-summary-body>Cobertura amplia + RC, asistencia vial y cristales. Ajustamos deducible y sumas según tu vehículo y uso.</p>
+            <div class="quote-summary-pills" data-summary-pills>
+              <span class="quote-pill">Cotización comparada</span>
+              <span class="quote-pill">Entrega en 10-20 min</span>
+              <span class="quote-pill">Asistencia 24/7</span>
+            </div>
+            <div class="quote-meta-grid">
+              <div class="quote-meta">
+                <small>Respuesta estimada</small>
+                <strong data-summary-sla>10-15 min</strong>
+              </div>
+              <div class="quote-meta">
+                <small>Tipo seleccionado</small>
+                <strong data-summary-type>Auto</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="quote-checklist">
+            <div class="quote-checklist-head">
+              <h4>Checklist rápido</h4>
+              <span class="quote-chip">Opcional</span>
+            </div>
+            <ul class="quote-checklist-list" data-summary-docs>
+              <li>Datos básicos y código postal.</li>
+              <li>Uso (personal/negocio) y valor aproximado.</li>
+              <li>Preferencias de deducible y asistencias.</li>
+            </ul>
+            <div class="quote-tip">
+              💡 Tip: Si prefieres, podemos seguir la cotización por WhatsApp o llamada.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    </div>
+
+    <!-- About Page -->
+    <div id="page-about" class="page-section hidden">
+          <section class="about-fullpage">
+      <div class="about-container">
+        <div class="about-header-main">
+          <h1 class="about-main-title">Sobre Nosotros</h1>
+        </div>
+        
+        <div class="about-content-grid" role="region" tabindex="0" aria-label="Historia, misión y equipo">
+          <div class="about-story-card animated-card-1">
+            <div class="about-icon" aria-hidden="true">
+              <svg class="about-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 6c2.8-1.6 6.1-1.6 9 0c2.9-1.6 6.2-1.6 9 0v15c-2.8-1.6-6.1-1.6-9 0c-2.9-1.6-6.2-1.6-9 0V6z" />
+                <path d="M12 6v15" />
+              </svg>
+            </div>
+            <h2 class="about-card-title">Nuestra Historia</h2>
+            <p class="about-card-text">Con más de 25 años de experiencia en el mercado asegurador, Krause Insurance se ha consolidado como líder en protección patrimonial, brindando tranquilidad a miles de familias y empresas en todo el país.</p>
+            <div class="about-stats-mini">
+              <div class="stat-mini">
+                <span class="stat-number">25+</span>
+                <span class="stat-label">Años</span>
+              </div>
+              <div class="stat-mini">
+                <span class="stat-number">50K+</span>
+                <span class="stat-label">Clientes</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-mission-card animated-card-2">
+            <div class="about-icon" aria-hidden="true">
+              <svg class="about-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="8" />
+                <circle cx="12" cy="12" r="3" />
+                <path d="M12 2v2" />
+                <path d="M12 20v2" />
+                <path d="M2 12h2" />
+                <path d="M20 12h2" />
+              </svg>
+            </div>
+            <h2 class="about-card-title">Nuestra Misión</h2>
+            <p class="about-card-text">Proporcionar soluciones de seguros personalizadas que no solo cumplan, sino que superen las expectativas de nuestros clientes, protegiendo lo que más valoran con excelencia y compromiso.</p>
+            <ul class="about-values-list">
+              <li><span class="value-icon">✓</span> Confianza y Transparencia</li>
+              <li><span class="value-icon">✓</span> Atención Personalizada</li>
+              <li><span class="value-icon">✓</span> Innovación Constante</li>
+            </ul>
+          </div>
+
+          <div class="about-team-card animated-card-3">
+            <div class="about-icon" aria-hidden="true">
+              <svg class="about-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="9" r="3" />
+                <circle cx="17" cy="10" r="2.5" />
+                <path d="M3.5 20c.9-3 3.3-5 5.5-5s4.6 2 5.5 5" />
+                <path d="M14 20c.4-2 2-3.5 3.8-3.5c1.7 0 3 1.2 3.7 3.5" />
+              </svg>
+            </div>
+            <h2 class="about-card-title">Nuestro Equipo</h2>
+            <p class="about-card-text">Contamos con un equipo de profesionales altamente capacitados y certificados, dedicados a brindar el mejor servicio y asesoría en cada etapa de tu protección.</p>
+            <div class="team-grid-mini">
+              <div class="team-member-mini">
+                <div class="member-avatar">MK</div>
+                <div class="member-name">María Krause</div>
+                <div class="member-role">CEO</div>
+              </div>
+              <div class="team-member-mini">
+                <div class="member-avatar">JR</div>
+                <div class="member-name">John Rivera</div>
+                <div class="member-role">Director</div>
+              </div>
+              <div class="team-member-mini">
+                <div class="member-avatar">SC</div>
+                <div class="member-name">Sara Chen</div>
+                <div class="member-role">Asesora</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="about-dynamic" aria-label="Confianza, aliados y testimonios" role="region" tabindex="0">
+          <div class="about-stats-strip" aria-label="Indicadores">
+            <div class="about-stat-card" data-animate="count">
+              <div class="about-stat-number" data-target="25" data-suffix="+">0</div>
+              <div class="about-stat-label">Años de experiencia</div>
+            </div>
+            <div class="about-stat-card" data-animate="count">
+              <div class="about-stat-number" data-target="5000" data-suffix="+">0</div>
+              <div class="about-stat-label">Clientes protegidos</div>
+            </div>
+            <div class="about-stat-card" data-animate="count">
+              <div class="about-stat-number" data-target="10000" data-suffix="+">0</div>
+              <div class="about-stat-label">Cotizaciones generadas</div>
+            </div>
+            <div class="about-stat-card">
+              <div class="about-stat-number about-stat-number--static">24/7</div>
+              <div class="about-stat-label">Atención y acompañamiento</div>
+            </div>
+          </div>
+
+          <div class="about-partners" aria-label="Aliados y aseguradoras">
+            <h2 class="about-section-title">Aliados y aseguradoras</h2>
+            <p class="about-section-subtitle">Comparamos opciones para encontrar la mejor combinación de precio y cobertura (los nombres pueden variar según disponibilidad).</p>
+
+            <div class="about-partners-marquee" role="region" aria-label="Carrusel de aliados">
+              <div class="about-partners-track" aria-hidden="true">
+                <span class="about-partner-pill">Aliado 01</span>
+                <span class="about-partner-pill">Aliado 02</span>
+                <span class="about-partner-pill">Aliado 03</span>
+                <span class="about-partner-pill">Aliado 04</span>
+                <span class="about-partner-pill">Aliado 05</span>
+                <span class="about-partner-pill">Aliado 06</span>
+                <span class="about-partner-pill">Aliado 07</span>
+                <span class="about-partner-pill">Aliado 08</span>
+                <span class="about-partner-pill">Aliado 09</span>
+                <span class="about-partner-pill">Aliado 10</span>
+                <!-- duplicate set for seamless loop -->
+                <span class="about-partner-pill">Aliado 01</span>
+                <span class="about-partner-pill">Aliado 02</span>
+                <span class="about-partner-pill">Aliado 03</span>
+                <span class="about-partner-pill">Aliado 04</span>
+                <span class="about-partner-pill">Aliado 05</span>
+                <span class="about-partner-pill">Aliado 06</span>
+                <span class="about-partner-pill">Aliado 07</span>
+                <span class="about-partner-pill">Aliado 08</span>
+                <span class="about-partner-pill">Aliado 09</span>
+                <span class="about-partner-pill">Aliado 10</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-testimonials" aria-label="Testimonios">
+            <h2 class="about-section-title">Lo que dicen nuestros clientes</h2>
+            <p class="about-section-subtitle">Experiencias reales: claridad, velocidad y acompañamiento.</p>
+
+            <div class="about-testimonials-slider" role="region" aria-label="Carrusel de testimonios" tabindex="0">
+              <div class="about-testimonials-track">
+                <article class="about-testimonial-card">
+                  <p class="about-testimonial-quote">“Me explicaron cada opción sin presiones. Elegí una póliza mejor y pagué menos.”</p>
+                  <div class="about-testimonial-meta">
+                    <div class="about-testimonial-avatar">RM</div>
+                    <div>
+                      <div class="about-testimonial-name">Roberto M.</div>
+                      <div class="about-testimonial-role">Auto • Cliente</div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="about-testimonial-card">
+                  <p class="about-testimonial-quote">“Cuando tuve un siniestro, me acompañaron en todo el proceso. Cero vueltas.”</p>
+                  <div class="about-testimonial-meta">
+                    <div class="about-testimonial-avatar">ML</div>
+                    <div>
+                      <div class="about-testimonial-name">María L.</div>
+                      <div class="about-testimonial-role">Hogar • Cliente</div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="about-testimonial-card">
+                  <p class="about-testimonial-quote">“Se nota la experiencia. Compararon varias alternativas y me dieron una recomendación clara.”</p>
+                  <div class="about-testimonial-meta">
+                    <div class="about-testimonial-avatar">AC</div>
+                    <div>
+                      <div class="about-testimonial-name">Andrea C.</div>
+                      <div class="about-testimonial-role">Vida • Cliente</div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="about-testimonials-dots" aria-label="Navegación de testimonios">
+              <button class="about-dot is-active" type="button" aria-label="Testimonio 1" data-index="0"></button>
+              <button class="about-dot" type="button" aria-label="Testimonio 2" data-index="1"></button>
+              <button class="about-dot" type="button" aria-label="Testimonio 3" data-index="2"></button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="page-contact" class="page-section hidden">
+          <section class="contact-fullpage">
+      <div class="contact-container">
+        <div class="contact-header-main">
+          <h1 class="contact-main-title">Contáctanos</h1>
+          <p class="contact-main-subtitle">Estamos aquí para ayudarte</p>
+        </div>
+        
+        <div class="contact-content-wrapper">
+          <div class="contact-info-section">
+            <div class="contact-info-card animated-info-1">
+              <div class="contact-info-icon">📞</div>
+              <h3 class="contact-info-title">Teléfono</h3>
+              <a href="tel:+1234567890" class="contact-info-value">+1 (234) 567-890</a>
+              <p class="contact-info-desc">Lun - Vie: 9:00 AM - 6:00 PM</p>
+            </div>
+            
+            <div class="contact-info-card animated-info-2">
+              <div class="contact-info-icon">✉️</div>
+              <h3 class="contact-info-title">Email</h3>
+              <a href="mailto:contact@krause.com" class="contact-info-value">contact@krause.com</a>
+              <p class="contact-info-desc">Te respondemos en 24 horas</p>
+            </div>
+            
+            <div class="contact-info-card animated-info-3">
+              <div class="contact-info-icon">📍</div>
+              <h3 class="contact-info-title">Ubicación</h3>
+              <p class="contact-info-value">Calle Principal 123</p>
+              <p class="contact-info-desc">Ciudad, Estado 12345</p>
+            </div>
+          </div>
+          
+          <div class="contact-form-section">
+            <form class="contact-form-modern" onsubmit="window.appHandlers.handleContactSubmit(event)">
+              <div class="form-row-double">
+                <div class="form-group-modern">
+                  <input type="text" class="form-input-modern" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group-modern">
+                  <input type="email" class="form-input-modern" placeholder="Tu email" required>
+                </div>
+              </div>
+              <div class="form-row-double">
+                <div class="form-group-modern">
+                  <input type="tel" class="form-input-modern" placeholder="Teléfono">
+                </div>
+                <div class="form-group-modern">
+                  <select class="form-input-modern" required>
+                    <option value="">Selecciona un servicio</option>
+                    <option value="auto">Seguros de Auto</option>
+                    <option value="hogar">Seguros de Hogar</option>
+                    <option value="vida">Seguros de Vida</option>
+                    <option value="comercial">Seguros Comerciales</option>
+                    <option value="salud">Seguros de Salud</option>
+                    <option value="viaje">Seguros de Viaje</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group-modern">
+                <textarea class="form-textarea-modern" placeholder="Tu mensaje" rows="3" required></textarea>
+              </div>
+              <button type="submit" class="btn-submit-modern">Enviar Mensaje</button>
+              
+              <div class="contact-social-card-inline">
+                <h3 class="contact-social-title-inline">Síguenos</h3>
+                <div class="contact-social-icons-inline">
+                  <a href="#" class="social-icon-inline">📘</a>
+                  <a href="#" class="social-icon-inline">📷</a>
+                  <a href="#" class="social-icon-inline">🐦</a>
+                  <a href="#" class="social-icon-inline">💼</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <!-- Client Login -->
+    <div id="page-client-login" class="page-section hidden">
+          <section class="auth-section" id="auth-login">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <div class="logo-slot logo-slot-auth" data-render-logo data-logo-size="md" data-logo-contrast="primary" data-logo-class="logo-shield-auth" aria-label="Krause Insurance"></div>
+            <h2>Portal de Clientes</h2>
+            <p>Accede a pólizas, pagos y documentos en un solo lugar. Retoma pendientes y encuentra recomendaciones sin perder tiempo.</p>
+          </div>
+          <form class="auth-form" onsubmit="handleClientLogin(event)">
+            <div class="form-group"><label class="form-label">Número de Póliza o Email</label><input type="text" class="form-control" placeholder="Ingresa tu número de póliza" required></div>
+            <div class="form-group"><label class="form-label">Contraseña</label><input type="password" class="form-control" placeholder="Ingresa tu contraseña" required></div>
+            <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+          </form>
+
+          <div class="auth-divider">
+            <span>o</span>
+          </div>
+
+          <p class="auth-footer-text">
+            ¿Eres agente?
+            <a href="#" onclick="navigateTo('agent-login', event)" class="auth-link">Accede aquí</a>
+          </p>
+
+          <p class="auth-footer-text auth-register-text">
+            ¿Aún no eres cliente?
+            <a href="#" onclick="navigateTo('contact', event)" class="auth-link">Solicita una cotización</a>
+          </p>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <!-- Agent Login -->
+    <div id="page-agent-login" class="page-section hidden">
+      <section class="auth-section" id="auth-agent-login">
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="logo-slot logo-slot-auth" data-render-logo data-logo-size="md" data-logo-contrast="primary" data-logo-class="logo-shield-auth" aria-label="Krause Insurance"></div>
+        <h2>Portal de Agentes</h2>
+        <p>Gestiona clientes, pólizas y comisiones. Monitorea renovaciones y atiende siniestros en tiempo real.</p>
+      </div>
+      <form class="auth-form" onsubmit="handleAgentLogin(event)">
+        <div class="form-group"><label class="form-label">ID de Agente</label><input type="text" class="form-control" placeholder="Ingresa tu ID de agente" required></div>
+        <div class="form-group"><label class="form-label">Contraseña</label><input type="password" class="form-control" placeholder="Ingresa tu contraseña" required></div>
+        <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+      </form>
+      
+      <div class="auth-divider">
+        <span>o</span>
+      </div>
+      
+      <p class="auth-footer-text">
+        ¿Eres cliente? 
+        <a href="#" onclick="navigateTo('client-login', event)" class="auth-link">Accede aquí</a>
+      </p>
+      
+      <p class="auth-footer-text auth-register-text">
+        ¿Nuevo agente? 
+        <a href="#" onclick="window.appHandlers.showAgentRegistration(event)" class="auth-link">Solicita acceso</a>
+      </p>
+    </div>
+  </div>
+</section>
+    </div>
+
+    <!-- Client Dashboard -->
+    <div id="page-client-dashboard" class="page-section hidden">
+      <section class="dashboard-section client-dashboard" id="dashboard-section">
+  <!-- Hero Header Container - Full Width Outside Grid -->
+  <div class="dashboard-hero-container">
+    <div class="hero-surface">
+      <header class="dashboard-top-header search-hero hero-grid">
+        <div class="hero-copy">
+          <div class="hero-title-row">
+            <span class="eyebrow">Portal de clientes</span>
+            <span class="hero-divider" aria-hidden="true">|</span>
+            <span class="hero-welcome">Bienvenido <span data-hero-user>@Usuario</span></span>
+          </div>
+        </div>
+        <div class="hero-search">
+          <div class="search-bar stretch">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="7" />
+              <line x1="16.65" y1="16.65" x2="21" y2="21" />
+            </svg>
+            <input type="search" placeholder="Buscar pólizas, pagos o documentos" aria-label="Buscar" />
+          </div>
+          <div class="header-actions tight pill-actions">
+            <button class="icon-pill" aria-label="Notificaciones" onclick="window.appHandlers?.openNotifications?.()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <span class="dot"></span>
+            </button>
+            <button class="icon-pill" aria-label="Direct Messages" onclick="window.directMessages?.openModal()" title="Mensajes directos con tu agente">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+              <span class="badge-count" data-dm-badge style="display: none;">0</span>
+            </button>
+            <span class="badge badge-accent ghost" onclick="window.directMessages?.openModal()" style="cursor: pointer;" title="Mensajes directos">
+              Direct
+              <span class="badge-count" data-dm-badge style="display: none; margin-left: 4px;">0</span>
+            </span>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <!-- Dashboard Layout Grid -->
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-surface">
+        <div class="sidebar-stack">
+          <div class="content-card compact sidebar-block sidebar-brand-block">
+            <div class="sidebar-header sidebar-branding">
+              <div class="logo-slot logo-slot-nav" data-render-logo data-logo-size="sm" data-logo-contrast="primary" data-logo-class="logo-shield" aria-label="Krause Insurance" onclick="window.toggleTheme()" style="cursor: pointer;">
+                <svg class="krause-shield logo-shield logo-size-sm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+                  <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+                  <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+                  <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+                  <circle class="shield-center" cx="40" cy="40" r="6" fill="currentColor" />
+                </svg>
+              </div>
+              <div class="brand-text brand-text-sidebar">
+                <span class="brand-name">Krause</span>
+                <span class="brand-tagline">Insurance</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card compact sidebar-block">
+            <div class="sidebar-quick-actions">
+              <div class="sidebar-qa-header">Acciones rápidas</div>
+              <button class="qa-btn" onclick="window.appHandlers?.makePayment?.()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="5" width="20" height="14" rx="2" ry="2" />
+                  <line x1="2" y1="10" x2="22" y2="10" />
+                  <line x1="7" y1="15" x2="10" y2="15" />
+                </svg>
+                Pago rápido
+              </button>
+              <button class="qa-btn" onclick="window.appHandlers?.downloadPaymentHistory?.()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Comprobante
+              </button>
+              <button class="qa-btn" onclick="window.appHandlers?.updateInfo?.()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                Datos
+              </button>
+              <button class="qa-btn" onclick="window.appHandlers?.contactAgent?.()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5h-.5a8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 0 1 12 3h.5A8.5 8.5 0 0 1 21 11.5Z" />
+                </svg>
+                Contacto
+              </button>
+            </div>
+          </div>
+
+          <div class="content-card compact sidebar-block">
+            <div class="sidebar-widget">
+              <div class="card-header-modern">
+                <h4>Contactos frecuentes</h4>
+                <span class="card-badge">Equipo</span>
+              </div>
+              <div class="contact-chips" aria-label="Contactos frecuentes">
+                <button class="contact-chip" data-name="Ana Ruiz" data-phone="+52 55 1234 5678" data-email="ana.ruiz@example.com" data-role="Agente asignada" data-policy="Auto, Hogar">Ana Ruiz</button>
+                <button class="contact-chip" data-name="Luis Ortega" data-phone="+52 81 2345 6789" data-email="luis.ortega@example.com" data-role="Especialista de reclamaciones" data-policy="Vida">Luis Ortega</button>
+                <button class="contact-chip" data-name="Sofía Pérez" data-phone="+52 33 9876 5432" data-email="sofia.perez@example.com" data-role="Soporte clientes" data-policy="Salud">Sofía Pérez</button>
+                <button class="contact-chip" data-name="Carlos Díaz" data-phone="+52 55 2468 1357" data-email="carlos.diaz@example.com" data-role="Gestor de pólizas" data-policy="Empresarial">Carlos Díaz</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card compact sidebar-block sidebar-logout-block">
+            <button class="sidebar-logout" onclick="logout()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+              Salir
+            </button>
+          </div>
+        </div><!-- .sidebar-stack -->
+      </div><!-- .sidebar-surface -->
+    </aside>
+
+    <div class="dashboard-main-wrapper">
+        <div class="dashboard-stage">
+          <div class="stage-main">
+
+            <div class="tab-panels" id="client-panels">
+              <div class="tab-panel active" id="client-overview" role="tabpanel" aria-label="Resumen">
+                <div class="mimic-wrap">
+                  <div class="stats-grid compact">
+                  <div class="stat-card stat-primary">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value" data-stat-policies>—</div>
+                      <div class="stat-label">Pólizas Activas</div>
+                    </div>
+                  </div>
+
+                  <div class="stat-card stat-success">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value" data-stat-payments>—</div>
+                      <div class="stat-label">Estado de Pagos</div>
+                    </div>
+                  </div>
+
+                  <div class="stat-card stat-warning">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value" data-next-payment>—</div>
+                      <div class="stat-label">Próximo Pago</div>
+                    </div>
+                  </div>
+
+                  <div class="stat-card stat-info">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value" data-total-monthly>—</div>
+                      <div class="stat-label">Total Mensual</div>
+                    </div>
+                  </div>
+
+                  </div>
+                </div>
+
+                <div class="dashboard-body">
+                  <div class="main-surface mimic-wrap">
+                    <div class="mimic-wrap-inner">
+                      <div class="mimic-col main">
+                        
+                        <!-- Payment Schedule Section -->
+                        <div class="content-card list-card compact" id="payment-schedule-section">
+                          <div class="card-header-modern">
+                            <h3>
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                              </svg>
+                              Calendario de Pagos
+                            </h3>
+                            <div class="header-actions tight">
+                              <button class="btn-icon-sm" onclick="window.appHandlers?.makePayment?.()" title="Realizar pago">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                                  <line x1="2" y1="10" x2="22" y2="10" />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div id="payment-schedule-container" data-payment-schedule>
+                            <p class="loading-state">Cargando calendario de pagos...</p>
+                          </div>
+                        </div>
+
+                        <!-- Polizas y siniestros dinámicos se renderizan abajo (policies-list / claims-list) -->
+
+                        <div class="subgrid two">
+                          <div class="chart-card" onclick="window.appHandlers?.openPaymentTrendsModal?.()">
+                            <div class="chart-header">
+                              <h3 class="chart-title">
+                                <span class="icon-animated" aria-hidden="true">
+                                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 17 8 11 13 14 21 6" />
+                                    <polyline points="14 6 21 6 21 13" />
+                                  </svg>
+                                </span>
+                                Tendencia de pagos
+                              </h3>
+                              <div class="chart-legend">
+                                <span class="chart-legend-item"><span class="chart-legend-dot"></span> Pagos</span>
+                                <span class="chart-legend-item" style="color: var(--theme-accent-color);">Datos en cálculo</span>
+                              </div>
+                            </div>
+                            <div class="chart-body">
+                              <div class="sparkline-placeholder" aria-hidden="true"></div>
+                            </div>
+                            <div class="chart-metrics">
+                              <div class="chart-metric">
+                                <span class="label">Tickets cerrados</span>
+                                <span class="value">—</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Pagos puntuales</span>
+                                <span class="value">—</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Retrasos</span>
+                                <span class="value">—</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="chart-card" onclick="window.appHandlers?.openPolicyHealthModal?.()">
+                            <div class="chart-header">
+                              <h3 class="chart-title">
+                                <span class="icon-animated" aria-hidden="true">
+                                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="10" width="4" height="10" rx="1" />
+                                    <rect x="10" y="6" width="4" height="14" rx="1" />
+                                    <rect x="17" y="3" width="4" height="17" rx="1" />
+                                  </svg>
+                                </span>
+                                Salud de pólizas
+                              </h3>
+                              <div class="chart-legend">
+                                <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #38ef7d; box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.12);"></span> Activas</span>
+                                <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #f5576c; box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.12);"></span> Riesgo</span>
+                              </div>
+                            </div>
+                            <div class="chart-body">
+                              <div class="sparkline-placeholder" aria-hidden="true"></div>
+                            </div>
+                            <div class="chart-metrics">
+                              <div class="chart-metric">
+                                <span class="label">Activas</span>
+                                <span class="value">—</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Renovaciones</span>
+                                <span class="value">—</span>
+                              </div>
+                              <div class="chart-metric">
+                                <span class="label">Alertas</span>
+                                <span class="value">—</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="content-card compact">
+                          <div class="card-header-modern">
+                            <h3>Historial de Pagos</h3>
+                            <div class="header-actions">
+                              <button class="btn-icon-sm" onclick="window.appHandlers?.downloadPaymentHistory?.()" title="Descargar">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                  <polyline points="7 10 12 15 17 10" />
+                                  <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="payment-history-list card-body-scroll" data-payment-history>
+                            <p class="loading-state">Cargando historial...</p>
+                          </div>
+                        </div>
+
+                        <div class="subgrid two">
+                          <div class="content-card compact">
+                            <div class="card-header-modern">
+                              <h3>Mis Pólizas</h3>
+                              <span class="card-badge">Activas</span>
+                            </div>
+                            <div class="policies-list card-body-scroll">
+                              <p class="loading-state">Cargando pólizas...</p>
+                            </div>
+                          </div>
+
+                          <div class="content-card compact">
+                            <div class="card-header-modern">
+                              <h3>Reclamaciones Activas</h3>
+                              <span class="card-badge">Atención</span>
+                            </div>
+                            <div class="claims-list card-body-scroll" data-client-claims-list>
+                              <p class="loading-state">Cargando...</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- .stage-main -->
+        </div><!-- .dashboard-stage -->
+      </div><!-- .dashboard-main-wrapper -->
+
+      <aside class="dashboard-rail right-rail rail-surface">
+            <div class="content-card compact calendar-card">
+                <div class="card-header-modern">
+                  <h3>📅 Calendario de Pagos</h3>
+                  <span class="card-badge">Mes</span>
+                </div>
+                <div class="calendar-grid" aria-hidden="false">
+                  <!-- Generado dinámicamente por paymentCalendar.js -->
+                  <p class="loading-state">Cargando calendario...</p>
+                </div>
+              </div>
+
+            <div class="content-card compact recent-docs-card">
+                <div class="card-header-modern">
+                  <h3>Documentos recientes</h3>
+                  <span class="card-badge">Auto</span>
+                </div>
+                <div class="recent-docs-list card-body-scroll" data-recent-docs>
+                  <p class="loading-state">Cargando documentos...</p>
+                </div>
+                </div>
+
+            <div class="content-card compact">
+              <div class="card-header-modern">
+                <h3>
+                  <span class="icon-animated" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 6v6l3 3" />
+                      <circle cx="12" cy="12" r="9" />
+                    </svg>
+                  </span>
+                  Recordatorios
+                </h3>
+                <span class="card-badge">+2</span>
+              </div>
+              <div class="tasks-list compact">
+                <div class="task-item">
+                  <span>Descarga tu comprobante mensual.</span>
+                  <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.downloadPaymentHistory?.()">Descargar</button>
+                </div>
+                <div class="task-item">
+                  <span>Actualiza tus datos de contacto.</span>
+                  <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.updateInfo?.()">Actualizar</button>
+                </div>
+              </div>
+            </div>
+          </aside><!-- .dashboard-rail -->
+  </div><!-- .dashboard-layout -->
+</section>
+
+<div class="contact-modal" id="contact-modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-contact></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-modal-name">
+    <div class="modal-card-header">
+      <div>
+        <p class="eyebrow">Contacto</p>
+        <h3 id="contact-modal-name" data-contact-name>Nombre</h3>
+      </div>
+      <button class="btn-icon-sm" type="button" data-close-contact aria-label="Cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="modal-card-body">
+      <div class="contact-detail"><span>Rol</span><strong data-contact-role>—</strong></div>
+      <div class="contact-detail"><span>Teléfono</span><strong data-contact-phone>—</strong></div>
+      <div class="contact-detail"><span>Correo</span><strong data-contact-email>—</strong></div>
+      <div class="contact-detail"><span>Pólizas</span><strong data-contact-policy>—</strong></div>
+    </div>
+    <div class="modal-card-actions">
+      <button class="btn btn-sm" type="button" onclick="window.appHandlers?.contactAgent?.()">Escribir</button>
+      <button class="btn btn-sm btn-outline" type="button" data-close-contact>Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Tabs removidos: todo el contenido vive en la vista principal
+
+    // Contactos frecuentes -> modal
+    const contactModal = document.getElementById('contact-modal');
+    const contactChips = document.querySelectorAll('.contact-chip');
+    const contactFields = {
+      name: contactModal?.querySelector('[data-contact-name]'),
+      role: contactModal?.querySelector('[data-contact-role]'),
+      phone: contactModal?.querySelector('[data-contact-phone]'),
+      email: contactModal?.querySelector('[data-contact-email]'),
+      policy: contactModal?.querySelector('[data-contact-policy]')
+    };
+
+    const toggleContactModal = (isOpen) => {
+      if (!contactModal) return;
+      contactModal.classList.toggle('is-open', isOpen);
+      contactModal.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    };
+
+    const openContact = (chip) => {
+      if (!contactModal) return;
+      contactFields.name.textContent = chip.dataset.name || '';
+      contactFields.role.textContent = chip.dataset.role || '';
+      contactFields.phone.textContent = chip.dataset.phone || '';
+      contactFields.email.textContent = chip.dataset.email || '';
+      contactFields.policy.textContent = chip.dataset.policy || '';
+      toggleContactModal(true);
+    };
+
+    contactChips.forEach(chip => {
+      chip.addEventListener('click', () => openContact(chip));
+      chip.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Enter' || evt.key === ' ') {
+          evt.preventDefault();
+          openContact(chip);
+        }
+      });
+    });
+
+    contactModal?.querySelectorAll('[data-close-contact]').forEach(btn => {
+      btn.addEventListener('click', () => toggleContactModal(false));
+    });
+
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape' && contactModal?.classList.contains('is-open')) {
+        toggleContactModal(false);
+      }
+    });
+
+    // Documentos recientes dinámicos (exponer función global de render)
+    const docsContainer = document.querySelector('[data-recent-docs]');
+    const renderRecentDocs = (docs = []) => {
+      if (!docsContainer) return;
+      docsContainer.innerHTML = '';
+
+      if (!docs.length) {
+        docsContainer.innerHTML = '<p class="loading-state">Sin documentos recientes.</p>';
+        return;
+      }
+
+      docs.forEach(doc => {
+        const row = document.createElement('div');
+        row.className = 'doc-item';
+        row.innerHTML = `
+          <div class="doc-meta">
+            <strong>${doc.title || 'Documento'}</strong>
+            <span>${doc.date || ''}</span>
+          </div>
+          <div class="doc-actions">
+            <span class="badge badge-accent ghost">${doc.type || 'PDF'}</span>
+            ${doc.href ? `<a class="btn btn-sm btn-outline" href="${doc.href}" target="_blank" rel="noopener">Abrir</a>` : ''}
+          </div>
+        `;
+        docsContainer.appendChild(row);
+      });
+    };
+
+    window.renderRecentDocs = renderRecentDocs;
+
+    const demoDocs = [
+      { title: 'Comprobante de pago', date: 'Mar 08, 2024', type: 'PDF', href: '#' },
+      { title: 'Póliza Auto 2024', date: 'Feb 22, 2024', type: 'DOC', href: '#' },
+      { title: 'Endoso Hogar', date: 'Feb 10, 2024', type: 'PDF', href: '#' }
+    ];
+
+    renderRecentDocs(window.dashboardData?.recentDocs || demoDocs);
+
+    // Hero user name from session data
+    const heroUser = document.querySelector('[data-hero-user]');
+    const nameFromData = window.dashboardData?.user?.name || window.dashboardData?.user?.fullName;
+    if (heroUser) {
+      heroUser.textContent = nameFromData || 'Usuario';
+    }
+
+    // Load dashboard data from backend API
+    if (typeof loadClientDashboard === 'function') {
+      loadClientDashboard().then(async (data) => {
+        // Persist dashboard data para uso en modales / notificaciones
+        window.dashboardData = {
+          ...(data?.dashboardData || {}),
+          policies: data?.policies || [],
+          claims: data?.claims || [],
+          payments: data?.payments || [],
+          recentDocs: data?.dashboardData?.recentDocs || []
+        };
+
+        // Refrescar documentos recientes con datos reales
+        renderRecentDocs(window.dashboardData.recentDocs);
+
+        // Inicializar calendario de pagos con la primera póliza disponible
+        initPaymentSchedule(window.dashboardData.policies);
+      }).catch(error => {
+        console.error('Error loading client dashboard:', error);
+      });
+    }
+
+    function initPaymentSchedule(policies = []) {
+      if (typeof PaymentScheduleComponent === 'undefined') {
+        console.warn('PaymentScheduleComponent not loaded. Make sure paymentIntegration.js is included.');
+        return;
+      }
+
+      const userStored = localStorage.getItem('krauser_user');
+      const user = userStored ? JSON.parse(userStored) : null;
+      if (!user) {
+        console.log('No user session - skipping payment schedule initialization');
+        return;
+      }
+
+      const scheduleContainer = document.getElementById('payment-schedule-container');
+      const fallbackPolicyId = policies?.[0]?.id;
+      const activePolicyId = user.activePolicyId || fallbackPolicyId;
+
+      // Persist activePolicyId para próximas sesiones
+      if (!user.activePolicyId && fallbackPolicyId) {
+        const updatedUser = { ...user, activePolicyId: fallbackPolicyId };
+        localStorage.setItem('krauser_user', JSON.stringify(updatedUser));
+      }
+
+      if (scheduleContainer && activePolicyId) {
+        try {
+          const paymentSchedule = new PaymentScheduleComponent(activePolicyId, 'payment-schedule-container');
+          paymentSchedule.render();
+          setInterval(() => paymentSchedule.render(), 30000);
+        } catch (error) {
+          console.error('Error initializing payment schedule:', error);
+        }
+      } else if (scheduleContainer) {
+        scheduleContainer.innerHTML = '<p class="empty-state">No tienes pólizas activas</p>';
+      }
+    }
+  });
+</script>
+
+    </div>
+
+    <!-- Agent Dashboard -->
+    <div id="page-agent-dashboard" class="page-section hidden">
+      <section class="dashboard-section agent-dashboard" id="agent-dashboard-section">
+  
+  <!-- Hero Header - Componente independiente -->
+  <div class="dashboard-hero-container">
+    <div class="hero-surface">
+      <header class="dashboard-top-header search-hero hero-grid">
+        <div class="hero-copy">
+          <div class="hero-title-row">
+            <span class="eyebrow">Portal de agentes</span>
+            <span class="hero-divider" aria-hidden="true">|</span>
+            <span class="hero-welcome">Bienvenido <span data-agent-name>Guillermo Krause S.</span></span>
+          </div>
+        </div>
+        <div class="hero-search">
+          <div class="search-bar stretch">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="7" />
+              <line x1="16.65" y1="16.65" x2="21" y2="21" />
+            </svg>
+            <input type="search" placeholder="Buscar clientes, pólizas o cotizaciones" aria-label="Buscar" />
+          </div>
+          <div class="header-actions tight pill-actions">
+            <button class="icon-pill" aria-label="Notificaciones" onclick="window.appHandlers?.openNotifications?.()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <span class="dot"></span>
+            </button>
+            <button class="icon-pill" aria-label="Contactar cliente" onclick="window.contactModal?.open()" title="Contactar cliente">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </button>
+            <button class="icon-pill" aria-label="Direct Messages" onclick="window.directMessages?.openModal()" title="Mensajes directos">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+              <span class="badge-count" data-dm-badge style="display: none;">0</span>
+            </button>
+            <span class="badge badge-accent ghost" onclick="window.directMessages?.openModal()" style="cursor: pointer;" title="Mensajes directos">
+              Direct
+              <span class="badge-count" data-dm-badge style="display: none; margin-left: 4px;">0</span>
+            </span>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-surface">
+        <div class="sidebar-stack">
+          <div class="content-card compact sidebar-block sidebar-brand-block">
+            <div class="sidebar-header sidebar-branding">
+              <div class="logo-slot logo-slot-nav" data-render-logo data-logo-size="sm" data-logo-contrast="primary" data-logo-class="logo-shield" aria-label="Krause Insurance" onclick="window.toggleTheme()" style="cursor: pointer;">
+                <svg class="krause-shield logo-shield logo-size-sm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <ellipse class="shield-circle" cx="40" cy="38" rx="22" ry="22" stroke="currentColor" stroke-width="3" fill="none" />
+                  <path class="shield-diamond" d="M40 12 L62 35 L40 70 L18 35 Z" stroke="currentColor" stroke-width="3" fill="none" />
+                  <path class="shield-arc" d="M24 50 Q40 30 56 50" stroke="currentColor" stroke-width="3" fill="none" />
+                  <line class="shield-line" x1="40" y1="50" x2="40" y2="68" stroke="currentColor" stroke-width="3" />
+                  <circle class="shield-center" cx="40" cy="40" r="6" fill="currentColor" />
+                </svg>
+              </div>
+              <div class="brand-text brand-text-sidebar">
+                <span class="brand-name">Krause</span>
+                <span class="brand-tagline">Insurance</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card compact sidebar-block">
+            <div class="sidebar-widget-group">
+              <div class="sidebar-qa-header">Clientes recientes</div>
+              <div class="recent-clients-pills">
+                <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-001')">
+                  <span class="client-pill-avatar">MG</span>
+                  <span class="client-pill-name">María G.</span>
+                </button>
+                <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-002')">
+                  <span class="client-pill-avatar">CR</span>
+                  <span class="client-pill-name">Carlos R.</span>
+                </button>
+                <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-003')">
+                  <span class="client-pill-avatar">AM</span>
+                  <span class="client-pill-name">Ana M.</span>
+                </button>
+                <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-004')">
+                  <span class="client-pill-avatar">LH</span>
+                  <span class="client-pill-name">Luis H.</span>
+                </button>
+                <button class="client-pill" onclick="window.appHandlers?.viewClientDetails?.('CL-005')">
+                  <span class="client-pill-avatar">PS</span>
+                  <span class="client-pill-name">Pedro S.</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card compact sidebar-block">
+            <div class="sidebar-widget-group">
+              <div class="sidebar-qa-header">Gestión rápida</div>
+              <div class="widget-mini-list">
+                <button class="widget-mini-item" onclick="window.appHandlers?.openForms?.()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11H3v10h6V11zM21 11h-6v10h6V11zM15 3H9v6h6V3z"/>
+                  </svg>
+                  <span>Cuestionarios</span>
+                  <span class="widget-mini-badge">3</span>
+                </button>
+                <button class="widget-mini-item" onclick="window.appHandlers?.openAlerts?.()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 9v4"/>
+                    <path d="M12 17h.01"/>
+                    <circle cx="12" cy="12" r="10"/>
+                  </svg>
+                  <span>Alertas vencimiento</span>
+                  <span class="widget-mini-badge warn">5</span>
+                </button>
+                <button class="widget-mini-item" onclick="window.appHandlers?.openQuotes?.()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16v16H4z"/>
+                    <path d="M8 8h8"/>
+                    <path d="M8 12h6"/>
+                  </svg>
+                  <span>Cotizaciones</span>
+                  <span class="widget-mini-badge">8</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card compact sidebar-block">
+            <div class="sidebar-quick-actions">
+              <div class="sidebar-qa-header">Acciones rápidas</div>
+              <button class="qa-btn" onclick="window.dashboardActions?.createQuote?.()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                Nueva cotización
+              </button>
+              <button class="qa-btn" onclick="window.dashboardActions?.addClient?.()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
+                  <path d="M4 21v-1a7 7 0 0 1 14 0v1"/>
+                </svg>
+                Agregar cliente
+              </button>
+              <button class="qa-btn" onclick="window.dashboardActions?.scheduleAppointment?.()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                Agendar cita
+              </button>
+              <button class="qa-btn" onclick="window.dashboardActions?.uploadPolicyDocument?.()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                Cargar póliza
+              </button>
+            </div>
+          </div>
+
+          <div class="content-card compact sidebar-block sidebar-logout-block">
+            <button class="sidebar-logout" onclick="window.logout?.()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+              Salir
+            </button>
+          </div>
+        </div><!-- .sidebar-stack -->
+      </div><!-- .sidebar-surface -->
+    </aside>
+
+    <div class="dashboard-main-wrapper">
+      <div class="dashboard-stage">
+        <div class="stage-main">
+
+          <div class="dashboard-tabs" id="agent-tabs" role="tablist" aria-label="Navegación del dashboard de agentes" style="display: none;">
+            <button class="dashboard-tab active" data-target="agent-overview" aria-pressed="true">Resumen</button>
+          </div>
+
+          <div class="tab-panels" id="agent-panels">
+            <div class="tab-panel active" id="agent-overview" role="tabpanel" aria-label="Resumen">
+              <div class="mimic-wrap">
+                <div class="stats-grid compact">
+                  <div class="stat-card stat-primary">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
+                        <path d="M4 21v-1a7 7 0 0 1 14 0v1"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">89</div>
+                      <div class="stat-label">Total Clientes</div>
+                    </div>
+                    <div class="stat-trend positive">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                      </svg>
+                      <span>+15.8%</span>
+                    </div>
+                  </div>
+
+                  <div class="stat-card stat-success">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">156</div>
+                      <div class="stat-label">Pólizas Activas</div>
+                    </div>
+                    <div class="stat-badge success">+18 mes</div>
+                  </div>
+
+                  <div class="stat-card stat-warning">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">$45.3K</div>
+                      <div class="stat-label">Comisiones Mes</div>
+                    </div>
+                    <div class="stat-trend positive">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                      </svg>
+                      <span>+12.4%</span>
+                    </div>
+                  </div>
+
+                  <div class="stat-card stat-info">
+                    <div class="stat-icon-wrapper">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </div>
+                    <div class="stat-content">
+                      <div class="stat-value">73%</div>
+                      <div class="stat-label">Tasa de Cierre</div>
+                    </div>
+                    <div class="stat-badge info">Excelente</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-body">
+                <div class="main-surface mimic-wrap">
+                  <div class="mimic-wrap-inner">
+                    <div class="mimic-col main">
+                      
+                      <!-- Panel de Cargar Póliza removido - ahora es botón de acción rápida -->
+
+                      <!-- Client Filter Indicator -->
+                      <div id="client-filter-indicator" class="filter-indicator" style="display: none;">
+                        Filtrando por cliente
+                        <button class="btn-clear-filter" onclick="window.agentDashboard?.clearClientFilter()">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                          </svg>
+                          Limpiar filtro
+                        </button>
+                      </div>
+
+                      <!-- Agent Payment Schedule Panel -->
+                      <div class="content-card list-card compact" id="agent-payments-section">
+                        <div id="agent-payments-container">
+                          <p class="loading-state">Cargando calendario de pagos...</p>
+                        </div>
+                      </div>
+
+                      <!-- Agent Policies Panel -->
+                      <div class="content-card list-card compact" id="agent-policies-section">
+                        <div id="agent-policies-container">
+                          <p class="loading-state">Cargando pólizas...</p>
+                        </div>
+                      </div>
+
+                      <!-- Payment Proof Review Section -->
+                      <div class="content-card compact">
+                        <div class="card-header-modern">
+                          <h3>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;">
+                              <rect x="2" y="5" width="20" height="14" rx="2" />
+                              <line x1="2" y1="10" x2="22" y2="10" />
+                              <line x1="7" y1="15" x2="10" y2="15" />
+                            </svg>
+                            Comprobantes Pendientes
+                          </h3>
+                          <span class="card-badge" id="proof-count-badge">0</span>
+                        </div>
+                        <div id="proof-review-container" data-proof-review>
+                          <p class="loading-state">Cargando comprobantes pendientes...</p>
+                        </div>
+                      </div>
+
+                      <div class="content-card compact">
+                        <div class="card-header-modern">
+                          <h3>Roadmap de Suscripción</h3>
+                          <div class="roadmap-tabs" role="tablist">
+                            <button class="roadmap-tab active" data-client="MG" aria-pressed="true">María G.</button>
+                            <button class="roadmap-tab" data-client="CR" aria-pressed="false">Carlos R.</button>
+                            <button class="roadmap-tab" data-client="AM" aria-pressed="false">Ana M.</button>
+                          </div>
+                        </div>
+                        <div class="roadmap-body">
+                          <div class="roadmap-status" data-client="MG">
+                            <div class="roadmap-step done">
+                              <span class="step-label">Captura de Datos</span>
+                              <span class="step-meta">Recibido 05 Ene</span>
+                            </div>
+                            <div class="roadmap-step done">
+                              <span class="step-label">Cuestionario de Riesgo</span>
+                              <span class="step-meta">Completo</span>
+                            </div>
+                            <div class="roadmap-step in-progress">
+                              <span class="step-label">Suscripción Técnica</span>
+                              <span class="step-meta">En revisión</span>
+                            </div>
+                            <div class="roadmap-step pending">
+                              <span class="step-label">Emisión & Bienvenida</span>
+                              <span class="step-meta">Pendiente</span>
+                            </div>
+                          </div>
+                          <div class="roadmap-status hidden" data-client="CR">
+                            <div class="roadmap-step done">
+                              <span class="step-label">Captura de Datos</span>
+                              <span class="step-meta">Recibido 03 Ene</span>
+                            </div>
+                            <div class="roadmap-step in-progress">
+                              <span class="step-label">Cuestionario de Riesgo</span>
+                              <span class="step-meta">Enviado • esperando respuestas</span>
+                            </div>
+                            <div class="roadmap-step pending">
+                              <span class="step-label">Suscripción Técnica</span>
+                              <span class="step-meta">Pendiente</span>
+                            </div>
+                            <div class="roadmap-step pending">
+                              <span class="step-label">Emisión & Bienvenida</span>
+                              <span class="step-meta">Pendiente</span>
+                            </div>
+                          </div>
+                          <div class="roadmap-status hidden" data-client="AM">
+                            <div class="roadmap-step done">
+                              <span class="step-label">Captura de Datos</span>
+                              <span class="step-meta">Recibido 28 Dic</span>
+                            </div>
+                            <div class="roadmap-step done">
+                              <span class="step-label">Cuestionario de Riesgo</span>
+                              <span class="step-meta">Completo</span>
+                            </div>
+                            <div class="roadmap-step done">
+                              <span class="step-label">Suscripción Técnica</span>
+                              <span class="step-meta">Aprobado</span>
+                            </div>
+                            <div class="roadmap-step in-progress">
+                              <span class="step-label">Emisión & Bienvenida</span>
+                              <span class="step-meta">Emitido, enviar kit</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="content-card compact">
+                        <div class="card-header-modern">
+                          <h3>Siniestros En Curso</h3>
+                          <div class="header-actions tight">
+                            <button class="btn-icon-sm" onclick="window.appHandlers?.fileClaim?.()" title="Nuevo siniestro">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="claims-interactive-list">
+                          <div class="claim-item warn">
+                            <div class="claim-icon">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                              </svg>
+                            </div>
+                            <div class="claim-content">
+                              <div class="claim-header">
+                                <strong>#SIN-2026-001</strong>
+                                <span class="claim-status warn">En revisión</span>
+                              </div>
+                              <p>Auto - Colisión | María González</p>
+                              <div class="claim-meta">
+                                <span>05 Ene 2026</span>
+                                <span class="claim-amount">$12,500</span>
+                              </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.viewClaim?.('SIN-2026-001')">Ver</button>
+                          </div>
+                          <div class="claim-item ok">
+                            <div class="claim-icon">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                              </svg>
+                            </div>
+                            <div class="claim-content">
+                              <div class="claim-header">
+                                <strong>#SIN-2025-089</strong>
+                                <span class="claim-status ok">Aprobado</span>
+                              </div>
+                              <p>Hogar - Robo | Carlos Ruiz</p>
+                              <div class="claim-meta">
+                                <span>20 Dic 2025</span>
+                                <span class="claim-amount">$8,300</span>
+                              </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.viewClaim?.('SIN-2025-089')">Ver</button>
+                          </div>
+                          <div class="claim-item urgent">
+                            <div class="claim-icon">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 9v4"/>
+                                <path d="M12 17h.01"/>
+                                <path d="m10.29 3.86-8.27 14.3A2 2 0 0 0 3.73 21h16.54a2 2 0 0 0 1.71-2.84l-8.27-14.3a2 2 0 0 0-3.42 0Z"/>
+                              </svg>
+                            </div>
+                            <div class="claim-content">
+                              <div class="claim-header">
+                                <strong>#SIN-2026-002</strong>
+                                <span class="claim-status urgent">Urgente</span>
+                              </div>
+                              <p>Vida - Accidente | Ana Martínez</p>
+                              <div class="claim-meta">
+                                <span>08 Ene 2026</span>
+                                <span class="claim-amount">$45,000</span>
+                              </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.viewClaim?.('SIN-2026-002')">Ver</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="subgrid two">
+                        <div class="chart-card" onclick="window.appHandlers?.openSalesModal?.()" style="cursor: pointer;">
+                          <div class="chart-header">
+                            <h3 class="chart-title">
+                              <span class="icon-animated" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <polyline points="3 17 8 11 13 14 21 6" />
+                                  <polyline points="14 6 21 6 21 13" />
+                                </svg>
+                              </span>
+                              Ventas del Mes
+                            </h3>
+                            <div class="chart-legend">
+                              <span class="chart-legend-item"><span class="chart-legend-dot"></span> Ventas</span>
+                              <span class="chart-legend-item" style="color: var(--theme-accent-color);">+22.3% vs mes anterior</span>
+                            </div>
+                          </div>
+                          <div class="chart-body">
+                            <div class="sparkline-placeholder" aria-hidden="true"></div>
+                          </div>
+                          <div class="chart-metrics">
+                            <div class="chart-metric">
+                              <span class="label">Pólizas vendidas</span>
+                              <span class="value">18</span>
+                            </div>
+                            <div class="chart-metric">
+                              <span class="label">Renovaciones</span>
+                              <span class="value">12</span>
+                            </div>
+                            <div class="chart-metric">
+                              <span class="label">Cotizaciones</span>
+                              <span class="value">25</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="chart-card" onclick="window.appHandlers?.openCommissionsModal?.()" style="cursor: pointer;">
+                          <div class="chart-header">
+                            <h3 class="chart-title">
+                              <span class="icon-animated" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                  <line x1="12" y1="1" x2="12" y2="23"/>
+                                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                              </span>
+                              Comisiones
+                            </h3>
+                            <div class="chart-legend">
+                              <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #38ef7d; box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.12);"></span> Ganadas</span>
+                              <span class="chart-legend-item"><span class="chart-legend-dot" style="background: #f5576c; box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.12);"></span> Pendientes</span>
+                            </div>
+                          </div>
+                          <div class="chart-body">
+                            <div class="sparkline-placeholder" aria-hidden="true"></div>
+                          </div>
+                          <div class="chart-metrics">
+                            <div class="chart-metric">
+                              <span class="label">Este mes</span>
+                              <span class="value">$45.3K</span>
+                            </div>
+                            <div class="chart-metric">
+                              <span class="label">Pendiente</span>
+                              <span class="value">$8.5K</span>
+                            </div>
+                            <div class="chart-metric">
+                              <span class="label">Promedio</span>
+                              <span class="value">$42.1K</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- .stage-main -->
+      </div><!-- .dashboard-stage -->
+    </div><!-- .dashboard-main-wrapper -->
+
+    <aside class="dashboard-rail right-rail rail-surface">
+      <div class="content-card compact calendar-card">
+        <div class="card-header-modern">
+          <h3>📅 Pagos Próximos</h3>
+          <span class="card-badge">Mes</span>
+        </div>
+        <div class="calendar-grid" aria-hidden="false">
+          <!-- Generado dinámicamente por paymentCalendar.js -->
+          <p class="loading-state">Cargando calendario...</p>
+        </div>
+      </div>
+
+      <div class="content-card compact">
+        <div class="card-header-modern">
+          <h3>
+            <span class="icon-animated" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 6v6l3 3" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+            </span>
+            Tareas Prioritarias
+          </h3>
+          <span class="card-badge">+4</span>
+        </div>
+        <div class="tasks-list compact">
+          <div class="task-item">
+            <span>Seguimiento cotización #COT-2026-045</span>
+            <button class="btn btn-sm btn-outline">Ver</button>
+          </div>
+          <div class="task-item">
+            <span>Renovar póliza AUTO-001</span>
+            <button class="btn btn-sm btn-outline">Renovar</button>
+          </div>
+          <div class="task-item">
+            <span>Contactar cliente nuevo</span>
+            <button class="btn btn-sm btn-outline">Llamar</button>
+          </div>
+          <div class="task-item">
+            <span>Completar reporte mensual</span>
+            <button class="btn btn-sm btn-outline">Abrir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card compact">
+        <div class="card-header-modern">
+          <h3>Actividad Reciente</h3>
+          <span class="card-badge">Live</span>
+        </div>
+        <div class="activity-list card-body-scroll" data-agent-activity>
+          <div class="activity-item">
+            <div class="activity-icon success">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="activity-content">
+              <strong>Póliza vendida</strong>
+              <span>AUTO-156 - María González</span>
+              <span class="activity-time">Hace 2 horas</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon info">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16v16H4z"/>
+              </svg>
+            </div>
+            <div class="activity-content">
+              <strong>Cotización enviada</strong>
+              <span>#COT-2026-045 - Pedro Sánchez</span>
+              <span class="activity-time">Hace 4 horas</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon warning">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 9v4"/>
+                <path d="M12 17h.01"/>
+              </svg>
+            </div>
+            <div class="activity-content">
+              <strong>Renovación pendiente</strong>
+              <span>HOME-001 - Carlos Ruiz</span>
+              <span class="activity-time">Hace 1 día</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside><!-- .dashboard-rail -->
+  </div><!-- .dashboard-layout -->
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Tabs (if present)
+    const tabs = document.querySelectorAll('#agent-tabs .dashboard-tab');
+    const panels = document.querySelectorAll('#agent-panels .tab-panel');
+    const navItems = document.querySelectorAll('.agent-dashboard .dashboard-sidebar .nav-item[data-target]');
+
+    const setActive = (targetId) => {
+      tabs.forEach(btn => {
+        const isActive = btn.getAttribute('data-target') === targetId;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive);
+      });
+      navItems.forEach(link => {
+        const isActive = link.getAttribute('data-target') === targetId;
+        link.classList.toggle('active', isActive);
+      });
+      panels.forEach(panel => panel.classList.toggle('active', panel.id === targetId));
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => setActive(tab.getAttribute('data-target')));
+    });
+
+    navItems.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActive(link.getAttribute('data-target'));
+      });
+    });
+
+    // Roadmap tabs inside agent dashboard
+    const roadmapTabs = document.querySelectorAll('.agent-dashboard .roadmap-tab');
+    const roadmapPanels = document.querySelectorAll('.agent-dashboard .roadmap-status');
+    const activateRoadmap = (client) => {
+      if (!client) return;
+      roadmapTabs.forEach(tab => {
+        const isActive = tab.getAttribute('data-client') === client;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-pressed', isActive);
+      });
+      roadmapPanels.forEach(panel => {
+        panel.classList.toggle('hidden', panel.getAttribute('data-client') !== client);
+      });
+    };
+
+    roadmapTabs.forEach(tab => {
+      tab.addEventListener('click', () => activateRoadmap(tab.getAttribute('data-client')));
+    });
+
+    if (roadmapTabs.length) {
+      activateRoadmap(roadmapTabs[0].getAttribute('data-client'));
+    }
+
+    // Agent data from session
+    const agentName = window.dashboardData?.user?.name || 'Guillermo Krause';
+    const agentId = window.dashboardData?.user?.id || 'AG-2024-001';
+    const initials = agentName.split(' ').map(n => n[0]).join('').toUpperCase();
+
+    const agentNameEl = document.querySelector('[data-agent-name]');
+    const agentIdEl = document.querySelector('[data-agent-id]');
+    const agentInitialsEl = document.querySelector('[data-agent-initials]');
+
+    if (agentNameEl) agentNameEl.textContent = agentName;
+    if (agentIdEl) agentIdEl.textContent = agentId;
+    if (agentInitialsEl) agentInitialsEl.textContent = initials;
+
+    // Load dashboard data from backend API
+    if (typeof loadAgentDashboard === 'function') {
+      loadAgentDashboard().catch(error => {
+        console.error('Error loading agent dashboard:', error);
+      });
+    }
+
+    // Initialize Payment Proof Review Component SOLO si hay sesión de agente
+    if (typeof ProofReviewComponent !== 'undefined') {
+      // Verificar que haya usuario logueado como agente
+      const userSession = sessionStorage.getItem('user');
+      if (!userSession) {
+        console.log('No agent session - skipping proof review initialization');
+        return;
+      }
+
+      const user = JSON.parse(userSession);
+      if (user.type !== 'agent') {
+        console.log('User is not an agent - skipping proof review initialization');
+        return;
+      }
+
+      const proofContainer = document.getElementById('proof-review-container');
+      if (proofContainer) {
+        try {
+          const proofReview = new ProofReviewComponent('proof-review-container');
+          proofReview.render();
+          
+          // Update badge with count
+          proofReview.onCountUpdate = (count) => {
+            const badge = document.getElementById('proof-count-badge');
+            if (badge) badge.textContent = count;
+          };
+          
+          // Auto-refresh every 30 seconds
+          setInterval(() => proofReview.render(), 30000);
+        } catch (error) {
+          console.error('Error initializing proof review:', error);
+        }
+      }
+    } else {
+      console.warn('ProofReviewComponent not loaded. Make sure paymentIntegration.js is included.');
+    }
+
+    // Policy Upload Form Handler
+    const policyForm = document.getElementById('policy-upload-form');
+    if (policyForm && typeof PaymentAPI !== 'undefined') {
+      policyForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(policyForm);
+        const progressDiv = document.getElementById('extraction-progress');
+        const resultsDiv = document.getElementById('extraction-results');
+        const extractedDataDiv = document.getElementById('extracted-data');
+        
+        // Show progress
+        progressDiv.style.display = 'block';
+        resultsDiv.style.display = 'none';
+        
+        try {
+          const response = await PaymentAPI.uploadPolicy(formData);
+          
+          // Hide progress
+          progressDiv.style.display = 'none';
+          
+          if (response.success) {
+            // Show extracted data
+            const data = response.extracted_data;
+            const html = `
+              <div style="margin-bottom: 8px;"><strong>Prima Mensual:</strong> $${data.monthly_premium || 'No detectado'} <span style="color: ${data.confidence_premium === 'high' ? 'green' : data.confidence_premium === 'medium' ? 'orange' : 'red'};">(${data.confidence_premium})</span></div>
+              <div style="margin-bottom: 8px;"><strong>Fecha Emisión:</strong> ${data.issue_date || 'No detectado'} <span style="color: ${data.confidence_dates === 'high' ? 'green' : data.confidence_dates === 'medium' ? 'orange' : 'red'};">(${data.confidence_dates})</span></div>
+              <div style="margin-bottom: 8px;"><strong>Fecha Vencimiento:</strong> ${data.expiration_date || 'No detectado'}</div>
+              <div style="margin-bottom: 8px;"><strong>Periodicidad:</strong> ${data.payment_periodicity || 'No detectado'}</div>
+              <div style="margin-bottom: 8px;"><strong>Aseguradora:</strong> ${data.insurer || 'No detectado'} <span style="color: ${data.confidence_insurer === 'high' ? 'green' : data.confidence_insurer === 'medium' ? 'orange' : 'red'};">(${data.confidence_insurer})</span></div>
+              ${data.low_confidence_warning ? '<div style="margin-top: 12px; padding: 8px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; font-size: 0.875rem;">⚠️ Algunos datos tienen baja confianza. Revisa y ajusta manualmente.</div>' : ''}
+            `;
+            extractedDataDiv.innerHTML = html;
+            resultsDiv.style.display = 'block';
+            
+            // Show success notification
+            if (window.showNotification) {
+              window.showNotification('Póliza procesada exitosamente. ID: ' + response.policy_id, 'success');
+            }
+            
+            // Refresh proof review component if available
+            if (window.proofReviewComponent) {
+              setTimeout(() => window.proofReviewComponent.render(), 1000);
+            }
+
+            // Refresh agent dashboard panels
+            if (window.agentDashboard) {
+              setTimeout(() => {
+                window.agentDashboard.paymentPanel?.render();
+                window.agentDashboard.policiesPanel?.render();
+              }, 1000);
+            }
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+              policyForm.reset();
+              resultsDiv.style.display = 'none';
+            }, 3000);
+            
+          } else {
+            throw new Error(response.message || 'Error al procesar póliza');
+          }
+        } catch (error) {
+          progressDiv.style.display = 'none';
+          console.error('Error uploading policy:', error);
+          if (window.showNotification) {
+            window.showNotification('Error al procesar póliza: ' + error.message, 'error');
+          }
+        }
+      });
+    }
+  });
+</script>
+
+<!-- Agent Dashboard Components -->
+
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="page-admin-dashboard" class="page-section hidden">
+      <section class="dashboard-section admin-dashboard" id="admin-dashboard-section">
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <div>
+        <h1>Panel de Administración</h1>
+        <p>Bienvenido, <span data-admin-name>Administrador</span></p>
+      </div>
+      <button class="btn btn-outline" onclick="logout()">Cerrar Sesión</button>
+    </div>
+    <div class="dashboard-stats">
+      <div class="dashboard-stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-info">
+          <div class="stat-value">150</div>
+          <div class="stat-label">Usuarios Totales</div>
+        </div>
+      </div>
+      <div class="dashboard-stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-info">
+          <div class="stat-value">1250</div>
+          <div class="stat-label">Pólizas Activas</div>
+        </div>
+      </div>
+      <div class="dashboard-stat-card">
+        <div class="stat-icon">💰</div>
+        <div class="stat-info">
+          <div class="stat-value">$2.5M</div>
+          <div class="stat-label">Ingresos Mes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-main">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Cola de trabajo</h3>
+            <span class="badge badge-warning">Pre-lanzamiento</span>
+          </div>
+          <div class="tasks-list">
+            <div class="task-item">
+              <div>
+                <p class="task-title">Revisar cotizaciones pendientes</p>
+                <p class="task-meta">12 en espera · SLA 4h</p>
+              </div>
+              <button class="btn btn-outline btn-sm" aria-label="Abrir cola de cotizaciones">Ver</button>
+            </div>
+            <div class="task-item">
+              <div>
+                <p class="task-title">Aprobar renovaciones críticas</p>
+                <p class="task-meta">5 requieren revisión manual</p>
+              </div>
+              <button class="btn btn-outline btn-sm" aria-label="Abrir renovaciones">Revisar</button>
+            </div>
+            <div class="task-item">
+              <div>
+                <p class="task-title">Siniestros priorizados</p>
+                <p class="task-meta">3 abiertos · 2 con documentación</p>
+              </div>
+              <button class="btn btn-outline btn-sm" aria-label="Abrir siniestros">Detalle</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Alertas y cumplimiento</h3>
+            <span class="badge badge-danger">Atención</span>
+          </div>
+          <div class="alert-list">
+            <div class="alert-item">
+              <div>
+                <p class="alert-title">Pólizas con pago atrasado</p>
+                <p class="alert-meta">8 pólizas · riesgo de cancelación</p>
+              </div>
+              <span class="badge badge-warning">SLA 24h</span>
+            </div>
+            <div class="alert-item">
+              <div>
+                <p class="alert-title">Auditoría pendiente</p>
+                <p class="alert-meta">Reporte trimestral de cumplimiento</p>
+              </div>
+              <span class="badge badge-accent">Revisión</span>
+            </div>
+            <div class="alert-item">
+              <div>
+                <p class="alert-title">Documentos faltantes</p>
+                <p class="alert-meta">11 archivos solicitados a clientes</p>
+              </div>
+              <span class="badge badge-primary">Seguimiento</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="dashboard-sidebar">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Actividad reciente</h3>
+            <span class="badge badge-accent">Live</span>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div>
+                <p class="activity-title">Agente Rivera aprobó una cotización</p>
+                <p class="activity-meta">Hace 12 min · Auto</p>
+              </div>
+              <span class="badge badge-success">OK</span>
+            </div>
+            <div class="activity-item">
+              <div>
+                <p class="activity-title">Admin configuró política de seguridad</p>
+                <p class="activity-meta">Hace 28 min · MFA obligatorio</p>
+              </div>
+              <span class="badge badge-primary">Config</span>
+            </div>
+            <div class="activity-item">
+              <div>
+                <p class="activity-title">Cliente envió documentos de siniestro</p>
+                <p class="activity-meta">Hace 1 h · Hogar</p>
+              </div>
+              <span class="badge badge-warning">Revisar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Acciones rápidas</h3>
+            <span class="badge badge-light">Pre-lanzamiento</span>
+          </div>
+          <div class="quick-actions">
+            <button class="btn btn-primary btn-block">Crear agente</button>
+            <button class="btn btn-outline btn-block">Importar clientes</button>
+            <button class="btn btn-outline btn-block">Descargar reporte mensual</button>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3>Modo pre-lanzamiento</h3>
+            <span class="badge badge-accent">Demo</span>
+          </div>
+          <ul class="prelaunch-checklist">
+            <li>Datos mockeados con guardado local</li>
+            <li>Acciones destructivas deshabilitadas</li>
+            <li>Logs de auditoría en consola</li>
+            <li>Pruebas de accesibilidad en progreso</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+<footer class="footer collapsed" id="footer">
+  <button class="footer-toggle" onclick="toggleFooter()">
+    <span id="footer-toggle-text">Mostrar Información</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <div class="footer-brand">
+          <div class="logo-slot logo-slot-footer" data-render-logo data-logo-size="md" data-logo-contrast="on-dark" data-logo-class="logo-shield-footer" aria-label="Krause Insurance"></div>
+          <h3>Krause Insurance</h3>
+          <p class="footer-tagline">Protection Beyond The Limits</p>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('services', event)">Seguros de Auto</a></li>
+          <li><a href="#" onclick="navigateTo('services', event)">Seguros de Hogar</a></li>
+          <li><a href="#" onclick="navigateTo('services', event)">Seguros de Vida</a></li>
+          <li><a href="#" onclick="navigateTo('services', event)">Seguros Comerciales</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Acceso Rápido</h4>
+        <ul>
+          <li><a href="#" onclick="navigateTo('client-login', event)">Portal Clientes</a></li>
+          <li><a href="#" onclick="navigateTo('agent-login', event)">Portal Agentes</a></li>
+          <li><a href="card.html">Tarjeta Digital</a></li>
+          <li><a href="#" onclick="navigateTo('contact', event)">Contacto</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <ul class="footer-contact">
+          <li>📞 +1 (234) 567-89</li>
+          <li>📧 info@krauseinsurances.com</li>
+          <li>📍 Tu Ciudad, Estado</li>
+        </ul>
+        <div class="social-links">
+          <a href="#" class="social-link">in</a>
+          <a href="#" class="social-link">f</a>
+          <a href="#" class="social-link">ig</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Krause Insurance. Todos los derechos reservados.</p>
+      <a href="https://www.krauseinsurances.com" class="footer-url">www.KrauseInsurances.com</a>
+    </div>
+  </div>
+</footer>
+
+  <footer id="footer" class="footer"></footer>
+
+  <!-- Particles Background for Loading Modal -->
+  <div class="bg-particles" id="particles"></div>
+
+  <!-- Loading Modal - Complete Version with Progress -->
+  <div class="loading-modal" id="loadingModal" role="dialog" aria-modal="true" aria-label="Cargando">
+    <div class="modal-card">
+      <div class="logo-and-info">
+        <div class="logo-slot logo-slot-modal" data-logo-size="lg" data-logo-contrast="primary"></div>
+
+        <div class="modal-info">
+          <h2 id="loading-title">Preparando tu experiencia</h2>
+          <div class="progress-percentage" id="percentage">0%</div>
+          <div class="status-text" id="status">Inicializando sistema</div>
+          <div class="progress-bar-container" aria-hidden="true">
+            <div id="progressBar" class="progress-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="did-you-know" id="didYouKnow">
+        <div class="did-you-know-title">💡 Sabías que...</div>
+        <div id="funFact">Cargando dato interesante...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Bind theme toggle to the header logo (.nav-brand .krause-shield).
+    // Clicking the logo will invoke the global theme toggle if available,
+    // otherwise it will toggle the `data-theme="dark-forest"` attribute as a fallback.
+    (function() {
+      const headerLogo = document.querySelector('.nav-brand .krause-shield');
+      if (!headerLogo) return;
+
+      headerLogo.addEventListener('click', function () {
+        // allow other click handlers (navigation) to run first
+        setTimeout(() => {
+          if (typeof window.toggleTheme === 'function') {
+            window.toggleTheme();
+            return;
+          }
+          // Fallback toggling attribute for the "dark-forest" theme
+          const root = document.documentElement;
+          const current = root.getAttribute('data-theme');
+          if (current === 'dark-forest') {
+            root.removeAttribute('data-theme');
+          } else {
+            root.setAttribute('data-theme', 'dark-forest');
+          }
+        }, 10);
+      });
+    })();
+  </script>
+  
+  <!-- Cache and API Integration - DISABLED DURING TESTING -->
+  <!-- cache-manager.js not present in repo; skip to avoid 404s -->
+  <!-- <script src="api-integration.js?v=1.0"></script> -->
+  <!-- HtmlWebpackPlugin will inject krause.app.js automatically -->
+</body>
+</html>

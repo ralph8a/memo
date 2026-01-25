@@ -114,155 +114,47 @@ export class NotificationModal {
     }
 
     async loadNotifications() {
-        // En producción, esto cargará desde el backend. Si falla, caemos a demo según rol.
-        const userType = localStorage.getItem('krauser_user') ?
-            JSON.parse(localStorage.getItem('krauser_user')).type : 'client';
-
         try {
-            if (!this.paymentApi) {
-                this.paymentApi = new PaymentAPI();
+            // Obtener token de autenticación
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.warn('No hay token de autenticación');
+                this.notifications = [];
+                this.renderNotifications();
+                return;
             }
 
-            const paymentNotifications = await this.paymentApi.getNotifications();
-            if (paymentNotifications?.success) {
-                this.notifications = paymentNotifications.notifications.map(n => ({
-                    id: `payment-${n.id}`,
-                    type: 'payment',
-                    title: n.title,
-                    message: n.message,
-                    time: this.formatTime(n.created_at),
-                    read: n.read_at !== null,
-                    priority: n.priority,
-                    actions: this.getPaymentActions(n)
-                }));
+            // Llamar a la API de notificaciones
+            const response = await fetch(`${window.API_BASE_URL || ''}/backend/notification-api.php/notifications`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al cargar notificaciones');
             }
+
+            const data = await response.json();
+
+            if (data.success) {
+                this.notifications = data.notifications || [];
+                this.unreadCount = this.notifications.filter(n => !n.read).length;
+                this.renderNotifications();
+                this.updateBadge();
+                this.updateFilterCounts();
+            } else {
+                throw new Error(data.error || 'Error desconocido');
+            }
+
         } catch (error) {
             console.error('Error loading notifications:', error);
+            // Mostrar notificaciones vacías en caso de error
+            this.notifications = [];
+            this.renderNotifications();
         }
-
-        if (this.notifications.length === 0) {
-            this.notifications = this.getDemoNotifications(userType);
-        }
-
-        this.renderNotifications();
-        this.updateFilterCounts();
-    }
-
-    getDemoNotifications(userType) {
-        const demoNotifications = {
-            client: [
-                {
-                    id: 'demo-1',
-                    type: 'payment',
-                    title: 'Pago próximo a vencer',
-                    message: 'Tu pago de póliza #POL-001 vence en 3 días',
-                    time: 'Hace 2 horas',
-                    read: false,
-                    priority: 'high',
-                    actions: [
-                        { label: 'Realizar pago', action: 'payment', policyId: 'POL-001' },
-                        { label: 'Ver póliza', action: 'viewPolicy', policyId: 'POL-001' }
-                    ]
-                },
-                {
-                    id: 'demo-2',
-                    type: 'comment',
-                    title: 'Nuevo comentario del agente',
-                    message: 'Tu agente Guillermo Krause ha dejado un comentario en tu póliza',
-                    time: 'Hace 5 horas',
-                    read: false,
-                    priority: 'normal',
-                    actions: [
-                        { label: 'Ver comentario', action: 'viewComments', policyId: 'POL-001' }
-                    ]
-                },
-                {
-                    id: 'demo-3',
-                    type: 'policy',
-                    title: 'Póliza renovada',
-                    message: 'Tu póliza de Auto ha sido renovada exitosamente',
-                    time: 'Ayer',
-                    read: true,
-                    priority: 'normal',
-                    actions: [
-                        { label: 'Descargar póliza', action: 'download', policyId: 'POL-002' }
-                    ]
-                }
-            ],
-            agent: [
-                {
-                    id: 'demo-1',
-                    type: 'payment',
-                    title: 'Comprobante de pago pendiente',
-                    message: 'María González ha subido un comprobante de pago para revisión',
-                    time: 'Hace 1 hora',
-                    read: false,
-                    priority: 'high',
-                    actions: [
-                        { label: 'Revisar comprobante', action: 'reviewProof', clientId: 'CL-001' },
-                        { label: 'Ver detalles', action: 'viewClient', clientId: 'CL-001' }
-                    ]
-                },
-                {
-                    id: 'demo-2',
-                    type: 'comment',
-                    title: 'Nuevo comentario de cliente',
-                    message: 'Carlos Ruiz tiene una pregunta sobre su póliza',
-                    time: 'Hace 3 horas',
-                    read: false,
-                    priority: 'normal',
-                    actions: [
-                        { label: 'Responder', action: 'reply', clientId: 'CL-002' }
-                    ]
-                },
-                {
-                    id: 'demo-3',
-                    type: 'system',
-                    title: 'Reporte semanal disponible',
-                    message: 'Tu reporte semanal de comisiones está listo',
-                    time: 'Hace 1 día',
-                    read: true,
-                    priority: 'low',
-                    actions: [
-                        { label: 'Ver reporte', action: 'viewReport' }
-                    ]
-                }
-            ]
-        };
-
-        return demoNotifications[userType] || demoNotifications.client;
-    }
-
-    getPaymentActions(notification) {
-        const actions = [];
-
-        if (notification.type === 'payment_due') {
-            actions.push({
-                label: 'Realizar pago',
-                action: 'payment',
-                policyId: notification.policy_id
-            });
-        } else if (notification.type === 'proof_reviewed') {
-            actions.push({
-                label: 'Ver estado',
-                action: 'viewPayment',
-                scheduleId: notification.payment_schedule_id
-            });
-        } else if (notification.type === 'proof_uploaded') {
-            actions.push({
-                label: 'Revisar comprobante',
-                action: 'reviewProof',
-                proofId: notification.payment_proof_id
-            });
-        }
-
-        actions.push({
-            label: 'Ver póliza',
-            action: 'viewPolicy',
-            policyId: notification.policy_id
-        });
-
-        return actions;
     }
 
     renderNotifications(filter = 'all') {

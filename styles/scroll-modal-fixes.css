@@ -107,9 +107,9 @@
     border-radius: 3px;
 }
 
-body.dark-mode .sidebar-widget-group::-webkit-scrollbar-thumb,
-body.dark-mode .recent-clients-pills::-webkit-scrollbar-thumb,
-body.dark-mode .rail-activity-list::-webkit-scrollbar-thumb,
+body.dark-forest .sidebar-widget-group::-webkit-scrollbar-thumb,
+body.dark-forest .recent-clients-pills::-webkit-scrollbar-thumb,
+body.dark-forest .rail-activity-list::-webkit-scrollbar-thumb,
 body.dark-forest .sidebar-widget-group::-webkit-scrollbar-thumb,
 body.dark-forest .recent-clients-pills::-webkit-scrollbar-thumb,
 body.dark-forest .rail-activity-list::-webkit-scrollbar-thumb {
@@ -141,13 +141,13 @@ body.dark-forest .rail-activity-list::-webkit-scrollbar-thumb {
 }
 
 /* Dark mode scrollbar principal */
-body.dark-mode .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb,
+body.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb,
 body.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.25);
     background-clip: padding-box;
 }
 
-body.dark-mode .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:hover,
+body.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:hover,
 body.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.35);
     background-clip: padding-box;
@@ -228,7 +228,7 @@ body.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:h
 }
 
 /* Dark mode modal */
-body.dark-mode .app-modal,
+body.dark-forest .app-modal,
 body.dark-forest .app-modal {
     background: var(--surface-primary, #1a1a1a);
     box-shadow:
@@ -247,7 +247,7 @@ body.dark-forest .app-modal {
     justify-content: space-between;
 }
 
-body.dark-mode .app-modal-header,
+body.dark-forest .app-modal-header,
 body.dark-forest .app-modal-header {
     background: var(--surface-secondary, #222);
     border-bottom-color: rgba(255, 255, 255, 0.1);
@@ -260,7 +260,7 @@ body.dark-forest .app-modal-header {
     color: var(--text-primary, #1a1a1a);
 }
 
-body.dark-mode .app-modal-title,
+body.dark-forest .app-modal-title,
 body.dark-forest .app-modal-title {
     color: var(--text-primary, #ffffff);
 }
@@ -285,7 +285,7 @@ body.dark-forest .app-modal-title {
     color: var(--text-primary, #1a1a1a);
 }
 
-body.dark-mode .app-modal-close:hover,
+body.dark-forest .app-modal-close:hover,
 body.dark-forest .app-modal-close:hover {
     background: rgba(255, 255, 255, 0.1);
     color: var(--text-primary, #ffffff);
@@ -302,7 +302,7 @@ body.dark-forest .app-modal-close:hover {
     scroll-behavior: smooth;
 }
 
-body.dark-mode .app-modal-body,
+body.dark-forest .app-modal-body,
 body.dark-forest .app-modal-body {
     background: var(--surface-primary, #1a1a1a);
 }
@@ -321,7 +321,7 @@ body.dark-forest .app-modal-body {
     border-radius: 4px;
 }
 
-body.dark-mode .app-modal-body::-webkit-scrollbar-thumb,
+body.dark-forest .app-modal-body::-webkit-scrollbar-thumb,
 body.dark-forest .app-modal-body::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
 }
@@ -337,7 +337,7 @@ body.dark-forest .app-modal-body::-webkit-scrollbar-thumb {
     justify-content: flex-end;
 }
 
-body.dark-mode .app-modal-footer,
+body.dark-forest .app-modal-footer,
 body.dark-forest .app-modal-footer {
     background: var(--surface-secondary, #222);
     border-top-color: rgba(255, 255, 255, 0.1);
@@ -492,3 +492,4 @@ body.modal-open {
 .stat-card {
     scroll-margin-top: 20px;
 }
+

@@ -1,0 +1,472 @@
+/* ===================================
+   AGENT DASHBOARD PANELS STYLES
+   Estilos para paneles de pagos y pólizas del agente
+   =================================== */
+
+/* Client Filter Indicator */
+.filter-indicator {
+    margin: 0 0 1.5rem 0;
+    padding: 12px 16px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(var(--primary-rgb), 0.2);
+}
+
+body.dark-forest .filter-indicator {
+    background: var(--card-background);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-clear-filter {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s ease;
+}
+
+.btn-clear-filter:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-forest .btn-clear-filter {
+    background: var(--primary-color);
+    color: white;
+}
+
+body.dark-forest .btn-clear-filter:hover {
+    background: var(--primary-hover);
+}
+
+/* Payment Schedule Panel */
+.payment-schedule-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.payment-schedule-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-schedule-header svg {
+    flex-shrink: 0;
+}
+
+.payment-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: var(--card-background);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-btn:hover {
+    background: var(--hover-background);
+    border-color: var(--primary-color);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Payment Table */
+.payments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.payments-table thead {
+    background: var(--header-background);
+}
+
+.payments-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.payments-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9375rem;
+    color: var(--text-color);
+}
+
+.payments-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.payments-table tbody tr:hover {
+    background: var(--hover-background);
+}
+
+.client-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.client-link:hover {
+    text-decoration: underline;
+}
+
+.payment-status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.payment-status-badge.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.payment-status-badge.paid {
+    background: #d4edda;
+    color: #155724;
+}
+
+.payment-status-badge.overdue {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+body.dark-forest .payment-status-badge.pending {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+body.dark-forest .payment-status-badge.paid {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+}
+
+body.dark-forest .payment-status-badge.overdue {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+}
+
+.payment-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.action-icon-btn {
+    padding: 6px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-icon-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.action-icon-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Policies Panel */
+.policies-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.policies-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.policy-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.policies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.policy-card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.policy-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.policy-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.policy-type {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.policy-status-badge {
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.policy-status-badge.active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.policy-status-badge.expiring {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.policy-status-badge.expired {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+body.dark-forest .policy-status-badge.active {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+}
+
+body.dark-forest .policy-status-badge.expiring {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+body.dark-forest .policy-status-badge.expired {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+}
+
+.policy-client {
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.policy-client:hover {
+    text-decoration: underline;
+}
+
+.policy-details {
+    margin: 0.75rem 0;
+}
+
+.policy-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.875rem;
+}
+
+.policy-detail-row:last-child {
+    border-bottom: none;
+}
+
+.policy-detail-label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.policy-detail-value {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.policy-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.policy-action-btn {
+    flex: 1;
+    padding: 8px 12px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.policy-action-btn:hover {
+    background: var(--primary-hover);
+}
+
+.policy-action-btn.secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.policy-action-btn.secondary:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Empty States */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+}
+
+.empty-state svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    .payment-schedule-header,
+    .policies-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .payment-filters,
+    .policy-filters {
+        width: 100%;
+    }
+
+    .filter-btn {
+        flex: 1;
+        text-align: center;
+    }
+
+    .payments-table {
+        font-size: 0.8125rem;
+    }
+
+    .payments-table th,
+    .payments-table td {
+        padding: 8px 12px;
+    }
+
+    .policies-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-indicator {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .btn-clear-filter {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Dark Theme Specific Adjustments */
+body.dark-forest .payments-table thead {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-forest .policy-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-forest .policy-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+}

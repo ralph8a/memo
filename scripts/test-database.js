@@ -1,13 +1,15 @@
 const https = require('https');
-const http = require('http');
 
 console.log('🔍 Testing Backend Diagnostic...\n');
 
-// Test diagnostic endpoint
-const url = new URL('http://ksinsurancee.com/backend/diagnostic.php');
+// Test diagnostic endpoint (usar HTTPS para evitar 301)
+const url = new URL('https://ksinsurancee.com/backend/diagnostic.php');
 
-const req = http.request(url, {
+const agent = new https.Agent({ rejectUnauthorized: false });
+
+const req = https.request(url, {
     method: 'GET',
+    agent,
     headers: {
         'Accept': 'application/json'
     }

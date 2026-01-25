@@ -18,6 +18,8 @@ import '../../styles/chart-modals.css'; // Chart modal styles
 import '../../styles/scheduling.css'; // Calendar & scheduling styles
 import '../../styles/payments.css'; // NEW: Sistema de pagos
 import '../../styles/dashboard-actions.css'; // NEW: Acciones y modales de dashboards
+import '../../styles/agent-dashboard-panels.css'; // NEW: Paneles de agente (pagos, pólizas)
+import '../../styles/direct-messages.css'; // NEW: Sistema de mensajes directos
 import '../../styles/scroll-modal-fixes.css'; // NEW: Fixes de scroll y modales
 import '../../styles/app.css'; // Base styles
 import '../../styles/dark-forest.css'; // Theme overrides MUST load last
@@ -37,6 +39,7 @@ import * as contactsModule from '../modules/contactsManager.js';
 import { renderAllLogos } from '../utils/logo.js';
 import { initScrollCollapse } from '../utils/scrollCollapse.js';
 import * as chartModals from '../modules/chartModals.js';
+import { initPaymentCalendar } from '../modules/paymentCalendar.js';
 
 // NEW: Import payment and notification systems
 import { NotificationModal } from '../modules/notificationModal.js';
@@ -44,6 +47,11 @@ import { PaymentAPI, PaymentScheduleComponent, PaymentNotificationsComponent, Pr
 
 // NEW: Import dashboard actions - Sistema completo de acciones
 import * as dashboardActions from '../modules/dashboardActions.js';
+
+// NEW: Import direct messages and search components
+import '../modules/directMessages.js';
+import '../modules/contactModal.js';
+import '../modules/globalSearch.js';
 
 // API service and dashboard loaders - loaded dynamically when needed
 let apiService = null;
@@ -71,8 +79,16 @@ let loadClientDetailsData = null;
     loadClientDashboard = dashboardModule.loadClientDashboard;
     loadAdminDashboard = dashboardModule.loadAdminDashboard;
     loadClientDetailsData = dashboardModule.loadClientDetails;
+
+    // Update window.appHandlers with loaded functions
+    if (window.appHandlers) {
+      window.appHandlers.loadAgentDashboard = loadAgentDashboard;
+      window.appHandlers.loadClientDashboard = loadClientDashboard;
+      window.appHandlers.loadAdminDashboard = loadAdminDashboard;
+    }
+    console.log('✅ Dashboard loaders initialized successfully');
   } catch (e) {
-    console.warn('Dashboard loaders not available, using stubs');
+    console.error('Dashboard loaders not available:', e);
     loadAgentDashboard = () => {
       const container = document.querySelector('[data-clients-list]');
       if (container) container.innerHTML = '<p class="empty-state">Modo demo - sin datos del backend</p>';
@@ -85,6 +101,13 @@ let loadClientDetailsData = null;
       console.log('Admin dashboard - stub mode');
     };
     loadClientDetailsData = async () => ({ client: {}, policies: [], claims: [] });
+
+    // Update window.appHandlers with stub functions
+    if (window.appHandlers) {
+      window.appHandlers.loadAgentDashboard = loadAgentDashboard;
+      window.appHandlers.loadClientDashboard = loadClientDashboard;
+      window.appHandlers.loadAdminDashboard = loadAdminDashboard;
+    }
   }
 })();
 
@@ -335,9 +358,6 @@ function showClientDetailsModal(data) {
   `;
 
   document.body.appendChild(modal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.remove();
-  });
 }
 
 function downloadPaymentHistory() {
@@ -680,10 +700,6 @@ function openSchedulingModal(agents) {
   `;
 
   document.body.appendChild(modal);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.remove();
-  });
 }
 
 async function confirmSchedulingSubmit(modalElement) {
@@ -796,10 +812,6 @@ function openAgentDirectoryModal(agents) {
 
   modal.appendChild(content);
   document.body.appendChild(modal);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.remove();
-  });
 }
 
 function handleAgentContact(agentId, agentName) {

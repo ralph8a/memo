@@ -342,62 +342,48 @@ const POLICY_HEALTH_MODAL = `
 
 // Export modal opener functions
 function openPaymentTrendsModal() {
-    closeChartModal(); // Close any existing modal first
-    document.body.insertAdjacentHTML('beforeend', PAYMENT_TRENDS_MODAL);
+  closeChartModal(); // Close any existing modal first
+  document.body.insertAdjacentHTML('beforeend', PAYMENT_TRENDS_MODAL);
 
-    const modal = document.getElementById('chartModalOverlay');
-    if (modal) {
-        // Add click outside to close
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeChartModal();
-            }
-        });
-
-        // Add keyboard ESC to close
-        const escHandler = (e) => {
-            if (e.key === 'Escape') {
-                closeChartModal();
-                document.removeEventListener('keydown', escHandler);
-            }
-        };
-        document.addEventListener('keydown', escHandler);
-    }
+  const modal = document.getElementById('chartModalOverlay');
+  if (modal) {
+    // Add keyboard ESC to close
+    const escHandler = (e) => {
+      if (e.key === 'Escape') {
+        closeChartModal();
+        document.removeEventListener('keydown', escHandler);
+      }
+    };
+    document.addEventListener('keydown', escHandler);
+  }
 }
 
 function openPolicyHealthModal() {
-    closeChartModal(); // Close any existing modal first
-    document.body.insertAdjacentHTML('beforeend', POLICY_HEALTH_MODAL);
+  closeChartModal(); // Close any existing modal first
+  document.body.insertAdjacentHTML('beforeend', POLICY_HEALTH_MODAL);
 
-    const modal = document.getElementById('chartModalOverlay');
-    if (modal) {
-        // Add click outside to close
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeChartModal();
-            }
-        });
-
-        // Add keyboard ESC to close
-        const escHandler = (e) => {
-            if (e.key === 'Escape') {
-                closeChartModal();
-                document.removeEventListener('keydown', escHandler);
-            }
-        };
-        document.addEventListener('keydown', escHandler);
-    }
+  const modal = document.getElementById('chartModalOverlay');
+  if (modal) {
+    // Add keyboard ESC to close
+    const escHandler = (e) => {
+      if (e.key === 'Escape') {
+        closeChartModal();
+        document.removeEventListener('keydown', escHandler);
+      }
+    };
+    document.addEventListener('keydown', escHandler);
+  }
 }
 
 function closeChartModal() {
-    const modal = document.getElementById('chartModalOverlay');
-    if (modal) {
-        modal.remove();
-    }
+  const modal = document.getElementById('chartModalOverlay');
+  if (modal) {
+    modal.remove();
+  }
 }
 
 export {
-    openPaymentTrendsModal,
-    openPolicyHealthModal,
-    closeChartModal
+  openPaymentTrendsModal,
+  openPolicyHealthModal,
+  closeChartModal
 };

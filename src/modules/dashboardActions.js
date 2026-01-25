@@ -8,20 +8,26 @@ import { showNotification } from './notifications.js';
 import { NOTIFICATION_TYPES, PAGES } from '../utils/constants.js';
 import { navigateTo } from './simpleRouter.js';
 import { setPendingQuoteType } from './quoteFlow.js';
+import { populateClientSelect } from '../utils/clientLoader.js';
 import { PaymentAPI } from './paymentIntegration.js';
 import { apiService, API_CONFIG } from '../api-integration.js';
+import {
+  openMakePaymentActionModal,
+  openFileClaimActionModal,
+  openUpdateInfoModal
+} from './modalManager.js';
 
 const POLICY_TYPE_LABELS = {
-    'auto': 'Auto',
-    'home': 'Hogar',
-    'life': 'Vida',
-    'health': 'Salud',
-    'business': 'Comercial',
-    'other': 'Otro'
+  'auto': 'Auto',
+  'home': 'Hogar',
+  'life': 'Vida',
+  'health': 'Salud',
+  'business': 'Comercial',
+  'other': 'Otro'
 };
 
 function formatPolicyType(type) {
-    return POLICY_TYPE_LABELS[type] || type || 'Póliza';
+  return POLICY_TYPE_LABELS[type] || type || 'Póliza';
 }
 
 // Initialize Payment API
@@ -32,184 +38,95 @@ const paymentAPI = new PaymentAPI();
 // ============================================================================
 
 /**
- * Realizar pago rápido - Subir comprobante de pago
+ * Realizar pago rápido - Subir comprobante de pago (CONSOLIDADO EN MODALMANAGER)
  */
 export async function makePayment(policyId = null, scheduleId = null) {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
-    <div class="app-modal app-modal-md">
-      <div class="app-modal-header">
-        <h2 class="app-modal-title">Subir Comprobante de Pago</h2>
-        <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-      <div class="app-modal-body">
-        <form class="payment-form" onsubmit="window.dashboardActions?.submitPayment(event)" data-policy="${policyId || ''}" data-schedule="${scheduleId || ''}">
-          <div class="form-group">
-            <label for="payment-proof-file">Comprobante de pago</label>
-            <input type="file" id="payment-proof-file" accept="image/*,.pdf" required>
-            <small>Formatos aceptados: JPG, PNG, PDF (máx 5MB)</small>
-          </div>
-          <div class="form-group">
-            <label for="payment-reference">Referencia de pago (opcional)</label>
-            <input type="text" id="payment-reference" placeholder="Número de referencia o folio">
-          </div>
-          <div class="form-group">
-            <label for="payment-notes">Notas adicionales (opcional)</label>
-            <textarea id="payment-notes" rows="3" placeholder="Información adicional sobre el pago"></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Subir comprobante</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  `;
-
-    document.body.appendChild(modal);
-    // Prevenir cierre accidental - solo cerrar con botón X o Cancelar
-    setTimeout(() => modal.classList.add('active'), 10);
-
-    showNotification('Sube tu comprobante de pago para validación', NOTIFICATION_TYPES.INFO);
+  await openMakePaymentActionModal(policyId, scheduleId);
 }
 
 /**
  * Descargar historial de pagos usando API real
  */
 export async function downloadPaymentHistory(type = 'receipt', fileId = null) {
-    try {
-        if (fileId) {
-            // Descargar archivo específico del backend
-            showNotification('Descargando archivo...', NOTIFICATION_TYPES.INFO);
-            await paymentAPI.downloadFile(type, fileId);
-            showNotification('Archivo descargado exitosamente', NOTIFICATION_TYPES.SUCCESS);
-        } else {
-            // Generar CSV con historial completo
-            showNotification('Generando historial...', NOTIFICATION_TYPES.INFO);
+  try {
+    if (fileId) {
+      // Descargar archivo específico del backend
+      await paymentAPI.downloadFile(type, fileId);
+    } else {
+      // Generar CSV con historial completo
 
-            // En el futuro, esto consultará el backend
-            const csvContent = [
-                'Fecha,Póliza,Monto,Estado',
-                '2025-01-01,POL-001,$350.00,Pagado',
-                '2024-12-01,POL-001,$350.00,Pagado',
-                '2024-11-01,POL-001,$350.00,Pagado',
-            ].join('\n');
+      // En el futuro, esto consultará el backend
+      const csvContent = [
+        'Fecha,Póliza,Monto,Estado',
+        '2025-01-01,POL-001,$350.00,Pagado',
+        '2024-12-01,POL-001,$350.00,Pagado',
+        '2024-11-01,POL-001,$350.00,Pagado',
+      ].join('\n');
 
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `historial-pagos-${new Date().toISOString().split('T')[0]}.csv`;
-            a.click();
-            URL.revokeObjectURL(url);
-
-            showNotification('Historial de pagos descargado', NOTIFICATION_TYPES.SUCCESS);
-        }
-    } catch (error) {
-        console.error('Error downloading file:', error);
-        showNotification('Error al descargar archivo', NOTIFICATION_TYPES.ERROR);
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `historial-pagos-${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
     }
+  } catch (error) {
+    console.error('Error downloading file:', error);
+  }
 }
 
 /**
- * Actualizar información personal
+ * Actualizar información personal (CONSOLIDADO EN MODALMANAGER)
  */
 export function updateInfo() {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
-    <div class="app-modal app-modal-md">
-      <div class="app-modal-header">
-        <h2 class="app-modal-title">Actualizar Información</h2>
-        <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-      <div class="app-modal-body">
-        <form class="update-info-form" onsubmit="window.dashboardActions?.submitInfoUpdate(event)">
-          <div class="form-group">
-            <label for="update-phone">Teléfono</label>
-            <input type="tel" id="update-phone" placeholder="+1 (555) 000-0000">
-          </div>
-          <div class="form-group">
-            <label for="update-email">Email</label>
-            <input type="email" id="update-email" placeholder="email@ejemplo.com">
-          </div>
-          <div class="form-group">
-            <label for="update-address">Dirección</label>
-            <textarea id="update-address" rows="3" placeholder="Calle, número, ciudad, estado, código postal"></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Guardar cambios</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  `;
-
-    document.body.appendChild(modal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
-
-    showNotification('Formulario de actualización abierto', NOTIFICATION_TYPES.INFO);
+  openUpdateInfoModal();
 }
 
 /**
  * Contactar agente - Redirige a página de contacto
  */
 export function contactAgent() {
-    window.__allowContact = true;
-    navigateTo(PAGES.CONTACT);
-    setTimeout(() => { window.__allowContact = false; }, 500);
-    showNotification('Abriendo formulario de contacto', NOTIFICATION_TYPES.INFO);
+  window.__allowContact = true;
+  navigateTo(PAGES.CONTACT);
+  setTimeout(() => { window.__allowContact = false; }, 500);
 }
 
 /**
  * Ver detalles de póliza
  */
 export async function viewPolicy(policyId = null) {
-    try {
-        if (!policyId) {
-            showNotification('Selecciona una póliza para ver detalles', NOTIFICATION_TYPES.WARNING);
-            return;
-        }
+  try {
+    if (!policyId) {
+      console.warn('No policy ID provided');
+      return;
+    }
 
-        // Buscar en cache de dashboard
-        let policies = window.dashboardData?.policies || [];
-        if (!policies.length) {
-            // Cargar desde backend
-            policies = await apiService.request(API_CONFIG.ENDPOINTS.CLIENT_POLICIES, { method: 'GET' });
-            window.dashboardData = { ...(window.dashboardData || {}), policies };
-        }
+    // Buscar en cache de dashboard
+    let policies = window.dashboardData?.policies || [];
+    if (!policies.length) {
+      // Cargar desde backend
+      policies = await apiService.request(API_CONFIG.ENDPOINTS.CLIENT_POLICIES, { method: 'GET' });
+      window.dashboardData = { ...(window.dashboardData || {}), policies };
+    }
 
-        const policy = policies.find(p => String(p.id) === String(policyId));
+    const policy = policies.find(p => String(p.id) === String(policyId));
 
-        if (!policy) {
-            showNotification('No se encontró la póliza seleccionada', NOTIFICATION_TYPES.ERROR);
-            return;
-        }
+    if (!policy) {
+      console.warn('Policy not found:', policyId);
+      return;
+    }
 
-        const policyType = policy.policy_type || policy.type || 'other';
-        const status = (policy.status || '').toLowerCase();
-        const premium = policy.premium_amount || policy.premium || 0;
-        const coverage = policy.coverage_amount || 0;
-        const startDate = policy.start_date ? new Date(policy.start_date).toLocaleDateString() : '—';
-        const endDate = policy.end_date ? new Date(policy.end_date).toLocaleDateString() : (policy.renewal_date ? new Date(policy.renewal_date).toLocaleDateString() : '—');
+    const policyType = policy.policy_type || policy.type || 'other';
+    const status = (policy.status || '').toLowerCase();
+    const premium = policy.premium_amount || policy.premium || 0;
+    const coverage = policy.coverage_amount || 0;
+    const startDate = policy.start_date ? new Date(policy.start_date).toLocaleDateString() : '—';
+    const endDate = policy.end_date ? new Date(policy.end_date).toLocaleDateString() : (policy.renewal_date ? new Date(policy.renewal_date).toLocaleDateString() : '—');
 
-        const modal = document.createElement('div');
-        modal.className = 'app-modal-overlay';
-        modal.innerHTML = `
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay';
+    modal.innerHTML = `
         <div class="app-modal app-modal-lg">
           <div class="app-modal-header">
             <h2 class="app-modal-title">Póliza #${policy.policy_number}</h2>
@@ -253,82 +170,17 @@ export async function viewPolicy(policyId = null) {
         </div>
       `;
 
-        document.body.appendChild(modal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.remove();
-        });
-
-        showNotification('Detalles de póliza cargados', NOTIFICATION_TYPES.INFO);
-    } catch (error) {
-        console.error('Error al cargar póliza:', error);
-        showNotification('No se pudo cargar la póliza', NOTIFICATION_TYPES.ERROR);
-    }
+    document.body.appendChild(modal);
+  } catch (error) {
+    console.error('Error al cargar póliza:', error);
+  }
 }
 
 /**
- * Presentar siniestro
+ * Presentar siniestro (CONSOLIDADO EN MODALMANAGER)
  */
-export function fileClaim() {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
-    <div class="app-modal app-modal-lg">
-      <div class="app-modal-header">
-        <h2 class="app-modal-title">Nuevo Siniestro</h2>
-        <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-      <div class="app-modal-body">
-        <form class="claim-form" onsubmit="window.dashboardActions?.submitClaim(event)">
-          <div class="form-group">
-            <label for="claim-policy">Póliza afectada</label>
-            <select id="claim-policy" required>
-              <option value="">Seleccionar póliza</option>
-              <option value="POL-001">Auto - Toyota Camry 2020</option>
-              <option value="POL-002">Hogar - Casa principal</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="claim-type">Tipo de siniestro</label>
-            <select id="claim-type" required>
-              <option value="accident">Accidente</option>
-              <option value="theft">Robo</option>
-              <option value="damage">Daños</option>
-              <option value="other">Otro</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="claim-date">Fecha del incidente</label>
-            <input type="date" id="claim-date" required>
-          </div>
-          <div class="form-group">
-            <label for="claim-description">Descripción del incidente</label>
-            <textarea id="claim-description" rows="4" placeholder="Describa lo ocurrido..." required></textarea>
-          </div>
-          <div class="form-group">
-            <label for="claim-files">Documentos adjuntos (fotos, reportes)</label>
-            <input type="file" id="claim-files" multiple accept="image/*,.pdf">
-            <small>Máximo 5 archivos. Formatos: JPG, PNG, PDF</small>
-          </div>
-          <div class="form-actions">
-            <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Enviar siniestro</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  `;
-
-    document.body.appendChild(modal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
-
-    showNotification('Formulario de siniestro abierto', NOTIFICATION_TYPES.INFO);
+export async function fileClaim() {
+  await openFileClaimActionModal();
 }
 
 // ============================================================================
@@ -339,9 +191,8 @@ export function fileClaim() {
  * Crear nueva cotización
  */
 export function createQuote(type = 'auto') {
-    setPendingQuoteType(type);
-    navigateTo(PAGES.QUOTE);
-    showNotification('Creando nueva cotización', NOTIFICATION_TYPES.INFO);
+  setPendingQuoteType(type);
+  navigateTo(PAGES.QUOTE);
 }
 
 /**
@@ -349,9 +200,9 @@ export function createQuote(type = 'auto') {
  * El sistema extrae datos automáticamente, crea cliente y genera credenciales
  */
 export function addClient() {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
+  const modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = `
     <div class="app-modal app-modal-md">
       <div class="app-modal-header">
         <h2 class="app-modal-title">Nuevo Cliente - Subir Póliza</h2>
@@ -441,21 +292,16 @@ export function addClient() {
     </div>
   `;
 
-    document.body.appendChild(modal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
-
-    showNotification('Sube la póliza para crear el cliente automáticamente', NOTIFICATION_TYPES.INFO);
+  document.body.appendChild(modal);
 }
 
 /**
  * Agendar cita
  */
 export function scheduleAppointment() {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
+  const modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = `
     <div class="app-modal app-modal-md">
       <div class="app-modal-header">
         <h2 class="app-modal-title">Agendar Cita</h2>
@@ -509,24 +355,22 @@ export function scheduleAppointment() {
     </div>
   `;
 
-    document.body.appendChild(modal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
+  document.body.appendChild(modal);
 
-    showNotification('Formulario de cita abierto', NOTIFICATION_TYPES.INFO);
+  // Cargar clientes dinámicamente
+  const clientSelect = modal.querySelector('#appt-client');
+  populateClientSelect(clientSelect);
 }
 
 /**
  * Ver detalles de cliente - CONECTADO CON BACKEND
  */
 export async function viewClientDetails(clientId) {
-    showNotification('Cargando detalles del cliente...', NOTIFICATION_TYPES.INFO);
 
-    // Modal de detalles
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay active';
-    modal.innerHTML = `
+  // Modal de detalles
+  const modal = document.createElement('div');
+  modal.className = 'app-modal-overlay active';
+  modal.innerHTML = `
     <div class="app-modal app-modal-xl">
       <div class="app-modal-header">
         <h2 class="app-modal-title">Detalles del Cliente</h2>
@@ -547,46 +391,41 @@ export async function viewClientDetails(clientId) {
     </div>
   `;
 
-    document.body.appendChild(modal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
+  document.body.appendChild(modal);
 
-    // Aquí se cargaría data real del backend
-    // Por ahora usa datos de ejemplo
-    showNotification(`Detalles del cliente ${clientId} cargados`, NOTIFICATION_TYPES.SUCCESS);
+  // Aquí se cargaría data real del backend
+  // Por ahora usa datos de ejemplo
 }
 
 /**
  * Cambiar entre tabs del modal de detalles de cliente
  */
 export function switchClientTab(event, tabName) {
-    const modal = event.target.closest('.app-modal');
+  const modal = event.target.closest('.app-modal');
 
-    // Actualizar botones
-    modal.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.closest('.tab-btn').classList.add('active');
+  // Actualizar botones
+  modal.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.closest('.tab-btn').classList.add('active');
 
-    // Actualizar contenido
-    modal.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    modal.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
+  // Actualizar contenido
+  modal.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+  modal.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
 }
 
 /**
  * Filtrar vista de agente por cliente específico
  */
 export function filterByClient(clientId) {
-    // Esta función filtraría todo el dashboard del agente para mostrar solo info del cliente seleccionado
-    const mainContent = document.querySelector('.dashboard-main-wrapper');
-    if (!mainContent) return;
+  // Esta función filtraría todo el dashboard del agente para mostrar solo info del cliente seleccionado
+  const mainContent = document.querySelector('.dashboard-main-wrapper');
+  if (!mainContent) return;
 
-    // En producción, esto dispararía una recarga de datos filtrados
-    showNotification(`Filtrando vista por cliente ${clientId}`, NOTIFICATION_TYPES.INFO);
+  // En producción, esto dispararía una recarga de datos filtrados
 
-    // Simular filtro visual
-    document.querySelectorAll('[data-client-id]').forEach(el => {
-        el.style.display = el.dataset.clientId === clientId ? '' : 'none';
-    });
+  // Simular filtro visual
+  document.querySelectorAll('[data-client-id]').forEach(el => {
+    el.style.display = el.dataset.clientId === clientId ? '' : 'none';
+  });
 }
 
 // ============================================================================
@@ -594,210 +433,210 @@ export function filterByClient(clientId) {
 // ============================================================================
 
 export async function submitPayment(event) {
-    event.preventDefault();
-    const form = event.target;
-    const policyId = form.dataset.policy;
-    const scheduleId = form.dataset.schedule;
-    const file = document.getElementById('payment-proof-file')?.files[0];
-    const reference = document.getElementById('payment-reference')?.value || '';
+  event.preventDefault();
+  const form = event.target;
+  const policyId = form.dataset.policy;
+  const scheduleId = form.dataset.schedule;
+  const file = document.getElementById('payment-proof-file')?.files[0];
+  const reference = document.getElementById('payment-reference')?.value || '';
 
-    if (!file) {
-        showNotification('Selecciona un archivo', NOTIFICATION_TYPES.WARNING);
-        return;
+  if (!file) {
+    showNotification('Selecciona un archivo', NOTIFICATION_TYPES.WARNING);
+    return;
+  }
+
+  showNotification('Subiendo comprobante...', NOTIFICATION_TYPES.INFO);
+
+  try {
+    // Usar API real de pagos
+    const result = await paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
+
+    form.closest('.app-modal-overlay').remove();
+    showNotification('Comprobante subido. Estará en revisión pronto.', NOTIFICATION_TYPES.SUCCESS);
+
+    // Refrescar dashboard si es posible
+    if (window.appHandlers?.refreshDashboard) {
+      setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
     }
-
-    showNotification('Subiendo comprobante...', NOTIFICATION_TYPES.INFO);
-
-    try {
-        // Usar API real de pagos
-        const result = await paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
-
-        form.closest('.app-modal-overlay').remove();
-        showNotification('Comprobante subido. Estará en revisión pronto.', NOTIFICATION_TYPES.SUCCESS);
-
-        // Refrescar dashboard si es posible
-        if (window.appHandlers?.refreshDashboard) {
-            setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
-        }
-    } catch (error) {
-        console.error('Error uploading payment proof:', error);
-        showNotification('Error al subir comprobante: ' + error.message, NOTIFICATION_TYPES.ERROR);
-    }
+  } catch (error) {
+    console.error('Error uploading payment proof:', error);
+    showNotification('Error al subir comprobante: ' + error.message, NOTIFICATION_TYPES.ERROR);
+  }
 }
 
 export function submitInfoUpdate(event) {
-    event.preventDefault();
-    const form = event.target;
+  event.preventDefault();
+  const form = event.target;
 
-    showNotification('Actualizando información...', NOTIFICATION_TYPES.INFO);
+  showNotification('Actualizando información...', NOTIFICATION_TYPES.INFO);
 
-    setTimeout(() => {
-        form.closest('.app-modal-overlay').remove();
-        showNotification('Información actualizada', NOTIFICATION_TYPES.SUCCESS);
-    }, 1000);
+  setTimeout(() => {
+    form.closest('.app-modal-overlay').remove();
+    showNotification('Información actualizada', NOTIFICATION_TYPES.SUCCESS);
+  }, 1000);
 }
 
 export async function submitClaim(event) {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
+  event.preventDefault();
+  const form = event.target;
+  const formData = new FormData(form);
 
-    showNotification('Enviando siniestro...', NOTIFICATION_TYPES.INFO);
+  showNotification('Enviando siniestro...', NOTIFICATION_TYPES.INFO);
 
-    try {
-        // En el futuro, esto enviará al backend real
-        // const response = await fetch('/backend/api-endpoints.php?action=create_claim', {
-        //   method: 'POST',
-        //   body: formData
-        // });
+  try {
+    // En el futuro, esto enviará al backend real
+    // const response = await fetch('/backend/api-endpoints.php?action=create_claim', {
+    //   method: 'POST',
+    //   body: formData
+    // });
 
-        await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
-        form.closest('.app-modal-overlay').remove();
-        const claimNumber = 'CLM-' + Math.floor(Math.random() * 1000);
-        showNotification(`Siniestro registrado. Número: ${claimNumber}`, NOTIFICATION_TYPES.SUCCESS);
+    form.closest('.app-modal-overlay').remove();
+    const claimNumber = 'CLM-' + Math.floor(Math.random() * 1000);
+    showNotification(`Siniestro registrado. Número: ${claimNumber}`, NOTIFICATION_TYPES.SUCCESS);
 
-        // Refrescar dashboard
-        if (window.appHandlers?.refreshDashboard) {
-            setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
-        }
-    } catch (error) {
-        console.error('Error submitting claim:', error);
-        showNotification('Error al enviar siniestro', NOTIFICATION_TYPES.ERROR);
+    // Refrescar dashboard
+    if (window.appHandlers?.refreshDashboard) {
+      setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
     }
+  } catch (error) {
+    console.error('Error submitting claim:', error);
+    showNotification('Error al enviar siniestro', NOTIFICATION_TYPES.ERROR);
+  }
 }
 
 /**
  * Subir póliza y crear cliente automáticamente
  */
 export async function submitPolicyUpload(event) {
-    event.preventDefault();
-    const form = event.target;
-    const fileInput = document.getElementById('policy-file');
-    const emailInput = document.getElementById('client-email');
-    const file = fileInput?.files[0];
-    const clientEmail = emailInput?.value.trim();
+  event.preventDefault();
+  const form = event.target;
+  const fileInput = document.getElementById('policy-file');
+  const emailInput = document.getElementById('client-email');
+  const file = fileInput?.files[0];
+  const clientEmail = emailInput?.value.trim();
 
-    if (!file) {
-        showNotification('Selecciona un archivo de póliza', NOTIFICATION_TYPES.WARNING);
-        return;
+  if (!file) {
+    showNotification('Selecciona un archivo de póliza', NOTIFICATION_TYPES.WARNING);
+    return;
+  }
+
+  if (!clientEmail) {
+    showNotification('El email del cliente es obligatorio', NOTIFICATION_TYPES.WARNING);
+    emailInput?.focus();
+    return;
+  }
+
+  // Validar formato de email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(clientEmail)) {
+    showNotification('Por favor ingresa un email válido', NOTIFICATION_TYPES.WARNING);
+    emailInput?.focus();
+    return;
+  }
+
+  // Mostrar progreso
+  const progressContainer = document.getElementById('upload-progress');
+  const progressFill = document.getElementById('progress-fill');
+  const progressText = document.getElementById('progress-text');
+  const submitBtn = document.getElementById('submit-policy-btn');
+
+  progressContainer.style.display = 'block';
+  submitBtn.disabled = true;
+
+  try {
+    // Preparar FormData
+    const formData = new FormData();
+    formData.append('policy_file', file);
+    formData.append('client_email', clientEmail);
+    // Enviar al backend
+    progressText.textContent = 'Subiendo documento...';
+    progressFill.style.width = '30%';
+
+    const response = await fetch('/backend/client-from-policy.php', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token
+      },
+      body: formData
+    });
+
+    progressFill.style.width = '60%';
+    progressText.textContent = 'Analizando documento...';
+
+    const result = await response.json();
+
+    progressFill.style.width = '100%';
+
+    if (!result.success) {
+      throw new Error(result.error || 'Error al procesar póliza');
     }
 
-    if (!clientEmail) {
-        showNotification('El email del cliente es obligatorio', NOTIFICATION_TYPES.WARNING);
-        emailInput?.focus();
-        return;
+    // Verificar si requiere confirmación (baja confianza)
+    if (result.requires_confirmation) {
+      showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
+      progressContainer.style.display = 'none';
+      submitBtn.disabled = false;
+      return;
     }
 
-    // Validar formato de email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(clientEmail)) {
-        showNotification('Por favor ingresa un email válido', NOTIFICATION_TYPES.WARNING);
-        emailInput?.focus();
-        return;
+    // Verificar si requiere entrada manual
+    if (result.requires_manual_entry) {
+      showNotification('No se pudo extraer datos. Abriendo formulario manual...', NOTIFICATION_TYPES.WARNING);
+      showManualEntryForm(result.temp_file_path);
+      return;
     }
 
-    // Mostrar progreso
-    const progressContainer = document.getElementById('upload-progress');
-    const progressFill = document.getElementById('progress-fill');
-    const progressText = document.getElementById('progress-text');
-    const submitBtn = document.getElementById('submit-policy-btn');
+    // Éxito
+    form.closest('.app-modal-overlay').remove();
 
-    progressContainer.style.display = 'block';
-    submitBtn.disabled = true;
-
-    try {
-        // Preparar FormData
-        const formData = new FormData();
-        formData.append('policy_file', file);
-        formData.append('client_email', clientEmail);
-        // Enviar al backend
-        progressText.textContent = 'Subiendo documento...';
-        progressFill.style.width = '30%';
-
-        const response = await fetch('/backend/client-from-policy.php', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + token
-            },
-            body: formData
-        });
-
-        progressFill.style.width = '60%';
-        progressText.textContent = 'Analizando documento...';
-
-        const result = await response.json();
-
-        progressFill.style.width = '100%';
-
-        if (!result.success) {
-            throw new Error(result.error || 'Error al procesar póliza');
-        }
-
-        // Verificar si requiere confirmación (baja confianza)
-        if (result.requires_confirmation) {
-            showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
-            progressContainer.style.display = 'none';
-            submitBtn.disabled = false;
-            return;
-        }
-
-        // Verificar si requiere entrada manual
-        if (result.requires_manual_entry) {
-            showNotification('No se pudo extraer datos. Abriendo formulario manual...', NOTIFICATION_TYPES.WARNING);
-            showManualEntryForm(result.temp_file_path);
-            return;
-        }
-
-        // Éxito
-        form.closest('.app-modal-overlay').remove();
-
-        if (result.new_client) {
-            showNotification(
-                `Cliente creado exitosamente. Credenciales enviadas por email.`,
-                NOTIFICATION_TYPES.SUCCESS
-            );
-        } else {
-            showNotification(
-                `Póliza agregada al cliente existente.`,
-                NOTIFICATION_TYPES.SUCCESS
-            );
-        }
-
-        // Mostrar resumen
-        setTimeout(() => {
-            showClientCreationSummary(result);
-        }, 1000);
-
-        // Refrescar dashboard
-        if (window.appHandlers?.refreshDashboard) {
-            setTimeout(() => window.appHandlers.refreshDashboard(), 2000);
-        }
-
-    } catch (error) {
-        console.error('Error uploading policy:', error);
-        showNotification('Error: ' + error.message, NOTIFICATION_TYPES.ERROR);
-        progressContainer.style.display = 'none';
-        submitBtn.disabled = false;
+    if (result.new_client) {
+      showNotification(
+        `Cliente creado exitosamente. Credenciales enviadas por email.`,
+        NOTIFICATION_TYPES.SUCCESS
+      );
+    } else {
+      showNotification(
+        `Póliza agregada al cliente existente.`,
+        NOTIFICATION_TYPES.SUCCESS
+      );
     }
+
+    // Mostrar resumen
+    setTimeout(() => {
+      showClientCreationSummary(result);
+    }, 1000);
+
+    // Refrescar dashboard
+    if (window.appHandlers?.refreshDashboard) {
+      setTimeout(() => window.appHandlers.refreshDashboard(), 2000);
+    }
+
+  } catch (error) {
+    console.error('Error uploading policy:', error);
+    showNotification('Error: ' + error.message, NOTIFICATION_TYPES.ERROR);
+    progressContainer.style.display = 'none';
+    submitBtn.disabled = false;
+  }
 }
 
 /**
  * Mostrar datos extraídos para confirmación (cuando confianza es baja)
  */
 function showExtractedDataForConfirmation(data, tempFilePath) {
-    const previewContainer = document.getElementById('extracted-data-preview');
-    const dataGrid = document.getElementById('data-grid');
-    const confidenceNote = document.getElementById('confidence-note');
+  const previewContainer = document.getElementById('extracted-data-preview');
+  const dataGrid = document.getElementById('data-grid');
+  const confidenceNote = document.getElementById('confidence-note');
 
-    // Obtener email ingresado por el agente
-    const clientEmail = document.getElementById('client-email')?.value || '';
+  // Obtener email ingresado por el agente
+  const clientEmail = document.getElementById('client-email')?.value || '';
 
-    previewContainer.style.display = 'block';
-    confidenceNote.innerHTML = '⚠️ Confianza baja. Por favor revisa los datos antes de continuar.';
-    confidenceNote.className = 'confidence-note warning';
+  previewContainer.style.display = 'block';
+  confidenceNote.innerHTML = '⚠️ Confianza baja. Por favor revisa los datos antes de continuar.';
+  confidenceNote.className = 'confidence-note warning';
 
-    dataGrid.innerHTML = `
+  dataGrid.innerHTML = `
     <div class="data-field">
       <label>Email del cliente: <span style="color: #dc3545;">*</span></label>
       <input type="email" id="confirm-client-email" value="${clientEmail}" required readonly style="background: #e9ecef;">
@@ -834,78 +673,78 @@ function showExtractedDataForConfirmation(data, tempFilePath) {
     </div>
   `;
 
-    // Cambiar botón para confirmar
-    const submitBtn = document.getElementById('submit-policy-btn');
-    submitBtn.textContent = 'Confirmar y crear cliente';
-    submitBtn.onclick = () => confirmAndCreateClient(tempFilePath);
+  // Cambiar botón para confirmar
+  const submitBtn = document.getElementById('submit-policy-btn');
+  submitBtn.textContent = 'Confirmar y crear cliente';
+  submitBtn.onclick = () => confirmAndCreateClient(tempFilePath);
 }
 
 /**
  * Confirmar datos corregidos y crear cliente
  */
 async function confirmAndCreateClient(tempFilePath) {
-    const confirmedData = {
-        client_email: document.getElementById('confirm-client-email').value,
-        client_name: document.getElementById('confirm-client-name').value,
-        policy_number: document.getElementById('confirm-policy-number').value,
-        total_premium: parseFloat(document.getElementById('confirm-premium').value),
-        start_date: document.getElementById('confirm-start-date').value,
-        end_date: document.getElementById('confirm-end-date').value,
-        payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
-    };
+  const confirmedData = {
+    client_email: document.getElementById('confirm-client-email').value,
+    client_name: document.getElementById('confirm-client-name').value,
+    policy_number: document.getElementById('confirm-policy-number').value,
+    total_premium: parseFloat(document.getElementById('confirm-premium').value),
+    start_date: document.getElementById('confirm-start-date').value,
+    end_date: document.getElementById('confirm-end-date').value,
+    payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
+  };
 
-    showNotification('Creando cliente con datos confirmados...', NOTIFICATION_TYPES.INFO);
+  showNotification('Creando cliente con datos confirmados...', NOTIFICATION_TYPES.INFO);
 
-    try {
-        const token = sessionStorage.getItem('auth_token');
+  try {
+    const token = sessionStorage.getItem('auth_token');
 
-        const response = await fetch('/backend/client-from-policy.php', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                confirmed_data: confirmedData,
-                temp_file_path: tempFilePath
-            })
-        });
+    const response = await fetch('/backend/client-from-policy.php', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        confirmed_data: confirmedData,
+        temp_file_path: tempFilePath
+      })
+    });
 
-        const result = await response.json();
+    const result = await response.json();
 
-        if (result.success) {
-            document.querySelector('.app-modal-overlay').remove();
-            showNotification('Cliente creado exitosamente', NOTIFICATION_TYPES.SUCCESS);
+    if (result.success) {
+      document.querySelector('.app-modal-overlay').remove();
+      showNotification('Cliente creado exitosamente', NOTIFICATION_TYPES.SUCCESS);
 
-            if (window.appHandlers?.refreshDashboard) {
-                setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
-            }
-        } else {
-            throw new Error(result.error);
-        }
-
-    } catch (error) {
-        showNotification('Error: ' + error.message, NOTIFICATION_TYPES.ERROR);
+      if (window.appHandlers?.refreshDashboard) {
+        setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
+      }
+    } else {
+      throw new Error(result.error);
     }
+
+  } catch (error) {
+    showNotification('Error: ' + error.message, NOTIFICATION_TYPES.ERROR);
+  }
 }
 
 /**
  * Mostrar formulario de entrada manual
  */
 function showManualEntryForm(tempFilePath) {
-    // Reutilizar lógica similar a confirmación pero con campos vacíos
-    showExtractedDataForConfirmation({}, tempFilePath);
-    document.getElementById('confidence-note').innerHTML =
-        'ℹ️ No se pudo extraer datos automáticamente. Por favor ingresa los datos manualmente.';
+  // Reutilizar lógica similar a confirmación pero con campos vacíos
+  showExtractedDataForConfirmation({}, tempFilePath);
+  document.getElementById('confidence-note').innerHTML =
+    'ℹ️ No se pudo extraer datos automáticamente. Por favor ingresa los datos manualmente.';
 }
 
 /**
  * Mostrar resumen de cliente creado
  */
 function showClientCreationSummary(result) {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
+  const modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = `
     <div class="app-modal app-modal-sm">
       <div class="app-modal-header">
         <h2 class="app-modal-title">✅ Cliente ${result.new_client ? 'Creado' : 'Actualizado'}</h2>
@@ -924,28 +763,28 @@ function showClientCreationSummary(result) {
     </div>
   `;
 
-    document.body.appendChild(modal);
+  document.body.appendChild(modal);
 }
 
 export function submitAppointment(event) {
-    event.preventDefault();
-    const form = event.target;
+  event.preventDefault();
+  const form = event.target;
 
-    showNotification('Agendando cita...', NOTIFICATION_TYPES.INFO);
+  showNotification('Agendando cita...', NOTIFICATION_TYPES.INFO);
 
-    setTimeout(() => {
-        form.closest('.app-modal-overlay').remove();
-        showNotification('Cita agendada. Confirmación enviada por email', NOTIFICATION_TYPES.SUCCESS);
-    }, 1000);
+  setTimeout(() => {
+    form.closest('.app-modal-overlay').remove();
+    showNotification('Cita agendada. Confirmación enviada por email', NOTIFICATION_TYPES.SUCCESS);
+  }, 1000);
 }
 
 /**
  * Abrir modal de ventas del mes con información completa
  */
 export function openSalesModal() {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
+  const modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = `
     <div class="app-modal app-modal-lg">
       <div class="app-modal-header">
         <h2 class="app-modal-title">📊 Ventas del Mes - Enero 2026</h2>
@@ -1032,17 +871,17 @@ export function openSalesModal() {
     </div>
   `;
 
-    document.body.appendChild(modal);
-    setTimeout(() => modal.classList.add('active'), 10);
+  document.body.appendChild(modal);
+  setTimeout(() => modal.classList.add('active'), 10);
 }
 
 /**
  * Abrir modal de comisiones con información completa
  */
 export function openCommissionsModal() {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
+  const modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = `
     <div class="app-modal app-modal-lg">
       <div class="app-modal-header">
         <h2 class="app-modal-title">💰 Comisiones - Enero 2026</h2>
@@ -1134,17 +973,17 @@ export function openCommissionsModal() {
     </div>
   `;
 
-    document.body.appendChild(modal);
-    setTimeout(() => modal.classList.add('active'), 10);
+  document.body.appendChild(modal);
+  setTimeout(() => modal.classList.add('active'), 10);
 }
 
 /**
  * Cargar póliza de cliente - Acción rápida con modal
  */
 export function uploadPolicyDocument() {
-    const modal = document.createElement('div');
-    modal.className = 'app-modal-overlay';
-    modal.innerHTML = `
+  const modal = document.createElement('div');
+  modal.className = 'app-modal-overlay';
+  modal.innerHTML = `
     <div class="app-modal app-modal-md">
       <div class="app-modal-header">
         <h2 class="app-modal-title">📄 Cargar Póliza de Cliente</h2>
@@ -1166,12 +1005,7 @@ export function uploadPolicyDocument() {
           <div class="form-group">
             <label for="upload-client-select">Cliente</label>
             <select id="upload-client-select" name="client_id" required>
-              <option value="">Seleccionar cliente...</option>
-              <option value="CL-001">María González</option>
-              <option value="CL-002">Carlos Ruiz</option>
-              <option value="CL-003">Ana Martínez</option>
-              <option value="CL-004">Luis Hernández</option>
-              <option value="CL-005">Pedro Sánchez</option>
+              <option value="">Cargando clientes...</option>
             </select>
           </div>
           
@@ -1195,73 +1029,76 @@ export function uploadPolicyDocument() {
     </div>
   `;
 
-    document.body.appendChild(modal);
-    setTimeout(() => modal.classList.add('active'), 10);
-    showNotification('Selecciona el cliente y sube la póliza', NOTIFICATION_TYPES.INFO);
+  document.body.appendChild(modal);
+  setTimeout(() => modal.classList.add('active'), 10);
+
+  // Cargar clientes dinámicamente
+  const clientSelect = modal.querySelector('#upload-client-select');
+  populateClientSelect(clientSelect, { placeholder: 'Seleccionar cliente...' });
 }
 
 /**
  * Submit para carga de documento de póliza
  */
 export function submitPolicyDocumentUpload(event) {
-    event.preventDefault();
-    const form = event.target;
-    const clientSelect = document.getElementById('upload-client-select');
-    const fileInput = document.getElementById('upload-policy-pdf');
+  event.preventDefault();
+  const form = event.target;
+  const clientSelect = document.getElementById('upload-client-select');
+  const fileInput = document.getElementById('upload-policy-pdf');
 
-    if (!clientSelect?.value || !fileInput?.files[0]) {
-        showNotification('Selecciona un cliente y un archivo', NOTIFICATION_TYPES.WARNING);
-        return;
+  if (!clientSelect?.value || !fileInput?.files[0]) {
+    showNotification('Selecciona un cliente y un archivo', NOTIFICATION_TYPES.WARNING);
+    return;
+  }
+
+  const progressDiv = document.getElementById('upload-extraction-progress');
+  progressDiv.style.display = 'block';
+
+  showNotification('Procesando póliza...', NOTIFICATION_TYPES.INFO);
+
+  // Simular procesamiento
+  setTimeout(() => {
+    progressDiv.style.display = 'none';
+    form.closest('.app-modal-overlay').remove();
+    showNotification('Póliza cargada y procesada exitosamente', NOTIFICATION_TYPES.SUCCESS);
+
+    // Refrescar dashboard
+    if (window.appHandlers?.refreshDashboard) {
+      setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
     }
-
-    const progressDiv = document.getElementById('upload-extraction-progress');
-    progressDiv.style.display = 'block';
-
-    showNotification('Procesando póliza...', NOTIFICATION_TYPES.INFO);
-
-    // Simular procesamiento
-    setTimeout(() => {
-        progressDiv.style.display = 'none';
-        form.closest('.app-modal-overlay').remove();
-        showNotification('Póliza cargada y procesada exitosamente', NOTIFICATION_TYPES.SUCCESS);
-
-        // Refrescar dashboard
-        if (window.appHandlers?.refreshDashboard) {
-            setTimeout(() => window.appHandlers.refreshDashboard(), 1000);
-        }
-    }, 2000);
+  }, 2000);
 }
 
 // Exponer todas las acciones globalmente
 if (typeof window !== 'undefined') {
-    window.dashboardActions = {
-        // Client actions
-        makePayment,
-        downloadPaymentHistory,
-        updateInfo,
-        contactAgent,
-        viewPolicy,
-        fileClaim,
+  window.dashboardActions = {
+    // Client actions
+    makePayment,
+    downloadPaymentHistory,
+    updateInfo,
+    contactAgent,
+    viewPolicy,
+    fileClaim,
 
-        // Agent actions
-        createQuote,
-        addClient,
-        scheduleAppointment,
-        viewClientDetails,
-        switchClientTab,
-        filterByClient,
+    // Agent actions
+    createQuote,
+    addClient,
+    scheduleAppointment,
+    viewClientDetails,
+    switchClientTab,
+    filterByClient,
 
-        // Agent dashboard modals
-        openSalesModal,
-        openCommissionsModal,
-        uploadPolicyDocument,
+    // Agent dashboard modals
+    openSalesModal,
+    openCommissionsModal,
+    uploadPolicyDocument,
 
-        // Form submissions
-        submitPayment,
-        submitInfoUpdate,
-        submitClaim,
-        submitPolicyUpload,
-        submitAppointment,
-        submitPolicyDocumentUpload,
-    };
+    // Form submissions
+    submitPayment,
+    submitInfoUpdate,
+    submitClaim,
+    submitPolicyUpload,
+    submitAppointment,
+    submitPolicyDocumentUpload,
+  };
 }

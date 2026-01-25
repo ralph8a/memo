@@ -69,6 +69,19 @@ try {
     // Get database connection
     $db = getDB();
     
+    // DEBUG ENDPOINT - Remove in production
+    if ($action === 'debug_headers') {
+        sendResponse([
+            'method' => $_SERVER['REQUEST_METHOD'],
+            'uri' => $_SERVER['REQUEST_URI'] ?? 'NOT SET',
+            'http_authorization' => $_SERVER['HTTP_AUTHORIZATION'] ?? 'NOT SET',
+            'redirect_http_authorization' => $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? 'NOT SET',
+            'all_http_keys' => array_keys(array_filter($_SERVER, function($k) { return strpos($k, 'HTTP_') === 0; }, ARRAY_FILTER_USE_KEY)),
+            'getallheaders_available' => function_exists('getallheaders'),
+            'getallheaders_result' => function_exists('getallheaders') ? getallheaders() : null
+        ]);
+    }
+    
     // ===== AUTHENTICATION ENDPOINTS =====
     
     // POST ?action=login
@@ -208,7 +221,16 @@ try {
     
     // GET ?action=client_dashboard
     if ($action === 'client_dashboard') {
+        error_log("=== CLIENT_DASHBOARD ENDPOINT CALLED ===");
+        error_log("Request Method: " . $_SERVER['REQUEST_METHOD']);
+        error_log("All Headers: " . json_encode(function_exists('getallheaders') ? getallheaders() : array_filter($_SERVER, function($k) { return strpos($k, 'HTTP_') === 0 || $k === 'REDIRECT_HTTP_AUTHORIZATION'; }, ARRAY_FILTER_USE_KEY)));
+        error_log("Authorization Header Attempts:");
+        error_log("  - HTTP_AUTHORIZATION: " . ($_SERVER['HTTP_AUTHORIZATION'] ?? 'NOT SET'));
+        error_log("  - REDIRECT_HTTP_AUTHORIZATION: " . ($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? 'NOT SET'));
+        
         $user = Auth::requireAuth();
+        error_log("User authenticated: " . json_encode($user));
+        
         sendResponse(getClientDashboard($db, $user['user_id']));
     }
     
@@ -234,7 +256,15 @@ try {
     
     // GET ?action=agent_dashboard
     if ($action === 'agent_dashboard') {
+        error_log("=== AGENT_DASHBOARD ENDPOINT CALLED ===");
+        error_log("Request Method: " . $_SERVER['REQUEST_METHOD']);
+        error_log("All Headers: " . json_encode(function_exists('getallheaders') ? getallheaders() : array_filter($_SERVER, function($k) { return strpos($k, 'HTTP_') === 0 || $k === 'REDIRECT_HTTP_AUTHORIZATION'; }, ARRAY_FILTER_USE_KEY)));
+        error_log("Authorization Header Attempts:");
+        error_log("  - HTTP_AUTHORIZATION: " . ($_SERVER['HTTP_AUTHORIZATION'] ?? 'NOT SET'));
+        error_log("  - REDIRECT_HTTP_AUTHORIZATION: " . ($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? 'NOT SET'));
+        
         $user = Auth::requireUserType(['agent', 'admin']);
+        error_log("User authenticated: " . json_encode($user));
         sendResponse(getAgentDashboard($db, $user['user_id']));
     }
     
@@ -270,6 +300,97 @@ try {
         ");
         $stmt->execute([$user['user_id']]);
         sendResponse($stmt->fetchAll());
+    }
+    
+    // GET ?action=agent_policies&status=active&client_id=123
+    if ($action === 'agent_policies') {
+        $user = Auth::requireUserType(['agent', 'admin']);
+        
+        $agentId = $user['user_id'];
+        $status = $_GET['status'] ?? 'all';
+        $clientId = $_GET['client_id'] ?? null;
+        
+        try {
+            // Base query
+            $query = "
+                SELECT 
+                    p.id as policy_id,
+                    p.policy_number,
+                    p.policy_type,
+                    p.status,
+                    p.premium_amount,
+                    p.coverage_amount,
+                    p.start_date,
+                    p.end_date,
+                    p.renewal_date,
+                    p.client_id,
+                    CONCAT(u.first_name, ' ', u.last_name) AS client_name,
+                    u.email AS client_email,
+                    u.phone AS client_phone
+                FROM policies p
+                INNER JOIN users u ON p.client_id = u.id
+                WHERE p.agent_id = ?
+            ";
+            
+            $params = [$agentId];
+            
+            // Filter by client
+            if ($clientId) {
+                $query .= " AND p.client_id = ?";
+                $params[] = $clientId;
+            }
+            
+            // Filter by status
+            if ($status !== 'all') {
+                if ($status === 'expiring') {
+                    // Policies expiring in next 30 days
+                    $query .= " AND p.status = 'active' AND p.end_date BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 30 DAY)";
+                } else {
+                    $query .= " AND p.status = ?";
+                    $params[] = $status;
+                }
+            }
+            
+            $query .= " ORDER BY p.end_date DESC";
+            
+            $stmt = $db->prepare($query);
+            $stmt->execute($params);
+            
+            $policies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Calculate stats
+            $stats = [
+                'total' => count($policies),
+                'active' => 0,
+                'expiring' => 0,
+                'expired' => 0
+            ];
+            
+            $now = time();
+            $thirtyDaysFromNow = strtotime('+30 days');
+            
+            foreach ($policies as $policy) {
+                $endDate = strtotime($policy['end_date']);
+                
+                if ($policy['status'] === 'active') {
+                    $stats['active']++;
+                    if ($endDate > $now && $endDate <= $thirtyDaysFromNow) {
+                        $stats['expiring']++;
+                    }
+                } elseif ($policy['status'] === 'expired') {
+                    $stats['expired']++;
+                }
+            }
+            
+            sendResponse([
+                'success' => true,
+                'policies' => $policies,
+                'stats' => $stats
+            ]);
+        } catch (Exception $e) {
+            error_log('Agent Policies Error: ' . $e->getMessage());
+            sendError('Error fetching policies: ' . $e->getMessage(), 500);
+        }
     }
     
     // GET ?action=clients (agent/admin)
@@ -447,6 +568,101 @@ try {
         ]);
     }
     
+    // ===== GLOBAL SEARCH ENDPOINT =====
+    
+    // GET ?action=global_search&q=query
+    if ($action === 'global_search') {
+        $user = Auth::requireAuth();
+        $query = $_GET['q'] ?? '';
+        
+        if (strlen($query) < 2) {
+            sendResponse([
+                'success' => true,
+                'results' => [
+                    'clients' => [],
+                    'policies' => [],
+                    'quotes' => []
+                ]
+            ]);
+        }
+        
+        $searchTerm = '%' . $query . '%';
+        $results = ['clients' => [], 'policies' => [], 'quotes' => []];
+        
+        try {
+            // Buscar clientes (solo agentes/admin)
+            if ($user['user_type'] === 'agent' || $user['user_type'] === 'admin') {
+                $stmt = $db->prepare("
+                    SELECT id, email, first_name, last_name, phone
+                    FROM users 
+                    WHERE user_type = 'client'
+                    AND (
+                        first_name LIKE ? OR 
+                        last_name LIKE ? OR 
+                        email LIKE ? OR 
+                        phone LIKE ?
+                    )
+                    ORDER BY first_name, last_name
+                    LIMIT 10
+                ");
+                $stmt->execute([$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
+                $results['clients'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                // Buscar cotizaciones
+                $stmt = $db->prepare("
+                    SELECT id, email, first_name, last_name, quote_type, requested_at
+                    FROM quotes 
+                    WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ?
+                    ORDER BY requested_at DESC
+                    LIMIT 10
+                ");
+                $stmt->execute([$searchTerm, $searchTerm, $searchTerm]);
+                $results['quotes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            
+            // Buscar pólizas
+            if ($user['user_type'] === 'client') {
+                $stmt = $db->prepare("
+                    SELECT 
+                        p.policy_id, p.policy_number, p.policy_type, p.status
+                    FROM policies p
+                    WHERE p.client_id = ?
+                    AND (
+                        p.policy_number LIKE ? OR 
+                        p.policy_type LIKE ?
+                    )
+                    LIMIT 10
+                ");
+                $stmt->execute([$user['user_id'], $searchTerm, $searchTerm]);
+                $results['policies'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $stmt = $db->prepare("
+                    SELECT 
+                        p.policy_id, 
+                        p.policy_number, 
+                        p.policy_type, 
+                        p.status,
+                        CONCAT(c.first_name, ' ', c.last_name) AS client_name
+                    FROM policies p
+                    INNER JOIN users c ON p.client_id = c.id
+                    WHERE p.policy_number LIKE ? OR p.policy_type LIKE ?
+                    LIMIT 10
+                ");
+                $stmt->execute([$searchTerm, $searchTerm]);
+                $results['policies'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            
+            sendResponse([
+                'success' => true,
+                'results' => $results
+            ]);
+            
+        } catch (Exception $e) {
+            error_log("Error en búsqueda: " . $e->getMessage());
+            sendError('Error realizando búsqueda', 500);
+        }
+    }
+    
     // ===== CLAIM COMMENTS ENDPOINTS =====
     
     // GET ?action=claim_details
@@ -532,6 +748,400 @@ try {
         sendResponse([
             'success' => true,
             'message' => 'Comment added and notification sent'
+        ]);
+    }
+    
+    // POST ?action=add_policy_comment
+    if ($method === 'POST' && $action === 'add_policy_comment') {
+        $user = Auth::requireAuth();
+        
+        $policyId = $data['policy_id'] ?? $_GET['policy_id'] ?? null;
+        $message = $data['message'] ?? '';
+        
+        if (!$policyId || !$message) {
+            sendError('Policy ID and message required', 400);
+        }
+        
+        try {
+            // Verify policy exists and user has access
+            $stmt = $db->prepare("
+                SELECT p.id, p.policy_number, p.client_id, p.agent_id, c.email as client_email, c.first_name, c.last_name
+                FROM policies p
+                JOIN users c ON p.client_id = c.id
+                WHERE p.id = ?
+            ");
+            $stmt->execute([$policyId]);
+            $policy = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if (!$policy) {
+                sendError('Policy not found', 404);
+            }
+            
+            // Verify user is agent of this policy or is client
+            if ($user['user_type'] !== 'admin' && 
+                $user['user_id'] !== $policy['agent_id'] && 
+                $user['user_id'] !== $policy['client_id']) {
+                sendError('Unauthorized', 403);
+            }
+            
+            // Determine author type
+            $authorType = $user['user_type'] === 'agent' ? 'agent' : ($user['user_type'] === 'admin' ? 'agent' : 'client');
+            
+            // Insert comment using actual schema: author_type, author_id, is_read
+            $stmt = $db->prepare("
+                INSERT INTO policy_comments 
+                (policy_id, author_type, author_id, comment_text, is_internal, is_read)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ");
+            $isInternal = 0; // Public comments by default
+            $isRead = ($authorType === 'client') ? 1 : 0; // Mark as read for the reader
+            $stmt->execute([$policyId, $authorType, $user['user_id'], $message, $isInternal, $isRead]);
+            
+            $commentId = $db->lastInsertId();
+            
+            // Send email notification to the other party
+            $emailService = new EmailService();
+            
+            if ($authorType === 'agent') {
+                // Agent commented, notify client
+                $emailService->sendEmail(
+                    $policy['client_email'],
+                    "Nuevo comentario en póliza #{$policy['policy_number']}",
+                    "Tu agente ha agregado un comentario en tu póliza:<br><br>\"" . htmlspecialchars($message) . "\"<br><br>Ingresa al dashboard para ver más detalles."
+                );
+            } else {
+                // Client commented, notify agent
+                $stmt = $db->prepare("SELECT email, first_name, last_name FROM users WHERE id = ?");
+                $stmt->execute([$policy['agent_id']]);
+                $agent = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                if ($agent) {
+                    $clientName = $policy['first_name'] . ' ' . $policy['last_name'];
+                    $emailService->sendEmail(
+                        $agent['email'],
+                        "Nuevo comentario en póliza #{$policy['policy_number']}",
+                        "$clientName ha agregado un comentario en su póliza:<br><br>\"" . htmlspecialchars($message) . "\"<br><br>Ingresa al dashboard para responder."
+                    );
+                }
+            }
+            
+            error_log('Successfully added comment with ID: ' . $commentId);
+            
+            sendResponse([
+                'success' => true,
+                'message' => 'Comment added and notification sent',
+                'comment_id' => (int)$commentId
+            ]);
+        } catch (Exception $e) {
+            error_log('Policy Comment Error: ' . $e->getMessage());
+            error_log('Stack trace: ' . $e->getTraceAsString());
+            sendError('Error adding comment: ' . $e->getMessage(), 500);
+        }
+    }
+    
+    // DEBUG: Check policy_comments table schema
+    if ($action === 'debug_policy_comments_schema') {
+        try {
+            // Get table structure
+            $stmt = $db->prepare("DESCRIBE policy_comments");
+            $stmt->execute();
+            $columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Try to get first few rows
+            $rows = [];
+            try {
+                $stmt = $db->prepare("SELECT * FROM policy_comments LIMIT 5");
+                $stmt->execute();
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                // Table might not exist or be empty
+            }
+            
+            sendResponse([
+                'success' => true,
+                'table_columns' => $columns,
+                'sample_rows' => $rows,
+                'column_count' => count($columns),
+                'row_count' => count($rows)
+            ]);
+        } catch (Exception $e) {
+            sendResponse([
+                'success' => false,
+                'error' => $e->getMessage(),
+                'message' => 'policy_comments table might not exist or is inaccessible'
+            ]);
+        }
+    }
+    
+    // GET ?action=policy_comments&policy_id=ID
+    if ($action === 'policy_comments') {
+        $user = Auth::requireAuth();
+        $policyId = $_GET['policy_id'] ?? $data['policy_id'] ?? null;
+        
+        if (!$policyId) {
+            sendError('Policy ID required', 400);
+        }
+        
+        try {
+            // Verify user has access to this policy
+            $stmt = $db->prepare("
+                SELECT id, client_id, agent_id FROM policies WHERE id = ?
+            ");
+            $stmt->execute([$policyId]);
+            $policy = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if (!$policy) {
+                sendError('Policy not found', 404);
+            }
+            
+            if ($user['user_type'] !== 'admin' && 
+                $user['user_id'] !== $policy['agent_id'] && 
+                $user['user_id'] !== $policy['client_id']) {
+                sendError('Unauthorized', 403);
+            }
+            
+            // Get comments using actual schema columns
+            $stmt = $db->prepare("
+                SELECT pc.comment_id, pc.comment_text, pc.author_type, pc.author_id,
+                       pc.is_internal, pc.is_read, pc.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM policy_comments pc
+                JOIN users u ON pc.author_id = u.id
+                WHERE pc.policy_id = ?
+                ORDER BY pc.created_at DESC
+            ");
+            $stmt->execute([$policyId]);
+            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Mark comments as read for current user
+            // For clients: mark all as read
+            // For agents: only mark agent comments as unread initially
+            if ($user['user_type'] === 'client') {
+                $stmt = $db->prepare("
+                    UPDATE policy_comments SET is_read = 1
+                    WHERE policy_id = ? AND is_read = 0
+                ");
+                $stmt->execute([$policyId]);
+            }
+            
+            sendResponse([
+                'success' => true,
+                'comments' => $comments ?: []
+            ]);
+        } catch (Exception $e) {
+            error_log('Get Policy Comments Error: ' . $e->getMessage());
+            sendError('Error fetching comments: ' . $e->getMessage(), 500);
+        }
+    }
+    
+    // ===== DIRECT MESSAGES ENDPOINTS =====
+    
+    // POST ?action=dm_start_thread (Agente inicia thread con cliente)
+    if ($method === 'POST' && $action === 'dm_start_thread') {
+        $user = Auth::requireUserType(['agent']);
+        
+        $clientId = $data['client_id'] ?? null;
+        $subject = $data['subject'] ?? 'Mensaje directo';
+        $messageText = $data['message'] ?? null;
+        
+        if (!$clientId || !$messageText) {
+            sendError('Client ID and message required', 400);
+        }
+        
+        $agentId = $user['user_id'];
+        
+        // Verify client exists
+        $stmt = $db->prepare("SELECT id FROM users WHERE id = ? AND user_type = 'client'");
+        $stmt->execute([$clientId]);
+        if (!$stmt->fetch()) {
+            sendError('Client not found', 404);
+        }
+        
+        // Check for existing active thread
+        $stmt = $db->prepare("
+            SELECT thread_id, expires_at 
+            FROM direct_message_threads 
+            WHERE agent_id = ? AND client_id = ? AND status = 'active'
+        ");
+        $stmt->execute([$agentId, $clientId]);
+        $existingThread = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($existingThread) {
+            $threadId = $existingThread['thread_id'];
+            $expiresAt = date('Y-m-d H:i:s', strtotime('+42 hours'));
+            
+            $stmt = $db->prepare("
+                UPDATE direct_message_threads 
+                SET last_message_at = NOW(), expires_at = ? 
+                WHERE thread_id = ?
+            ");
+            $stmt->execute([$expiresAt, $threadId]);
+            
+        } else {
+            $threadId = 'DM-' . time() . '-' . substr(md5($agentId . $clientId), 0, 8);
+            $expiresAt = date('Y-m-d H:i:s', strtotime('+42 hours'));
+            
+            $stmt = $db->prepare("
+                INSERT INTO direct_message_threads 
+                (thread_id, agent_id, client_id, subject, status, expires_at)
+                VALUES (?, ?, ?, ?, 'active', ?)
+            ");
+            $stmt->execute([$threadId, $agentId, $clientId, $subject, $expiresAt]);
+        }
+        
+        // Insert message
+        $stmt = $db->prepare("
+            INSERT INTO direct_messages 
+            (thread_id, sender_id, recipient_id, message_text, expires_at)
+            VALUES (?, ?, ?, ?, ?)
+        ");
+        $stmt->execute([$threadId, $agentId, $clientId, $messageText, $expiresAt]);
+        
+        sendResponse([
+            'success' => true,
+            'thread_id' => $threadId,
+            'expires_at' => $expiresAt
+        ]);
+    }
+    
+    // GET ?action=dm_unread_count
+    if ($action === 'dm_unread_count') {
+        $user = Auth::requireAuth();
+        $userId = $user['user_id'];
+        
+        $stmt = $db->prepare("
+            SELECT COUNT(*) as unread_count
+            FROM direct_message_threads
+            WHERE (agent_id = ? OR client_id = ?) AND status = 'active'
+        ");
+        $stmt->execute([$userId, $userId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        sendResponse([
+            'success' => true,
+            'unread_count' => (int)$result['unread_count']
+        ]);
+    }
+    
+    // GET ?action=dm_my_threads
+    if ($action === 'dm_my_threads') {
+        $user = Auth::requireAuth();
+        $userId = $user['user_id'];
+        
+        try {
+            // Get threads for this user
+            $stmt = $db->prepare("
+                SELECT DISTINCT
+                    t.thread_id, 
+                    t.subject, 
+                    t.created_at, 
+                    t.expires_at, 
+                    t.status,
+                    t.agent_id, 
+                    t.client_id,
+                    CONCAT(COALESCE(a.first_name, ''), ' ', COALESCE(a.last_name, '')) as agent_name,
+                    CONCAT(COALESCE(c.first_name, ''), ' ', COALESCE(c.last_name, '')) as client_name
+                FROM direct_message_threads t
+                LEFT JOIN users a ON t.agent_id = a.id
+                LEFT JOIN users c ON t.client_id = c.id
+                WHERE (t.agent_id = ? OR t.client_id = ?) AND t.status = 'active'
+                ORDER BY t.created_at DESC
+            ");
+            $stmt->execute([$userId, $userId]);
+            $threads = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Calculate unread for each thread
+            $unreadTotal = 0;
+            if ($threads) {
+                foreach ($threads as &$thread) {
+                    $unreadStmt = $db->prepare("
+                        SELECT COUNT(*) as unread_count
+                        FROM direct_messages
+                        WHERE thread_id = ? AND sender_id != ? AND is_read = 0
+                    ");
+                    $unreadStmt->execute([$thread['thread_id'], $userId]);
+                    $unread = $unreadStmt->fetch(PDO::FETCH_ASSOC);
+                    $thread['unread_count'] = (int)($unread['unread_count'] ?? 0);
+                    $unreadTotal += $thread['unread_count'];
+                }
+            }
+            
+            sendResponse([
+                'success' => true,
+                'threads' => $threads ?: [],
+                'total_unread' => $unreadTotal
+            ]);
+        } catch (Exception $e) {
+            error_log('DM Threads Error: ' . $e->getMessage());
+            sendError('Error fetching threads: ' . $e->getMessage(), 500);
+        }
+    }
+    
+    // GET ?action=dm_messages&thread_id=ID
+    if ($action === 'dm_messages') {
+        $user = Auth::requireAuth();
+        $threadId = $_GET['thread_id'] ?? $data['thread_id'] ?? null;
+        
+        if (!$threadId) {
+            sendError('Thread ID required', 400);
+        }
+        
+        $stmt = $db->prepare("
+            SELECT * FROM direct_messages
+            WHERE thread_id = ?
+            ORDER BY sent_at ASC
+        ");
+        $stmt->execute([$threadId]);
+        $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        // Mark as read
+        $stmt = $db->prepare("
+            UPDATE direct_messages SET is_read = 1
+            WHERE thread_id = ? AND recipient_id = ?
+        ");
+        $stmt->execute([$threadId, $user['user_id']]);
+        
+        sendResponse([
+            'success' => true,
+            'messages' => $messages
+        ]);
+    }
+    
+    // POST ?action=dm_send_message
+    if ($method === 'POST' && $action === 'dm_send_message') {
+        $user = Auth::requireAuth();
+        $threadId = $data['thread_id'] ?? null;
+        $messageText = $data['message'] ?? '';
+        
+        if (!$threadId || !$messageText) {
+            sendError('Thread ID and message required', 400);
+        }
+        
+        // Verify user is part of thread
+        $stmt = $db->prepare("
+            SELECT agent_id, client_id FROM direct_message_threads
+            WHERE thread_id = ?
+        ");
+        $stmt->execute([$threadId]);
+        $thread = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$thread || ($thread['agent_id'] !== $user['user_id'] && $thread['client_id'] !== $user['user_id'])) {
+            sendError('Unauthorized', 403);
+        }
+        
+        // Insert message
+        $senderId = $user['user_id'];
+        $recipientId = $senderId === $thread['agent_id'] ? $thread['client_id'] : $thread['agent_id'];
+        
+        $stmt = $db->prepare("
+            INSERT INTO direct_messages (thread_id, sender_id, recipient_id, message_text, expires_at)
+            VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 42 HOUR))
+        ");
+        $stmt->execute([$threadId, $senderId, $recipientId, $messageText]);
+        
+        sendResponse([
+            'success' => true,
+            'message_id' => $db->lastInsertId()
         ]);
     }
     

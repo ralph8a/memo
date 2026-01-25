@@ -213,6 +213,210 @@
     }
 }
 
+/* ============================================
+   DARK FOREST THEME OVERRIDES
+   ============================================ */
+
+body.dark-forest .modal-overlay {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+body.dark-forest .modal-content {
+    background: var(--card-background);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-forest .modal-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-forest .modal-header h2 {
+    color: var(--text-color);
+}
+
+body.dark-forest .modal-close {
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-forest .modal-close:hover {
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-forest .modal-body {
+    color: var(--text-color);
+}
+
+/* Client Details Grid - Dark Theme */
+body.dark-forest .client-details-grid .detail-item label {
+    color: var(--text-muted);
+}
+
+body.dark-forest .client-details-grid .detail-item .value {
+    color: var(--text-color);
+}
+
+body.dark-forest .client-details-grid .detail-item .badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+body.dark-forest .client-details-grid .detail-item .badge.active {
+    background: rgba(107, 144, 128, 0.3);
+    color: var(--accent-color);
+}
+
+/* Policy Items - Dark Theme */
+body.dark-forest .policy-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-forest .policy-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(107, 144, 128, 0.3);
+}
+
+body.dark-forest .policy-number {
+    color: var(--text-color);
+}
+
+body.dark-forest .policy-type {
+    color: var(--text-muted);
+}
+
+body.dark-forest .policy-status {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+body.dark-forest .policy-status.status-active {
+    background: rgba(76, 175, 80, 0.2);
+    color: #81c784;
+}
+
+body.dark-forest .policy-status.status-pending {
+    background: rgba(255, 152, 0, 0.2);
+    color: #ffb74d;
+}
+
+body.dark-forest .policy-status.status-expired {
+    background: rgba(244, 67, 54, 0.2);
+    color: #e57373;
+}
+
+/* Payment Items - Dark Theme */
+body.dark-forest .payment-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-forest .payment-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-forest .payment-date {
+    color: var(--text-muted);
+}
+
+body.dark-forest .payment-amount {
+    color: var(--text-color);
+}
+
+body.dark-forest .payment-status {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+body.dark-forest .payment-status.status-paid {
+    background: rgba(76, 175, 80, 0.2);
+    color: #81c784;
+}
+
+body.dark-forest .payment-status.status-pending {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffd54f;
+}
+
+body.dark-forest .payment-status.status-overdue {
+    background: rgba(244, 67, 54, 0.2);
+    color: #e57373;
+}
+
+/* Claim Items - Dark Theme */
+body.dark-forest .claim-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-forest .claim-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-forest .claim-number {
+    color: var(--text-color);
+}
+
+body.dark-forest .claim-date {
+    color: var(--text-muted);
+}
+
+body.dark-forest .claim-amount {
+    color: var(--text-color);
+}
+
+body.dark-forest .claim-status {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+body.dark-forest .claim-status.status-approved {
+    background: rgba(76, 175, 80, 0.2);
+    color: #81c784;
+}
+
+body.dark-forest .claim-status.status-processing {
+    background: rgba(33, 150, 243, 0.2);
+    color: #64b5f6;
+}
+
+body.dark-forest .claim-status.status-rejected {
+    background: rgba(244, 67, 54, 0.2);
+    color: #e57373;
+}
+
+/* Client Items List - Dark Theme */
+body.dark-forest .client-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-forest .client-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(107, 144, 128, 0.3);
+}
+
+body.dark-forest .client-name {
+    color: var(--text-color);
+}
+
+body.dark-forest .client-email,
+body.dark-forest .client-phone {
+    color: var(--text-muted);
+}
+
+body.dark-forest .client-badge {
+    background: rgba(107, 144, 128, 0.2);
+    color: var(--accent-color);
+}
+
+/* Empty States - Dark Theme */
+body.dark-forest .empty-state {
+    color: var(--text-muted);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .modal-content {
