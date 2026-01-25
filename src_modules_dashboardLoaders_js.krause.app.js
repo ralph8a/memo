@@ -82,35 +82,48 @@ function _loadAgentDashboard() {
     return _regenerator().w(function (_context) {
       while (1) switch (_context.p = _context.n) {
         case 0:
-          _context.p = 0;
+          console.log('🔄 loadAgentDashboard() called');
+          _context.p = 1;
           // Update user name in header first
           updateUserNameInHeader();
-
+          console.log('📡 Requesting agent dashboard data from API...');
           // Load dashboard data from backend
-          _context.n = 1;
+          _context.n = 2;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.AGENT_DASHBOARD, {
             method: 'GET'
           }, {
             cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.SHORT,
             useCache: true
           });
-        case 1:
+        case 2:
           dashboardData = _context.v;
+          console.log('📊 Agent dashboard data received:', dashboardData);
+
           // Update UI with real data
-          if (dashboardData.stats) updateAgentStats(dashboardData.stats);
-          if (dashboardData.clients) renderAgentClients(dashboardData.clients);
-          if (dashboardData.claims) renderAgentClaims(dashboardData.claims);
+          if (dashboardData.stats) {
+            console.log('Updating agent stats...');
+            updateAgentStats(dashboardData.stats);
+          }
+          if (dashboardData.clients) {
+            console.log('Rendering agent clients...');
+            renderAgentClients(dashboardData.clients);
+          }
+          if (dashboardData.claims) {
+            console.log('Rendering agent claims...');
+            renderAgentClaims(dashboardData.claims);
+          }
           console.log('✅ Agent dashboard loaded with real data');
           return _context.a(2, dashboardData);
-        case 2:
-          _context.p = 2;
-          _t = _context.v;
-          console.error('Error loading agent dashboard:', _t);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
         case 3:
+          _context.p = 3;
+          _t = _context.v;
+          console.error('❌ Error loading agent dashboard:', _t);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
+          throw _t;
+        case 4:
           return _context.a(2);
       }
-    }, _callee, null, [[0, 2]]);
+    }, _callee, null, [[1, 3]]);
   }));
   return _loadAgentDashboard.apply(this, arguments);
 }
@@ -218,35 +231,54 @@ function _loadClientDashboard() {
     return _regenerator().w(function (_context5) {
       while (1) switch (_context5.p = _context5.n) {
         case 0:
-          _context5.p = 0;
+          console.log('🔄 loadClientDashboard() called');
+          _context5.p = 1;
           // Update user name in header first
           updateUserNameInHeader();
-
+          console.log('📡 Requesting client dashboard data from API...');
           // Load dashboard data from backend
-          _context5.n = 1;
+          _context5.n = 2;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.CLIENT_DASHBOARD, {
             method: 'GET'
           }, {
             cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.SHORT,
             useCache: true
           });
-        case 1:
-          dashboardData = _context5.v;
-          _context5.n = 2;
-          return Promise.all([loadClientPolicies(), loadClientClaims(), loadPaymentHistory()]);
         case 2:
+          dashboardData = _context5.v;
+          console.log('📊 Client dashboard data received:', dashboardData);
+
+          // Load additional data in parallel
+          console.log('📡 Loading policies, claims, and payments...');
+          _context5.n = 3;
+          return Promise.all([loadClientPolicies(), loadClientClaims(), loadPaymentHistory()]);
+        case 3:
           _yield$Promise$all = _context5.v;
           _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 3);
           policies = _yield$Promise$all2[0];
           claims = _yield$Promise$all2[1];
           payments = _yield$Promise$all2[2];
+          console.log('📊 Data loaded - Policies:', policies === null || policies === void 0 ? void 0 : policies.length, 'Claims:', claims === null || claims === void 0 ? void 0 : claims.length, 'Payments:', payments === null || payments === void 0 ? void 0 : payments.length);
+
           // Update stats from dashboard data
-          if (dashboardData.stats) updateClientStats(dashboardData.stats);
+          if (dashboardData.stats) {
+            console.log('Updating client stats...');
+            updateClientStats(dashboardData.stats);
+          }
 
           // Render lists
-          if (policies) renderClientPolicies(policies);
-          if (claims) renderClientClaims(claims);
-          if (payments) renderPaymentHistory(payments);
+          if (policies) {
+            console.log('Rendering policies...');
+            renderClientPolicies(policies);
+          }
+          if (claims) {
+            console.log('Rendering claims...');
+            renderClientClaims(claims);
+          }
+          if (payments) {
+            console.log('Rendering payment history...');
+            renderPaymentHistory(payments);
+          }
           console.log('✅ Client dashboard loaded with real data');
           return _context5.a(2, {
             dashboardData: dashboardData,
@@ -254,15 +286,16 @@ function _loadClientDashboard() {
             claims: claims,
             payments: payments
           });
-        case 3:
-          _context5.p = 3;
-          _t5 = _context5.v;
-          console.error('Error loading client dashboard:', _t5);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
         case 4:
+          _context5.p = 4;
+          _t5 = _context5.v;
+          console.error('❌ Error loading client dashboard:', _t5);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
+          throw _t5;
+        case 5:
           return _context5.a(2);
       }
-    }, _callee5, null, [[0, 3]]);
+    }, _callee5, null, [[1, 4]]);
   }));
   return _loadClientDashboard.apply(this, arguments);
 }

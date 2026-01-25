@@ -1492,12 +1492,16 @@
               </svg>
               <span class="dot"></span>
             </button>
-            <button class="icon-pill" aria-label="Mensajes" onclick="window.appHandlers?.contactAgent?.()">
+            <button class="icon-pill" aria-label="Direct Messages" onclick="window.directMessages?.openModal()" title="Mensajes directos con tu agente">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg>
+              <span class="badge-count" data-dm-badge style="display: none;">0</span>
             </button>
-            <span class="badge badge-accent ghost">Sesión segura</span>
+            <span class="badge badge-accent ghost" onclick="window.directMessages?.openModal()" style="cursor: pointer;" title="Mensajes directos">
+              Direct
+              <span class="badge-count" data-dm-badge style="display: none; margin-left: 4px;">0</span>
+            </span>
           </div>
         </div>
       </header>
@@ -1813,20 +1817,12 @@
       <aside class="dashboard-rail right-rail rail-surface">
             <div class="content-card compact calendar-card">
                 <div class="card-header-modern">
-                  <h3>Calendario</h3>
-                  <span class="card-badge">Semana</span>
+                  <h3>📅 Calendario de Pagos</h3>
+                  <span class="card-badge">Mes</span>
                 </div>
-                <div class="calendar-grid" aria-hidden="true">
-                  <div class="cal-day muted">Lun</div>
-                  <div class="cal-day">Mar</div>
-                  <div class="cal-day">Mié</div>
-                  <div class="cal-day">Jue</div>
-                  <div class="cal-day">Vie</div>
-                  <div class="cal-slot">09:00 - Llamada</div>
-                  <div class="cal-slot accent">11:00 - Renovación</div>
-                  <div class="cal-slot">14:00 - Consulta</div>
-                  <div class="cal-slot">16:30 - Pago</div>
-                  <div class="cal-slot muted">Libre</div>
+                <div class="calendar-grid" aria-hidden="false">
+                  <!-- Generado dinámicamente por paymentCalendar.js -->
+                  <p class="loading-state">Cargando calendario...</p>
                 </div>
               </div>
 
@@ -2085,12 +2081,24 @@
               </svg>
               <span class="dot"></span>
             </button>
-            <button class="icon-pill" aria-label="Mensajes">
+            <button class="icon-pill" aria-label="Contactar cliente" onclick="window.contactModal?.open()" title="Contactar cliente">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </button>
+            <button class="icon-pill" aria-label="Direct Messages" onclick="window.directMessages?.openModal()" title="Mensajes directos">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg>
+              <span class="badge-count" data-dm-badge style="display: none;">0</span>
             </button>
-            <span class="badge badge-accent ghost">Sesión activa</span>
+            <span class="badge badge-accent ghost" onclick="window.directMessages?.openModal()" style="cursor: pointer;" title="Mensajes directos">
+              Direct
+              <span class="badge-count" data-dm-badge style="display: none; margin-left: 4px;">0</span>
+            </span>
           </div>
         </div>
       </header>
@@ -2318,6 +2326,32 @@
                     <div class="mimic-col main">
                       
                       <!-- Panel de Cargar Póliza removido - ahora es botón de acción rápida -->
+
+                      <!-- Client Filter Indicator -->
+                      <div id="client-filter-indicator" class="filter-indicator" style="display: none;">
+                        Filtrando por cliente
+                        <button class="btn-clear-filter" onclick="window.agentDashboard?.clearClientFilter()">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                          </svg>
+                          Limpiar filtro
+                        </button>
+                      </div>
+
+                      <!-- Agent Payment Schedule Panel -->
+                      <div class="content-card list-card compact" id="agent-payments-section">
+                        <div id="agent-payments-container">
+                          <p class="loading-state">Cargando calendario de pagos...</p>
+                        </div>
+                      </div>
+
+                      <!-- Agent Policies Panel -->
+                      <div class="content-card list-card compact" id="agent-policies-section">
+                        <div id="agent-policies-container">
+                          <p class="loading-state">Cargando pólizas...</p>
+                        </div>
+                      </div>
 
                       <!-- Payment Proof Review Section -->
                       <div class="content-card compact">
@@ -2565,15 +2599,12 @@
     <aside class="dashboard-rail right-rail rail-surface">
       <div class="content-card compact calendar-card">
         <div class="card-header-modern">
-          <h3>Citas del Día</h3>
-          <span class="card-badge">Hoy</span>
+          <h3>📅 Pagos Próximos</h3>
+          <span class="card-badge">Mes</span>
         </div>
-        <div class="calendar-grid" aria-hidden="true">
-          <div class="cal-slot accent">09:00 - Reunión cliente</div>
-          <div class="cal-slot">11:00 - Renovación póliza</div>
-          <div class="cal-slot accent">14:00 - Nueva cotización</div>
-          <div class="cal-slot">16:30 - Seguimiento</div>
-          <div class="cal-slot muted">18:00 - Cierre día</div>
+        <div class="calendar-grid" aria-hidden="false">
+          <!-- Generado dinámicamente por paymentCalendar.js -->
+          <p class="loading-state">Cargando calendario...</p>
         </div>
       </div>
 
@@ -2814,6 +2845,14 @@
             if (window.proofReviewComponent) {
               setTimeout(() => window.proofReviewComponent.render(), 1000);
             }
+
+            // Refresh agent dashboard panels
+            if (window.agentDashboard) {
+              setTimeout(() => {
+                window.agentDashboard.paymentPanel?.render();
+                window.agentDashboard.policiesPanel?.render();
+              }, 1000);
+            }
             
             // Reset form after 3 seconds
             setTimeout(() => {
@@ -2836,6 +2875,7 @@
   });
 </script>
 
+<!-- Agent Dashboard Components -->
 
     </div>
 

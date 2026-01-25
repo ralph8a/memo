@@ -6,9 +6,10 @@
     RewriteEngine On
     RewriteBase /
     
-    # Permitir headers de Authorization para JWT
-    RewriteCond %{HTTP:Authorization} ^(.*)
-    RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+    # Permitir headers de Authorization para JWT (múltiples formatos)
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+    RewriteCond %{HTTP:Authorization} ^(.+)$
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
     
     # FORZAR HTTPS - SSL Activado
     RewriteCond %{HTTPS} off
@@ -18,6 +19,9 @@
     # No reescribir archivos o directorios que existan
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Excluir /backend/ del rewrite (API)
+    RewriteCond %{REQUEST_URI} !^/backend/
     
     # Redirigir todas las rutas a index.html (para SPA)
     RewriteRule ^(.*)$ index.html [QSA,L]
