@@ -366,8 +366,7 @@ export function scheduleAppointment() {
  * Ver detalles de cliente - CONECTADO CON BACKEND
  */
 export async function viewClientDetails(clientId) {
-
-  // Modal de detalles
+  // Crear modal de detalles
   const modal = document.createElement('div');
   modal.className = 'app-modal-overlay active';
   modal.innerHTML = `
@@ -384,7 +383,7 @@ export async function viewClientDetails(clientId) {
       <div class="app-modal-body">
         <div class="client-detail-content">
           <div class="loading-state">
-            <p>Cargando información del cliente...</p>
+            <p>⏳ Cargando información del cliente...</p>
           </div>
         </div>
       </div>
@@ -393,8 +392,93 @@ export async function viewClientDetails(clientId) {
 
   document.body.appendChild(modal);
 
-  // Aquí se cargaría data real del backend
-  // Por ahora usa datos de ejemplo
+  // Cargar datos reales del backend
+  try {
+    const data = await apiService.request(
+      `${API_CONFIG.ENDPOINTS.GET_CLIENT_DETAILS}&id=${clientId}`,
+      { method: 'GET' }
+    );
+
+    if (!data) {
+      throw new Error('No se recibieron datos del cliente');
+    }
+
+    const { client, policies = [], claims = [] } = data;
+
+    // Actualizar contenido del modal con datos reales
+    const contentDiv = modal.querySelector('.client-detail-content');
+    contentDiv.innerHTML = `
+      <div class="client-details-grid">
+        <div class="detail-section">
+          <h3>📋 Información de Contacto</h3>
+          <div class="detail-item">
+            <label>Nombre Completo</label>
+            <div class="value">${client.first_name || ''} ${client.last_name || ''}</div>
+          </div>
+          <div class="detail-item">
+            <label>Email</label>
+            <div class="value">${client.email || 'N/A'}</div>
+          </div>
+          <div class="detail-item">
+            <label>Teléfono</label>
+            <div class="value">${client.phone || 'N/A'}</div>
+          </div>
+          <div class="detail-item">
+            <label>Estado</label>
+            <div class="value">
+              <span class="badge badge-${client.status === 'active' ? 'success' : 'warning'}">
+                ${client.status === 'active' ? 'Activo' : 'Inactivo'}
+              </span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <label>Fecha de Registro</label>
+            <div class="value">${new Date(client.created_at).toLocaleDateString('es-ES')}</div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3>📄 Pólizas (${policies.length})</h3>
+          ${policies.length > 0 ? policies.map(p => `
+            <div class="detail-item">
+              <label>${formatPolicyType(p.policy_type)} - ${p.policy_number}</label>
+              <div class="value">
+                <span class="badge badge-${p.status === 'active' ? 'success' : 'secondary'}">
+                  ${p.status || 'N/A'}
+                </span>
+              </div>
+            </div>
+          `).join('') : '<p class="text-muted">Sin pólizas registradas</p>'}
+        </div>
+
+        <div class="detail-section">
+          <h3>🔔 Reclamaciones Recientes (${claims.length})</h3>
+          ${claims.length > 0 ? claims.map(c => `
+            <div class="detail-item">
+              <label>Reclamación #${c.claim_number || c.id}</label>
+              <div class="value">
+                <span class="badge badge-${c.status === 'approved' ? 'success' : c.status === 'pending' ? 'warning' : 'secondary'}">
+                  ${c.status || 'N/A'}
+                </span>
+              </div>
+            </div>
+          `).join('') : '<p class="text-muted">Sin reclamaciones registradas</p>'}
+        </div>
+      </div>
+    `;
+
+  } catch (error) {
+    console.error('Error loading client details:', error);
+    showNotification('Error al cargar detalles del cliente', NOTIFICATION_TYPES.ERROR);
+
+    const contentDiv = modal.querySelector('.client-detail-content');
+    contentDiv.innerHTML = `
+      <div class="loading-state">
+        <p style="color: var(--error-color, #ef5350);">❌ Error al cargar la información del cliente</p>
+        <p style="font-size: 14px; color: var(--text-muted, #999);">${error.message}</p>
+      </div>
+    `;
+  }
 }
 
 /**

@@ -21,6 +21,7 @@ import '../../styles/dashboard-actions.css'; // NEW: Acciones y modales de dashb
 import '../../styles/agent-dashboard-panels.css'; // NEW: Paneles de agente (pagos, pólizas)
 import '../../styles/direct-messages.css'; // NEW: Sistema de mensajes directos
 import '../../styles/scroll-modal-fixes.css'; // NEW: Fixes de scroll y modales
+import '../../styles/modals-unified.css'; // NEW: Sistema unificado de modales
 import '../../styles/app.css'; // Base styles
 import '../../styles/dark-forest.css'; // Theme overrides MUST load last
 

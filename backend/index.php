@@ -271,25 +271,212 @@ try {
     // GET ?action=agent_clients
     if ($action === 'agent_clients') {
         $user = Auth::requireUserType(['agent', 'admin']);
+        $agent_id = $user['user_id'];
         
-        $stmt = $db->query("
-            SELECT id, email, first_name, last_name, phone, status, created_at
-            FROM users 
-            WHERE user_type = 'client'
-            ORDER BY created_at DESC
+        // Get all clients with assignment info
+        $stmt = $db->prepare("
+            SELECT 
+                u.id, 
+                u.email, 
+                u.first_name, 
+                u.last_name, 
+                u.phone, 
+                u.status, 
+                u.created_at,
+                COUNT(DISTINCT p.id) as policy_count,
+                SUM(CASE WHEN p.agent_id = ? THEN 1 ELSE 0 END) as assigned_policies,
+                MAX(p.updated_at) as last_activity
+            FROM users u
+            LEFT JOIN policies p ON u.id = p.client_id
+            WHERE u.user_type = 'client'
+            GROUP BY u.id
+            ORDER BY assigned_policies DESC, last_activity DESC, u.created_at DESC
         ");
+        $stmt->execute([$agent_id]);
         
-        sendResponse($stmt->fetchAll());
+        $clients = $stmt->fetchAll();
+        
+        // Add is_assigned flag for frontend
+        foreach ($clients as &$client) {
+            $client['is_assigned'] = (int)$client['assigned_policies'] > 0;
+        }
+        
+        sendResponse($clients);
+        // sendResponse() hace exit, pero por claridad agregamos return
+        return;
+    }
+
+    // GET ?action=client_details&id=123
+    else if ($action === 'client_details') {
+        try {
+            $user = Auth::requireUserType(['agent', 'admin']);
+            $client_id = $_GET['id'] ?? null;
+            
+            if (!$client_id) {
+                http_response_code(400);
+                sendResponse(['error' => 'Client ID required'], false);
+                return;
+            }
+            
+            // Get client info
+            $stmt = $db->prepare("
+                SELECT id, email, first_name, last_name, phone, status, created_at, updated_at
+                FROM users 
+                WHERE id = ? AND user_type = 'client'
+            ");
+            $stmt->execute([$client_id]);
+            $client = $stmt->fetch();
+            
+            if (!$client) {
+                http_response_code(404);
+                sendResponse(['error' => 'Client not found'], false);
+                return;
+            }
+            
+            // Get client's policies
+            $stmt = $db->prepare("
+                SELECT id, policy_number, policy_type, status, premium_amount, 
+                       coverage_amount, start_date, end_date, created_at
+                FROM policies 
+                WHERE client_id = ?
+                ORDER BY created_at DESC
+            ");
+            $stmt->execute([$client_id]);
+            $policies = $stmt->fetchAll();
+            
+            // Get client's claims (with error handling if table doesn't exist)
+            $claims = [];
+            try {
+                $stmt = $db->prepare("
+                    SELECT c.id, c.claim_number, c.status, c.amount, c.incident_date, 
+                           c.created_at, p.policy_number, p.policy_type
+                    FROM claims c
+                    LEFT JOIN policies p ON c.policy_id = p.id
+                    WHERE c.client_id = ?
+                    ORDER BY c.created_at DESC
+                    LIMIT 10
+                ");
+                $stmt->execute([$client_id]);
+                $claims = $stmt->fetchAll();
+            } catch (PDOException $e) {
+                // Claims table might not exist yet
+                error_log("Claims query failed: " . $e->getMessage());
+                $claims = [];
+            }
+            
+            sendResponse([
+                'client' => $client,
+                'policies' => $policies,
+                'claims' => $claims
+            ]);
+            return;
+        } catch (Exception $e) {
+            error_log("client_details error: " . $e->getMessage());
+            http_response_code(500);
+            sendResponse(['error' => 'Internal server error: ' . $e->getMessage()], false);
+            return;
+        }
+    }
+
+    // GET ?action=client_contacts
+    // Obtiene contactos frecuentes para un cliente (agentes asignados a sus pólizas)
+    else if ($action === 'client_contacts') {
+        $user = Auth::requireAuth();
+        $client_id = $user['user_id'];
+        
+        // Si es agente/admin, puede ver contactos de cualquier cliente
+        if (in_array($user['user_type'], ['agent', 'admin']) && isset($_GET['client_id'])) {
+            $client_id = $_GET['client_id'];
+        }
+        
+        // Get agents assigned to client's policies
+        $stmt = $db->prepare("
+            SELECT DISTINCT 
+                u.id,
+                u.first_name,
+                u.last_name,
+                u.email,
+                u.phone,
+                GROUP_CONCAT(DISTINCT p.policy_type ORDER BY p.policy_type SEPARATOR ', ') as policy_types,
+                COUNT(DISTINCT p.id) as policy_count,
+                MAX(p.updated_at) as last_interaction
+            FROM users u
+            INNER JOIN policies p ON u.id = p.agent_id
+            WHERE p.client_id = ? AND u.user_type = 'agent'
+            GROUP BY u.id, u.first_name, u.last_name, u.email, u.phone
+            ORDER BY last_interaction DESC
+            LIMIT 4
+        ");
+        $stmt->execute([$client_id]);
+        $contacts = $stmt->fetchAll();
+        
+        // Enriquecer con roles
+        foreach ($contacts as &$contact) {
+            $contact['role'] = $contact['policy_count'] > 1 ? 'Agente asignado' : 'Especialista';
+            $contact['full_name'] = $contact['first_name'] . ' ' . $contact['last_name'];
+        }
+        
+        sendResponse($contacts);
+        return;
+    }
+
+    // GET ?action=agent_list
+    // Obtiene lista de todos los agentes disponibles
+    else if ($action === 'agent_list') {
+        // Endpoint público - no requiere autenticación estricta
+        
+        $stmt = $db->prepare("
+            SELECT 
+                id,
+                first_name,
+                last_name,
+                email,
+                phone,
+                status,
+                created_at
+            FROM users 
+            WHERE user_type = 'agent' AND status = 'active'
+            ORDER BY first_name, last_name
+        ");
+        $stmt->execute();
+        $agents = $stmt->fetchAll();
+        
+        // Agregar información adicional
+        foreach ($agents as &$agent) {
+            $agent['full_name'] = $agent['first_name'] . ' ' . $agent['last_name'];
+            
+            // Contar clientes del agente
+            $stmt2 = $db->prepare("
+                SELECT COUNT(DISTINCT client_id) as client_count
+                FROM policies WHERE agent_id = ?
+            ");
+            $stmt2->execute([$agent['id']]);
+            $count = $stmt2->fetch();
+            $agent['clients_served'] = (int)$count['client_count'];
+            
+            // Obtener especialidades (tipos de póliza que maneja)
+            $stmt3 = $db->prepare("
+                SELECT DISTINCT policy_type
+                FROM policies WHERE agent_id = ?
+                ORDER BY policy_type
+            ");
+            $stmt3->execute([$agent['id']]);
+            $specialties = $stmt3->fetchAll(PDO::FETCH_COLUMN);
+            $agent['specialties'] = $specialties;
+        }
+        
+        sendResponse($agents);
+        return;
     }
     
     // GET ?action=agent_stats
-    if ($action === 'agent_stats') {
+    else if ($action === 'agent_stats') {
         $user = Auth::requireUserType(['agent', 'admin']);
         sendResponse(getAgentStats($db, $user['user_id']));
     }
     
     // GET ?action=agent_activity
-    if ($action === 'agent_activity') {
+    else if ($action === 'agent_activity') {
         $user = Auth::requireUserType(['agent', 'admin']);
         
         $stmt = $db->prepare("
@@ -1109,11 +1296,20 @@ try {
     
     // POST ?action=dm_send_message
     if ($method === 'POST' && $action === 'dm_send_message') {
+        error_log("=== DM SEND MESSAGE DEBUG ===");
+        error_log("Raw input: " . $input);
+        error_log("Decoded data: " . json_encode($data));
+        
         $user = Auth::requireAuth();
         $threadId = $data['thread_id'] ?? null;
         $messageText = $data['message'] ?? '';
         
+        error_log("Thread ID: " . ($threadId ?? 'NULL'));
+        error_log("Message: " . $messageText);
+        error_log("User ID: " . $user['user_id']);
+        
         if (!$threadId || !$messageText) {
+            error_log("Missing thread_id or message");
             sendError('Thread ID and message required', 400);
         }
         
@@ -1125,19 +1321,31 @@ try {
         $stmt->execute([$threadId]);
         $thread = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        if (!$thread || ($thread['agent_id'] !== $user['user_id'] && $thread['client_id'] !== $user['user_id'])) {
+        error_log("Thread found: " . json_encode($thread));
+        
+        if (!$thread || ($thread['agent_id'] != $user['user_id'] && $thread['client_id'] != $user['user_id'])) {
+            error_log("Unauthorized: User not in thread or thread not found");
             sendError('Unauthorized', 403);
         }
         
         // Insert message
         $senderId = $user['user_id'];
-        $recipientId = $senderId === $thread['agent_id'] ? $thread['client_id'] : $thread['agent_id'];
+        $recipientId = $senderId == $thread['agent_id'] ? $thread['client_id'] : $thread['agent_id'];
+        
+        error_log("Inserting message - Sender: $senderId, Recipient: $recipientId");
         
         $stmt = $db->prepare("
             INSERT INTO direct_messages (thread_id, sender_id, recipient_id, message_text, expires_at)
             VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 42 HOUR))
         ");
-        $stmt->execute([$threadId, $senderId, $recipientId, $messageText]);
+        $result = $stmt->execute([$threadId, $senderId, $recipientId, $messageText]);
+        
+        if (!$result) {
+            error_log("Insert failed: " . json_encode($stmt->errorInfo()));
+            sendError('Failed to insert message', 500);
+        }
+        
+        error_log("Message inserted successfully. ID: " . $db->lastInsertId());
         
         sendResponse([
             'success' => true,

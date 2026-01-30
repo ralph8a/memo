@@ -92,6 +92,10 @@ export async function loadAgentDashboard() {
             renderAgentClaims(dashboardData.claims);
         }
 
+        // Load recent clients in sidebar
+        console.log('🔄 Loading recent clients for sidebar...');
+        await loadAgentRecentClients().catch(err => console.error('❌ Error loading recent clients:', err));
+
         console.log('✅ Agent dashboard loaded with real data');
         return dashboardData;
     } catch (error) {
@@ -203,6 +207,9 @@ export async function loadClientDashboard() {
             console.log('Rendering payment history...');
             renderPaymentHistory(payments);
         }
+
+        // Load client contacts from backend
+        loadClientContacts().catch(err => console.error('Error loading contacts:', err));
 
         console.log('✅ Client dashboard loaded with real data');
         return { dashboardData, policies, claims, payments };
@@ -324,25 +331,40 @@ function renderAgentClients(clients) {
     const container = document.querySelector('[data-clients-list]');
     if (!container || !clients || clients.length === 0) return;
 
-    const html = clients.map(client => `
-    <div class="client-item" data-client-id="${client.id}">
-      <div class="client-info">
-        <h4>${client.first_name} ${client.last_name}</h4>
-        <p>${client.email}</p>
-        <div class="client-meta">
-          <span class="badge badge-${client.status === 'active' ? 'success' : 'warning'}">
-            ${client.status}
-          </span>
-          <span>Desde: ${new Date(client.created_at).toLocaleDateString()}</span>
+    const html = clients.map(client => {
+        const isAssigned = client.is_assigned || client.assigned_policies > 0;
+        const assignedBadge = isAssigned
+            ? '<span class="badge badge-primary" style="margin-left: 8px;">Asignado</span>'
+            : '';
+        const policyCount = client.policy_count || 0;
+        const policyInfo = policyCount > 0
+            ? `<span>${policyCount} póliza${policyCount !== 1 ? 's' : ''}</span>`
+            : '<span class="text-muted">Sin pólizas</span>';
+
+        return `
+        <div class="client-item ${isAssigned ? 'client-assigned' : ''}" data-client-id="${client.id}">
+          <div class="client-info">
+            <h4>
+              ${client.first_name} ${client.last_name}
+              ${assignedBadge}
+            </h4>
+            <p>${client.email}</p>
+            <div class="client-meta">
+              <span class="badge badge-${client.status === 'active' ? 'success' : 'warning'}">
+                ${client.status}
+              </span>
+              ${policyInfo}
+              <span>Desde: ${new Date(client.created_at).toLocaleDateString()}</span>
+            </div>
+          </div>
+          <div class="client-actions">
+            <button class="btn btn-sm btn-outline" onclick="window.appHandlers.viewClientDetails('${client.id}')">
+              Ver Detalles
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="client-actions">
-        <button class="btn btn-sm btn-outline" onclick="window.appHandlers.viewClientDetails('${client.id}')">
-          Ver Detalles
-        </button>
-      </div>
-    </div>
-  `).join('');
+      `;
+    }).join('');
 
     container.innerHTML = html;
 }
@@ -624,4 +646,130 @@ function getPolicyTypeName(type) {
         'other': 'Otro'
     };
     return names[type] || type;
+}
+
+/**
+ * Load client contacts - agents assigned to client's policies
+ */
+async function loadClientContacts() {
+    try {
+        const contacts = await apiService.request(API_CONFIG.ENDPOINTS.GET_CLIENT_CONTACTS, {
+            method: 'GET'
+        });
+
+        if (!contacts || contacts.length === 0) {
+            console.warn('No contacts found for client');
+            const contactChipsContainer = document.querySelector('.contact-chips');
+            if (contactChipsContainer) {
+                contactChipsContainer.innerHTML = `
+                    <div style="text-align: center; padding: 20px; color: #999;">
+                        <p style="margin: 0; font-size: 13px;">No hay contactos asignados</p>
+                    </div>
+                `;
+            }
+            return;
+        }
+
+        const contactChipsContainer = document.querySelector('.contact-chips');
+        if (contactChipsContainer) {
+            contactChipsContainer.innerHTML = contacts.map(contact => `
+                <button class="contact-chip" 
+                    data-name="${contact.full_name}" 
+                    data-phone="${contact.phone || 'No disponible'}" 
+                    data-email="${contact.email}" 
+                    data-role="${contact.role || 'Agente'}" 
+                    data-policy="${contact.policy_types || '—'}">
+                    ${contact.full_name}
+                </button>
+            `).join('');
+
+            if (window.reinitializeContactChips) {
+                window.reinitializeContactChips();
+            }
+        }
+
+        console.log('✅ Client contacts loaded:', contacts.length);
+    } catch (error) {
+        console.error('Error loading client contacts:', error);
+        const contactChipsContainer = document.querySelector('.contact-chips');
+        if (contactChipsContainer) {
+            contactChipsContainer.innerHTML = `
+                <div style="text-align: center; padding: 20px; color: #f44;">
+                    <p style="margin: 0; font-size: 13px;">Error al cargar contactos</p>
+                </div>
+            `;
+        }
+    }
+}
+
+/**
+ * Load recent clients for agent sidebar
+ * Fetches clients from AGENT_CLIENTS endpoint and renders them dynamically
+ */
+async function loadAgentRecentClients() {
+    console.log('🚀 loadAgentRecentClients() STARTED');
+    const clientsPillsContainer = document.querySelector('.recent-clients-pills');
+    console.log('📍 Container found:', !!clientsPillsContainer);
+    if (!clientsPillsContainer) {
+        console.log('⚠️ Recent clients container not found');
+        return;
+    }
+
+    try {
+        console.log('📡 Loading recent clients from API...');
+        const clients = await apiService.request(
+            API_CONFIG.ENDPOINTS.AGENT_CLIENTS,
+            { method: 'GET' },
+            {
+                cacheDuration: apiService.cache.CACHE_DURATION.SHORT,
+                useCache: true
+            }
+        );
+
+        console.log('📊 Clients received:', clients?.length || 0, clients);
+
+        if (!clients || clients.length === 0) {
+            console.log('⚠️ No clients to display');
+            clientsPillsContainer.innerHTML = `
+                <div style="padding: 12px; text-align: center; color: var(--theme-text-secondary); font-size: 0.875rem;">
+                    No hay clientes asignados
+                </div>
+            `;
+            return;
+        }
+
+        // Get only the 5 most recent clients (sorted by most recent policy activity)
+        const recentClients = clients
+            .sort((a, b) => new Date(b.last_policy_update || b.created_at) - new Date(a.last_policy_update || a.created_at))
+            .slice(0, 5);
+
+        // Render client pills
+        clientsPillsContainer.innerHTML = recentClients.map(client => {
+            const initials = `${client.first_name?.[0] || ''}${client.last_name?.[0] || ''}`.toUpperCase();
+            const fullName = `${client.first_name || ''} ${client.last_name || ''}`.trim();
+            const shortName = `${client.first_name || ''} ${client.last_name?.[0] || ''}.`.trim();
+
+            return `
+                <button class="client-pill" 
+                    onclick="window.appHandlers?.viewClientDetails?.('${client.id}')">
+                    <span class="client-pill-avatar">${initials}</span>
+                    <span class="client-pill-name">${shortName}</span>
+                </button>
+            `;
+        }).join('');
+
+        console.log(`✅ Loaded ${recentClients.length} recent clients`);
+    } catch (error) {
+        console.error('❌ Error loading recent clients:', error);
+        clientsPillsContainer.innerHTML = `
+            <div style="padding: 12px; text-align: center; color: var(--theme-text-secondary);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 8px;">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <div style="font-size: 0.875rem;">Error al cargar clientes</div>
+            </div>
+        `;
+    }
 }

@@ -40,14 +40,11 @@ class DirectMessagesComponent {
      */
     async loadUnreadCount() {
         try {
-            const token = localStorage.getItem('jwt_token');
-            const response = await fetch('/backend/index.php?action=dm_unread_count', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+            const { apiService } = await import('../api-integration.js');
+            const data = await apiService.request('?action=dm_unread_count', {
+                method: 'GET'
             });
 
-            const data = await response.json();
             if (data.success) {
                 this.unreadCount = data.unread_count;
                 this.updateBadge();
@@ -85,14 +82,11 @@ class DirectMessagesComponent {
      */
     async loadThreads() {
         try {
-            const token = localStorage.getItem('jwt_token');
-            const response = await fetch('/backend/index.php?action=dm_my_threads', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+            const { apiService } = await import('../api-integration.js');
+            const data = await apiService.request('?action=dm_my_threads', {
+                method: 'GET'
             });
 
-            const data = await response.json();
             if (data.success) {
                 this.threads = data.threads;
                 this.unreadCount = data.total_unread;
@@ -189,14 +183,11 @@ class DirectMessagesComponent {
      */
     async openThread(threadId) {
         try {
-            const token = localStorage.getItem('jwt_token');
-            const response = await fetch(`/backend/index.php?action=dm_messages&thread_id=${threadId}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+            const { apiService } = await import('../api-integration.js');
+            const data = await apiService.request(`?action=dm_messages&thread_id=${threadId}`, {
+                method: 'GET'
             });
 
-            const data = await response.json();
             if (data.success) {
                 this.currentThread = {
                     ...data.thread,
@@ -279,20 +270,17 @@ class DirectMessagesComponent {
         input.value = '';
 
         try {
-            const token = localStorage.getItem('jwt_token');
-            const response = await fetch('/backend/index.php?action=dm_send_message', {
+            // Dynamically import apiService
+            const { apiService } = await import('../api-integration.js');
+
+            const data = await apiService.request('?action=dm_send_message', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
                 body: JSON.stringify({
                     thread_id: this.currentThread.thread_id,
                     message: messageText
                 })
             });
 
-            const data = await response.json();
             if (data.success) {
                 await this.openThread(this.currentThread.thread_id);
             } else {
@@ -301,7 +289,7 @@ class DirectMessagesComponent {
             }
         } catch (error) {
             console.error('Error enviando mensaje:', error);
-            alert('Error enviando mensaje');
+            alert('Error enviando mensaje: ' + (error.message || 'Unknown error'));
             input.value = messageText;
         }
     }

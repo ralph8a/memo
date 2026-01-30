@@ -3,6 +3,7 @@
  * Modal para que agentes contacten clientes
  * Muestra 3 recientes + resto alfabético
  */
+import { apiService, API_CONFIG } from '../api-integration.js';
 
 class ContactModalComponent {
     constructor() {
@@ -23,31 +24,27 @@ class ContactModalComponent {
      */
     async loadClients() {
         try {
-            const token = localStorage.getItem('jwt_token');
-            const response = await fetch('/backend/index.php?action=clients', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+            // Use centralized apiService so Authorization header is handled consistently
+            const data = await apiService.get(API_CONFIG.ENDPOINTS.AGENT_CLIENTS);
+            const clients = Array.isArray(data) ? data : (data?.clients || []);
+
+            this.clients = clients || [];
+
+            // Obtener 3 más recientes
+            this.recentClients = [...this.clients]
+                .sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0))
+                .slice(0, 3);
+
+            // Ordenar resto alfabéticamente
+            this.clients.sort((a, b) => {
+                const nameA = `${a.first_name || ''} ${a.last_name || ''}`.toLowerCase();
+                const nameB = `${b.first_name || ''} ${b.last_name || ''}`.toLowerCase();
+                return nameA.localeCompare(nameB);
             });
-
-            const data = await response.json();
-            if (Array.isArray(data)) {
-                this.clients = data;
-
-                // Obtener 3 más recientes
-                this.recentClients = [...data]
-                    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                    .slice(0, 3);
-
-                // Ordenar resto alfabéticamente
-                this.clients.sort((a, b) => {
-                    const nameA = `${a.first_name} ${a.last_name}`.toLowerCase();
-                    const nameB = `${b.first_name} ${b.last_name}`.toLowerCase();
-                    return nameA.localeCompare(nameB);
-                });
-            }
         } catch (error) {
             console.error('Error cargando clientes:', error);
+            this.clients = [];
+            this.recentClients = [];
         }
     }
 
@@ -117,21 +114,29 @@ class ContactModalComponent {
      * Renderizar item de cliente
      */
     renderClientItem(client) {
-        const fullName = `${client.first_name} ${client.last_name}`;
-        const initials = `${client.first_name[0]}${client.last_name[0]}`.toUpperCase();
+        const first = client.first_name || '';
+        const last = client.last_name || '';
+        const fullName = `${first} ${last}`.trim();
+        const initials = `${first?.[0] || ''}${last?.[0] || ''}`.toUpperCase();
+
+        // Escape single quotes to safely interpolate into onclick handlers
+        const safeName = fullName.replace(/'/g, "\\'");
+        const safeEmail = (client.email || '').replace(/'/g, "\\'");
+        const safePhone = (client.phone || '').replace(/'/g, "\\'");
+        const dataName = fullName.toLowerCase().replace(/"/g, '&quot;');
 
         return `
-            <div class="contact-item" data-client-id="${client.id}" data-client-name="${fullName.toLowerCase()}">
+            <div class="contact-item" data-client-id="${client.id}" data-client-name="${dataName}">
                 <div class="contact-avatar">${initials}</div>
                 <div class="contact-info">
                     <strong>${fullName}</strong>
-                    <small>${client.email}</small>
+                    <small>${client.email || ''}</small>
                 </div>
                 <div class="contact-actions">
                     <button 
                         class="btn-action" 
                         title="Ver información"
-                        onclick="window.contactModal.showClientInfo(${client.id}, '${fullName}', '${client.email}', '${client.phone || ''}')"
+                        onclick="window.contactModal.showClientInfo(${client.id}, '${safeName}', '${safeEmail}', '${safePhone}')"
                     >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"/>
@@ -142,7 +147,7 @@ class ContactModalComponent {
                     <button 
                         class="btn-action btn-message" 
                         title="Enviar mensaje directo"
-                        onclick="window.contactModal.startDirectMessage(${client.id}, '${fullName}')"
+                        onclick="window.contactModal.startDirectMessage(${client.id}, '${safeName}')"
                     >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -269,21 +274,17 @@ class ContactModalComponent {
         const messageText = textarea.value.trim();
 
         try {
-            const token = localStorage.getItem('jwt_token');
-            const response = await fetch('/backend/index.php?action=dm_start_thread', {
+            // Dynamically import apiService
+            const { apiService } = await import('../api-integration.js');
+
+            const data = await apiService.request('?action=dm_start_thread', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
                 body: JSON.stringify({
                     client_id: clientId,
                     subject: `Mensaje de tu agente`,
                     message: messageText
                 })
             });
-
-            const data = await response.json();
 
             if (data.success) {
                 document.querySelectorAll('.modal-overlay').forEach(m => m.remove());
@@ -303,7 +304,7 @@ class ContactModalComponent {
             }
         } catch (error) {
             console.error('Error enviando mensaje:', error);
-            alert('Error enviando mensaje');
+            alert('Error enviando mensaje: ' + (error.message || 'Unknown error'));
         }
     }
 
