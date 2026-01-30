@@ -1176,13 +1176,13 @@ try {
             $stmt->execute([$threadId, $agentId, $clientId, $subject, $expiresAt]);
         }
         
-        // Insert message
+        // Insert initial message
         $stmt = $db->prepare("
             INSERT INTO direct_messages 
-            (thread_id, sender_id, recipient_id, message_text, expires_at)
-            VALUES (?, ?, ?, ?, ?)
+            (thread_id, agent_id, client_id, sender_id, sender_type, message_text, expires_at)
+            VALUES (?, ?, ?, ?, 'agent', ?, ?)
         ");
-        $stmt->execute([$threadId, $agentId, $clientId, $messageText, $expiresAt]);
+        $stmt->execute([$threadId, $agentId, $clientId, $agentId, $messageText, $expiresAt]);
         
         sendResponse([
             'success' => true,
@@ -1274,9 +1274,19 @@ try {
         }
         
         $stmt = $db->prepare("
-            SELECT * FROM direct_messages
-            WHERE thread_id = ?
-            ORDER BY sent_at ASC
+            SELECT 
+                dm.dm_id, 
+                dm.thread_id, 
+                dm.sender_id, 
+                dm.sender_type, 
+                dm.message_text, 
+                dm.created_at, 
+                dm.is_read,
+                CONCAT(COALESCE(u.first_name, ''), ' ', COALESCE(u.last_name, '')) as sender_name
+            FROM direct_messages dm
+            LEFT JOIN users u ON dm.sender_id = u.id
+            WHERE dm.thread_id = ?
+            ORDER BY dm.created_at ASC
         ");
         $stmt->execute([$threadId]);
         $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1330,15 +1340,17 @@ try {
         
         // Insert message
         $senderId = $user['user_id'];
-        $recipientId = $senderId == $thread['agent_id'] ? $thread['client_id'] : $thread['agent_id'];
+        $senderType = $senderId == $thread['agent_id'] ? 'agent' : 'client';
+        $agentId = $thread['agent_id'];
+        $clientId = $thread['client_id'];
         
-        error_log("Inserting message - Sender: $senderId, Recipient: $recipientId");
+        error_log("Inserting message - Sender: $senderId, Type: $senderType, Agent: $agentId, Client: $clientId");
         
         $stmt = $db->prepare("
-            INSERT INTO direct_messages (thread_id, sender_id, recipient_id, message_text, expires_at)
-            VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 42 HOUR))
+            INSERT INTO direct_messages (thread_id, agent_id, client_id, sender_id, sender_type, message_text, expires_at)
+            VALUES (?, ?, ?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 42 HOUR))
         ");
-        $result = $stmt->execute([$threadId, $senderId, $recipientId, $messageText]);
+        $result = $stmt->execute([$threadId, $agentId, $clientId, $senderId, $senderType, $messageText]);
         
         if (!$result) {
             error_log("Insert failed: " . json_encode($stmt->errorInfo()));
