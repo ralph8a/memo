@@ -1159,7 +1159,7 @@ try {
             
             $stmt = $db->prepare("
                 UPDATE direct_message_threads 
-                SET expires_at = ? 
+                SET last_message_at = NOW(), expires_at = ? 
                 WHERE thread_id = ?
             ");
             $stmt->execute([$expiresAt, $threadId]);
@@ -1359,6 +1359,14 @@ try {
         
         $messageId = $db->lastInsertId();
         error_log("Message inserted successfully. ID: " . $messageId);
+        
+        // Update thread's last_message_at
+        $stmt = $db->prepare("
+            UPDATE direct_message_threads 
+            SET last_message_at = NOW() 
+            WHERE thread_id = ?
+        ");
+        $stmt->execute([$threadId]);
         
         sendResponse([
             'success' => true,

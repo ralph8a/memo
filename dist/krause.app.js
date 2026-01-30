@@ -23788,7 +23788,7 @@ function _renderPaymentCalendar() {
         case 2:
           _context2.p = 2;
           _context2.n = 3;
-          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.PAYMENT_HISTORY, {
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.CLIENT_PAYMENTS, {
             method: 'GET'
           })["catch"](function () {
             return [];
