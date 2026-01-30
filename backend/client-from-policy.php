@@ -608,11 +608,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $service->processPolicy($_FILES['policy_file'], $agentId, $clientEmail);
         
         echo json_encode($result);
-    }n JWT
-    return true; // Placeholder
+    }
+}
+
+function verifyToken($authHeader) {
+    require_once __DIR__ . '/auth.php';
+    
+    try {
+        $token = str_replace('Bearer ', '', $authHeader);
+        $userData = Auth::verifyToken($token);
+        return $userData !== false;
+    } catch (Exception $e) {
+        error_log("Error verificando token: " . $e->getMessage());
+        return false;
+    }
 }
 
 function getAgentIdFromToken($authHeader) {
-    // Extraer agent_id del JWT
-    return 1; // Placeholder
+    require_once __DIR__ . '/auth.php';
+    
+    try {
+        $token = str_replace('Bearer ', '', $authHeader);
+        $userData = Auth::verifyToken($token);
+        
+        if (!$userData || $userData['user_type'] !== 'agent') {
+            return null;
+        }
+        
+        return $userData['user_id'];
+    } catch (Exception $e) {
+        error_log("Error extrayendo agent_id del token: " . $e->getMessage());
+        return null;
+    }
 }
+
