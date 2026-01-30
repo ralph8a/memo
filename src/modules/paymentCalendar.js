@@ -14,6 +14,12 @@ export async function renderPaymentCalendar() {
     const calendarContainer = document.querySelector('.calendar-card .calendar-grid');
     if (!calendarContainer) return;
 
+    // Don't fetch if not authenticated
+    if (!localStorage.getItem('jwt_token')) {
+        console.log('⚠️ Payment calendar skipped - user not authenticated');
+        return;
+    }
+
     try {
         // Fetch payment history and schedules from backend
         const payments = await apiService.request(
@@ -198,7 +204,12 @@ export function initPaymentCalendar() {
     }, 5 * 60 * 1000);
 }
 
-// Auto-initialize when module is imported
+// Auto-initialize only if user is authenticated
 if (typeof window !== 'undefined') {
-    document.addEventListener('DOMContentLoaded', initPaymentCalendar);
+    document.addEventListener('DOMContentLoaded', () => {
+        // Only initialize if user is logged in
+        if (localStorage.getItem('jwt_token')) {
+            initPaymentCalendar();
+        }
+    });
 }

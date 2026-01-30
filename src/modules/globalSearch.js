@@ -290,9 +290,12 @@ class GlobalSearchComponent {
 // Instancia global
 window.globalSearch = new GlobalSearchComponent();
 
-// Auto-inicializar
+// Auto-inicializar solo si está autenticado
 document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        window.globalSearch.init();
-    }, 500);
+    // Only initialize if user is logged in
+    if (localStorage.getItem('jwt_token')) {
+        setTimeout(() => {
+            window.globalSearch.init();
+        }, 500);
+    }
 });
