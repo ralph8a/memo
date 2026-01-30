@@ -97,28 +97,39 @@ export function contactAgent() {
  */
 export async function viewPolicy(policyId = null) {
   try {
+    console.log('[viewPolicy] Called with ID:', policyId);
+    
     if (!policyId) {
-      console.warn('No policy ID provided');
+      console.warn('[viewPolicy] No policy ID provided');
+      showNotification('No se especificó una póliza', NOTIFICATION_TYPES.ERROR);
       return;
     }
 
     // Buscar en cache de dashboard
     let policies = window.dashboardData?.policies || [];
+    console.log('[viewPolicy] Policies in cache:', policies.length);
+    
     if (!policies.length) {
+      console.log('[viewPolicy] Loading policies from backend...');
       // Cargar desde backend
       policies = await apiService.request(API_CONFIG.ENDPOINTS.CLIENT_POLICIES, { method: 'GET' });
       window.dashboardData = { ...(window.dashboardData || {}), policies };
+      console.log('[viewPolicy] Loaded policies:', policies.length);
     }
 
     const policy = policies.find(p => String(p.id) === String(policyId));
 
     if (!policy) {
-      console.warn('Policy not found:', policyId);
+      console.warn('[viewPolicy] Policy not found:', policyId);
+      console.log('[viewPolicy] Available policy IDs:', policies.map(p => p.id));
+      showNotification('Póliza no encontrada', NOTIFICATION_TYPES.ERROR);
       return;
     }
 
+    console.log('[viewPolicy] Found policy:', policy);
+
     const policyType = policy.policy_type || policy.type || 'other';
-    const status = (policy.status || '').toLowerCase();
+    const status = (policy.status || 'unknown').toLowerCase();
     const premium = policy.premium_amount || policy.premium || 0;
     const coverage = policy.coverage_amount || 0;
     const startDate = policy.start_date ? new Date(policy.start_date).toLocaleDateString() : '—';
@@ -129,7 +140,7 @@ export async function viewPolicy(policyId = null) {
     modal.innerHTML = `
         <div class="app-modal app-modal-lg">
           <div class="app-modal-header">
-            <h2 class="app-modal-title">Póliza #${policy.policy_number}</h2>
+            <h2 class="app-modal-title">Póliza #${policy.policy_number || 'Sin número'}</h2>
             <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="18" y1="6" x2="6" y2="18"/>
@@ -151,10 +162,10 @@ export async function viewPolicy(policyId = null) {
               <div class="detail-section">
                 <h3>Cobertura</h3>
                 <ul>
-                  <li>Cobertura: ${coverage ? `$${Number(coverage).toLocaleString()}` : '—'}</li>
+                  <li>Cobertura: ${coverage ? `$${Number(coverage).toLocaleString()}` : 'No especificada'}</li>
                   <li>Renovación: ${endDate}</li>
-                  <li>Agente: ${policy.agent_name || '—'} (${policy.agent_email || '—'})</li>
-                  <li>Contacto: ${policy.agent_phone || '—'}</li>
+                  ${policy.agent_name ? `<li>Agente: ${policy.agent_name} ${policy.agent_email ? `(${policy.agent_email})` : ''}</li>` : ''}
+                  ${policy.agent_phone ? `<li>Contacto: ${policy.agent_phone}</li>` : ''}
                 </ul>
               </div>
               <div class="detail-section">
@@ -171,8 +182,10 @@ export async function viewPolicy(policyId = null) {
       `;
 
     document.body.appendChild(modal);
+    console.log('[viewPolicy] Modal displayed successfully');
   } catch (error) {
-    console.error('Error al cargar póliza:', error);
+    console.error('[viewPolicy] Error:', error);
+    showNotification('Error al cargar póliza: ' + error.message, NOTIFICATION_TYPES.ERROR);
   }
 }
 

@@ -19041,18 +19041,145 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _notifications_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./notifications.js */ "./src/modules/notifications.js");
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
+/* harmony import */ var _api_integration_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api-integration.js */ "./src/api-integration.js");
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 // Chart Modals Module - Handles modal displays for payment trends and policy health
 
 
 
+
 // Modal HTML templates
-var PAYMENT_TRENDS_MODAL = "\n  <div class=\"chart-modal-overlay active\" id=\"chartModalOverlay\">\n    <div class=\"chart-modal-content\">\n      <div class=\"chart-modal-header\">\n        <h2 class=\"chart-modal-title\">\n          <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <polyline points=\"3 17 8 11 13 14 21 6\" />\n            <polyline points=\"14 6 21 6 21 13\" />\n          </svg>\n          Tendencia de Pagos - Vista Completa\n        </h2>\n        <button class=\"chart-modal-close\" onclick=\"window.appHandlers?.closeChartModal?.()\" aria-label=\"Cerrar\">\xD7</button>\n      </div>\n      <div class=\"chart-modal-body\">\n        <div class=\"chart-stats-row\">\n          <div class=\"chart-stat-box\">\n            <span class=\"chart-stat-label\">Tickets cerrados</span>\n            <span class=\"chart-stat-value\">24</span>\n            <span class=\"chart-stat-trend positive\">+3 vs mes anterior</span>\n          </div>\n          <div class=\"chart-stat-box\">\n            <span class=\"chart-stat-label\">Pagos puntuales</span>\n            <span class=\"chart-stat-value\">96%</span>\n            <span class=\"chart-stat-trend positive\">+2.1% vs mes anterior</span>\n          </div>\n          <div class=\"chart-stat-box\">\n            <span class=\"chart-stat-label\">Retrasos</span>\n            <span class=\"chart-stat-value\">2</span>\n            <span class=\"chart-stat-trend negative\">+1 vs mes anterior</span>\n          </div>\n          <div class=\"chart-stat-box\">\n            <span class=\"chart-stat-label\">Promedio pago</span>\n            <span class=\"chart-stat-value\">$450</span>\n            <span class=\"chart-stat-trend positive\">+8.4% vs mes anterior</span>\n          </div>\n        </div>\n        \n        <div class=\"chart-visualization\">\n          <div class=\"chart-graph-placeholder\">\n            <div class=\"chart-bars\">\n              <div class=\"chart-bar\" style=\"height: 65%; --bar-color: #38ef7d;\">\n                <span class=\"bar-label\">Ene</span>\n                <span class=\"bar-value\">$420</span>\n              </div>\n              <div class=\"chart-bar\" style=\"height: 72%; --bar-color: #38ef7d;\">\n                <span class=\"bar-label\">Feb</span>\n                <span class=\"bar-value\">$435</span>\n              </div>\n              <div class=\"chart-bar\" style=\"height: 85%; --bar-color: #38ef7d;\">\n                <span class=\"bar-label\">Mar</span>\n                <span class=\"bar-value\">$450</span>\n              </div>\n              <div class=\"chart-bar\" style=\"height: 58%; --bar-color: #f5576c;\">\n                <span class=\"bar-label\">Abr</span>\n                <span class=\"bar-value\">$380</span>\n              </div>\n              <div class=\"chart-bar\" style=\"height: 78%; --bar-color: #38ef7d;\">\n                <span class=\"bar-label\">May</span>\n                <span class=\"bar-value\">$445</span>\n              </div>\n              <div class=\"chart-bar\" style=\"height: 90%; --bar-color: #38ef7d;\">\n                <span class=\"bar-label\">Jun</span>\n                <span class=\"bar-value\">$465</span>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"chart-details-section\">\n          <h3>Historial Detallado</h3>\n          <div class=\"payment-timeline\">\n            <div class=\"timeline-item\">\n              <div class=\"timeline-dot success\"></div>\n              <div class=\"timeline-content\">\n                <div class=\"timeline-header\">\n                  <strong>Pago P\xF3liza Auto</strong>\n                  <span class=\"timeline-date\">15 Jun 2026</span>\n                </div>\n                <p class=\"timeline-detail\">$150.00 - Pago puntual</p>\n              </div>\n            </div>\n            <div class=\"timeline-item\">\n              <div class=\"timeline-dot success\"></div>\n              <div class=\"timeline-content\">\n                <div class=\"timeline-header\">\n                  <strong>Pago P\xF3liza Hogar</strong>\n                  <span class=\"timeline-date\">12 Jun 2026</span>\n                </div>\n                <p class=\"timeline-detail\">$200.00 - Pago puntual</p>\n              </div>\n            </div>\n            <div class=\"timeline-item\">\n              <div class=\"timeline-dot success\"></div>\n              <div class=\"timeline-content\">\n                <div class=\"timeline-header\">\n                  <strong>Pago P\xF3liza Vida</strong>\n                  <span class=\"timeline-date\">05 Jun 2026</span>\n                </div>\n                <p class=\"timeline-detail\">$100.00 - Pago puntual</p>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n";
+// PAYMENT_TRENDS_MODAL removed - now generated dynamically with real data in openPaymentTrendsModal()
+
 var POLICY_HEALTH_MODAL = "\n  <div class=\"chart-modal-overlay active\" id=\"chartModalOverlay\">\n    <div class=\"chart-modal-content\">\n      <div class=\"chart-modal-header\">\n        <h2 class=\"chart-modal-title\">\n          <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <rect x=\"3\" y=\"10\" width=\"4\" height=\"10\" rx=\"1\" />\n            <rect x=\"10\" y=\"6\" width=\"4\" height=\"14\" rx=\"1\" />\n            <rect x=\"17\" y=\"3\" width=\"4\" height=\"17\" rx=\"1\" />\n          </svg>\n          Salud de P\xF3lizas - Vista Completa\n        </h2>\n        <button class=\"chart-modal-close\" onclick=\"window.appHandlers?.closeChartModal?.()\" aria-label=\"Cerrar\">\xD7</button>\n      </div>\n      <div class=\"chart-modal-body\">\n        <div class=\"chart-stats-row\">\n          <div class=\"chart-stat-box success\">\n            <span class=\"chart-stat-label\">P\xF3lizas Activas</span>\n            <span class=\"chart-stat-value\">3</span>\n            <span class=\"chart-stat-trend\">100% operativas</span>\n          </div>\n          <div class=\"chart-stat-box warning\">\n            <span class=\"chart-stat-label\">Pr\xF3ximas Renovaciones</span>\n            <span class=\"chart-stat-value\">2</span>\n            <span class=\"chart-stat-trend\">En 30-60 d\xEDas</span>\n          </div>\n          <div class=\"chart-stat-box success\">\n            <span class=\"chart-stat-label\">Alertas</span>\n            <span class=\"chart-stat-value\">0</span>\n            <span class=\"chart-stat-trend\">Sin pendientes</span>\n          </div>\n          <div class=\"chart-stat-box info\">\n            <span class=\"chart-stat-label\">Cobertura Total</span>\n            <span class=\"chart-stat-value\">$500K</span>\n            <span class=\"chart-stat-trend\">Protecci\xF3n completa</span>\n          </div>\n        </div>\n        \n        <!-- Monitor gr\xE1fico integrado -->\n        <div class=\"chart-visualization\">\n          <div class=\"monitor-visual-modal\">\n            <div class=\"donut-figure\" aria-hidden=\"true\">\n              <svg viewBox=\"0 0 120 120\" class=\"donut-svg\" role=\"presentation\">\n                <circle class=\"donut-track\" cx=\"60\" cy=\"60\" r=\"46\" />\n                <circle class=\"donut-segment active\" cx=\"60\" cy=\"60\" r=\"46\" stroke-dasharray=\"65 100\" stroke-dashoffset=\"0\" />\n                <circle class=\"donut-segment renew\" cx=\"60\" cy=\"60\" r=\"46\" stroke-dasharray=\"22 100\" stroke-dashoffset=\"-65\" />\n                <circle class=\"donut-segment risk\" cx=\"60\" cy=\"60\" r=\"46\" stroke-dasharray=\"13 100\" stroke-dashoffset=\"-87\" />\n                <text x=\"60\" y=\"56\" text-anchor=\"middle\" class=\"donut-title\">65%</text>\n                <text x=\"60\" y=\"74\" text-anchor=\"middle\" class=\"donut-sub\">Activas</text>\n              </svg>\n            </div>\n            <div class=\"donut-meta\">\n              <p class=\"donut-desc\">65% activas, 22% en renovaci\xF3n, 13% con riesgo.</p>\n              <div class=\"donut-legend\">\n                <span class=\"donut-key\"><span class=\"dot active\"></span>Activas</span>\n                <span class=\"donut-key\"><span class=\"dot renew\"></span>Renovaci\xF3n</span>\n                <span class=\"donut-key\"><span class=\"dot risk\"></span>Riesgo</span>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"chart-details-section\">\n          <h3>Acciones Pendientes</h3>\n          <div class=\"policy-actions-list\">\n            <div class=\"action-item warning\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/>\n                <line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/>\n              </svg>\n              <div class=\"action-content\">\n                <strong>Firma la renovaci\xF3n de Auto</strong>\n                <span class=\"action-detail\">Vence el 15 de Marzo</span>\n              </div>\n              <button class=\"action-btn\" onclick=\"window.appHandlers?.viewPolicy?.('AUTO-001')\">Revisar</button>\n            </div>\n            <div class=\"action-item warning\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/>\n                <line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/>\n              </svg>\n              <div class=\"action-content\">\n                <strong>Confirma m\xE9todo de pago para p\xF3liza Hogar</strong>\n                <span class=\"action-detail\">Requerido para continuar cobertura</span>\n              </div>\n              <button class=\"action-btn\" onclick=\"window.appHandlers?.makePayment?.()\">Actualizar</button>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"chart-details-section\">\n          <h3>Recomendaciones</h3>\n          <div class=\"policy-actions-list\">\n            <div class=\"action-item info\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                <path d=\"M12 16v-4\"/>\n                <path d=\"M12 8h.01\"/>\n              </svg>\n              <div class=\"action-content\">\n                <strong>Activa alertas por WhatsApp</strong>\n                <span class=\"action-detail\">Recibe notificaciones de vencimientos</span>\n              </div>\n              <button class=\"action-btn\" onclick=\"window.appHandlers?.updateInfo?.()\">Activar</button>\n            </div>\n            <div class=\"action-item info\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                <path d=\"M12 16v-4\"/>\n                <path d=\"M12 8h.01\"/>\n              </svg>\n              <div class=\"action-content\">\n                <strong>Completa tus beneficiarios en p\xF3liza Vida</strong>\n                <span class=\"action-detail\">Asegura la protecci\xF3n de tu familia</span>\n              </div>\n              <button class=\"action-btn\" onclick=\"window.appHandlers?.updateInfo?.()\">Completar</button>\n            </div>\n          </div>\n        </div>\n        \n        <div class=\"policy-grid-detailed\">\n          <div class=\"policy-detail-card active\">\n            <div class=\"policy-detail-header\">\n              <div class=\"policy-icon auto\">\n                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <path d=\"M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1\"></path>\n                  <polygon points=\"12 15 17 21 7 21 12 15\"></polygon>\n                </svg>\n              </div>\n              <div class=\"policy-detail-info\">\n                <h4>P\xF3liza Auto</h4>\n                <span class=\"policy-number\">#AUTO-001</span>\n              </div>\n              <span class=\"policy-status-badge active\">Activa</span>\n            </div>\n            <div class=\"policy-detail-body\">\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Cobertura:</span>\n                <span class=\"policy-value\">Amplia</span>\n              </div>\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Vigencia:</span>\n                <span class=\"policy-value\">15 Mar 2026 - 15 Mar 2027</span>\n              </div>\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Prima mensual:</span>\n                <span class=\"policy-value\">$150.00</span>\n              </div>\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Renovaci\xF3n:</span>\n                <span class=\"policy-value warning\">En 60 d\xEDas</span>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"policy-detail-card active\">\n            <div class=\"policy-detail-header\">\n              <div class=\"policy-icon home\">\n                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <path d=\"M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"></path>\n                  <polyline points=\"9 22 9 12 15 12 15 22\"></polyline>\n                </svg>\n              </div>\n              <div class=\"policy-detail-info\">\n                <h4>P\xF3liza Hogar</h4>\n                <span class=\"policy-number\">#HOME-001</span>\n              </div>\n              <span class=\"policy-status-badge active\">Activa</span>\n            </div>\n            <div class=\"policy-detail-body\">\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Cobertura:</span>\n                <span class=\"policy-value\">Integral</span>\n              </div>\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Vigencia:</span>\n                <span class=\"policy-value\">01 Ene 2026 - 01 Ene 2027</span>\n              </div>\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Prima mensual:</span>\n                <span class=\"policy-value\">$200.00</span>\n              </div>\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Renovaci\xF3n:</span>\n                <span class=\"policy-value\">En 180 d\xEDas</span>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"policy-detail-card active\">\n            <div class=\"policy-detail-header\">\n              <div class=\"policy-icon life\">\n                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"></path>\n                </svg>\n              </div>\n              <div class=\"policy-detail-info\">\n                <h4>P\xF3liza Vida</h4>\n                <span class=\"policy-number\">#LIFE-001</span>\n              </div>\n              <span class=\"policy-status-badge active\">Activa</span>\n            </div>\n            <div class=\"policy-detail-body\">\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Cobertura:</span>\n                <span class=\"policy-value\">$250,000</span>\n              </div>\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Vigencia:</span>\n                <span class=\"policy-value\">10 Feb 2026 - 10 Feb 2027</span>\n              </div>\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Prima mensual:</span>\n                <span class=\"policy-value\">$100.00</span>\n              </div>\n              <div class=\"policy-row\">\n                <span class=\"policy-label\">Renovaci\xF3n:</span>\n                <span class=\"policy-value warning\">En 30 d\xEDas</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n";
 
 // Export modal opener functions
+
+/**
+ * Load real payment trends data from backend
+ */
+function loadPaymentTrendsData() {
+  return _loadPaymentTrendsData.apply(this, arguments);
+}
+/**
+ * Generate chart bars HTML from real data
+ */
+function _loadPaymentTrendsData() {
+  _loadPaymentTrendsData = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+    var response, _t;
+    return _regenerator().w(function (_context) {
+      while (1) switch (_context.p = _context.n) {
+        case 0:
+          _context.p = 0;
+          _context.n = 1;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request('?action=payment_trends', {
+            method: 'GET'
+          });
+        case 1:
+          response = _context.v;
+          if (!response.success) {
+            _context.n = 2;
+            break;
+          }
+          return _context.a(2, response);
+        case 2:
+          return _context.a(2, null);
+        case 3:
+          _context.p = 3;
+          _t = _context.v;
+          console.error('Error loading payment trends:', _t);
+          return _context.a(2, null);
+      }
+    }, _callee, null, [[0, 3]]);
+  }));
+  return _loadPaymentTrendsData.apply(this, arguments);
+}
+function generateChartBars(trends) {
+  if (!trends || trends.length === 0) {
+    return '<div class="no-data-message">No hay datos de pagos disponibles</div>';
+  }
+  var maxAmount = Math.max.apply(Math, _toConsumableArray(trends.map(function (t) {
+    return parseFloat(t.total_amount || 0);
+  })));
+  var monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+  return trends.map(function (trend) {
+    var amount = parseFloat(trend.total_amount || 0);
+    var height = maxAmount > 0 ? amount / maxAmount * 100 : 0;
+    var onTimeCount = parseInt(trend.on_time_count || 0);
+    var lateCount = parseInt(trend.late_count || 0);
+    var barColor = lateCount > onTimeCount ? '#f5576c' : '#38ef7d';
+    var monthParts = trend.month.split('-');
+    var monthLabel = monthNames[parseInt(monthParts[1]) - 1] || trend.month;
+    return "\n            <div class=\"chart-bar\" style=\"height: ".concat(Math.max(height, 5), "%; --bar-color: ").concat(barColor, ";\">\n                <span class=\"bar-label\">").concat(monthLabel, "</span>\n                <span class=\"bar-value\">$").concat(amount.toFixed(0), "</span>\n            </div>\n        ");
+  }).join('');
+}
 function openPaymentTrendsModal() {
+  return _openPaymentTrendsModal.apply(this, arguments);
+}
+function _openPaymentTrendsModal() {
+  _openPaymentTrendsModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+    var data, chartBarsHTML, summary, PAYMENT_TRENDS_MODAL_DYNAMIC, modal, modalContent, _escHandler2;
+    return _regenerator().w(function (_context2) {
+      while (1) switch (_context2.n) {
+        case 0:
+          closeChartModal(); // Close any existing modal first
+          _context2.n = 1;
+          return loadPaymentTrendsData();
+        case 1:
+          data = _context2.v;
+          chartBarsHTML = data && data.trends ? generateChartBars(data.trends) : "\n      <div class=\"chart-bar\" style=\"height: 65%; --bar-color: #38ef7d;\">\n          <span class=\"bar-label\">Ene</span>\n          <span class=\"bar-value\">$420</span>\n      </div>\n      <div class=\"chart-bar\" style=\"height: 72%; --bar-color: #38ef7d;\">\n          <span class=\"bar-label\">Feb</span>\n          <span class=\"bar-value\">$435</span>\n      </div>\n      <div class=\"chart-bar\" style=\"height: 85%; --bar-color: #38ef7d;\">\n          <span class=\"bar-label\">Mar</span>\n          <span class=\"bar-value\">$450</span>\n      </div>\n  ";
+          summary = (data === null || data === void 0 ? void 0 : data.summary) || {
+            total_payments: 24,
+            on_time: 23,
+            late: 2,
+            on_time_rate: 96
+          };
+          PAYMENT_TRENDS_MODAL_DYNAMIC = "\n    <div class=\"chart-modal-overlay active\" id=\"chartModalOverlay\">\n      <div class=\"chart-modal-content\">\n        <div class=\"chart-modal-header\">\n          <h2 class=\"chart-modal-title\">\n            <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <polyline points=\"3 17 8 11 13 14 21 6\" />\n              <polyline points=\"14 6 21 6 21 13\" />\n            </svg>\n            Tendencia de Pagos - Vista Completa\n          </h2>\n          <button class=\"chart-modal-close\" onclick=\"window.appHandlers?.closeChartModal?.()\" aria-label=\"Cerrar\">\xD7</button>\n        </div>\n        <div class=\"chart-modal-body\">\n          <div class=\"chart-stats-row\">\n            <div class=\"chart-stat-box\">\n              <span class=\"chart-stat-label\">Total de pagos</span>\n              <span class=\"chart-stat-value\">".concat(summary.total_payments, "</span>\n              <span class=\"chart-stat-trend positive\">\xDAltimos 12 meses</span>\n            </div>\n            <div class=\"chart-stat-box\">\n              <span class=\"chart-stat-label\">Pagos puntuales</span>\n              <span class=\"chart-stat-value\">").concat(summary.on_time_rate, "%</span>\n              <span class=\"chart-stat-trend positive\">").concat(summary.on_time, " de ").concat(summary.total_payments, "</span>\n            </div>\n            <div class=\"chart-stat-box\">\n              <span class=\"chart-stat-label\">Retrasos</span>\n              <span class=\"chart-stat-value\">").concat(summary.late, "</span>\n              <span class=\"chart-stat-trend ").concat(summary.late > 0 ? 'negative' : 'positive', "\">").concat(summary.late > 0 ? 'Mejorar' : 'Excelente', "</span>\n            </div>\n          </div>\n          \n          <div class=\"chart-visualization\">\n            <div class=\"chart-graph-placeholder\">\n              <div class=\"chart-bars\">\n                ").concat(chartBarsHTML, "\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  ");
+          document.body.insertAdjacentHTML('beforeend', PAYMENT_TRENDS_MODAL_DYNAMIC);
+          modal = document.getElementById('chartModalOverlay');
+          if (modal) {
+            modalContent = modal.querySelector('.chart-modal-content'); // Prevent closing when clicking inside modal content
+            if (modalContent) {
+              modalContent.addEventListener('click', function (e) {
+                e.stopPropagation();
+              });
+            }
+
+            // Close when clicking on overlay (backdrop) ONLY
+            modal.addEventListener('click', function (e) {
+              if (e.target === modal) {
+                closeChartModal();
+              }
+            });
+
+            // Add keyboard ESC to close
+            _escHandler2 = function escHandler(e) {
+              if (e.key === 'Escape') {
+                closeChartModal();
+                document.removeEventListener('keydown', _escHandler2);
+              }
+            };
+            document.addEventListener('keydown', _escHandler2);
+          }
+        case 2:
+          return _context2.a(2);
+      }
+    }, _callee2);
+  }));
+  return _openPaymentTrendsModal.apply(this, arguments);
+}
+function openPolicyHealthModal() {
   closeChartModal(); // Close any existing modal first
-  document.body.insertAdjacentHTML('beforeend', PAYMENT_TRENDS_MODAL);
+  document.body.insertAdjacentHTML('beforeend', POLICY_HEALTH_MODAL);
   var modal = document.getElementById('chartModalOverlay');
   if (modal) {
     var modalContent = modal.querySelector('.chart-modal-content');
@@ -19079,37 +19206,6 @@ function openPaymentTrendsModal() {
       }
     };
     document.addEventListener('keydown', _escHandler);
-  }
-}
-function openPolicyHealthModal() {
-  closeChartModal(); // Close any existing modal first
-  document.body.insertAdjacentHTML('beforeend', POLICY_HEALTH_MODAL);
-  var modal = document.getElementById('chartModalOverlay');
-  if (modal) {
-    var modalContent = modal.querySelector('.chart-modal-content');
-
-    // Prevent closing when clicking inside modal content
-    if (modalContent) {
-      modalContent.addEventListener('click', function (e) {
-        e.stopPropagation();
-      });
-    }
-
-    // Close when clicking on overlay (backdrop) ONLY
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) {
-        closeChartModal();
-      }
-    });
-
-    // Add keyboard ESC to close
-    var _escHandler2 = function escHandler(e) {
-      if (e.key === 'Escape') {
-        closeChartModal();
-        document.removeEventListener('keydown', _escHandler2);
-      }
-    };
-    document.addEventListener('keydown', _escHandler2);
   }
 }
 function closeChartModal() {

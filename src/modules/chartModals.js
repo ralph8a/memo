@@ -241,52 +241,52 @@ const POLICY_HEALTH_MODAL = `
  * Load real payment trends data from backend
  */
 async function loadPaymentTrendsData() {
-    try {
-        const response = await apiService.request('?action=payment_trends', { method: 'GET' });
-        if (response.success) {
-            return response;
-        }
-        return null;
-    } catch (error) {
-        console.error('Error loading payment trends:', error);
-        return null;
+  try {
+    const response = await apiService.request('?action=payment_trends', { method: 'GET' });
+    if (response.success) {
+      return response;
     }
+    return null;
+  } catch (error) {
+    console.error('Error loading payment trends:', error);
+    return null;
+  }
 }
 
 /**
  * Generate chart bars HTML from real data
  */
 function generateChartBars(trends) {
-    if (!trends || trends.length === 0) {
-        return '<div class="no-data-message">No hay datos de pagos disponibles</div>';
-    }
-    
-    const maxAmount = Math.max(...trends.map(t => parseFloat(t.total_amount || 0)));
-    const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-    
-    return trends.map(trend => {
-        const amount = parseFloat(trend.total_amount || 0);
-        const height = maxAmount > 0 ? (amount / maxAmount * 100) : 0;
-        const onTimeCount = parseInt(trend.on_time_count || 0);
-        const lateCount = parseInt(trend.late_count || 0);
-        const barColor = lateCount > onTimeCount ? '#f5576c' : '#38ef7d';
-        const monthParts = trend.month.split('-');
-        const monthLabel = monthNames[parseInt(monthParts[1]) - 1] || trend.month;
-        
-        return `
+  if (!trends || trends.length === 0) {
+    return '<div class="no-data-message">No hay datos de pagos disponibles</div>';
+  }
+
+  const maxAmount = Math.max(...trends.map(t => parseFloat(t.total_amount || 0)));
+  const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+
+  return trends.map(trend => {
+    const amount = parseFloat(trend.total_amount || 0);
+    const height = maxAmount > 0 ? (amount / maxAmount * 100) : 0;
+    const onTimeCount = parseInt(trend.on_time_count || 0);
+    const lateCount = parseInt(trend.late_count || 0);
+    const barColor = lateCount > onTimeCount ? '#f5576c' : '#38ef7d';
+    const monthParts = trend.month.split('-');
+    const monthLabel = monthNames[parseInt(monthParts[1]) - 1] || trend.month;
+
+    return `
             <div class="chart-bar" style="height: ${Math.max(height, 5)}%; --bar-color: ${barColor};">
                 <span class="bar-label">${monthLabel}</span>
                 <span class="bar-value">$${amount.toFixed(0)}</span>
             </div>
         `;
-    }).join('');
+  }).join('');
 }
 
 async function openPaymentTrendsModal() {
   closeChartModal(); // Close any existing modal first
-  
+
   const data = await loadPaymentTrendsData();
-    
+
   const chartBarsHTML = data && data.trends ? generateChartBars(data.trends) : `
       <div class="chart-bar" style="height: 65%; --bar-color: #38ef7d;">
           <span class="bar-label">Ene</span>
@@ -301,14 +301,14 @@ async function openPaymentTrendsModal() {
           <span class="bar-value">$450</span>
       </div>
   `;
-  
+
   const summary = data?.summary || {
-      total_payments: 24,
-      on_time: 23,
-      late: 2,
-      on_time_rate: 96
+    total_payments: 24,
+    on_time: 23,
+    late: 2,
+    on_time_rate: 96
   };
-  
+
   const PAYMENT_TRENDS_MODAL_DYNAMIC = `
     <div class="chart-modal-overlay active" id="chartModalOverlay">
       <div class="chart-modal-content">
@@ -352,7 +352,7 @@ async function openPaymentTrendsModal() {
       </div>
     </div>
   `;
-  
+
   document.body.insertAdjacentHTML('beforeend', PAYMENT_TRENDS_MODAL_DYNAMIC);
 
   const modal = document.getElementById('chartModalOverlay');
