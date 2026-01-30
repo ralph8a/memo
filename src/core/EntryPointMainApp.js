@@ -180,6 +180,8 @@ window.viewPolicy = dashboardActions.viewPolicy;
 window.fileClaim = dashboardActions.fileClaim;
 // Expose notification helper for quick console testing / legacy inline calls
 window.showNotification = showNotification;
+// Expose module initializers for post-login init
+window.initPaymentCalendar = initPaymentCalendar;
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
