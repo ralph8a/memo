@@ -738,105 +738,169 @@ html[data-theme="dark-forest"] .policy-number {
 .app-modal,
 .chart-modal-content,
 .modal-card {
-    background: #ffffff !important;
-    color: #000 !important;
-    border: 1px solid rgba(10, 10, 10, 0.04) !important;
+    background: #ffffff;
+    color: #1e293b; /* Slate 800 - high contrast on white */
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* Modal card specific layout (used in dashboard modals) */
+.modal-card {
+    position: relative;
+    width: min(420px, 92vw);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px) saturate(1.05);
+    -webkit-backdrop-filter: blur(10px) saturate(1.05);
+}
+
+.modal-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.modal-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.modal-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    border-radius: 12px;
 }
 
 /* Header and title clarity */
 .modal-header,
 .app-modal-header,
 .chart-modal-header {
-    background: #ffffff !important;
-    border-bottom-color: rgba(10, 10, 10, 0.06) !important;
+    background: #ffffff;
+    border-bottom-color: rgba(15, 23, 42, 0.08);
 }
 
 .modal-title,
 .app-modal-title,
 .chart-modal-title {
-    color: #000 !important;
-    font-size: 1.25rem !important;
-    font-weight: 700 !important;
+    color: #0f172a; /* Slate 900 - maximum contrast for titles */
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
-/* Modal body: ensure all inner text defaults to high-contrast black on light theme */
+/* Modal body: ensure all inner text defaults to high-contrast on light theme */
 .modal-body,
 .app-modal-body,
-.chart-modal-body,
-.modal-body *,
-.app-modal-body *,
-.chart-modal-body * {
-    color: #000 !important;
+.chart-modal-body {
+    color: #334155; /* Slate 700 - readable body text */
 }
 
 /* Improve hierarchy inside modals (section headings vs detail text) */
 .modal-body h3,
 .app-modal-body h3,
 .chart-modal-body h3 {
-    font-size: 1.05rem !important;
-    font-weight: 700 !important;
-    color: #0b0b0b !important;
-    margin: 0 0 0.5rem !important;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a; /* Slate 900 - dark headings */
+    margin: 0 0 0.5rem;
 }
 
 .detail-group label,
 .policy-details-grid .detail-group label {
-    font-size: 0.74rem !important;
-    font-weight: 700 !important;
-    color: #222 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.6px !important;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #475569; /* Slate 600 - medium gray for labels */
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
 }
 
 .detail-group p,
 .policy-details-grid p,
 .detail-item .value {
-    color: #000 !important;
-    font-weight: 500 !important;
+    color: #1e293b; /* Slate 800 - dark for values */
+    font-weight: 500;
+}
+
+.contact-detail span {
+    color: #475569; /* Slate 600 - labels */
+    font-size: 13px;
+}
+
+.contact-detail strong {
+    color: #0f172a; /* Slate 900 - values */
+    font-weight: 600;
 }
 
 /* Sections: keep background clean (transparent/white) and show subtle borders only */
 .policy-section {
-    background: transparent !important;
-    box-shadow: none !important;
-    border: 1px solid rgba(15, 23, 42, 0.04) !important;
-    border-left: 4px solid rgba(var(--primary-rgb), 0.08) !important;
-    padding: 0.75rem !important;
-    border-radius: 10px !important;
-    margin-bottom: 1rem !important;
+    background: rgba(248, 250, 252, 0.5); /* Very light slate background */
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-left: 4px solid rgba(139, 35, 72, 0.3); /* Brand maroon accent */
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
 }
 
 /* List items inside sections should be minimal and bordered */
 .receipt-item,
 .claim-item,
 .comment-item {
-    background: transparent !important;
-    box-shadow: none !important;
-    border: 1px solid rgba(15, 23, 42, 0.04) !important;
-    padding: 0.6rem !important;
-    margin-bottom: 0.6rem !important;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
+    border-radius: 8px;
+}
+
+.receipt-item span,
+.claim-item span,
+.comment-item span {
+    color: #334155; /* Slate 700 for item text */
 }
 
 /* Section divider becomes a thin rule */
 .section-divider {
-    height: 0 !important;
-    background: none !important;
-    border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
-    margin: 1rem 0 !important;
+    height: 0;
+    background: none;
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    margin: 1rem 0;
 }
 
 /* Muted text on light theme */
 .text-muted {
-    color: rgba(0, 0, 0, 0.6) !important;
+    color: #64748b; /* Slate 500 */
 }
 
 /* Tweak modal close button for light theme */
 .modal-close,
 .app-modal-close,
 .chart-modal-close {
-    color: rgba(0, 0, 0, 0.6) !important;
-    border-color: rgba(0, 0, 0, 0.06) !important;
-    background: transparent !important;
+    color: #475569; /* Slate 600 */
+    border-color: rgba(15, 23, 42, 0.1);
+    background: transparent;
+}
+
+.modal-close:hover,
+.app-modal-close:hover,
+.chart-modal-close:hover {
+    color: #1e293b; /* Slate 800 on hover */
+    background: rgba(15, 23, 42, 0.04);
 }
 
 /* ============================================================================
@@ -844,6 +908,10 @@ html[data-theme="dark-forest"] .policy-number {
    These use !important to override the light-theme forcing above when dark mode
    is active.
    ============================================================================ */
+/* ============================================================================
+   DARK FOREST THEME - Alto contraste con colores explícitos
+   ============================================================================ */
+
 body.dark-forest .modal-content,
 body.dark-forest .app-modal,
 body.dark-forest .chart-modal-content,
@@ -852,25 +920,89 @@ html[data-theme="dark-forest"] .app-modal,
 html[data-theme="dark-forest"] .chart-modal-content,
 body.dark-forest .modal-card,
 html[data-theme="dark-forest"] .modal-card {
-    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94)) !important;
-    color: var(--theme-text-primary, #f0f7f3) !important;
-    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32)) !important;
+    background: rgba(15, 43, 36, 0.92) !important; /* Dark forest green */
+    color: #f1f5f9 !important; /* Slate 100 - light text */
+    border: 1px solid rgba(241, 245, 249, 0.15) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+body.dark-forest .modal-header,
+html[data-theme="dark-forest"] .modal-header,
+body.dark-forest .app-modal-header,
+html[data-theme="dark-forest"] .app-modal-header,
+body.dark-forest .chart-modal-header,
+html[data-theme="dark-forest"] .chart-modal-header {
+    background: transparent !important;
+    border-bottom-color: rgba(241, 245, 249, 0.1) !important;
+}
+
+body.dark-forest .modal-title,
+html[data-theme="dark-forest"] .modal-title,
+body.dark-forest .app-modal-title,
+html[data-theme="dark-forest"] .app-modal-title,
+body.dark-forest .chart-modal-title,
+html[data-theme="dark-forest"] .chart-modal-title {
+    color: #f8fafc !important; /* Slate 50 - brightest for titles */
 }
 
 body.dark-forest .modal-body,
 html[data-theme="dark-forest"] .modal-body,
 body.dark-forest .app-modal-body,
-html[data-theme="dark-forest"] .app-modal-body {
-    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94)) !important;
-    color: var(--theme-text-primary, #f0f7f3) !important;
+html[data-theme="dark-forest"] .app-modal-body,
+body.dark-forest .chart-modal-body,
+html[data-theme="dark-forest"] .chart-modal-body {
+    background: transparent !important;
+    color: #e2e8f0 !important; /* Slate 200 - light body text */
+}
+
+body.dark-forest .modal-body h3,
+html[data-theme="dark-forest"] .modal-body h3,
+body.dark-forest .app-modal-body h3,
+html[data-theme="dark-forest"] .app-modal-body h3,
+body.dark-forest .chart-modal-body h3,
+html[data-theme="dark-forest"] .chart-modal-body h3 {
+    color: #f1f5f9 !important; /* Slate 100 - headings */
+}
+
+body.dark-forest .detail-group label,
+html[data-theme="dark-forest"] .detail-group label,
+body.dark-forest .policy-details-grid .detail-group label,
+html[data-theme="dark-forest"] .policy-details-grid .detail-group label {
+    color: #cbd5e1 !important; /* Slate 300 - labels */
+}
+
+body.dark-forest .detail-group p,
+html[data-theme="dark-forest"] .detail-group p,
+body.dark-forest .policy-details-grid p,
+html[data-theme="dark-forest"] .policy-details-grid p,
+body.dark-forest .detail-item .value,
+html[data-theme="dark-forest"] .detail-item .value {
+    color: #f1f5f9 !important; /* Slate 100 - values */
+}
+
+body.dark-forest .contact-detail,
+html[data-theme="dark-forest"] .contact-detail {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(241, 245, 249, 0.1) !important;
+}
+
+body.dark-forest .contact-detail span,
+html[data-theme="dark-forest"] .contact-detail span {
+    color: #cbd5e1 !important; /* Slate 300 - labels */
+}
+
+body.dark-forest .contact-detail strong,
+html[data-theme="dark-forest"] .contact-detail strong {
+    color: #f8fafc !important; /* Slate 50 - values */
 }
 
 body.dark-forest .policy-section,
 html[data-theme="dark-forest"] .policy-section {
-    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34)) !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45) !important;
-    border-left-color: rgba(var(--primary-rgb), 0.16) !important;
-    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32)) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+    border-left: 4px solid rgba(76, 201, 191, 0.4) !important; /* Teal accent */
+    border: 1px solid rgba(241, 245, 249, 0.08) !important;
 }
 
 body.dark-forest .receipt-item,
@@ -879,7 +1011,41 @@ body.dark-forest .claim-item,
 html[data-theme="dark-forest"] .claim-item,
 body.dark-forest .comment-item,
 html[data-theme="dark-forest"] .comment-item {
-    background: rgba(var(--bg-secondary-rgb), 0.28) !important;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45) !important;
-    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32)) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(241, 245, 249, 0.08) !important;
+}
+
+body.dark-forest .receipt-item span,
+html[data-theme="dark-forest"] .receipt-item span,
+body.dark-forest .claim-item span,
+html[data-theme="dark-forest"] .claim-item span,
+body.dark-forest .comment-item span,
+html[data-theme="dark-forest"] .comment-item span {
+    color: #e2e8f0 !important; /* Slate 200 */
+}
+
+body.dark-forest .text-muted,
+html[data-theme="dark-forest"] .text-muted {
+    color: #94a3b8 !important; /* Slate 400 */
+}
+
+body.dark-forest .modal-close,
+html[data-theme="dark-forest"] .modal-close,
+body.dark-forest .app-modal-close,
+html[data-theme="dark-forest"] .app-modal-close,
+body.dark-forest .chart-modal-close,
+html[data-theme="dark-forest"] .chart-modal-close {
+    color: #cbd5e1 !important; /* Slate 300 */
+    border-color: rgba(241, 245, 249, 0.1) !important;
+}
+
+body.dark-forest .modal-close:hover,
+html[data-theme="dark-forest"] .modal-close:hover,
+body.dark-forest .app-modal-close:hover,
+html[data-theme="dark-forest"] .app-modal-close:hover,
+body.dark-forest .chart-modal-close:hover,
+html[data-theme="dark-forest"] .chart-modal-close:hover {
+    color: #f8fafc !important; /* Slate 50 */
+    background: rgba(255, 255, 255, 0.06) !important;
 }
