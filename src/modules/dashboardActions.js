@@ -98,7 +98,7 @@ export function contactAgent() {
 export async function viewPolicy(policyId = null) {
   try {
     console.log('[viewPolicy] Called with ID:', policyId);
-    
+
     if (!policyId) {
       console.warn('[viewPolicy] No policy ID provided');
       showNotification('No se especificó una póliza', NOTIFICATION_TYPES.ERROR);
@@ -108,7 +108,7 @@ export async function viewPolicy(policyId = null) {
     // Buscar en cache de dashboard
     let policies = window.dashboardData?.policies || [];
     console.log('[viewPolicy] Policies in cache:', policies.length);
-    
+
     if (!policies.length) {
       console.log('[viewPolicy] Loading policies from backend...');
       // Cargar desde backend

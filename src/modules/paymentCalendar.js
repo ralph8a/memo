@@ -23,7 +23,7 @@ export async function renderPaymentCalendar() {
     try {
         // Fetch payment history and schedules from backend
         const payments = await apiService.request(
-            API_CONFIG.ENDPOINTS.PAYMENT_HISTORY,
+            API_CONFIG.ENDPOINTS.CLIENT_PAYMENTS,
             { method: 'GET' }
         ).catch(() => []);
 
