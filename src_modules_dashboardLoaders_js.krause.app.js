@@ -300,6 +300,20 @@ function _loadClientDashboard() {
             return console.error('Error loading contacts:', err);
           });
 
+          // Initialize payment calendar
+          console.log('🔄 Initializing payment calendar...');
+          if (typeof window.initPaymentCalendar === 'function') {
+            window.initPaymentCalendar();
+          } else {
+            // Dynamic import if not available
+            Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./paymentCalendar.js */ "./src/modules/paymentCalendar.js")).then(function (_ref7) {
+              var initPaymentCalendar = _ref7.initPaymentCalendar;
+              if (initPaymentCalendar) initPaymentCalendar();
+            })["catch"](function (e) {
+              return console.error('Failed to load payment calendar:', e);
+            });
+          }
+
           // Load dynamic chart data
           loadPolicyHealthStats()["catch"](function (err) {
             return console.error('Error loading policy health:', err);
