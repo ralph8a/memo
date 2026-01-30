@@ -28814,6 +28814,8 @@ window.viewPolicy = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.v
 window.fileClaim = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.fileClaim;
 // Expose notification helper for quick console testing / legacy inline calls
 window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification;
+// Expose module initializers for post-login init
+window.initPaymentCalendar = _modules_paymentCalendar_js__WEBPACK_IMPORTED_MODULE_38__.initPaymentCalendar;
 function delay(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
