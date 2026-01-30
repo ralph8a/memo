@@ -279,11 +279,11 @@ class ContactModalComponent {
 
             const data = await apiService.request('?action=dm_start_thread', {
                 method: 'POST',
-                body: JSON.stringify({
+                body: {
                     client_id: clientId,
                     subject: `Mensaje de tu agente`,
                     message: messageText
-                })
+                }
             });
 
             if (data.success) {
