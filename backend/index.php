@@ -46,6 +46,14 @@ $action = $_GET['action'] ?? '';
 $input = file_get_contents('php://input');
 $data = json_decode($input, true) ?? [];
 
+// Debug logging for dm_start_thread
+if ($action === 'dm_start_thread') {
+    error_log("=== dm_start_thread DEBUG ===");
+    error_log("Raw input: " . $input);
+    error_log("Decoded data: " . json_encode($data));
+    error_log("JSON error: " . json_last_error_msg());
+}
+
 // Merge GET params with POST data
 if ($method === 'POST') {
     $data = array_merge($_POST, $data);

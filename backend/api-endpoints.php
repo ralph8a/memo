@@ -14,16 +14,16 @@ function getClientPayments($db, $client_id) {
     $stmt = $db->prepare("
         SELECT 
             p.id,
-            p.payment_date as date,
+            p.payment_date,
             p.amount,
-            p.payment_method as method,
+            p.payment_method,
             p.status,
             p.transaction_id,
             pol.policy_number,
             pol.policy_type
         FROM payments p
-        JOIN policies pol ON p.policy_id = pol.id
-        WHERE pol.client_id = ?
+        LEFT JOIN policies pol ON p.policy_id = pol.id
+        WHERE p.client_id = ?
         ORDER BY p.payment_date DESC
         LIMIT 50
     ");
@@ -103,13 +103,13 @@ function getClientDocuments($db, $client_id) {
             d.id,
             d.document_type as type,
             d.file_name as title,
-            d.upload_date as date,
+            d.uploaded_at as date,
             d.file_path as href,
             p.policy_number
         FROM documents d
-        JOIN policies p ON d.policy_id = p.id
-        WHERE p.client_id = ?
-        ORDER BY d.upload_date DESC
+        LEFT JOIN policies p ON d.policy_id = p.id
+        WHERE d.user_id = ?
+        ORDER BY d.uploaded_at DESC
         LIMIT 10
     ");
     $stmt->execute([$client_id]);
