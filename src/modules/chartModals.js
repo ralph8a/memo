@@ -1,115 +1,10 @@
 // Chart Modals Module - Handles modal displays for payment trends and policy health
 import { showNotification } from './notifications.js';
 import { NOTIFICATION_TYPES } from '../utils/constants.js';
+import { apiService } from '../api-integration.js';
 
 // Modal HTML templates
-const PAYMENT_TRENDS_MODAL = `
-  <div class="chart-modal-overlay active" id="chartModalOverlay">
-    <div class="chart-modal-content">
-      <div class="chart-modal-header">
-        <h2 class="chart-modal-title">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="3 17 8 11 13 14 21 6" />
-            <polyline points="14 6 21 6 21 13" />
-          </svg>
-          Tendencia de Pagos - Vista Completa
-        </h2>
-        <button class="chart-modal-close" onclick="window.appHandlers?.closeChartModal?.()" aria-label="Cerrar">×</button>
-      </div>
-      <div class="chart-modal-body">
-        <div class="chart-stats-row">
-          <div class="chart-stat-box">
-            <span class="chart-stat-label">Tickets cerrados</span>
-            <span class="chart-stat-value">24</span>
-            <span class="chart-stat-trend positive">+3 vs mes anterior</span>
-          </div>
-          <div class="chart-stat-box">
-            <span class="chart-stat-label">Pagos puntuales</span>
-            <span class="chart-stat-value">96%</span>
-            <span class="chart-stat-trend positive">+2.1% vs mes anterior</span>
-          </div>
-          <div class="chart-stat-box">
-            <span class="chart-stat-label">Retrasos</span>
-            <span class="chart-stat-value">2</span>
-            <span class="chart-stat-trend negative">+1 vs mes anterior</span>
-          </div>
-          <div class="chart-stat-box">
-            <span class="chart-stat-label">Promedio pago</span>
-            <span class="chart-stat-value">$450</span>
-            <span class="chart-stat-trend positive">+8.4% vs mes anterior</span>
-          </div>
-        </div>
-        
-        <div class="chart-visualization">
-          <div class="chart-graph-placeholder">
-            <div class="chart-bars">
-              <div class="chart-bar" style="height: 65%; --bar-color: #38ef7d;">
-                <span class="bar-label">Ene</span>
-                <span class="bar-value">$420</span>
-              </div>
-              <div class="chart-bar" style="height: 72%; --bar-color: #38ef7d;">
-                <span class="bar-label">Feb</span>
-                <span class="bar-value">$435</span>
-              </div>
-              <div class="chart-bar" style="height: 85%; --bar-color: #38ef7d;">
-                <span class="bar-label">Mar</span>
-                <span class="bar-value">$450</span>
-              </div>
-              <div class="chart-bar" style="height: 58%; --bar-color: #f5576c;">
-                <span class="bar-label">Abr</span>
-                <span class="bar-value">$380</span>
-              </div>
-              <div class="chart-bar" style="height: 78%; --bar-color: #38ef7d;">
-                <span class="bar-label">May</span>
-                <span class="bar-value">$445</span>
-              </div>
-              <div class="chart-bar" style="height: 90%; --bar-color: #38ef7d;">
-                <span class="bar-label">Jun</span>
-                <span class="bar-value">$465</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="chart-details-section">
-          <h3>Historial Detallado</h3>
-          <div class="payment-timeline">
-            <div class="timeline-item">
-              <div class="timeline-dot success"></div>
-              <div class="timeline-content">
-                <div class="timeline-header">
-                  <strong>Pago Póliza Auto</strong>
-                  <span class="timeline-date">15 Jun 2026</span>
-                </div>
-                <p class="timeline-detail">$150.00 - Pago puntual</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot success"></div>
-              <div class="timeline-content">
-                <div class="timeline-header">
-                  <strong>Pago Póliza Hogar</strong>
-                  <span class="timeline-date">12 Jun 2026</span>
-                </div>
-                <p class="timeline-detail">$200.00 - Pago puntual</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot success"></div>
-              <div class="timeline-content">
-                <div class="timeline-header">
-                  <strong>Pago Póliza Vida</strong>
-                  <span class="timeline-date">05 Jun 2026</span>
-                </div>
-                <p class="timeline-detail">$100.00 - Pago puntual</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-`;
+// PAYMENT_TRENDS_MODAL removed - now generated dynamically with real data in openPaymentTrendsModal()
 
 const POLICY_HEALTH_MODAL = `
   <div class="chart-modal-overlay active" id="chartModalOverlay">
@@ -341,9 +236,124 @@ const POLICY_HEALTH_MODAL = `
 `;
 
 // Export modal opener functions
-function openPaymentTrendsModal() {
+
+/**
+ * Load real payment trends data from backend
+ */
+async function loadPaymentTrendsData() {
+    try {
+        const response = await apiService.request('?action=payment_trends', { method: 'GET' });
+        if (response.success) {
+            return response;
+        }
+        return null;
+    } catch (error) {
+        console.error('Error loading payment trends:', error);
+        return null;
+    }
+}
+
+/**
+ * Generate chart bars HTML from real data
+ */
+function generateChartBars(trends) {
+    if (!trends || trends.length === 0) {
+        return '<div class="no-data-message">No hay datos de pagos disponibles</div>';
+    }
+    
+    const maxAmount = Math.max(...trends.map(t => parseFloat(t.total_amount || 0)));
+    const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    
+    return trends.map(trend => {
+        const amount = parseFloat(trend.total_amount || 0);
+        const height = maxAmount > 0 ? (amount / maxAmount * 100) : 0;
+        const onTimeCount = parseInt(trend.on_time_count || 0);
+        const lateCount = parseInt(trend.late_count || 0);
+        const barColor = lateCount > onTimeCount ? '#f5576c' : '#38ef7d';
+        const monthParts = trend.month.split('-');
+        const monthLabel = monthNames[parseInt(monthParts[1]) - 1] || trend.month;
+        
+        return `
+            <div class="chart-bar" style="height: ${Math.max(height, 5)}%; --bar-color: ${barColor};">
+                <span class="bar-label">${monthLabel}</span>
+                <span class="bar-value">$${amount.toFixed(0)}</span>
+            </div>
+        `;
+    }).join('');
+}
+
+async function openPaymentTrendsModal() {
   closeChartModal(); // Close any existing modal first
-  document.body.insertAdjacentHTML('beforeend', PAYMENT_TRENDS_MODAL);
+  
+  const data = await loadPaymentTrendsData();
+    
+  const chartBarsHTML = data && data.trends ? generateChartBars(data.trends) : `
+      <div class="chart-bar" style="height: 65%; --bar-color: #38ef7d;">
+          <span class="bar-label">Ene</span>
+          <span class="bar-value">$420</span>
+      </div>
+      <div class="chart-bar" style="height: 72%; --bar-color: #38ef7d;">
+          <span class="bar-label">Feb</span>
+          <span class="bar-value">$435</span>
+      </div>
+      <div class="chart-bar" style="height: 85%; --bar-color: #38ef7d;">
+          <span class="bar-label">Mar</span>
+          <span class="bar-value">$450</span>
+      </div>
+  `;
+  
+  const summary = data?.summary || {
+      total_payments: 24,
+      on_time: 23,
+      late: 2,
+      on_time_rate: 96
+  };
+  
+  const PAYMENT_TRENDS_MODAL_DYNAMIC = `
+    <div class="chart-modal-overlay active" id="chartModalOverlay">
+      <div class="chart-modal-content">
+        <div class="chart-modal-header">
+          <h2 class="chart-modal-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 17 8 11 13 14 21 6" />
+              <polyline points="14 6 21 6 21 13" />
+            </svg>
+            Tendencia de Pagos - Vista Completa
+          </h2>
+          <button class="chart-modal-close" onclick="window.appHandlers?.closeChartModal?.()" aria-label="Cerrar">×</button>
+        </div>
+        <div class="chart-modal-body">
+          <div class="chart-stats-row">
+            <div class="chart-stat-box">
+              <span class="chart-stat-label">Total de pagos</span>
+              <span class="chart-stat-value">${summary.total_payments}</span>
+              <span class="chart-stat-trend positive">Últimos 12 meses</span>
+            </div>
+            <div class="chart-stat-box">
+              <span class="chart-stat-label">Pagos puntuales</span>
+              <span class="chart-stat-value">${summary.on_time_rate}%</span>
+              <span class="chart-stat-trend positive">${summary.on_time} de ${summary.total_payments}</span>
+            </div>
+            <div class="chart-stat-box">
+              <span class="chart-stat-label">Retrasos</span>
+              <span class="chart-stat-value">${summary.late}</span>
+              <span class="chart-stat-trend ${summary.late > 0 ? 'negative' : 'positive'}">${summary.late > 0 ? 'Mejorar' : 'Excelente'}</span>
+            </div>
+          </div>
+          
+          <div class="chart-visualization">
+            <div class="chart-graph-placeholder">
+              <div class="chart-bars">
+                ${chartBarsHTML}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('beforeend', PAYMENT_TRENDS_MODAL_DYNAMIC);
 
   const modal = document.getElementById('chartModalOverlay');
   if (modal) {

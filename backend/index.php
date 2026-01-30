@@ -1357,11 +1357,20 @@ try {
             sendError('Failed to insert message', 500);
         }
         
-        error_log("Message inserted successfully. ID: " . $db->lastInsertId());
+        $messageId = $db->lastInsertId();
+        error_log("Message inserted successfully. ID: " . $messageId);
+        
+        // Update thread's last_message_at
+        $stmt = $db->prepare("
+            UPDATE direct_message_threads 
+            SET last_message_at = NOW() 
+            WHERE thread_id = ?
+        ");
+        $stmt->execute([$threadId]);
         
         sendResponse([
             'success' => true,
-            'message_id' => $db->lastInsertId()
+            'message_id' => $messageId
         ]);
     }
     
