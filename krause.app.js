@@ -21380,11 +21380,14 @@ var GlobalSearchComponent = /*#__PURE__*/function () {
 }(); // Instancia global
 window.globalSearch = new GlobalSearchComponent();
 
-// Auto-inicializar
+// Auto-inicializar solo si está autenticado
 document.addEventListener('DOMContentLoaded', function () {
-  setTimeout(function () {
-    window.globalSearch.init();
-  }, 500);
+  // Only initialize if user is logged in
+  if (localStorage.getItem('jwt_token')) {
+    setTimeout(function () {
+      window.globalSearch.init();
+    }, 500);
+  }
 });
 
 /***/ }),
@@ -23606,14 +23609,21 @@ function _renderPaymentCalendar() {
           }
           return _context2.a(2);
         case 1:
-          _context2.p = 1;
-          _context2.n = 2;
+          if (localStorage.getItem('jwt_token')) {
+            _context2.n = 2;
+            break;
+          }
+          console.log('⚠️ Payment calendar skipped - user not authenticated');
+          return _context2.a(2);
+        case 2:
+          _context2.p = 2;
+          _context2.n = 3;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.PAYMENT_HISTORY, {
             method: 'GET'
           })["catch"](function () {
             return [];
           });
-        case 2:
+        case 3:
           payments = _context2.v;
           // Build calendar data
           today = new Date();
@@ -23658,33 +23668,33 @@ function _renderPaymentCalendar() {
             }, _loop);
           });
           day = 1;
-        case 3:
+        case 4:
           if (!(day <= daysInMonth)) {
-            _context2.n = 5;
+            _context2.n = 6;
             break;
           }
-          return _context2.d(_regeneratorValues(_loop()), 4);
-        case 4:
-          day++;
-          _context2.n = 3;
-          break;
+          return _context2.d(_regeneratorValues(_loop()), 5);
         case 5:
+          day++;
+          _context2.n = 4;
+          break;
+        case 6:
           // Update calendar container
           calendarContainer.innerHTML = calendarHTML;
 
           // Render upcoming payment slots below the calendar
           renderUpcomingPaymentSlots(payments);
-          _context2.n = 7;
+          _context2.n = 8;
           break;
-        case 6:
-          _context2.p = 6;
+        case 7:
+          _context2.p = 7;
           _t = _context2.v;
           console.error('Error rendering payment calendar:', _t);
           calendarContainer.innerHTML = "\n            <div class=\"calendar-error\">\n                <p>Error cargando calendario de pagos</p>\n            </div>\n        ";
-        case 7:
+        case 8:
           return _context2.a(2);
       }
-    }, _callee, null, [[1, 6]]);
+    }, _callee, null, [[2, 7]]);
   }));
   return _renderPaymentCalendar.apply(this, arguments);
 }
@@ -23772,9 +23782,14 @@ function initPaymentCalendar() {
   }, 5 * 60 * 1000);
 }
 
-// Auto-initialize when module is imported
+// Auto-initialize only if user is authenticated
 if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', initPaymentCalendar);
+  document.addEventListener('DOMContentLoaded', function () {
+    // Only initialize if user is logged in
+    if (localStorage.getItem('jwt_token')) {
+      initPaymentCalendar();
+    }
+  });
 }
 
 /***/ }),
