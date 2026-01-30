@@ -112,18 +112,26 @@ function _loadAgentDashboard() {
             console.log('Rendering agent claims...');
             renderAgentClaims(dashboardData.claims);
           }
+
+          // Load recent clients in sidebar
+          console.log('🔄 Loading recent clients for sidebar...');
+          _context.n = 3;
+          return loadAgentRecentClients()["catch"](function (err) {
+            return console.error('❌ Error loading recent clients:', err);
+          });
+        case 3:
           console.log('✅ Agent dashboard loaded with real data');
           return _context.a(2, dashboardData);
-        case 3:
-          _context.p = 3;
+        case 4:
+          _context.p = 4;
           _t = _context.v;
           console.error('❌ Error loading agent dashboard:', _t);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
           throw _t;
-        case 4:
+        case 5:
           return _context.a(2);
       }
-    }, _callee, null, [[1, 3]]);
+    }, _callee, null, [[1, 4]]);
   }));
   return _loadAgentDashboard.apply(this, arguments);
 }
@@ -279,6 +287,11 @@ function _loadClientDashboard() {
             console.log('Rendering payment history...');
             renderPaymentHistory(payments);
           }
+
+          // Load client contacts from backend
+          loadClientContacts()["catch"](function (err) {
+            return console.error('Error loading contacts:', err);
+          });
           console.log('✅ Client dashboard loaded with real data');
           return _context5.a(2, {
             dashboardData: dashboardData,
@@ -475,7 +488,11 @@ function renderAgentClients(clients) {
   var container = document.querySelector('[data-clients-list]');
   if (!container || !clients || clients.length === 0) return;
   var html = clients.map(function (client) {
-    return "\n    <div class=\"client-item\" data-client-id=\"".concat(client.id, "\">\n      <div class=\"client-info\">\n        <h4>").concat(client.first_name, " ").concat(client.last_name, "</h4>\n        <p>").concat(client.email, "</p>\n        <div class=\"client-meta\">\n          <span class=\"badge badge-").concat(client.status === 'active' ? 'success' : 'warning', "\">\n            ").concat(client.status, "\n          </span>\n          <span>Desde: ").concat(new Date(client.created_at).toLocaleDateString(), "</span>\n        </div>\n      </div>\n      <div class=\"client-actions\">\n        <button class=\"btn btn-sm btn-outline\" onclick=\"window.appHandlers.viewClientDetails('").concat(client.id, "')\">\n          Ver Detalles\n        </button>\n      </div>\n    </div>\n  ");
+    var isAssigned = client.is_assigned || client.assigned_policies > 0;
+    var assignedBadge = isAssigned ? '<span class="badge badge-primary" style="margin-left: 8px;">Asignado</span>' : '';
+    var policyCount = client.policy_count || 0;
+    var policyInfo = policyCount > 0 ? "<span>".concat(policyCount, " p\xF3liza").concat(policyCount !== 1 ? 's' : '', "</span>") : '<span class="text-muted">Sin pólizas</span>';
+    return "\n        <div class=\"client-item ".concat(isAssigned ? 'client-assigned' : '', "\" data-client-id=\"").concat(client.id, "\">\n          <div class=\"client-info\">\n            <h4>\n              ").concat(client.first_name, " ").concat(client.last_name, "\n              ").concat(assignedBadge, "\n            </h4>\n            <p>").concat(client.email, "</p>\n            <div class=\"client-meta\">\n              <span class=\"badge badge-").concat(client.status === 'active' ? 'success' : 'warning', "\">\n                ").concat(client.status, "\n              </span>\n              ").concat(policyInfo, "\n              <span>Desde: ").concat(new Date(client.created_at).toLocaleDateString(), "</span>\n            </div>\n          </div>\n          <div class=\"client-actions\">\n            <button class=\"btn btn-sm btn-outline\" onclick=\"window.appHandlers.viewClientDetails('").concat(client.id, "')\">\n              Ver Detalles\n            </button>\n          </div>\n        </div>\n      ");
   }).join('');
   container.innerHTML = html;
 }
@@ -683,6 +700,133 @@ function getPolicyTypeName(type) {
     'other': 'Otro'
   };
   return names[type] || type;
+}
+
+/**
+ * Load client contacts - agents assigned to client's policies
+ */
+function loadClientContacts() {
+  return _loadClientContacts.apply(this, arguments);
+}
+/**
+ * Load recent clients for agent sidebar
+ * Fetches clients from AGENT_CLIENTS endpoint and renders them dynamically
+ */
+function _loadClientContacts() {
+  _loadClientContacts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1() {
+    var contacts, _contactChipsContainer, contactChipsContainer, _contactChipsContainer2, _t1;
+    return _regenerator().w(function (_context1) {
+      while (1) switch (_context1.p = _context1.n) {
+        case 0:
+          _context1.p = 0;
+          _context1.n = 1;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.GET_CLIENT_CONTACTS, {
+            method: 'GET'
+          });
+        case 1:
+          contacts = _context1.v;
+          if (!(!contacts || contacts.length === 0)) {
+            _context1.n = 2;
+            break;
+          }
+          console.warn('No contacts found for client');
+          _contactChipsContainer = document.querySelector('.contact-chips');
+          if (_contactChipsContainer) {
+            _contactChipsContainer.innerHTML = "\n                    <div style=\"text-align: center; padding: 20px; color: #999;\">\n                        <p style=\"margin: 0; font-size: 13px;\">No hay contactos asignados</p>\n                    </div>\n                ";
+          }
+          return _context1.a(2);
+        case 2:
+          contactChipsContainer = document.querySelector('.contact-chips');
+          if (contactChipsContainer) {
+            contactChipsContainer.innerHTML = contacts.map(function (contact) {
+              return "\n                <button class=\"contact-chip\" \n                    data-name=\"".concat(contact.full_name, "\" \n                    data-phone=\"").concat(contact.phone || 'No disponible', "\" \n                    data-email=\"").concat(contact.email, "\" \n                    data-role=\"").concat(contact.role || 'Agente', "\" \n                    data-policy=\"").concat(contact.policy_types || '—', "\">\n                    ").concat(contact.full_name, "\n                </button>\n            ");
+            }).join('');
+            if (window.reinitializeContactChips) {
+              window.reinitializeContactChips();
+            }
+          }
+          console.log('✅ Client contacts loaded:', contacts.length);
+          _context1.n = 4;
+          break;
+        case 3:
+          _context1.p = 3;
+          _t1 = _context1.v;
+          console.error('Error loading client contacts:', _t1);
+          _contactChipsContainer2 = document.querySelector('.contact-chips');
+          if (_contactChipsContainer2) {
+            _contactChipsContainer2.innerHTML = "\n                <div style=\"text-align: center; padding: 20px; color: #f44;\">\n                    <p style=\"margin: 0; font-size: 13px;\">Error al cargar contactos</p>\n                </div>\n            ";
+          }
+        case 4:
+          return _context1.a(2);
+      }
+    }, _callee1, null, [[0, 3]]);
+  }));
+  return _loadClientContacts.apply(this, arguments);
+}
+function loadAgentRecentClients() {
+  return _loadAgentRecentClients.apply(this, arguments);
+}
+function _loadAgentRecentClients() {
+  _loadAgentRecentClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10() {
+    var clientsPillsContainer, clients, recentClients, _t10;
+    return _regenerator().w(function (_context10) {
+      while (1) switch (_context10.p = _context10.n) {
+        case 0:
+          console.log('🚀 loadAgentRecentClients() STARTED');
+          clientsPillsContainer = document.querySelector('.recent-clients-pills');
+          console.log('📍 Container found:', !!clientsPillsContainer);
+          if (clientsPillsContainer) {
+            _context10.n = 1;
+            break;
+          }
+          console.log('⚠️ Recent clients container not found');
+          return _context10.a(2);
+        case 1:
+          _context10.p = 1;
+          console.log('📡 Loading recent clients from API...');
+          _context10.n = 2;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.AGENT_CLIENTS, {
+            method: 'GET'
+          }, {
+            cacheDuration: _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.cache.CACHE_DURATION.SHORT,
+            useCache: true
+          });
+        case 2:
+          clients = _context10.v;
+          console.log('📊 Clients received:', (clients === null || clients === void 0 ? void 0 : clients.length) || 0, clients);
+          if (!(!clients || clients.length === 0)) {
+            _context10.n = 3;
+            break;
+          }
+          console.log('⚠️ No clients to display');
+          clientsPillsContainer.innerHTML = "\n                <div style=\"padding: 12px; text-align: center; color: var(--theme-text-secondary); font-size: 0.875rem;\">\n                    No hay clientes asignados\n                </div>\n            ";
+          return _context10.a(2);
+        case 3:
+          // Get only the 5 most recent clients (sorted by most recent policy activity)
+          recentClients = clients.sort(function (a, b) {
+            return new Date(b.last_policy_update || b.created_at) - new Date(a.last_policy_update || a.created_at);
+          }).slice(0, 5); // Render client pills
+          clientsPillsContainer.innerHTML = recentClients.map(function (client) {
+            var _client$first_name, _client$last_name, _client$last_name2;
+            var initials = "".concat(((_client$first_name = client.first_name) === null || _client$first_name === void 0 ? void 0 : _client$first_name[0]) || '').concat(((_client$last_name = client.last_name) === null || _client$last_name === void 0 ? void 0 : _client$last_name[0]) || '').toUpperCase();
+            var fullName = "".concat(client.first_name || '', " ").concat(client.last_name || '').trim();
+            var shortName = "".concat(client.first_name || '', " ").concat(((_client$last_name2 = client.last_name) === null || _client$last_name2 === void 0 ? void 0 : _client$last_name2[0]) || '', ".").trim();
+            return "\n                <button class=\"client-pill\" \n                    onclick=\"window.appHandlers?.viewClientDetails?.('".concat(client.id, "')\">\n                    <span class=\"client-pill-avatar\">").concat(initials, "</span>\n                    <span class=\"client-pill-name\">").concat(shortName, "</span>\n                </button>\n            ");
+          }).join('');
+          console.log("\u2705 Loaded ".concat(recentClients.length, " recent clients"));
+          _context10.n = 5;
+          break;
+        case 4:
+          _context10.p = 4;
+          _t10 = _context10.v;
+          console.error('❌ Error loading recent clients:', _t10);
+          clientsPillsContainer.innerHTML = "\n            <div style=\"padding: 12px; text-align: center; color: var(--theme-text-secondary);\">\n                <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" style=\"margin-bottom: 8px;\">\n                    <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                    <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/>\n                    <line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/>\n                </svg>\n                <div style=\"font-size: 0.875rem;\">Error al cargar clientes</div>\n            </div>\n        ";
+        case 5:
+          return _context10.a(2);
+      }
+    }, _callee10, null, [[1, 4]]);
+  }));
+  return _loadAgentRecentClients.apply(this, arguments);
 }
 
 /***/ })

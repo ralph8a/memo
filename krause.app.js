@@ -4243,60 +4243,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/**
 }
 
 /* ============================================================================
-   MODAL SYSTEM - Sistema unificado de modales
+   MODAL SYSTEM - MOVIDO A modals-unified.css
+   Los estilos de modales ahora están centralizados en modals-unified.css
    ============================================================================ */
 
-.app-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    padding: 20px;
-    animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.app-modal {
-    background: var(--background-primary);
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-height: 90vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Modal sizes */
+/* Modal sizes - Extensiones específicas para dashboard-actions */
+/* Modal sizes - Extensiones específicas para dashboard-actions */
 .app-modal-sm {
     width: 100%;
     max-width: 400px;
@@ -4317,49 +4269,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/**
     max-width: 1200px;
 }
 
-/* Modal header */
-.app-modal-header {
-    padding: 24px 24px 16px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-}
-
-.app-modal-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0;
-}
-
-.app-modal-close {
-    background: transparent;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    color: var(--text-secondary);
-    border-radius: 8px;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.app-modal-close:hover {
-    background: var(--background-tertiary);
-    color: var(--text-primary);
-}
-
-/* Modal body */
-.app-modal-body {
-    padding: 24px;
-    overflow-y: auto;
-    flex: 1;
-}
-
-/* Forms dentro de modales */
+/* Forms dentro de modales - Estilos específicos para dashboard */
 .app-modal form {
     display: flex;
     flex-direction: column;
@@ -4719,7 +4629,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/**
     .app-modal {
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     }
-}`, "",{"version":3,"sources":["webpack://./styles/dashboard-actions.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Dashboard Actions Styles\n * Estilos para modales, tabs y componentes de acciones\n */\n\n/* ============================================================================\n   UPLOAD & POLICY PROCESSING - Sistema de subida de pólizas\n   ============================================================================ */\n\n.upload-instructions {\n    margin-bottom: 20px;\n}\n\n.info-box {\n    display: flex;\n    gap: 15px;\n    padding: 15px;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    border-radius: 8px;\n    color: white;\n}\n\n.info-box svg {\n    flex-shrink: 0;\n    margin-top: 2px;\n}\n\n.info-box ul {\n    margin: 10px 0;\n    padding-left: 20px;\n}\n\n.info-box li {\n    margin: 5px 0;\n}\n\n/* Progress Bar */\n#upload-progress {\n    margin: 20px 0;\n    padding: 15px;\n    background: #f8f9fa;\n    border-radius: 8px;\n}\n\n.progress-bar {\n    width: 100%;\n    height: 8px;\n    background: #e9ecef;\n    border-radius: 4px;\n    overflow: hidden;\n    margin-bottom: 10px;\n}\n\n.progress-fill {\n    height: 100%;\n    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);\n    transition: width 0.3s ease;\n    border-radius: 4px;\n}\n\n#progress-text {\n    font-size: 14px;\n    color: #6c757d;\n    text-align: center;\n    margin: 0;\n}\n\n/* Extracted Data Preview */\n#extracted-data-preview {\n    margin: 20px 0;\n    padding: 20px;\n    background: #f8f9fa;\n    border-radius: 8px;\n    border: 2px solid #dee2e6;\n}\n\n.extracted-data-grid {\n    display: grid;\n    gap: 15px;\n    margin-bottom: 15px;\n}\n\n.data-field {\n    display: flex;\n    flex-direction: column;\n    gap: 5px;\n}\n\n.data-field label {\n    font-size: 14px;\n    font-weight: 500;\n    color: #495057;\n}\n\n.data-field input,\n.data-field select {\n    padding: 8px 12px;\n    border: 1px solid #ced4da;\n    border-radius: 4px;\n    font-size: 14px;\n}\n\n.confidence-note {\n    padding: 10px 15px;\n    border-radius: 6px;\n    font-size: 14px;\n    margin: 0;\n}\n\n.confidence-note.warning {\n    background: #fff3cd;\n    color: #856404;\n    border: 1px solid #ffeeba;\n}\n\n.confidence-note.info {\n    background: #d1ecf1;\n    color: #0c5460;\n    border: 1px solid #bee5eb;\n}\n\n/* Success Summary */\n.success-summary {\n    padding: 20px;\n    background: #d4edda;\n    border: 1px solid #c3e6cb;\n    border-radius: 8px;\n    margin-bottom: 20px;\n}\n\n.success-summary p {\n    margin: 8px 0;\n    font-size: 14px;\n    color: #155724;\n}\n\n.success-message {\n    margin-top: 15px;\n    padding-top: 15px;\n    border-top: 1px solid #c3e6cb;\n    font-weight: 500;\n}\n\n/* ============================================================================\n   MODAL SYSTEM - Sistema unificado de modales\n   ============================================================================ */\n\n.app-modal-overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: rgba(0, 0, 0, 0.6);\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 9999;\n    padding: 20px;\n    animation: fadeIn 0.2s ease;\n}\n\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n.app-modal {\n    background: var(--background-primary);\n    border-radius: 16px;\n    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);\n    max-height: 90vh;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(30px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n/* Modal sizes */\n.app-modal-sm {\n    width: 100%;\n    max-width: 400px;\n}\n\n.app-modal-md {\n    width: 100%;\n    max-width: 600px;\n}\n\n.app-modal-lg {\n    width: 100%;\n    max-width: 900px;\n}\n\n.app-modal-xl {\n    width: 100%;\n    max-width: 1200px;\n}\n\n/* Modal header */\n.app-modal-header {\n    padding: 24px 24px 16px;\n    border-bottom: 1px solid var(--border-color);\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex-shrink: 0;\n}\n\n.app-modal-title {\n    font-size: 1.5rem;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0;\n}\n\n.app-modal-close {\n    background: transparent;\n    border: none;\n    padding: 8px;\n    cursor: pointer;\n    color: var(--text-secondary);\n    border-radius: 8px;\n    transition: all 0.2s;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.app-modal-close:hover {\n    background: var(--background-tertiary);\n    color: var(--text-primary);\n}\n\n/* Modal body */\n.app-modal-body {\n    padding: 24px;\n    overflow-y: auto;\n    flex: 1;\n}\n\n/* Forms dentro de modales */\n.app-modal form {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.form-group {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.form-group label {\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-primary);\n}\n\n.form-group input,\n.form-group select,\n.form-group textarea {\n    padding: 12px 16px;\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    background: var(--background-secondary);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    transition: all 0.2s;\n}\n\n.form-group input:focus,\n.form-group select:focus,\n.form-group textarea:focus {\n    outline: none;\n    border-color: var(--accent-color);\n    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);\n}\n\n.form-group small {\n    font-size: 0.75rem;\n    color: var(--text-secondary);\n}\n\n.form-row {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.form-actions {\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n    padding-top: 8px;\n}\n\n/* ============================================================================\n   CLIENT DETAILS TABS - Sistema de tabs para detalles de cliente\n   ============================================================================ */\n\n.client-detail-tabs {\n    display: flex;\n    gap: 8px;\n    border-bottom: 2px solid var(--border-color);\n    margin-bottom: 24px;\n    padding-bottom: 0;\n    overflow-x: auto;\n    scrollbar-width: thin;\n}\n\n.client-detail-tabs::-webkit-scrollbar {\n    height: 4px;\n}\n\n.client-detail-tabs::-webkit-scrollbar-thumb {\n    background: var(--border-color);\n    border-radius: 2px;\n}\n\n.tab-btn {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 12px 16px;\n    background: transparent;\n    border: none;\n    border-bottom: 3px solid transparent;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s;\n    white-space: nowrap;\n    position: relative;\n    margin-bottom: -2px;\n}\n\n.tab-btn svg {\n    flex-shrink: 0;\n}\n\n.tab-btn:hover {\n    color: var(--text-primary);\n    background: var(--background-tertiary);\n}\n\n.tab-btn.active {\n    color: var(--accent-color);\n    border-bottom-color: var(--accent-color);\n}\n\n.client-detail-content {\n    min-height: 400px;\n}\n\n.tab-content {\n    display: none;\n    animation: fadeIn 0.2s ease;\n}\n\n.tab-content.active {\n    display: block;\n}\n\n/* Client info grid */\n.client-info-grid {\n    background: var(--background-secondary);\n    padding: 24px;\n    border-radius: 12px;\n}\n\n.client-info-grid dl {\n    display: grid;\n    grid-template-columns: 140px 1fr;\n    gap: 16px 24px;\n    margin: 0;\n}\n\n.client-info-grid dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n}\n\n.client-info-grid dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n/* Data table */\n.data-table {\n    width: 100%;\n    border-collapse: collapse;\n    background: var(--background-secondary);\n    border-radius: 12px;\n    overflow: hidden;\n}\n\n.data-table thead {\n    background: var(--background-tertiary);\n}\n\n.data-table th {\n    padding: 12px 16px;\n    text-align: left;\n    font-weight: 600;\n    font-size: 0.8125rem;\n    color: var(--text-secondary);\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.data-table td {\n    padding: 16px;\n    border-top: 1px solid var(--border-color);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.data-table tbody tr:hover {\n    background: var(--background-tertiary);\n}\n\n/* Files grid */\n.files-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.file-card {\n    background: var(--background-secondary);\n    border: 1px solid var(--border-color);\n    border-radius: 12px;\n    padding: 20px;\n    text-align: center;\n    transition: all 0.2s;\n    cursor: pointer;\n}\n\n.file-card:hover {\n    background: var(--background-tertiary);\n    border-color: var(--accent-color);\n    transform: translateY(-2px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.file-card svg {\n    color: var(--accent-color);\n    margin-bottom: 12px;\n}\n\n.file-card p {\n    margin: 8px 0 4px;\n    font-weight: 500;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.file-card small {\n    color: var(--text-secondary);\n    font-size: 0.75rem;\n}\n\n/* ============================================================================\n   POLICY DETAILS - Detalles de póliza\n   ============================================================================ */\n\n.policy-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 24px;\n    margin-bottom: 24px;\n}\n\n.detail-section {\n    background: var(--background-secondary);\n    padding: 20px;\n    border-radius: 12px;\n    border: 1px solid var(--border-color);\n}\n\n.detail-section h3 {\n    margin: 0 0 16px;\n    font-size: 1rem;\n    font-weight: 600;\n    color: var(--text-primary);\n    border-bottom: 2px solid var(--accent-color);\n    padding-bottom: 8px;\n}\n\n.detail-section dl {\n    display: grid;\n    gap: 12px;\n    margin: 0;\n}\n\n.detail-section dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.8125rem;\n    margin-bottom: 4px;\n}\n\n.detail-section dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.detail-section ul {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n}\n\n.detail-section ul li {\n    padding: 8px 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    display: flex;\n    align-items: flex-start;\n    gap: 8px;\n}\n\n.detail-section ul li::before {\n    content: '•';\n    color: var(--accent-color);\n    font-weight: bold;\n    font-size: 1.2em;\n}\n\n/* ============================================================================\n   RESPONSIVE\n   ============================================================================ */\n\n@media (max-width: 768px) {\n    .app-modal-overlay {\n        padding: 10px;\n    }\n\n    .app-modal {\n        max-height: 95vh;\n    }\n\n    .app-modal-header {\n        padding: 16px;\n    }\n\n    .app-modal-title {\n        font-size: 1.25rem;\n    }\n\n    .app-modal-body {\n        padding: 16px;\n    }\n\n    .form-row {\n        grid-template-columns: 1fr;\n    }\n\n    .client-info-grid dl {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .client-info-grid dt {\n        font-weight: 600;\n        color: var(--text-primary);\n    }\n\n    .policy-details-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .files-grid {\n        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\n    }\n\n    .data-table {\n        font-size: 0.875rem;\n    }\n\n    .data-table th,\n    .data-table td {\n        padding: 10px 12px;\n    }\n}\n\n/* Dark theme adjustments */\n@media (prefers-color-scheme: dark) {\n    .app-modal-overlay {\n        background: rgba(0, 0, 0, 0.8);\n    }\n\n    .app-modal {\n        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);\n    }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/dashboard-actions.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Dashboard Actions Styles\n * Estilos para modales, tabs y componentes de acciones\n */\n\n/* ============================================================================\n   UPLOAD & POLICY PROCESSING - Sistema de subida de pólizas\n   ============================================================================ */\n\n.upload-instructions {\n    margin-bottom: 20px;\n}\n\n.info-box {\n    display: flex;\n    gap: 15px;\n    padding: 15px;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    border-radius: 8px;\n    color: white;\n}\n\n.info-box svg {\n    flex-shrink: 0;\n    margin-top: 2px;\n}\n\n.info-box ul {\n    margin: 10px 0;\n    padding-left: 20px;\n}\n\n.info-box li {\n    margin: 5px 0;\n}\n\n/* Progress Bar */\n#upload-progress {\n    margin: 20px 0;\n    padding: 15px;\n    background: #f8f9fa;\n    border-radius: 8px;\n}\n\n.progress-bar {\n    width: 100%;\n    height: 8px;\n    background: #e9ecef;\n    border-radius: 4px;\n    overflow: hidden;\n    margin-bottom: 10px;\n}\n\n.progress-fill {\n    height: 100%;\n    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);\n    transition: width 0.3s ease;\n    border-radius: 4px;\n}\n\n#progress-text {\n    font-size: 14px;\n    color: #6c757d;\n    text-align: center;\n    margin: 0;\n}\n\n/* Extracted Data Preview */\n#extracted-data-preview {\n    margin: 20px 0;\n    padding: 20px;\n    background: #f8f9fa;\n    border-radius: 8px;\n    border: 2px solid #dee2e6;\n}\n\n.extracted-data-grid {\n    display: grid;\n    gap: 15px;\n    margin-bottom: 15px;\n}\n\n.data-field {\n    display: flex;\n    flex-direction: column;\n    gap: 5px;\n}\n\n.data-field label {\n    font-size: 14px;\n    font-weight: 500;\n    color: #495057;\n}\n\n.data-field input,\n.data-field select {\n    padding: 8px 12px;\n    border: 1px solid #ced4da;\n    border-radius: 4px;\n    font-size: 14px;\n}\n\n.confidence-note {\n    padding: 10px 15px;\n    border-radius: 6px;\n    font-size: 14px;\n    margin: 0;\n}\n\n.confidence-note.warning {\n    background: #fff3cd;\n    color: #856404;\n    border: 1px solid #ffeeba;\n}\n\n.confidence-note.info {\n    background: #d1ecf1;\n    color: #0c5460;\n    border: 1px solid #bee5eb;\n}\n\n/* Success Summary */\n.success-summary {\n    padding: 20px;\n    background: #d4edda;\n    border: 1px solid #c3e6cb;\n    border-radius: 8px;\n    margin-bottom: 20px;\n}\n\n.success-summary p {\n    margin: 8px 0;\n    font-size: 14px;\n    color: #155724;\n}\n\n.success-message {\n    margin-top: 15px;\n    padding-top: 15px;\n    border-top: 1px solid #c3e6cb;\n    font-weight: 500;\n}\n\n/* ============================================================================\n   MODAL SYSTEM - MOVIDO A modals-unified.css\n   Los estilos de modales ahora están centralizados en modals-unified.css\n   ============================================================================ */\n\n/* Modal sizes - Extensiones específicas para dashboard-actions */\n/* Modal sizes - Extensiones específicas para dashboard-actions */\n.app-modal-sm {\n    width: 100%;\n    max-width: 400px;\n}\n\n.app-modal-md {\n    width: 100%;\n    max-width: 600px;\n}\n\n.app-modal-lg {\n    width: 100%;\n    max-width: 900px;\n}\n\n.app-modal-xl {\n    width: 100%;\n    max-width: 1200px;\n}\n\n/* Forms dentro de modales - Estilos específicos para dashboard */\n.app-modal form {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.form-group {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.form-group label {\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-primary);\n}\n\n.form-group input,\n.form-group select,\n.form-group textarea {\n    padding: 12px 16px;\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    background: var(--background-secondary);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    transition: all 0.2s;\n}\n\n.form-group input:focus,\n.form-group select:focus,\n.form-group textarea:focus {\n    outline: none;\n    border-color: var(--accent-color);\n    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);\n}\n\n.form-group small {\n    font-size: 0.75rem;\n    color: var(--text-secondary);\n}\n\n.form-row {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.form-actions {\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n    padding-top: 8px;\n}\n\n/* ============================================================================\n   CLIENT DETAILS TABS - Sistema de tabs para detalles de cliente\n   ============================================================================ */\n\n.client-detail-tabs {\n    display: flex;\n    gap: 8px;\n    border-bottom: 2px solid var(--border-color);\n    margin-bottom: 24px;\n    padding-bottom: 0;\n    overflow-x: auto;\n    scrollbar-width: thin;\n}\n\n.client-detail-tabs::-webkit-scrollbar {\n    height: 4px;\n}\n\n.client-detail-tabs::-webkit-scrollbar-thumb {\n    background: var(--border-color);\n    border-radius: 2px;\n}\n\n.tab-btn {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 12px 16px;\n    background: transparent;\n    border: none;\n    border-bottom: 3px solid transparent;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s;\n    white-space: nowrap;\n    position: relative;\n    margin-bottom: -2px;\n}\n\n.tab-btn svg {\n    flex-shrink: 0;\n}\n\n.tab-btn:hover {\n    color: var(--text-primary);\n    background: var(--background-tertiary);\n}\n\n.tab-btn.active {\n    color: var(--accent-color);\n    border-bottom-color: var(--accent-color);\n}\n\n.client-detail-content {\n    min-height: 400px;\n}\n\n.tab-content {\n    display: none;\n    animation: fadeIn 0.2s ease;\n}\n\n.tab-content.active {\n    display: block;\n}\n\n/* Client info grid */\n.client-info-grid {\n    background: var(--background-secondary);\n    padding: 24px;\n    border-radius: 12px;\n}\n\n.client-info-grid dl {\n    display: grid;\n    grid-template-columns: 140px 1fr;\n    gap: 16px 24px;\n    margin: 0;\n}\n\n.client-info-grid dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n}\n\n.client-info-grid dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n/* Data table */\n.data-table {\n    width: 100%;\n    border-collapse: collapse;\n    background: var(--background-secondary);\n    border-radius: 12px;\n    overflow: hidden;\n}\n\n.data-table thead {\n    background: var(--background-tertiary);\n}\n\n.data-table th {\n    padding: 12px 16px;\n    text-align: left;\n    font-weight: 600;\n    font-size: 0.8125rem;\n    color: var(--text-secondary);\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.data-table td {\n    padding: 16px;\n    border-top: 1px solid var(--border-color);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.data-table tbody tr:hover {\n    background: var(--background-tertiary);\n}\n\n/* Files grid */\n.files-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.file-card {\n    background: var(--background-secondary);\n    border: 1px solid var(--border-color);\n    border-radius: 12px;\n    padding: 20px;\n    text-align: center;\n    transition: all 0.2s;\n    cursor: pointer;\n}\n\n.file-card:hover {\n    background: var(--background-tertiary);\n    border-color: var(--accent-color);\n    transform: translateY(-2px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.file-card svg {\n    color: var(--accent-color);\n    margin-bottom: 12px;\n}\n\n.file-card p {\n    margin: 8px 0 4px;\n    font-weight: 500;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.file-card small {\n    color: var(--text-secondary);\n    font-size: 0.75rem;\n}\n\n/* ============================================================================\n   POLICY DETAILS - Detalles de póliza\n   ============================================================================ */\n\n.policy-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 24px;\n    margin-bottom: 24px;\n}\n\n.detail-section {\n    background: var(--background-secondary);\n    padding: 20px;\n    border-radius: 12px;\n    border: 1px solid var(--border-color);\n}\n\n.detail-section h3 {\n    margin: 0 0 16px;\n    font-size: 1rem;\n    font-weight: 600;\n    color: var(--text-primary);\n    border-bottom: 2px solid var(--accent-color);\n    padding-bottom: 8px;\n}\n\n.detail-section dl {\n    display: grid;\n    gap: 12px;\n    margin: 0;\n}\n\n.detail-section dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.8125rem;\n    margin-bottom: 4px;\n}\n\n.detail-section dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.detail-section ul {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n}\n\n.detail-section ul li {\n    padding: 8px 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    display: flex;\n    align-items: flex-start;\n    gap: 8px;\n}\n\n.detail-section ul li::before {\n    content: '•';\n    color: var(--accent-color);\n    font-weight: bold;\n    font-size: 1.2em;\n}\n\n/* ============================================================================\n   RESPONSIVE\n   ============================================================================ */\n\n@media (max-width: 768px) {\n    .app-modal-overlay {\n        padding: 10px;\n    }\n\n    .app-modal {\n        max-height: 95vh;\n    }\n\n    .app-modal-header {\n        padding: 16px;\n    }\n\n    .app-modal-title {\n        font-size: 1.25rem;\n    }\n\n    .app-modal-body {\n        padding: 16px;\n    }\n\n    .form-row {\n        grid-template-columns: 1fr;\n    }\n\n    .client-info-grid dl {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .client-info-grid dt {\n        font-weight: 600;\n        color: var(--text-primary);\n    }\n\n    .policy-details-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .files-grid {\n        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\n    }\n\n    .data-table {\n        font-size: 0.875rem;\n    }\n\n    .data-table th,\n    .data-table td {\n        padding: 10px 12px;\n    }\n}\n\n/* Dark theme adjustments */\n@media (prefers-color-scheme: dark) {\n    .app-modal-overlay {\n        background: rgba(0, 0, 0, 0.8);\n    }\n\n    .app-modal {\n        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4746,81 +4656,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `/* Modal Overlay for Client Details */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-    animation: fadeIn 0.2s ease-out;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 12px;
-    max-width: 800px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    animation: slideUp 0.3s ease-out;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px;
-    border-bottom: 1px solid #eee;
-}
-
-.modal-header h2 {
-    margin: 0;
-    font-size: 24px;
-    color: var(--primary-color);
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    font-size: 32px;
-    cursor: pointer;
-    color: #999;
-    transition: color 0.2s;
-    line-height: 1;
-}
-
-.modal-close:hover {
-    color: #333;
-}
-
-.modal-body {
-    padding: 24px;
-}
-
-.client-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
-}
-
-.client-details-grid h3 {
-    font-size: 18px;
-    margin-bottom: 12px;
-    color: var(--primary-color);
-}
-
-.client-details-grid p {
-    margin: 8px 0;
-    color: #555;
-}
+___CSS_LOADER_EXPORT___.push([module.id, `/* ============================================
+   DASHBOARD COMPONENTS
+   NOTA: Estilos de modales movidos a modals-unified.css
+   ============================================ */
 
 /* Loading and Empty States */
 .loading-state,
@@ -4838,11 +4677,22 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Modal Overlay for Client Details */
     align-items: center;
     padding: 16px;
     border-bottom: 1px solid #eee;
-    transition: background 0.2s;
+    border-left: 3px solid transparent;
+    transition: background 0.2s, border-left-color 0.2s;
 }
 
 .client-item:hover {
     background: #f9f9f9;
+}
+
+/* Assigned client styling */
+.client-item.client-assigned {
+    border-left-color: var(--theme-accent-color, #8b2348);
+    background: rgba(139, 35, 72, 0.02);
+}
+
+.client-item.client-assigned:hover {
+    background: rgba(139, 35, 72, 0.05);
 }
 
 .client-item:last-child {
@@ -4853,6 +4703,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Modal Overlay for Client Details */
     margin: 0 0 4px 0;
     color: #333;
     font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .client-info p {
@@ -4866,6 +4720,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Modal Overlay for Client Details */
     gap: 12px;
     font-size: 13px;
     color: #999;
+    flex-wrap: wrap;
+}
+
+.client-meta .text-muted {
+    color: #999;
+    font-style: italic;
 }
 
 .client-actions {
@@ -4938,66 +4798,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Modal Overlay for Client Details */
     margin: 0;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
 /* ============================================
    DARK FOREST THEME OVERRIDES
+   NOTA: Estilos de modales dark theme en modals-unified.css
    ============================================ */
 
-body.dark-forest .modal-overlay {
-    background: rgba(0, 0, 0, 0.85);
-}
-
-body.dark-forest .modal-content {
-    background: var(--card-background);
-    color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-body.dark-forest .modal-header {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-
-body.dark-forest .modal-header h2 {
-    color: var(--text-color);
-}
-
-body.dark-forest .modal-close {
-    color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.05);
-}
-
-body.dark-forest .modal-close:hover {
-    color: var(--text-color);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-body.dark-forest .modal-body {
-    color: var(--text-color);
-}
-
-/* Client Details Grid - Dark Theme */
+/* Client Details Grid - Dark Theme (estilos específicos de dashboard) */
 body.dark-forest .client-details-grid .detail-item label {
     color: var(--text-muted);
 }
@@ -5181,7 +4987,7 @@ body.dark-forest .empty-state {
         align-items: flex-start;
         gap: 12px;
     }
-}`, "",{"version":3,"sources":["webpack://./styles/dashboard-components.css"],"names":[],"mappings":"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","sourcesContent":["/* Modal Overlay for Client Details */\n.modal-overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.7);\n    backdrop-filter: blur(4px);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 10000;\n    animation: fadeIn 0.2s ease-out;\n}\n\n.modal-content {\n    background: white;\n    border-radius: 12px;\n    max-width: 800px;\n    width: 90%;\n    max-height: 80vh;\n    overflow-y: auto;\n    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);\n    animation: slideUp 0.3s ease-out;\n}\n\n.modal-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 24px;\n    border-bottom: 1px solid #eee;\n}\n\n.modal-header h2 {\n    margin: 0;\n    font-size: 24px;\n    color: var(--primary-color);\n}\n\n.modal-close {\n    background: none;\n    border: none;\n    font-size: 32px;\n    cursor: pointer;\n    color: #999;\n    transition: color 0.2s;\n    line-height: 1;\n}\n\n.modal-close:hover {\n    color: #333;\n}\n\n.modal-body {\n    padding: 24px;\n}\n\n.client-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n    gap: 24px;\n}\n\n.client-details-grid h3 {\n    font-size: 18px;\n    margin-bottom: 12px;\n    color: var(--primary-color);\n}\n\n.client-details-grid p {\n    margin: 8px 0;\n    color: #555;\n}\n\n/* Loading and Empty States */\n.loading-state,\n.empty-state {\n    text-align: center;\n    padding: 40px 20px;\n    color: #999;\n    font-style: italic;\n}\n\n/* Client Item */\n.client-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 16px;\n    border-bottom: 1px solid #eee;\n    transition: background 0.2s;\n}\n\n.client-item:hover {\n    background: #f9f9f9;\n}\n\n.client-item:last-child {\n    border-bottom: none;\n}\n\n.client-info h4 {\n    margin: 0 0 4px 0;\n    color: #333;\n    font-size: 16px;\n}\n\n.client-info p {\n    margin: 0 0 8px 0;\n    color: #666;\n    font-size: 14px;\n}\n\n.client-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 13px;\n    color: #999;\n}\n\n.client-actions {\n    display: flex;\n    gap: 8px;\n}\n\n/* Claim Item */\n.claim-item {\n    padding: 16px;\n    border-bottom: 1px solid #eee;\n    transition: background 0.2s;\n}\n\n.claim-item:hover {\n    background: #f9f9f9;\n}\n\n.claim-item:last-child {\n    border-bottom: none;\n}\n\n.claim-info h4 {\n    margin: 0 0 4px 0;\n    color: #333;\n    font-size: 16px;\n}\n\n.claim-info p {\n    margin: 0 0 8px 0;\n    color: #666;\n    font-size: 14px;\n}\n\n.claim-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 13px;\n}\n\n/* Payment Item */\n.payment-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 12px 0;\n    border-bottom: 1px solid #eee;\n}\n\n.payment-item:last-child {\n    border-bottom: none;\n}\n\n.payment-info {\n    display: flex;\n    gap: 16px;\n    align-items: center;\n}\n\n.payment-date {\n    color: #666;\n    font-size: 14px;\n    margin: 0;\n}\n\n.payment-amount {\n    font-weight: 600;\n    font-size: 16px;\n    color: #333;\n    margin: 0;\n}\n\n/* Animations */\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(20px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n/* ============================================\n   DARK FOREST THEME OVERRIDES\n   ============================================ */\n\nbody.dark-forest .modal-overlay {\n    background: rgba(0, 0, 0, 0.85);\n}\n\nbody.dark-forest .modal-content {\n    background: var(--card-background);\n    color: var(--text-color);\n    border: 1px solid rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .modal-header {\n    border-bottom-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .modal-header h2 {\n    color: var(--text-color);\n}\n\nbody.dark-forest .modal-close {\n    color: var(--text-muted);\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .modal-close:hover {\n    color: var(--text-color);\n    background: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .modal-body {\n    color: var(--text-color);\n}\n\n/* Client Details Grid - Dark Theme */\nbody.dark-forest .client-details-grid .detail-item label {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .client-details-grid .detail-item .value {\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-details-grid .detail-item .badge {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-details-grid .detail-item .badge.active {\n    background: rgba(107, 144, 128, 0.3);\n    color: var(--accent-color);\n}\n\n/* Policy Items - Dark Theme */\nbody.dark-forest .policy-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .policy-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(107, 144, 128, 0.3);\n}\n\nbody.dark-forest .policy-number {\n    color: var(--text-color);\n}\n\nbody.dark-forest .policy-type {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .policy-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .policy-status.status-active {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .policy-status.status-pending {\n    background: rgba(255, 152, 0, 0.2);\n    color: #ffb74d;\n}\n\nbody.dark-forest .policy-status.status-expired {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Payment Items - Dark Theme */\nbody.dark-forest .payment-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .payment-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .payment-date {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .payment-amount {\n    color: var(--text-color);\n}\n\nbody.dark-forest .payment-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .payment-status.status-paid {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .payment-status.status-pending {\n    background: rgba(255, 193, 7, 0.2);\n    color: #ffd54f;\n}\n\nbody.dark-forest .payment-status.status-overdue {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Claim Items - Dark Theme */\nbody.dark-forest .claim-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .claim-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .claim-number {\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-date {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .claim-amount {\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-status.status-approved {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .claim-status.status-processing {\n    background: rgba(33, 150, 243, 0.2);\n    color: #64b5f6;\n}\n\nbody.dark-forest .claim-status.status-rejected {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Client Items List - Dark Theme */\nbody.dark-forest .client-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .client-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(107, 144, 128, 0.3);\n}\n\nbody.dark-forest .client-name {\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-email,\nbody.dark-forest .client-phone {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .client-badge {\n    background: rgba(107, 144, 128, 0.2);\n    color: var(--accent-color);\n}\n\n/* Empty States - Dark Theme */\nbody.dark-forest .empty-state {\n    color: var(--text-muted);\n}\n\n/* Responsive */\n@media (max-width: 768px) {\n    .modal-content {\n        width: 95%;\n        max-height: 90vh;\n    }\n\n    .client-details-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .client-item {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 12px;\n    }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/dashboard-components.css"],"names":[],"mappings":"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","sourcesContent":["/* ============================================\n   DASHBOARD COMPONENTS\n   NOTA: Estilos de modales movidos a modals-unified.css\n   ============================================ */\n\n/* Loading and Empty States */\n.loading-state,\n.empty-state {\n    text-align: center;\n    padding: 40px 20px;\n    color: #999;\n    font-style: italic;\n}\n\n/* Client Item */\n.client-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 16px;\n    border-bottom: 1px solid #eee;\n    border-left: 3px solid transparent;\n    transition: background 0.2s, border-left-color 0.2s;\n}\n\n.client-item:hover {\n    background: #f9f9f9;\n}\n\n/* Assigned client styling */\n.client-item.client-assigned {\n    border-left-color: var(--theme-accent-color, #8b2348);\n    background: rgba(139, 35, 72, 0.02);\n}\n\n.client-item.client-assigned:hover {\n    background: rgba(139, 35, 72, 0.05);\n}\n\n.client-item:last-child {\n    border-bottom: none;\n}\n\n.client-info h4 {\n    margin: 0 0 4px 0;\n    color: #333;\n    font-size: 16px;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.client-info p {\n    margin: 0 0 8px 0;\n    color: #666;\n    font-size: 14px;\n}\n\n.client-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 13px;\n    color: #999;\n    flex-wrap: wrap;\n}\n\n.client-meta .text-muted {\n    color: #999;\n    font-style: italic;\n}\n\n.client-actions {\n    display: flex;\n    gap: 8px;\n}\n\n/* Claim Item */\n.claim-item {\n    padding: 16px;\n    border-bottom: 1px solid #eee;\n    transition: background 0.2s;\n}\n\n.claim-item:hover {\n    background: #f9f9f9;\n}\n\n.claim-item:last-child {\n    border-bottom: none;\n}\n\n.claim-info h4 {\n    margin: 0 0 4px 0;\n    color: #333;\n    font-size: 16px;\n}\n\n.claim-info p {\n    margin: 0 0 8px 0;\n    color: #666;\n    font-size: 14px;\n}\n\n.claim-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 13px;\n}\n\n/* Payment Item */\n.payment-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 12px 0;\n    border-bottom: 1px solid #eee;\n}\n\n.payment-item:last-child {\n    border-bottom: none;\n}\n\n.payment-info {\n    display: flex;\n    gap: 16px;\n    align-items: center;\n}\n\n.payment-date {\n    color: #666;\n    font-size: 14px;\n    margin: 0;\n}\n\n.payment-amount {\n    font-weight: 600;\n    font-size: 16px;\n    color: #333;\n    margin: 0;\n}\n\n/* ============================================\n   DARK FOREST THEME OVERRIDES\n   NOTA: Estilos de modales dark theme en modals-unified.css\n   ============================================ */\n\n/* Client Details Grid - Dark Theme (estilos específicos de dashboard) */\nbody.dark-forest .client-details-grid .detail-item label {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .client-details-grid .detail-item .value {\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-details-grid .detail-item .badge {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-details-grid .detail-item .badge.active {\n    background: rgba(107, 144, 128, 0.3);\n    color: var(--accent-color);\n}\n\n/* Policy Items - Dark Theme */\nbody.dark-forest .policy-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .policy-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(107, 144, 128, 0.3);\n}\n\nbody.dark-forest .policy-number {\n    color: var(--text-color);\n}\n\nbody.dark-forest .policy-type {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .policy-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .policy-status.status-active {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .policy-status.status-pending {\n    background: rgba(255, 152, 0, 0.2);\n    color: #ffb74d;\n}\n\nbody.dark-forest .policy-status.status-expired {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Payment Items - Dark Theme */\nbody.dark-forest .payment-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .payment-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .payment-date {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .payment-amount {\n    color: var(--text-color);\n}\n\nbody.dark-forest .payment-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .payment-status.status-paid {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .payment-status.status-pending {\n    background: rgba(255, 193, 7, 0.2);\n    color: #ffd54f;\n}\n\nbody.dark-forest .payment-status.status-overdue {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Claim Items - Dark Theme */\nbody.dark-forest .claim-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .claim-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .claim-number {\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-date {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .claim-amount {\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-status.status-approved {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .claim-status.status-processing {\n    background: rgba(33, 150, 243, 0.2);\n    color: #64b5f6;\n}\n\nbody.dark-forest .claim-status.status-rejected {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Client Items List - Dark Theme */\nbody.dark-forest .client-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .client-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(107, 144, 128, 0.3);\n}\n\nbody.dark-forest .client-name {\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-email,\nbody.dark-forest .client-phone {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .client-badge {\n    background: rgba(107, 144, 128, 0.2);\n    color: var(--accent-color);\n}\n\n/* Empty States - Dark Theme */\nbody.dark-forest .empty-state {\n    color: var(--text-muted);\n}\n\n/* Responsive */\n@media (max-width: 768px) {\n    .modal-content {\n        width: 95%;\n        max-height: 90vh;\n    }\n\n    .client-details-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .client-item {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 12px;\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10310,6 +10116,608 @@ body.dark-forest .info-popup {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./styles/modals-unified.css":
+/*!*************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./styles/modals-unified.css ***!
+  \*************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `/**
+ * UNIFIED MODAL SYSTEM - Sistema centralizado de modales
+ * Este archivo centraliza todos los estilos de modales para consistencia
+ * Incluye soporte completo para dark-forest theme
+ */
+
+/* ============================================================================
+   BASE MODAL OVERLAY - Overlay común para todos los modales
+   ============================================================================ */
+
+.modal-overlay,
+.app-modal-overlay,
+.chart-modal-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-overlay.active,
+.app-modal-overlay.active,
+.chart-modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Dark Forest Theme - Overlay */
+body.dark-forest .modal-overlay,
+body.dark-forest .app-modal-overlay,
+body.dark-forest .chart-modal-overlay,
+html[data-theme="dark-forest"] .modal-overlay,
+html[data-theme="dark-forest"] .app-modal-overlay,
+html[data-theme="dark-forest"] .chart-modal-overlay {
+    background: rgba(6, 24, 20, 0.92);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+}
+
+/* ============================================================================
+   MODAL CONTENT CONTAINER - Contenedor del modal
+   ============================================================================ */
+
+.modal-content,
+.app-modal,
+.chart-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow:
+        0 24px 48px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.active .modal-content,
+.app-modal-overlay.active .app-modal,
+.chart-modal-overlay.active .chart-modal-content {
+    transform: scale(1) translateY(0);
+}
+
+/* Modal sizes */
+.app-modal-sm {
+    max-width: 500px;
+}
+
+.app-modal-md {
+    max-width: 700px;
+}
+
+.app-modal-lg {
+    max-width: 900px;
+}
+
+.app-modal-xl {
+    max-width: 1200px;
+}
+
+/* Dark Forest Theme - Modal Content */
+body.dark-forest .modal-content,
+body.dark-forest .app-modal,
+body.dark-forest .chart-modal-content,
+html[data-theme="dark-forest"] .modal-content,
+html[data-theme="dark-forest"] .app-modal,
+html[data-theme="dark-forest"] .chart-modal-content {
+    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94));
+    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32));
+    box-shadow:
+        0 24px 48px rgba(0, 0, 0, 0.7),
+        0 0 0 1px var(--theme-surface-border-strong, rgba(223, 243, 237, 0.42)),
+        0 0 60px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.18));
+}
+
+/* ============================================================================
+   MODAL HEADER - Cabecera del modal
+   ============================================================================ */
+
+.modal-header,
+.app-modal-header,
+.chart-modal-header {
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: #f8f9fa;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-header h2,
+.app-modal-title,
+.chart-modal-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Dark Forest Theme - Modal Header */
+body.dark-forest .modal-header,
+body.dark-forest .app-modal-header,
+body.dark-forest .chart-modal-header,
+html[data-theme="dark-forest"] .modal-header,
+html[data-theme="dark-forest"] .app-modal-header,
+html[data-theme="dark-forest"] .chart-modal-header {
+    background: var(--theme-surface-bg-deep, #061c17);
+    border-bottom-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));
+}
+
+body.dark-forest .modal-header h2,
+body.dark-forest .app-modal-title,
+body.dark-forest .chart-modal-title,
+html[data-theme="dark-forest"] .modal-header h2,
+html[data-theme="dark-forest"] .app-modal-title,
+html[data-theme="dark-forest"] .chart-modal-title {
+    color: var(--theme-text-primary, #f0f7f3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================================
+   MODAL CLOSE BUTTON - Botón de cerrar
+   ============================================================================ */
+
+.modal-close,
+.app-modal-close,
+.chart-modal-close {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover,
+.app-modal-close:hover,
+.chart-modal-close:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1a1a1a;
+    transform: rotate(90deg);
+}
+
+/* Dark Forest Theme - Close Button */
+body.dark-forest .modal-close,
+body.dark-forest .app-modal-close,
+body.dark-forest .chart-modal-close,
+html[data-theme="dark-forest"] .modal-close,
+html[data-theme="dark-forest"] .app-modal-close,
+html[data-theme="dark-forest"] .chart-modal-close {
+    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.22));
+    border-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));
+    color: var(--theme-text-secondary, #c8ddd2);
+}
+
+body.dark-forest .modal-close:hover,
+body.dark-forest .app-modal-close:hover,
+body.dark-forest .chart-modal-close:hover,
+html[data-theme="dark-forest"] .modal-close:hover,
+html[data-theme="dark-forest"] .app-modal-close:hover,
+html[data-theme="dark-forest"] .chart-modal-close:hover {
+    background: var(--theme-accent-color, #2f6b7a);
+    border-color: var(--theme-accent-color-hover, #45a0b8);
+    color: var(--theme-text-primary, #f0f7f3);
+    box-shadow: 0 0 16px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.18));
+}
+
+/* ============================================================================
+   MODAL BODY - Cuerpo del modal (scrollable)
+   ============================================================================ */
+
+.modal-body,
+.app-modal-body,
+.chart-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 24px;
+    background: #ffffff;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Dark Forest Theme - Modal Body */
+body.dark-forest .modal-body,
+body.dark-forest .app-modal-body,
+body.dark-forest .chart-modal-body,
+html[data-theme="dark-forest"] .modal-body,
+html[data-theme="dark-forest"] .app-modal-body,
+html[data-theme="dark-forest"] .chart-modal-body {
+    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94));
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
+/* Custom scrollbar for modal body */
+.modal-body::-webkit-scrollbar,
+.app-modal-body::-webkit-scrollbar,
+.chart-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track,
+.app-modal-body::-webkit-scrollbar-track,
+.chart-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb,
+.app-modal-body::-webkit-scrollbar-thumb,
+.chart-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover,
+.app-modal-body::-webkit-scrollbar-thumb:hover,
+.chart-modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Forest Theme - Scrollbar */
+body.dark-forest .modal-body::-webkit-scrollbar-thumb,
+body.dark-forest .app-modal-body::-webkit-scrollbar-thumb,
+body.dark-forest .chart-modal-body::-webkit-scrollbar-thumb,
+html[data-theme="dark-forest"] .modal-body::-webkit-scrollbar-thumb,
+html[data-theme="dark-forest"] .app-modal-body::-webkit-scrollbar-thumb,
+html[data-theme="dark-forest"] .chart-modal-body::-webkit-scrollbar-thumb {
+    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.22));
+    border-radius: 4px;
+}
+
+body.dark-forest .modal-body::-webkit-scrollbar-thumb:hover,
+body.dark-forest .app-modal-body::-webkit-scrollbar-thumb:hover,
+body.dark-forest .chart-modal-body::-webkit-scrollbar-thumb:hover,
+html[data-theme="dark-forest"] .modal-body::-webkit-scrollbar-thumb:hover,
+html[data-theme="dark-forest"] .app-modal-body::-webkit-scrollbar-thumb:hover,
+html[data-theme="dark-forest"] .chart-modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-accent-color, #2f6b7a);
+}
+
+/* ============================================================================
+   MODAL FOOTER - Pie del modal (opcional)
+   ============================================================================ */
+
+.modal-footer,
+.app-modal-footer {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: #f8f9fa;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+/* Dark Forest Theme - Modal Footer */
+body.dark-forest .modal-footer,
+body.dark-forest .app-modal-footer,
+html[data-theme="dark-forest"] .modal-footer,
+html[data-theme="dark-forest"] .app-modal-footer {
+    background: var(--theme-surface-bg-deep, #061c17);
+    border-top-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));
+}
+
+/* ============================================================================
+   MODAL CONTENT ELEMENTS - Elementos internos del modal
+   ============================================================================ */
+
+/* Client Details Grid */
+.client-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.client-details-grid h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+}
+
+.client-details-grid p {
+    margin: 8px 0;
+    color: #555;
+}
+
+body.dark-forest .client-details-grid h3,
+html[data-theme="dark-forest"] .client-details-grid h3 {
+    color: var(--theme-contrast-strong, #c3efe2);
+}
+
+body.dark-forest .client-details-grid p,
+html[data-theme="dark-forest"] .client-details-grid p {
+    color: var(--theme-text-secondary, #c8ddd2);
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+body.dark-forest .loading-state,
+html[data-theme="dark-forest"] .loading-state {
+    color: var(--theme-text-secondary, #c8ddd2);
+}
+
+/* Detail Items */
+.detail-item {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.detail-item .value {
+    font-size: 14px;
+    color: #1a1a1a;
+    font-weight: 500;
+}
+
+body.dark-forest .detail-item,
+html[data-theme="dark-forest"] .detail-item {
+    border-bottom-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));
+}
+
+body.dark-forest .detail-item label,
+html[data-theme="dark-forest"] .detail-item label {
+    color: var(--theme-highlight-soft, #cbeee4);
+}
+
+body.dark-forest .detail-item .value,
+html[data-theme="dark-forest"] .detail-item .value {
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
+/* Charts and Stats */
+.chart-stat-box,
+.chart-visualization,
+.chart-details-section {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    border-radius: 14px;
+    padding: 16px;
+}
+
+body.dark-forest .chart-stat-box,
+body.dark-forest .chart-visualization,
+body.dark-forest .chart-details-section,
+html[data-theme="dark-forest"] .chart-stat-box,
+html[data-theme="dark-forest"] .chart-visualization,
+html[data-theme="dark-forest"] .chart-details-section {
+    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34));
+    border-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.chart-stat-label {
+    font-size: 13px;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chart-stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+body.dark-forest .chart-stat-label,
+html[data-theme="dark-forest"] .chart-stat-label {
+    color: var(--theme-highlight-soft, #cbeee4);
+}
+
+body.dark-forest .chart-stat-value,
+html[data-theme="dark-forest"] .chart-stat-value {
+    color: var(--theme-sunlight-strong, #c6ede0);
+}
+
+/* Timeline Items */
+.timeline-content {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+body.dark-forest .timeline-content,
+html[data-theme="dark-forest"] .timeline-content {
+    background: var(--acrylic-bg-light, rgba(6, 24, 20, 0.22));
+    border-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.timeline-header strong {
+    color: #1a1a1a;
+}
+
+.timeline-date,
+.timeline-detail {
+    color: #666;
+}
+
+body.dark-forest .timeline-header strong,
+html[data-theme="dark-forest"] .timeline-header strong {
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
+body.dark-forest .timeline-date,
+body.dark-forest .timeline-detail,
+html[data-theme="dark-forest"] .timeline-date,
+html[data-theme="dark-forest"] .timeline-detail {
+    color: var(--theme-text-secondary, #c8ddd2);
+}
+
+/* Policy Detail Cards */
+.policy-detail-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    border-radius: 16px;
+    padding: 18px;
+}
+
+body.dark-forest .policy-detail-card,
+html[data-theme="dark-forest"] .policy-detail-card {
+    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34));
+    border-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.policy-detail-info h4 {
+    color: #1a1a1a;
+}
+
+.policy-number {
+    color: #666;
+}
+
+body.dark-forest .policy-detail-info h4,
+html[data-theme="dark-forest"] .policy-detail-info h4 {
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
+body.dark-forest .policy-number,
+html[data-theme="dark-forest"] .policy-number {
+    color: var(--theme-highlight-soft, #cbeee4);
+}
+
+/* ============================================================================
+   ANIMATIONS - Animaciones comunes
+   ============================================================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ============================================================================
+   RESPONSIVE - Adaptación a móviles
+   ============================================================================ */
+
+@media (max-width: 768px) {
+
+    .modal-content,
+    .app-modal,
+    .chart-modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-header,
+    .app-modal-header,
+    .chart-modal-header {
+        padding: 20px 16px 16px;
+    }
+
+    .modal-body,
+    .app-modal-body,
+    .chart-modal-body {
+        padding: 16px;
+    }
+
+    .modal-header h2,
+    .app-modal-title,
+    .chart-modal-title {
+        font-size: 1.25rem;
+    }
+
+    .client-details-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}`, "",{"version":3,"sources":["webpack://./styles/modals-unified.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * UNIFIED MODAL SYSTEM - Sistema centralizado de modales\n * Este archivo centraliza todos los estilos de modales para consistencia\n * Incluye soporte completo para dark-forest theme\n */\n\n/* ============================================================================\n   BASE MODAL OVERLAY - Overlay común para todos los modales\n   ============================================================================ */\n\n.modal-overlay,\n.app-modal-overlay,\n.chart-modal-overlay {\n    position: fixed;\n    inset: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 9999;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: rgba(0, 0, 0, 0.6);\n    backdrop-filter: blur(6px);\n    -webkit-backdrop-filter: blur(6px);\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n    padding: 20px;\n    overflow-y: auto;\n}\n\n.modal-overlay.active,\n.app-modal-overlay.active,\n.chart-modal-overlay.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* Dark Forest Theme - Overlay */\nbody.dark-forest .modal-overlay,\nbody.dark-forest .app-modal-overlay,\nbody.dark-forest .chart-modal-overlay,\nhtml[data-theme=\"dark-forest\"] .modal-overlay,\nhtml[data-theme=\"dark-forest\"] .app-modal-overlay,\nhtml[data-theme=\"dark-forest\"] .chart-modal-overlay {\n    background: rgba(6, 24, 20, 0.92);\n    backdrop-filter: blur(12px) saturate(160%);\n    -webkit-backdrop-filter: blur(12px) saturate(160%);\n}\n\n/* ============================================================================\n   MODAL CONTENT CONTAINER - Contenedor del modal\n   ============================================================================ */\n\n.modal-content,\n.app-modal,\n.chart-modal-content {\n    position: relative;\n    width: 90%;\n    max-width: 800px;\n    max-height: 90vh;\n    background: #ffffff;\n    border-radius: 16px;\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.2),\n        0 0 0 1px rgba(0, 0, 0, 0.1);\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    transform: scale(0.9) translateY(20px);\n    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n\n.modal-overlay.active .modal-content,\n.app-modal-overlay.active .app-modal,\n.chart-modal-overlay.active .chart-modal-content {\n    transform: scale(1) translateY(0);\n}\n\n/* Modal sizes */\n.app-modal-sm {\n    max-width: 500px;\n}\n\n.app-modal-md {\n    max-width: 700px;\n}\n\n.app-modal-lg {\n    max-width: 900px;\n}\n\n.app-modal-xl {\n    max-width: 1200px;\n}\n\n/* Dark Forest Theme - Modal Content */\nbody.dark-forest .modal-content,\nbody.dark-forest .app-modal,\nbody.dark-forest .chart-modal-content,\nhtml[data-theme=\"dark-forest\"] .modal-content,\nhtml[data-theme=\"dark-forest\"] .app-modal,\nhtml[data-theme=\"dark-forest\"] .chart-modal-content {\n    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94));\n    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.7),\n        0 0 0 1px var(--theme-surface-border-strong, rgba(223, 243, 237, 0.42)),\n        0 0 60px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.18));\n}\n\n/* ============================================================================\n   MODAL HEADER - Cabecera del modal\n   ============================================================================ */\n\n.modal-header,\n.app-modal-header,\n.chart-modal-header {\n    padding: 24px 24px 20px;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n    background: #f8f9fa;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n\n.modal-header h2,\n.app-modal-title,\n.chart-modal-title {\n    margin: 0;\n    font-size: 1.5rem;\n    font-weight: 600;\n    color: #1a1a1a;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n/* Dark Forest Theme - Modal Header */\nbody.dark-forest .modal-header,\nbody.dark-forest .app-modal-header,\nbody.dark-forest .chart-modal-header,\nhtml[data-theme=\"dark-forest\"] .modal-header,\nhtml[data-theme=\"dark-forest\"] .app-modal-header,\nhtml[data-theme=\"dark-forest\"] .chart-modal-header {\n    background: var(--theme-surface-bg-deep, #061c17);\n    border-bottom-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n}\n\nbody.dark-forest .modal-header h2,\nbody.dark-forest .app-modal-title,\nbody.dark-forest .chart-modal-title,\nhtml[data-theme=\"dark-forest\"] .modal-header h2,\nhtml[data-theme=\"dark-forest\"] .app-modal-title,\nhtml[data-theme=\"dark-forest\"] .chart-modal-title {\n    color: var(--theme-text-primary, #f0f7f3);\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);\n}\n\n/* ============================================================================\n   MODAL CLOSE BUTTON - Botón de cerrar\n   ============================================================================ */\n\n.modal-close,\n.app-modal-close,\n.chart-modal-close {\n    width: 36px;\n    height: 36px;\n    padding: 0;\n    background: transparent;\n    border: 1px solid rgba(0, 0, 0, 0.1);\n    border-radius: 8px;\n    color: #666;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 24px;\n    line-height: 1;\n    transition: all 0.2s ease;\n}\n\n.modal-close:hover,\n.app-modal-close:hover,\n.chart-modal-close:hover {\n    background: rgba(0, 0, 0, 0.05);\n    color: #1a1a1a;\n    transform: rotate(90deg);\n}\n\n/* Dark Forest Theme - Close Button */\nbody.dark-forest .modal-close,\nbody.dark-forest .app-modal-close,\nbody.dark-forest .chart-modal-close,\nhtml[data-theme=\"dark-forest\"] .modal-close,\nhtml[data-theme=\"dark-forest\"] .app-modal-close,\nhtml[data-theme=\"dark-forest\"] .chart-modal-close {\n    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.22));\n    border-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\nbody.dark-forest .modal-close:hover,\nbody.dark-forest .app-modal-close:hover,\nbody.dark-forest .chart-modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .app-modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .chart-modal-close:hover {\n    background: var(--theme-accent-color, #2f6b7a);\n    border-color: var(--theme-accent-color-hover, #45a0b8);\n    color: var(--theme-text-primary, #f0f7f3);\n    box-shadow: 0 0 16px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.18));\n}\n\n/* ============================================================================\n   MODAL BODY - Cuerpo del modal (scrollable)\n   ============================================================================ */\n\n.modal-body,\n.app-modal-body,\n.chart-modal-body {\n    flex: 1;\n    overflow-y: auto;\n    overflow-x: hidden;\n    padding: 24px;\n    background: #ffffff;\n    -webkit-overflow-scrolling: touch;\n    scroll-behavior: smooth;\n}\n\n/* Dark Forest Theme - Modal Body */\nbody.dark-forest .modal-body,\nbody.dark-forest .app-modal-body,\nbody.dark-forest .chart-modal-body,\nhtml[data-theme=\"dark-forest\"] .modal-body,\nhtml[data-theme=\"dark-forest\"] .app-modal-body,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body {\n    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94));\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n/* Custom scrollbar for modal body */\n.modal-body::-webkit-scrollbar,\n.app-modal-body::-webkit-scrollbar,\n.chart-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.modal-body::-webkit-scrollbar-track,\n.app-modal-body::-webkit-scrollbar-track,\n.chart-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.modal-body::-webkit-scrollbar-thumb,\n.app-modal-body::-webkit-scrollbar-thumb,\n.chart-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.2);\n    border-radius: 4px;\n}\n\n.modal-body::-webkit-scrollbar-thumb:hover,\n.app-modal-body::-webkit-scrollbar-thumb:hover,\n.chart-modal-body::-webkit-scrollbar-thumb:hover {\n    background: rgba(0, 0, 0, 0.3);\n}\n\n/* Dark Forest Theme - Scrollbar */\nbody.dark-forest .modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .app-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .chart-modal-body::-webkit-scrollbar-thumb,\nhtml[data-theme=\"dark-forest\"] .modal-body::-webkit-scrollbar-thumb,\nhtml[data-theme=\"dark-forest\"] .app-modal-body::-webkit-scrollbar-thumb,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body::-webkit-scrollbar-thumb {\n    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.22));\n    border-radius: 4px;\n}\n\nbody.dark-forest .modal-body::-webkit-scrollbar-thumb:hover,\nbody.dark-forest .app-modal-body::-webkit-scrollbar-thumb:hover,\nbody.dark-forest .chart-modal-body::-webkit-scrollbar-thumb:hover,\nhtml[data-theme=\"dark-forest\"] .modal-body::-webkit-scrollbar-thumb:hover,\nhtml[data-theme=\"dark-forest\"] .app-modal-body::-webkit-scrollbar-thumb:hover,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body::-webkit-scrollbar-thumb:hover {\n    background: var(--theme-accent-color, #2f6b7a);\n}\n\n/* ============================================================================\n   MODAL FOOTER - Pie del modal (opcional)\n   ============================================================================ */\n\n.modal-footer,\n.app-modal-footer {\n    padding: 20px 24px;\n    border-top: 1px solid rgba(0, 0, 0, 0.1);\n    background: #f8f9fa;\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n    flex-shrink: 0;\n}\n\n/* Dark Forest Theme - Modal Footer */\nbody.dark-forest .modal-footer,\nbody.dark-forest .app-modal-footer,\nhtml[data-theme=\"dark-forest\"] .modal-footer,\nhtml[data-theme=\"dark-forest\"] .app-modal-footer {\n    background: var(--theme-surface-bg-deep, #061c17);\n    border-top-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n}\n\n/* ============================================================================\n   MODAL CONTENT ELEMENTS - Elementos internos del modal\n   ============================================================================ */\n\n/* Client Details Grid */\n.client-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n    gap: 24px;\n}\n\n.client-details-grid h3 {\n    font-size: 18px;\n    margin-bottom: 12px;\n    color: #1a1a1a;\n}\n\n.client-details-grid p {\n    margin: 8px 0;\n    color: #555;\n}\n\nbody.dark-forest .client-details-grid h3,\nhtml[data-theme=\"dark-forest\"] .client-details-grid h3 {\n    color: var(--theme-contrast-strong, #c3efe2);\n}\n\nbody.dark-forest .client-details-grid p,\nhtml[data-theme=\"dark-forest\"] .client-details-grid p {\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\n/* Loading State */\n.loading-state {\n    text-align: center;\n    padding: 40px 20px;\n    color: #999;\n}\n\nbody.dark-forest .loading-state,\nhtml[data-theme=\"dark-forest\"] .loading-state {\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\n/* Detail Items */\n.detail-item {\n    padding: 12px 0;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n}\n\n.detail-item:last-child {\n    border-bottom: none;\n}\n\n.detail-item label {\n    display: block;\n    font-size: 12px;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n    color: #666;\n    margin-bottom: 4px;\n}\n\n.detail-item .value {\n    font-size: 14px;\n    color: #1a1a1a;\n    font-weight: 500;\n}\n\nbody.dark-forest .detail-item,\nhtml[data-theme=\"dark-forest\"] .detail-item {\n    border-bottom-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));\n}\n\nbody.dark-forest .detail-item label,\nhtml[data-theme=\"dark-forest\"] .detail-item label {\n    color: var(--theme-highlight-soft, #cbeee4);\n}\n\nbody.dark-forest .detail-item .value,\nhtml[data-theme=\"dark-forest\"] .detail-item .value {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n/* Charts and Stats */\n.chart-stat-box,\n.chart-visualization,\n.chart-details-section {\n    background: rgba(255, 255, 255, 0.6);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 14px;\n    padding: 16px;\n}\n\nbody.dark-forest .chart-stat-box,\nbody.dark-forest .chart-visualization,\nbody.dark-forest .chart-details-section,\nhtml[data-theme=\"dark-forest\"] .chart-stat-box,\nhtml[data-theme=\"dark-forest\"] .chart-visualization,\nhtml[data-theme=\"dark-forest\"] .chart-details-section {\n    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34));\n    border-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n    backdrop-filter: blur(20px) saturate(160%);\n    -webkit-backdrop-filter: blur(20px) saturate(160%);\n}\n\n.chart-stat-label {\n    font-size: 13px;\n    color: #666;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.chart-stat-value {\n    font-size: 28px;\n    font-weight: 700;\n    color: #1a1a1a;\n}\n\nbody.dark-forest .chart-stat-label,\nhtml[data-theme=\"dark-forest\"] .chart-stat-label {\n    color: var(--theme-highlight-soft, #cbeee4);\n}\n\nbody.dark-forest .chart-stat-value,\nhtml[data-theme=\"dark-forest\"] .chart-stat-value {\n    color: var(--theme-sunlight-strong, #c6ede0);\n}\n\n/* Timeline Items */\n.timeline-content {\n    background: rgba(255, 255, 255, 0.7);\n    padding: 12px 14px;\n    border-radius: 10px;\n    border: 1px solid rgba(226, 232, 240, 0.5);\n}\n\nbody.dark-forest .timeline-content,\nhtml[data-theme=\"dark-forest\"] .timeline-content {\n    background: var(--acrylic-bg-light, rgba(6, 24, 20, 0.22));\n    border-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));\n    backdrop-filter: blur(15px);\n    -webkit-backdrop-filter: blur(15px);\n}\n\n.timeline-header strong {\n    color: #1a1a1a;\n}\n\n.timeline-date,\n.timeline-detail {\n    color: #666;\n}\n\nbody.dark-forest .timeline-header strong,\nhtml[data-theme=\"dark-forest\"] .timeline-header strong {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\nbody.dark-forest .timeline-date,\nbody.dark-forest .timeline-detail,\nhtml[data-theme=\"dark-forest\"] .timeline-date,\nhtml[data-theme=\"dark-forest\"] .timeline-detail {\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\n/* Policy Detail Cards */\n.policy-detail-card {\n    background: rgba(255, 255, 255, 0.8);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 16px;\n    padding: 18px;\n}\n\nbody.dark-forest .policy-detail-card,\nhtml[data-theme=\"dark-forest\"] .policy-detail-card {\n    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34));\n    border-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n    backdrop-filter: blur(18px);\n    -webkit-backdrop-filter: blur(18px);\n}\n\n.policy-detail-info h4 {\n    color: #1a1a1a;\n}\n\n.policy-number {\n    color: #666;\n}\n\nbody.dark-forest .policy-detail-info h4,\nhtml[data-theme=\"dark-forest\"] .policy-detail-info h4 {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\nbody.dark-forest .policy-number,\nhtml[data-theme=\"dark-forest\"] .policy-number {\n    color: var(--theme-highlight-soft, #cbeee4);\n}\n\n/* ============================================================================\n   ANIMATIONS - Animaciones comunes\n   ============================================================================ */\n\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(30px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n/* ============================================================================\n   RESPONSIVE - Adaptación a móviles\n   ============================================================================ */\n\n@media (max-width: 768px) {\n\n    .modal-content,\n    .app-modal,\n    .chart-modal-content {\n        width: 95%;\n        max-height: 95vh;\n    }\n\n    .modal-header,\n    .app-modal-header,\n    .chart-modal-header {\n        padding: 20px 16px 16px;\n    }\n\n    .modal-body,\n    .app-modal-body,\n    .chart-modal-body {\n        padding: 16px;\n    }\n\n    .modal-header h2,\n    .app-modal-title,\n    .chart-modal-title {\n        font-size: 1.25rem;\n    }\n\n    .client-details-grid {\n        grid-template-columns: 1fr;\n        gap: 16px;\n    }\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./styles/notification-modal.css":
 /*!*****************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./styles/notification-modal.css ***!
@@ -15234,61 +15642,17 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 
 /* ============================================
    MODAL - Upload de Comprobantes
+   NOTA: Estilos base de modales en modals-unified.css
    ============================================ */
 
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.modal-content {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(40px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.modal-content h3 {
+/* Estilos específicos de payment modal (extensiones) */
+.payment-modal-content h3 {
     margin: 0 0 12px 0;
     color: var(--text-primary, #1a1a1a);
     font-size: 1.5rem;
 }
 
-.modal-content p {
+.payment-modal-content p {
     margin: 0 0 24px 0;
     color: var(--text-secondary, #666);
 }
@@ -15485,7 +15849,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 .payment-badge.on-time {
     background: #e8f5e9;
     color: #2e7d32;
-}`, "",{"version":3,"sources":["webpack://./styles/payments.css"],"names":[],"mappings":"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","sourcesContent":["/* ============================================\n   PAYMENT SYSTEM STYLES\n   Sistema de seguimiento de pagos de pólizas\n   ============================================ */\n\n/* ============================================\n   PAYMENT SCHEDULE - Lista de Pagos\n   ============================================ */\n\n.payment-schedule-container {\n    padding: 20px;\n    background: var(--background-secondary, #f8f9fa);\n    border-radius: 12px;\n}\n\n.payment-schedule-container h3 {\n    margin: 0 0 20px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.5rem;\n    font-weight: 600;\n}\n\n.payment-list {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n}\n\n.payment-card {\n    background: white;\n    border-radius: 10px;\n    padding: 20px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);\n    transition: all 0.3s ease;\n    border-left: 4px solid #e0e0e0;\n}\n\n.payment-card:hover {\n    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);\n    transform: translateY(-2px);\n}\n\n/* Status Colors */\n.payment-card.status-pending {\n    border-left-color: #ffa726;\n}\n\n.payment-card.status-processing {\n    border-left-color: #42a5f5;\n}\n\n.payment-card.status-rejected {\n    border-left-color: #ef5350;\n}\n\n.payment-card.status-awaiting {\n    border-left-color: #ffca28;\n}\n\n.payment-card.status-review {\n    border-left-color: #26c6da;\n}\n\n.payment-card.status-paid {\n    border-left-color: #66bb6a;\n}\n\n.payment-card.status-completed {\n    border-left-color: #4caf50;\n    opacity: 0.8;\n}\n\n.payment-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 16px;\n    padding-bottom: 12px;\n    border-bottom: 1px solid #e0e0e0;\n}\n\n.installment-number {\n    font-weight: 600;\n    font-size: 1.1rem;\n    color: var(--text-primary, #1a1a1a);\n}\n\n.payment-status {\n    padding: 6px 14px;\n    border-radius: 20px;\n    font-size: 0.85rem;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.payment-status.status-pending {\n    background: #fff3e0;\n    color: #f57c00;\n}\n\n.payment-status.status-processing {\n    background: #e3f2fd;\n    color: #1976d2;\n}\n\n.payment-status.status-rejected {\n    background: #ffebee;\n    color: #c62828;\n}\n\n.payment-status.status-awaiting {\n    background: #fff9c4;\n    color: #f57f17;\n}\n\n.payment-status.status-review {\n    background: #e0f7fa;\n    color: #00838f;\n}\n\n.payment-status.status-paid {\n    background: #e8f5e9;\n    color: #2e7d32;\n}\n\n.payment-status.status-completed {\n    background: #f1f8e9;\n    color: #558b2f;\n}\n\n.payment-details {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    margin-bottom: 16px;\n}\n\n.detail-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\n.detail-row .label {\n    color: var(--text-secondary, #666);\n    font-size: 0.9rem;\n}\n\n.detail-row .value {\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1rem;\n}\n\n.payment-actions {\n    display: flex;\n    gap: 12px;\n    margin-top: 16px;\n    padding-top: 16px;\n    border-top: 1px solid #e0e0e0;\n}\n\n.btn-upload-proof {\n    flex: 1;\n    padding: 12px 24px;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n    border: none;\n    border-radius: 8px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.3s ease;\n}\n\n.btn-upload-proof:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);\n}\n\n.proof-indicator {\n    margin-top: 12px;\n    padding: 8px 12px;\n    background: #e8f5e9;\n    color: #2e7d32;\n    border-radius: 6px;\n    font-size: 0.85rem;\n    text-align: center;\n}\n\n/* ============================================\n   NOTIFICATIONS - Notificaciones\n   ============================================ */\n\n.notifications-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 16px;\n}\n\n.notification-item {\n    display: flex;\n    align-items: start;\n    gap: 12px;\n    padding: 16px;\n    background: white;\n    border-radius: 10px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);\n    transition: all 0.2s ease;\n    border-left: 4px solid #e0e0e0;\n}\n\n.notification-item:hover {\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n    transform: translateX(4px);\n}\n\n.notification-item.notification-info {\n    border-left-color: #2196f3;\n}\n\n.notification-item.notification-warning {\n    border-left-color: #ff9800;\n}\n\n.notification-item.notification-success {\n    border-left-color: #4caf50;\n}\n\n.notification-item.notification-error {\n    border-left-color: #f44336;\n}\n\n.notification-icon {\n    font-size: 1.5rem;\n    min-width: 32px;\n    text-align: center;\n}\n\n.notification-content {\n    flex: 1;\n}\n\n.notification-content p {\n    margin: 0 0 6px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 0.95rem;\n    line-height: 1.5;\n}\n\n.notification-time {\n    font-size: 0.8rem;\n    color: var(--text-secondary, #999);\n}\n\n.no-notifications {\n    padding: 40px 20px;\n    text-align: center;\n    color: var(--text-secondary, #999);\n    font-style: italic;\n}\n\n/* ============================================\n   PROOF REVIEW - Revisión de Comprobantes (Agente)\n   ============================================ */\n\n.proof-reviews-container {\n    padding: 20px;\n}\n\n.proof-reviews-container h3 {\n    margin: 0 0 20px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.5rem;\n    font-weight: 600;\n}\n\n.proof-list {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));\n    gap: 20px;\n}\n\n.proof-card {\n    background: white;\n    border-radius: 12px;\n    padding: 20px;\n    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);\n    transition: all 0.3s ease;\n    border: 2px solid #e0e0e0;\n}\n\n.proof-card:hover {\n    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);\n    border-color: #667eea;\n}\n\n.proof-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: start;\n    margin-bottom: 16px;\n    padding-bottom: 12px;\n    border-bottom: 2px solid #f0f0f0;\n}\n\n.proof-header h4 {\n    margin: 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.1rem;\n}\n\n.upload-date {\n    font-size: 0.85rem;\n    color: var(--text-secondary, #999);\n}\n\n.proof-details {\n    margin-bottom: 16px;\n}\n\n.proof-details p {\n    margin: 8px 0;\n    font-size: 0.95rem;\n    color: var(--text-secondary, #666);\n}\n\n.proof-details strong {\n    color: var(--text-primary, #1a1a1a);\n    font-weight: 600;\n}\n\n.proof-actions {\n    display: flex;\n    gap: 10px;\n    flex-wrap: wrap;\n}\n\n.proof-actions button {\n    flex: 1;\n    min-width: 100px;\n    padding: 10px 16px;\n    border: none;\n    border-radius: 8px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    font-size: 0.9rem;\n}\n\n.btn-view-proof {\n    background: #f0f0f0;\n    color: #333;\n}\n\n.btn-view-proof:hover {\n    background: #e0e0e0;\n    transform: translateY(-2px);\n}\n\n.btn-approve-proof {\n    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);\n    color: white;\n}\n\n.btn-approve-proof:hover {\n    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.4);\n    transform: translateY(-2px);\n}\n\n.btn-reject-proof {\n    background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);\n    color: white;\n}\n\n.btn-reject-proof:hover {\n    box-shadow: 0 4px 12px rgba(239, 83, 80, 0.4);\n    transform: translateY(-2px);\n}\n\n.no-pending-reviews {\n    padding: 60px 20px;\n    text-align: center;\n    color: var(--text-secondary, #999);\n    font-size: 1.1rem;\n    background: white;\n    border-radius: 12px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);\n}\n\n/* ============================================\n   MODAL - Upload de Comprobantes\n   ============================================ */\n\n.modal-overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: rgba(0, 0, 0, 0.6);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 10000;\n    animation: fadeIn 0.3s ease;\n}\n\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n.modal-content {\n    background: white;\n    border-radius: 16px;\n    padding: 32px;\n    max-width: 500px;\n    width: 90%;\n    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);\n    animation: slideUp 0.3s ease;\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(40px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n.modal-content h3 {\n    margin: 0 0 12px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.5rem;\n}\n\n.modal-content p {\n    margin: 0 0 24px 0;\n    color: var(--text-secondary, #666);\n}\n\n.modal-content input[type=\"file\"] {\n    width: 100%;\n    padding: 12px;\n    border: 2px dashed #ccc;\n    border-radius: 8px;\n    margin-bottom: 24px;\n    cursor: pointer;\n    transition: all 0.3s ease;\n}\n\n.modal-content input[type=\"file\"]:hover {\n    border-color: #667eea;\n    background: #f8f9ff;\n}\n\n.modal-actions {\n    display: flex;\n    gap: 12px;\n}\n\n.modal-actions button {\n    flex: 1;\n    padding: 14px 24px;\n    border: none;\n    border-radius: 8px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    font-size: 1rem;\n}\n\n.btn-primary {\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n}\n\n.btn-primary:hover {\n    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);\n    transform: translateY(-2px);\n}\n\n.btn-secondary {\n    background: #f0f0f0;\n    color: #333;\n}\n\n.btn-secondary:hover {\n    background: #e0e0e0;\n}\n\n/* ============================================\n   ERROR MESSAGES\n   ============================================ */\n\n.error-message {\n    padding: 20px;\n    background: #ffebee;\n    color: #c62828;\n    border-radius: 8px;\n    border-left: 4px solid #c62828;\n    font-weight: 500;\n}\n\n/* ============================================\n   RESPONSIVE\n   ============================================ */\n\n@media (max-width: 768px) {\n    .proof-list {\n        grid-template-columns: 1fr;\n    }\n\n    .payment-schedule-container,\n    .proof-reviews-container {\n        padding: 16px;\n    }\n\n    .modal-content {\n        padding: 24px;\n    }\n\n    .proof-actions {\n        flex-direction: column;\n    }\n\n    .proof-actions button {\n        width: 100%;\n    }\n}\n\n/* ============================================\n   DARK MODE SUPPORT\n   ============================================ */\n\n@media (prefers-color-scheme: dark) {\n    .payment-schedule-container {\n        background: #1e1e1e;\n    }\n\n    .payment-card,\n    .notification-item,\n    .proof-card,\n    .modal-content,\n    .no-pending-reviews {\n        background: #2a2a2a;\n        color: #e0e0e0;\n    }\n\n    .payment-card:hover,\n    .proof-card:hover {\n        background: #333;\n    }\n\n    .installment-number,\n    .detail-row .value,\n    .proof-header h4 {\n        color: #e0e0e0;\n    }\n\n    .detail-row .label,\n    .notification-content p,\n    .proof-details p {\n        color: #b0b0b0;\n    }\n\n    .btn-view-proof {\n        background: #3a3a3a;\n        color: #e0e0e0;\n    }\n\n    .btn-view-proof:hover {\n        background: #4a4a4a;\n    }\n\n    .btn-secondary {\n        background: #3a3a3a;\n        color: #e0e0e0;\n    }\n\n    .btn-secondary:hover {\n        background: #4a4a4a;\n    }\n}\n\n/* ============================================\n   LOADING STATES\n   ============================================ */\n\n.loading-skeleton {\n    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);\n    background-size: 200% 100%;\n    animation: loading 1.5s infinite;\n    border-radius: 8px;\n}\n\n@keyframes loading {\n    0% {\n        background-position: 200% 0;\n    }\n\n    100% {\n        background-position: -200% 0;\n    }\n}\n\n/* ============================================\n   BADGES Y INDICADORES\n   ============================================ */\n\n.payment-badge {\n    display: inline-block;\n    padding: 4px 10px;\n    border-radius: 12px;\n    font-size: 0.75rem;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.payment-badge.urgent {\n    background: #ffebee;\n    color: #c62828;\n}\n\n.payment-badge.due-soon {\n    background: #fff9c4;\n    color: #f57f17;\n}\n\n.payment-badge.on-time {\n    background: #e8f5e9;\n    color: #2e7d32;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/payments.css"],"names":[],"mappings":"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","sourcesContent":["/* ============================================\n   PAYMENT SYSTEM STYLES\n   Sistema de seguimiento de pagos de pólizas\n   ============================================ */\n\n/* ============================================\n   PAYMENT SCHEDULE - Lista de Pagos\n   ============================================ */\n\n.payment-schedule-container {\n    padding: 20px;\n    background: var(--background-secondary, #f8f9fa);\n    border-radius: 12px;\n}\n\n.payment-schedule-container h3 {\n    margin: 0 0 20px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.5rem;\n    font-weight: 600;\n}\n\n.payment-list {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n}\n\n.payment-card {\n    background: white;\n    border-radius: 10px;\n    padding: 20px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);\n    transition: all 0.3s ease;\n    border-left: 4px solid #e0e0e0;\n}\n\n.payment-card:hover {\n    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);\n    transform: translateY(-2px);\n}\n\n/* Status Colors */\n.payment-card.status-pending {\n    border-left-color: #ffa726;\n}\n\n.payment-card.status-processing {\n    border-left-color: #42a5f5;\n}\n\n.payment-card.status-rejected {\n    border-left-color: #ef5350;\n}\n\n.payment-card.status-awaiting {\n    border-left-color: #ffca28;\n}\n\n.payment-card.status-review {\n    border-left-color: #26c6da;\n}\n\n.payment-card.status-paid {\n    border-left-color: #66bb6a;\n}\n\n.payment-card.status-completed {\n    border-left-color: #4caf50;\n    opacity: 0.8;\n}\n\n.payment-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 16px;\n    padding-bottom: 12px;\n    border-bottom: 1px solid #e0e0e0;\n}\n\n.installment-number {\n    font-weight: 600;\n    font-size: 1.1rem;\n    color: var(--text-primary, #1a1a1a);\n}\n\n.payment-status {\n    padding: 6px 14px;\n    border-radius: 20px;\n    font-size: 0.85rem;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.payment-status.status-pending {\n    background: #fff3e0;\n    color: #f57c00;\n}\n\n.payment-status.status-processing {\n    background: #e3f2fd;\n    color: #1976d2;\n}\n\n.payment-status.status-rejected {\n    background: #ffebee;\n    color: #c62828;\n}\n\n.payment-status.status-awaiting {\n    background: #fff9c4;\n    color: #f57f17;\n}\n\n.payment-status.status-review {\n    background: #e0f7fa;\n    color: #00838f;\n}\n\n.payment-status.status-paid {\n    background: #e8f5e9;\n    color: #2e7d32;\n}\n\n.payment-status.status-completed {\n    background: #f1f8e9;\n    color: #558b2f;\n}\n\n.payment-details {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    margin-bottom: 16px;\n}\n\n.detail-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\n.detail-row .label {\n    color: var(--text-secondary, #666);\n    font-size: 0.9rem;\n}\n\n.detail-row .value {\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1rem;\n}\n\n.payment-actions {\n    display: flex;\n    gap: 12px;\n    margin-top: 16px;\n    padding-top: 16px;\n    border-top: 1px solid #e0e0e0;\n}\n\n.btn-upload-proof {\n    flex: 1;\n    padding: 12px 24px;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n    border: none;\n    border-radius: 8px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.3s ease;\n}\n\n.btn-upload-proof:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);\n}\n\n.proof-indicator {\n    margin-top: 12px;\n    padding: 8px 12px;\n    background: #e8f5e9;\n    color: #2e7d32;\n    border-radius: 6px;\n    font-size: 0.85rem;\n    text-align: center;\n}\n\n/* ============================================\n   NOTIFICATIONS - Notificaciones\n   ============================================ */\n\n.notifications-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 16px;\n}\n\n.notification-item {\n    display: flex;\n    align-items: start;\n    gap: 12px;\n    padding: 16px;\n    background: white;\n    border-radius: 10px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);\n    transition: all 0.2s ease;\n    border-left: 4px solid #e0e0e0;\n}\n\n.notification-item:hover {\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n    transform: translateX(4px);\n}\n\n.notification-item.notification-info {\n    border-left-color: #2196f3;\n}\n\n.notification-item.notification-warning {\n    border-left-color: #ff9800;\n}\n\n.notification-item.notification-success {\n    border-left-color: #4caf50;\n}\n\n.notification-item.notification-error {\n    border-left-color: #f44336;\n}\n\n.notification-icon {\n    font-size: 1.5rem;\n    min-width: 32px;\n    text-align: center;\n}\n\n.notification-content {\n    flex: 1;\n}\n\n.notification-content p {\n    margin: 0 0 6px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 0.95rem;\n    line-height: 1.5;\n}\n\n.notification-time {\n    font-size: 0.8rem;\n    color: var(--text-secondary, #999);\n}\n\n.no-notifications {\n    padding: 40px 20px;\n    text-align: center;\n    color: var(--text-secondary, #999);\n    font-style: italic;\n}\n\n/* ============================================\n   PROOF REVIEW - Revisión de Comprobantes (Agente)\n   ============================================ */\n\n.proof-reviews-container {\n    padding: 20px;\n}\n\n.proof-reviews-container h3 {\n    margin: 0 0 20px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.5rem;\n    font-weight: 600;\n}\n\n.proof-list {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));\n    gap: 20px;\n}\n\n.proof-card {\n    background: white;\n    border-radius: 12px;\n    padding: 20px;\n    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);\n    transition: all 0.3s ease;\n    border: 2px solid #e0e0e0;\n}\n\n.proof-card:hover {\n    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);\n    border-color: #667eea;\n}\n\n.proof-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: start;\n    margin-bottom: 16px;\n    padding-bottom: 12px;\n    border-bottom: 2px solid #f0f0f0;\n}\n\n.proof-header h4 {\n    margin: 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.1rem;\n}\n\n.upload-date {\n    font-size: 0.85rem;\n    color: var(--text-secondary, #999);\n}\n\n.proof-details {\n    margin-bottom: 16px;\n}\n\n.proof-details p {\n    margin: 8px 0;\n    font-size: 0.95rem;\n    color: var(--text-secondary, #666);\n}\n\n.proof-details strong {\n    color: var(--text-primary, #1a1a1a);\n    font-weight: 600;\n}\n\n.proof-actions {\n    display: flex;\n    gap: 10px;\n    flex-wrap: wrap;\n}\n\n.proof-actions button {\n    flex: 1;\n    min-width: 100px;\n    padding: 10px 16px;\n    border: none;\n    border-radius: 8px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    font-size: 0.9rem;\n}\n\n.btn-view-proof {\n    background: #f0f0f0;\n    color: #333;\n}\n\n.btn-view-proof:hover {\n    background: #e0e0e0;\n    transform: translateY(-2px);\n}\n\n.btn-approve-proof {\n    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);\n    color: white;\n}\n\n.btn-approve-proof:hover {\n    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.4);\n    transform: translateY(-2px);\n}\n\n.btn-reject-proof {\n    background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);\n    color: white;\n}\n\n.btn-reject-proof:hover {\n    box-shadow: 0 4px 12px rgba(239, 83, 80, 0.4);\n    transform: translateY(-2px);\n}\n\n.no-pending-reviews {\n    padding: 60px 20px;\n    text-align: center;\n    color: var(--text-secondary, #999);\n    font-size: 1.1rem;\n    background: white;\n    border-radius: 12px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);\n}\n\n/* ============================================\n   MODAL - Upload de Comprobantes\n   NOTA: Estilos base de modales en modals-unified.css\n   ============================================ */\n\n/* Estilos específicos de payment modal (extensiones) */\n.payment-modal-content h3 {\n    margin: 0 0 12px 0;\n    color: var(--text-primary, #1a1a1a);\n    font-size: 1.5rem;\n}\n\n.payment-modal-content p {\n    margin: 0 0 24px 0;\n    color: var(--text-secondary, #666);\n}\n\n.modal-content input[type=\"file\"] {\n    width: 100%;\n    padding: 12px;\n    border: 2px dashed #ccc;\n    border-radius: 8px;\n    margin-bottom: 24px;\n    cursor: pointer;\n    transition: all 0.3s ease;\n}\n\n.modal-content input[type=\"file\"]:hover {\n    border-color: #667eea;\n    background: #f8f9ff;\n}\n\n.modal-actions {\n    display: flex;\n    gap: 12px;\n}\n\n.modal-actions button {\n    flex: 1;\n    padding: 14px 24px;\n    border: none;\n    border-radius: 8px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    font-size: 1rem;\n}\n\n.btn-primary {\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    color: white;\n}\n\n.btn-primary:hover {\n    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);\n    transform: translateY(-2px);\n}\n\n.btn-secondary {\n    background: #f0f0f0;\n    color: #333;\n}\n\n.btn-secondary:hover {\n    background: #e0e0e0;\n}\n\n/* ============================================\n   ERROR MESSAGES\n   ============================================ */\n\n.error-message {\n    padding: 20px;\n    background: #ffebee;\n    color: #c62828;\n    border-radius: 8px;\n    border-left: 4px solid #c62828;\n    font-weight: 500;\n}\n\n/* ============================================\n   RESPONSIVE\n   ============================================ */\n\n@media (max-width: 768px) {\n    .proof-list {\n        grid-template-columns: 1fr;\n    }\n\n    .payment-schedule-container,\n    .proof-reviews-container {\n        padding: 16px;\n    }\n\n    .modal-content {\n        padding: 24px;\n    }\n\n    .proof-actions {\n        flex-direction: column;\n    }\n\n    .proof-actions button {\n        width: 100%;\n    }\n}\n\n/* ============================================\n   DARK MODE SUPPORT\n   ============================================ */\n\n@media (prefers-color-scheme: dark) {\n    .payment-schedule-container {\n        background: #1e1e1e;\n    }\n\n    .payment-card,\n    .notification-item,\n    .proof-card,\n    .modal-content,\n    .no-pending-reviews {\n        background: #2a2a2a;\n        color: #e0e0e0;\n    }\n\n    .payment-card:hover,\n    .proof-card:hover {\n        background: #333;\n    }\n\n    .installment-number,\n    .detail-row .value,\n    .proof-header h4 {\n        color: #e0e0e0;\n    }\n\n    .detail-row .label,\n    .notification-content p,\n    .proof-details p {\n        color: #b0b0b0;\n    }\n\n    .btn-view-proof {\n        background: #3a3a3a;\n        color: #e0e0e0;\n    }\n\n    .btn-view-proof:hover {\n        background: #4a4a4a;\n    }\n\n    .btn-secondary {\n        background: #3a3a3a;\n        color: #e0e0e0;\n    }\n\n    .btn-secondary:hover {\n        background: #4a4a4a;\n    }\n}\n\n/* ============================================\n   LOADING STATES\n   ============================================ */\n\n.loading-skeleton {\n    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);\n    background-size: 200% 100%;\n    animation: loading 1.5s infinite;\n    border-radius: 8px;\n}\n\n@keyframes loading {\n    0% {\n        background-position: 200% 0;\n    }\n\n    100% {\n        background-position: -200% 0;\n    }\n}\n\n/* ============================================\n   BADGES Y INDICADORES\n   ============================================ */\n\n.payment-badge {\n    display: inline-block;\n    padding: 4px 10px;\n    border-radius: 12px;\n    font-size: 0.75rem;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.payment-badge.urgent {\n    background: #ffebee;\n    color: #c62828;\n}\n\n.payment-badge.due-soon {\n    background: #fff9c4;\n    color: #f57f17;\n}\n\n.payment-badge.on-time {\n    background: #e8f5e9;\n    color: #2e7d32;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16451,282 +16815,12 @@ body.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:h
 }
 
 /* ========== MODAL STANDARDIZATION ========== */
+/* NOTA: Los estilos de modales se han movido a modals-unified.css
+ * Este archivo ahora solo contiene estilos de scroll específicos
+ */
 
-/* Base modal overlay - cubre todo el viewport */
-.app-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
+/* ========== DASHBOARD SCROLL FIXES ========== */
 
-.app-modal-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
-/* Modal content container */
-.app-modal {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-    background: var(--surface-primary, #ffffff);
-    border-radius: 16px;
-    box-shadow:
-        0 24px 48px rgba(0, 0, 0, 0.2),
-        0 0 0 1px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transform: scale(0.9) translateY(20px);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.app-modal-overlay.active .app-modal {
-    transform: scale(1) translateY(0);
-}
-
-/* Dark mode modal */
-body.dark-forest .app-modal,
-body.dark-forest .app-modal {
-    background: var(--surface-primary, #1a1a1a);
-    box-shadow:
-        0 24px 48px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(255, 255, 255, 0.1);
-}
-
-/* Modal header */
-.app-modal-header {
-    padding: 24px 24px 20px;
-    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
-    background: var(--surface-secondary, #f8f9fa);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-body.dark-forest .app-modal-header,
-body.dark-forest .app-modal-header {
-    background: var(--surface-secondary, #222);
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-
-.app-modal-title {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-primary, #1a1a1a);
-}
-
-body.dark-forest .app-modal-title,
-body.dark-forest .app-modal-title {
-    color: var(--text-primary, #ffffff);
-}
-
-.app-modal-close {
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: 8px;
-    color: var(--text-secondary, #666);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.app-modal-close:hover {
-    background: rgba(0, 0, 0, 0.05);
-    color: var(--text-primary, #1a1a1a);
-}
-
-body.dark-forest .app-modal-close:hover,
-body.dark-forest .app-modal-close:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary, #ffffff);
-}
-
-/* Modal body - scrollable content */
-.app-modal-body {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 24px;
-    background: var(--surface-primary, #ffffff);
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-}
-
-body.dark-forest .app-modal-body,
-body.dark-forest .app-modal-body {
-    background: var(--surface-primary, #1a1a1a);
-}
-
-/* Custom scrollbar para modal body */
-.app-modal-body::-webkit-scrollbar {
-    width: 8px;
-}
-
-.app-modal-body::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.app-modal-body::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-}
-
-body.dark-forest .app-modal-body::-webkit-scrollbar-thumb,
-body.dark-forest .app-modal-body::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Modal footer */
-.app-modal-footer {
-    padding: 16px 24px;
-    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
-    background: var(--surface-secondary, #f8f9fa);
-    flex-shrink: 0;
-    display: flex;
-    gap: 12px;
-    justify-content: flex-end;
-}
-
-body.dark-forest .app-modal-footer,
-body.dark-forest .app-modal-footer {
-    background: var(--surface-secondary, #222);
-    border-top-color: rgba(255, 255, 255, 0.1);
-}
-
-/* ========== MODAL SIZE VARIATIONS ========== */
-
-.app-modal.modal-small {
-    max-width: 500px;
-}
-
-.app-modal.modal-medium {
-    max-width: 800px;
-}
-
-.app-modal.modal-large {
-    max-width: 1200px;
-}
-
-.app-modal.modal-fullscreen {
-    width: 100%;
-    max-width: none;
-    max-height: 100vh;
-    height: 100vh;
-    border-radius: 0;
-}
-
-/* ========== RESPONSIVE BEHAVIOR ========== */
-
-@media (max-width: 768px) {
-
-    /* En móvil, todos los modales son fullscreen */
-    .app-modal {
-        width: 100%;
-        max-width: none;
-        max-height: 100vh;
-        height: 100vh;
-        border-radius: 0;
-    }
-
-    .app-modal-header,
-    .app-modal-body,
-    .app-modal-footer {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .app-modal-title {
-        font-size: 1.25rem;
-    }
-}
-
-/* ========== UTILITY CLASSES ========== */
-
-/* Prevenir scroll del body cuando modal está abierto */
-body.modal-open {
-    overflow: hidden;
-}
-
-/* Clase para ocultar elementos */
-.hidden {
-    display: none !important;
-}
-
-/* Clase para hacer elementos visibles */
-.visible {
-    display: block !important;
-}
-
-/* ========== ANIMATIONS ========== */
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Fade in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* Slide up animation */
-@keyframes slideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.fade-in {
-    animation: fadeIn 0.3s ease;
-}
-
-.slide-up {
-    animation: slideUp 0.3s ease;
-}
-
-/* ========== FIX ESPECÍFICO PARA DASHBOARDS ========== */
-
-/* Asegurar que client-dashboard y agent-dashboard tengan el mismo comportamiento de scroll */
 .client-dashboard,
 .agent-dashboard,
 .admin-dashboard {
@@ -16764,9 +16858,7 @@ body.modal-open {
 .chart-card,
 .stat-card {
     scroll-margin-top: 20px;
-}
-
-`, "",{"version":3,"sources":["webpack://./styles/scroll-modal-fixes.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Estilos para scroll universal y modales\n * ESTRATEGIA: Un solo scroll en .dashboard-layout\n * dashboard-section es contenedor fijo, dashboard-layout tiene el scroll\n */\n\n/* ========== SCROLL UNIVERSAL ========== */\n\n/**\n * CONTENEDOR PRINCIPAL - FIJO SIN SCROLL\n * dashboard-section contiene todo pero NO tiene scroll\n */\n.dashboard-section {\n    position: fixed;\n    inset: 0;\n    width: 100%;\n    height: 100vh;\n    overflow: hidden;\n    /* Sin scroll en dashboard-section */\n    display: flex;\n    flex-direction: column;\n}\n\n/**\n * LAYOUT - ÚNICO CON SCROLL\n * Este es el ÚNICO elemento que tiene overflow: auto\n * Todo el contenido (sidebar, main, rail) se mueve junto\n */\n.dashboard-section .dashboard-layout {\n    flex: 1;\n    display: grid;\n    grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);\n    grid-template-rows: 1fr;\n    gap: 0;\n    width: 100%;\n    overflow-y: auto;\n    /* ← ÚNICO SCROLL AQUÍ */\n    overflow-x: hidden;\n    scroll-behavior: smooth;\n    -webkit-overflow-scrolling: touch;\n}\n\n/**\n * COLUMNAS - Sin scroll individual, altura automática\n * Cada columna crece según su contenido\n */\n.dashboard-section .dashboard-sidebar,\n.dashboard-section .dashboard-main-wrapper,\n.dashboard-section .dashboard-rail {\n    overflow: visible;\n    /* SIN scroll individual */\n    height: auto;\n    /* Altura según contenido */\n    min-height: 100vh;\n    /* Mínimo altura de viewport */\n}\n\n/**\n * SUPERFICIES INTERNAS - Sin scroll, se expanden naturalmente\n */\n.dashboard-section .sidebar-surface,\n.dashboard-section .dashboard-stage,\n.dashboard-section .rail-content {\n    height: auto;\n    overflow: visible;\n}\n\n/**\n * SIDEBAR STACK - Crece con contenido\n */\n.dashboard-section .sidebar-stack {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    overflow: visible;\n}\n\n/**\n * CASOS ESPECIALES - Widgets con límite de altura\n * Solo estos tienen scroll interno si exceden max-height\n */\n.sidebar-widget-group,\n.recent-clients-pills,\n.rail-activity-list {\n    max-height: 400px;\n    overflow-y: auto;\n    overflow-x: hidden;\n}\n\n/* Scrollbar para widgets limitados */\n.sidebar-widget-group::-webkit-scrollbar,\n.recent-clients-pills::-webkit-scrollbar,\n.rail-activity-list::-webkit-scrollbar {\n    width: 6px;\n}\n\n.sidebar-widget-group::-webkit-scrollbar-track,\n.recent-clients-pills::-webkit-scrollbar-track,\n.rail-activity-list::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.sidebar-widget-group::-webkit-scrollbar-thumb,\n.recent-clients-pills::-webkit-scrollbar-thumb,\n.rail-activity-list::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.15);\n    border-radius: 3px;\n}\n\nbody.dark-forest .sidebar-widget-group::-webkit-scrollbar-thumb,\nbody.dark-forest .recent-clients-pills::-webkit-scrollbar-thumb,\nbody.dark-forest .rail-activity-list::-webkit-scrollbar-thumb,\nbody.dark-forest .sidebar-widget-group::-webkit-scrollbar-thumb,\nbody.dark-forest .recent-clients-pills::-webkit-scrollbar-thumb,\nbody.dark-forest .rail-activity-list::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.15);\n}\n\n/**\n * SCROLLBAR PRINCIPAL - Dashboard Layout\n * Scrollbar estilizada para el scroll universal en dashboard-layout\n */\n.dashboard-section .dashboard-layout::-webkit-scrollbar {\n    width: 10px;\n}\n\n.dashboard-section .dashboard-layout::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.dashboard-section .dashboard-layout::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.25);\n    border-radius: 5px;\n    border: 2px solid transparent;\n    background-clip: padding-box;\n}\n\n.dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:hover {\n    background: rgba(0, 0, 0, 0.35);\n    background-clip: padding-box;\n}\n\n/* Dark mode scrollbar principal */\nbody.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb,\nbody.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.25);\n    background-clip: padding-box;\n}\n\nbody.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:hover,\nbody.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:hover {\n    background: rgba(255, 255, 255, 0.35);\n    background-clip: padding-box;\n}\n\n/**\n * CONTENT PADDING - Espacio al final para mejor UX\n */\n.dashboard-section .dashboard-layout::after {\n    content: '';\n    display: block;\n    height: 40px;\n    grid-column: 1 / -1;\n}\n\n/**\n * SCROLL PADDING - Para anchor links y smooth scroll\n */\n.dashboard-section {\n    scroll-padding-top: 20px;\n    scroll-padding-bottom: 20px;\n}\n\n.content-card,\n.chart-card,\n.stat-card {\n    scroll-margin-top: 20px;\n}\n\n/* ========== MODAL STANDARDIZATION ========== */\n\n/* Base modal overlay - cubre todo el viewport */\n.app-modal-overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 9999;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: rgba(0, 0, 0, 0.5);\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n}\n\n.app-modal-overlay.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* Modal content container */\n.app-modal {\n    position: relative;\n    width: 90%;\n    max-width: 800px;\n    max-height: 90vh;\n    background: var(--surface-primary, #ffffff);\n    border-radius: 16px;\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.2),\n        0 0 0 1px rgba(0, 0, 0, 0.1);\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    transform: scale(0.9) translateY(20px);\n    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n\n.app-modal-overlay.active .app-modal {\n    transform: scale(1) translateY(0);\n}\n\n/* Dark mode modal */\nbody.dark-forest .app-modal,\nbody.dark-forest .app-modal {\n    background: var(--surface-primary, #1a1a1a);\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.6),\n        0 0 0 1px rgba(255, 255, 255, 0.1);\n}\n\n/* Modal header */\n.app-modal-header {\n    padding: 24px 24px 20px;\n    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    background: var(--surface-secondary, #f8f9fa);\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n\nbody.dark-forest .app-modal-header,\nbody.dark-forest .app-modal-header {\n    background: var(--surface-secondary, #222);\n    border-bottom-color: rgba(255, 255, 255, 0.1);\n}\n\n.app-modal-title {\n    margin: 0;\n    font-size: 1.5rem;\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-forest .app-modal-title,\nbody.dark-forest .app-modal-title {\n    color: var(--text-primary, #ffffff);\n}\n\n.app-modal-close {\n    width: 36px;\n    height: 36px;\n    padding: 0;\n    background: transparent;\n    border: none;\n    border-radius: 8px;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.app-modal-close:hover {\n    background: rgba(0, 0, 0, 0.05);\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-forest .app-modal-close:hover,\nbody.dark-forest .app-modal-close:hover {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-primary, #ffffff);\n}\n\n/* Modal body - scrollable content */\n.app-modal-body {\n    flex: 1;\n    overflow-y: auto;\n    overflow-x: hidden;\n    padding: 24px;\n    background: var(--surface-primary, #ffffff);\n    -webkit-overflow-scrolling: touch;\n    scroll-behavior: smooth;\n}\n\nbody.dark-forest .app-modal-body,\nbody.dark-forest .app-modal-body {\n    background: var(--surface-primary, #1a1a1a);\n}\n\n/* Custom scrollbar para modal body */\n.app-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.app-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.app-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.2);\n    border-radius: 4px;\n}\n\nbody.dark-forest .app-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .app-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.2);\n}\n\n/* Modal footer */\n.app-modal-footer {\n    padding: 16px 24px;\n    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    background: var(--surface-secondary, #f8f9fa);\n    flex-shrink: 0;\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n}\n\nbody.dark-forest .app-modal-footer,\nbody.dark-forest .app-modal-footer {\n    background: var(--surface-secondary, #222);\n    border-top-color: rgba(255, 255, 255, 0.1);\n}\n\n/* ========== MODAL SIZE VARIATIONS ========== */\n\n.app-modal.modal-small {\n    max-width: 500px;\n}\n\n.app-modal.modal-medium {\n    max-width: 800px;\n}\n\n.app-modal.modal-large {\n    max-width: 1200px;\n}\n\n.app-modal.modal-fullscreen {\n    width: 100%;\n    max-width: none;\n    max-height: 100vh;\n    height: 100vh;\n    border-radius: 0;\n}\n\n/* ========== RESPONSIVE BEHAVIOR ========== */\n\n@media (max-width: 768px) {\n\n    /* En móvil, todos los modales son fullscreen */\n    .app-modal {\n        width: 100%;\n        max-width: none;\n        max-height: 100vh;\n        height: 100vh;\n        border-radius: 0;\n    }\n\n    .app-modal-header,\n    .app-modal-body,\n    .app-modal-footer {\n        padding-left: 16px;\n        padding-right: 16px;\n    }\n\n    .app-modal-title {\n        font-size: 1.25rem;\n    }\n}\n\n/* ========== UTILITY CLASSES ========== */\n\n/* Prevenir scroll del body cuando modal está abierto */\nbody.modal-open {\n    overflow: hidden;\n}\n\n/* Clase para ocultar elementos */\n.hidden {\n    display: none !important;\n}\n\n/* Clase para hacer elementos visibles */\n.visible {\n    display: block !important;\n}\n\n/* ========== ANIMATIONS ========== */\n\n@keyframes spin {\n    from {\n        transform: rotate(0deg);\n    }\n\n    to {\n        transform: rotate(360deg);\n    }\n}\n\n/* Fade in animation */\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n/* Slide up animation */\n@keyframes slideUp {\n    from {\n        transform: translateY(20px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n.fade-in {\n    animation: fadeIn 0.3s ease;\n}\n\n.slide-up {\n    animation: slideUp 0.3s ease;\n}\n\n/* ========== FIX ESPECÍFICO PARA DASHBOARDS ========== */\n\n/* Asegurar que client-dashboard y agent-dashboard tengan el mismo comportamiento de scroll */\n.client-dashboard,\n.agent-dashboard,\n.admin-dashboard {\n    position: relative;\n    width: 100%;\n    height: 100vh;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n}\n\n/* Hacer que stats-grid y demás elementos no afecten el scroll */\n.stats-grid,\n.mimic-wrap,\n.dashboard-body {\n    flex-shrink: 0;\n    overflow: visible;\n}\n\n/* Asegurar que el contenido principal tenga espacio suficiente */\n.dashboard-section .dashboard-main-wrapper {\n    padding-bottom: 40px;\n    /* Espacio al final para evitar cortar contenido */\n}\n\n/* Suavizar transiciones de scroll */\n.dashboard-main-wrapper,\n.sidebar-surface,\n.dashboard-rail {\n    scroll-padding: 20px;\n}\n\n/* Hacer que las tarjetas de contenido se comporten bien con scroll */\n.content-card,\n.chart-card,\n.stat-card {\n    scroll-margin-top: 20px;\n}\n\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/scroll-modal-fixes.css"],"names":[],"mappings":"AAAA;;;;EAIE;;AAEF,2CAA2C;;AAE3C;;;EAGE;AACF;IACI,eAAe;IACf,QAAQ;IACR,WAAW;IACX,aAAa;IACb,gBAAgB;IAChB,oCAAoC;IACpC,aAAa;IACb,sBAAsB;AAC1B;;AAEA;;;;EAIE;AACF;IACI,OAAO;IACP,aAAa;IACb,4EAA4E;IAC5E,uBAAuB;IACvB,MAAM;IACN,WAAW;IACX,gBAAgB;IAChB,wBAAwB;IACxB,kBAAkB;IAClB,uBAAuB;IACvB,iCAAiC;AACrC;;AAEA;;;EAGE;AACF;;;IAGI,iBAAiB;IACjB,0BAA0B;IAC1B,YAAY;IACZ,2BAA2B;IAC3B,iBAAiB;IACjB,8BAA8B;AAClC;;AAEA;;EAEE;AACF;;;IAGI,YAAY;IACZ,iBAAiB;AACrB;;AAEA;;EAEE;AACF;IACI,aAAa;IACb,sBAAsB;IACtB,SAAS;IACT,iBAAiB;AACrB;;AAEA;;;EAGE;AACF;;;IAGI,iBAAiB;IACjB,gBAAgB;IAChB,kBAAkB;AACtB;;AAEA,qCAAqC;AACrC;;;IAGI,UAAU;AACd;;AAEA;;;IAGI,uBAAuB;AAC3B;;AAEA;;;IAGI,+BAA+B;IAC/B,kBAAkB;AACtB;;AAEA;;;;;;IAMI,qCAAqC;AACzC;;AAEA;;;EAGE;AACF;IACI,WAAW;AACf;;AAEA;IACI,uBAAuB;AAC3B;;AAEA;IACI,+BAA+B;IAC/B,kBAAkB;IAClB,6BAA6B;IAC7B,4BAA4B;AAChC;;AAEA;IACI,+BAA+B;IAC/B,4BAA4B;AAChC;;AAEA,kCAAkC;AAClC;;IAEI,qCAAqC;IACrC,4BAA4B;AAChC;;AAEA;;IAEI,qCAAqC;IACrC,4BAA4B;AAChC;;AAEA;;EAEE;AACF;IACI,WAAW;IACX,cAAc;IACd,YAAY;IACZ,mBAAmB;AACvB;;AAEA;;EAEE;AACF;IACI,wBAAwB;IACxB,2BAA2B;AAC/B;;AAEA;;;IAGI,uBAAuB;AAC3B;;AAEA,gDAAgD;AAChD;;EAEE;;AAEF,iDAAiD;;AAEjD;;;IAGI,kBAAkB;IAClB,WAAW;IACX,aAAa;IACb,gBAAgB;IAChB,aAAa;IACb,sBAAsB;AAC1B;;AAEA,gEAAgE;AAChE;;;IAGI,cAAc;IACd,iBAAiB;AACrB;;AAEA,iEAAiE;AACjE;IACI,oBAAoB;IACpB,kDAAkD;AACtD;;AAEA,oCAAoC;AACpC;;;IAGI,oBAAoB;AACxB;;AAEA,qEAAqE;AACrE;;;IAGI,uBAAuB;AAC3B","sourcesContent":["/**\n * Estilos para scroll universal y modales\n * ESTRATEGIA: Un solo scroll en .dashboard-layout\n * dashboard-section es contenedor fijo, dashboard-layout tiene el scroll\n */\n\n/* ========== SCROLL UNIVERSAL ========== */\n\n/**\n * CONTENEDOR PRINCIPAL - FIJO SIN SCROLL\n * dashboard-section contiene todo pero NO tiene scroll\n */\n.dashboard-section {\n    position: fixed;\n    inset: 0;\n    width: 100%;\n    height: 100vh;\n    overflow: hidden;\n    /* Sin scroll en dashboard-section */\n    display: flex;\n    flex-direction: column;\n}\n\n/**\n * LAYOUT - ÚNICO CON SCROLL\n * Este es el ÚNICO elemento que tiene overflow: auto\n * Todo el contenido (sidebar, main, rail) se mueve junto\n */\n.dashboard-section .dashboard-layout {\n    flex: 1;\n    display: grid;\n    grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);\n    grid-template-rows: 1fr;\n    gap: 0;\n    width: 100%;\n    overflow-y: auto;\n    /* ← ÚNICO SCROLL AQUÍ */\n    overflow-x: hidden;\n    scroll-behavior: smooth;\n    -webkit-overflow-scrolling: touch;\n}\n\n/**\n * COLUMNAS - Sin scroll individual, altura automática\n * Cada columna crece según su contenido\n */\n.dashboard-section .dashboard-sidebar,\n.dashboard-section .dashboard-main-wrapper,\n.dashboard-section .dashboard-rail {\n    overflow: visible;\n    /* SIN scroll individual */\n    height: auto;\n    /* Altura según contenido */\n    min-height: 100vh;\n    /* Mínimo altura de viewport */\n}\n\n/**\n * SUPERFICIES INTERNAS - Sin scroll, se expanden naturalmente\n */\n.dashboard-section .sidebar-surface,\n.dashboard-section .dashboard-stage,\n.dashboard-section .rail-content {\n    height: auto;\n    overflow: visible;\n}\n\n/**\n * SIDEBAR STACK - Crece con contenido\n */\n.dashboard-section .sidebar-stack {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    overflow: visible;\n}\n\n/**\n * CASOS ESPECIALES - Widgets con límite de altura\n * Solo estos tienen scroll interno si exceden max-height\n */\n.sidebar-widget-group,\n.recent-clients-pills,\n.rail-activity-list {\n    max-height: 400px;\n    overflow-y: auto;\n    overflow-x: hidden;\n}\n\n/* Scrollbar para widgets limitados */\n.sidebar-widget-group::-webkit-scrollbar,\n.recent-clients-pills::-webkit-scrollbar,\n.rail-activity-list::-webkit-scrollbar {\n    width: 6px;\n}\n\n.sidebar-widget-group::-webkit-scrollbar-track,\n.recent-clients-pills::-webkit-scrollbar-track,\n.rail-activity-list::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.sidebar-widget-group::-webkit-scrollbar-thumb,\n.recent-clients-pills::-webkit-scrollbar-thumb,\n.rail-activity-list::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.15);\n    border-radius: 3px;\n}\n\nbody.dark-forest .sidebar-widget-group::-webkit-scrollbar-thumb,\nbody.dark-forest .recent-clients-pills::-webkit-scrollbar-thumb,\nbody.dark-forest .rail-activity-list::-webkit-scrollbar-thumb,\nbody.dark-forest .sidebar-widget-group::-webkit-scrollbar-thumb,\nbody.dark-forest .recent-clients-pills::-webkit-scrollbar-thumb,\nbody.dark-forest .rail-activity-list::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.15);\n}\n\n/**\n * SCROLLBAR PRINCIPAL - Dashboard Layout\n * Scrollbar estilizada para el scroll universal en dashboard-layout\n */\n.dashboard-section .dashboard-layout::-webkit-scrollbar {\n    width: 10px;\n}\n\n.dashboard-section .dashboard-layout::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.dashboard-section .dashboard-layout::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.25);\n    border-radius: 5px;\n    border: 2px solid transparent;\n    background-clip: padding-box;\n}\n\n.dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:hover {\n    background: rgba(0, 0, 0, 0.35);\n    background-clip: padding-box;\n}\n\n/* Dark mode scrollbar principal */\nbody.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb,\nbody.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.25);\n    background-clip: padding-box;\n}\n\nbody.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:hover,\nbody.dark-forest .dashboard-section .dashboard-layout::-webkit-scrollbar-thumb:hover {\n    background: rgba(255, 255, 255, 0.35);\n    background-clip: padding-box;\n}\n\n/**\n * CONTENT PADDING - Espacio al final para mejor UX\n */\n.dashboard-section .dashboard-layout::after {\n    content: '';\n    display: block;\n    height: 40px;\n    grid-column: 1 / -1;\n}\n\n/**\n * SCROLL PADDING - Para anchor links y smooth scroll\n */\n.dashboard-section {\n    scroll-padding-top: 20px;\n    scroll-padding-bottom: 20px;\n}\n\n.content-card,\n.chart-card,\n.stat-card {\n    scroll-margin-top: 20px;\n}\n\n/* ========== MODAL STANDARDIZATION ========== */\n/* NOTA: Los estilos de modales se han movido a modals-unified.css\n * Este archivo ahora solo contiene estilos de scroll específicos\n */\n\n/* ========== DASHBOARD SCROLL FIXES ========== */\n\n.client-dashboard,\n.agent-dashboard,\n.admin-dashboard {\n    position: relative;\n    width: 100%;\n    height: 100vh;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n}\n\n/* Hacer que stats-grid y demás elementos no afecten el scroll */\n.stats-grid,\n.mimic-wrap,\n.dashboard-body {\n    flex-shrink: 0;\n    overflow: visible;\n}\n\n/* Asegurar que el contenido principal tenga espacio suficiente */\n.dashboard-section .dashboard-main-wrapper {\n    padding-bottom: 40px;\n    /* Espacio al final para evitar cortar contenido */\n}\n\n/* Suavizar transiciones de scroll */\n.dashboard-main-wrapper,\n.sidebar-surface,\n.dashboard-rail {\n    scroll-padding: 20px;\n}\n\n/* Hacer que las tarjetas de contenido se comporten bien con scroll */\n.content-card,\n.chart-card,\n.stat-card {\n    scroll-margin-top: 20px;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17282,8 +17374,10 @@ var API_CONFIG = {
     SEND_NOTIFICATION: '/notifications/email',
     // Agents (for agent portal)
     GET_CLIENTS: '/agents/clients',
-    GET_CLIENT_DETAILS: '/agents/clients/:id',
+    GET_CLIENT_DETAILS: '?action=client_details',
     UPDATE_CLIENT: '/agents/clients/:id',
+    GET_CLIENT_CONTACTS: '?action=client_contacts',
+    GET_AGENT_LIST: '?action=agent_list',
     // Analytics
     GET_DASHBOARD_STATS: '/analytics/dashboard',
     GET_AGENT_PERFORMANCE: '/analytics/agent/:id'
@@ -19000,8 +19094,11 @@ function closeChartModal() {
 /*!*************************************!*\
   !*** ./src/modules/contactModal.js ***!
   \*************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api_integration_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-integration.js */ "./src/api-integration.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -19023,6 +19120,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Modal para que agentes contacten clientes
  * Muestra 3 recientes + resto alfabético
  */
+
 var ContactModalComponent = /*#__PURE__*/function () {
   function ContactModalComponent() {
     _classCallCheck(this, ContactModalComponent);
@@ -19062,49 +19160,41 @@ var ContactModalComponent = /*#__PURE__*/function () {
     key: "loadClients",
     value: (function () {
       var _loadClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-        var token, response, data, _t;
+        var data, clients, _t;
         return _regenerator().w(function (_context2) {
           while (1) switch (_context2.p = _context2.n) {
             case 0:
               _context2.p = 0;
-              token = localStorage.getItem('jwt_token');
               _context2.n = 1;
-              return fetch('/backend/index.php?action=clients', {
-                headers: {
-                  'Authorization': "Bearer ".concat(token)
-                }
-              });
+              return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.get(_api_integration_js__WEBPACK_IMPORTED_MODULE_0__.API_CONFIG.ENDPOINTS.AGENT_CLIENTS);
             case 1:
-              response = _context2.v;
-              _context2.n = 2;
-              return response.json();
-            case 2:
               data = _context2.v;
-              if (Array.isArray(data)) {
-                this.clients = data;
+              clients = Array.isArray(data) ? data : (data === null || data === void 0 ? void 0 : data.clients) || [];
+              this.clients = clients || [];
 
-                // Obtener 3 más recientes
-                this.recentClients = _toConsumableArray(data).sort(function (a, b) {
-                  return new Date(b.created_at) - new Date(a.created_at);
-                }).slice(0, 3);
+              // Obtener 3 más recientes
+              this.recentClients = _toConsumableArray(this.clients).sort(function (a, b) {
+                return new Date(b.created_at || 0) - new Date(a.created_at || 0);
+              }).slice(0, 3);
 
-                // Ordenar resto alfabéticamente
-                this.clients.sort(function (a, b) {
-                  var nameA = "".concat(a.first_name, " ").concat(a.last_name).toLowerCase();
-                  var nameB = "".concat(b.first_name, " ").concat(b.last_name).toLowerCase();
-                  return nameA.localeCompare(nameB);
-                });
-              }
-              _context2.n = 4;
+              // Ordenar resto alfabéticamente
+              this.clients.sort(function (a, b) {
+                var nameA = "".concat(a.first_name || '', " ").concat(a.last_name || '').toLowerCase();
+                var nameB = "".concat(b.first_name || '', " ").concat(b.last_name || '').toLowerCase();
+                return nameA.localeCompare(nameB);
+              });
+              _context2.n = 3;
               break;
-            case 3:
-              _context2.p = 3;
+            case 2:
+              _context2.p = 2;
               _t = _context2.v;
               console.error('Error cargando clientes:', _t);
-            case 4:
+              this.clients = [];
+              this.recentClients = [];
+            case 3:
               return _context2.a(2);
           }
-        }, _callee2, this, [[0, 3]]);
+        }, _callee2, this, [[0, 2]]);
       }));
       function loadClients() {
         return _loadClients.apply(this, arguments);
@@ -19138,9 +19228,17 @@ var ContactModalComponent = /*#__PURE__*/function () {
   }, {
     key: "renderClientItem",
     value: function renderClientItem(client) {
-      var fullName = "".concat(client.first_name, " ").concat(client.last_name);
-      var initials = "".concat(client.first_name[0]).concat(client.last_name[0]).toUpperCase();
-      return "\n            <div class=\"contact-item\" data-client-id=\"".concat(client.id, "\" data-client-name=\"").concat(fullName.toLowerCase(), "\">\n                <div class=\"contact-avatar\">").concat(initials, "</div>\n                <div class=\"contact-info\">\n                    <strong>").concat(fullName, "</strong>\n                    <small>").concat(client.email, "</small>\n                </div>\n                <div class=\"contact-actions\">\n                    <button \n                        class=\"btn-action\" \n                        title=\"Ver informaci\xF3n\"\n                        onclick=\"window.contactModal.showClientInfo(").concat(client.id, ", '").concat(fullName, "', '").concat(client.email, "', '").concat(client.phone || '', "')\"\n                    >\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                            <line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/>\n                            <line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>\n                        </svg>\n                    </button>\n                    <button \n                        class=\"btn-action btn-message\" \n                        title=\"Enviar mensaje directo\"\n                        onclick=\"window.contactModal.startDirectMessage(").concat(client.id, ", '").concat(fullName, "')\"\n                    >\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />\n                        </svg>\n                    </button>\n                </div>\n            </div>\n        ");
+      var first = client.first_name || '';
+      var last = client.last_name || '';
+      var fullName = "".concat(first, " ").concat(last).trim();
+      var initials = "".concat((first === null || first === void 0 ? void 0 : first[0]) || '').concat((last === null || last === void 0 ? void 0 : last[0]) || '').toUpperCase();
+
+      // Escape single quotes to safely interpolate into onclick handlers
+      var safeName = fullName.replace(/'/g, "\\'");
+      var safeEmail = (client.email || '').replace(/'/g, "\\'");
+      var safePhone = (client.phone || '').replace(/'/g, "\\'");
+      var dataName = fullName.toLowerCase().replace(/"/g, '&quot;');
+      return "\n            <div class=\"contact-item\" data-client-id=\"".concat(client.id, "\" data-client-name=\"").concat(dataName, "\">\n                <div class=\"contact-avatar\">").concat(initials, "</div>\n                <div class=\"contact-info\">\n                    <strong>").concat(fullName, "</strong>\n                    <small>").concat(client.email || '', "</small>\n                </div>\n                <div class=\"contact-actions\">\n                    <button \n                        class=\"btn-action\" \n                        title=\"Ver informaci\xF3n\"\n                        onclick=\"window.contactModal.showClientInfo(").concat(client.id, ", '").concat(safeName, "', '").concat(safeEmail, "', '").concat(safePhone, "')\"\n                    >\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                            <line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/>\n                            <line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>\n                        </svg>\n                    </button>\n                    <button \n                        class=\"btn-action btn-message\" \n                        title=\"Enviar mensaje directo\"\n                        onclick=\"window.contactModal.startDirectMessage(").concat(client.id, ", '").concat(safeName, "')\"\n                    >\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />\n                        </svg>\n                    </button>\n                </div>\n            </div>\n        ");
     }
 
     /**
@@ -19204,7 +19302,7 @@ var ContactModalComponent = /*#__PURE__*/function () {
     key: "sendDirectMessage",
     value: (function () {
       var _sendDirectMessage = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(clientId, clientName) {
-        var textarea, messageText, token, response, data, _t2;
+        var textarea, messageText, _yield$import, _apiService, data, _t2;
         return _regenerator().w(function (_context3) {
           while (1) switch (_context3.p = _context3.n) {
             case 0:
@@ -19218,24 +19316,20 @@ var ContactModalComponent = /*#__PURE__*/function () {
             case 1:
               messageText = textarea.value.trim();
               _context3.p = 2;
-              token = localStorage.getItem('jwt_token');
               _context3.n = 3;
-              return fetch('/backend/index.php?action=dm_start_thread', {
+              return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js"));
+            case 3:
+              _yield$import = _context3.v;
+              _apiService = _yield$import.apiService;
+              _context3.n = 4;
+              return _apiService.request('?action=dm_start_thread', {
                 method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': "Bearer ".concat(token)
-                },
                 body: JSON.stringify({
                   client_id: clientId,
                   subject: "Mensaje de tu agente",
                   message: messageText
                 })
               });
-            case 3:
-              response = _context3.v;
-              _context3.n = 4;
-              return response.json();
             case 4:
               data = _context3.v;
               if (data.success) {
@@ -19261,7 +19355,7 @@ var ContactModalComponent = /*#__PURE__*/function () {
               _context3.p = 5;
               _t2 = _context3.v;
               console.error('Error enviando mensaje:', _t2);
-              alert('Error enviando mensaje');
+              alert('Error enviando mensaje: ' + (_t2.message || 'Unknown error'));
             case 6:
               return _context3.a(2);
           }
@@ -19989,22 +20083,50 @@ function viewClientDetails(_x) {
  */
 function _viewClientDetails() {
   _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(clientId) {
-    var modal;
+    var modal, data, client, _data$policies, policies, _data$claims, claims, contentDiv, _contentDiv, _t3;
     return _regenerator().w(function (_context5) {
-      while (1) switch (_context5.n) {
+      while (1) switch (_context5.p = _context5.n) {
         case 0:
-          // Modal de detalles
+          // Crear modal de detalles
           modal = document.createElement('div');
           modal.className = 'app-modal-overlay active';
-          modal.innerHTML = "\n    <div class=\"app-modal app-modal-xl\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Detalles del Cliente</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"client-detail-content\">\n          <div class=\"loading-state\">\n            <p>Cargando informaci\xF3n del cliente...</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  ";
+          modal.innerHTML = "\n    <div class=\"app-modal app-modal-xl\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Detalles del Cliente</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <div class=\"client-detail-content\">\n          <div class=\"loading-state\">\n            <p>\u23F3 Cargando informaci\xF3n del cliente...</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  ";
           document.body.appendChild(modal);
 
-          // Aquí se cargaría data real del backend
-          // Por ahora usa datos de ejemplo
-        case 1:
+          // Cargar datos reales del backend
+          _context5.p = 1;
+          _context5.n = 2;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_6__.apiService.request("".concat(_api_integration_js__WEBPACK_IMPORTED_MODULE_6__.API_CONFIG.ENDPOINTS.GET_CLIENT_DETAILS, "&id=").concat(clientId), {
+            method: 'GET'
+          });
+        case 2:
+          data = _context5.v;
+          if (data) {
+            _context5.n = 3;
+            break;
+          }
+          throw new Error('No se recibieron datos del cliente');
+        case 3:
+          client = data.client, _data$policies = data.policies, policies = _data$policies === void 0 ? [] : _data$policies, _data$claims = data.claims, claims = _data$claims === void 0 ? [] : _data$claims; // Actualizar contenido del modal con datos reales
+          contentDiv = modal.querySelector('.client-detail-content');
+          contentDiv.innerHTML = "\n      <div class=\"client-details-grid\">\n        <div class=\"detail-section\">\n          <h3>\uD83D\uDCCB Informaci\xF3n de Contacto</h3>\n          <div class=\"detail-item\">\n            <label>Nombre Completo</label>\n            <div class=\"value\">".concat(client.first_name || '', " ").concat(client.last_name || '', "</div>\n          </div>\n          <div class=\"detail-item\">\n            <label>Email</label>\n            <div class=\"value\">").concat(client.email || 'N/A', "</div>\n          </div>\n          <div class=\"detail-item\">\n            <label>Tel\xE9fono</label>\n            <div class=\"value\">").concat(client.phone || 'N/A', "</div>\n          </div>\n          <div class=\"detail-item\">\n            <label>Estado</label>\n            <div class=\"value\">\n              <span class=\"badge badge-").concat(client.status === 'active' ? 'success' : 'warning', "\">\n                ").concat(client.status === 'active' ? 'Activo' : 'Inactivo', "\n              </span>\n            </div>\n          </div>\n          <div class=\"detail-item\">\n            <label>Fecha de Registro</label>\n            <div class=\"value\">").concat(new Date(client.created_at).toLocaleDateString('es-ES'), "</div>\n          </div>\n        </div>\n\n        <div class=\"detail-section\">\n          <h3>\uD83D\uDCC4 P\xF3lizas (").concat(policies.length, ")</h3>\n          ").concat(policies.length > 0 ? policies.map(function (p) {
+            return "\n            <div class=\"detail-item\">\n              <label>".concat(formatPolicyType(p.policy_type), " - ").concat(p.policy_number, "</label>\n              <div class=\"value\">\n                <span class=\"badge badge-").concat(p.status === 'active' ? 'success' : 'secondary', "\">\n                  ").concat(p.status || 'N/A', "\n                </span>\n              </div>\n            </div>\n          ");
+          }).join('') : '<p class="text-muted">Sin pólizas registradas</p>', "\n        </div>\n\n        <div class=\"detail-section\">\n          <h3>\uD83D\uDD14 Reclamaciones Recientes (").concat(claims.length, ")</h3>\n          ").concat(claims.length > 0 ? claims.map(function (c) {
+            return "\n            <div class=\"detail-item\">\n              <label>Reclamaci\xF3n #".concat(c.claim_number || c.id, "</label>\n              <div class=\"value\">\n                <span class=\"badge badge-").concat(c.status === 'approved' ? 'success' : c.status === 'pending' ? 'warning' : 'secondary', "\">\n                  ").concat(c.status || 'N/A', "\n                </span>\n              </div>\n            </div>\n          ");
+          }).join('') : '<p class="text-muted">Sin reclamaciones registradas</p>', "\n        </div>\n      </div>\n    ");
+          _context5.n = 5;
+          break;
+        case 4:
+          _context5.p = 4;
+          _t3 = _context5.v;
+          console.error('Error loading client details:', _t3);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _contentDiv = modal.querySelector('.client-detail-content');
+          _contentDiv.innerHTML = "\n      <div class=\"loading-state\">\n        <p style=\"color: var(--error-color, #ef5350);\">\u274C Error al cargar la informaci\xF3n del cliente</p>\n        <p style=\"font-size: 14px; color: var(--text-muted, #999);\">".concat(_t3.message, "</p>\n      </div>\n    ");
+        case 5:
           return _context5.a(2);
       }
-    }, _callee5);
+    }, _callee5, null, [[1, 4]]);
   }));
   return _viewClientDetails.apply(this, arguments);
 }
@@ -20050,7 +20172,7 @@ function submitPayment(_x2) {
 function _submitPayment() {
   _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(event) {
     var _document$getElementB2, _document$getElementB3;
-    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t3;
+    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t4;
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
@@ -20086,9 +20208,9 @@ function _submitPayment() {
           break;
         case 4:
           _context6.p = 4;
-          _t3 = _context6.v;
-          console.error('Error uploading payment proof:', _t3);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t3.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _t4 = _context6.v;
+          console.error('Error uploading payment proof:', _t4);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t4.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context6.a(2);
       }
@@ -20114,7 +20236,7 @@ function submitClaim(_x3) {
  */
 function _submitClaim() {
   _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(event) {
-    var form, formData, _window$appHandlers3, claimNumber, _t4;
+    var form, formData, _window$appHandlers3, claimNumber, _t5;
     return _regenerator().w(function (_context7) {
       while (1) switch (_context7.p = _context7.n) {
         case 0:
@@ -20142,8 +20264,8 @@ function _submitClaim() {
           break;
         case 3:
           _context7.p = 3;
-          _t4 = _context7.v;
-          console.error('Error submitting claim:', _t4);
+          _t5 = _context7.v;
+          console.error('Error submitting claim:', _t5);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al enviar siniestro', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context7.a(2);
@@ -20161,7 +20283,7 @@ function submitPolicyUpload(_x4) {
  */
 function _submitPolicyUpload() {
   _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(event) {
-    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t5;
+    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t6;
     return _regenerator().w(function (_context8) {
       while (1) switch (_context8.p = _context8.n) {
         case 0:
@@ -20274,9 +20396,9 @@ function _submitPolicyUpload() {
           break;
         case 10:
           _context8.p = 10;
-          _t5 = _context8.v;
-          console.error('Error uploading policy:', _t5);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t5.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _t6 = _context8.v;
+          console.error('Error uploading policy:', _t6);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t6.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
         case 11:
@@ -20318,7 +20440,7 @@ function confirmAndCreateClient(_x5) {
  */
 function _confirmAndCreateClient() {
   _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(tempFilePath) {
-    var confirmedData, _token, response, result, _window$appHandlers5, _t6;
+    var confirmedData, _token, response, result, _window$appHandlers5, _t7;
     return _regenerator().w(function (_context9) {
       while (1) switch (_context9.p = _context9.n) {
         case 0:
@@ -20372,8 +20494,8 @@ function _confirmAndCreateClient() {
           break;
         case 6:
           _context9.p = 6;
-          _t6 = _context9.v;
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t6.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _t7 = _context9.v;
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t7.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 7:
           return _context9.a(2);
       }
@@ -20520,7 +20642,7 @@ if (typeof window !== 'undefined') {
 /*!***************************************!*\
   !*** ./src/modules/directMessages.js ***!
   \***************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -20602,22 +20724,20 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
     key: "loadUnreadCount",
     value: (function () {
       var _loadUnreadCount = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-        var token, response, data, _t2;
+        var _yield$import, apiService, data, _t2;
         return _regenerator().w(function (_context2) {
           while (1) switch (_context2.p = _context2.n) {
             case 0:
               _context2.p = 0;
-              token = localStorage.getItem('jwt_token');
               _context2.n = 1;
-              return fetch('/backend/index.php?action=dm_unread_count', {
-                headers: {
-                  'Authorization': "Bearer ".concat(token)
-                }
-              });
+              return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js"));
             case 1:
-              response = _context2.v;
+              _yield$import = _context2.v;
+              apiService = _yield$import.apiService;
               _context2.n = 2;
-              return response.json();
+              return apiService.request('?action=dm_unread_count', {
+                method: 'GET'
+              });
             case 2:
               data = _context2.v;
               if (data.success) {
@@ -20689,22 +20809,20 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
     key: "loadThreads",
     value: (function () {
       var _loadThreads = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
-        var token, response, data, _t3;
+        var _yield$import2, apiService, data, _t3;
         return _regenerator().w(function (_context4) {
           while (1) switch (_context4.p = _context4.n) {
             case 0:
               _context4.p = 0;
-              token = localStorage.getItem('jwt_token');
               _context4.n = 1;
-              return fetch('/backend/index.php?action=dm_my_threads', {
-                headers: {
-                  'Authorization': "Bearer ".concat(token)
-                }
-              });
+              return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js"));
             case 1:
-              response = _context4.v;
+              _yield$import2 = _context4.v;
+              apiService = _yield$import2.apiService;
               _context4.n = 2;
-              return response.json();
+              return apiService.request('?action=dm_my_threads', {
+                method: 'GET'
+              });
             case 2:
               data = _context4.v;
               if (data.success) {
@@ -20766,22 +20884,20 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
     key: "openThread",
     value: (function () {
       var _openThread = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(threadId) {
-        var token, response, data, _t4;
+        var _yield$import3, apiService, data, _t4;
         return _regenerator().w(function (_context5) {
           while (1) switch (_context5.p = _context5.n) {
             case 0:
               _context5.p = 0;
-              token = localStorage.getItem('jwt_token');
               _context5.n = 1;
-              return fetch("/backend/index.php?action=dm_messages&thread_id=".concat(threadId), {
-                headers: {
-                  'Authorization': "Bearer ".concat(token)
-                }
-              });
+              return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js"));
             case 1:
-              response = _context5.v;
+              _yield$import3 = _context5.v;
+              apiService = _yield$import3.apiService;
               _context5.n = 2;
-              return response.json();
+              return apiService.request("?action=dm_messages&thread_id=".concat(threadId), {
+                method: 'GET'
+              });
             case 2:
               data = _context5.v;
               if (!data.success) {
@@ -20845,7 +20961,7 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
     key: "sendMessage",
     value: (function () {
       var _sendMessage = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
-        var input, messageText, token, response, data, _t5;
+        var input, messageText, _yield$import4, apiService, data, _t5;
         return _regenerator().w(function (_context6) {
           while (1) switch (_context6.p = _context6.n) {
             case 0:
@@ -20859,23 +20975,19 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
               messageText = input.value.trim();
               input.value = '';
               _context6.p = 2;
-              token = localStorage.getItem('jwt_token');
               _context6.n = 3;
-              return fetch('/backend/index.php?action=dm_send_message', {
+              return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../api-integration.js */ "./src/api-integration.js"));
+            case 3:
+              _yield$import4 = _context6.v;
+              apiService = _yield$import4.apiService;
+              _context6.n = 4;
+              return apiService.request('?action=dm_send_message', {
                 method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': "Bearer ".concat(token)
-                },
                 body: JSON.stringify({
                   thread_id: this.currentThread.thread_id,
                   message: messageText
                 })
               });
-            case 3:
-              response = _context6.v;
-              _context6.n = 4;
-              return response.json();
             case 4:
               data = _context6.v;
               if (!data.success) {
@@ -20897,7 +21009,7 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
               _context6.p = 8;
               _t5 = _context6.v;
               console.error('Error enviando mensaje:', _t5);
-              alert('Error enviando mensaje');
+              alert('Error enviando mensaje: ' + (_t5.message || 'Unknown error'));
               input.value = messageText;
             case 9:
               return _context6.a(2);
@@ -27618,6 +27730,59 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./styles/modals-unified.css":
+/*!***********************************!*\
+  !*** ./styles/modals-unified.css ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_modals_unified_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./modals-unified.css */ "./node_modules/css-loader/dist/cjs.js!./styles/modals-unified.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_modals_unified_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_modals_unified_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_modals_unified_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_modals_unified_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
 /***/ "./styles/notification-modal.css":
 /*!***************************************!*\
   !*** ./styles/notification-modal.css ***!
@@ -28415,32 +28580,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_agent_dashboard_panels_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../styles/agent-dashboard-panels.css */ "./styles/agent-dashboard-panels.css");
 /* harmony import */ var _styles_direct_messages_css__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../styles/direct-messages.css */ "./styles/direct-messages.css");
 /* harmony import */ var _styles_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../styles/scroll-modal-fixes.css */ "./styles/scroll-modal-fixes.css");
-/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../styles/app.css */ "./styles/app.css");
-/* harmony import */ var _styles_dark_forest_css__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../styles/dark-forest.css */ "./styles/dark-forest.css");
-/* harmony import */ var _modules_particles_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../modules/particles.js */ "./src/modules/particles.js");
-/* harmony import */ var _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../modules/simpleRouter.js */ "./src/modules/simpleRouter.js");
-/* harmony import */ var _modules_auth_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../modules/auth.js */ "./src/modules/auth.js");
-/* harmony import */ var _modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../modules/loadingModal.js */ "./src/modules/loadingModal.js");
-/* harmony import */ var _modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../modules/notifications.js */ "./src/modules/notifications.js");
-/* harmony import */ var _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../modules/homeAnimations.js */ "./src/modules/homeAnimations.js");
-/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./state.js */ "./src/core/state.js");
-/* harmony import */ var _modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../modules/quoteFlow.js */ "./src/modules/quoteFlow.js");
-/* harmony import */ var _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../modules/scheduling.js */ "./src/modules/scheduling.js");
-/* harmony import */ var _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../modules/contactsManager.js */ "./src/modules/contactsManager.js");
-/* harmony import */ var _utils_logo_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../utils/logo.js */ "./src/utils/logo.js");
-/* harmony import */ var _utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ../utils/scrollCollapse.js */ "./src/utils/scrollCollapse.js");
-/* harmony import */ var _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../modules/chartModals.js */ "./src/modules/chartModals.js");
-/* harmony import */ var _modules_paymentCalendar_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ../modules/paymentCalendar.js */ "./src/modules/paymentCalendar.js");
-/* harmony import */ var _modules_notificationModal_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ../modules/notificationModal.js */ "./src/modules/notificationModal.js");
-/* harmony import */ var _modules_paymentIntegration_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ../modules/paymentIntegration.js */ "./src/modules/paymentIntegration.js");
-/* harmony import */ var _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ../modules/dashboardActions.js */ "./src/modules/dashboardActions.js");
-/* harmony import */ var _modules_directMessages_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ../modules/directMessages.js */ "./src/modules/directMessages.js");
-/* harmony import */ var _modules_directMessages_js__WEBPACK_IMPORTED_MODULE_41___default = /*#__PURE__*/__webpack_require__.n(_modules_directMessages_js__WEBPACK_IMPORTED_MODULE_41__);
-/* harmony import */ var _modules_contactModal_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ../modules/contactModal.js */ "./src/modules/contactModal.js");
-/* harmony import */ var _modules_contactModal_js__WEBPACK_IMPORTED_MODULE_42___default = /*#__PURE__*/__webpack_require__.n(_modules_contactModal_js__WEBPACK_IMPORTED_MODULE_42__);
-/* harmony import */ var _modules_globalSearch_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ../modules/globalSearch.js */ "./src/modules/globalSearch.js");
-/* harmony import */ var _modules_globalSearch_js__WEBPACK_IMPORTED_MODULE_43___default = /*#__PURE__*/__webpack_require__.n(_modules_globalSearch_js__WEBPACK_IMPORTED_MODULE_43__);
+/* harmony import */ var _styles_modals_unified_css__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../styles/modals-unified.css */ "./styles/modals-unified.css");
+/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../styles/app.css */ "./styles/app.css");
+/* harmony import */ var _styles_dark_forest_css__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../../styles/dark-forest.css */ "./styles/dark-forest.css");
+/* harmony import */ var _modules_particles_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../modules/particles.js */ "./src/modules/particles.js");
+/* harmony import */ var _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../modules/simpleRouter.js */ "./src/modules/simpleRouter.js");
+/* harmony import */ var _modules_auth_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../modules/auth.js */ "./src/modules/auth.js");
+/* harmony import */ var _modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../modules/loadingModal.js */ "./src/modules/loadingModal.js");
+/* harmony import */ var _modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../modules/notifications.js */ "./src/modules/notifications.js");
+/* harmony import */ var _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../modules/homeAnimations.js */ "./src/modules/homeAnimations.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
+/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./state.js */ "./src/core/state.js");
+/* harmony import */ var _modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../modules/quoteFlow.js */ "./src/modules/quoteFlow.js");
+/* harmony import */ var _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../modules/scheduling.js */ "./src/modules/scheduling.js");
+/* harmony import */ var _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../modules/contactsManager.js */ "./src/modules/contactsManager.js");
+/* harmony import */ var _utils_logo_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ../utils/logo.js */ "./src/utils/logo.js");
+/* harmony import */ var _utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../utils/scrollCollapse.js */ "./src/utils/scrollCollapse.js");
+/* harmony import */ var _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ../modules/chartModals.js */ "./src/modules/chartModals.js");
+/* harmony import */ var _modules_paymentCalendar_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ../modules/paymentCalendar.js */ "./src/modules/paymentCalendar.js");
+/* harmony import */ var _modules_notificationModal_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ../modules/notificationModal.js */ "./src/modules/notificationModal.js");
+/* harmony import */ var _modules_paymentIntegration_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ../modules/paymentIntegration.js */ "./src/modules/paymentIntegration.js");
+/* harmony import */ var _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ../modules/dashboardActions.js */ "./src/modules/dashboardActions.js");
+/* harmony import */ var _modules_directMessages_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ../modules/directMessages.js */ "./src/modules/directMessages.js");
+/* harmony import */ var _modules_directMessages_js__WEBPACK_IMPORTED_MODULE_42___default = /*#__PURE__*/__webpack_require__.n(_modules_directMessages_js__WEBPACK_IMPORTED_MODULE_42__);
+/* harmony import */ var _modules_contactModal_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ../modules/contactModal.js */ "./src/modules/contactModal.js");
+/* harmony import */ var _modules_globalSearch_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ../modules/globalSearch.js */ "./src/modules/globalSearch.js");
+/* harmony import */ var _modules_globalSearch_js__WEBPACK_IMPORTED_MODULE_44___default = /*#__PURE__*/__webpack_require__.n(_modules_globalSearch_js__WEBPACK_IMPORTED_MODULE_44__);
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -28481,6 +28646,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
  // NEW: Paneles de agente (pagos, pólizas)
  // NEW: Sistema de mensajes directos
  // NEW: Fixes de scroll y modales
+ // NEW: Sistema unificado de modales
  // Base styles
  // Theme overrides MUST load last
 
@@ -28609,29 +28775,29 @@ _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
 
 // Expose handlers globally for onclick handlers in templates
 window.appHandlers = _objectSpread(_objectSpread({
-  navigateTo: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.navigateTo,
-  toggleMobileMenu: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.toggleMobileMenu,
-  toggleFooter: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.toggleFooter,
-  skipToFinalState: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_28__.skipToFinalState,
-  showHomeSection: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_28__.showHomeSection,
+  navigateTo: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo,
+  toggleMobileMenu: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.toggleMobileMenu,
+  toggleFooter: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.toggleFooter,
+  skipToFinalState: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_29__.skipToFinalState,
+  showHomeSection: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_29__.showHomeSection,
   handleClientLogin: handleClientLogin,
   handleAgentLogin: handleAgentLogin,
   handleContactSubmit: handleContactSubmit,
   logout: handleLogout,
   toggleTheme: toggleTheme
-}, _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__), {}, {
+}, _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__), {}, {
   // Dashboard placeholders (legacy - algunos serán reemplazados por dashboardActions)
-  viewPolicy: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.viewPolicy,
-  makePayment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.makePayment,
-  fileClaim: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.fileClaim,
-  updateInfo: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.updateInfo,
-  downloadPaymentHistory: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.downloadPaymentHistory,
-  viewClientDetails: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.viewClientDetails,
-  createQuote: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.createQuote,
-  addClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.addClient,
-  scheduleAppointment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.scheduleAppointment,
+  viewPolicy: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.viewPolicy,
+  makePayment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.makePayment,
+  fileClaim: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.fileClaim,
+  updateInfo: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.updateInfo,
+  downloadPaymentHistory: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.downloadPaymentHistory,
+  viewClientDetails: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.viewClientDetails,
+  createQuote: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.createQuote,
+  addClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.addClient,
+  scheduleAppointment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.scheduleAppointment,
   openQuoteModal: openQuoteModal,
-  addNewClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.addClient,
+  addNewClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.addClient,
   editClient: editClient,
   processQuote: processQuote,
   submitQuote: submitQuote,
@@ -28649,31 +28815,31 @@ window.appHandlers = _objectSpread(_objectSpread({
   loadAdminDashboard: loadAdminDashboard,
   refreshDashboard: refreshDashboard,
   // Chart modals
-  openPaymentTrendsModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_36__.openPaymentTrendsModal,
-  openPolicyHealthModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_36__.openPolicyHealthModal,
-  closeChartModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_36__.closeChartModal
+  openPaymentTrendsModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_37__.openPaymentTrendsModal,
+  openPolicyHealthModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_37__.openPolicyHealthModal,
+  closeChartModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_37__.closeChartModal
 });
 
 // Also expose common helpers as globals for legacy inline onclicks
-window.navigateTo = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.navigateTo;
-window.toggleMobileMenu = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.toggleMobileMenu;
-window.toggleFooter = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.toggleFooter;
+window.navigateTo = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo;
+window.toggleMobileMenu = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.toggleMobileMenu;
+window.toggleFooter = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.toggleFooter;
 window.handleContactSubmit = handleContactSubmit;
 window.handleClientLogin = handleClientLogin;
 window.handleAgentLogin = handleAgentLogin;
-window.contactAgent = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.contactAgent;
+window.contactAgent = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.contactAgent;
 window.toggleTheme = toggleTheme;
 window.submitQuote = submitQuote;
 window.logout = handleLogout;
 window.scheduleAppointment = scheduleAppointment;
 window.viewAgentDirectory = viewAgentDirectory;
-window.makePayment = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.makePayment;
-window.downloadPaymentHistory = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.downloadPaymentHistory;
-window.updateInfo = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.updateInfo;
-window.viewPolicy = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.viewPolicy;
-window.fileClaim = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_40__.fileClaim;
+window.makePayment = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.makePayment;
+window.downloadPaymentHistory = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.downloadPaymentHistory;
+window.updateInfo = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.updateInfo;
+window.viewPolicy = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.viewPolicy;
+window.fileClaim = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.fileClaim;
 // Expose notification helper for quick console testing / legacy inline calls
-window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification;
+window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification;
 function delay(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
@@ -28683,7 +28849,7 @@ function delay(ms) {
 // Form handlers
 function handleContactSubmit(e) {
   e.preventDefault();
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Mensaje enviado exitosamente. Te contactaremos pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Mensaje enviado exitosamente. Te contactaremos pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
   e.target.reset();
 }
 function _handleClientLoginAsync(_x) {
@@ -28697,22 +28863,22 @@ function _handleClientLoginAsync2() {
         case 0:
           email = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.showLoading)('Autenticando cliente', 'Verificando credenciales', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Autenticando cliente', 'Verificando credenciales', true);
           _context3.n = 1;
           return delay(200);
         case 1:
           _context3.n = 2;
-          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_25__.login)({
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_26__.login)({
             email: email,
             password: password
           }, 'client');
         case 2:
           user = _context3.v;
           if (user) {
-            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.navigateTo)('client-dashboard');
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(250);
+            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)('client-dashboard');
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(250);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
           }
         case 3:
           return _context3.a(2);
@@ -28725,7 +28891,7 @@ function handleClientLogin(e) {
   e.preventDefault();
   _handleClientLoginAsync(e)["catch"](function (err) {
     console.error('Client login error:', err);
-    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(150);
+    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
   });
   return false;
 }
@@ -28740,7 +28906,7 @@ function _handleAgentLoginAsync2() {
         case 0:
           agentId = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.showLoading)('Autenticando agente', 'Verificando credenciales', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Autenticando agente', 'Verificando credenciales', true);
           _context4.n = 1;
           return delay(200);
         case 1:
@@ -28754,22 +28920,22 @@ function _handleAgentLoginAsync2() {
             loggedAt: Date.now()
           }));
           // Use a relative URL so it works both locally and under a subpath (e.g. /memo/ on GitHub Pages)
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
           window.location.href = 'admin.html';
           return _context4.a(2);
         case 2:
           _context4.n = 3;
-          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_25__.login)({
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_26__.login)({
             agentId: agentId,
             password: password
           }, 'agent');
         case 3:
           user = _context4.v;
           if (user) {
-            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.navigateTo)('agent-dashboard');
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(250);
+            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)('agent-dashboard');
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(250);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
           }
         case 4:
           return _context4.a(2);
@@ -28782,21 +28948,21 @@ function handleAgentLogin(e) {
   e.preventDefault();
   _handleAgentLoginAsync(e)["catch"](function (err) {
     console.error('Agent login error:', err);
-    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(150);
+    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
   });
   return false;
 }
 function handleLogout() {
-  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.showLoading)('Cerrando sesión', 'Limpiando sesión');
-  (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_25__.logout)();
+  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Cerrando sesión', 'Limpiando sesión');
+  (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_26__.logout)();
   try {
     localStorage.removeItem('krause_admin');
   } catch (e) {
     // Non-fatal cleanup
   }
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.PAGES.HOME);
-  (0,_modules_particles_js__WEBPACK_IMPORTED_MODULE_23__.startParticles)();
-  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(200);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.HOME);
+  (0,_modules_particles_js__WEBPACK_IMPORTED_MODULE_24__.startParticles)();
+  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(200);
 }
 
 // Dashboard placeholder functions - LEGACY (ahora manejadas por dashboardActions.js)
@@ -28810,7 +28976,7 @@ function _refreshDashboard() {
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_30__.getUser)();
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_31__.getUser)();
           if (user) {
             _context6.n = 1;
             break;
@@ -28823,7 +28989,7 @@ function _refreshDashboard() {
           document.body.classList.add('skeleton-mode');
           _context6.p = 2;
           _context6.n = 3;
-          return (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.withLoading)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+          return (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.withLoading)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
             return _regenerator().w(function (_context5) {
               while (1) switch (_context5.n) {
                 case 0:
@@ -28866,14 +29032,14 @@ function _refreshDashboard() {
             minDelay: 420
           });
         case 3:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Datos actualizados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Datos actualizados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
           _context6.n = 5;
           break;
         case 4:
           _context6.p = 4;
           _t3 = _context6.v;
           console.warn('Could not refresh dashboard:', _t3);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
         case 5:
           _context6.p = 5;
           document.body.classList.remove('skeleton-mode');
@@ -28898,11 +29064,11 @@ function _viewClientDetails() {
             _context7.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Detalles no disponibles en modo demo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Detalles no disponibles en modo demo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
           return _context7.a(2);
         case 1:
           _context7.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
           _context7.n = 2;
           return loadClientDetailsData(clientId);
         case 2:
@@ -28915,7 +29081,7 @@ function _viewClientDetails() {
         case 3:
           _context7.p = 3;
           _t4 = _context7.v;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context7.a(2);
       }
@@ -28937,26 +29103,26 @@ function showClientDetailsModal(data) {
   document.body.appendChild(modal);
 }
 function downloadPaymentHistory() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Descargando historial...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Descargando historial...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 function openQuoteModal(type) {
   var normalized = (type || 'auto').toLowerCase();
-  (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_31__.setPendingQuoteType)(normalized);
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.PAGES.QUOTE);
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)("Preparando formulario para seguro de ".concat(normalized), _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.setPendingQuoteType)(normalized);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.QUOTE);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Preparando formulario para seguro de ".concat(normalized), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 function addNewClient() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Abriendo formulario de nuevo cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Abriendo formulario de nuevo cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 function editClient(clientId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)("Editando cliente ".concat(clientId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Editando cliente ".concat(clientId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 function processQuote(quoteId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)("Procesando cotizaci\xF3n ".concat(quoteId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Procesando cotizaci\xF3n ".concat(quoteId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 function createQuote() {
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.PAGES.QUOTE);
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Creando nueva cotización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.QUOTE);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Creando nueva cotización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 function submitQuote(_x4) {
   return _submitQuote.apply(this, arguments);
@@ -28988,21 +29154,21 @@ function _submitQuote() {
             _context8.n = 2;
             break;
           }
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.showLoading)('Procesando cotización', 'Calculando cobertura y prima', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Procesando cotización', 'Calculando cobertura y prima', true);
           _context8.n = 1;
           return delay(800);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(200);
-          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_31__.notifyQuoteSuccess)(label);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(200);
+          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.notifyQuoteSuccess)(label);
           form.reset();
           hiddenType = form.querySelector('input[name="quoteType"]');
           if (hiddenType) hiddenType.value = quoteType;
-          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_31__.setPendingQuoteType)(quoteType);
+          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.setPendingQuoteType)(quoteType);
           return _context8.a(2);
         case 2:
           _context8.p = 2;
           // Send quote request to API
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.showLoading)('Enviando cotización', 'Procesando solicitud', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Enviando cotización', 'Procesando solicitud', true);
           _context8.n = 3;
           return apiService.request(API_CONFIG.ENDPOINTS.REQUEST_QUOTE, {
             method: 'POST',
@@ -29020,14 +29186,14 @@ function _submitQuote() {
         case 3:
           response = _context8.v;
           if (response.success) {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(200);
-            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_31__.notifyQuoteSuccess)(label);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(200);
+            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.notifyQuoteSuccess)(label);
             form.reset();
             _hiddenType = form.querySelector('input[name="quoteType"]');
             if (_hiddenType) _hiddenType.value = quoteType;
-            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_31__.setPendingQuoteType)(quoteType);
+            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.setPendingQuoteType)(quoteType);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
           }
           _context8.n = 5;
           break;
@@ -29035,8 +29201,8 @@ function _submitQuote() {
           _context8.p = 4;
           _t5 = _context8.v;
           console.error('Quote submission error:', _t5);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(150);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Error al enviar cotización. Por favor intenta de nuevo.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al enviar cotización. Por favor intenta de nuevo.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context8.a(2);
       }
@@ -29045,16 +29211,16 @@ function _submitQuote() {
   return _submitQuote.apply(this, arguments);
 }
 function processRenewal() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Abriendo renovaciones pendientes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Abriendo renovaciones pendientes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 function viewReports() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Generando reportes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Generando reportes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 function completeTask(taskId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Tarea completada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Tarea completada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
 }
 function viewCommissionDetails() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Mostrando detalle de comisiones...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Mostrando detalle de comisiones...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 
 // --- Agent dashboard wiring ---
@@ -29071,11 +29237,11 @@ function _assignClaimToAgent() {
             _context9.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Siniestro asignado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Siniestro asignado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
           return _context9.a(2);
         case 1:
           _context9.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Asignando siniestro y notificando...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Asignando siniestro y notificando...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
           _context9.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.ASSIGN_CLAIM, {
             method: 'POST',
@@ -29102,14 +29268,14 @@ function _assignClaimToAgent() {
             useCache: false
           });
         case 3:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Siniestro asignado y notificación enviada.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Siniestro asignado y notificación enviada.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
           _context9.n = 5;
           break;
         case 4:
           _context9.p = 4;
           _t6 = _context9.v;
           console.error('Assign claim failed', _t6);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Error al asignar o notificar el siniestro.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al asignar o notificar el siniestro.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context9.a(2);
       }
@@ -29133,11 +29299,11 @@ function _sendQuestionnaire() {
             _context0.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Cuestionario enviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario enviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
           return _context0.a(2);
         case 1:
           _context0.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Enviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Enviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
           _context0.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.SEND_QUESTIONNAIRE, {
             method: 'POST',
@@ -29148,14 +29314,14 @@ function _sendQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Cuestionario enviado al cliente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario enviado al cliente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
           _context0.n = 4;
           break;
         case 3:
           _context0.p = 3;
           _t7 = _context0.v;
           console.error('Send questionnaire failed', _t7);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('No se pudo enviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('No se pudo enviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context0.a(2);
       }
@@ -29176,11 +29342,11 @@ function _resendQuestionnaire() {
             _context1.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Cuestionario reenviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario reenviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
           return _context1.a(2);
         case 1:
           _context1.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Reenviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Reenviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
           _context1.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.RESEND_QUESTIONNAIRE, {
             method: 'POST',
@@ -29191,14 +29357,14 @@ function _resendQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Cuestionario reenviado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario reenviado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
           _context1.n = 4;
           break;
         case 3:
           _context1.p = 3;
           _t8 = _context1.v;
           console.error('Resend questionnaire failed', _t8);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('No se pudo reenviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('No se pudo reenviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context1.a(2);
       }
@@ -29219,11 +29385,11 @@ function _completeQuestionnaire() {
             _context10.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Cuestionario completado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario completado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
           return _context10.a(2);
         case 1:
           _context10.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Marcando cuestionario como completado...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Marcando cuestionario como completado...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
           _context10.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.COMPLETE_QUESTIONNAIRE, {
             method: 'POST',
@@ -29234,14 +29400,14 @@ function _completeQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Cuestionario completado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario completado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
           _context10.n = 4;
           break;
         case 3:
           _context10.p = 3;
           _t9 = _context10.v;
           console.error('Complete questionnaire failed', _t9);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('No se pudo completar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('No se pudo completar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context10.a(2);
       }
@@ -29257,7 +29423,7 @@ function _reviewQuestionnaire() {
     return _regenerator().w(function (_context11) {
       while (1) switch (_context11.n) {
         case 0:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)("Abriendo revisi\xF3n del cuestionario ".concat(id, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Abriendo revisi\xF3n del cuestionario ".concat(id, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
         case 1:
           return _context11.a(2);
       }
@@ -29274,7 +29440,7 @@ function _openSupport() {
     return _regenerator().w(function (_context12) {
       while (1) switch (_context12.p = _context12.n) {
         case 0:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)("Abriendo caso de soporte (".concat(type, ")..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Abriendo caso de soporte (".concat(type, ")..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
             _context12.n = 1;
             break;
@@ -29308,7 +29474,7 @@ function _openSupport() {
   return _openSupport.apply(this, arguments);
 }
 function showAgentRegistration() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Contacta al administrador para solicitar acceso como agente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Contacta al administrador para solicitar acceso como agente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
 }
 
 // ========== SCHEDULING HANDLERS ==========
@@ -29321,31 +29487,31 @@ function _scheduleAppointment() {
     return _regenerator().w(function (_context13) {
       while (1) switch (_context13.p = _context13.n) {
         case 0:
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_30__.getUser)();
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_31__.getUser)();
           if (user) {
             _context13.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Debes iniciar sesión para agendar citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Debes iniciar sesión para agendar citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
           return _context13.a(2);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.showLoading)('Cargando calendario', 'Buscando agentes disponibles', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Cargando calendario', 'Buscando agentes disponibles', true);
           _context13.n = 2;
           return delay(300);
         case 2:
           _context13.p = 2;
-          availableAgents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_33__.getAgents({
+          availableAgents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_34__.getAgents({
             status: 'available'
           });
           if (!(availableAgents.length === 0)) {
             _context13.n = 3;
             break;
           }
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('No hay agentes disponibles en este momento', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.WARNING);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('No hay agentes disponibles en este momento', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.WARNING);
           return _context13.a(2);
         case 3:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
           openSchedulingModal(availableAgents);
           _context13.n = 5;
           break;
@@ -29353,8 +29519,8 @@ function _scheduleAppointment() {
           _context13.p = 4;
           _t1 = _context13.v;
           console.error('Error loading agents:', _t1);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Error al cargar agentes disponibles', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al cargar agentes disponibles', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context13.a(2);
       }
@@ -29390,18 +29556,18 @@ function _confirmSchedulingSubmit() {
             _context14.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Por favor completa todos los campos requeridos', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.WARNING);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Por favor completa todos los campos requeridos', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.WARNING);
           return _context14.a(2);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.showLoading)('Procesando solicitud', 'Solicitando cita con agente', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Procesando solicitud', 'Solicitando cita con agente', true);
           _context14.p = 2;
-          agent = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_33__.getAgentById(agentId);
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_30__.getUser)();
+          agent = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_34__.getAgentById(agentId);
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_31__.getUser)();
           _meetingTime$split = meetingTime.split(':'), _meetingTime$split2 = _slicedToArray(_meetingTime$split, 2), hours = _meetingTime$split2[0], minutes = _meetingTime$split2[1];
           startTime = new Date("".concat(meetingDate, "T").concat(meetingTime, ":00"));
           endTime = new Date(startTime.getTime() + 30 * 60000);
           _context14.n = 3;
-          return _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_32__.requestMeeting({
+          return _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_33__.requestMeeting({
             agentId: agentId,
             agentName: agent.name,
             clientId: user.id,
@@ -29417,17 +29583,17 @@ function _confirmSchedulingSubmit() {
           _context14.n = 4;
           return delay(400);
         case 4:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
           (_document$querySelect2 = document.querySelector('.booking-modal')) === null || _document$querySelect2 === void 0 || _document$querySelect2.remove();
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)("Solicitud enviada a ".concat(agent.name, ". Te notificaremos cuando confirme."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Solicitud enviada a ".concat(agent.name, ". Te notificaremos cuando confirme."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
           _context14.n = 6;
           break;
         case 5:
           _context14.p = 5;
           _t10 = _context14.v;
           console.error('Scheduling error:', _t10);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Error al agendar la cita: ' + _t10.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al agendar la cita: ' + _t10.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
         case 6:
           return _context14.a(2);
       }
@@ -29444,18 +29610,18 @@ function _viewAgentDirectory() {
     return _regenerator().w(function (_context15) {
       while (1) switch (_context15.n) {
         case 0:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.showLoading)('Cargando directorio', 'Buscando agentes disponibles', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Cargando directorio', 'Buscando agentes disponibles', true);
           _context15.n = 1;
           return delay(250);
         case 1:
           try {
-            agents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_33__.getAgents();
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(100);
+            agents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_34__.getAgents();
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
             openAgentDirectoryModal(agents);
           } catch (error) {
             console.error('Error loading agents:', error);
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_26__.hideLoading)(100);
-            (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Error al cargar directorio de agentes', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.ERROR);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
+            (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al cargar directorio de agentes', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
           }
         case 2:
           return _context15.a(2);
@@ -29483,7 +29649,7 @@ function openAgentDirectoryModal(agents) {
 function handleAgentContact(agentId, agentName) {
   var _document$querySelect;
   (_document$querySelect = document.querySelector('.booking-modal')) === null || _document$querySelect === void 0 || _document$querySelect.remove();
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)("Iniciando contacto con ".concat(agentName, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Iniciando contacto con ".concat(agentName, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
   scheduleAppointment();
 }
 
@@ -29545,7 +29711,7 @@ document.addEventListener('DOMContentLoaded', function () {
   applyTheme(normalizedSaved || 'dark-forest');
 
   // Render all shared logo slots (navbar, footer, auth, etc.) with consistent sizing/contrast
-  (0,_utils_logo_js__WEBPACK_IMPORTED_MODULE_34__.renderAllLogos)();
+  (0,_utils_logo_js__WEBPACK_IMPORTED_MODULE_35__.renderAllLogos)();
 
   // Keep theme toggle on the header logo (stays consistent even with dynamic renders)
   var headerLogo = document.querySelector('.nav-brand .krause-shield');
@@ -29569,16 +29735,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // If a session exists, offer redirect or logout
   try {
-    var existingUser = (0,_state_js__WEBPACK_IMPORTED_MODULE_30__.getUser)();
+    var existingUser = (0,_state_js__WEBPACK_IMPORTED_MODULE_31__.getUser)();
     if (existingUser) {
-      (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_27__.showNotification)('Tienes una sesión activa. ¿Quieres ir a tu panel o cerrar sesión?', _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.NOTIFICATION_TYPES.INFO, {
+      (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Tienes una sesión activa. ¿Quieres ir a tu panel o cerrar sesión?', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO, {
         duration: 0
       });
       setTimeout(function () {
         var goToPanel = window.confirm('Sesión activa detectada. ¿Ir a tu panel ahora?');
         if (goToPanel) {
-          var target = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_25__.getRedirectPage)(existingUser) || _utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.PAGES.HOME;
-          (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.navigateTo)(target);
+          var target = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_26__.getRedirectPage)(existingUser) || _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.HOME;
+          (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(target);
           return;
         }
         var shouldLogout = window.confirm('¿Deseas cerrar sesión?');
@@ -29592,10 +29758,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Always land on Home (Inicio) first; keep session info for optional redirects later
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_24__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_29__.PAGES.HOME);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.HOME);
 
   // Initialize scroll collapse for dashboards (will retry if dashboard not loaded yet)
-  (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_35__.initScrollCollapse)();
+  (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_36__.initScrollCollapse)();
 
   // Re-initialize scroll collapse whenever page changes
   var originalNavigateTo = window.navigateTo;
@@ -29608,7 +29774,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Reinit scroll collapse after navigation completes
       setTimeout(function () {
         if (args[0] && args[0].includes('dashboard')) {
-          (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_35__.initScrollCollapse)();
+          (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_36__.initScrollCollapse)();
         }
       }, 300);
     };

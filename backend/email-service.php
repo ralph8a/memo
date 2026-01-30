@@ -41,6 +41,11 @@ class EmailService {
         }
     }
     
+    // Alias for send() for compatibility
+    public static function sendEmail($to, $subject, $message, $isHTML = true) {
+        return self::send($to, $subject, $message, $isHTML);
+    }
+    
     // Send notification for claim assignment
     public static function sendClaimAssignmentNotification($agentEmail, $clientName, $claimNumber) {
         $subject = "New Claim Assigned - #$claimNumber";

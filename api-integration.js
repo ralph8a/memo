@@ -85,8 +85,10 @@ const API_CONFIG = {
 
     // Agents (for agent portal)
     GET_CLIENTS: '/agents/clients',
-    GET_CLIENT_DETAILS: '/agents/clients/:id',
+    GET_CLIENT_DETAILS: '?action=client_details',
     UPDATE_CLIENT: '/agents/clients/:id',
+    GET_CLIENT_CONTACTS: '?action=client_contacts',
+    GET_AGENT_LIST: '?action=agent_list',
 
     // Analytics
     GET_DASHBOARD_STATS: '/analytics/dashboard',
