@@ -96,6 +96,10 @@ export async function loadAgentDashboard() {
         console.log('🔄 Loading recent clients for sidebar...');
         await loadAgentRecentClients().catch(err => console.error('❌ Error loading recent clients:', err));
 
+        // Load dynamic chart data for agent dashboard
+        loadPolicyHealthStats().catch(err => console.error('Error loading policy health:', err));
+        loadPaymentTrends().catch(err => console.error('Error loading payment trends:', err));
+
         console.log('✅ Agent dashboard loaded with real data');
         return dashboardData;
     } catch (error) {
@@ -210,6 +214,11 @@ export async function loadClientDashboard() {
 
         // Load client contacts from backend
         loadClientContacts().catch(err => console.error('Error loading contacts:', err));
+
+        // Load dynamic chart data
+        loadPolicyHealthStats().catch(err => console.error('Error loading policy health:', err));
+        loadPaymentTrends().catch(err => console.error('Error loading payment trends:', err));
+        loadPendingActions().catch(err => console.error('Error loading pending actions:', err));
 
         console.log('✅ Client dashboard loaded with real data');
         return { dashboardData, policies, claims, payments };
@@ -772,4 +781,195 @@ async function loadAgentRecentClients() {
             </div>
         `;
     }
+}
+
+// ============================================
+// DYNAMIC CHART DATA LOADERS
+// ============================================
+
+/**
+ * Load policy health statistics for donut chart
+ */
+async function loadPolicyHealthStats() {
+    try {
+        const data = await apiService.request('?action=policy_health_stats', {
+            method: 'GET'
+        });
+
+        if (data.success && data.stats) {
+            renderPolicyHealthChart(data.stats);
+        }
+    } catch (error) {
+        console.error('Error loading policy health stats:', error);
+    }
+}
+
+/**
+ * Render policy health donut chart with real data
+ */
+function renderPolicyHealthChart(stats) {
+    // Update the monitor text in client dashboard
+    const monitors = document.querySelectorAll('.chart-card');
+    monitors.forEach(card => {
+        const title = card.querySelector('.chart-title');
+        if (title?.textContent.includes('Salud de pólizas')) {
+            // Update legend with real percentages
+            const legend = card.querySelector('.chart-legend');
+            if (legend) {
+                legend.innerHTML = `
+                    <span class="chart-legend-item">
+                        <span class="chart-legend-dot" style="background: #38ef7d; box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.12);"></span> 
+                        Activas (${stats.active_percent}%)
+                    </span>
+                    <span class="chart-legend-item">
+                        <span class="chart-legend-dot" style="background: #f5576c; box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.12);"></span> 
+                        Riesgo (${stats.risk_percent}%)
+                    </span>
+                `;
+            }
+
+            // You can also update a visual chart here if implementing canvas/svg donut
+            console.log('✅ Policy health chart updated:', stats);
+        }
+    });
+}
+
+/**
+ * Load payment trends for sparkline chart
+ */
+async function loadPaymentTrends() {
+    try {
+        const data = await apiService.request('?action=payment_trends', {
+            method: 'GET'
+        });
+
+        if (data.success) {
+            renderPaymentTrendsChart(data.trends, data.summary);
+        }
+    } catch (error) {
+        console.error('Error loading payment trends:', error);
+    }
+}
+
+/**
+ * Render payment trends chart with real data
+ */
+function renderPaymentTrendsChart(trends, summary) {
+    const chartCards = document.querySelectorAll('.chart-card');
+    chartCards.forEach(card => {
+        const title = card.querySelector('.chart-title');
+        if (title?.textContent.includes('Tendencia de pagos')) {
+            // Update metrics with real data
+            const metrics = card.querySelector('.chart-metrics');
+            if (metrics) {
+                metrics.innerHTML = `
+                    <div class="chart-metric">
+                        <span class="label">Total pagos</span>
+                        <span class="value">${summary.total_payments}</span>
+                    </div>
+                    <div class="chart-metric">
+                        <span class="label">Pagos puntuales</span>
+                        <span class="value">${summary.on_time}</span>
+                    </div>
+                    <div class="chart-metric">
+                        <span class="label">Retrasos</span>
+                        <span class="value">${summary.late}</span>
+                    </div>
+                `;
+            }
+
+            // Update legend
+            const legend = card.querySelector('.chart-legend');
+            if (legend) {
+                legend.innerHTML = `
+                    <span class="chart-legend-item"><span class="chart-legend-dot"></span> Pagos</span>
+                    <span class="chart-legend-item" style="color: var(--theme-accent-color);">
+                        ${summary.on_time_rate}% puntualidad
+                    </span>
+                `;
+            }
+
+            console.log('✅ Payment trends chart updated:', summary);
+        }
+    });
+}
+
+/**
+ * Load pending actions/tasks
+ */
+async function loadPendingActions() {
+    try {
+        const data = await apiService.request('?action=pending_actions', {
+            method: 'GET'
+        });
+
+        if (data.success && data.actions) {
+            renderPendingActions(data.actions);
+        }
+    } catch (error) {
+        console.error('Error loading pending actions:', error);
+    }
+}
+
+/**
+ * Render pending actions list
+ */
+function renderPendingActions(actions) {
+    // Find pending actions container (could be in sidebar or main area)
+    const containers = document.querySelectorAll('[data-pending-actions], .pending-actions-list');
+
+    // Update count badge
+    const countBadges = document.querySelectorAll('[data-actions-count]');
+    countBadges.forEach(badge => {
+        badge.textContent = actions.length;
+    });
+
+    if (actions.length === 0) {
+        containers.forEach(container => {
+            container.innerHTML = `
+                <div style="padding: 20px; text-align: center; color: var(--theme-text-secondary);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 8px; opacity: 0.5;">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <p style="margin: 0; font-size: 0.875rem;">No hay acciones pendientes</p>
+                </div>
+            `;
+        });
+        return;
+    }
+
+    const html = actions.map(action => {
+        const daysUntil = action.days_until;
+        const urgencyClass = daysUntil < 3 ? 'urgent' : daysUntil < 7 ? 'warning' : 'info';
+        const daysText = daysUntil < 0
+            ? `Vencido hace ${Math.abs(daysUntil)}d`
+            : daysUntil === 0
+                ? 'Hoy'
+                : `En ${daysUntil}d`;
+
+        return `
+            <div class="pending-action-item ${urgencyClass}" style="padding: 10px; border-left: 3px solid ${daysUntil < 3 ? '#f5576c' : daysUntil < 7 ? '#ffa726' : 'var(--theme-accent-color)'}; margin-bottom: 8px; background: var(--theme-surface-variant); border-radius: 6px;">
+                <div style="display: flex; align-items: start; gap: 10px;">
+                    <div style="flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: ${daysUntil < 3 ? '#f5576c' : daysUntil < 7 ? '#ffa726' : 'var(--theme-accent-color)'};">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            ${action.action.includes('Pago')
+                ? '<rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>'
+                : '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'}
+                        </svg>
+                    </div>
+                    <div style="flex: 1; min-width: 0;">
+                        <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 2px;">${action.action}</div>
+                        <div style="font-size: 0.8125rem; color: var(--theme-text-secondary); margin-bottom: 4px;">${action.policy_number}</div>
+                        <div style="font-size: 0.75rem; font-weight: 600; color: ${daysUntil < 3 ? '#f5576c' : daysUntil < 7 ? '#ffa726' : 'var(--theme-text-secondary)'};">${daysText}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    containers.forEach(container => {
+        container.innerHTML = html;
+    });
+
+    console.log(`✅ Rendered ${actions.length} pending actions`);
 }

@@ -1353,6 +1353,202 @@ try {
         ]);
     }
     
+    // ===== DASHBOARD ANALYTICS ENDPOINTS =====
+    
+    // GET ?action=policy_health_stats - Statistics for policy health monitor
+    if ($action === 'policy_health_stats') {
+        $user = Auth::requireAuth();
+        $userId = $user['user_id'];
+        $userType = $user['user_type'];
+        
+        try {
+            if ($userType === 'client') {
+                // Client view - their policies only
+                $stmt = $db->prepare("
+                    SELECT 
+                        COUNT(*) as total,
+                        SUM(CASE WHEN status = 'active' THEN 1 ELSE 0 END) as active_count,
+                        SUM(CASE WHEN status = 'pending_renewal' OR DATEDIFF(renewal_date, NOW()) <= 30 THEN 1 ELSE 0 END) as renewal_count,
+                        SUM(CASE WHEN status = 'expired' OR status = 'cancelled' THEN 1 ELSE 0 END) as risk_count
+                    FROM policies
+                    WHERE client_id = ?
+                ");
+                $stmt->execute([$userId]);
+            } else {
+                // Agent view - all their clients' policies
+                $stmt = $db->prepare("
+                    SELECT 
+                        COUNT(*) as total,
+                        SUM(CASE WHEN status = 'active' THEN 1 ELSE 0 END) as active_count,
+                        SUM(CASE WHEN status = 'pending_renewal' OR DATEDIFF(renewal_date, NOW()) <= 30 THEN 1 ELSE 0 END) as renewal_count,
+                        SUM(CASE WHEN status = 'expired' OR status = 'cancelled' THEN 1 ELSE 0 END) as risk_count
+                    FROM policies
+                    WHERE agent_id = ?
+                ");
+                $stmt->execute([$userId]);
+            }
+            
+            $stats = $stmt->fetch(PDO::FETCH_ASSOC);
+            $total = $stats['total'] ?: 1; // Avoid division by zero
+            
+            sendResponse([
+                'success' => true,
+                'stats' => [
+                    'total' => (int)$stats['total'],
+                    'active' => (int)$stats['active_count'],
+                    'renewal' => (int)$stats['renewal_count'],
+                    'risk' => (int)$stats['risk_count'],
+                    'active_percent' => round(($stats['active_count'] / $total) * 100, 1),
+                    'renewal_percent' => round(($stats['renewal_count'] / $total) * 100, 1),
+                    'risk_percent' => round(($stats['risk_count'] / $total) * 100, 1)
+                ]
+            ]);
+        } catch (Exception $e) {
+            error_log("Policy health stats error: " . $e->getMessage());
+            sendError('Error fetching policy stats', 500);
+        }
+    }
+    
+    // GET ?action=pending_actions - Get pending tasks based on policy dates
+    if ($action === 'pending_actions') {
+        $user = Auth::requireAuth();
+        $userId = $user['user_id'];
+        $userType = $user['user_type'];
+        
+        try {
+            $actions = [];
+            
+            if ($userType === 'client') {
+                // Renewal reminders (within 30 days)
+                $stmt = $db->prepare("
+                    SELECT 
+                        'Renovación próxima' as action,
+                        policy_number,
+                        renewal_date as due_date,
+                        DATEDIFF(renewal_date, NOW()) as days_until
+                    FROM policies
+                    WHERE client_id = ? 
+                        AND status = 'active'
+                        AND DATEDIFF(renewal_date, NOW()) BETWEEN 0 AND 30
+                    ORDER BY renewal_date ASC
+                    LIMIT 5
+                ");
+                $stmt->execute([$userId]);
+                $renewals = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                // Payment reminders
+                $stmt = $db->prepare("
+                    SELECT 
+                        'Pago pendiente' as action,
+                        p.policy_number,
+                        ps.due_date,
+                        DATEDIFF(ps.due_date, NOW()) as days_until
+                    FROM payment_schedules ps
+                    JOIN policies p ON ps.policy_id = p.id
+                    WHERE p.client_id = ? 
+                        AND ps.status = 'pending'
+                        AND DATEDIFF(ps.due_date, NOW()) BETWEEN -7 AND 7
+                    ORDER BY ps.due_date ASC
+                    LIMIT 5
+                ");
+                $stmt->execute([$userId]);
+                $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                $actions = array_merge($renewals, $payments);
+                
+            } else {
+                // Agent view - broader scope
+                $stmt = $db->prepare("
+                    SELECT 
+                        'Renovación próxima' as action,
+                        CONCAT(p.policy_number, ' - ', u.name) as policy_number,
+                        p.renewal_date as due_date,
+                        DATEDIFF(p.renewal_date, NOW()) as days_until
+                    FROM policies p
+                    JOIN users u ON p.client_id = u.id
+                    WHERE p.agent_id = ? 
+                        AND p.status = 'active'
+                        AND DATEDIFF(p.renewal_date, NOW()) BETWEEN 0 AND 30
+                    ORDER BY p.renewal_date ASC
+                    LIMIT 10
+                ");
+                $stmt->execute([$userId]);
+                $actions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            
+            sendResponse([
+                'success' => true,
+                'actions' => $actions,
+                'count' => count($actions)
+            ]);
+        } catch (Exception $e) {
+            error_log("Pending actions error: " . $e->getMessage());
+            sendError('Error fetching pending actions', 500);
+        }
+    }
+    
+    // GET ?action=payment_trends - Historical payment data for charts
+    if ($action === 'payment_trends') {
+        $user = Auth::requireAuth();
+        $userId = $user['user_id'];
+        $userType = $user['user_type'];
+        
+        try {
+            if ($userType === 'client') {
+                $stmt = $db->prepare("
+                    SELECT 
+                        DATE_FORMAT(payment_date, '%Y-%m') as month,
+                        COUNT(*) as payment_count,
+                        SUM(amount) as total_amount,
+                        SUM(CASE WHEN status = 'paid' THEN 1 ELSE 0 END) as on_time_count,
+                        SUM(CASE WHEN status = 'late' THEN 1 ELSE 0 END) as late_count
+                    FROM payments
+                    WHERE client_id = ? 
+                        AND payment_date >= DATE_SUB(NOW(), INTERVAL 12 MONTH)
+                    GROUP BY DATE_FORMAT(payment_date, '%Y-%m')
+                    ORDER BY month ASC
+                ");
+                $stmt->execute([$userId]);
+            } else {
+                $stmt = $db->prepare("
+                    SELECT 
+                        DATE_FORMAT(payment_date, '%Y-%m') as month,
+                        COUNT(*) as payment_count,
+                        SUM(amount) as total_amount,
+                        SUM(CASE WHEN status = 'paid' THEN 1 ELSE 0 END) as on_time_count,
+                        SUM(CASE WHEN status = 'late' THEN 1 ELSE 0 END) as late_count
+                    FROM payments
+                    WHERE agent_id = ? 
+                        AND payment_date >= DATE_SUB(NOW(), INTERVAL 12 MONTH)
+                    GROUP BY DATE_FORMAT(payment_date, '%Y-%m')
+                    ORDER BY month ASC
+                ");
+                $stmt->execute([$userId]);
+            }
+            
+            $trends = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Calculate summary stats
+            $totalPayments = array_sum(array_column($trends, 'payment_count'));
+            $totalOnTime = array_sum(array_column($trends, 'on_time_count'));
+            $totalLate = array_sum(array_column($trends, 'late_count'));
+            
+            sendResponse([
+                'success' => true,
+                'trends' => $trends,
+                'summary' => [
+                    'total_payments' => (int)$totalPayments,
+                    'on_time' => (int)$totalOnTime,
+                    'late' => (int)$totalLate,
+                    'on_time_rate' => $totalPayments > 0 ? round(($totalOnTime / $totalPayments) * 100, 1) : 100
+                ]
+            ]);
+        } catch (Exception $e) {
+            error_log("Payment trends error: " . $e->getMessage());
+            sendError('Error fetching payment trends', 500);
+        }
+    }
+    
     // Default: Not found
     sendError('Endpoint not found', 404);
     
