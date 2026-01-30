@@ -864,10 +864,10 @@ try {
         // Get claim details
         $stmt = $db->prepare("
             SELECT c.*, p.policy_number, p.policy_type,
-                   u.name as client_name, u.email as client_email
+                   CONCAT(u.first_name, ' ', u.last_name) as client_name, u.email as client_email
             FROM claims c
             JOIN policies p ON c.policy_id = p.id
-            JOIN users u ON c.user_id = u.id
+            JOIN users u ON c.client_id = u.id
             WHERE c.id = ?
         ");
         $stmt->execute([$claimId]);
@@ -879,7 +879,7 @@ try {
         
         // Get comments
         $stmt = $db->prepare("
-            SELECT cc.*, u.name as from_name
+            SELECT cc.*, CONCAT(u.first_name, ' ', u.last_name) as from_name
             FROM claim_comments cc
             JOIN users u ON cc.user_id = u.id
             WHERE cc.claim_id = ?
@@ -915,9 +915,9 @@ try {
         
         // Get claim owner email for notification
         $stmt = $db->prepare("
-            SELECT u.email, u.name, c.claim_number
+            SELECT u.email, CONCAT(u.first_name, ' ', u.last_name) as name, c.claim_number
             FROM claims c
-            JOIN users u ON c.user_id = u.id
+            JOIN users u ON c.client_id = u.id
             WHERE c.id = ?
         ");
         $stmt->execute([$claimId]);
@@ -1473,7 +1473,7 @@ try {
                 $stmt = $db->prepare("
                     SELECT 
                         'Renovación próxima' as action,
-                        CONCAT(p.policy_number, ' - ', u.name) as policy_number,
+                        CONCAT(p.policy_number, ' - ', CONCAT(u.first_name, ' ', u.last_name)) as policy_number,
                         p.renewal_date as due_date,
                         DATEDIFF(p.renewal_date, NOW()) as days_until
                     FROM policies p
@@ -1509,30 +1509,32 @@ try {
             if ($userType === 'client') {
                 $stmt = $db->prepare("
                     SELECT 
-                        DATE_FORMAT(payment_date, '%Y-%m') as month,
+                        DATE_FORMAT(p.payment_date, '%Y-%m') as month,
                         COUNT(*) as payment_count,
-                        SUM(amount) as total_amount,
-                        SUM(CASE WHEN status = 'paid' THEN 1 ELSE 0 END) as on_time_count,
-                        SUM(CASE WHEN status = 'late' THEN 1 ELSE 0 END) as late_count
-                    FROM payments
-                    WHERE client_id = ? 
-                        AND payment_date >= DATE_SUB(NOW(), INTERVAL 12 MONTH)
-                    GROUP BY DATE_FORMAT(payment_date, '%Y-%m')
+                        SUM(p.amount) as total_amount,
+                        SUM(CASE WHEN p.status = 'completed' THEN 1 ELSE 0 END) as on_time_count,
+                        SUM(CASE WHEN p.status = 'failed' THEN 1 ELSE 0 END) as late_count
+                    FROM payments p
+                    WHERE p.client_id = ? 
+                        AND p.payment_date >= DATE_SUB(NOW(), INTERVAL 12 MONTH)
+                    GROUP BY DATE_FORMAT(p.payment_date, '%Y-%m')
                     ORDER BY month ASC
                 ");
                 $stmt->execute([$userId]);
             } else {
+                // For agents, join with policies to get agent_id
                 $stmt = $db->prepare("
                     SELECT 
-                        DATE_FORMAT(payment_date, '%Y-%m') as month,
+                        DATE_FORMAT(p.payment_date, '%Y-%m') as month,
                         COUNT(*) as payment_count,
-                        SUM(amount) as total_amount,
-                        SUM(CASE WHEN status = 'paid' THEN 1 ELSE 0 END) as on_time_count,
-                        SUM(CASE WHEN status = 'late' THEN 1 ELSE 0 END) as late_count
-                    FROM payments
-                    WHERE agent_id = ? 
-                        AND payment_date >= DATE_SUB(NOW(), INTERVAL 12 MONTH)
-                    GROUP BY DATE_FORMAT(payment_date, '%Y-%m')
+                        SUM(p.amount) as total_amount,
+                        SUM(CASE WHEN p.status = 'completed' THEN 1 ELSE 0 END) as on_time_count,
+                        SUM(CASE WHEN p.status = 'failed' THEN 1 ELSE 0 END) as late_count
+                    FROM payments p
+                    JOIN policies pol ON p.policy_id = pol.id
+                    WHERE pol.agent_id = ? 
+                        AND p.payment_date >= DATE_SUB(NOW(), INTERVAL 12 MONTH)
+                    GROUP BY DATE_FORMAT(p.payment_date, '%Y-%m')
                     ORDER BY month ASC
                 ");
                 $stmt->execute([$userId]);
