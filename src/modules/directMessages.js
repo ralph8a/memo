@@ -369,9 +369,18 @@ class DirectMessagesComponent {
 // Instancia global
 window.directMessages = new DirectMessagesComponent();
 
-// Auto-inicializar
-document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('jwt_token')) {
+// Export for manual initialization after login
+export function initDirectMessages() {
+    if (localStorage.getItem('jwt_token') && window.directMessages) {
         window.directMessages.init();
     }
-});
+}
+
+// Auto-inicializar si ya está logueado al cargar página
+if (typeof window !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('jwt_token')) {
+            initDirectMessages();
+        }
+    });
+}

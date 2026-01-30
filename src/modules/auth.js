@@ -37,7 +37,40 @@ export async function login(credentials, type = 'client') {
 
       setUser(user);
       localStorage.setItem('auth_token', result.token);
+      localStorage.setItem('jwt_token', result.token); // Also store as jwt_token for module checks
+
       showNotification('Inicio de sesión exitoso', NOTIFICATION_TYPES.SUCCESS);
+
+      // Initialize all modules after successful authentication
+      setTimeout(() => {
+        try {
+          // Initialize payment calendar
+          if (typeof window.initPaymentCalendar === 'function') {
+            window.initPaymentCalendar();
+            console.log('✅ Payment calendar initialized after login');
+          }
+
+          // Initialize global search
+          import('./globalSearch.js').then(({ initGlobalSearch }) => {
+            if (initGlobalSearch) {
+              initGlobalSearch();
+              console.log('✅ Global search initialized after login');
+            }
+          }).catch(e => console.warn('Global search init failed:', e));
+
+          // Initialize direct messages
+          import('./directMessages.js').then(({ initDirectMessages }) => {
+            if (initDirectMessages) {
+              initDirectMessages();
+              console.log('✅ Direct messages initialized after login');
+            }
+          }).catch(e => console.warn('Direct messages init failed:', e));
+
+        } catch (initError) {
+          console.error('Post-login module initialization error:', initError);
+        }
+      }, 200);
+
       return user;
     }
   } catch (error) {

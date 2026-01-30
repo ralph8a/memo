@@ -290,12 +290,20 @@ class GlobalSearchComponent {
 // Instancia global
 window.globalSearch = new GlobalSearchComponent();
 
-// Auto-inicializar solo si está autenticado
-document.addEventListener('DOMContentLoaded', () => {
-    // Only initialize if user is logged in
+// Export for manual initialization after login
+export function initGlobalSearch() {
     if (localStorage.getItem('jwt_token')) {
         setTimeout(() => {
             window.globalSearch.init();
-        }, 500);
+        }, 100);
     }
-});
+}
+
+// Auto-initialize if already logged in on page load
+if (typeof window !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('jwt_token')) {
+            initGlobalSearch();
+        }
+    });
+}

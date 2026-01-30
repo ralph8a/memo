@@ -204,12 +204,3 @@ export function initPaymentCalendar() {
     }, 5 * 60 * 1000);
 }
 
-// Auto-initialize only if user is authenticated
-if (typeof window !== 'undefined') {
-    document.addEventListener('DOMContentLoaded', () => {
-        // Only initialize if user is logged in
-        if (localStorage.getItem('jwt_token')) {
-            initPaymentCalendar();
-        }
-    });
-}
