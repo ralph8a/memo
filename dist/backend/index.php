@@ -1499,7 +1499,7 @@ try {
         }
     }
     
-    // GET ?action=notifications - Get user notifications from comments
+    // GET ?action=notifications - Get user notifications from comments, payments, policies, and system
     if ($action === 'notifications') {
         $user = Auth::requireAuth();
         $userId = $user['user_id'];
@@ -1508,9 +1508,170 @@ try {
         try {
             $notifications = [];
             
-            // Get unread policy comments
+            // Helper function to calculate time ago
+            $getTimeAgo = function($timestamp) {
+                $diff = time() - strtotime($timestamp);
+                if ($diff < 60) return 'hace ' . $diff . ' segundos';
+                if ($diff < 3600) return 'hace ' . floor($diff / 60) . ' minutos';
+                if ($diff < 86400) return 'hace ' . floor($diff / 3600) . ' horas';
+                return 'hace ' . floor($diff / 86400) . ' días';
+            };
+            
+            // 1. PAYMENT NOTIFICATIONS - Pagos próximos a vencer
             if ($userType === 'client') {
-                // Client sees comments from agents on their policies
+                $stmt = $db->prepare("
+                    SELECT 
+                        ps.schedule_id,
+                        ps.policy_id,
+                        ps.due_date,
+                        ps.amount_due as amount,
+                        p.policy_number,
+                        p.policy_type,
+                        DATEDIFF(ps.due_date, CURDATE()) as days_until
+                    FROM payment_schedules ps
+                    INNER JOIN policies p ON ps.policy_id = p.id
+                    WHERE p.client_id = ?
+                      AND ps.status = 'pending'
+                      AND ps.due_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 15 DAY)
+                    ORDER BY ps.due_date ASC
+                    LIMIT 10
+                ");
+                $stmt->execute([$userId]);
+                $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach ($payments as $payment) {
+                    $priority = $payment['days_until'] <= 3 ? 'high' : ($payment['days_until'] <= 7 ? 'normal' : 'low');
+                    $notifications[] = [
+                        'id' => 'payment_' . $payment['schedule_id'],
+                        'type' => 'payment',
+                        'title' => 'Pago próximo a vencer',
+                        'message' => "Tu pago de póliza {$payment['policy_number']} vence en {$payment['days_until']} día(s). Monto: $" . number_format($payment['amount'], 2),
+                        'time' => $getTimeAgo($payment['due_date']),
+                        'read' => false,
+                        'priority' => $priority,
+                        'data' => [
+                            'policy_id' => (int)$payment['policy_id'],
+                            'schedule_id' => (int)$payment['schedule_id'],
+                            'amount' => (float)$payment['amount'],
+                            'due_date' => $payment['due_date']
+                        ],
+                        'actions' => [
+                            ['label' => 'Realizar pago', 'action' => 'makePayment', 'policyId' => (int)$payment['policy_id']],
+                            ['label' => 'Ver póliza', 'action' => 'viewPolicy', 'policyId' => (int)$payment['policy_id']]
+                        ]
+                    ];
+                }
+            } else {
+                // Para agentes: pagos atrasados de sus clientes
+                $stmt = $db->prepare("
+                    SELECT 
+                        ps.schedule_id,
+                        ps.policy_id,
+                        ps.due_date,
+                        ps.amount_due as amount,
+                        p.policy_number,
+                        CONCAT(u.first_name, ' ', u.last_name) as client_name,
+                        DATEDIFF(CURDATE(), ps.due_date) as days_overdue
+                    FROM payment_schedules ps
+                    INNER JOIN policies p ON ps.policy_id = p.id
+                    INNER JOIN users u ON p.client_id = u.id
+                    WHERE p.agent_id = ?
+                      AND ps.status = 'pending'
+                      AND ps.due_date < CURDATE()
+                    ORDER BY ps.due_date ASC
+                    LIMIT 10
+                ");
+                $stmt->execute([$userId]);
+                $overduePayments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach ($overduePayments as $payment) {
+                    $notifications[] = [
+                        'id' => 'payment_overdue_' . $payment['schedule_id'],
+                        'type' => 'payment',
+                        'title' => 'Pago atrasado',
+                        'message' => "Cliente {$payment['client_name']} - Póliza {$payment['policy_number']} tiene un pago vencido hace {$payment['days_overdue']} día(s)",
+                        'time' => $getTimeAgo($payment['due_date']),
+                        'read' => false,
+                        'priority' => 'high',
+                        'data' => [
+                            'policy_id' => (int)$payment['policy_id'],
+                            'schedule_id' => (int)$payment['schedule_id']
+                        ],
+                        'actions' => [
+                            ['label' => 'Ver póliza', 'action' => 'viewPolicy', 'policyId' => (int)$payment['policy_id']]
+                        ]
+                    ];
+                }
+            }
+            
+            // 2. POLICY NOTIFICATIONS - Renovaciones próximas
+            if ($userType === 'client') {
+                $stmt = $db->prepare("
+                    SELECT 
+                        id as policy_id,
+                        policy_number,
+                        policy_type,
+                        renewal_date,
+                        premium_amount,
+                        DATEDIFF(renewal_date, CURDATE()) as days_until
+                    FROM policies
+                    WHERE client_id = ?
+                      AND status = 'active'
+                      AND renewal_date IS NOT NULL
+                      AND renewal_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 60 DAY)
+                    ORDER BY renewal_date ASC
+                    LIMIT 10
+                ");
+                $stmt->execute([$userId]);
+            } else {
+                $stmt = $db->prepare("
+                    SELECT 
+                        p.id as policy_id,
+                        p.policy_number,
+                        p.policy_type,
+                        p.renewal_date,
+                        p.premium_amount,
+                        CONCAT(u.first_name, ' ', u.last_name) as client_name,
+                        DATEDIFF(p.renewal_date, CURDATE()) as days_until
+                    FROM policies p
+                    INNER JOIN users u ON p.client_id = u.id
+                    WHERE p.agent_id = ?
+                      AND p.status = 'active'
+                      AND p.renewal_date IS NOT NULL
+                      AND p.renewal_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 60 DAY)
+                    ORDER BY p.renewal_date ASC
+                    LIMIT 10
+                ");
+                $stmt->execute([$userId]);
+            }
+            
+            $renewals = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach ($renewals as $renewal) {
+                $priority = $renewal['days_until'] <= 15 ? 'high' : 'normal';
+                $clientInfo = isset($renewal['client_name']) ? " - Cliente: {$renewal['client_name']}" : "";
+                
+                $notifications[] = [
+                    'id' => 'renewal_' . $renewal['policy_id'],
+                    'type' => 'policy',
+                    'title' => 'Renovación próxima',
+                    'message' => "Póliza {$renewal['policy_number']} vence en {$renewal['days_until']} día(s){$clientInfo}",
+                    'time' => $getTimeAgo($renewal['renewal_date']),
+                    'read' => false,
+                    'priority' => $priority,
+                    'data' => [
+                        'policy_id' => (int)$renewal['policy_id'],
+                        'renewal_date' => $renewal['renewal_date']
+                    ],
+                    'actions' => [
+                        ['label' => 'Renovar póliza', 'action' => 'viewPolicy', 'policyId' => (int)$renewal['policy_id']],
+                        ['label' => 'Ver detalles', 'action' => 'viewPolicy', 'policyId' => (int)$renewal['policy_id']]
+                    ]
+                ];
+            }
+            
+            // 3. COMMENT NOTIFICATIONS - Comentarios sin leer
+            if ($userType === 'client') {
                 $stmt = $db->prepare("
                     SELECT 
                         pc.comment_id,
@@ -1527,11 +1688,10 @@ try {
                       AND pc.is_read = 0
                       AND pc.created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
                     ORDER BY pc.created_at DESC
-                    LIMIT 20
+                    LIMIT 15
                 ");
                 $stmt->execute([$userId]);
             } else {
-                // Agent sees comments from clients on their policies
                 $stmt = $db->prepare("
                     SELECT 
                         pc.comment_id,
@@ -1548,7 +1708,7 @@ try {
                       AND pc.is_read = 0
                       AND pc.created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
                     ORDER BY pc.created_at DESC
-                    LIMIT 20
+                    LIMIT 15
                 ");
                 $stmt->execute([$userId]);
             }
@@ -1556,25 +1716,12 @@ try {
             $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             foreach ($comments as $comment) {
-                // Calculate time ago
-                $timestamp = strtotime($comment['created_at']);
-                $diff = time() - $timestamp;
-                if ($diff < 60) {
-                    $timeAgo = 'hace ' . $diff . ' segundos';
-                } elseif ($diff < 3600) {
-                    $timeAgo = 'hace ' . floor($diff / 60) . ' minutos';
-                } elseif ($diff < 86400) {
-                    $timeAgo = 'hace ' . floor($diff / 3600) . ' horas';
-                } else {
-                    $timeAgo = 'hace ' . floor($diff / 86400) . ' días';
-                }
-                
                 $notifications[] = [
                     'id' => 'comment_' . $comment['comment_id'],
                     'type' => 'comment',
                     'title' => 'Nuevo comentario en póliza ' . $comment['policy_number'],
                     'message' => $comment['author_name'] . ': "' . substr($comment['comment_text'], 0, 80) . (strlen($comment['comment_text']) > 80 ? '..."' : '"'),
-                    'time' => $timeAgo,
+                    'time' => $getTimeAgo($comment['created_at']),
                     'read' => false,
                     'priority' => 'normal',
                     'data' => [
@@ -1586,6 +1733,68 @@ try {
                     ]
                 ];
             }
+            
+            // 4. SYSTEM NOTIFICATIONS - Notificaciones del sistema
+            // Pólizas recientemente aprobadas
+            if ($userType === 'client') {
+                $stmt = $db->prepare("
+                    SELECT 
+                        id as policy_id,
+                        policy_number,
+                        policy_type,
+                        created_at,
+                        status
+                    FROM policies
+                    WHERE client_id = ?
+                      AND status = 'active'
+                      AND created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+                    ORDER BY created_at DESC
+                    LIMIT 5
+                ");
+                $stmt->execute([$userId]);
+                $newPolicies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach ($newPolicies as $policy) {
+                    $notifications[] = [
+                        'id' => 'system_new_policy_' . $policy['policy_id'],
+                        'type' => 'system',
+                        'title' => 'Póliza activada',
+                        'message' => "Tu póliza {$policy['policy_number']} ha sido activada y está en vigencia",
+                        'time' => $getTimeAgo($policy['created_at']),
+                        'read' => false,
+                        'priority' => 'normal',
+                        'data' => [
+                            'policy_id' => (int)$policy['policy_id']
+                        ],
+                        'actions' => [
+                            ['label' => 'Ver póliza', 'action' => 'viewPolicy', 'policyId' => (int)$policy['policy_id']]
+                        ]
+                    ];
+                }
+            }
+            
+            // Mensaje del sistema para todos
+            if (date('H') < 12) {
+                $notifications[] = [
+                    'id' => 'system_welcome_' . date('Ymd'),
+                    'type' => 'system',
+                    'title' => 'Bienvenido al Dashboard',
+                    'message' => 'Tienes ' . count($notifications) . ' notificaciones pendientes. Revisa tus pólizas y pagos.',
+                    'time' => 'hoy',
+                    'read' => false,
+                    'priority' => 'low',
+                    'data' => [],
+                    'actions' => []
+                ];
+            }
+            
+            // Ordenar por prioridad y fecha
+            usort($notifications, function($a, $b) {
+                $priorityOrder = ['high' => 0, 'normal' => 1, 'low' => 2];
+                $aPriority = $priorityOrder[$a['priority']] ?? 1;
+                $bPriority = $priorityOrder[$b['priority']] ?? 1;
+                return $aPriority - $bPriority;
+            });
             
             sendResponse([
                 'success' => true,
