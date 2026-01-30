@@ -215,6 +215,17 @@ export async function loadClientDashboard() {
         // Load client contacts from backend
         loadClientContacts().catch(err => console.error('Error loading contacts:', err));
 
+        // Initialize payment calendar
+        console.log('🔄 Initializing payment calendar...');
+        if (typeof window.initPaymentCalendar === 'function') {
+            window.initPaymentCalendar();
+        } else {
+            // Dynamic import if not available
+            import('./paymentCalendar.js').then(({ initPaymentCalendar }) => {
+                if (initPaymentCalendar) initPaymentCalendar();
+            }).catch(e => console.error('Failed to load payment calendar:', e));
+        }
+
         // Load dynamic chart data
         loadPolicyHealthStats().catch(err => console.error('Error loading policy health:', err));
         loadPaymentTrends().catch(err => console.error('Error loading payment trends:', err));
