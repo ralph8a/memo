@@ -23120,90 +23120,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   showNotification: () => (/* binding */ showNotification)
 /* harmony export */ });
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
-/* harmony import */ var _utils_dom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/dom.js */ "./src/utils/dom.js");
-// Notifications System
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+// Notifications System - OVERLAY DISABLED
+// Using dedicated notification panel instead
 
 
-
-// Notification manager: append notifications into a wrapper so multiple
-// messages stack cleanly and are reliably removed.
-var WRAPPER_ID = 'notification-wrapper';
-function ensureWrapper() {
-  var wrapper = document.getElementById(WRAPPER_ID);
-  if (!wrapper) {
-    wrapper = (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__.createElement)('div', 'notification-wrapper', {
-      id: WRAPPER_ID
-    });
-    document.body.appendChild(wrapper);
-  }
-  return wrapper;
-}
-function hideAndRemove(notification) {
-  if (!notification) return;
-  // prevent double-removal
-  if (notification.__removing) return;
-  notification.__removing = true;
-  (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__.removeClass)(notification, 'show');
-  // wait for CSS transition then remove
-  var _onTransitionEnd = function onTransitionEnd(e) {
-    if (e && e.target !== notification) return;
-    notification.removeEventListener('transitionend', _onTransitionEnd);
-    if (notification.parentElement) notification.parentElement.removeChild(notification);
-  };
-  notification.addEventListener('transitionend', _onTransitionEnd);
-  // Fallback removal in case transitionend doesn't fire
-  setTimeout(function () {
-    if (notification.parentElement) notification.parentElement.removeChild(notification);
-  }, 400);
-}
+/**
+ * Notification function - logs to console only
+ * Overlay notifications disabled - use dedicated notification panel
+ */
 function showNotification(message) {
   var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _utils_constants_js__WEBPACK_IMPORTED_MODULE_0__.NOTIFICATION_TYPES.INFO;
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var _options$duration = options.duration,
-    duration = _options$duration === void 0 ? _utils_constants_js__WEBPACK_IMPORTED_MODULE_0__.TIMING.NOTIFICATION_DURATION : _options$duration,
-    _options$dismissible = options.dismissible,
-    dismissible = _options$dismissible === void 0 ? true : _options$dismissible;
-  var wrapper = ensureWrapper();
-  var notification = (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__.createElement)('div', "notification notification-".concat(type));
+  // Log to console for debugging
+  var emoji = _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, _utils_constants_js__WEBPACK_IMPORTED_MODULE_0__.NOTIFICATION_TYPES.SUCCESS, '✅'), _utils_constants_js__WEBPACK_IMPORTED_MODULE_0__.NOTIFICATION_TYPES.ERROR, '❌'), _utils_constants_js__WEBPACK_IMPORTED_MODULE_0__.NOTIFICATION_TYPES.WARNING, '⚠️'), _utils_constants_js__WEBPACK_IMPORTED_MODULE_0__.NOTIFICATION_TYPES.INFO, 'ℹ️');
+  console.log("".concat(emoji[type] || 'ℹ️', " ").concat(type.toUpperCase(), ": ").concat(message));
 
-  // content
-  var content = (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__.createElement)('div', 'notification-body');
-  content.textContent = message;
-  notification.appendChild(content);
-
-  // optional dismiss button
-  if (dismissible) {
-    var btn = (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__.createElement)('button', 'notification-close');
-    btn.setAttribute('aria-label', 'Cerrar notificación');
-    btn.innerHTML = '&times;';
-    btn.addEventListener('click', function () {
-      return hideAndRemove(notification);
-    });
-    notification.appendChild(btn);
+  // TODO: Send to notification panel/bell icon instead of overlay
+  // For now, only critical errors show browser alert
+  if (type === _utils_constants_js__WEBPACK_IMPORTED_MODULE_0__.NOTIFICATION_TYPES.ERROR && message.includes('Error al cargar')) {
+    // Silent fail - don't interrupt user
+    return null;
   }
-  wrapper.appendChild(notification);
-
-  // trigger enter animation
-  requestAnimationFrame(function () {
-    return (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__.addClass)(notification, 'show');
-  });
-
-  // auto-dismiss
-  if (duration > 0) {
-    var tid = setTimeout(function () {
-      return hideAndRemove(notification);
-    }, duration);
-    // attach so it can be cleared if needed
-    notification.__timeout = tid;
-  }
-  return notification;
+  return null;
 }
 function clearNotifications() {
-  var wrapper = document.getElementById(WRAPPER_ID);
-  if (!wrapper) return;
-  Array.from(wrapper.children).forEach(function (n) {
-    return hideAndRemove(n);
-  });
+  // No-op since overlay notifications are disabled
+  console.log('clearNotifications called (no-op)');
 }
 
 /***/ }),
