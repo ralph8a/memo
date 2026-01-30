@@ -1499,6 +1499,105 @@ try {
         }
     }
     
+    // GET ?action=notifications - Get user notifications from comments
+    if ($action === 'notifications') {
+        $user = Auth::requireAuth();
+        $userId = $user['user_id'];
+        $userType = $user['user_type'];
+        
+        try {
+            $notifications = [];
+            
+            // Get unread policy comments
+            if ($userType === 'client') {
+                // Client sees comments from agents on their policies
+                $stmt = $db->prepare("
+                    SELECT 
+                        pc.comment_id,
+                        pc.policy_id,
+                        pc.comment_text,
+                        pc.created_at,
+                        p.policy_number,
+                        CONCAT(u.first_name, ' ', u.last_name) as author_name
+                    FROM policy_comments pc
+                    INNER JOIN policies p ON pc.policy_id = p.id
+                    LEFT JOIN users u ON pc.author_id = u.id
+                    WHERE p.client_id = ?
+                      AND pc.author_type = 'agent'
+                      AND pc.is_read = 0
+                      AND pc.created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                    ORDER BY pc.created_at DESC
+                    LIMIT 20
+                ");
+                $stmt->execute([$userId]);
+            } else {
+                // Agent sees comments from clients on their policies
+                $stmt = $db->prepare("
+                    SELECT 
+                        pc.comment_id,
+                        pc.policy_id,
+                        pc.comment_text,
+                        pc.created_at,
+                        p.policy_number,
+                        CONCAT(u.first_name, ' ', u.last_name) as author_name
+                    FROM policy_comments pc
+                    INNER JOIN policies p ON pc.policy_id = p.id
+                    LEFT JOIN users u ON pc.author_id = u.id
+                    WHERE p.agent_id = ?
+                      AND pc.author_type = 'client'
+                      AND pc.is_read = 0
+                      AND pc.created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                    ORDER BY pc.created_at DESC
+                    LIMIT 20
+                ");
+                $stmt->execute([$userId]);
+            }
+            
+            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach ($comments as $comment) {
+                // Calculate time ago
+                $timestamp = strtotime($comment['created_at']);
+                $diff = time() - $timestamp;
+                if ($diff < 60) {
+                    $timeAgo = 'hace ' . $diff . ' segundos';
+                } elseif ($diff < 3600) {
+                    $timeAgo = 'hace ' . floor($diff / 60) . ' minutos';
+                } elseif ($diff < 86400) {
+                    $timeAgo = 'hace ' . floor($diff / 3600) . ' horas';
+                } else {
+                    $timeAgo = 'hace ' . floor($diff / 86400) . ' días';
+                }
+                
+                $notifications[] = [
+                    'id' => 'comment_' . $comment['comment_id'],
+                    'type' => 'comment',
+                    'title' => 'Nuevo comentario en póliza ' . $comment['policy_number'],
+                    'message' => $comment['author_name'] . ': "' . substr($comment['comment_text'], 0, 80) . (strlen($comment['comment_text']) > 80 ? '..."' : '"'),
+                    'time' => $timeAgo,
+                    'read' => false,
+                    'priority' => 'normal',
+                    'data' => [
+                        'policy_id' => (int)$comment['policy_id'],
+                        'comment_id' => (int)$comment['comment_id']
+                    ],
+                    'actions' => [
+                        ['label' => 'Ver comentario', 'action' => 'viewPolicy', 'policyId' => (int)$comment['policy_id']]
+                    ]
+                ];
+            }
+            
+            sendResponse([
+                'success' => true,
+                'notifications' => $notifications,
+                'unread_count' => count($notifications)
+            ]);
+        } catch (Exception $e) {
+            error_log("Notifications error: " . $e->getMessage());
+            sendError('Error fetching notifications', 500);
+        }
+    }
+    
     // GET ?action=payment_trends - Historical payment data for charts
     if ($action === 'payment_trends') {
         $user = Auth::requireAuth();
