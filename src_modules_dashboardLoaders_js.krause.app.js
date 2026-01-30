@@ -120,6 +120,13 @@ function _loadAgentDashboard() {
             return console.error('❌ Error loading recent clients:', err);
           });
         case 3:
+          // Load dynamic chart data for agent dashboard
+          loadPolicyHealthStats()["catch"](function (err) {
+            return console.error('Error loading policy health:', err);
+          });
+          loadPaymentTrends()["catch"](function (err) {
+            return console.error('Error loading payment trends:', err);
+          });
           console.log('✅ Agent dashboard loaded with real data');
           return _context.a(2, dashboardData);
         case 4:
@@ -291,6 +298,17 @@ function _loadClientDashboard() {
           // Load client contacts from backend
           loadClientContacts()["catch"](function (err) {
             return console.error('Error loading contacts:', err);
+          });
+
+          // Load dynamic chart data
+          loadPolicyHealthStats()["catch"](function (err) {
+            return console.error('Error loading policy health:', err);
+          });
+          loadPaymentTrends()["catch"](function (err) {
+            return console.error('Error loading payment trends:', err);
+          });
+          loadPendingActions()["catch"](function (err) {
+            return console.error('Error loading pending actions:', err);
           });
           console.log('✅ Client dashboard loaded with real data');
           return _context5.a(2, {
@@ -765,7 +783,12 @@ function _loadClientContacts() {
 }
 function loadAgentRecentClients() {
   return _loadAgentRecentClients.apply(this, arguments);
-}
+} // ============================================
+// DYNAMIC CHART DATA LOADERS
+// ============================================
+/**
+ * Load policy health statistics for donut chart
+ */
 function _loadAgentRecentClients() {
   _loadAgentRecentClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10() {
     var clientsPillsContainer, clients, recentClients, _t10;
@@ -827,6 +850,182 @@ function _loadAgentRecentClients() {
     }, _callee10, null, [[1, 4]]);
   }));
   return _loadAgentRecentClients.apply(this, arguments);
+}
+function loadPolicyHealthStats() {
+  return _loadPolicyHealthStats.apply(this, arguments);
+}
+/**
+ * Render policy health donut chart with real data
+ */
+function _loadPolicyHealthStats() {
+  _loadPolicyHealthStats = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11() {
+    var data, _t11;
+    return _regenerator().w(function (_context11) {
+      while (1) switch (_context11.p = _context11.n) {
+        case 0:
+          _context11.p = 0;
+          _context11.n = 1;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request('?action=policy_health_stats', {
+            method: 'GET'
+          });
+        case 1:
+          data = _context11.v;
+          if (data.success && data.stats) {
+            renderPolicyHealthChart(data.stats);
+          }
+          _context11.n = 3;
+          break;
+        case 2:
+          _context11.p = 2;
+          _t11 = _context11.v;
+          console.error('Error loading policy health stats:', _t11);
+        case 3:
+          return _context11.a(2);
+      }
+    }, _callee11, null, [[0, 2]]);
+  }));
+  return _loadPolicyHealthStats.apply(this, arguments);
+}
+function renderPolicyHealthChart(stats) {
+  // Update the monitor text in client dashboard
+  var monitors = document.querySelectorAll('.chart-card');
+  monitors.forEach(function (card) {
+    var title = card.querySelector('.chart-title');
+    if (title !== null && title !== void 0 && title.textContent.includes('Salud de pólizas')) {
+      // Update legend with real percentages
+      var legend = card.querySelector('.chart-legend');
+      if (legend) {
+        legend.innerHTML = "\n                    <span class=\"chart-legend-item\">\n                        <span class=\"chart-legend-dot\" style=\"background: #38ef7d; box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.12);\"></span> \n                        Activas (".concat(stats.active_percent, "%)\n                    </span>\n                    <span class=\"chart-legend-item\">\n                        <span class=\"chart-legend-dot\" style=\"background: #f5576c; box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.12);\"></span> \n                        Riesgo (").concat(stats.risk_percent, "%)\n                    </span>\n                ");
+      }
+
+      // You can also update a visual chart here if implementing canvas/svg donut
+      console.log('✅ Policy health chart updated:', stats);
+    }
+  });
+}
+
+/**
+ * Load payment trends for sparkline chart
+ */
+function loadPaymentTrends() {
+  return _loadPaymentTrends.apply(this, arguments);
+}
+/**
+ * Render payment trends chart with real data
+ */
+function _loadPaymentTrends() {
+  _loadPaymentTrends = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12() {
+    var data, _t12;
+    return _regenerator().w(function (_context12) {
+      while (1) switch (_context12.p = _context12.n) {
+        case 0:
+          _context12.p = 0;
+          _context12.n = 1;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request('?action=payment_trends', {
+            method: 'GET'
+          });
+        case 1:
+          data = _context12.v;
+          if (data.success) {
+            renderPaymentTrendsChart(data.trends, data.summary);
+          }
+          _context12.n = 3;
+          break;
+        case 2:
+          _context12.p = 2;
+          _t12 = _context12.v;
+          console.error('Error loading payment trends:', _t12);
+        case 3:
+          return _context12.a(2);
+      }
+    }, _callee12, null, [[0, 2]]);
+  }));
+  return _loadPaymentTrends.apply(this, arguments);
+}
+function renderPaymentTrendsChart(trends, summary) {
+  var chartCards = document.querySelectorAll('.chart-card');
+  chartCards.forEach(function (card) {
+    var title = card.querySelector('.chart-title');
+    if (title !== null && title !== void 0 && title.textContent.includes('Tendencia de pagos')) {
+      // Update metrics with real data
+      var metrics = card.querySelector('.chart-metrics');
+      if (metrics) {
+        metrics.innerHTML = "\n                    <div class=\"chart-metric\">\n                        <span class=\"label\">Total pagos</span>\n                        <span class=\"value\">".concat(summary.total_payments, "</span>\n                    </div>\n                    <div class=\"chart-metric\">\n                        <span class=\"label\">Pagos puntuales</span>\n                        <span class=\"value\">").concat(summary.on_time, "</span>\n                    </div>\n                    <div class=\"chart-metric\">\n                        <span class=\"label\">Retrasos</span>\n                        <span class=\"value\">").concat(summary.late, "</span>\n                    </div>\n                ");
+      }
+
+      // Update legend
+      var legend = card.querySelector('.chart-legend');
+      if (legend) {
+        legend.innerHTML = "\n                    <span class=\"chart-legend-item\"><span class=\"chart-legend-dot\"></span> Pagos</span>\n                    <span class=\"chart-legend-item\" style=\"color: var(--theme-accent-color);\">\n                        ".concat(summary.on_time_rate, "% puntualidad\n                    </span>\n                ");
+      }
+      console.log('✅ Payment trends chart updated:', summary);
+    }
+  });
+}
+
+/**
+ * Load pending actions/tasks
+ */
+function loadPendingActions() {
+  return _loadPendingActions.apply(this, arguments);
+}
+/**
+ * Render pending actions list
+ */
+function _loadPendingActions() {
+  _loadPendingActions = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee13() {
+    var data, _t13;
+    return _regenerator().w(function (_context13) {
+      while (1) switch (_context13.p = _context13.n) {
+        case 0:
+          _context13.p = 0;
+          _context13.n = 1;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request('?action=pending_actions', {
+            method: 'GET'
+          });
+        case 1:
+          data = _context13.v;
+          if (data.success && data.actions) {
+            renderPendingActions(data.actions);
+          }
+          _context13.n = 3;
+          break;
+        case 2:
+          _context13.p = 2;
+          _t13 = _context13.v;
+          console.error('Error loading pending actions:', _t13);
+        case 3:
+          return _context13.a(2);
+      }
+    }, _callee13, null, [[0, 2]]);
+  }));
+  return _loadPendingActions.apply(this, arguments);
+}
+function renderPendingActions(actions) {
+  // Find pending actions container (could be in sidebar or main area)
+  var containers = document.querySelectorAll('[data-pending-actions], .pending-actions-list');
+
+  // Update count badge
+  var countBadges = document.querySelectorAll('[data-actions-count]');
+  countBadges.forEach(function (badge) {
+    badge.textContent = actions.length;
+  });
+  if (actions.length === 0) {
+    containers.forEach(function (container) {
+      container.innerHTML = "\n                <div style=\"padding: 20px; text-align: center; color: var(--theme-text-secondary);\">\n                    <svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" style=\"margin-bottom: 8px; opacity: 0.5;\">\n                        <polyline points=\"20 6 9 17 4 12\"/>\n                    </svg>\n                    <p style=\"margin: 0; font-size: 0.875rem;\">No hay acciones pendientes</p>\n                </div>\n            ";
+    });
+    return;
+  }
+  var html = actions.map(function (action) {
+    var daysUntil = action.days_until;
+    var urgencyClass = daysUntil < 3 ? 'urgent' : daysUntil < 7 ? 'warning' : 'info';
+    var daysText = daysUntil < 0 ? "Vencido hace ".concat(Math.abs(daysUntil), "d") : daysUntil === 0 ? 'Hoy' : "En ".concat(daysUntil, "d");
+    return "\n            <div class=\"pending-action-item ".concat(urgencyClass, "\" style=\"padding: 10px; border-left: 3px solid ").concat(daysUntil < 3 ? '#f5576c' : daysUntil < 7 ? '#ffa726' : 'var(--theme-accent-color)', "; margin-bottom: 8px; background: var(--theme-surface-variant); border-radius: 6px;\">\n                <div style=\"display: flex; align-items: start; gap: 10px;\">\n                    <div style=\"flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: ").concat(daysUntil < 3 ? '#f5576c' : daysUntil < 7 ? '#ffa726' : 'var(--theme-accent-color)', ";\">\n                        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            ").concat(action.action.includes('Pago') ? '<rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>' : '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>', "\n                        </svg>\n                    </div>\n                    <div style=\"flex: 1; min-width: 0;\">\n                        <div style=\"font-weight: 600; font-size: 0.875rem; margin-bottom: 2px;\">").concat(action.action, "</div>\n                        <div style=\"font-size: 0.8125rem; color: var(--theme-text-secondary); margin-bottom: 4px;\">").concat(action.policy_number, "</div>\n                        <div style=\"font-size: 0.75rem; font-weight: 600; color: ").concat(daysUntil < 3 ? '#f5576c' : daysUntil < 7 ? '#ffa726' : 'var(--theme-text-secondary)', ";\">").concat(daysText, "</div>\n                    </div>\n                </div>\n            </div>\n        ");
+  }).join('');
+  containers.forEach(function (container) {
+    container.innerHTML = html;
+  });
+  console.log("\u2705 Rendered ".concat(actions.length, " pending actions"));
 }
 
 /***/ })
