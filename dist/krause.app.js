@@ -22875,7 +22875,7 @@ var NotificationModal = /*#__PURE__*/function () {
             case 0:
               _context.p = 0;
               // Obtener token de autenticación
-              token = localStorage.getItem('token');
+              token = localStorage.getItem('jwt_token');
               if (token) {
                 _context.n = 1;
                 break;
@@ -22886,7 +22886,7 @@ var NotificationModal = /*#__PURE__*/function () {
               return _context.a(2);
             case 1:
               _context.n = 2;
-              return fetch("".concat(window.API_BASE_URL || '', "/backend/notification-api.php/notifications"), {
+              return fetch("".concat(window.API_BASE_URL || 'https://ksinsurancee.com', "/backend/index.php?action=notifications"), {
                 method: 'GET',
                 headers: {
                   'Authorization': "Bearer ".concat(token),

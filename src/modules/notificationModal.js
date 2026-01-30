@@ -116,7 +116,7 @@ export class NotificationModal {
     async loadNotifications() {
         try {
             // Obtener token de autenticación
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('jwt_token');
             if (!token) {
                 console.warn('No hay token de autenticación');
                 this.notifications = [];
@@ -125,7 +125,7 @@ export class NotificationModal {
             }
 
             // Llamar a la API de notificaciones
-            const response = await fetch(`${window.API_BASE_URL || ''}/backend/notification-api.php/notifications`, {
+            const response = await fetch(`${window.API_BASE_URL || 'https://ksinsurancee.com'}/backend/index.php?action=notifications`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
