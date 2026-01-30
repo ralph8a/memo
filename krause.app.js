@@ -19451,11 +19451,11 @@ var ContactModalComponent = /*#__PURE__*/function () {
               _context3.n = 4;
               return _apiService.request('?action=dm_start_thread', {
                 method: 'POST',
-                body: JSON.stringify({
+                body: {
                   client_id: clientId,
                   subject: "Mensaje de tu agente",
                   message: messageText
-                })
+                }
               });
             case 4:
               data = _context3.v;
