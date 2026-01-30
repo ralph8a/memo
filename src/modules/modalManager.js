@@ -34,6 +34,20 @@ function createModal(title, content, actions = []) {
         </div>
     `;
 
+    // Prevent closing when clicking inside modal content
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Close when clicking on overlay (backdrop) ONLY
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+            document.removeEventListener('keydown', handleEscape);
+        }
+    });
+
     // Close on ESC key
     const handleEscape = (e) => {
         if (e.key === 'Escape') {

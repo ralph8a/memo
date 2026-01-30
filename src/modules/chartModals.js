@@ -4,7 +4,7 @@ import { NOTIFICATION_TYPES } from '../utils/constants.js';
 
 // Modal HTML templates
 const PAYMENT_TRENDS_MODAL = `
-  <div class="chart-modal-overlay" id="chartModalOverlay">
+  <div class="chart-modal-overlay active" id="chartModalOverlay">
     <div class="chart-modal-content">
       <div class="chart-modal-header">
         <h2 class="chart-modal-title">
@@ -112,7 +112,7 @@ const PAYMENT_TRENDS_MODAL = `
 `;
 
 const POLICY_HEALTH_MODAL = `
-  <div class="chart-modal-overlay" id="chartModalOverlay">
+  <div class="chart-modal-overlay active" id="chartModalOverlay">
     <div class="chart-modal-content">
       <div class="chart-modal-header">
         <h2 class="chart-modal-title">
@@ -347,6 +347,22 @@ function openPaymentTrendsModal() {
 
   const modal = document.getElementById('chartModalOverlay');
   if (modal) {
+    const modalContent = modal.querySelector('.chart-modal-content');
+
+    // Prevent closing when clicking inside modal content
+    if (modalContent) {
+      modalContent.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
+
+    // Close when clicking on overlay (backdrop) ONLY
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeChartModal();
+      }
+    });
+
     // Add keyboard ESC to close
     const escHandler = (e) => {
       if (e.key === 'Escape') {
@@ -364,6 +380,22 @@ function openPolicyHealthModal() {
 
   const modal = document.getElementById('chartModalOverlay');
   if (modal) {
+    const modalContent = modal.querySelector('.chart-modal-content');
+
+    // Prevent closing when clicking inside modal content
+    if (modalContent) {
+      modalContent.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
+
+    // Close when clicking on overlay (backdrop) ONLY
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeChartModal();
+      }
+    });
+
     // Add keyboard ESC to close
     const escHandler = (e) => {
       if (e.key === 'Escape') {
