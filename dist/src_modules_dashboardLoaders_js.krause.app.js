@@ -78,7 +78,7 @@ function loadAgentDashboard() {
 }
 function _loadAgentDashboard() {
   _loadAgentDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-    var dashboardData, _t;
+    var dashboardData, _yield$import, AgentDashboardManager, _t, _t2;
     return _regenerator().w(function (_context) {
       while (1) switch (_context.p = _context.n) {
         case 0:
@@ -120,6 +120,31 @@ function _loadAgentDashboard() {
             return console.error('❌ Error loading recent clients:', err);
           });
         case 3:
+          // Initialize Agent Dashboard Manager for payment/policy panels
+          console.log('🔄 Initializing Agent Dashboard Manager...');
+          _context.p = 4;
+          _context.n = 5;
+          return __webpack_require__.e(/*! import() */ "src_modules_agentDashboardComponents_js").then(__webpack_require__.bind(__webpack_require__, /*! ./agentDashboardComponents.js */ "./src/modules/agentDashboardComponents.js"));
+        case 5:
+          _yield$import = _context.v;
+          AgentDashboardManager = _yield$import.AgentDashboardManager;
+          if (window.agentDashboard) {
+            _context.n = 7;
+            break;
+          }
+          window.agentDashboard = new AgentDashboardManager();
+          _context.n = 6;
+          return window.agentDashboard.initialize();
+        case 6:
+          console.log('✅ Agent Dashboard Manager initialized');
+        case 7:
+          _context.n = 9;
+          break;
+        case 8:
+          _context.p = 8;
+          _t = _context.v;
+          console.error('❌ Error initializing Agent Dashboard Manager:', _t);
+        case 9:
           // Load dynamic chart data for agent dashboard
           loadPolicyHealthStats()["catch"](function (err) {
             return console.error('Error loading policy health:', err);
@@ -129,16 +154,16 @@ function _loadAgentDashboard() {
           });
           console.log('✅ Agent dashboard loaded with real data');
           return _context.a(2, dashboardData);
-        case 4:
-          _context.p = 4;
-          _t = _context.v;
-          console.error('❌ Error loading agent dashboard:', _t);
+        case 10:
+          _context.p = 10;
+          _t2 = _context.v;
+          console.error('❌ Error loading agent dashboard:', _t2);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
-          throw _t;
-        case 5:
+          throw _t2;
+        case 11:
           return _context.a(2);
       }
-    }, _callee, null, [[1, 4]]);
+    }, _callee, null, [[4, 8], [1, 10]]);
   }));
   return _loadAgentDashboard.apply(this, arguments);
 }
@@ -147,7 +172,7 @@ function loadAgentClients() {
 }
 function _loadAgentClients() {
   _loadAgentClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-    var clients, _t2;
+    var clients, _t3;
     return _regenerator().w(function (_context2) {
       while (1) switch (_context2.p = _context2.n) {
         case 0:
@@ -164,8 +189,8 @@ function _loadAgentClients() {
           return _context2.a(2, clients);
         case 2:
           _context2.p = 2;
-          _t2 = _context2.v;
-          console.error('Error loading clients:', _t2);
+          _t3 = _context2.v;
+          console.error('Error loading clients:', _t3);
           return _context2.a(2, []);
       }
     }, _callee2, null, [[0, 2]]);
@@ -177,7 +202,7 @@ function loadClientDetails(_x) {
 }
 function _loadClientDetails() {
   _loadClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(clientId) {
-    var data, _t3;
+    var data, _t4;
     return _regenerator().w(function (_context3) {
       while (1) switch (_context3.p = _context3.n) {
         case 0:
@@ -194,8 +219,8 @@ function _loadClientDetails() {
           return _context3.a(2, data);
         case 2:
           _context3.p = 2;
-          _t3 = _context3.v;
-          console.error('Error loading client details:', _t3);
+          _t4 = _context3.v;
+          console.error('Error loading client details:', _t4);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
           return _context3.a(2, null);
       }
@@ -212,7 +237,7 @@ function loadQuotes() {
 // ============================================
 function _loadQuotes() {
   _loadQuotes = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
-    var quotes, _t4;
+    var quotes, _t5;
     return _regenerator().w(function (_context4) {
       while (1) switch (_context4.p = _context4.n) {
         case 0:
@@ -229,8 +254,8 @@ function _loadQuotes() {
           return _context4.a(2, quotes);
         case 2:
           _context4.p = 2;
-          _t4 = _context4.v;
-          console.error('Error loading quotes:', _t4);
+          _t5 = _context4.v;
+          console.error('Error loading quotes:', _t5);
           return _context4.a(2, []);
       }
     }, _callee4, null, [[0, 2]]);
@@ -242,7 +267,7 @@ function loadClientDashboard() {
 }
 function _loadClientDashboard() {
   _loadClientDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
-    var dashboardData, _yield$Promise$all, _yield$Promise$all2, policies, claims, payments, _t5;
+    var dashboardData, _yield$Promise$all, _yield$Promise$all2, policies, claims, payments, _t6;
     return _regenerator().w(function (_context5) {
       while (1) switch (_context5.p = _context5.n) {
         case 0:
@@ -300,6 +325,20 @@ function _loadClientDashboard() {
             return console.error('Error loading contacts:', err);
           });
 
+          // Initialize payment calendar
+          console.log('🔄 Initializing payment calendar...');
+          if (typeof window.initPaymentCalendar === 'function') {
+            window.initPaymentCalendar();
+          } else {
+            // Dynamic import if not available
+            Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./paymentCalendar.js */ "./src/modules/paymentCalendar.js")).then(function (_ref7) {
+              var initPaymentCalendar = _ref7.initPaymentCalendar;
+              if (initPaymentCalendar) initPaymentCalendar();
+            })["catch"](function (e) {
+              return console.error('Failed to load payment calendar:', e);
+            });
+          }
+
           // Load dynamic chart data
           loadPolicyHealthStats()["catch"](function (err) {
             return console.error('Error loading policy health:', err);
@@ -319,10 +358,10 @@ function _loadClientDashboard() {
           });
         case 4:
           _context5.p = 4;
-          _t5 = _context5.v;
-          console.error('❌ Error loading client dashboard:', _t5);
+          _t6 = _context5.v;
+          console.error('❌ Error loading client dashboard:', _t6);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
-          throw _t5;
+          throw _t6;
         case 5:
           return _context5.a(2);
       }
@@ -335,7 +374,7 @@ function loadClientPolicies() {
 }
 function _loadClientPolicies() {
   _loadClientPolicies = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
-    var policies, _t6;
+    var policies, _t7;
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
@@ -352,8 +391,8 @@ function _loadClientPolicies() {
           return _context6.a(2, policies);
         case 2:
           _context6.p = 2;
-          _t6 = _context6.v;
-          console.error('Error loading policies:', _t6);
+          _t7 = _context6.v;
+          console.error('Error loading policies:', _t7);
           return _context6.a(2, []);
       }
     }, _callee6, null, [[0, 2]]);
@@ -369,7 +408,7 @@ function loadPaymentHistory() {
 // ============================================
 function _loadPaymentHistory() {
   _loadPaymentHistory = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-    var payments, _t7;
+    var payments, _t8;
     return _regenerator().w(function (_context7) {
       while (1) switch (_context7.p = _context7.n) {
         case 0:
@@ -386,8 +425,8 @@ function _loadPaymentHistory() {
           return _context7.a(2, payments);
         case 2:
           _context7.p = 2;
-          _t7 = _context7.v;
-          console.error('Error loading payment history:', _t7);
+          _t8 = _context7.v;
+          console.error('Error loading payment history:', _t8);
           return _context7.a(2, []);
       }
     }, _callee7, null, [[0, 2]]);
@@ -403,7 +442,7 @@ function loadAdminDashboard() {
 // ============================================
 function _loadAdminDashboard() {
   _loadAdminDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
-    var dashboardData, _t8;
+    var dashboardData, _t9;
     return _regenerator().w(function (_context8) {
       while (1) switch (_context8.p = _context8.n) {
         case 0:
@@ -428,8 +467,8 @@ function _loadAdminDashboard() {
           return _context8.a(2, dashboardData);
         case 2:
           _context8.p = 2;
-          _t8 = _context8.v;
-          console.error('Error loading admin dashboard:', _t8);
+          _t9 = _context8.v;
+          console.error('Error loading admin dashboard:', _t9);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar dashboard de administración', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
         case 3:
           return _context8.a(2);
@@ -443,7 +482,7 @@ function loadClientClaims() {
 }
 function _loadClientClaims() {
   _loadClientClaims = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
-    var claims, _t9;
+    var claims, _t0;
     return _regenerator().w(function (_context9) {
       while (1) switch (_context9.p = _context9.n) {
         case 0:
@@ -460,8 +499,8 @@ function _loadClientClaims() {
           return _context9.a(2, claims);
         case 2:
           _context9.p = 2;
-          _t9 = _context9.v;
-          console.error('Error loading claims:', _t9);
+          _t0 = _context9.v;
+          console.error('Error loading claims:', _t0);
           return _context9.a(2, []);
       }
     }, _callee9, null, [[0, 2]]);
@@ -477,7 +516,7 @@ function loadDashboardStats() {
 // ============================================
 function _loadDashboardStats() {
   _loadDashboardStats = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
-    var stats, _t0;
+    var stats, _t1;
     return _regenerator().w(function (_context0) {
       while (1) switch (_context0.p = _context0.n) {
         case 0:
@@ -494,8 +533,8 @@ function _loadDashboardStats() {
           return _context0.a(2, stats);
         case 2:
           _context0.p = 2;
-          _t0 = _context0.v;
-          console.error('Error loading dashboard stats:', _t0);
+          _t1 = _context0.v;
+          console.error('Error loading dashboard stats:', _t1);
           return _context0.a(2, null);
       }
     }, _callee0, null, [[0, 2]]);
@@ -732,7 +771,7 @@ function loadClientContacts() {
  */
 function _loadClientContacts() {
   _loadClientContacts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1() {
-    var contacts, _contactChipsContainer, contactChipsContainer, _contactChipsContainer2, _t1;
+    var contacts, _contactChipsContainer, contactChipsContainer, _contactChipsContainer2, _t10;
     return _regenerator().w(function (_context1) {
       while (1) switch (_context1.p = _context1.n) {
         case 0:
@@ -768,8 +807,8 @@ function _loadClientContacts() {
           break;
         case 3:
           _context1.p = 3;
-          _t1 = _context1.v;
-          console.error('Error loading client contacts:', _t1);
+          _t10 = _context1.v;
+          console.error('Error loading client contacts:', _t10);
           _contactChipsContainer2 = document.querySelector('.contact-chips');
           if (_contactChipsContainer2) {
             _contactChipsContainer2.innerHTML = "\n                <div style=\"text-align: center; padding: 20px; color: #f44;\">\n                    <p style=\"margin: 0; font-size: 13px;\">Error al cargar contactos</p>\n                </div>\n            ";
@@ -791,7 +830,7 @@ function loadAgentRecentClients() {
  */
 function _loadAgentRecentClients() {
   _loadAgentRecentClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10() {
-    var clientsPillsContainer, clients, recentClients, _t10;
+    var clientsPillsContainer, clients, recentClients, _t11;
     return _regenerator().w(function (_context10) {
       while (1) switch (_context10.p = _context10.n) {
         case 0:
@@ -841,8 +880,8 @@ function _loadAgentRecentClients() {
           break;
         case 4:
           _context10.p = 4;
-          _t10 = _context10.v;
-          console.error('❌ Error loading recent clients:', _t10);
+          _t11 = _context10.v;
+          console.error('❌ Error loading recent clients:', _t11);
           clientsPillsContainer.innerHTML = "\n            <div style=\"padding: 12px; text-align: center; color: var(--theme-text-secondary);\">\n                <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" style=\"margin-bottom: 8px;\">\n                    <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                    <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/>\n                    <line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/>\n                </svg>\n                <div style=\"font-size: 0.875rem;\">Error al cargar clientes</div>\n            </div>\n        ";
         case 5:
           return _context10.a(2);
@@ -859,7 +898,7 @@ function loadPolicyHealthStats() {
  */
 function _loadPolicyHealthStats() {
   _loadPolicyHealthStats = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11() {
-    var data, _t11;
+    var data, _t12;
     return _regenerator().w(function (_context11) {
       while (1) switch (_context11.p = _context11.n) {
         case 0:
@@ -877,8 +916,8 @@ function _loadPolicyHealthStats() {
           break;
         case 2:
           _context11.p = 2;
-          _t11 = _context11.v;
-          console.error('Error loading policy health stats:', _t11);
+          _t12 = _context11.v;
+          console.error('Error loading policy health stats:', _t12);
         case 3:
           return _context11.a(2);
       }
@@ -915,7 +954,7 @@ function loadPaymentTrends() {
  */
 function _loadPaymentTrends() {
   _loadPaymentTrends = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12() {
-    var data, _t12;
+    var data, _t13;
     return _regenerator().w(function (_context12) {
       while (1) switch (_context12.p = _context12.n) {
         case 0:
@@ -933,8 +972,8 @@ function _loadPaymentTrends() {
           break;
         case 2:
           _context12.p = 2;
-          _t12 = _context12.v;
-          console.error('Error loading payment trends:', _t12);
+          _t13 = _context12.v;
+          console.error('Error loading payment trends:', _t13);
         case 3:
           return _context12.a(2);
       }
@@ -974,7 +1013,7 @@ function loadPendingActions() {
  */
 function _loadPendingActions() {
   _loadPendingActions = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee13() {
-    var data, _t13;
+    var data, _t14;
     return _regenerator().w(function (_context13) {
       while (1) switch (_context13.p = _context13.n) {
         case 0:
@@ -992,8 +1031,8 @@ function _loadPendingActions() {
           break;
         case 2:
           _context13.p = 2;
-          _t13 = _context13.v;
-          console.error('Error loading pending actions:', _t13);
+          _t14 = _context13.v;
+          console.error('Error loading pending actions:', _t14);
         case 3:
           return _context13.a(2);
       }

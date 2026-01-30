@@ -57,24 +57,25 @@ class ContactModalComponent {
 
         const modal = document.createElement('div');
         modal.id = 'contact-modal';
-        modal.className = 'modal-overlay active';
+        // use unified modal classes so styles/themes apply consistently
+        modal.className = 'app-modal-overlay active';
         modal.innerHTML = `
-            <div class="modal-container contact-modal-container">
-                <div class="modal-header">
-                    <h3>
+            <div class="app-modal app-modal-md contact-modal-container">
+                <div class="app-modal-header">
+                    <h2>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg>
                         ¿A quién quieres contactar?
-                    </h3>
-                    <button class="btn-close" onclick="window.contactModal.close()">
+                    </h2>
+                    <button class="app-modal-close" onclick="window.contactModal.close()">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"/>
                             <line x1="6" y1="6" x2="18" y2="18"/>
                         </svg>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="app-modal-body">
                     <div class="contact-search-box">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="11" cy="11" r="7" />
@@ -221,21 +222,21 @@ class ContactModalComponent {
     startDirectMessage(clientId, clientName) {
         this.close();
 
-        // Crear mini-modal para escribir mensaje
+        // Crear mini-modal para escribir mensaje (unified modal classes)
         const messageModal = document.createElement('div');
-        messageModal.className = 'modal-overlay active';
+        messageModal.className = 'app-modal-overlay active';
         messageModal.innerHTML = `
-            <div class="modal-container" style="max-width: 500px;">
-                <div class="modal-header">
+            <div class="app-modal app-modal-md" style="max-width: 500px;">
+                <div class="app-modal-header">
                     <h3>Mensaje directo a ${clientName}</h3>
-                    <button class="btn-close" onclick="this.closest('.modal-overlay').remove()">
+                    <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"/>
                             <line x1="6" y1="6" x2="18" y2="18"/>
                         </svg>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="app-modal-body">
                     <div class="form-group">
                         <label>Mensaje (expira en 42 horas)</label>
                         <textarea id="dm-text" rows="4" placeholder="Escribe tu mensaje..."></textarea>
@@ -249,8 +250,8 @@ class ContactModalComponent {
                         Este mensaje será visible durante 42 horas. El cliente puede responder durante ese tiempo.
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn-secondary" onclick="this.closest('.modal-overlay').remove()">Cancelar</button>
+                <div class="app-modal-footer">
+                    <button class="btn-secondary" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
                     <button class="btn-primary" onclick="window.contactModal.sendDirectMessage(${clientId}, '${clientName}')">
                         Enviar mensaje
                     </button>
@@ -287,7 +288,8 @@ class ContactModalComponent {
             });
 
             if (data.success) {
-                document.querySelectorAll('.modal-overlay').forEach(m => m.remove());
+                // Remove both legacy and unified modal overlays just in case
+                document.querySelectorAll('.modal-overlay, .app-modal-overlay').forEach(m => m.remove());
 
                 if (window.showNotification) {
                     window.showNotification(`Mensaje enviado a ${clientName}`, 'success');

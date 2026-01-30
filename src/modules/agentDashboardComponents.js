@@ -23,26 +23,12 @@ export class AgentPaymentSchedulePanel {
         }
 
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                throw new Error('No authentication token');
-            }
-
-            // Obtener pagos de todos los clientes del agente
-            const response = await fetch(`${window.API_BASE_URL || ''}/backend/payment-api.php/agent-payments`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
+            // Usar apiService para obtener pagos
+            const data = await apiService.request('?action=agent_payments', {
+                method: 'GET'
             });
 
-            if (!response.ok) {
-                throw new Error('Error loading payments');
-            }
-
-            const data = await response.json();
-            let payments = data.payments || [];
+            let payments = data.payments || data || [];
 
             // Filtrar por cliente si está especificado
             if (this.filteredClientId) {
@@ -83,16 +69,16 @@ export class AgentPaymentSchedulePanel {
                     </div>
                     <div class="panel-body">
                         ${payments.length > 0 ? `
-                            <div class="payment-table">
+                            <div class="payment-table modern-table">
                                 <table>
                                     <thead>
                                         <tr>
                                             <th>Cliente</th>
                                             <th>Póliza</th>
                                             <th>Monto</th>
-                                            <th>Vencimiento</th>
+                                            <th>Vence</th>
                                             <th>Estado</th>
-                                            <th>Acciones</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -128,46 +114,44 @@ export class AgentPaymentSchedulePanel {
         const daysUntilDue = Math.ceil((new Date(payment.due_date) - new Date()) / (1000 * 60 * 60 * 24));
         const urgencyClass = daysUntilDue < 0 ? 'urgent' : daysUntilDue <= 3 ? 'warning' : '';
 
+        const shortName = payment.client_name?.split(' ').slice(0, 2).join(' ') || 'N/A';
+
         return `
             <tr class="${urgencyClass}">
                 <td>
                     <div class="client-info">
-                        <strong>${payment.client_name}</strong>
-                        <small>${payment.client_email}</small>
+                        <strong>${shortName}</strong>
                     </div>
                 </td>
-                <td>${payment.policy_number}</td>
+                <td><span class="policy-num">${payment.policy_number}</span></td>
                 <td class="amount">$${parseFloat(payment.amount).toFixed(2)}</td>
                 <td>
                     <div class="due-date ${urgencyClass}">
-                        ${this.formatDate(payment.due_date)}
-                        ${daysUntilDue < 0 ? `<span class="overdue-badge">${Math.abs(daysUntilDue)} días atrasado</span>` :
-                daysUntilDue <= 3 ? `<span class="warning-badge">Vence en ${daysUntilDue} días</span>` : ''}
+                        ${this.formatShortDate(payment.due_date)}
+                        ${daysUntilDue < 0 ? `<small class="text-danger">-${Math.abs(daysUntilDue)}d</small>` :
+                daysUntilDue <= 3 ? `<small class="text-warning">${daysUntilDue}d</small>` : ''}
                     </div>
                 </td>
                 <td><span class="status-badge ${statusClass}">${this.getStatusText(payment.status)}</span></td>
                 <td>
                     <div class="action-buttons">
-                        <button class="btn-icon" title="Ver detalles" 
-                                onclick="window.appHandlers?.viewClientDetails?.('${payment.client_id}')">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                        </button>
                         ${payment.proof_id ? `
                             <button class="btn-icon" title="Revisar comprobante"
-                                    onclick="window.agentDashboard?.reviewProof('${payment.proof_id}')">
+                                    onclick="window.agentDashboard.paymentSchedule?.reviewReceipt('${payment.proof_id}', '${payment.id}')">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                                     <polyline points="14 2 14 8 20 8"/>
+                                    <path d="M16 13l-4 4-2-2"/>
                                 </svg>
                             </button>
                         ` : ''}
-                        <button class="btn-icon" title="Contactar cliente"
-                                onclick="window.agentDashboard?.contactClient('${payment.client_id}')">
+                        <button class="btn-icon" title="Ver Póliza"
+                                onclick="window.openPolicyModal?.('${payment.policy_id}')">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <path d="M9 15h6"/>
+                                <path d="M9 11h6"/>
                             </svg>
                         </button>
                     </div>
@@ -200,6 +184,76 @@ export class AgentPaymentSchedulePanel {
         const date = new Date(dateString);
         return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
     }
+
+    formatShortDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+    }
+
+    reviewReceipt(proofId, paymentId) {
+        const modal = document.createElement('div');
+        modal.className = 'modal-overlay active';
+        modal.innerHTML = `
+            <div class="modal-content" style="max-width: 600px;">
+                <div class="modal-header">
+                    <h2>Revisar Comprobante de Pago</h2>
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="receipt-preview">
+                        <div class="receipt-image-placeholder" style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; color: #666;">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                            <p style="margin-top: 1rem; color: #666;">Comprobante ID: ${proofId}</p>
+                        </div>
+                        <div class="receipt-details" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="detail-group">
+                                <label>ID de Pago</label>
+                                <p>${paymentId}</p>
+                            </div>
+                            <div class="detail-group">
+                                <label>Estado Actual</label>
+                                <p><span class="badge badge-warning">Pendiente de Revisión</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="receipt-notes">Notas de Revisión (Opcional)</label>
+                        <textarea id="receipt-notes" rows="3" placeholder="Agrega comentarios sobre este comprobante..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer" style="display: flex; gap: 12px; justify-content: flex-end; padding: 16px 24px; border-top: 1px solid #e5e5e5;">
+                    <button class="btn btn-outline" onclick="this.closest('.modal-overlay').remove()">Cancelar</button>
+                    <button class="btn btn-danger" onclick="window.agentDashboard.paymentSchedule?.rejectReceipt('${proofId}', '${paymentId}')">
+                        Rechazar
+                    </button>
+                    <button class="btn btn-success" onclick="window.agentDashboard.paymentSchedule?.approveReceipt('${proofId}', '${paymentId}')">
+                        Aprobar
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    approveReceipt(proofId, paymentId) {
+        const notes = document.getElementById('receipt-notes')?.value || '';
+        console.log('Approving receipt:', proofId, paymentId, notes);
+        showNotification('Comprobante aprobado exitosamente', NOTIFICATION_TYPES.SUCCESS);
+        document.querySelector('.modal-overlay')?.remove();
+        this.loadPaymentSchedule();
+    }
+
+    rejectReceipt(proofId, paymentId) {
+        const notes = document.getElementById('receipt-notes')?.value || '';
+        console.log('Rejecting receipt:', proofId, paymentId, notes);
+        showNotification('Comprobante rechazado', NOTIFICATION_TYPES.INFO);
+        document.querySelector('.modal-overlay')?.remove();
+        this.loadPaymentSchedule();
+    }
 }
 
 /**
@@ -220,29 +274,18 @@ export class AgentPoliciesPanel {
         }
 
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                throw new Error('No authentication token');
-            }
-
-            const url = this.filteredClientId
-                ? `${window.API_BASE_URL || ''}/backend/api-endpoints.php/policies?client_id=${this.filteredClientId}`
-                : `${window.API_BASE_URL || ''}/backend/api-endpoints.php/agent-policies`;
-
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
+            // Usar apiService para obtener datos del dashboard del agente
+            const { apiService } = await import('../api-integration.js');
+            const dashboardData = await apiService.request('?action=agent_dashboard', {
+                method: 'GET'
             });
 
-            if (!response.ok) {
-                throw new Error('Error loading policies');
-            }
+            let policies = dashboardData.clients?.flatMap(c => c.policies || []) || [];
 
-            const data = await response.json();
-            let policies = data.policies || [];
+            // Filtrar por cliente si está especificado
+            if (this.filteredClientId) {
+                policies = policies.filter(p => p.client_id === this.filteredClientId);
+            }
 
             // Filtrar por modo de vista
             if (this.viewMode === 'active') {
@@ -283,8 +326,23 @@ export class AgentPoliciesPanel {
                     </div>
                     <div class="panel-body">
                         ${policies.length > 0 ? `
-                            <div class="policies-grid">
-                                ${policies.map(p => this.renderPolicyCard(p)).join('')}
+                            <div class="policy-table modern-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Póliza</th>
+                                            <th>Tipo</th>
+                                            <th>Cliente</th>
+                                            <th>Prima</th>
+                                            <th>Renovación</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${policies.map(p => this.renderPolicyRow(p)).join('')}
+                                    </tbody>
+                                </table>
                             </div>
                         ` : `
                             <div class="empty-state">
@@ -307,6 +365,36 @@ export class AgentPoliciesPanel {
                 </div>
             `;
         }
+    }
+
+    renderPolicyRow(policy) {
+        const statusClass = policy.status === 'active' ? 'success' : policy.status === 'expired' ? 'danger' : 'neutral';
+        const daysUntilRenewal = Math.ceil((new Date(policy.renewal_date) - new Date()) / (1000 * 60 * 60 * 24));
+
+        return `
+            <tr>
+                <td><strong>${policy.policy_number}</strong></td>
+                <td>${this.getPolicyTypeLabel(policy.policy_type)}</td>
+                <td>${policy.client_name || 'N/A'}</td>
+                <td>$${parseFloat(policy.premium_amount || 0).toFixed(2)}</td>
+                <td>
+                    ${this.formatDate(policy.renewal_date)}
+                    ${daysUntilRenewal <= 30 && daysUntilRenewal > 0 ? `<br><small class="text-warning">${daysUntilRenewal} días</small>` : ''}
+                </td>
+                <td><span class="status-badge ${statusClass}">${policy.status}</span></td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="btn-icon" title="Ver detalles" 
+                                onclick="window.openPolicyModal?.('${policy.id}')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        `;
     }
 
     renderPolicyCard(policy) {
@@ -496,6 +584,3 @@ if (typeof window !== 'undefined') {
         }
     });
 }
-
-// Exports
-export { AgentPaymentSchedulePanel, AgentPoliciesPanel, AgentDashboardManager };

@@ -25,17 +25,18 @@
 /* Direct Messages Modal */
 .dm-modal-container {
     max-width: 900px;
-    width: 90vw;
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
+}
+
+.dm-modal-body {
+    padding: 0;
+    overflow: hidden;
 }
 
 .dm-content {
     display: grid;
     grid-template-columns: 300px 1fr;
     gap: 0;
-    flex: 1;
+    height: 500px;
     overflow: hidden;
 }
 
@@ -59,19 +60,20 @@
 }
 
 .dm-thread-item.unread {
-    background: rgba(var(--primary-rgb), 0.05);
+    background: var(--theme-accent-bg-soft, rgba(155, 89, 182, 0.08));
 }
 
 .dm-thread-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.2));
 }
 
 .dm-thread-info {
@@ -116,16 +118,18 @@
 
 .dm-expires {
     font-size: 0.75rem;
-    color: #ff9800;
+    color: var(--theme-accent-color, #9b59b6);
+    font-weight: 600;
 }
 
 .dm-unread-badge {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
     border-radius: 10px;
     padding: 2px 8px;
     font-size: 0.75rem;
     font-weight: 600;
+    box-shadow: 0 2px 6px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.3));
 }
 
 .dm-messages-area {
@@ -158,7 +162,12 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    background: var(--card-background);
+    background: rgba(0, 0, 0, 0.02);
+    flex-shrink: 0;
+}
+
+body.dark-forest .dm-messages-header {
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .btn-back {
@@ -204,8 +213,9 @@
 }
 
 .dm-message.sent .dm-message-content {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.25));
 }
 
 .dm-message-header {
@@ -252,7 +262,7 @@
 
 .btn-send {
     padding: 12px 16px;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -260,18 +270,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.3));
 }
 
 .btn-send:hover {
-    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--theme-accent-shadow-strong, rgba(155, 89, 182, 0.4));
 }
 
 /* Contact Modal */
 .contact-modal-container {
     max-width: 600px;
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
 }
 
 .contact-search-box {
@@ -331,13 +341,14 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
     font-size: 0.875rem;
+    box-shadow: 0 2px 6px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.2));
 }
 
 .contact-info {
@@ -377,13 +388,14 @@
 
 .btn-action:hover {
     background: var(--hover-background);
-    border-color: var(--primary-color);
+    border-color: var(--theme-accent-color, #9b59b6);
 }
 
 .btn-action.btn-message:hover {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
-    border-color: var(--primary-color);
+    border-color: var(--theme-accent-color, #9b59b6);
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.25));
 }
 
 /* Info Popup */
@@ -500,8 +512,8 @@
     width: 32px;
     height: 32px;
     border-radius: 6px;
-    background: rgba(var(--primary-rgb), 0.1);
-    color: var(--primary-color);
+    background: var(--theme-accent-bg-soft, rgba(155, 89, 182, 0.1));
+    color: var(--theme-accent-color, #9b59b6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -532,7 +544,7 @@
     width: 40px;
     height: 40px;
     border: 3px solid var(--border-color);
-    border-top-color: var(--primary-color);
+    border-top-color: var(--theme-accent-color, #9b59b6);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     margin: 0 auto 1rem auto;
@@ -546,11 +558,12 @@
 
 /* Dark Theme Adjustments */
 body.dark-forest .dm-thread-item.unread {
-    background: rgba(var(--primary-rgb), 0.1);
+    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.15));
 }
 
 body.dark-forest .dm-message.sent .dm-message-content {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #2f6b7a) 0%, var(--theme-accent-color-hover, #45a0b8) 100%);
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.3));
 }
 
 body.dark-forest .search-results {

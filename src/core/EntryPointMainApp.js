@@ -20,6 +20,7 @@ import '../../styles/payments.css'; // NEW: Sistema de pagos
 import '../../styles/dashboard-actions.css'; // NEW: Acciones y modales de dashboards
 import '../../styles/agent-dashboard-panels.css'; // NEW: Paneles de agente (pagos, pólizas)
 import '../../styles/direct-messages.css'; // NEW: Sistema de mensajes directos
+import '../../styles/dm-modal-improvements.css'; // NEW: Mejoras de contraste y animaciones para DM
 import '../../styles/scroll-modal-fixes.css'; // NEW: Fixes de scroll y modales
 import '../../styles/modals-unified.css'; // NEW: Sistema unificado de modales
 import '../../styles/app.css'; // Base styles
@@ -41,6 +42,7 @@ import { renderAllLogos } from '../utils/logo.js';
 import { initScrollCollapse } from '../utils/scrollCollapse.js';
 import * as chartModals from '../modules/chartModals.js';
 import { initPaymentCalendar } from '../modules/paymentCalendar.js';
+import { openPolicyModal, openFileClaimModal } from '../modules/modalManager.js';
 
 // NEW: Import payment and notification systems
 import { NotificationModal } from '../modules/notificationModal.js';
@@ -178,6 +180,9 @@ window.downloadPaymentHistory = dashboardActions.downloadPaymentHistory;
 window.updateInfo = dashboardActions.updateInfo;
 window.viewPolicy = dashboardActions.viewPolicy;
 window.fileClaim = dashboardActions.fileClaim;
+// Expose modal functions
+window.openPolicyModal = openPolicyModal;
+window.openFileClaimModal = openFileClaimModal;
 // Expose notification helper for quick console testing / legacy inline calls
 window.showNotification = showNotification;
 // Expose module initializers for post-login init

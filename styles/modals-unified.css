@@ -29,6 +29,113 @@
     overflow-y: auto;
 }
 
+/* Design tokens for modal accents and section highlights (light + dark friendly) */
+:root {
+    --modal-accent-height: 6px;
+    /* Default accent RGB (light theme fallback) - matches light primary #0d3d23 */
+    --primary-rgb: 13, 61, 35;
+    /* Secondary surface used inside modal cards */
+    --bg-secondary-rgb: 245, 245, 245;
+}
+
+/* Dark theme overrides for accent and surfaces */
+html[data-theme="dark-forest"],
+body.dark-forest {
+    --primary-rgb: 47, 107, 122;
+    /* dark-forest accent fallback */
+    --bg-secondary-rgb: 6, 24, 20;
+}
+
+/* Accent strip at top of every modal (applies even when markup doesn't include an explicit accent element) */
+.modal-content::before,
+.app-modal::before,
+.chart-modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--modal-accent-height);
+    background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.95), rgba(var(--primary-rgb), 0.55));
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Ensure header sits above the accent strip */
+.modal-header,
+.app-modal-header,
+.chart-modal-header {
+    position: relative;
+    z-index: 3;
+}
+
+/* A thin explicit accent element (used by some modals) */
+.modal-accent {
+    height: var(--modal-accent-height);
+    width: 100%;
+    background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.95), rgba(var(--primary-rgb), 0.55));
+}
+
+/* Modal icon container for a consistent look */
+.modal-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(var(--primary-rgb), 0.08), rgba(var(--primary-rgb), 0.04));
+    flex-shrink: 0;
+}
+
+/* Policy/section card look used throughout the modal content */
+.policy-section {
+    padding: 0.75rem;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    border-left: 4px solid rgba(var(--primary-rgb), 0.12);
+    padding-left: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+body.dark-forest .policy-section,
+html[data-theme="dark-forest"] .policy-section {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.01));
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    border-left-color: rgba(var(--primary-rgb), 0.16);
+}
+
+/* Consistent item cards inside lists */
+.receipt-item,
+.claim-item,
+.comment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem;
+    border-radius: 8px;
+    background: rgba(var(--bg-secondary-rgb), 0.45);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+    margin-bottom: 0.6rem;
+}
+
+body.dark-forest .receipt-item,
+body.dark-forest .claim-item,
+body.dark-forest .comment-item {
+    background: rgba(var(--bg-secondary-rgb), 0.28);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* Section divider used between modal segments */
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.005), rgba(255, 255, 255, 0.02));
+    margin: 1rem 0;
+}
+
 .modal-overlay.active,
 .app-modal-overlay.active,
 .chart-modal-overlay.active {
@@ -129,12 +236,57 @@ html[data-theme="dark-forest"] .chart-modal-content {
 .app-modal-title,
 .chart-modal-title {
     margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.375rem;
+    font-weight: 700;
     color: #1a1a1a;
     display: flex;
     align-items: center;
     gap: 10px;
+    line-height: 1.4;
+}
+
+.modal-body h3,
+.app-modal-body h3,
+.chart-modal-body h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #333;
+    margin: 1.5rem 0 1rem;
+}
+
+.modal-body p,
+.app-modal-body p,
+.chart-modal-body p {
+    font-size: 0.938rem;
+    line-height: 1.6;
+    color: #444;
+    margin: 0.5rem 0;
+}
+
+.modal-body label,
+.app-modal-body label,
+.chart-modal-body label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+}
+
+[data-theme="dark-forest"] .modal-body h3,
+[data-theme="dark-forest"] .app-modal-body h3,
+[data-theme="dark-forest"] .chart-modal-body h3 {
+    color: #e0e0e0;
+}
+
+[data-theme="dark-forest"] .modal-body p,
+[data-theme="dark-forest"] .app-modal-body p,
+[data-theme="dark-forest"] .chart-modal-body p {
+    color: #d0d0d0;
+}
+
+[data-theme="dark-forest"] .modal-body label,
+[data-theme="dark-forest"] .app-modal-body label,
+[data-theme="dark-forest"] .chart-modal-body label {
+    color: #b0b0b0;
 }
 
 /* Dark Forest Theme - Modal Header */
@@ -171,7 +323,7 @@ html[data-theme="dark-forest"] .chart-modal-title {
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    color: #666;
+    color: #555;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -346,7 +498,7 @@ html[data-theme="dark-forest"] .client-details-grid p {
 .loading-state {
     text-align: center;
     padding: 40px 20px;
-    color: #999;
+    color: #666;
 }
 
 body.dark-forest .loading-state,
@@ -370,7 +522,7 @@ html[data-theme="dark-forest"] .loading-state {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: #666;
+    color: #555;
     margin-bottom: 4px;
 }
 
@@ -419,7 +571,7 @@ html[data-theme="dark-forest"] .chart-details-section {
 
 .chart-stat-label {
     font-size: 13px;
-    color: #666;
+    color: #555;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -573,4 +725,161 @@ html[data-theme="dark-forest"] .policy-number {
         grid-template-columns: 1fr;
         gap: 16px;
     }
+}
+
+/* ============================================================================
+   LIGHT THEME - High contrast modal adjustments
+   These rules force white modal surfaces and clear typographic hierarchy
+   while preserving dark-forest overrides below.
+   ============================================================================ */
+
+/* Force crisp white cards on light theme and ensure readable text */
+.modal-content,
+.app-modal,
+.chart-modal-content,
+.modal-card {
+    background: #ffffff !important;
+    color: #000 !important;
+    border: 1px solid rgba(10, 10, 10, 0.04) !important;
+}
+
+/* Header and title clarity */
+.modal-header,
+.app-modal-header,
+.chart-modal-header {
+    background: #ffffff !important;
+    border-bottom-color: rgba(10, 10, 10, 0.06) !important;
+}
+
+.modal-title,
+.app-modal-title,
+.chart-modal-title {
+    color: #000 !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+}
+
+/* Modal body: ensure all inner text defaults to high-contrast black on light theme */
+.modal-body,
+.app-modal-body,
+.chart-modal-body,
+.modal-body *,
+.app-modal-body *,
+.chart-modal-body * {
+    color: #000 !important;
+}
+
+/* Improve hierarchy inside modals (section headings vs detail text) */
+.modal-body h3,
+.app-modal-body h3,
+.chart-modal-body h3 {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #0b0b0b !important;
+    margin: 0 0 0.5rem !important;
+}
+
+.detail-group label,
+.policy-details-grid .detail-group label {
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.6px !important;
+}
+
+.detail-group p,
+.policy-details-grid p,
+.detail-item .value {
+    color: #000 !important;
+    font-weight: 500 !important;
+}
+
+/* Sections: keep background clean (transparent/white) and show subtle borders only */
+.policy-section {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(15, 23, 42, 0.04) !important;
+    border-left: 4px solid rgba(var(--primary-rgb), 0.08) !important;
+    padding: 0.75rem !important;
+    border-radius: 10px !important;
+    margin-bottom: 1rem !important;
+}
+
+/* List items inside sections should be minimal and bordered */
+.receipt-item,
+.claim-item,
+.comment-item {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(15, 23, 42, 0.04) !important;
+    padding: 0.6rem !important;
+    margin-bottom: 0.6rem !important;
+}
+
+/* Section divider becomes a thin rule */
+.section-divider {
+    height: 0 !important;
+    background: none !important;
+    border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+    margin: 1rem 0 !important;
+}
+
+/* Muted text on light theme */
+.text-muted {
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Tweak modal close button for light theme */
+.modal-close,
+.app-modal-close,
+.chart-modal-close {
+    color: rgba(0, 0, 0, 0.6) !important;
+    border-color: rgba(0, 0, 0, 0.06) !important;
+    background: transparent !important;
+}
+
+/* ============================================================================
+   DARK THEME OVERRIDES (re-assert darker acrylic backgrounds where needed)
+   These use !important to override the light-theme forcing above when dark mode
+   is active.
+   ============================================================================ */
+body.dark-forest .modal-content,
+body.dark-forest .app-modal,
+body.dark-forest .chart-modal-content,
+html[data-theme="dark-forest"] .modal-content,
+html[data-theme="dark-forest"] .app-modal,
+html[data-theme="dark-forest"] .chart-modal-content,
+body.dark-forest .modal-card,
+html[data-theme="dark-forest"] .modal-card {
+    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94)) !important;
+    color: var(--theme-text-primary, #f0f7f3) !important;
+    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32)) !important;
+}
+
+body.dark-forest .modal-body,
+html[data-theme="dark-forest"] .modal-body,
+body.dark-forest .app-modal-body,
+html[data-theme="dark-forest"] .app-modal-body {
+    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94)) !important;
+    color: var(--theme-text-primary, #f0f7f3) !important;
+}
+
+body.dark-forest .policy-section,
+html[data-theme="dark-forest"] .policy-section {
+    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34)) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45) !important;
+    border-left-color: rgba(var(--primary-rgb), 0.16) !important;
+    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32)) !important;
+}
+
+body.dark-forest .receipt-item,
+html[data-theme="dark-forest"] .receipt-item,
+body.dark-forest .claim-item,
+html[data-theme="dark-forest"] .claim-item,
+body.dark-forest .comment-item,
+html[data-theme="dark-forest"] .comment-item {
+    background: rgba(var(--bg-secondary-rgb), 0.28) !important;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45) !important;
+    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32)) !important;
 }

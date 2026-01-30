@@ -21,11 +21,10 @@ export class NotificationModal {
 
     createModal() {
         const modalHTML = `
-            <div id="notification-modal" class="notification-modal" aria-modal="true" role="dialog">
-                <div class="notification-modal-overlay" data-close-modal></div>
-                <div class="notification-modal-content">
-                    <div class="notification-modal-header">
-                        <h2 class="notification-modal-title">
+            <div id="notification-modal" class="app-modal-overlay notification-modal" aria-modal="true" role="dialog">
+                <div class="app-modal app-modal-lg notification-modal-container">
+                    <div class="app-modal-header">
+                        <h2>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
                                 <path d="M13.73 21a2 2 0 0 1-3.46 0" />
@@ -33,7 +32,7 @@ export class NotificationModal {
                             Notificaciones
                             <span class="notification-count-badge" data-notification-count></span>
                         </h2>
-                        <button class="notification-modal-close" data-close-modal aria-label="Cerrar notificaciones">
+                        <button class="app-modal-close" data-close-modal aria-label="Cerrar notificaciones">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="18" y1="6" x2="6" y2="18" />
                                 <line x1="6" y1="6" x2="18" y2="18" />
@@ -59,7 +58,7 @@ export class NotificationModal {
                         </button>
                     </div>
 
-                    <div class="notification-modal-body" data-notification-list>
+                    <div class="app-modal-body notification-modal-body" data-notification-list>
                         <!-- Notifications will be injected here -->
                     </div>
 

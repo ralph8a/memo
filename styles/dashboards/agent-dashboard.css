@@ -98,9 +98,219 @@
 }
 
 .notify-hint {
-    margin: 10px 0 0;
+    color: var(--theme-highlight-soft);
+    font-size: 0.88rem;
+    margin-top: 4px;
+}
+
+/* Quotes Status Panel */
+.quotes-status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--acrylic-bg-light);
+    border: 1px solid var(--theme-surface-border);
+    transition: background 0.2s ease;
+}
+
+.status-item:hover {
+    background: var(--acrylic-bg-medium);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-dot.pending {
+    background: #ff9800;
+    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);
+}
+
+.status-dot.in-progress {
+    background: #2196f3;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+}
+
+.status-dot.approved {
+    background: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.status-text {
+    flex: 1;
     font-size: 0.9rem;
+    color: var(--theme-text-primary);
+    font-weight: 500;
+}
+
+.status-count {
+    font-size: 0.85rem;
+    font-weight: 700;
     color: var(--theme-text-secondary);
+    padding: 2px 8px;
+    background: var(--theme-accent-bg-soft);
+    border-radius: 6px;
+}
+
+/* Calendar Actions */
+.calendar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.calendar-actions .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .agent-dashboard .dashboard-layout {
+        grid-template-columns: 280px 1fr 260px;
+        gap: 12px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .agent-dashboard .dashboard-layout {
+        grid-template-columns: 260px 1fr;
+        gap: 10px;
+    }
+
+    /* Hide right rail on medium screens */
+    .agent-dashboard .right-rail {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .agent-dashboard .dashboard-layout {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 6px;
+    }
+
+    /* Stack sidebar horizontally */
+    .agent-dashboard .dashboard-sidebar {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .agent-dashboard .sidebar-surface {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        height: auto;
+        padding: 12px;
+    }
+
+    .agent-dashboard .sidebar-block {
+        min-width: 280px;
+        flex-shrink: 0;
+    }
+
+    .agent-dashboard .sidebar-logout-block {
+        min-width: auto;
+        flex-shrink: 0;
+    }
+
+    /* Adjust stats grid */
+    .agent-dashboard .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    /* Content grid adjustments */
+    .agent-dashboard .content-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Make cards stack vertically */
+    .agent-dashboard .mimic-wrap {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .agent-dashboard .dashboard-layout {
+        padding: 4px;
+        gap: 6px;
+    }
+
+    /* Single column stats */
+    .agent-dashboard .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    /* Reduce padding in cards */
+    .agent-dashboard .content-card {
+        padding: 12px;
+    }
+
+    /* Smaller text in sidebar */
+    .qa-btn {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+    }
+
+    .widget-mini-item {
+        padding: 8px;
+        font-size: 0.82rem;
+    }
+
+    /* Compact sidebar blocks */
+    .sidebar-block {
+        min-width: 240px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Full mobile view */
+    .agent-dashboard .sidebar-surface {
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .agent-dashboard .sidebar-block {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    /* Stack everything vertically */
+    .agent-dashboard .stats-grid,
+    .agent-dashboard .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Hide less critical elements on mobile */
+    .stat-trend,
+    .card-badge {
+        font-size: 0.75rem;
+    }
 }
 
 /* Support list */

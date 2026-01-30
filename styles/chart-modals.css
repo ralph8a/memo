@@ -63,13 +63,19 @@
 
 .chart-modal-title {
     font-family: 'Cinzel', serif;
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: 700;
-    color: var(--dashboard-text-primary);
+    color: #1a1a1a;
     display: flex;
     align-items: center;
     gap: 10px;
     margin: 0;
+    line-height: 1.4;
+}
+
+[data-theme="dark-forest"] .chart-modal-title,
+body.dark-forest .chart-modal-title {
+    color: var(--theme-text-primary, #f0f7f3);
 }
 
 .chart-modal-title svg {
@@ -96,6 +102,195 @@
     color: white;
     transform: rotate(90deg);
     border-color: var(--theme-accent-color);
+}
+
+.chart-modal-body {
+    padding: 24px 28px;
+}
+
+.chart-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.chart-stat-box {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.chart-stat-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chart-stat-label {
+    font-size: 0.813rem;
+    font-weight: 500;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chart-stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+}
+
+.chart-stat-trend {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.chart-stat-box.success .chart-stat-value {
+    color: #10b981;
+}
+
+.chart-stat-box.warning .chart-stat-value {
+    color: #f59e0b;
+}
+
+.chart-stat-box.danger .chart-stat-value {
+    color: #ef4444;
+}
+
+.chart-stat-box.info .chart-stat-value {
+    color: #3b82f6;
+}
+
+[data-theme="dark-forest"] .chart-stat-box,
+body.dark-forest .chart-stat-box {
+    background: rgba(15, 43, 36, 0.6);
+    border-color: rgba(47, 107, 122, 0.3);
+}
+
+[data-theme="dark-forest"] .chart-stat-label,
+body.dark-forest .chart-stat-label {
+    color: #a0a0a0;
+}
+
+[data-theme="dark-forest"] .chart-stat-value,
+body.dark-forest .chart-stat-value {
+    color: #f0f7f3;
+}
+
+[data-theme="dark-forest"] .chart-stat-trend,
+body.dark-forest .chart-stat-trend {
+    color: #a0a0a0;
+}
+
+.chart-details-section {
+    margin-top: 24px;
+}
+
+.chart-details-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+[data-theme="dark-forest"] .chart-details-section h3,
+body.dark-forest .chart-details-section h3 {
+    color: #e0e0e0;
+}
+
+.policy-actions-list,
+.payment-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.action-item:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.action-item svg {
+    flex-shrink: 0;
+    color: #666;
+}
+
+.action-item.warning svg {
+    color: #f59e0b;
+}
+
+.action-item.danger svg {
+    color: #ef4444;
+}
+
+.action-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.action-content strong {
+    font-size: 0.938rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.action-detail {
+    font-size: 0.813rem;
+    color: #666;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    background: var(--theme-accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    background: var(--theme-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark-forest"] .action-item,
+body.dark-forest .action-item {
+    background: rgba(15, 43, 36, 0.6);
+    border-color: rgba(47, 107, 122, 0.3);
+}
+
+[data-theme="dark-forest"] .action-content strong,
+body.dark-forest .action-content strong {
+    color: #e0e0e0;
+}
+
+[data-theme="dark-forest"] .action-detail,
+body.dark-forest .action-detail {
+    color: #a0a0a0;
 }
 
 .chart-modal-body {

@@ -544,29 +544,29 @@ class PaymentService {
     
     /**
      * Obtener todos los pagos de los clientes del agente
+     * ACTUALIZADO para usar esquema correcto: payments + users (no payment_schedules + clients)
      */
     public function getAgentClientPayments($agentId, $status = 'all', $clientId = null) {
         try {
             // Construir query dinámica basada en filtros
             $query = "
                 SELECT 
-                    ps.schedule_id,
-                    ps.policy_id,
-                    ps.amount,
-                    ps.due_date,
-                    ps.status,
-                    ps.paid_date,
+                    pay.id AS payment_id,
+                    pay.policy_id,
+                    pay.amount,
+                    pay.payment_date AS due_date,
+                    pay.status,
+                    pay.payment_date AS paid_date,
                     p.policy_number,
                     p.policy_type,
                     p.client_id,
-                    CONCAT(c.first_name, ' ', c.last_name) AS client_name,
-                    c.email AS client_email,
-                    COUNT(CASE WHEN pp.status = 'pending' THEN 1 END) AS pending_proofs
-                FROM payment_schedules ps
-                INNER JOIN policies p ON ps.policy_id = p.policy_id
-                INNER JOIN clients c ON p.client_id = c.client_id
-                LEFT JOIN payment_proofs pp ON ps.schedule_id = pp.schedule_id
-                WHERE p.agent_id = ?
+                    CONCAT(u.first_name, ' ', u.last_name) AS client_name,
+                    u.email AS client_email,
+                    0 AS pending_proofs
+                FROM payments pay
+                INNER JOIN policies p ON pay.policy_id = p.id
+                INNER JOIN users u ON p.client_id = u.id
+                WHERE p.agent_id = ? AND u.user_type = 'client'
             ";
             
             $params = [$agentId];
@@ -580,14 +580,14 @@ class PaymentService {
             // Filtrar por estado
             if ($status !== 'all') {
                 if ($status === 'overdue') {
-                    $query .= " AND ps.status = 'pending' AND ps.due_date < NOW()";
+                    $query .= " AND pay.status = 'pending' AND pay.payment_date < NOW()";
                 } else {
-                    $query .= " AND ps.status = ?";
+                    $query .= " AND pay.status = ?";
                     $params[] = $status;
                 }
             }
             
-            $query .= " GROUP BY ps.schedule_id ORDER BY ps.due_date DESC";
+            $query .= " ORDER BY pay.payment_date DESC";
             
             $stmt = $this->db->prepare($query);
             $stmt->execute($params);
@@ -605,7 +605,7 @@ class PaymentService {
             ];
             
             foreach ($payments as $payment) {
-                if ($payment['status'] === 'paid') {
+                if ($payment['status'] === 'paid' || $payment['status'] === 'completed') {
                     $stats['paid']++;
                     $stats['total_amount_paid'] += $payment['amount'];
                 } elseif ($payment['status'] === 'pending') {

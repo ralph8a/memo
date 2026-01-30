@@ -150,9 +150,17 @@ function renderUpcomingPaymentSlots(payments) {
 
         html += `
             <div class="payment-slot ${statusClass}" data-payment-id="${payment.id || ''}">
-                <span class="payment-date">${dateStr}</span>
-                <span class="payment-policy">${policyInfo}</span>
-                <span class="payment-amount">${amount}</span>
+                <div class="payment-slot-info">
+                    <span class="payment-date">${dateStr}</span>
+                    <span class="payment-policy">${policyInfo}</span>
+                    <span class="payment-amount">${amount}</span>
+                </div>
+                <button class="btn btn-xs btn-ghost payment-receipt-btn" data-payment-id="${payment.id || ''}" title="Ver comprobante">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                    </svg>
+                </button>
             </div>
         `;
     });
@@ -160,11 +168,25 @@ function renderUpcomingPaymentSlots(payments) {
     upcomingContainer.innerHTML = html;
 
     // Add click handlers for payment slots
-    upcomingContainer.querySelectorAll('.payment-slot').forEach(slot => {
+    upcomingContainer.querySelectorAll('.payment-slot-info').forEach(slot => {
         slot.addEventListener('click', () => {
-            const paymentId = slot.getAttribute('data-payment-id');
+            const paymentSlot = slot.closest('.payment-slot');
+            const paymentId = paymentSlot.getAttribute('data-payment-id');
             if (paymentId) {
                 showPaymentDetails(paymentId, payments);
+            }
+        });
+    });
+
+    // Add click handlers for receipt buttons
+    upcomingContainer.querySelectorAll('.payment-receipt-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const paymentId = btn.getAttribute('data-payment-id');
+            if (paymentId && window.appHandlers?.viewReceipt) {
+                window.appHandlers.viewReceipt(paymentId);
+            } else {
+                showNotification('Función de comprobantes próximamente disponible', NOTIFICATION_TYPES.INFO);
             }
         });
     });

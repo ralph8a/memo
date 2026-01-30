@@ -96,6 +96,19 @@ export async function loadAgentDashboard() {
         console.log('🔄 Loading recent clients for sidebar...');
         await loadAgentRecentClients().catch(err => console.error('❌ Error loading recent clients:', err));
 
+        // Initialize Agent Dashboard Manager for payment/policy panels
+        console.log('🔄 Initializing Agent Dashboard Manager...');
+        try {
+            const { AgentDashboardManager } = await import('./agentDashboardComponents.js');
+            if (!window.agentDashboard) {
+                window.agentDashboard = new AgentDashboardManager();
+                await window.agentDashboard.initialize();
+                console.log('✅ Agent Dashboard Manager initialized');
+            }
+        } catch (err) {
+            console.error('❌ Error initializing Agent Dashboard Manager:', err);
+        }
+
         // Load dynamic chart data for agent dashboard
         loadPolicyHealthStats().catch(err => console.error('Error loading policy health:', err));
         loadPaymentTrends().catch(err => console.error('Error loading payment trends:', err));

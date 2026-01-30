@@ -168,6 +168,40 @@
     max-width: 1200px;
 }
 
+/* Asegurar que los modales tengan colores correctos */
+.app-modal {
+    background: #ffffff;
+    color: #1a1a1a;
+}
+
+.app-modal-header {
+    background: #f8f9fa;
+    color: #1a1a1a;
+}
+
+.app-modal-body {
+    background: #ffffff;
+    color: #333;
+}
+
+[data-theme="dark-forest"] .app-modal,
+body.dark-forest .app-modal {
+    background: var(--theme-surface-bg, #0a2920);
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
+[data-theme="dark-forest"] .app-modal-header,
+body.dark-forest .app-modal-header {
+    background: var(--theme-surface-bg-deep, #061c17);
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
+[data-theme="dark-forest"] .app-modal-body,
+body.dark-forest .app-modal-body {
+    background: var(--theme-surface-bg, #0a2920);
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
 /* Forms dentro de modales - Estilos específicos para dashboard */
 .app-modal form {
     display: flex;
@@ -517,6 +551,135 @@
     .data-table td {
         padding: 10px 12px;
     }
+}
+
+/* ============================================================================
+   POLICY SECTIONS - Comprobantes y Claims
+   ============================================================================ */
+
+.policy-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.policy-section h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.receipts-list,
+.claims-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.receipt-item,
+.claim-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--background-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+}
+
+.receipt-item:hover,
+.claim-item:hover {
+    background: var(--background-tertiary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-info,
+.claim-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.receipt-info strong,
+.claim-info strong {
+    font-size: 0.938rem;
+    color: var(--text-primary);
+}
+
+.receipt-info small,
+.claim-info small {
+    font-size: 0.813rem;
+    color: var(--text-secondary);
+}
+
+.receipt-item .badge,
+.claim-item .badge {
+    margin-top: 0.25rem;
+    align-self: flex-start;
+}
+
+.detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.detail-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.detail-group label {
+    font-size: 0.875rem;
+    color: #555;
+    font-weight: 500;
+}
+
+[data-theme="dark-forest"] .detail-group label {
+    color: #a0a0a0;
+}
+
+/* Receipt review modal styles */
+.receipt-preview {
+    margin-bottom: 1.5rem;
+}
+
+.receipt-image-placeholder {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark-forest"] .receipt-image-placeholder {
+    background: rgba(15, 43, 36, 0.4);
+}
+
+.receipt-image-placeholder svg {
+    margin: 0 auto;
+    color: #666;
+}
+
+[data-theme="dark-forest"] .receipt-image-placeholder svg {
+    color: #a0a0a0;
+}
+
+.receipt-image-placeholder p {
+    margin-top: 1rem;
+    color: #666;
+}
+
+[data-theme="dark-forest"] .receipt-image-placeholder p {
+    color: #a0a0a0;
+}
+
+.receipt-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 /* Dark theme adjustments */

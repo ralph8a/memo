@@ -14,16 +14,16 @@ function getClientPayments($db, $client_id) {
     $stmt = $db->prepare("
         SELECT 
             p.id,
-            p.payment_date as date,
+            p.payment_date,
             p.amount,
-            p.payment_method as method,
+            p.payment_method,
             p.status,
             p.transaction_id,
             pol.policy_number,
             pol.policy_type
         FROM payments p
-        JOIN policies pol ON p.policy_id = pol.id
-        WHERE pol.client_id = ?
+        LEFT JOIN policies pol ON p.policy_id = pol.id
+        WHERE p.client_id = ?
         ORDER BY p.payment_date DESC
         LIMIT 50
     ");
@@ -103,13 +103,13 @@ function getClientDocuments($db, $client_id) {
             d.id,
             d.document_type as type,
             d.file_name as title,
-            d.upload_date as date,
+            d.uploaded_at as date,
             d.file_path as href,
             p.policy_number
         FROM documents d
-        JOIN policies p ON d.policy_id = p.id
-        WHERE p.client_id = ?
-        ORDER BY d.upload_date DESC
+        LEFT JOIN policies p ON d.policy_id = p.id
+        WHERE d.user_id = ?
+        ORDER BY d.uploaded_at DESC
         LIMIT 10
     ");
     $stmt->execute([$client_id]);
@@ -208,9 +208,10 @@ function getClientDashboard($db, $client_id) {
 
 /**
  * GET /api/agent/clients/{agent_id}
- * Returns clients assigned to agent
+ * Returns clients assigned to agent with their policies
  */
 function getAgentClients($db, $agent_id) {
+    // Get clients
     $stmt = $db->prepare("
         SELECT DISTINCT
             u.id,
@@ -228,7 +229,31 @@ function getAgentClients($db, $agent_id) {
         ORDER BY last_activity DESC
     ");
     $stmt->execute([$agent_id]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Get policies for each client
+    foreach ($clients as &$client) {
+        $policyStmt = $db->prepare("
+            SELECT 
+                id,
+                policy_number,
+                policy_type,
+                status,
+                premium_amount,
+                start_date,
+                end_date,
+                renewal_date,
+                created_at,
+                updated_at
+            FROM policies
+            WHERE client_id = ? AND agent_id = ?
+            ORDER BY created_at DESC
+        ");
+        $policyStmt->execute([$client['id'], $agent_id]);
+        $client['policies'] = $policyStmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    return $clients;
 }
 
 /**
@@ -457,3 +482,51 @@ function daysUntil($date) {
     $interval = $now->diff($target);
     return $interval->days;
 }
+
+/**
+ * GET /api/payment_receipts?policy_id={policy_id}
+ * Returns payment receipts for a specific policy
+ */
+function getPolicyReceipts($db, $policy_id) {
+    $stmt = $db->prepare("
+        SELECT 
+            id,
+            policy_id,
+            file_name,
+            file_path,
+            file_type,
+            amount,
+            status,
+            uploaded_at,
+            notes
+        FROM payment_receipts
+        WHERE policy_id = ?
+        ORDER BY uploaded_at DESC
+    ");
+    $stmt->execute([$policy_id]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * GET /api/policy_claims?policy_id={policy_id}
+ * Returns claims for a specific policy
+ */
+function getPolicyClaims($db, $policy_id) {
+    $stmt = $db->prepare("
+        SELECT 
+            id,
+            policy_id,
+            claim_number,
+            claim_type,
+            claim_amount,
+            status,
+            submitted_at,
+            description
+        FROM claims
+        WHERE policy_id = ?
+        ORDER BY submitted_at DESC
+    ");
+    $stmt->execute([$policy_id]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+

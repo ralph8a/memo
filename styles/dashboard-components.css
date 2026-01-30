@@ -8,7 +8,7 @@
 .empty-state {
     text-align: center;
     padding: 40px 20px;
-    color: #999;
+    color: #666;
     font-style: italic;
 }
 
@@ -61,12 +61,12 @@
     display: flex;
     gap: 12px;
     font-size: 13px;
-    color: #999;
+    color: #666;
     flex-wrap: wrap;
 }
 
 .client-meta .text-muted {
-    color: #999;
+    color: #666;
     font-style: italic;
 }
 

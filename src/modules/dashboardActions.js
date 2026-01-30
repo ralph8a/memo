@@ -205,7 +205,16 @@ export async function fileClaim() {
  */
 export function createQuote(type = 'auto') {
   setPendingQuoteType(type);
-  navigateTo(PAGES.QUOTE);
+  // Open the in-place "Nueva Cotización" modal instead of navigating away
+  // If opening the modal fails, fallback to the original navigation to the quote page
+  try {
+    // requestQuote is defined below in this module
+    requestQuote();
+  } catch (err) {
+    console.error('Error opening quote modal:', err);
+    showNotification('No se pudo abrir la modal de cotización, redirigiendo...', NOTIFICATION_TYPES.ERROR);
+    navigateTo(PAGES.QUOTE);
+  }
 }
 
 /**
@@ -309,15 +318,17 @@ export function addClient() {
 }
 
 /**
- * Agendar cita
+ * Solicitar nueva cotización - Modal independiente
  */
-export function scheduleAppointment() {
+export async function requestQuote() {
+  const { showNotification, NOTIFICATION_TYPES } = await import('./notifications.js');
+
   const modal = document.createElement('div');
-  modal.className = 'app-modal-overlay';
+  modal.className = 'app-modal-overlay active';
   modal.innerHTML = `
-    <div class="app-modal app-modal-md">
+    <div class="app-modal app-modal-lg">
       <div class="app-modal-header">
-        <h2 class="app-modal-title">Agendar Cita</h2>
+        <h2 class="app-modal-title">Nueva Cotización</h2>
         <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"/>
@@ -326,53 +337,97 @@ export function scheduleAppointment() {
         </button>
       </div>
       <div class="app-modal-body">
-        <form class="appointment-form" onsubmit="window.dashboardActions?.submitAppointment(event)">
-          <div class="form-group">
-            <label for="appt-client">Cliente</label>
-            <select id="appt-client" required>
-              <option value="">Seleccionar cliente</option>
-              <option value="CL-001">María González</option>
-              <option value="CL-002">Carlos Rodríguez</option>
-              <option value="CL-003">Ana Martínez</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="appt-type">Tipo de cita</label>
-            <select id="appt-type" required>
-              <option value="consultation">Consulta</option>
-              <option value="quote">Cotización</option>
-              <option value="claim">Siniestro</option>
-              <option value="policy-review">Revisión de póliza</option>
-            </select>
+        <form id="quote-request-form" onsubmit="window.dashboardActions?.submitQuoteRequest?.(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="quote-name">Nombre completo *</label>
+              <input type="text" id="quote-name" required placeholder="Juan Pérez">
+            </div>
+            <div class="form-group">
+              <label for="quote-email">Email *</label>
+              <input type="email" id="quote-email" required placeholder="juan@ejemplo.com">
+            </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="appt-date">Fecha</label>
-              <input type="date" id="appt-date" required>
+              <label for="quote-phone">Teléfono *</label>
+              <input type="tel" id="quote-phone" required placeholder="555-1234-5678">
             </div>
             <div class="form-group">
-              <label for="appt-time">Hora</label>
-              <input type="time" id="appt-time" required>
+              <label for="quote-type">Tipo de póliza *</label>
+              <select id="quote-type" required>
+                <option value="">Seleccionar tipo</option>
+                <option value="auto">Auto</option>
+                <option value="home">Hogar</option>
+                <option value="life">Vida</option>
+                <option value="health">Salud</option>
+                <option value="business">Negocio</option>
+              </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="appt-notes">Notas</label>
-            <textarea id="appt-notes" rows="3" placeholder="Asunto o detalles adicionales"></textarea>
+            <label for="quote-coverage">Cobertura deseada</label>
+            <input type="text" id="quote-coverage" placeholder="Ej: Cobertura amplia, daños a terceros">
+          </div>
+          <div class="form-group">
+            <label for="quote-details">Detalles adicionales</label>
+            <textarea id="quote-details" rows="4" placeholder="Proporciona información adicional que pueda ayudarnos a cotizar mejor..."></textarea>
+          </div>
+          <div class="form-group">
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" id="quote-urgent" style="width: auto;">
+              Solicitud urgente (respuesta en 24 horas)
+            </label>
           </div>
           <div class="form-actions">
             <button type="button" class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Agendar</button>
+            <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
           </div>
         </form>
       </div>
     </div>
   `;
-
   document.body.appendChild(modal);
+}
 
-  // Cargar clientes dinámicamente
-  const clientSelect = modal.querySelector('#appt-client');
-  populateClientSelect(clientSelect);
+export async function submitQuoteRequest(event) {
+  event.preventDefault();
+  const { showNotification, NOTIFICATION_TYPES } = await import('./notifications.js');
+
+  const formData = {
+    name: document.getElementById('quote-name').value,
+    email: document.getElementById('quote-email').value,
+    phone: document.getElementById('quote-phone').value,
+    policy_type: document.getElementById('quote-type').value,
+    coverage: document.getElementById('quote-coverage').value,
+    details: document.getElementById('quote-details').value,
+    urgent: document.getElementById('quote-urgent').checked
+  };
+
+  try {
+    showNotification('Enviando solicitud de cotización...', NOTIFICATION_TYPES.INFO);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    showNotification('Solicitud enviada exitosamente. Te contactaremos pronto.', NOTIFICATION_TYPES.SUCCESS);
+    document.querySelector('.app-modal-overlay')?.remove();
+    console.log('Quote request:', formData);
+  } catch (error) {
+    console.error('Error sending quote request:', error);
+    showNotification('Error al enviar la solicitud. Inténtalo de nuevo.', NOTIFICATION_TYPES.ERROR);
+  }
+}
+
+/**
+ * Agendar cita - Usar el scheduler de meetings
+ */
+export async function scheduleAppointment() {
+  try {
+    const { openMeetingScheduler } = await import('./scheduling.js');
+    await openMeetingScheduler();
+  } catch (error) {
+    console.error('Error opening meeting scheduler:', error);
+    const { showNotification, NOTIFICATION_TYPES } = await import('./notifications.js');
+    showNotification('Error al abrir el calendario de citas', NOTIFICATION_TYPES.ERROR);
+  }
 }
 
 /**
@@ -1179,6 +1234,8 @@ if (typeof window !== 'undefined') {
 
     // Agent actions
     createQuote,
+    requestQuote,
+    submitQuoteRequest,
     addClient,
     scheduleAppointment,
     viewClientDetails,

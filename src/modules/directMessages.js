@@ -106,38 +106,47 @@ class DirectMessagesComponent {
 
         const modal = document.createElement('div');
         modal.id = 'dm-modal';
-        modal.className = 'modal-overlay active';
+        modal.className = 'app-modal-overlay dm-modal-overlay active';
         modal.innerHTML = `
-            <div class="modal-container dm-modal-container">
-                <div class="modal-header">
-                    <h3>
+            <div class="app-modal app-modal-lg dm-modal-container" onclick="event.stopPropagation()">
+                <div class="app-modal-header">
+                    <h2>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg>
                         Direct Messages
-                    </h3>
-                    <button class="btn-close" onclick="window.directMessages.closeModal()">
+                    </h2>
+                    <button class="app-modal-close" onclick="window.directMessages.closeModal()">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"/>
                             <line x1="6" y1="6" x2="18" y2="18"/>
                         </svg>
                     </button>
                 </div>
-                <div class="dm-content">
-                    <div class="dm-threads-list">
-                        ${this.renderThreadsList()}
-                    </div>
-                    <div class="dm-messages-area" id="dm-messages-area">
-                        <div class="dm-empty-state">
+                <div class="app-modal-body dm-modal-body">
+                    <div class="dm-content">
+                        <div class="dm-threads-list">
+                            ${this.renderThreadsList()}
+                        </div>
+                        <div class="dm-messages-area" id="dm-messages-area">
+                            <div class="dm-empty-state">
                             <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                             </svg>
                             <p>Selecciona una conversación</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
+
+        // Cerrar modal al hacer clic en el overlay (fuera del contenido)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                this.closeModal();
+            }
+        });
 
         document.body.appendChild(modal);
     }
@@ -156,7 +165,7 @@ class DirectMessagesComponent {
         }
 
         return this.threads.map(thread => `
-            <div class="dm-thread-item ${thread.unread_count > 0 ? 'unread' : ''}" onclick="window.directMessages.openThread('${thread.thread_id}')">
+            <div class="dm-thread-item ${thread.unread_count > 0 ? 'unread' : ''}" onclick="window.directMessages.openThread(&quot;${thread.thread_id}&quot;)">
                 <div class="dm-thread-avatar">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -275,10 +284,10 @@ class DirectMessagesComponent {
 
             const data = await apiService.request('?action=dm_send_message', {
                 method: 'POST',
-                body: JSON.stringify({
+                body: {
                     thread_id: this.currentThread.thread_id,
                     message: messageText
-                })
+                }
             });
 
             if (data.success) {
@@ -342,9 +351,15 @@ class DirectMessagesComponent {
      * Formatear tiempo restante
      */
     formatTimeLeft(expiresAt) {
+        if (!expiresAt) return 'Sin límite';
         const expires = new Date(expiresAt);
+        if (isNaN(expires.getTime())) return 'Sin límite';
+
         const now = new Date();
         const diff = expires - now;
+
+        if (diff <= 0) return 'Expirado';
+
         const hours = Math.floor(diff / 3600000);
         const minutes = Math.floor((diff % 3600000) / 60000);
 
