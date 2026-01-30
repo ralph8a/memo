@@ -20084,19 +20084,24 @@ function _viewPolicy() {
         case 0:
           policyId = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : null;
           _context3.p = 1;
+          console.log('[viewPolicy] Called with ID:', policyId);
           if (policyId) {
             _context3.n = 2;
             break;
           }
-          console.warn('No policy ID provided');
+          console.warn('[viewPolicy] No policy ID provided');
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se especificó una póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           return _context3.a(2);
         case 2:
           // Buscar en cache de dashboard
           policies = ((_window$dashboardData = window.dashboardData) === null || _window$dashboardData === void 0 ? void 0 : _window$dashboardData.policies) || [];
+          console.log('[viewPolicy] Policies in cache:', policies.length);
           if (policies.length) {
             _context3.n = 4;
             break;
           }
+          console.log('[viewPolicy] Loading policies from backend...');
+          // Cargar desde backend
           _context3.n = 3;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_6__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_6__.API_CONFIG.ENDPOINTS.CLIENT_POLICIES, {
             method: 'GET'
@@ -20106,6 +20111,7 @@ function _viewPolicy() {
           window.dashboardData = _objectSpread(_objectSpread({}, window.dashboardData || {}), {}, {
             policies: policies
           });
+          console.log('[viewPolicy] Loaded policies:', policies.length);
         case 4:
           policy = policies.find(function (p) {
             return String(p.id) === String(policyId);
@@ -20114,25 +20120,32 @@ function _viewPolicy() {
             _context3.n = 5;
             break;
           }
-          console.warn('Policy not found:', policyId);
+          console.warn('[viewPolicy] Policy not found:', policyId);
+          console.log('[viewPolicy] Available policy IDs:', policies.map(function (p) {
+            return p.id;
+          }));
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Póliza no encontrada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           return _context3.a(2);
         case 5:
+          console.log('[viewPolicy] Found policy:', policy);
           policyType = policy.policy_type || policy.type || 'other';
-          status = (policy.status || '').toLowerCase();
+          status = (policy.status || 'unknown').toLowerCase();
           premium = policy.premium_amount || policy.premium || 0;
           coverage = policy.coverage_amount || 0;
           startDate = policy.start_date ? new Date(policy.start_date).toLocaleDateString() : '—';
           endDate = policy.end_date ? new Date(policy.end_date).toLocaleDateString() : policy.renewal_date ? new Date(policy.renewal_date).toLocaleDateString() : '—';
           modal = document.createElement('div');
           modal.className = 'app-modal-overlay';
-          modal.innerHTML = "\n        <div class=\"app-modal app-modal-lg\">\n          <div class=\"app-modal-header\">\n            <h2 class=\"app-modal-title\">P\xF3liza #".concat(policy.policy_number, "</h2>\n            <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n              </svg>\n            </button>\n          </div>\n          <div class=\"app-modal-body\">\n            <div class=\"policy-details-grid\">\n              <div class=\"detail-section\">\n                <h3>Informaci\xF3n General</h3>\n                <dl>\n                  <dt>Tipo:</dt><dd>").concat(formatPolicyType(policyType), "</dd>\n                  <dt>Estado:</dt><dd><span class=\"badge badge-").concat(status === 'active' ? 'success' : status === 'expired' ? 'danger' : 'warning', "\">").concat(status || '—', "</span></dd>\n                  <dt>Prima mensual:</dt><dd>").concat(premium ? "$".concat(Number(premium).toFixed(2)) : '—', "</dd>\n                  <dt>Vigencia:</dt><dd>").concat(startDate, " - ").concat(endDate, "</dd>\n                </dl>\n              </div>\n              <div class=\"detail-section\">\n                <h3>Cobertura</h3>\n                <ul>\n                  <li>Cobertura: ").concat(coverage ? "$".concat(Number(coverage).toLocaleString()) : '—', "</li>\n                  <li>Renovaci\xF3n: ").concat(endDate, "</li>\n                  <li>Agente: ").concat(policy.agent_name || '—', " (").concat(policy.agent_email || '—', ")</li>\n                  <li>Contacto: ").concat(policy.agent_phone || '—', "</li>\n                </ul>\n              </div>\n              <div class=\"detail-section\">\n                <h3>Acciones</h3>\n                <p>Puedes subir comprobantes, consultar pagos o descargar documentos.</p>\n                <div class=\"pill-actions\" style=\"gap:8px;\">\n                  <button class=\"btn btn-sm\" onclick=\"window.dashboardActions?.makePayment('").concat(policyId, "')\">Subir comprobante</button>\n                  <button class=\"btn btn-sm btn-outline\" onclick=\"window.appHandlers?.downloadPaymentHistory?.()\">Historial de pagos</button>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      ");
+          modal.innerHTML = "\n        <div class=\"app-modal app-modal-lg\">\n          <div class=\"app-modal-header\">\n            <h2 class=\"app-modal-title\">P\xF3liza #".concat(policy.policy_number || 'Sin número', "</h2>\n            <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n              </svg>\n            </button>\n          </div>\n          <div class=\"app-modal-body\">\n            <div class=\"policy-details-grid\">\n              <div class=\"detail-section\">\n                <h3>Informaci\xF3n General</h3>\n                <dl>\n                  <dt>Tipo:</dt><dd>").concat(formatPolicyType(policyType), "</dd>\n                  <dt>Estado:</dt><dd><span class=\"badge badge-").concat(status === 'active' ? 'success' : status === 'expired' ? 'danger' : 'warning', "\">").concat(status || '—', "</span></dd>\n                  <dt>Prima mensual:</dt><dd>").concat(premium ? "$".concat(Number(premium).toFixed(2)) : '—', "</dd>\n                  <dt>Vigencia:</dt><dd>").concat(startDate, " - ").concat(endDate, "</dd>\n                </dl>\n              </div>\n              <div class=\"detail-section\">\n                <h3>Cobertura</h3>\n                <ul>\n                  <li>Cobertura: ").concat(coverage ? "$".concat(Number(coverage).toLocaleString()) : 'No especificada', "</li>\n                  <li>Renovaci\xF3n: ").concat(endDate, "</li>\n                  ").concat(policy.agent_name ? "<li>Agente: ".concat(policy.agent_name, " ").concat(policy.agent_email ? "(".concat(policy.agent_email, ")") : '', "</li>") : '', "\n                  ").concat(policy.agent_phone ? "<li>Contacto: ".concat(policy.agent_phone, "</li>") : '', "\n                </ul>\n              </div>\n              <div class=\"detail-section\">\n                <h3>Acciones</h3>\n                <p>Puedes subir comprobantes, consultar pagos o descargar documentos.</p>\n                <div class=\"pill-actions\" style=\"gap:8px;\">\n                  <button class=\"btn btn-sm\" onclick=\"window.dashboardActions?.makePayment('").concat(policyId, "')\">Subir comprobante</button>\n                  <button class=\"btn btn-sm btn-outline\" onclick=\"window.appHandlers?.downloadPaymentHistory?.()\">Historial de pagos</button>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      ");
           document.body.appendChild(modal);
+          console.log('[viewPolicy] Modal displayed successfully');
           _context3.n = 7;
           break;
         case 6:
           _context3.p = 6;
           _t2 = _context3.v;
-          console.error('Error al cargar póliza:', _t2);
+          console.error('[viewPolicy] Error:', _t2);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al cargar póliza: ' + _t2.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 7:
           return _context3.a(2);
       }
