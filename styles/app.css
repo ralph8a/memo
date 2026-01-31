@@ -62,7 +62,7 @@
   /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */
   --theme-surface-bg: rgba(255, 255, 255, 0.98);
   --theme-surface-bg-solid: #ffffff;
-  --theme-surface-border: rgba(99, 24, 50, 0.14);
+  --theme-surface-border: rgba(99, 24, 50, 0.18);
   --theme-surface-border-strong: rgba(99, 24, 50, 0.20);
 
   /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */
