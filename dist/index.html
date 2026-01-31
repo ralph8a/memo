@@ -2339,6 +2339,18 @@
 
                       <!-- Agent Payment Schedule Panel -->
                       <div class="content-card list-card compact" id="agent-payments-section">
+                        <div class="card-header-modern">
+                          <h3>📅 Calendario de Pagos</h3>
+                          <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.viewPaymentHistory?.()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                              <polyline points="14 2 14 8 20 8"/>
+                              <line x1="12" y1="18" x2="12" y2="12"/>
+                              <line x1="9" y1="15" x2="15" y2="15"/>
+                            </svg>
+                            Ver comprobantes
+                          </button>
+                        </div>
                         <div id="agent-payments-container">
                           <p class="loading-state">Cargando calendario de pagos...</p>
                         </div>
@@ -2618,28 +2630,6 @@
           </div>
           <button class="btn btn-sm btn-outline" style="width: 100%; margin-top: 12px;" onclick="window.appHandlers?.openQuotes?.()">
             Ver todas las cotizaciones
-          </button>
-        </div>
-      </div>
-
-      <div class="content-card compact calendar-card">
-        <div class="card-header-modern">
-          <h3>📅 Calendario de Pagos</h3>
-          <span class="card-badge">Mes</span>
-        </div>
-        <div class="calendar-grid" aria-hidden="false">
-          <!-- Generado dinámicamente por paymentCalendar.js -->
-          <p class="loading-state">Cargando calendario...</p>
-        </div>
-        <div class="calendar-actions" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--theme-surface-border);">
-          <button class="btn btn-sm btn-outline" style="width: 100%;" onclick="window.appHandlers?.viewPaymentHistory?.()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="12" y1="18" x2="12" y2="12"/>
-              <line x1="9" y1="15" x2="15" y2="15"/>
-            </svg>
-            Ver comprobantes
           </button>
         </div>
       </div>
