@@ -2223,33 +2223,6 @@
             </div>
           </div>
 
-          <div class="content-card compact sidebar-block">
-            <div class="card-header-modern">
-              <h4>Estado de Cotizaciones</h4>
-              <span class="card-badge">8 activas</span>
-            </div>
-            <div class="quotes-status-list">
-              <div class="status-item">
-                <span class="status-dot pending"></span>
-                <span class="status-text">Pendientes</span>
-                <span class="status-count">5</span>
-              </div>
-              <div class="status-item">
-                <span class="status-dot in-progress"></span>
-                <span class="status-text">En revisión</span>
-                <span class="status-count">2</span>
-              </div>
-              <div class="status-item">
-                <span class="status-dot approved"></span>
-                <span class="status-text">Aprobadas</span>
-                <span class="status-count">1</span>
-              </div>
-              <button class="btn btn-sm btn-outline" style="width: 100%; margin-top: 8px;" onclick="window.appHandlers?.openQuotes?.()">
-                Ver todas las cotizaciones
-              </button>
-            </div>
-          </div>
-
           <div class="content-card compact sidebar-block sidebar-logout-block"
             <button class="sidebar-logout" onclick="window.logout?.()">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2622,9 +2595,36 @@
     </div><!-- .dashboard-main-wrapper -->
 
     <aside class="dashboard-rail right-rail rail-surface">
+      <div class="content-card compact">
+        <div class="card-header-modern">
+          <h3>📊 Estado de Cotizaciones</h3>
+          <span class="card-badge">8 activas</span>
+        </div>
+        <div class="quotes-status-list">
+          <div class="status-item">
+            <span class="status-dot pending"></span>
+            <span class="status-text">Pendientes</span>
+            <span class="status-count">5</span>
+          </div>
+          <div class="status-item">
+            <span class="status-dot in-progress"></span>
+            <span class="status-text">En revisión</span>
+            <span class="status-count">2</span>
+          </div>
+          <div class="status-item">
+            <span class="status-dot approved"></span>
+            <span class="status-text">Aprobadas</span>
+            <span class="status-count">1</span>
+          </div>
+          <button class="btn btn-sm btn-outline" style="width: 100%; margin-top: 12px;" onclick="window.appHandlers?.openQuotes?.()">
+            Ver todas las cotizaciones
+          </button>
+        </div>
+      </div>
+
       <div class="content-card compact calendar-card">
         <div class="card-header-modern">
-          <h3>📅 Pagos Próximos</h3>
+          <h3>📅 Calendario de Pagos</h3>
           <span class="card-badge">Mes</span>
         </div>
         <div class="calendar-grid" aria-hidden="false">

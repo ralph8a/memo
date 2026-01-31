@@ -57,8 +57,9 @@ function generateSparkline(dataPoints, options = {}) {
     }).join(' ');
 
     // Create path for filled area
-    const firstPoint = points.split(' ')[0];
-    const lastPoint = points.split(' ')[points.length - 1];
+    const pointsArray = points.split(' ');
+    const firstPoint = pointsArray[0];
+    const lastPoint = pointsArray[pointsArray.length - 1];
     const firstX = firstPoint.split(',')[0];
     const lastX = lastPoint.split(',')[0];
     const areaPoints = `${firstX},${height} ${points} ${lastX},${height}`;
