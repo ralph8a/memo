@@ -141,6 +141,8 @@ window.appHandlers = {
   openQuoteModal,
   openQuotes,
   closeQuotesModal,
+  viewQuoteDetails,
+  closeQuoteDetailsModal,
   addNewClient: dashboardActions.addClient,
   editClient,
   processQuote,
@@ -499,6 +501,183 @@ function openQuotes() {
 
 function closeQuotesModal() {
   const modal = document.getElementById('quotesListModal');
+  if (modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+      modal.remove();
+      document.body.style.overflow = '';
+    }, 300);
+  }
+}
+
+function viewQuoteDetails(quoteId) {
+  // Mock data for demonstration
+  const quotesData = {
+    'Q001': {
+      id: 'Q001',
+      type: 'Auto',
+      status: 'Pendiente',
+      client: 'María Elena García López',
+      email: 'maria.garcia@ejemplo.com',
+      phone: '+52 555 123 4567',
+      created: '28 Ene 2026',
+      vehicle: 'Toyota Corolla 2024',
+      coverage: 'Amplia Plus',
+      premium: '$12,500 MXN/año',
+      deductible: '$5,000 MXN',
+      notes: 'Cliente solicita cobertura contra robo y daños por fenómenos naturales'
+    },
+    'Q002': {
+      id: 'Q002',
+      type: 'Hogar',
+      status: 'En revisión',
+      client: 'Juan Pérez Martínez',
+      email: 'juan.perez@ejemplo.com',
+      phone: '+52 555 234 5678',
+      created: '26 Ene 2026',
+      property: 'Casa habitación, 250m²',
+      coverage: 'Todo Riesgo',
+      premium: '$8,900 MXN/año',
+      deductible: '$3,000 MXN',
+      notes: 'Requiere inspección de propiedad antes de aprobar'
+    },
+    'Q003': {
+      id: 'Q003',
+      type: 'Vida',
+      status: 'Aprobada',
+      client: 'Ana Rodríguez Sánchez',
+      email: 'ana.rodriguez@ejemplo.com',
+      phone: '+52 555 345 6789',
+      created: '25 Ene 2026',
+      coverage: 'Temporal 20 años',
+      sumInsured: '$2,000,000 MXN',
+      premium: '$15,600 MXN/año',
+      beneficiaries: '2 beneficiarios registrados',
+      notes: 'Póliza aprobada, pendiente firma de documentos'
+    }
+  };
+
+  const quote = quotesData[quoteId];
+  if (!quote) {
+    notify('Cotización no encontrada', NOTIFICATION_TYPES.ERROR);
+    return;
+  }
+
+  const statusBadge = quote.status === 'Pendiente'
+    ? '<span class="badge badge-warning">Pendiente</span>'
+    : quote.status === 'En revisión'
+      ? '<span class="badge badge-primary">En revisión</span>'
+      : '<span class="badge badge-success">Aprobada</span>';
+
+  const modalHTML = `
+    <div class="modal-overlay app-modal-overlay active" id="quoteDetailsModal" onclick="if(event.target === this) window.appHandlers.closeQuoteDetailsModal()">
+      <div class="modal-content app-modal app-modal-md">
+        <div class="modal-header app-modal-header">
+          <h2 class="app-modal-title">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            Detalles de Cotización ${quote.id}
+          </h2>
+          <button class="modal-close app-modal-close" onclick="window.appHandlers.closeQuoteDetailsModal()" aria-label="Cerrar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body app-modal-body">
+          <div class="quote-details-header">
+            <div class="quote-detail-type">
+              <span class="detail-label">Tipo de seguro</span>
+              <span class="detail-value-large">${quote.type}</span>
+            </div>
+            <div class="quote-detail-status">
+              ${statusBadge}
+            </div>
+          </div>
+          
+          <div class="quote-details-grid">
+            <div class="detail-group">
+              <label>Cliente</label>
+              <p>${quote.client}</p>
+            </div>
+            <div class="detail-group">
+              <label>Email</label>
+              <p>${quote.email}</p>
+            </div>
+            <div class="detail-group">
+              <label>Teléfono</label>
+              <p>${quote.phone}</p>
+            </div>
+            <div class="detail-group">
+              <label>Fecha de creación</label>
+              <p>${quote.created}</p>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <h3>Detalles de cobertura</h3>
+          <div class="quote-details-grid">
+            ${quote.vehicle ? `<div class="detail-group"><label>Vehículo</label><p>${quote.vehicle}</p></div>` : ''}
+            ${quote.property ? `<div class="detail-group"><label>Propiedad</label><p>${quote.property}</p></div>` : ''}
+            <div class="detail-group">
+              <label>Cobertura</label>
+              <p>${quote.coverage}</p>
+            </div>
+            <div class="detail-group">
+              <label>Prima anual</label>
+              <p class="detail-value-highlight">${quote.premium}</p>
+            </div>
+            ${quote.deductible ? `<div class="detail-group"><label>Deducible</label><p>${quote.deductible}</p></div>` : ''}
+            ${quote.sumInsured ? `<div class="detail-group"><label>Suma asegurada</label><p>${quote.sumInsured}</p></div>` : ''}
+            ${quote.beneficiaries ? `<div class="detail-group"><label>Beneficiarios</label><p>${quote.beneficiaries}</p></div>` : ''}
+          </div>
+
+          ${quote.notes ? `
+            <div class="section-divider"></div>
+            <div class="detail-group">
+              <label>Notas adicionales</label>
+              <p>${quote.notes}</p>
+            </div>
+          ` : ''}
+
+          <div class="quote-actions-footer">
+            <button class="btn btn-outline" onclick="window.appHandlers.closeQuoteDetailsModal()">
+              Cerrar
+            </button>
+            ${quote.status === 'Pendiente' ? `
+              <button class="btn btn-primary" onclick="window.appHandlers.approveQuote?.('${quote.id}')">
+                Aprobar cotización
+              </button>
+            ` : quote.status === 'Aprobada' ? `
+              <button class="btn btn-primary" onclick="window.appHandlers.convertToPolicy?.('${quote.id}')">
+                Convertir a póliza
+              </button>
+            ` : `
+              <button class="btn btn-primary" onclick="window.appHandlers.continueReview?.('${quote.id}')">
+                Continuar revisión
+              </button>
+            `}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Remove existing modal if any
+  const existing = document.getElementById('quoteDetailsModal');
+  if (existing) existing.remove();
+
+  // Add modal to DOM
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+  document.body.style.overflow = 'hidden';
+}
+
+function closeQuoteDetailsModal() {
+  const modal = document.getElementById('quoteDetailsModal');
   if (modal) {
     modal.classList.remove('active');
     setTimeout(() => {
