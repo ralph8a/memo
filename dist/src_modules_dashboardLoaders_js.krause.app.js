@@ -19,6 +19,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   loadDashboardStats: () => (/* binding */ loadDashboardStats),
 /* harmony export */   loadPaymentHistory: () => (/* binding */ loadPaymentHistory),
 /* harmony export */   loadQuotes: () => (/* binding */ loadQuotes),
+/* harmony export */   renderSparklines: () => (/* binding */ renderSparklines),
 /* harmony export */   updateUserNameInHeader: () => (/* binding */ updateUserNameInHeader)
 /* harmony export */ });
 /* harmony import */ var _api_integration_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-integration.js */ "./src/api-integration.js");
@@ -28,12 +29,16 @@ function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present,
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 // Dashboard Data Loaders - Backend Integration
 
 
@@ -42,6 +47,100 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 // ============================================
 // UTILITY FUNCTIONS
 // ============================================
+
+/**
+ * Generate sparkline SVG chart
+ * Creates a simple line chart visualization for chart cards
+ */
+function generateSparkline(dataPoints) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _options$width = options.width,
+    width = _options$width === void 0 ? 320 : _options$width,
+    _options$height = options.height,
+    height = _options$height === void 0 ? 80 : _options$height,
+    _options$color = options.color,
+    color = _options$color === void 0 ? '#8b2348' : _options$color,
+    _options$fillOpacity = options.fillOpacity,
+    fillOpacity = _options$fillOpacity === void 0 ? 0.1 : _options$fillOpacity,
+    _options$strokeWidth = options.strokeWidth,
+    strokeWidth = _options$strokeWidth === void 0 ? 2 : _options$strokeWidth,
+    _options$animate = options.animate,
+    animate = _options$animate === void 0 ? true : _options$animate;
+  if (!dataPoints || dataPoints.length < 2) {
+    // Return empty SVG if no data
+    return "<svg width=\"".concat(width, "\" height=\"").concat(height, "\" viewBox=\"0 0 ").concat(width, " ").concat(height, "\"></svg>");
+  }
+  var padding = 4;
+  var chartWidth = width - padding * 2;
+  var chartHeight = height - padding * 2;
+
+  // Normalize data
+  var max = Math.max.apply(Math, _toConsumableArray(dataPoints));
+  var min = Math.min.apply(Math, _toConsumableArray(dataPoints));
+  var range = max - min || 1;
+
+  // Generate points for line
+  var points = dataPoints.map(function (value, index) {
+    var x = padding + index / (dataPoints.length - 1) * chartWidth;
+    var y = padding + chartHeight - (value - min) / range * chartHeight;
+    return "".concat(x, ",").concat(y);
+  }).join(' ');
+
+  // Create path for filled area
+  var firstPoint = points.split(' ')[0];
+  var lastPoint = points.split(' ')[points.length - 1];
+  var firstX = firstPoint.split(',')[0];
+  var lastX = lastPoint.split(',')[0];
+  var areaPoints = "".concat(firstX, ",").concat(height, " ").concat(points, " ").concat(lastX, ",").concat(height);
+  var animationDuration = animate ? '1s' : '0s';
+  return "\n        <svg width=\"".concat(width, "\" height=\"").concat(height, "\" viewBox=\"0 0 ").concat(width, " ").concat(height, "\" class=\"sparkline-svg\">\n            <defs>\n                <linearGradient id=\"sparkline-gradient-").concat(Math.random().toString(36).substr(2, 9), "\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n                    <stop offset=\"0%\" style=\"stop-color:").concat(color, ";stop-opacity:").concat(fillOpacity * 2, "\" />\n                    <stop offset=\"100%\" style=\"stop-color:").concat(color, ";stop-opacity:0\" />\n                </linearGradient>\n            </defs>\n            ").concat(animate ? "\n            <style>\n                @keyframes sparkline-draw {\n                    from { stroke-dashoffset: 1000; }\n                    to { stroke-dashoffset: 0; }\n                }\n                @keyframes sparkline-fade {\n                    from { opacity: 0; }\n                    to { opacity: 1; }\n                }\n            </style>\n            " : '', "\n            <polyline\n                fill=\"url(#sparkline-gradient-").concat(Math.random().toString(36).substr(2, 9), ")\"\n                points=\"").concat(areaPoints, "\"\n                style=\"animation: sparkline-fade ").concat(animationDuration, " ease-out;\"\n            />\n            <polyline\n                fill=\"none\"\n                stroke=\"").concat(color, "\"\n                stroke-width=\"").concat(strokeWidth, "\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n                points=\"").concat(points, "\"\n                style=\"stroke-dasharray: 1000; animation: sparkline-draw ").concat(animationDuration, " ease-out;\"\n            />\n        </svg>\n    ");
+}
+
+/**
+ * Render sparklines in chart cards
+ * Finds all chart cards and renders appropriate sparkline visualizations
+ */
+function renderSparklines() {
+  var chartCards = document.querySelectorAll('.chart-card');
+  chartCards.forEach(function (card) {
+    var _card$querySelector;
+    var title = (_card$querySelector = card.querySelector('.chart-title')) === null || _card$querySelector === void 0 || (_card$querySelector = _card$querySelector.textContent) === null || _card$querySelector === void 0 ? void 0 : _card$querySelector.trim();
+    var placeholder = card.querySelector('.sparkline-placeholder');
+    if (!placeholder || !title) return;
+    var dataPoints = [];
+    var color = '#8b2348'; // Default brand color
+
+    // Generate data based on chart type
+    if (title.includes('Tendencia de pagos') || title.includes('Ventas')) {
+      // Upward trend with some variance
+      dataPoints = [42, 45, 43, 48, 52, 50, 55, 58, 56, 62, 65, 68];
+      color = '#8b2348';
+    } else if (title.includes('Salud de pólizas')) {
+      // Stable with slight growth
+      dataPoints = [85, 87, 86, 88, 89, 88, 90, 91, 90, 92, 91, 93];
+      color = '#38ef7d';
+    } else if (title.includes('Comisiones')) {
+      // Monthly variance
+      dataPoints = [32, 38, 35, 42, 45, 41, 48, 52, 50, 55, 53, 58];
+      color = '#9b59b6';
+    } else {
+      // Generic upward trend
+      dataPoints = [30, 35, 33, 38, 42, 40, 45, 48, 46, 52, 50, 55];
+    }
+
+    // Replace placeholder with sparkline
+    var sparklineSVG = generateSparkline(dataPoints, {
+      width: placeholder.offsetWidth || 320,
+      height: placeholder.offsetHeight || 80,
+      color: color,
+      fillOpacity: 0.15,
+      strokeWidth: 2.5,
+      animate: true
+    });
+    placeholder.innerHTML = sparklineSVG;
+    placeholder.style.background = 'transparent';
+  });
+}
 
 /**
  * Update user name in dashboard hero header
@@ -152,6 +251,12 @@ function _loadAgentDashboard() {
           loadPaymentTrends()["catch"](function (err) {
             return console.error('Error loading payment trends:', err);
           });
+
+          // Render sparklines in chart cards
+          console.log('📈 Rendering sparklines...');
+          setTimeout(function () {
+            return renderSparklines();
+          }, 300);
           console.log('✅ Agent dashboard loaded with real data');
           return _context.a(2, dashboardData);
         case 10:
@@ -349,6 +454,12 @@ function _loadClientDashboard() {
           loadPendingActions()["catch"](function (err) {
             return console.error('Error loading pending actions:', err);
           });
+
+          // Render sparklines in chart cards
+          console.log('📈 Rendering sparklines...');
+          setTimeout(function () {
+            return renderSparklines();
+          }, 300);
           console.log('✅ Client dashboard loaded with real data');
           return _context5.a(2, {
             dashboardData: dashboardData,

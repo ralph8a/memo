@@ -1956,6 +1956,20 @@ html[data-theme="dark-forest"] .calendar-card .payment-amount {
     inset: 0;
     background: linear-gradient(135deg, rgba(139, 35, 72, 0.14), rgba(155, 89, 182, 0.12));
     opacity: 0.55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.sparkline-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.sparkline-svg polyline {
+    vector-effect: non-scaling-stroke;
 }
 
 .chart-metrics {
@@ -3120,6 +3134,15 @@ html[data-theme="dark-forest"] .chart-card {
     background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
     border: 1px solid var(--theme-accent-border);
     box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28), 0 12px 28px rgba(139, 35, 72, 0.16);
+}
+
+html[data-theme="dark-forest"] .chart-body {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark-forest"] .sparkline-placeholder {
+    background: transparent;
 }
 
 html[data-theme="dark-forest"] .chart-metric {

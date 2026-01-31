@@ -22,6 +22,137 @@ import { NOTIFICATION_TYPES } from '../utils/constants.js';
 // ============================================
 
 /**
+ * Generate sparkline SVG chart
+ * Creates a simple line chart visualization for chart cards
+ */
+function generateSparkline(dataPoints, options = {}) {
+    const {
+        width = 320,
+        height = 80,
+        color = '#8b2348',
+        fillOpacity = 0.1,
+        strokeWidth = 2,
+        animate = true
+    } = options;
+
+    if (!dataPoints || dataPoints.length < 2) {
+        // Return empty SVG if no data
+        return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"></svg>`;
+    }
+
+    const padding = 4;
+    const chartWidth = width - padding * 2;
+    const chartHeight = height - padding * 2;
+
+    // Normalize data
+    const max = Math.max(...dataPoints);
+    const min = Math.min(...dataPoints);
+    const range = max - min || 1;
+
+    // Generate points for line
+    const points = dataPoints.map((value, index) => {
+        const x = padding + (index / (dataPoints.length - 1)) * chartWidth;
+        const y = padding + chartHeight - ((value - min) / range) * chartHeight;
+        return `${x},${y}`;
+    }).join(' ');
+
+    // Create path for filled area
+    const firstPoint = points.split(' ')[0];
+    const lastPoint = points.split(' ')[points.length - 1];
+    const firstX = firstPoint.split(',')[0];
+    const lastX = lastPoint.split(',')[0];
+    const areaPoints = `${firstX},${height} ${points} ${lastX},${height}`;
+
+    const animationDuration = animate ? '1s' : '0s';
+
+    return `
+        <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" class="sparkline-svg">
+            <defs>
+                <linearGradient id="sparkline-gradient-${Math.random().toString(36).substr(2, 9)}" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:${color};stop-opacity:${fillOpacity * 2}" />
+                    <stop offset="100%" style="stop-color:${color};stop-opacity:0" />
+                </linearGradient>
+            </defs>
+            ${animate ? `
+            <style>
+                @keyframes sparkline-draw {
+                    from { stroke-dashoffset: 1000; }
+                    to { stroke-dashoffset: 0; }
+                }
+                @keyframes sparkline-fade {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+            </style>
+            ` : ''}
+            <polyline
+                fill="url(#sparkline-gradient-${Math.random().toString(36).substr(2, 9)})"
+                points="${areaPoints}"
+                style="animation: sparkline-fade ${animationDuration} ease-out;"
+            />
+            <polyline
+                fill="none"
+                stroke="${color}"
+                stroke-width="${strokeWidth}"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                points="${points}"
+                style="stroke-dasharray: 1000; animation: sparkline-draw ${animationDuration} ease-out;"
+            />
+        </svg>
+    `;
+}
+
+/**
+ * Render sparklines in chart cards
+ * Finds all chart cards and renders appropriate sparkline visualizations
+ */
+export function renderSparklines() {
+    const chartCards = document.querySelectorAll('.chart-card');
+
+    chartCards.forEach(card => {
+        const title = card.querySelector('.chart-title')?.textContent?.trim();
+        const placeholder = card.querySelector('.sparkline-placeholder');
+
+        if (!placeholder || !title) return;
+
+        let dataPoints = [];
+        let color = '#8b2348'; // Default brand color
+
+        // Generate data based on chart type
+        if (title.includes('Tendencia de pagos') || title.includes('Ventas')) {
+            // Upward trend with some variance
+            dataPoints = [42, 45, 43, 48, 52, 50, 55, 58, 56, 62, 65, 68];
+            color = '#8b2348';
+        } else if (title.includes('Salud de pólizas')) {
+            // Stable with slight growth
+            dataPoints = [85, 87, 86, 88, 89, 88, 90, 91, 90, 92, 91, 93];
+            color = '#38ef7d';
+        } else if (title.includes('Comisiones')) {
+            // Monthly variance
+            dataPoints = [32, 38, 35, 42, 45, 41, 48, 52, 50, 55, 53, 58];
+            color = '#9b59b6';
+        } else {
+            // Generic upward trend
+            dataPoints = [30, 35, 33, 38, 42, 40, 45, 48, 46, 52, 50, 55];
+        }
+
+        // Replace placeholder with sparkline
+        const sparklineSVG = generateSparkline(dataPoints, {
+            width: placeholder.offsetWidth || 320,
+            height: placeholder.offsetHeight || 80,
+            color: color,
+            fillOpacity: 0.15,
+            strokeWidth: 2.5,
+            animate: true
+        });
+
+        placeholder.innerHTML = sparklineSVG;
+        placeholder.style.background = 'transparent';
+    });
+}
+
+/**
  * Update user name in dashboard hero header
  * Gets user data from localStorage and updates the UI
  */
@@ -112,6 +243,10 @@ export async function loadAgentDashboard() {
         // Load dynamic chart data for agent dashboard
         loadPolicyHealthStats().catch(err => console.error('Error loading policy health:', err));
         loadPaymentTrends().catch(err => console.error('Error loading payment trends:', err));
+
+        // Render sparklines in chart cards
+        console.log('📈 Rendering sparklines...');
+        setTimeout(() => renderSparklines(), 300);
 
         console.log('✅ Agent dashboard loaded with real data');
         return dashboardData;
@@ -243,6 +378,10 @@ export async function loadClientDashboard() {
         loadPolicyHealthStats().catch(err => console.error('Error loading policy health:', err));
         loadPaymentTrends().catch(err => console.error('Error loading payment trends:', err));
         loadPendingActions().catch(err => console.error('Error loading pending actions:', err));
+
+        // Render sparklines in chart cards
+        console.log('📈 Rendering sparklines...');
+        setTimeout(() => renderSparklines(), 300);
 
         console.log('✅ Client dashboard loaded with real data');
         return { dashboardData, policies, claims, payments };
