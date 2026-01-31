@@ -139,6 +139,8 @@ window.appHandlers = {
   addClient: dashboardActions.addClient,
   scheduleAppointment: dashboardActions.scheduleAppointment,
   openQuoteModal,
+  openQuotes,
+  closeQuotesModal,
   addNewClient: dashboardActions.addClient,
   editClient,
   processQuote,
@@ -377,6 +379,133 @@ function openQuoteModal(type) {
   setPendingQuoteType(normalized);
   navigateTo(PAGES.QUOTE);
   notify(`Preparando formulario para seguro de ${normalized}`, NOTIFICATION_TYPES.INFO);
+}
+
+function openQuotes() {
+  // Create and show quotes list modal
+  const modalHTML = `
+    <div class="modal-overlay app-modal-overlay active" id="quotesListModal" onclick="if(event.target === this) window.appHandlers.closeQuotesModal()">
+      <div class="modal-content app-modal">
+        <div class="modal-header app-modal-header">
+          <h2 class="app-modal-title">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <line x1="10" y1="9" x2="8" y2="9"/>
+            </svg>
+            Cotizaciones
+          </h2>
+          <button class="modal-close app-modal-close" onclick="window.appHandlers.closeQuotesModal()" aria-label="Cerrar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body app-modal-body">
+          <div class="quotes-summary-grid">
+            <div class="summary-card">
+              <div class="summary-icon pending">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div class="summary-content">
+                <span class="summary-label">Pendientes</span>
+                <span class="summary-value">5</span>
+              </div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-icon in-progress">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div class="summary-content">
+                <span class="summary-label">En revisión</span>
+                <span class="summary-value">2</span>
+              </div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-icon approved">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <div class="summary-content">
+                <span class="summary-label">Aprobadas</span>
+                <span class="summary-value">1</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="quotes-list-container">
+            <h3>Todas las cotizaciones</h3>
+            <div class="quotes-list">
+              <div class="quote-item status-pending">
+                <div class="quote-info">
+                  <span class="quote-type">Auto</span>
+                  <span class="quote-client">Cliente: María Elena García López</span>
+                  <span class="quote-date">Creada: 28 Ene 2026</span>
+                </div>
+                <div class="quote-actions">
+                  <span class="badge badge-warning">Pendiente</span>
+                  <button class="btn btn-sm" onclick="window.appHandlers.viewQuoteDetails?.('Q001')">Ver detalles</button>
+                </div>
+              </div>
+              <div class="quote-item status-in-progress">
+                <div class="quote-info">
+                  <span class="quote-type">Hogar</span>
+                  <span class="quote-client">Cliente: Juan Pérez Martínez</span>
+                  <span class="quote-date">Creada: 26 Ene 2026</span>
+                </div>
+                <div class="quote-actions">
+                  <span class="badge badge-primary">En revisión</span>
+                  <button class="btn btn-sm" onclick="window.appHandlers.viewQuoteDetails?.('Q002')">Ver detalles</button>
+                </div>
+              </div>
+              <div class="quote-item status-approved">
+                <div class="quote-info">
+                  <span class="quote-type">Vida</span>
+                  <span class="quote-client">Cliente: Ana Rodríguez Sánchez</span>
+                  <span class="quote-date">Creada: 25 Ene 2026</span>
+                </div>
+                <div class="quote-actions">
+                  <span class="badge badge-success">Aprobada</span>
+                  <button class="btn btn-sm" onclick="window.appHandlers.viewQuoteDetails?.('Q003')">Ver detalles</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Remove existing modal if any
+  const existing = document.getElementById('quotesListModal');
+  if (existing) existing.remove();
+
+  // Add modal to DOM
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+  // Prevent body scroll
+  document.body.style.overflow = 'hidden';
+}
+
+function closeQuotesModal() {
+  const modal = document.getElementById('quotesListModal');
+  if (modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+      modal.remove();
+      document.body.style.overflow = '';
+    }, 300);
+  }
 }
 
 function addNewClient() {
