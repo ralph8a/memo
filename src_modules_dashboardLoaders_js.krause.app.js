@@ -19,6 +19,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   loadDashboardStats: () => (/* binding */ loadDashboardStats),
 /* harmony export */   loadPaymentHistory: () => (/* binding */ loadPaymentHistory),
 /* harmony export */   loadQuotes: () => (/* binding */ loadQuotes),
+/* harmony export */   renderSparklines: () => (/* binding */ renderSparklines),
 /* harmony export */   updateUserNameInHeader: () => (/* binding */ updateUserNameInHeader)
 /* harmony export */ });
 /* harmony import */ var _api_integration_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-integration.js */ "./src/api-integration.js");
@@ -28,12 +29,16 @@ function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present,
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 // Dashboard Data Loaders - Backend Integration
 
 
@@ -42,6 +47,101 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 // ============================================
 // UTILITY FUNCTIONS
 // ============================================
+
+/**
+ * Generate sparkline SVG chart
+ * Creates a simple line chart visualization for chart cards
+ */
+function generateSparkline(dataPoints) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _options$width = options.width,
+    width = _options$width === void 0 ? 320 : _options$width,
+    _options$height = options.height,
+    height = _options$height === void 0 ? 80 : _options$height,
+    _options$color = options.color,
+    color = _options$color === void 0 ? '#8b2348' : _options$color,
+    _options$fillOpacity = options.fillOpacity,
+    fillOpacity = _options$fillOpacity === void 0 ? 0.1 : _options$fillOpacity,
+    _options$strokeWidth = options.strokeWidth,
+    strokeWidth = _options$strokeWidth === void 0 ? 2 : _options$strokeWidth,
+    _options$animate = options.animate,
+    animate = _options$animate === void 0 ? true : _options$animate;
+  if (!dataPoints || dataPoints.length < 2) {
+    // Return empty SVG if no data
+    return "<svg width=\"".concat(width, "\" height=\"").concat(height, "\" viewBox=\"0 0 ").concat(width, " ").concat(height, "\"></svg>");
+  }
+  var padding = 4;
+  var chartWidth = width - padding * 2;
+  var chartHeight = height - padding * 2;
+
+  // Normalize data
+  var max = Math.max.apply(Math, _toConsumableArray(dataPoints));
+  var min = Math.min.apply(Math, _toConsumableArray(dataPoints));
+  var range = max - min || 1;
+
+  // Generate points for line
+  var points = dataPoints.map(function (value, index) {
+    var x = padding + index / (dataPoints.length - 1) * chartWidth;
+    var y = padding + chartHeight - (value - min) / range * chartHeight;
+    return "".concat(x, ",").concat(y);
+  }).join(' ');
+
+  // Create path for filled area
+  var pointsArray = points.split(' ');
+  var firstPoint = pointsArray[0];
+  var lastPoint = pointsArray[pointsArray.length - 1];
+  var firstX = firstPoint.split(',')[0];
+  var lastX = lastPoint.split(',')[0];
+  var areaPoints = "".concat(firstX, ",").concat(height, " ").concat(points, " ").concat(lastX, ",").concat(height);
+  var animationDuration = animate ? '1s' : '0s';
+  return "\n        <svg width=\"".concat(width, "\" height=\"").concat(height, "\" viewBox=\"0 0 ").concat(width, " ").concat(height, "\" class=\"sparkline-svg\">\n            <defs>\n                <linearGradient id=\"sparkline-gradient-").concat(Math.random().toString(36).substr(2, 9), "\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n                    <stop offset=\"0%\" style=\"stop-color:").concat(color, ";stop-opacity:").concat(fillOpacity * 2, "\" />\n                    <stop offset=\"100%\" style=\"stop-color:").concat(color, ";stop-opacity:0\" />\n                </linearGradient>\n            </defs>\n            ").concat(animate ? "\n            <style>\n                @keyframes sparkline-draw {\n                    from { stroke-dashoffset: 1000; }\n                    to { stroke-dashoffset: 0; }\n                }\n                @keyframes sparkline-fade {\n                    from { opacity: 0; }\n                    to { opacity: 1; }\n                }\n            </style>\n            " : '', "\n            <polyline\n                fill=\"url(#sparkline-gradient-").concat(Math.random().toString(36).substr(2, 9), ")\"\n                points=\"").concat(areaPoints, "\"\n                style=\"animation: sparkline-fade ").concat(animationDuration, " ease-out;\"\n            />\n            <polyline\n                fill=\"none\"\n                stroke=\"").concat(color, "\"\n                stroke-width=\"").concat(strokeWidth, "\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n                points=\"").concat(points, "\"\n                style=\"stroke-dasharray: 1000; animation: sparkline-draw ").concat(animationDuration, " ease-out;\"\n            />\n        </svg>\n    ");
+}
+
+/**
+ * Render sparklines in chart cards
+ * Finds all chart cards and renders appropriate sparkline visualizations
+ */
+function renderSparklines() {
+  var chartCards = document.querySelectorAll('.chart-card');
+  chartCards.forEach(function (card) {
+    var _card$querySelector;
+    var title = (_card$querySelector = card.querySelector('.chart-title')) === null || _card$querySelector === void 0 || (_card$querySelector = _card$querySelector.textContent) === null || _card$querySelector === void 0 ? void 0 : _card$querySelector.trim();
+    var placeholder = card.querySelector('.sparkline-placeholder');
+    if (!placeholder || !title) return;
+    var dataPoints = [];
+    var color = '#8b2348'; // Default brand color
+
+    // Generate data based on chart type
+    if (title.includes('Tendencia de pagos') || title.includes('Ventas')) {
+      // Upward trend with some variance
+      dataPoints = [42, 45, 43, 48, 52, 50, 55, 58, 56, 62, 65, 68];
+      color = '#8b2348';
+    } else if (title.includes('Salud de pólizas')) {
+      // Stable with slight growth
+      dataPoints = [85, 87, 86, 88, 89, 88, 90, 91, 90, 92, 91, 93];
+      color = '#38ef7d';
+    } else if (title.includes('Comisiones')) {
+      // Monthly variance
+      dataPoints = [32, 38, 35, 42, 45, 41, 48, 52, 50, 55, 53, 58];
+      color = '#9b59b6';
+    } else {
+      // Generic upward trend
+      dataPoints = [30, 35, 33, 38, 42, 40, 45, 48, 46, 52, 50, 55];
+    }
+
+    // Replace placeholder with sparkline
+    var sparklineSVG = generateSparkline(dataPoints, {
+      width: placeholder.offsetWidth || 320,
+      height: placeholder.offsetHeight || 80,
+      color: color,
+      fillOpacity: 0.15,
+      strokeWidth: 2.5,
+      animate: true
+    });
+    placeholder.innerHTML = sparklineSVG;
+    placeholder.style.background = 'transparent';
+  });
+}
 
 /**
  * Update user name in dashboard hero header
@@ -78,7 +178,7 @@ function loadAgentDashboard() {
 }
 function _loadAgentDashboard() {
   _loadAgentDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-    var dashboardData, _t;
+    var dashboardData, _yield$import, AgentDashboardManager, _t, _t2;
     return _regenerator().w(function (_context) {
       while (1) switch (_context.p = _context.n) {
         case 0:
@@ -120,6 +220,31 @@ function _loadAgentDashboard() {
             return console.error('❌ Error loading recent clients:', err);
           });
         case 3:
+          // Initialize Agent Dashboard Manager for payment/policy panels
+          console.log('🔄 Initializing Agent Dashboard Manager...');
+          _context.p = 4;
+          _context.n = 5;
+          return __webpack_require__.e(/*! import() */ "src_modules_agentDashboardComponents_js").then(__webpack_require__.bind(__webpack_require__, /*! ./agentDashboardComponents.js */ "./src/modules/agentDashboardComponents.js"));
+        case 5:
+          _yield$import = _context.v;
+          AgentDashboardManager = _yield$import.AgentDashboardManager;
+          if (window.agentDashboard) {
+            _context.n = 7;
+            break;
+          }
+          window.agentDashboard = new AgentDashboardManager();
+          _context.n = 6;
+          return window.agentDashboard.initialize();
+        case 6:
+          console.log('✅ Agent Dashboard Manager initialized');
+        case 7:
+          _context.n = 9;
+          break;
+        case 8:
+          _context.p = 8;
+          _t = _context.v;
+          console.error('❌ Error initializing Agent Dashboard Manager:', _t);
+        case 9:
           // Load dynamic chart data for agent dashboard
           loadPolicyHealthStats()["catch"](function (err) {
             return console.error('Error loading policy health:', err);
@@ -127,18 +252,24 @@ function _loadAgentDashboard() {
           loadPaymentTrends()["catch"](function (err) {
             return console.error('Error loading payment trends:', err);
           });
+
+          // Render sparklines in chart cards
+          console.log('📈 Rendering sparklines...');
+          setTimeout(function () {
+            return renderSparklines();
+          }, 300);
           console.log('✅ Agent dashboard loaded with real data');
           return _context.a(2, dashboardData);
-        case 4:
-          _context.p = 4;
-          _t = _context.v;
-          console.error('❌ Error loading agent dashboard:', _t);
+        case 10:
+          _context.p = 10;
+          _t2 = _context.v;
+          console.error('❌ Error loading agent dashboard:', _t2);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
-          throw _t;
-        case 5:
+          throw _t2;
+        case 11:
           return _context.a(2);
       }
-    }, _callee, null, [[1, 4]]);
+    }, _callee, null, [[4, 8], [1, 10]]);
   }));
   return _loadAgentDashboard.apply(this, arguments);
 }
@@ -147,7 +278,7 @@ function loadAgentClients() {
 }
 function _loadAgentClients() {
   _loadAgentClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-    var clients, _t2;
+    var clients, _t3;
     return _regenerator().w(function (_context2) {
       while (1) switch (_context2.p = _context2.n) {
         case 0:
@@ -164,8 +295,8 @@ function _loadAgentClients() {
           return _context2.a(2, clients);
         case 2:
           _context2.p = 2;
-          _t2 = _context2.v;
-          console.error('Error loading clients:', _t2);
+          _t3 = _context2.v;
+          console.error('Error loading clients:', _t3);
           return _context2.a(2, []);
       }
     }, _callee2, null, [[0, 2]]);
@@ -177,7 +308,7 @@ function loadClientDetails(_x) {
 }
 function _loadClientDetails() {
   _loadClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(clientId) {
-    var data, _t3;
+    var data, _t4;
     return _regenerator().w(function (_context3) {
       while (1) switch (_context3.p = _context3.n) {
         case 0:
@@ -194,8 +325,8 @@ function _loadClientDetails() {
           return _context3.a(2, data);
         case 2:
           _context3.p = 2;
-          _t3 = _context3.v;
-          console.error('Error loading client details:', _t3);
+          _t4 = _context3.v;
+          console.error('Error loading client details:', _t4);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
           return _context3.a(2, null);
       }
@@ -212,7 +343,7 @@ function loadQuotes() {
 // ============================================
 function _loadQuotes() {
   _loadQuotes = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
-    var quotes, _t4;
+    var quotes, _t5;
     return _regenerator().w(function (_context4) {
       while (1) switch (_context4.p = _context4.n) {
         case 0:
@@ -229,8 +360,8 @@ function _loadQuotes() {
           return _context4.a(2, quotes);
         case 2:
           _context4.p = 2;
-          _t4 = _context4.v;
-          console.error('Error loading quotes:', _t4);
+          _t5 = _context4.v;
+          console.error('Error loading quotes:', _t5);
           return _context4.a(2, []);
       }
     }, _callee4, null, [[0, 2]]);
@@ -242,7 +373,7 @@ function loadClientDashboard() {
 }
 function _loadClientDashboard() {
   _loadClientDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
-    var dashboardData, _yield$Promise$all, _yield$Promise$all2, policies, claims, payments, _t5;
+    var dashboardData, _yield$Promise$all, _yield$Promise$all2, policies, claims, payments, _t6;
     return _regenerator().w(function (_context5) {
       while (1) switch (_context5.p = _context5.n) {
         case 0:
@@ -324,6 +455,12 @@ function _loadClientDashboard() {
           loadPendingActions()["catch"](function (err) {
             return console.error('Error loading pending actions:', err);
           });
+
+          // Render sparklines in chart cards
+          console.log('📈 Rendering sparklines...');
+          setTimeout(function () {
+            return renderSparklines();
+          }, 300);
           console.log('✅ Client dashboard loaded with real data');
           return _context5.a(2, {
             dashboardData: dashboardData,
@@ -333,10 +470,10 @@ function _loadClientDashboard() {
           });
         case 4:
           _context5.p = 4;
-          _t5 = _context5.v;
-          console.error('❌ Error loading client dashboard:', _t5);
+          _t6 = _context5.v;
+          console.error('❌ Error loading client dashboard:', _t6);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar datos del dashboard', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
-          throw _t5;
+          throw _t6;
         case 5:
           return _context5.a(2);
       }
@@ -349,7 +486,7 @@ function loadClientPolicies() {
 }
 function _loadClientPolicies() {
   _loadClientPolicies = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
-    var policies, _t6;
+    var policies, _t7;
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
@@ -366,8 +503,8 @@ function _loadClientPolicies() {
           return _context6.a(2, policies);
         case 2:
           _context6.p = 2;
-          _t6 = _context6.v;
-          console.error('Error loading policies:', _t6);
+          _t7 = _context6.v;
+          console.error('Error loading policies:', _t7);
           return _context6.a(2, []);
       }
     }, _callee6, null, [[0, 2]]);
@@ -383,7 +520,7 @@ function loadPaymentHistory() {
 // ============================================
 function _loadPaymentHistory() {
   _loadPaymentHistory = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-    var payments, _t7;
+    var payments, _t8;
     return _regenerator().w(function (_context7) {
       while (1) switch (_context7.p = _context7.n) {
         case 0:
@@ -400,8 +537,8 @@ function _loadPaymentHistory() {
           return _context7.a(2, payments);
         case 2:
           _context7.p = 2;
-          _t7 = _context7.v;
-          console.error('Error loading payment history:', _t7);
+          _t8 = _context7.v;
+          console.error('Error loading payment history:', _t8);
           return _context7.a(2, []);
       }
     }, _callee7, null, [[0, 2]]);
@@ -417,7 +554,7 @@ function loadAdminDashboard() {
 // ============================================
 function _loadAdminDashboard() {
   _loadAdminDashboard = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
-    var dashboardData, _t8;
+    var dashboardData, _t9;
     return _regenerator().w(function (_context8) {
       while (1) switch (_context8.p = _context8.n) {
         case 0:
@@ -442,8 +579,8 @@ function _loadAdminDashboard() {
           return _context8.a(2, dashboardData);
         case 2:
           _context8.p = 2;
-          _t8 = _context8.v;
-          console.error('Error loading admin dashboard:', _t8);
+          _t9 = _context8.v;
+          console.error('Error loading admin dashboard:', _t9);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al cargar dashboard de administración', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
         case 3:
           return _context8.a(2);
@@ -457,7 +594,7 @@ function loadClientClaims() {
 }
 function _loadClientClaims() {
   _loadClientClaims = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
-    var claims, _t9;
+    var claims, _t0;
     return _regenerator().w(function (_context9) {
       while (1) switch (_context9.p = _context9.n) {
         case 0:
@@ -474,8 +611,8 @@ function _loadClientClaims() {
           return _context9.a(2, claims);
         case 2:
           _context9.p = 2;
-          _t9 = _context9.v;
-          console.error('Error loading claims:', _t9);
+          _t0 = _context9.v;
+          console.error('Error loading claims:', _t0);
           return _context9.a(2, []);
       }
     }, _callee9, null, [[0, 2]]);
@@ -491,7 +628,7 @@ function loadDashboardStats() {
 // ============================================
 function _loadDashboardStats() {
   _loadDashboardStats = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
-    var stats, _t0;
+    var stats, _t1;
     return _regenerator().w(function (_context0) {
       while (1) switch (_context0.p = _context0.n) {
         case 0:
@@ -508,8 +645,8 @@ function _loadDashboardStats() {
           return _context0.a(2, stats);
         case 2:
           _context0.p = 2;
-          _t0 = _context0.v;
-          console.error('Error loading dashboard stats:', _t0);
+          _t1 = _context0.v;
+          console.error('Error loading dashboard stats:', _t1);
           return _context0.a(2, null);
       }
     }, _callee0, null, [[0, 2]]);
@@ -746,7 +883,7 @@ function loadClientContacts() {
  */
 function _loadClientContacts() {
   _loadClientContacts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1() {
-    var contacts, _contactChipsContainer, contactChipsContainer, _contactChipsContainer2, _t1;
+    var contacts, _contactChipsContainer, contactChipsContainer, _contactChipsContainer2, _t10;
     return _regenerator().w(function (_context1) {
       while (1) switch (_context1.p = _context1.n) {
         case 0:
@@ -782,8 +919,8 @@ function _loadClientContacts() {
           break;
         case 3:
           _context1.p = 3;
-          _t1 = _context1.v;
-          console.error('Error loading client contacts:', _t1);
+          _t10 = _context1.v;
+          console.error('Error loading client contacts:', _t10);
           _contactChipsContainer2 = document.querySelector('.contact-chips');
           if (_contactChipsContainer2) {
             _contactChipsContainer2.innerHTML = "\n                <div style=\"text-align: center; padding: 20px; color: #f44;\">\n                    <p style=\"margin: 0; font-size: 13px;\">Error al cargar contactos</p>\n                </div>\n            ";
@@ -805,7 +942,7 @@ function loadAgentRecentClients() {
  */
 function _loadAgentRecentClients() {
   _loadAgentRecentClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10() {
-    var clientsPillsContainer, clients, recentClients, _t10;
+    var clientsPillsContainer, clients, recentClients, _t11;
     return _regenerator().w(function (_context10) {
       while (1) switch (_context10.p = _context10.n) {
         case 0:
@@ -855,8 +992,8 @@ function _loadAgentRecentClients() {
           break;
         case 4:
           _context10.p = 4;
-          _t10 = _context10.v;
-          console.error('❌ Error loading recent clients:', _t10);
+          _t11 = _context10.v;
+          console.error('❌ Error loading recent clients:', _t11);
           clientsPillsContainer.innerHTML = "\n            <div style=\"padding: 12px; text-align: center; color: var(--theme-text-secondary);\">\n                <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" style=\"margin-bottom: 8px;\">\n                    <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                    <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/>\n                    <line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/>\n                </svg>\n                <div style=\"font-size: 0.875rem;\">Error al cargar clientes</div>\n            </div>\n        ";
         case 5:
           return _context10.a(2);
@@ -873,7 +1010,7 @@ function loadPolicyHealthStats() {
  */
 function _loadPolicyHealthStats() {
   _loadPolicyHealthStats = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11() {
-    var data, _t11;
+    var data, _t12;
     return _regenerator().w(function (_context11) {
       while (1) switch (_context11.p = _context11.n) {
         case 0:
@@ -891,8 +1028,8 @@ function _loadPolicyHealthStats() {
           break;
         case 2:
           _context11.p = 2;
-          _t11 = _context11.v;
-          console.error('Error loading policy health stats:', _t11);
+          _t12 = _context11.v;
+          console.error('Error loading policy health stats:', _t12);
         case 3:
           return _context11.a(2);
       }
@@ -929,7 +1066,7 @@ function loadPaymentTrends() {
  */
 function _loadPaymentTrends() {
   _loadPaymentTrends = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12() {
-    var data, _t12;
+    var data, _t13;
     return _regenerator().w(function (_context12) {
       while (1) switch (_context12.p = _context12.n) {
         case 0:
@@ -947,8 +1084,8 @@ function _loadPaymentTrends() {
           break;
         case 2:
           _context12.p = 2;
-          _t12 = _context12.v;
-          console.error('Error loading payment trends:', _t12);
+          _t13 = _context12.v;
+          console.error('Error loading payment trends:', _t13);
         case 3:
           return _context12.a(2);
       }
@@ -988,7 +1125,7 @@ function loadPendingActions() {
  */
 function _loadPendingActions() {
   _loadPendingActions = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee13() {
-    var data, _t13;
+    var data, _t14;
     return _regenerator().w(function (_context13) {
       while (1) switch (_context13.p = _context13.n) {
         case 0:
@@ -1006,8 +1143,8 @@ function _loadPendingActions() {
           break;
         case 2:
           _context13.p = 2;
-          _t13 = _context13.v;
-          console.error('Error loading pending actions:', _t13);
+          _t14 = _context13.v;
+          console.error('Error loading pending actions:', _t14);
         case 3:
           return _context13.a(2);
       }

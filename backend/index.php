@@ -268,6 +268,37 @@ try {
         sendResponse(getAgentDashboard($db, $user['user_id']));
     }
     
+    // GET ?action=agent_payments - Obtener pagos de clientes del agente
+    if ($action === 'agent_payments') {
+        $user = Auth::requireUserType(['agent', 'admin']);
+        $agent_id = $user['user_id'];
+        
+        $stmt = $db->prepare("
+            SELECT 
+                pay.id AS payment_id,
+                pay.policy_id,
+                pay.amount,
+                pay.payment_date AS due_date,
+                pay.status,
+                p.policy_number,
+                p.policy_type,
+                p.client_id,
+                CONCAT(u.first_name, ' ', u.last_name) AS client_name,
+                u.email AS client_email
+            FROM payments pay
+            INNER JOIN policies p ON pay.policy_id = p.id
+            INNER JOIN users u ON p.client_id = u.id
+            WHERE p.agent_id = ? AND u.user_type = 'client'
+            ORDER BY pay.payment_date DESC
+            LIMIT 100
+        ");
+        $stmt->execute([$agent_id]);
+        $payments = $stmt->fetchAll();
+        
+        sendResponse(['payments' => $payments]);
+        return;
+    }
+    
     // GET ?action=agent_clients
     if ($action === 'agent_clients') {
         $user = Auth::requireUserType(['agent', 'admin']);
@@ -304,6 +335,81 @@ try {
         sendResponse($clients);
         // sendResponse() hace exit, pero por claridad agregamos return
         return;
+    }
+
+    // GET ?action=payment_receipts&policy_id={policy_id}
+    if ($action === 'payment_receipts') {
+        $user = Auth::requireAuth();
+        $policy_id = $_GET['policy_id'] ?? null;
+        
+        if (!$policy_id) {
+            sendError('policy_id es requerido', 400);
+        }
+        
+        $receipts = getPolicyReceipts($db, $policy_id);
+        sendResponse(['receipts' => $receipts]);
+        return;
+    }
+
+    // GET ?action=policy_claims&policy_id={policy_id}
+    if ($action === 'policy_claims') {
+        $user = Auth::requireAuth();
+        $policy_id = $_GET['policy_id'] ?? null;
+        
+        if (!$policy_id) {
+            sendError('policy_id es requerido', 400);
+        }
+        
+        $claims = getPolicyClaims($db, $policy_id);
+        sendResponse(['claims' => $claims]);
+        return;
+    }
+
+    // GET ?action=policy_details&id={policy_id}
+    if ($action === 'policy_details') {
+        $user = Auth::requireAuth();
+        $policy_id = $_GET['id'] ?? null;
+        
+        if (!$policy_id) {
+            sendError('Policy ID is required', 400);
+        }
+        
+        try {
+            // Get policy details
+            $stmt = $db->prepare("
+                SELECT 
+                    p.*,
+                    CONCAT(u.first_name, ' ', u.last_name) AS client_name,
+                    u.email AS client_email,
+                    u.phone AS client_phone,
+                    CONCAT(a.first_name, ' ', a.last_name) AS agent_name,
+                    a.email AS agent_email
+                FROM policies p
+                LEFT JOIN users u ON p.client_id = u.id
+                LEFT JOIN users a ON p.agent_id = a.id
+                WHERE p.id = ?
+            ");
+            $stmt->execute([$policy_id]);
+            $policy = $stmt->fetch();
+            
+            if (!$policy) {
+                sendError('Policy not found', 404);
+            }
+            
+            // Verify user has permission to view this policy
+            if ($user['user_type'] === 'client' && $policy['client_id'] != $user['user_id']) {
+                sendError('Unauthorized', 403);
+            }
+            if ($user['user_type'] === 'agent' && $policy['agent_id'] != $user['user_id']) {
+                sendError('Unauthorized', 403);
+            }
+            
+            sendResponse($policy);
+            return;
+        } catch (Exception $e) {
+            error_log('Error getting policy details: ' . $e->getMessage());
+            sendError('Error retrieving policy details', 500);
+        }
     }
 
     // GET ?action=client_details&id=123
@@ -1291,10 +1397,10 @@ try {
         $stmt->execute([$threadId]);
         $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        // Mark as read
+        // Mark as read (messages where current user is NOT the sender)
         $stmt = $db->prepare("
             UPDATE direct_messages SET is_read = 1
-            WHERE thread_id = ? AND recipient_id = ?
+            WHERE thread_id = ? AND sender_id != ?
         ");
         $stmt->execute([$threadId, $user['user_id']]);
         
@@ -1357,11 +1463,20 @@ try {
             sendError('Failed to insert message', 500);
         }
         
-        error_log("Message inserted successfully. ID: " . $db->lastInsertId());
+        $messageId = $db->lastInsertId();
+        error_log("Message inserted successfully. ID: " . $messageId);
+        
+        // Update thread's last_message_at
+        $stmt = $db->prepare("
+            UPDATE direct_message_threads 
+            SET last_message_at = NOW() 
+            WHERE thread_id = ?
+        ");
+        $stmt->execute([$threadId]);
         
         sendResponse([
             'success' => true,
-            'message_id' => $db->lastInsertId()
+            'message_id' => $messageId
         ]);
     }
     

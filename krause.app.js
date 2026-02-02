@@ -553,7 +553,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 .filter-indicator {
     margin: 0 0 1.5rem 0;
     padding: 12px 16px;
-    background: var(--primary-color);
+    background: #8b2348;
     color: white;
     border-radius: 8px;
     display: flex;
@@ -561,13 +561,14 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
     justify-content: space-between;
     font-size: 0.9375rem;
     font-weight: 500;
-    box-shadow: 0 2px 8px rgba(var(--primary-rgb), 0.2);
+    box-shadow: 0 2px 8px rgba(139, 35, 72, 0.2);
 }
 
+html[data-theme="dark-forest"] .filter-indicator,
 body.dark-forest .filter-indicator {
-    background: var(--card-background);
-    color: var(--text-color);
-    border: 1px solid var(--primary-color);
+    background: rgba(139, 35, 72, 0.15);
+    color: #f1f5f9;
+    border: 1px solid #8b2348;
 }
 
 .btn-clear-filter {
@@ -588,13 +589,15 @@ body.dark-forest .filter-indicator {
     background: rgba(255, 255, 255, 0.3);
 }
 
+html[data-theme="dark-forest"] .btn-clear-filter,
 body.dark-forest .btn-clear-filter {
-    background: var(--primary-color);
+    background: #8b2348;
     color: white;
 }
 
+html[data-theme="dark-forest"] .btn-clear-filter:hover,
 body.dark-forest .btn-clear-filter:hover {
-    background: var(--primary-hover);
+    background: #a12a56;
 }
 
 /* Payment Schedule Panel */
@@ -1015,7 +1018,7 @@ body.dark-forest .policy-card {
 body.dark-forest .policy-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     background: rgba(255, 255, 255, 0.08);
-}`, "",{"version":3,"sources":["webpack://./styles/agent-dashboard-panels.css"],"names":[],"mappings":"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","sourcesContent":["/* ===================================\n   AGENT DASHBOARD PANELS STYLES\n   Estilos para paneles de pagos y pólizas del agente\n   =================================== */\n\n/* Client Filter Indicator */\n.filter-indicator {\n    margin: 0 0 1.5rem 0;\n    padding: 12px 16px;\n    background: var(--primary-color);\n    color: white;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    font-size: 0.9375rem;\n    font-weight: 500;\n    box-shadow: 0 2px 8px rgba(var(--primary-rgb), 0.2);\n}\n\nbody.dark-forest .filter-indicator {\n    background: var(--card-background);\n    color: var(--text-color);\n    border: 1px solid var(--primary-color);\n}\n\n.btn-clear-filter {\n    padding: 6px 12px;\n    background: rgba(255, 255, 255, 0.2);\n    color: white;\n    border: none;\n    border-radius: 6px;\n    font-size: 0.875rem;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    transition: background 0.2s ease;\n}\n\n.btn-clear-filter:hover {\n    background: rgba(255, 255, 255, 0.3);\n}\n\nbody.dark-forest .btn-clear-filter {\n    background: var(--primary-color);\n    color: white;\n}\n\nbody.dark-forest .btn-clear-filter:hover {\n    background: var(--primary-hover);\n}\n\n/* Payment Schedule Panel */\n.payment-schedule-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 1rem;\n}\n\n.payment-schedule-header h3 {\n    font-size: 1.25rem;\n    font-weight: 600;\n    color: var(--text-color);\n    margin: 0;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.payment-schedule-header svg {\n    flex-shrink: 0;\n}\n\n.payment-filters {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.filter-btn {\n    padding: 8px 16px;\n    background: var(--card-background);\n    color: var(--text-color);\n    border: 1px solid var(--border-color);\n    border-radius: 6px;\n    font-size: 0.875rem;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    white-space: nowrap;\n}\n\n.filter-btn:hover {\n    background: var(--hover-background);\n    border-color: var(--primary-color);\n}\n\n.filter-btn.active {\n    background: var(--primary-color);\n    color: white;\n    border-color: var(--primary-color);\n}\n\n/* Payment Table */\n.payments-table {\n    width: 100%;\n    border-collapse: collapse;\n    margin-top: 1rem;\n}\n\n.payments-table thead {\n    background: var(--header-background);\n}\n\n.payments-table th {\n    padding: 12px 16px;\n    text-align: left;\n    font-weight: 600;\n    font-size: 0.875rem;\n    color: var(--text-muted);\n    border-bottom: 2px solid var(--border-color);\n}\n\n.payments-table td {\n    padding: 12px 16px;\n    border-bottom: 1px solid var(--border-color);\n    font-size: 0.9375rem;\n    color: var(--text-color);\n}\n\n.payments-table tbody tr {\n    transition: background 0.2s ease;\n}\n\n.payments-table tbody tr:hover {\n    background: var(--hover-background);\n}\n\n.client-link {\n    color: var(--primary-color);\n    text-decoration: none;\n    font-weight: 500;\n    cursor: pointer;\n}\n\n.client-link:hover {\n    text-decoration: underline;\n}\n\n.payment-status-badge {\n    display: inline-block;\n    padding: 4px 12px;\n    border-radius: 12px;\n    font-size: 0.8125rem;\n    font-weight: 500;\n    text-transform: capitalize;\n}\n\n.payment-status-badge.pending {\n    background: #fff3cd;\n    color: #856404;\n}\n\n.payment-status-badge.paid {\n    background: #d4edda;\n    color: #155724;\n}\n\n.payment-status-badge.overdue {\n    background: #f8d7da;\n    color: #721c24;\n}\n\nbody.dark-forest .payment-status-badge.pending {\n    background: rgba(255, 193, 7, 0.2);\n    color: #ffc107;\n}\n\nbody.dark-forest .payment-status-badge.paid {\n    background: rgba(76, 175, 80, 0.2);\n    color: #4caf50;\n}\n\nbody.dark-forest .payment-status-badge.overdue {\n    background: rgba(244, 67, 54, 0.2);\n    color: #f44336;\n}\n\n.payment-actions {\n    display: flex;\n    gap: 8px;\n    align-items: center;\n}\n\n.action-icon-btn {\n    padding: 6px;\n    background: transparent;\n    border: 1px solid var(--border-color);\n    border-radius: 4px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.action-icon-btn:hover {\n    background: var(--primary-color);\n    border-color: var(--primary-color);\n    color: white;\n}\n\n.action-icon-btn svg {\n    width: 16px;\n    height: 16px;\n}\n\n/* Policies Panel */\n.policies-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 1rem;\n}\n\n.policies-header h3 {\n    font-size: 1.25rem;\n    font-weight: 600;\n    color: var(--text-color);\n    margin: 0;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.policy-filters {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.policies-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n    gap: 1rem;\n    margin-top: 1rem;\n}\n\n.policy-card {\n    background: var(--card-background);\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    padding: 1rem;\n    transition: all 0.3s ease;\n}\n\n.policy-card:hover {\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n    transform: translateY(-2px);\n}\n\n.policy-card-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: flex-start;\n    margin-bottom: 0.75rem;\n}\n\n.policy-type {\n    font-weight: 600;\n    font-size: 1rem;\n    color: var(--text-color);\n}\n\n.policy-status-badge {\n    padding: 3px 10px;\n    border-radius: 10px;\n    font-size: 0.75rem;\n    font-weight: 500;\n    text-transform: uppercase;\n}\n\n.policy-status-badge.active {\n    background: #d4edda;\n    color: #155724;\n}\n\n.policy-status-badge.expiring {\n    background: #fff3cd;\n    color: #856404;\n}\n\n.policy-status-badge.expired {\n    background: #f8d7da;\n    color: #721c24;\n}\n\nbody.dark-forest .policy-status-badge.active {\n    background: rgba(76, 175, 80, 0.2);\n    color: #4caf50;\n}\n\nbody.dark-forest .policy-status-badge.expiring {\n    background: rgba(255, 193, 7, 0.2);\n    color: #ffc107;\n}\n\nbody.dark-forest .policy-status-badge.expired {\n    background: rgba(244, 67, 54, 0.2);\n    color: #f44336;\n}\n\n.policy-client {\n    font-size: 0.875rem;\n    color: var(--primary-color);\n    margin-bottom: 0.5rem;\n    cursor: pointer;\n}\n\n.policy-client:hover {\n    text-decoration: underline;\n}\n\n.policy-details {\n    margin: 0.75rem 0;\n}\n\n.policy-detail-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 0.5rem 0;\n    border-bottom: 1px solid var(--border-color);\n    font-size: 0.875rem;\n}\n\n.policy-detail-row:last-child {\n    border-bottom: none;\n}\n\n.policy-detail-label {\n    color: var(--text-muted);\n    font-weight: 500;\n}\n\n.policy-detail-value {\n    color: var(--text-color);\n    font-weight: 600;\n}\n\n.policy-card-actions {\n    display: flex;\n    gap: 8px;\n    margin-top: 1rem;\n    padding-top: 1rem;\n    border-top: 1px solid var(--border-color);\n}\n\n.policy-action-btn {\n    flex: 1;\n    padding: 8px 12px;\n    background: var(--primary-color);\n    color: white;\n    border: none;\n    border-radius: 6px;\n    font-size: 0.875rem;\n    cursor: pointer;\n    transition: background 0.2s ease;\n}\n\n.policy-action-btn:hover {\n    background: var(--primary-hover);\n}\n\n.policy-action-btn.secondary {\n    background: transparent;\n    color: var(--primary-color);\n    border: 1px solid var(--primary-color);\n}\n\n.policy-action-btn.secondary:hover {\n    background: var(--primary-color);\n    color: white;\n}\n\n/* Empty States */\n.empty-state {\n    text-align: center;\n    padding: 3rem 1rem;\n    color: var(--text-muted);\n}\n\n.empty-state svg {\n    width: 64px;\n    height: 64px;\n    margin-bottom: 1rem;\n    opacity: 0.5;\n}\n\n.empty-state p {\n    font-size: 1rem;\n    margin: 0;\n}\n\n/* Loading State */\n.loading-state {\n    text-align: center;\n    padding: 2rem 1rem;\n    color: var(--text-muted);\n    font-size: 0.9375rem;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n\n    .payment-schedule-header,\n    .policies-header {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 1rem;\n    }\n\n    .payment-filters,\n    .policy-filters {\n        width: 100%;\n    }\n\n    .filter-btn {\n        flex: 1;\n        text-align: center;\n    }\n\n    .payments-table {\n        font-size: 0.8125rem;\n    }\n\n    .payments-table th,\n    .payments-table td {\n        padding: 8px 12px;\n    }\n\n    .policies-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .filter-indicator {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 0.75rem;\n    }\n\n    .btn-clear-filter {\n        width: 100%;\n        justify-content: center;\n    }\n}\n\n/* Dark Theme Specific Adjustments */\nbody.dark-forest .payments-table thead {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .policy-card {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .policy-card:hover {\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n    background: rgba(255, 255, 255, 0.08);\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/agent-dashboard-panels.css"],"names":[],"mappings":"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","sourcesContent":["/* ===================================\n   AGENT DASHBOARD PANELS STYLES\n   Estilos para paneles de pagos y pólizas del agente\n   =================================== */\n\n/* Client Filter Indicator */\n.filter-indicator {\n    margin: 0 0 1.5rem 0;\n    padding: 12px 16px;\n    background: #8b2348;\n    color: white;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    font-size: 0.9375rem;\n    font-weight: 500;\n    box-shadow: 0 2px 8px rgba(139, 35, 72, 0.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .filter-indicator,\nbody.dark-forest .filter-indicator {\n    background: rgba(139, 35, 72, 0.15);\n    color: #f1f5f9;\n    border: 1px solid #8b2348;\n}\n\n.btn-clear-filter {\n    padding: 6px 12px;\n    background: rgba(255, 255, 255, 0.2);\n    color: white;\n    border: none;\n    border-radius: 6px;\n    font-size: 0.875rem;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    transition: background 0.2s ease;\n}\n\n.btn-clear-filter:hover {\n    background: rgba(255, 255, 255, 0.3);\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-clear-filter,\nbody.dark-forest .btn-clear-filter {\n    background: #8b2348;\n    color: white;\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-clear-filter:hover,\nbody.dark-forest .btn-clear-filter:hover {\n    background: #a12a56;\n}\n\n/* Payment Schedule Panel */\n.payment-schedule-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 1rem;\n}\n\n.payment-schedule-header h3 {\n    font-size: 1.25rem;\n    font-weight: 600;\n    color: var(--text-color);\n    margin: 0;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.payment-schedule-header svg {\n    flex-shrink: 0;\n}\n\n.payment-filters {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.filter-btn {\n    padding: 8px 16px;\n    background: var(--card-background);\n    color: var(--text-color);\n    border: 1px solid var(--border-color);\n    border-radius: 6px;\n    font-size: 0.875rem;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    white-space: nowrap;\n}\n\n.filter-btn:hover {\n    background: var(--hover-background);\n    border-color: var(--primary-color);\n}\n\n.filter-btn.active {\n    background: var(--primary-color);\n    color: white;\n    border-color: var(--primary-color);\n}\n\n/* Payment Table */\n.payments-table {\n    width: 100%;\n    border-collapse: collapse;\n    margin-top: 1rem;\n}\n\n.payments-table thead {\n    background: var(--header-background);\n}\n\n.payments-table th {\n    padding: 12px 16px;\n    text-align: left;\n    font-weight: 600;\n    font-size: 0.875rem;\n    color: var(--text-muted);\n    border-bottom: 2px solid var(--border-color);\n}\n\n.payments-table td {\n    padding: 12px 16px;\n    border-bottom: 1px solid var(--border-color);\n    font-size: 0.9375rem;\n    color: var(--text-color);\n}\n\n.payments-table tbody tr {\n    transition: background 0.2s ease;\n}\n\n.payments-table tbody tr:hover {\n    background: var(--hover-background);\n}\n\n.client-link {\n    color: var(--primary-color);\n    text-decoration: none;\n    font-weight: 500;\n    cursor: pointer;\n}\n\n.client-link:hover {\n    text-decoration: underline;\n}\n\n.payment-status-badge {\n    display: inline-block;\n    padding: 4px 12px;\n    border-radius: 12px;\n    font-size: 0.8125rem;\n    font-weight: 500;\n    text-transform: capitalize;\n}\n\n.payment-status-badge.pending {\n    background: #fff3cd;\n    color: #856404;\n}\n\n.payment-status-badge.paid {\n    background: #d4edda;\n    color: #155724;\n}\n\n.payment-status-badge.overdue {\n    background: #f8d7da;\n    color: #721c24;\n}\n\nbody.dark-forest .payment-status-badge.pending {\n    background: rgba(255, 193, 7, 0.2);\n    color: #ffc107;\n}\n\nbody.dark-forest .payment-status-badge.paid {\n    background: rgba(76, 175, 80, 0.2);\n    color: #4caf50;\n}\n\nbody.dark-forest .payment-status-badge.overdue {\n    background: rgba(244, 67, 54, 0.2);\n    color: #f44336;\n}\n\n.payment-actions {\n    display: flex;\n    gap: 8px;\n    align-items: center;\n}\n\n.action-icon-btn {\n    padding: 6px;\n    background: transparent;\n    border: 1px solid var(--border-color);\n    border-radius: 4px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.action-icon-btn:hover {\n    background: var(--primary-color);\n    border-color: var(--primary-color);\n    color: white;\n}\n\n.action-icon-btn svg {\n    width: 16px;\n    height: 16px;\n}\n\n/* Policies Panel */\n.policies-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 1rem;\n}\n\n.policies-header h3 {\n    font-size: 1.25rem;\n    font-weight: 600;\n    color: var(--text-color);\n    margin: 0;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.policy-filters {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.policies-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n    gap: 1rem;\n    margin-top: 1rem;\n}\n\n.policy-card {\n    background: var(--card-background);\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    padding: 1rem;\n    transition: all 0.3s ease;\n}\n\n.policy-card:hover {\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n    transform: translateY(-2px);\n}\n\n.policy-card-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: flex-start;\n    margin-bottom: 0.75rem;\n}\n\n.policy-type {\n    font-weight: 600;\n    font-size: 1rem;\n    color: var(--text-color);\n}\n\n.policy-status-badge {\n    padding: 3px 10px;\n    border-radius: 10px;\n    font-size: 0.75rem;\n    font-weight: 500;\n    text-transform: uppercase;\n}\n\n.policy-status-badge.active {\n    background: #d4edda;\n    color: #155724;\n}\n\n.policy-status-badge.expiring {\n    background: #fff3cd;\n    color: #856404;\n}\n\n.policy-status-badge.expired {\n    background: #f8d7da;\n    color: #721c24;\n}\n\nbody.dark-forest .policy-status-badge.active {\n    background: rgba(76, 175, 80, 0.2);\n    color: #4caf50;\n}\n\nbody.dark-forest .policy-status-badge.expiring {\n    background: rgba(255, 193, 7, 0.2);\n    color: #ffc107;\n}\n\nbody.dark-forest .policy-status-badge.expired {\n    background: rgba(244, 67, 54, 0.2);\n    color: #f44336;\n}\n\n.policy-client {\n    font-size: 0.875rem;\n    color: var(--primary-color);\n    margin-bottom: 0.5rem;\n    cursor: pointer;\n}\n\n.policy-client:hover {\n    text-decoration: underline;\n}\n\n.policy-details {\n    margin: 0.75rem 0;\n}\n\n.policy-detail-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 0.5rem 0;\n    border-bottom: 1px solid var(--border-color);\n    font-size: 0.875rem;\n}\n\n.policy-detail-row:last-child {\n    border-bottom: none;\n}\n\n.policy-detail-label {\n    color: var(--text-muted);\n    font-weight: 500;\n}\n\n.policy-detail-value {\n    color: var(--text-color);\n    font-weight: 600;\n}\n\n.policy-card-actions {\n    display: flex;\n    gap: 8px;\n    margin-top: 1rem;\n    padding-top: 1rem;\n    border-top: 1px solid var(--border-color);\n}\n\n.policy-action-btn {\n    flex: 1;\n    padding: 8px 12px;\n    background: var(--primary-color);\n    color: white;\n    border: none;\n    border-radius: 6px;\n    font-size: 0.875rem;\n    cursor: pointer;\n    transition: background 0.2s ease;\n}\n\n.policy-action-btn:hover {\n    background: var(--primary-hover);\n}\n\n.policy-action-btn.secondary {\n    background: transparent;\n    color: var(--primary-color);\n    border: 1px solid var(--primary-color);\n}\n\n.policy-action-btn.secondary:hover {\n    background: var(--primary-color);\n    color: white;\n}\n\n/* Empty States */\n.empty-state {\n    text-align: center;\n    padding: 3rem 1rem;\n    color: var(--text-muted);\n}\n\n.empty-state svg {\n    width: 64px;\n    height: 64px;\n    margin-bottom: 1rem;\n    opacity: 0.5;\n}\n\n.empty-state p {\n    font-size: 1rem;\n    margin: 0;\n}\n\n/* Loading State */\n.loading-state {\n    text-align: center;\n    padding: 2rem 1rem;\n    color: var(--text-muted);\n    font-size: 0.9375rem;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n\n    .payment-schedule-header,\n    .policies-header {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 1rem;\n    }\n\n    .payment-filters,\n    .policy-filters {\n        width: 100%;\n    }\n\n    .filter-btn {\n        flex: 1;\n        text-align: center;\n    }\n\n    .payments-table {\n        font-size: 0.8125rem;\n    }\n\n    .payments-table th,\n    .payments-table td {\n        padding: 8px 12px;\n    }\n\n    .policies-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .filter-indicator {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 0.75rem;\n    }\n\n    .btn-clear-filter {\n        width: 100%;\n        justify-content: center;\n    }\n}\n\n/* Dark Theme Specific Adjustments */\nbody.dark-forest .payments-table thead {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .policy-card {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .policy-card:hover {\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n    background: rgba(255, 255, 255, 0.08);\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1105,7 +1108,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Krause Insurance App - Main Stylesh
   /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */
   --theme-surface-bg: rgba(255, 255, 255, 0.98);
   --theme-surface-bg-solid: #ffffff;
-  --theme-surface-border: rgba(99, 24, 50, 0.14);
+  --theme-surface-border: rgba(99, 24, 50, 0.25);
   --theme-surface-border-strong: rgba(99, 24, 50, 0.20);
 
   /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */
@@ -2353,7 +2356,7 @@ body[data-page="admin-dashboard"] .main-content {
    
    This app.css file now contains ONLY base/global styles.
    See index.html for CSS module links.
-*/`, "",{"version":3,"sources":["webpack://./styles/app.css"],"names":[],"mappings":"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","sourcesContent":["/* Krause Insurance App - Main Stylesheet */\n/* CSS now loaded via webpack imports in EntryPointMainApp.js */\n/* All imports removed - webpack handles module order */\n\n/* Global design tokens */\n:root {\n  /* Brand palette (shared by all logo renders) */\n  --brand-maroon: #8b2348;\n  --brand-purple: #9b59b6;\n  --wine: #722f37;\n  --baby-pink: #fef5f9;\n\n  --text-dark: #1a1a1a;\n  --text-light: #4a4f5c;\n  --white: #ffffff;\n  --gray-100: #f5f5f5;\n  --gray-200: #e0e0e0;\n  --gray-300: #ccc;\n  --success: #28a745;\n  --warning: #ffc107;\n  --danger: #dc3545;\n  --info: #17a2b8;\n  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);\n  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);\n  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);\n  --gradient-start: #631832;\n  --gradient-mid: #521a38;\n  --gradient-end: #401a59;\n  /* Unified logo sizing + contrast tokens */\n  --logo-size-sm: 56px;\n  --logo-size-md: 64px;\n  --logo-size-lg: 96px;\n  --logo-contrast-primary: var(--brand-maroon);\n  --logo-contrast-ink: #0f172a;\n  --logo-contrast-on-dark: #ffffff;\n  --logo-contrast-muted: var(--theme-text-secondary);\n  /* Layout measurements to keep padding off the global background */\n  --nav-height: 90px;\n  /* header */\n  --subnav-height: 56px;\n  /* secondary navigation */\n  --footer-height: 56px;\n  /* reserve space so content doesn't go under the collapsed footer */\n  /* Acrylic/Frosted Glass Effects - Default Theme */\n  --acrylic-blur: 20px;\n  --acrylic-blur-strong: 30px;\n  --acrylic-blur-subtle: 15px;\n  --acrylic-saturate: 170%;\n  --acrylic-saturate-strong: 180%;\n  --acrylic-saturate-subtle: 150%;\n  --acrylic-bg-light: rgba(255, 255, 255, 0.08);\n  --acrylic-bg-medium: rgba(255, 255, 255, 0.12);\n  --acrylic-bg-dark: rgba(99, 24, 50, 0.15);\n  --acrylic-border-light: rgba(255, 255, 255, 0.15);\n\n  /* Footer glass tokens (theme-overridable) */\n  /* Slightly stronger by default; themes can override for more/less glass. */\n  --footer-acrylic-bg: rgba(99, 24, 50, 0.7);\n  --footer-acrylic-blur: 32px;\n  --footer-acrylic-saturate: 200%;\n\n  /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */\n  --theme-surface-bg: rgba(255, 255, 255, 0.98);\n  --theme-surface-bg-solid: #ffffff;\n  --theme-surface-border: rgba(99, 24, 50, 0.14);\n  --theme-surface-border-strong: rgba(99, 24, 50, 0.20);\n\n  /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */\n  --theme-accent-border-subtle: rgba(64, 26, 89, 0.20);\n  --theme-accent-border: rgba(64, 26, 89, 0.30);\n  --theme-accent-bg-soft: rgba(64, 26, 89, 0.18);\n  --theme-accent-shadow-soft: rgba(64, 26, 89, 0.10);\n  --theme-accent-shadow-strong: rgba(64, 26, 89, 0.30);\n  --theme-accent-color-hover: #4d216a;\n\n  /* RGBA helpers for acrylic gradients (avoid hard-coded brand rgba() in components) */\n  --theme-primary-rgba-70: rgba(99, 24, 50, 0.70);\n  --theme-secondary-rgba-70: rgba(91, 36, 43, 0.70);\n  --theme-primary-rgba-95: rgba(99, 24, 50, 0.95);\n  --theme-secondary-rgba-95: rgba(91, 36, 43, 0.95);\n\n  /* Navbar link pill background (active/hover) */\n  --theme-navlink-active-bg: rgba(99, 24, 50, 0.08);\n  /* Theme accent colors for components */\n  --theme-primary-color: var(--brand-maroon);\n  --theme-secondary-color: var(--wine);\n  --theme-accent-color: var(--brand-purple);\n  --theme-text-primary: var(--text-dark);\n  --theme-text-secondary: #4a4f5c;\n  --theme-shadow: var(--shadow);\n\n  /* Dashboard layout tokens (shared) */\n  --dashboard-padding-top-offset: 12px;\n  --dashboard-padding-x: 8px;\n  --dashboard-padding-bottom: 16px;\n  --dashboard-grid-gap: 12px;\n  --dashboard-main-gap: 12px;\n  --dashboard-main-col-min: 240px;\n  --dashboard-stat-min: 240px;\n  --dashboard-stat-gap: 12px;\n  --dashboard-stat-padding: 12px 16px;\n  --dashboard-stat-radius: 16px;\n  --dashboard-card-padding: 16px 18px;\n  --dashboard-card-header-margin: 12px;\n  --dashboard-card-header-padding: 10px;\n  --dashboard-quick-actions-gap: 8px;\n  --dashboard-container-max: 1880px;\n  --dashboard-container-max-client: 1800px;\n  --dashboard-container-max-agent: 1880px;\n  --dashboard-container-max-admin: 1920px;\n\n  /* Highlights / glows (avoid hard-coded pink/gold values in components) */\n  --theme-highlight-soft: #ffc4d6;\n  --theme-highlight-light: var(--baby-pink);\n  --theme-highlight-strong: #ffd700;\n  --theme-highlight-strong-border: rgba(255, 215, 0, 0.10);\n  --theme-highlight-glow: rgba(254, 245, 249, 0.6);\n  --theme-highlight-glow-subtle: rgba(254, 245, 249, 0.18);\n  --theme-highlight-border: rgba(254, 245, 249, 0.36);\n  --theme-primary-shadow-color: rgba(99, 24, 50, 0.35);\n\n  /* High-contrast ink (default/light uses brand ink; dark themes override) */\n  --theme-contrast-strong: var(--brand-maroon);\n\n  /* Text-on-color tokens (avoid hard-coded #fff / black in components) */\n  --theme-on-success: var(--white);\n  --theme-on-danger: var(--white);\n  /* Warning background is bright (yellow), so text should stay dark even on dark themes */\n  --theme-on-warning: rgba(0, 0, 0, 0.85);\n\n  /* Progress bar tokens */\n  --theme-progress-edge: rgba(254, 245, 249, 0.8);\n  --theme-progress-center: rgba(255, 255, 255, 0.95);\n  --theme-progress-glow-strong: rgba(254, 245, 249, 0.7);\n  --theme-progress-glow-soft: rgba(254, 245, 249, 0.4);\n\n  /* Particles overlay tuning */\n  --particles-opacity: 0.55;\n  --particles-opacity-home: 0.70;\n  /* `screen` can become effectively invisible over light UI surfaces.\n     Default theme uses `normal` for consistent visibility; dark-forest overrides this. */\n  --particles-blend-mode: normal;\n}\n\n/* Dark-forest accessibility overrides */\nhtml[data-theme=\"dark-forest\"] {\n  --text-dark: #f8fafc;\n  --text-light: rgba(255, 255, 255, 0.82);\n  --theme-text-primary: #f8fafc;\n  --theme-text-secondary: rgba(255, 255, 255, 0.82);\n  --theme-text-tertiary: rgba(255, 255, 255, 0.68);\n  --theme-contrast-strong: #ffffff;\n}\n\n/* Hidden class for page sections (show/hide navigation) */\n.page-section.hidden {\n  display: none !important;\n}\n\n/* Loading modal overlay - Complete version with progress and animations */\nbody.loading-locked {\n  overflow: hidden;\n}\n\nhtml[data-theme=\"dark-forest\"] {\n  --theme-text-secondary: rgba(255, 255, 255, 0.82);\n  --theme-text-tertiary: rgba(255, 255, 255, 0.68);\n}\n\n.loading-modal {\n  position: fixed;\n  inset: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 9999;\n  background: rgba(6, 4, 6, 0.55);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  opacity: 0;\n  pointer-events: none;\n  transition: opacity 0.6s ease;\n}\n\n.loading-modal.visible {\n  opacity: 1;\n  pointer-events: auto;\n}\n\n.modal-card {\n  width: min(820px, calc(100% - 48px));\n  background: rgba(255, 255, 255, 0.94);\n  border-radius: 14px;\n  padding: 20px;\n  box-shadow: 0 30px 80px rgba(10, 10, 10, 0.16), 0 10px 30px rgba(10, 10, 10, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.72);\n  color: #0f172a;\n  border: 1px solid rgba(0, 0, 0, 0.06);\n  backdrop-filter: blur(12px) saturate(1.02);\n  -webkit-backdrop-filter: blur(12px) saturate(1.02);\n  position: relative;\n  transform: scale(0.985);\n  opacity: 0.96;\n  transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.55s ease;\n}\n\n.loading-modal.visible .modal-card {\n  transform: scale(1);\n  opacity: 1;\n}\n\n.logo-and-info {\n  display: flex;\n  gap: 20px;\n  align-items: center;\n  width: 100%;\n}\n\n.modal-info {\n  flex: 1;\n  min-width: 0;\n}\n\n/* Shared logo renderer slots (keeps size + contrast consistent across pages) */\n.logo-slot {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  color: var(--logo-contrast-primary, var(--brand-maroon));\n}\n\n.logo-slot[data-logo-contrast=\"ink\"] {\n  color: var(--logo-contrast-ink, #0f172a);\n}\n\n.logo-slot[data-logo-contrast=\"on-dark\"] {\n  color: var(--logo-contrast-on-dark, #ffffff);\n  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);\n}\n\n.logo-slot[data-logo-contrast=\"muted\"] {\n  color: var(--logo-contrast-muted, rgba(15, 23, 42, 0.72));\n}\n\n.krause-shield {\n  display: block;\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  color: inherit;\n  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));\n}\n\n.logo-slot[data-logo-size=\"sm\"] .krause-shield,\n.krause-shield.logo-size-sm {\n  width: var(--logo-size-sm);\n  height: var(--logo-size-sm);\n}\n\n.logo-slot[data-logo-size=\"md\"] .krause-shield,\n.krause-shield.logo-size-md {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n}\n\n.logo-slot[data-logo-size=\"lg\"] .krause-shield,\n.krause-shield.logo-size-lg {\n  width: var(--logo-size-lg);\n  height: var(--logo-size-lg);\n}\n\n.logo-shield,\n.shield-svg {\n  color: inherit;\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n}\n\n.logo-shield-footer {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  color: inherit;\n}\n\n/* Particles floating in background */\n.bg-particles {\n  position: absolute;\n  inset: 0;\n  pointer-events: none;\n  z-index: 1100;\n  overflow: hidden;\n}\n\n.particle {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: rgba(139, 35, 72, 0.12);\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);\n  transform: translateY(0);\n  will-change: transform, opacity;\n  opacity: 0.9;\n}\n\n@keyframes floatUp {\n  0% {\n    transform: translateY(20px) scale(0.9);\n    opacity: 0.7;\n  }\n\n  50% {\n    opacity: 0.95;\n  }\n\n  100% {\n    transform: translateY(-24px) scale(1.05);\n    opacity: 0.45;\n  }\n}\n\n/* Official logo parts stroke draw for LOADING MODAL ONLY */\n/* Shield primitives pick up currentColor for consistent contrast */\n.loading-modal .shield-circle,\n.loading-modal .shield-diamond,\n.loading-modal .shield-arc,\n.loading-modal .shield-line {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 3;\n  stroke-dasharray: 220;\n  stroke-dashoffset: 220;\n  opacity: 0;\n  transition: opacity 0.4s ease;\n  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.12));\n}\n\n.loading-modal .shield-circle.active,\n.loading-modal .shield-diamond.active,\n.loading-modal .shield-arc.active,\n.loading-modal .shield-line.active {\n  animation: loadingDrawStroke 0.9s ease-out forwards;\n  opacity: 1;\n}\n\n.loading-modal .shield-center {\n  fill: currentColor;\n  opacity: 0;\n  transform-origin: 50% 50%;\n}\n\n.loading-modal .shield-center.active {\n  animation: centerPop 0.6s ease-out forwards;\n}\n\n@keyframes loadingDrawStroke {\n  from {\n    stroke-dashoffset: 220;\n    opacity: 0.2;\n  }\n\n  to {\n    stroke-dashoffset: 0;\n    opacity: 1;\n  }\n}\n\n@keyframes centerPop {\n  0% {\n    transform: scale(0.4);\n    opacity: 0;\n  }\n\n  60% {\n    transform: scale(1.12);\n    opacity: 1;\n  }\n\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n\n.modal-info h2 {\n  font-family: 'Cinzel', serif;\n  margin-bottom: 8px;\n  font-size: 1.4rem;\n  color: #111;\n  font-weight: 700;\n}\n\n.progress-percentage {\n  font-size: 2.2rem;\n  font-weight: 700;\n  font-family: 'Cinzel', serif;\n  margin-top: 8px;\n  color: #0f172a;\n  line-height: 1;\n}\n\n.status-text {\n  margin-top: 8px;\n  color: rgba(15, 23, 42, 0.82);\n  font-size: 0.95rem;\n  font-weight: 500;\n}\n\n.progress-bar-container {\n  width: 100%;\n  height: 8px;\n  background: rgba(0, 0, 0, 0.06);\n  border-radius: 999px;\n  overflow: hidden;\n  margin-top: 12px;\n  border: 1px solid rgba(0, 0, 0, 0.02);\n  box-shadow: inset 0 -2px 8px rgba(0, 0, 0, 0.06);\n}\n\n.progress-bar-fill {\n  height: 100%;\n  width: 0%;\n  background: linear-gradient(90deg, #8b2348 0%, #9b59b6 50%, #8b2348 100%);\n  transition: width 260ms linear;\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.12);\n}\n\n.did-you-know {\n  margin-top: 14px;\n  background: #ffffff;\n  padding: 12px;\n  border-radius: 10px;\n  color: #111;\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);\n}\n\n.did-you-know-title {\n  font-weight: 700;\n  margin-bottom: 6px;\n  color: #0f172a;\n}\n\n#funFact {\n  color: rgba(15, 23, 42, 0.85);\n  font-size: 0.9rem;\n  line-height: 1.5;\n}\n\n@media (max-width: 700px) {\n  .logo-and-info {\n    flex-direction: row;\n  }\n\n  .logo-slot[data-logo-size=\"lg\"] .krause-shield,\n  .shield-svg.logo-size-lg,\n  .shield-svg {\n    width: var(--logo-size-md);\n    height: var(--logo-size-md);\n  }\n}\n\n/* Footer (restored) */\n.footer {\n  background: var(--footer-acrylic-bg, var(--acrylic-bg-dark));\n  backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\n  color: white;\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 9996;\n  transition: transform 0.3s ease;\n  border-top: 1px solid rgba(255, 255, 255, 0.15);\n  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);\n  pointer-events: auto;\n}\n\n/* Ensure home page also renders the acrylic footer (some browsers drop backdrop-filter without a scoped reassertion) */\nbody[data-page=\"home\"] .footer {\n  background: var(--footer-acrylic-bg);\n  backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\n}\n\n.footer.collapsed .footer-container {\n  display: none;\n}\n\n.footer-toggle {\n  background: transparent;\n  border: none;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n  color: white;\n  padding: 12px 24px;\n  width: 100%;\n  text-align: center;\n  cursor: pointer;\n  font-weight: 600;\n  font-size: clamp(13px, 2vw, 15px);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  transition: all 0.3s ease;\n}\n\n.footer-toggle:hover {\n  background: rgba(255, 255, 255, 0.15);\n  border-bottom-color: rgba(255, 255, 255, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),\n    0 2px 8px rgba(255, 255, 255, 0.1);\n}\n\n.footer-toggle svg {\n  transition: transform 0.3s ease;\n}\n\n.footer.collapsed .footer-toggle svg {\n  transform: rotate(180deg);\n}\n\n.footer-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: clamp(12px, 2vh, 18px) clamp(16px, 3vw, 24px);\n}\n\n.footer-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: clamp(20px, 3vw, 32px);\n  margin-bottom: clamp(12px, 2vh, 16px);\n  padding-bottom: clamp(12px, 2vh, 16px);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n}\n\n.footer-section h4 {\n  font-family: 'Cinzel', serif;\n  font-size: clamp(0.95rem, 1.8vw, 1.1rem);\n  margin-bottom: clamp(10px, 1.5vh, 14px);\n  color: rgba(255, 255, 255, 0.95);\n}\n\n.footer-section ul {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.footer-section li {\n  margin-bottom: clamp(6px, 1vh, 9px);\n}\n\n.footer-section a {\n  color: rgba(255, 255, 255, 0.85);\n  text-decoration: none;\n  transition: color 0.3s ease;\n  font-size: clamp(0.8rem, 1.4vw, 0.9rem);\n}\n\n.footer-section a:hover {\n  color: white;\n}\n\n.footer-brand {\n  display: flex;\n  flex-direction: column;\n  gap: clamp(8px, 1.2vh, 12px);\n  align-items: center;\n  /* center logo and text horizontally */\n  text-align: center;\n}\n\n.logo-shield-footer {\n  color: white;\n  margin-bottom: clamp(6px, 1vh, 10px);\n  width: clamp(52px, 7vw, 64px);\n  height: clamp(52px, 7vw, 64px);\n  display: block;\n  flex-shrink: 0;\n}\n\n/* Page visibility control */\n/* Page visibility control */\n#mainContent>[data-page] {\n  width: 100%;\n}\n\n/* Hide by default using utility class */\n.d-none {\n  display: none !important;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nhtml {\n  margin: 0 !important;\n  padding: 0 !important;\n  height: 100% !important;\n  overflow: hidden !important;\n  width: 100% !important;\n}\n\nbody {\n  margin: 0 !important;\n  padding: 0 !important;\n  font-family: 'Aptos Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  line-height: 1.65;\n  color: var(--text-dark);\n  background: linear-gradient(135deg,\n      var(--gradient-start) 0%,\n      var(--gradient-mid) 40%,\n      var(--gradient-end) 100%);\n  background-size: 300% 300%;\n  background-attachment: fixed !important;\n  height: 100vh !important;\n  overflow: hidden !important;\n  width: 100vw !important;\n  position: fixed !important;\n  top: 0 !important;\n  left: 0 !important;\n  animation: gradientShift 20s ease infinite;\n  transition: background-position 1.5s ease-in-out;\n}\n\n/* Slightly larger body copy for descriptive sections */\np,\n.section-description,\n.hero-description,\n.feature-box p,\n.service-card p,\n.about-section p,\n.contact-info p,\n.quote-lead,\n.quote-footnote,\n.quote-benefits,\n.stat-box p,\n.agent-card p {\n  font-size: 1.04rem;\n  line-height: 1.65;\n}\n\n@keyframes gradientShift {\n  0% {\n    background-position: 0% 50%;\n  }\n\n  25% {\n    background-position: 50% 25%;\n  }\n\n  50% {\n    background-position: 100% 50%;\n  }\n\n  75% {\n    background-position: 50% 75%;\n  }\n\n  100% {\n    background-position: 0% 50%;\n  }\n}\n\nbody.section-hero {\n  background-position: 0% 30%;\n}\n\nbody.section-parade {\n  background-position: 50% 50%;\n}\n\nbody.section-cta {\n  background-position: 100% 70%;\n}\n\n/* Particles */\n#particles-canvas {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  /* Above page backgrounds (dashboards use solid surfaces) but below navbar/subnav */\n  z-index: 50;\n  opacity: var(--particles-opacity);\n  mix-blend-mode: var(--particles-blend-mode);\n  transition: opacity 0.3s ease;\n}\n\nbody[data-page=\"home\"] #particles-canvas {\n  opacity: var(--particles-opacity-home);\n}\n\n/* Hide particles on fullpage sections (route-aware).\n   NOTE: We can't use :has(.services-fullpage) here because templates are injected\n   into the DOM (hidden) and would permanently match, hiding particles everywhere. */\nbody[data-page=\"services\"] #particles-canvas,\nbody[data-page=\"about\"] #particles-canvas,\nbody[data-page=\"contact\"] #particles-canvas,\n/* Auth screens read cleaner without animated canvas behind */\nbody[data-page=\"login\"] #particles-canvas,\nbody[data-page=\"agent-login\"] #particles-canvas {\n  display: none;\n  pointer-events: none;\n}\n\n/* Dashboards: reduce opacity for subtle ambient effect */\nbody[data-page=\"client-dashboard\"] #particles-canvas,\nbody[data-page=\"agent-dashboard\"] #particles-canvas,\nbody[data-page=\"admin-dashboard\"] #particles-canvas {\n  opacity: 0.35;\n}\n\n/* Sub Navigation */\n.sub-navigation {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  width: 100%;\n  z-index: 9998;\n  background: var(--acrylic-bg-dark);\n  backdrop-filter: blur(25px) saturate(180%);\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\n  height: var(--subnav-height);\n  transition: all 0.3s ease;\n}\n\n.sub-nav-btn {\n  position: relative;\n  padding: 18px 32px;\n  background: transparent;\n  border: none;\n  border-radius: 0 !important;\n  font-size: 13px;\n  font-weight: 600;\n  color: rgba(255, 255, 255, 0.85);\n  cursor: pointer;\n  will-change: transform, opacity;\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  font-family: inherit;\n  text-transform: uppercase;\n  letter-spacing: 1.5px;\n  overflow: hidden;\n  height: 56px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.sub-nav-btn::before {\n  content: '';\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: 3px;\n  background: linear-gradient(90deg, transparent, var(--baby-pink), transparent);\n  opacity: 0;\n  transform: scaleX(0);\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n  pointer-events: none;\n}\n\n.sub-nav-btn:hover {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(20px) saturate(160%);\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\n  color: white;\n}\n\n.sub-nav-btn:hover::before {\n  opacity: 0.5;\n  transform: scaleX(1);\n}\n\n.sub-nav-btn.active {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(25px) saturate(170%);\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\n  color: white;\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n}\n\n.sub-nav-btn.active::before {\n  opacity: 1;\n  transform: scaleX(1);\n  box-shadow: 0 0 15px rgba(254, 245, 249, 0.6);\n}\n\n.sub-nav-btn:not(:last-child)::after {\n  content: '|';\n  position: absolute;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  color: rgba(255, 255, 255, 0.25);\n  font-weight: 300;\n  font-size: 18px;\n  pointer-events: none;\n  width: 1px;\n  height: 100%;\n}\n\n.sub-navigation.show {\n  animation: subNavSlideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;\n}\n\n@keyframes subNavSlideDown {\n  from {\n    opacity: 0;\n    transform: translateY(-10px);\n  }\n\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n/* Navbar */\n.navbar {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: var(--nav-height);\n  z-index: 9999;\n  background: rgba(255, 255, 255, 0.95);\n  backdrop-filter: blur(20px);\n  border-bottom: 1px solid rgba(0, 0, 0, 0.06);\n  padding: 0;\n  margin: 0;\n  transition: all 0.3s ease;\n  box-shadow: var(--shadow-sm);\n  display: flex;\n  align-items: center;\n}\n\n.navbar.scrolled {\n  box-shadow: var(--shadow);\n}\n\n.nav-container {\n  max-width: 100%;\n  width: 100%;\n  height: 100%;\n  margin: 0 auto;\n  padding: 0 48px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  box-sizing: border-box;\n}\n\n.nav-brand {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  cursor: pointer;\n  transition: transform 0.3s ease;\n}\n\n.nav-brand .krause-shield {\n  width: var(--logo-size-sm);\n  height: var(--logo-size-sm);\n}\n\n.nav-brand:hover {\n  transform: translateY(-2px);\n}\n\n\n.logo-shield {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  max-width: calc(var(--logo-size-lg) - 16px);\n  max-height: calc(var(--logo-size-lg) - 16px);\n  color: inherit;\n  filter: drop-shadow(0 2px 4px var(--theme-primary-shadow-color));\n}\n\n/* Logo general - SIN auto-animación, solo estilos base */\n.krause-shield .shield-circle,\n.krause-shield .shield-diamond,\n.krause-shield .shield-arc,\n.krause-shield .shield-line {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 3;\n  /* NO auto-animar - dejar que sean estáticos o controlados por JS */\n}\n\n/* Hover solo cuando NO está en loading */\nbody:not(.loading-locked) .krause-shield:hover .shield-circle,\nbody:not(.loading-locked) .krause-shield:hover .shield-diamond,\nbody:not(.loading-locked) .krause-shield:hover .shield-arc,\nbody:not(.loading-locked) .krause-shield:hover .shield-line {\n  animation: logoPulse 0.6s ease-in-out;\n}\n\n@keyframes logoPulse {\n\n  0%,\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  50% {\n    transform: scale(1.05);\n    opacity: 0.8;\n  }\n}\n\n.brand-text {\n  display: flex;\n  flex-direction: column;\n  gap: 2px;\n}\n\n.brand-name {\n  font-family: 'Cinzel', serif;\n  font-size: 22px;\n  font-weight: 600;\n  color: var(--brand-maroon);\n  line-height: 1;\n}\n\n.brand-tagline {\n  font-size: 11px;\n  color: var(--text-light);\n  font-weight: 500;\n  letter-spacing: 0.5px;\n  text-transform: uppercase;\n}\n\n.mobile-menu-toggle {\n  display: none;\n  flex-direction: column;\n  gap: 5px;\n  background: none;\n  border: none;\n  cursor: pointer;\n  padding: 8px;\n}\n\n.mobile-menu-toggle span {\n  width: 25px;\n  height: 3px;\n  background: var(--brand-maroon);\n  border-radius: 2px;\n  transition: all 0.3s ease;\n}\n\n.nav-menu {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n\n.nav-link {\n  padding: 10px 20px;\n  color: var(--text-dark);\n  text-decoration: none;\n  font-weight: 500;\n  transition: all 0.3s ease;\n  border-radius: 8px;\n  font-size: 16px;\n}\n\n.nav-link:hover,\n.nav-link.active {\n  color: var(--brand-maroon);\n  background: var(--theme-navlink-active-bg);\n  backdrop-filter: blur(15px) saturate(150%);\n  -webkit-backdrop-filter: blur(15px) saturate(150%);\n}\n\n.nav-buttons {\n  display: flex;\n  gap: 12px;\n  margin-left: 20px;\n}\n\n/* Generic buttons (used in Home CTA + Auth forms) */\n.btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  padding: 12px 18px;\n  border-radius: 12px;\n  border: 1px solid transparent;\n  font-family: inherit;\n  font-weight: 700;\n  font-size: 0.95rem;\n  line-height: 1;\n  cursor: pointer;\n  user-select: none;\n  text-decoration: none;\n  background: transparent;\n  color: inherit;\n  transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s ease,\n    border-color 0.25s ease, color 0.25s ease, filter 0.25s ease;\n}\n\n.btn:hover {\n  transform: translateY(-1px);\n}\n\n.btn:active {\n  transform: translateY(0);\n}\n\n.btn:disabled,\n.btn[disabled] {\n  opacity: 0.65;\n  cursor: not-allowed;\n  transform: none;\n}\n\n.btn:focus-visible {\n  outline: 2px solid var(--theme-highlight-light);\n  outline-offset: 2px;\n}\n\n.btn-lg {\n  padding: 14px 22px;\n  border-radius: 14px;\n  font-size: 1rem;\n}\n\n.btn-block {\n  width: 100%;\n}\n\n.btn-primary {\n  background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 70%);\n  color: var(--white);\n  border-color: rgba(255, 255, 255, 0.16);\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), 0 10px 24px var(--theme-primary-shadow-color);\n}\n\n.btn.is-loading,\n.btn[aria-busy=\"true\"] {\n  position: relative;\n  pointer-events: none;\n  color: var(--theme-contrast-strong, var(--brand-maroon));\n  border-color: var(--theme-contrast-glow, rgba(255, 255, 255, 0.25));\n  filter: brightness(1.02);\n}\n\n.btn.is-loading::after,\n.btn[aria-busy=\"true\"]::after {\n  content: '';\n  position: absolute;\n  inset: 6px;\n  border-radius: inherit;\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));\n  animation: loading-pulse 0.9s ease-in-out infinite;\n  mix-blend-mode: screen;\n}\n\n@keyframes loading-pulse {\n\n  0%,\n  100% {\n    opacity: 0.35;\n    transform: scale(0.98);\n  }\n\n  50% {\n    opacity: 0.75;\n    transform: scale(1.02);\n  }\n}\n\n.btn-primary:hover {\n  filter: brightness(1.05);\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26), 0 14px 34px var(--theme-primary-shadow-color);\n}\n\n.btn-secondary {\n  background: rgba(255, 255, 255, 0.14);\n  color: white;\n  border-color: rgba(255, 255, 255, 0.20);\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);\n}\n\n.btn-secondary:hover {\n  background: rgba(255, 255, 255, 0.18);\n  border-color: rgba(255, 255, 255, 0.26);\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);\n}\n\n.btn-outline {\n  background: transparent;\n  color: var(--theme-primary-color);\n  border-color: rgba(255, 255, 255, 0.35);\n}\n\n.btn-outline:hover {\n  background: rgba(255, 255, 255, 0.12);\n  color: var(--theme-secondary-color);\n}\n\n.btn-nav {\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-weight: 600;\n  font-size: 15px;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  border: none;\n  font-family: inherit;\n}\n\n.btn-login {\n  background: transparent;\n  color: var(--brand-maroon);\n  border: 2px solid var(--brand-maroon);\n}\n\n.btn-login:hover {\n  background: var(--brand-maroon);\n  color: white;\n}\n\n.btn-agent {\n  background: var(--brand-maroon);\n  color: white;\n  border: 2px solid var(--brand-maroon);\n}\n\n.btn-agent:hover {\n  background: var(--wine);\n  border-color: var(--wine);\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px var(--theme-primary-shadow-color);\n}\n\n/* Main Content */\n.main-content {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 10;\n  height: auto;\n  width: 100%;\n  box-sizing: border-box;\n  overflow-y: auto;\n  overflow-x: hidden;\n}\n\nbody:not(.no-footer) .main-content {\n  padding-bottom: var(--footer-height);\n}\n\nbody.no-footer .main-content {\n  padding-bottom: 0;\n}\n\nbody.no-footer .footer {\n  display: none !important;\n}\n\n/* Home has a fixed sub-navigation that overlays the scroll container.\n   Add top padding only on home so sections (esp. Cotiza logo/title) are not cut. */\nbody[data-page=\"home\"] .main-content {\n  padding-top: var(--subnav-height);\n}\n\n/* Dashboards sin navbar: usar todo el alto disponible sin offset del nav */\nbody[data-page=\"client-dashboard\"] .main-content,\nbody[data-page=\"agent-dashboard\"] .main-content,\nbody[data-page=\"admin-dashboard\"] .main-content {\n  top: 0;\n  padding-top: 0;\n}\n\n\n\n/* Sub Navigation */\n.sub-navigation {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  width: 100%;\n  z-index: 9998;\n  background: var(--acrylic-bg-dark);\n  backdrop-filter: blur(25px) saturate(180%);\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\n  height: var(--subnav-height);\n  transition: all 0.3s ease;\n}\n\n.sub-nav-btn {\n  position: relative;\n  padding: 18px 32px;\n  background: transparent;\n  border: none;\n  border-radius: 0 !important;\n  font-size: 13px;\n  font-weight: 600;\n  color: rgba(255, 255, 255, 0.85);\n  cursor: pointer;\n  will-change: transform, opacity;\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  font-family: inherit;\n  text-transform: uppercase;\n  letter-spacing: 1.5px;\n  overflow: hidden;\n  height: 56px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.sub-nav-btn::before {\n  content: '';\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: 3px;\n  background: linear-gradient(90deg, transparent, var(--theme-highlight-light), transparent);\n  opacity: 0;\n  transform: scaleX(0);\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n  pointer-events: none;\n}\n\n.sub-nav-btn:hover {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(20px) saturate(160%);\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\n  color: white;\n}\n\n.sub-nav-btn:hover::before {\n  opacity: 0.5;\n  transform: scaleX(1);\n}\n\n.sub-nav-btn.active {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(25px) saturate(170%);\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\n  color: white;\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n}\n\n.sub-nav-btn.active::before {\n  opacity: 1;\n  transform: scaleX(1);\n  box-shadow: 0 0 15px var(--theme-highlight-glow);\n}\n\n/* Button separators */\n.sub-nav-btn:not(:last-child)::after {\n  content: '|';\n  position: absolute;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  color: rgba(255, 255, 255, 0.25);\n  font-weight: 300;\n  font-size: 18px;\n  pointer-events: none;\n  width: 1px;\n  height: 100%;\n}\n\n/* \n   PAGE-SPECIFIC STYLES HAVE BEEN EXTRACTED TO SEPARATE FILES:\n   - styles/pages/home.css: Home page sections (hero, features, cta, agents)\n   - styles/pages/services.css: Services grid and cards\n   - styles/pages/about.css: About content and team\n   - styles/pages/contact.css: Contact form and info\n   - styles/auth.css: Auth login forms\n   - styles/dashboards.css: Dashboard layouts\n   \n   This app.css file now contains ONLY base/global styles.\n   See index.html for CSS module links.\n*/"],"sourceRoot":""}]);
+*/`, "",{"version":3,"sources":["webpack://./styles/app.css"],"names":[],"mappings":"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","sourcesContent":["/* Krause Insurance App - Main Stylesheet */\n/* CSS now loaded via webpack imports in EntryPointMainApp.js */\n/* All imports removed - webpack handles module order */\n\n/* Global design tokens */\n:root {\n  /* Brand palette (shared by all logo renders) */\n  --brand-maroon: #8b2348;\n  --brand-purple: #9b59b6;\n  --wine: #722f37;\n  --baby-pink: #fef5f9;\n\n  --text-dark: #1a1a1a;\n  --text-light: #4a4f5c;\n  --white: #ffffff;\n  --gray-100: #f5f5f5;\n  --gray-200: #e0e0e0;\n  --gray-300: #ccc;\n  --success: #28a745;\n  --warning: #ffc107;\n  --danger: #dc3545;\n  --info: #17a2b8;\n  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);\n  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);\n  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);\n  --gradient-start: #631832;\n  --gradient-mid: #521a38;\n  --gradient-end: #401a59;\n  /* Unified logo sizing + contrast tokens */\n  --logo-size-sm: 56px;\n  --logo-size-md: 64px;\n  --logo-size-lg: 96px;\n  --logo-contrast-primary: var(--brand-maroon);\n  --logo-contrast-ink: #0f172a;\n  --logo-contrast-on-dark: #ffffff;\n  --logo-contrast-muted: var(--theme-text-secondary);\n  /* Layout measurements to keep padding off the global background */\n  --nav-height: 90px;\n  /* header */\n  --subnav-height: 56px;\n  /* secondary navigation */\n  --footer-height: 56px;\n  /* reserve space so content doesn't go under the collapsed footer */\n  /* Acrylic/Frosted Glass Effects - Default Theme */\n  --acrylic-blur: 20px;\n  --acrylic-blur-strong: 30px;\n  --acrylic-blur-subtle: 15px;\n  --acrylic-saturate: 170%;\n  --acrylic-saturate-strong: 180%;\n  --acrylic-saturate-subtle: 150%;\n  --acrylic-bg-light: rgba(255, 255, 255, 0.08);\n  --acrylic-bg-medium: rgba(255, 255, 255, 0.12);\n  --acrylic-bg-dark: rgba(99, 24, 50, 0.15);\n  --acrylic-border-light: rgba(255, 255, 255, 0.15);\n\n  /* Footer glass tokens (theme-overridable) */\n  /* Slightly stronger by default; themes can override for more/less glass. */\n  --footer-acrylic-bg: rgba(99, 24, 50, 0.7);\n  --footer-acrylic-blur: 32px;\n  --footer-acrylic-saturate: 200%;\n\n  /* Reusable semantic surfaces (so themes can flip light/dark cleanly) */\n  --theme-surface-bg: rgba(255, 255, 255, 0.98);\n  --theme-surface-bg-solid: #ffffff;\n  --theme-surface-border: rgba(99, 24, 50, 0.25);\n  --theme-surface-border-strong: rgba(99, 24, 50, 0.20);\n\n  /* Accent tints used by dashboards/cards (avoid hard-coded purple RGBA) */\n  --theme-accent-border-subtle: rgba(64, 26, 89, 0.20);\n  --theme-accent-border: rgba(64, 26, 89, 0.30);\n  --theme-accent-bg-soft: rgba(64, 26, 89, 0.18);\n  --theme-accent-shadow-soft: rgba(64, 26, 89, 0.10);\n  --theme-accent-shadow-strong: rgba(64, 26, 89, 0.30);\n  --theme-accent-color-hover: #4d216a;\n\n  /* RGBA helpers for acrylic gradients (avoid hard-coded brand rgba() in components) */\n  --theme-primary-rgba-70: rgba(99, 24, 50, 0.70);\n  --theme-secondary-rgba-70: rgba(91, 36, 43, 0.70);\n  --theme-primary-rgba-95: rgba(99, 24, 50, 0.95);\n  --theme-secondary-rgba-95: rgba(91, 36, 43, 0.95);\n\n  /* Navbar link pill background (active/hover) */\n  --theme-navlink-active-bg: rgba(99, 24, 50, 0.08);\n  /* Theme accent colors for components */\n  --theme-primary-color: var(--brand-maroon);\n  --theme-secondary-color: var(--wine);\n  --theme-accent-color: var(--brand-purple);\n  --theme-text-primary: var(--text-dark);\n  --theme-text-secondary: #4a4f5c;\n  --theme-shadow: var(--shadow);\n\n  /* Dashboard layout tokens (shared) */\n  --dashboard-padding-top-offset: 12px;\n  --dashboard-padding-x: 8px;\n  --dashboard-padding-bottom: 16px;\n  --dashboard-grid-gap: 12px;\n  --dashboard-main-gap: 12px;\n  --dashboard-main-col-min: 240px;\n  --dashboard-stat-min: 240px;\n  --dashboard-stat-gap: 12px;\n  --dashboard-stat-padding: 12px 16px;\n  --dashboard-stat-radius: 16px;\n  --dashboard-card-padding: 16px 18px;\n  --dashboard-card-header-margin: 12px;\n  --dashboard-card-header-padding: 10px;\n  --dashboard-quick-actions-gap: 8px;\n  --dashboard-container-max: 1880px;\n  --dashboard-container-max-client: 1800px;\n  --dashboard-container-max-agent: 1880px;\n  --dashboard-container-max-admin: 1920px;\n\n  /* Highlights / glows (avoid hard-coded pink/gold values in components) */\n  --theme-highlight-soft: #ffc4d6;\n  --theme-highlight-light: var(--baby-pink);\n  --theme-highlight-strong: #ffd700;\n  --theme-highlight-strong-border: rgba(255, 215, 0, 0.10);\n  --theme-highlight-glow: rgba(254, 245, 249, 0.6);\n  --theme-highlight-glow-subtle: rgba(254, 245, 249, 0.18);\n  --theme-highlight-border: rgba(254, 245, 249, 0.36);\n  --theme-primary-shadow-color: rgba(99, 24, 50, 0.35);\n\n  /* High-contrast ink (default/light uses brand ink; dark themes override) */\n  --theme-contrast-strong: var(--brand-maroon);\n\n  /* Text-on-color tokens (avoid hard-coded #fff / black in components) */\n  --theme-on-success: var(--white);\n  --theme-on-danger: var(--white);\n  /* Warning background is bright (yellow), so text should stay dark even on dark themes */\n  --theme-on-warning: rgba(0, 0, 0, 0.85);\n\n  /* Progress bar tokens */\n  --theme-progress-edge: rgba(254, 245, 249, 0.8);\n  --theme-progress-center: rgba(255, 255, 255, 0.95);\n  --theme-progress-glow-strong: rgba(254, 245, 249, 0.7);\n  --theme-progress-glow-soft: rgba(254, 245, 249, 0.4);\n\n  /* Particles overlay tuning */\n  --particles-opacity: 0.55;\n  --particles-opacity-home: 0.70;\n  /* `screen` can become effectively invisible over light UI surfaces.\n     Default theme uses `normal` for consistent visibility; dark-forest overrides this. */\n  --particles-blend-mode: normal;\n}\n\n/* Dark-forest accessibility overrides */\nhtml[data-theme=\"dark-forest\"] {\n  --text-dark: #f8fafc;\n  --text-light: rgba(255, 255, 255, 0.82);\n  --theme-text-primary: #f8fafc;\n  --theme-text-secondary: rgba(255, 255, 255, 0.82);\n  --theme-text-tertiary: rgba(255, 255, 255, 0.68);\n  --theme-contrast-strong: #ffffff;\n}\n\n/* Hidden class for page sections (show/hide navigation) */\n.page-section.hidden {\n  display: none !important;\n}\n\n/* Loading modal overlay - Complete version with progress and animations */\nbody.loading-locked {\n  overflow: hidden;\n}\n\nhtml[data-theme=\"dark-forest\"] {\n  --theme-text-secondary: rgba(255, 255, 255, 0.82);\n  --theme-text-tertiary: rgba(255, 255, 255, 0.68);\n}\n\n.loading-modal {\n  position: fixed;\n  inset: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 9999;\n  background: rgba(6, 4, 6, 0.55);\n  backdrop-filter: blur(10px);\n  -webkit-backdrop-filter: blur(10px);\n  opacity: 0;\n  pointer-events: none;\n  transition: opacity 0.6s ease;\n}\n\n.loading-modal.visible {\n  opacity: 1;\n  pointer-events: auto;\n}\n\n.modal-card {\n  width: min(820px, calc(100% - 48px));\n  background: rgba(255, 255, 255, 0.94);\n  border-radius: 14px;\n  padding: 20px;\n  box-shadow: 0 30px 80px rgba(10, 10, 10, 0.16), 0 10px 30px rgba(10, 10, 10, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.72);\n  color: #0f172a;\n  border: 1px solid rgba(0, 0, 0, 0.06);\n  backdrop-filter: blur(12px) saturate(1.02);\n  -webkit-backdrop-filter: blur(12px) saturate(1.02);\n  position: relative;\n  transform: scale(0.985);\n  opacity: 0.96;\n  transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.55s ease;\n}\n\n.loading-modal.visible .modal-card {\n  transform: scale(1);\n  opacity: 1;\n}\n\n.logo-and-info {\n  display: flex;\n  gap: 20px;\n  align-items: center;\n  width: 100%;\n}\n\n.modal-info {\n  flex: 1;\n  min-width: 0;\n}\n\n/* Shared logo renderer slots (keeps size + contrast consistent across pages) */\n.logo-slot {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  color: var(--logo-contrast-primary, var(--brand-maroon));\n}\n\n.logo-slot[data-logo-contrast=\"ink\"] {\n  color: var(--logo-contrast-ink, #0f172a);\n}\n\n.logo-slot[data-logo-contrast=\"on-dark\"] {\n  color: var(--logo-contrast-on-dark, #ffffff);\n  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);\n}\n\n.logo-slot[data-logo-contrast=\"muted\"] {\n  color: var(--logo-contrast-muted, rgba(15, 23, 42, 0.72));\n}\n\n.krause-shield {\n  display: block;\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  color: inherit;\n  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));\n}\n\n.logo-slot[data-logo-size=\"sm\"] .krause-shield,\n.krause-shield.logo-size-sm {\n  width: var(--logo-size-sm);\n  height: var(--logo-size-sm);\n}\n\n.logo-slot[data-logo-size=\"md\"] .krause-shield,\n.krause-shield.logo-size-md {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n}\n\n.logo-slot[data-logo-size=\"lg\"] .krause-shield,\n.krause-shield.logo-size-lg {\n  width: var(--logo-size-lg);\n  height: var(--logo-size-lg);\n}\n\n.logo-shield,\n.shield-svg {\n  color: inherit;\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n}\n\n.logo-shield-footer {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  color: inherit;\n}\n\n/* Particles floating in background */\n.bg-particles {\n  position: absolute;\n  inset: 0;\n  pointer-events: none;\n  z-index: 1100;\n  overflow: hidden;\n}\n\n.particle {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: rgba(139, 35, 72, 0.12);\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);\n  transform: translateY(0);\n  will-change: transform, opacity;\n  opacity: 0.9;\n}\n\n@keyframes floatUp {\n  0% {\n    transform: translateY(20px) scale(0.9);\n    opacity: 0.7;\n  }\n\n  50% {\n    opacity: 0.95;\n  }\n\n  100% {\n    transform: translateY(-24px) scale(1.05);\n    opacity: 0.45;\n  }\n}\n\n/* Official logo parts stroke draw for LOADING MODAL ONLY */\n/* Shield primitives pick up currentColor for consistent contrast */\n.loading-modal .shield-circle,\n.loading-modal .shield-diamond,\n.loading-modal .shield-arc,\n.loading-modal .shield-line {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 3;\n  stroke-dasharray: 220;\n  stroke-dashoffset: 220;\n  opacity: 0;\n  transition: opacity 0.4s ease;\n  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.12));\n}\n\n.loading-modal .shield-circle.active,\n.loading-modal .shield-diamond.active,\n.loading-modal .shield-arc.active,\n.loading-modal .shield-line.active {\n  animation: loadingDrawStroke 0.9s ease-out forwards;\n  opacity: 1;\n}\n\n.loading-modal .shield-center {\n  fill: currentColor;\n  opacity: 0;\n  transform-origin: 50% 50%;\n}\n\n.loading-modal .shield-center.active {\n  animation: centerPop 0.6s ease-out forwards;\n}\n\n@keyframes loadingDrawStroke {\n  from {\n    stroke-dashoffset: 220;\n    opacity: 0.2;\n  }\n\n  to {\n    stroke-dashoffset: 0;\n    opacity: 1;\n  }\n}\n\n@keyframes centerPop {\n  0% {\n    transform: scale(0.4);\n    opacity: 0;\n  }\n\n  60% {\n    transform: scale(1.12);\n    opacity: 1;\n  }\n\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n\n.modal-info h2 {\n  font-family: 'Cinzel', serif;\n  margin-bottom: 8px;\n  font-size: 1.4rem;\n  color: #111;\n  font-weight: 700;\n}\n\n.progress-percentage {\n  font-size: 2.2rem;\n  font-weight: 700;\n  font-family: 'Cinzel', serif;\n  margin-top: 8px;\n  color: #0f172a;\n  line-height: 1;\n}\n\n.status-text {\n  margin-top: 8px;\n  color: rgba(15, 23, 42, 0.82);\n  font-size: 0.95rem;\n  font-weight: 500;\n}\n\n.progress-bar-container {\n  width: 100%;\n  height: 8px;\n  background: rgba(0, 0, 0, 0.06);\n  border-radius: 999px;\n  overflow: hidden;\n  margin-top: 12px;\n  border: 1px solid rgba(0, 0, 0, 0.02);\n  box-shadow: inset 0 -2px 8px rgba(0, 0, 0, 0.06);\n}\n\n.progress-bar-fill {\n  height: 100%;\n  width: 0%;\n  background: linear-gradient(90deg, #8b2348 0%, #9b59b6 50%, #8b2348 100%);\n  transition: width 260ms linear;\n  box-shadow: 0 6px 18px rgba(139, 35, 72, 0.12);\n}\n\n.did-you-know {\n  margin-top: 14px;\n  background: #ffffff;\n  padding: 12px;\n  border-radius: 10px;\n  color: #111;\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);\n}\n\n.did-you-know-title {\n  font-weight: 700;\n  margin-bottom: 6px;\n  color: #0f172a;\n}\n\n#funFact {\n  color: rgba(15, 23, 42, 0.85);\n  font-size: 0.9rem;\n  line-height: 1.5;\n}\n\n@media (max-width: 700px) {\n  .logo-and-info {\n    flex-direction: row;\n  }\n\n  .logo-slot[data-logo-size=\"lg\"] .krause-shield,\n  .shield-svg.logo-size-lg,\n  .shield-svg {\n    width: var(--logo-size-md);\n    height: var(--logo-size-md);\n  }\n}\n\n/* Footer (restored) */\n.footer {\n  background: var(--footer-acrylic-bg, var(--acrylic-bg-dark));\n  backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur, 25px)) saturate(var(--footer-acrylic-saturate, 180%)) !important;\n  color: white;\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 9996;\n  transition: transform 0.3s ease;\n  border-top: 1px solid rgba(255, 255, 255, 0.15);\n  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);\n  pointer-events: auto;\n}\n\n/* Ensure home page also renders the acrylic footer (some browsers drop backdrop-filter without a scoped reassertion) */\nbody[data-page=\"home\"] .footer {\n  background: var(--footer-acrylic-bg);\n  backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\n  -webkit-backdrop-filter: blur(var(--footer-acrylic-blur)) saturate(var(--footer-acrylic-saturate)) !important;\n}\n\n.footer.collapsed .footer-container {\n  display: none;\n}\n\n.footer-toggle {\n  background: transparent;\n  border: none;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n  color: white;\n  padding: 12px 24px;\n  width: 100%;\n  text-align: center;\n  cursor: pointer;\n  font-weight: 600;\n  font-size: clamp(13px, 2vw, 15px);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  transition: all 0.3s ease;\n}\n\n.footer-toggle:hover {\n  background: rgba(255, 255, 255, 0.15);\n  border-bottom-color: rgba(255, 255, 255, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),\n    0 2px 8px rgba(255, 255, 255, 0.1);\n}\n\n.footer-toggle svg {\n  transition: transform 0.3s ease;\n}\n\n.footer.collapsed .footer-toggle svg {\n  transform: rotate(180deg);\n}\n\n.footer-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: clamp(12px, 2vh, 18px) clamp(16px, 3vw, 24px);\n}\n\n.footer-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: clamp(20px, 3vw, 32px);\n  margin-bottom: clamp(12px, 2vh, 16px);\n  padding-bottom: clamp(12px, 2vh, 16px);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n}\n\n.footer-section h4 {\n  font-family: 'Cinzel', serif;\n  font-size: clamp(0.95rem, 1.8vw, 1.1rem);\n  margin-bottom: clamp(10px, 1.5vh, 14px);\n  color: rgba(255, 255, 255, 0.95);\n}\n\n.footer-section ul {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.footer-section li {\n  margin-bottom: clamp(6px, 1vh, 9px);\n}\n\n.footer-section a {\n  color: rgba(255, 255, 255, 0.85);\n  text-decoration: none;\n  transition: color 0.3s ease;\n  font-size: clamp(0.8rem, 1.4vw, 0.9rem);\n}\n\n.footer-section a:hover {\n  color: white;\n}\n\n.footer-brand {\n  display: flex;\n  flex-direction: column;\n  gap: clamp(8px, 1.2vh, 12px);\n  align-items: center;\n  /* center logo and text horizontally */\n  text-align: center;\n}\n\n.logo-shield-footer {\n  color: white;\n  margin-bottom: clamp(6px, 1vh, 10px);\n  width: clamp(52px, 7vw, 64px);\n  height: clamp(52px, 7vw, 64px);\n  display: block;\n  flex-shrink: 0;\n}\n\n/* Page visibility control */\n/* Page visibility control */\n#mainContent>[data-page] {\n  width: 100%;\n}\n\n/* Hide by default using utility class */\n.d-none {\n  display: none !important;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nhtml {\n  margin: 0 !important;\n  padding: 0 !important;\n  height: 100% !important;\n  overflow: hidden !important;\n  width: 100% !important;\n}\n\nbody {\n  margin: 0 !important;\n  padding: 0 !important;\n  font-family: 'Aptos Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;\n  line-height: 1.65;\n  color: var(--text-dark);\n  background: linear-gradient(135deg,\n      var(--gradient-start) 0%,\n      var(--gradient-mid) 40%,\n      var(--gradient-end) 100%);\n  background-size: 300% 300%;\n  background-attachment: fixed !important;\n  height: 100vh !important;\n  overflow: hidden !important;\n  width: 100vw !important;\n  position: fixed !important;\n  top: 0 !important;\n  left: 0 !important;\n  animation: gradientShift 20s ease infinite;\n  transition: background-position 1.5s ease-in-out;\n}\n\n/* Slightly larger body copy for descriptive sections */\np,\n.section-description,\n.hero-description,\n.feature-box p,\n.service-card p,\n.about-section p,\n.contact-info p,\n.quote-lead,\n.quote-footnote,\n.quote-benefits,\n.stat-box p,\n.agent-card p {\n  font-size: 1.04rem;\n  line-height: 1.65;\n}\n\n@keyframes gradientShift {\n  0% {\n    background-position: 0% 50%;\n  }\n\n  25% {\n    background-position: 50% 25%;\n  }\n\n  50% {\n    background-position: 100% 50%;\n  }\n\n  75% {\n    background-position: 50% 75%;\n  }\n\n  100% {\n    background-position: 0% 50%;\n  }\n}\n\nbody.section-hero {\n  background-position: 0% 30%;\n}\n\nbody.section-parade {\n  background-position: 50% 50%;\n}\n\nbody.section-cta {\n  background-position: 100% 70%;\n}\n\n/* Particles */\n#particles-canvas {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  /* Above page backgrounds (dashboards use solid surfaces) but below navbar/subnav */\n  z-index: 50;\n  opacity: var(--particles-opacity);\n  mix-blend-mode: var(--particles-blend-mode);\n  transition: opacity 0.3s ease;\n}\n\nbody[data-page=\"home\"] #particles-canvas {\n  opacity: var(--particles-opacity-home);\n}\n\n/* Hide particles on fullpage sections (route-aware).\n   NOTE: We can't use :has(.services-fullpage) here because templates are injected\n   into the DOM (hidden) and would permanently match, hiding particles everywhere. */\nbody[data-page=\"services\"] #particles-canvas,\nbody[data-page=\"about\"] #particles-canvas,\nbody[data-page=\"contact\"] #particles-canvas,\n/* Auth screens read cleaner without animated canvas behind */\nbody[data-page=\"login\"] #particles-canvas,\nbody[data-page=\"agent-login\"] #particles-canvas {\n  display: none;\n  pointer-events: none;\n}\n\n/* Dashboards: reduce opacity for subtle ambient effect */\nbody[data-page=\"client-dashboard\"] #particles-canvas,\nbody[data-page=\"agent-dashboard\"] #particles-canvas,\nbody[data-page=\"admin-dashboard\"] #particles-canvas {\n  opacity: 0.35;\n}\n\n/* Sub Navigation */\n.sub-navigation {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  width: 100%;\n  z-index: 9998;\n  background: var(--acrylic-bg-dark);\n  backdrop-filter: blur(25px) saturate(180%);\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\n  height: var(--subnav-height);\n  transition: all 0.3s ease;\n}\n\n.sub-nav-btn {\n  position: relative;\n  padding: 18px 32px;\n  background: transparent;\n  border: none;\n  border-radius: 0 !important;\n  font-size: 13px;\n  font-weight: 600;\n  color: rgba(255, 255, 255, 0.85);\n  cursor: pointer;\n  will-change: transform, opacity;\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  font-family: inherit;\n  text-transform: uppercase;\n  letter-spacing: 1.5px;\n  overflow: hidden;\n  height: 56px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.sub-nav-btn::before {\n  content: '';\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: 3px;\n  background: linear-gradient(90deg, transparent, var(--baby-pink), transparent);\n  opacity: 0;\n  transform: scaleX(0);\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n  pointer-events: none;\n}\n\n.sub-nav-btn:hover {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(20px) saturate(160%);\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\n  color: white;\n}\n\n.sub-nav-btn:hover::before {\n  opacity: 0.5;\n  transform: scaleX(1);\n}\n\n.sub-nav-btn.active {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(25px) saturate(170%);\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\n  color: white;\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n}\n\n.sub-nav-btn.active::before {\n  opacity: 1;\n  transform: scaleX(1);\n  box-shadow: 0 0 15px rgba(254, 245, 249, 0.6);\n}\n\n.sub-nav-btn:not(:last-child)::after {\n  content: '|';\n  position: absolute;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  color: rgba(255, 255, 255, 0.25);\n  font-weight: 300;\n  font-size: 18px;\n  pointer-events: none;\n  width: 1px;\n  height: 100%;\n}\n\n.sub-navigation.show {\n  animation: subNavSlideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;\n}\n\n@keyframes subNavSlideDown {\n  from {\n    opacity: 0;\n    transform: translateY(-10px);\n  }\n\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n/* Navbar */\n.navbar {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: var(--nav-height);\n  z-index: 9999;\n  background: rgba(255, 255, 255, 0.95);\n  backdrop-filter: blur(20px);\n  border-bottom: 1px solid rgba(0, 0, 0, 0.06);\n  padding: 0;\n  margin: 0;\n  transition: all 0.3s ease;\n  box-shadow: var(--shadow-sm);\n  display: flex;\n  align-items: center;\n}\n\n.navbar.scrolled {\n  box-shadow: var(--shadow);\n}\n\n.nav-container {\n  max-width: 100%;\n  width: 100%;\n  height: 100%;\n  margin: 0 auto;\n  padding: 0 48px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  box-sizing: border-box;\n}\n\n.nav-brand {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  cursor: pointer;\n  transition: transform 0.3s ease;\n}\n\n.nav-brand .krause-shield {\n  width: var(--logo-size-sm);\n  height: var(--logo-size-sm);\n}\n\n.nav-brand:hover {\n  transform: translateY(-2px);\n}\n\n\n.logo-shield {\n  width: var(--logo-size-md);\n  height: var(--logo-size-md);\n  max-width: calc(var(--logo-size-lg) - 16px);\n  max-height: calc(var(--logo-size-lg) - 16px);\n  color: inherit;\n  filter: drop-shadow(0 2px 4px var(--theme-primary-shadow-color));\n}\n\n/* Logo general - SIN auto-animación, solo estilos base */\n.krause-shield .shield-circle,\n.krause-shield .shield-diamond,\n.krause-shield .shield-arc,\n.krause-shield .shield-line {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 3;\n  /* NO auto-animar - dejar que sean estáticos o controlados por JS */\n}\n\n/* Hover solo cuando NO está en loading */\nbody:not(.loading-locked) .krause-shield:hover .shield-circle,\nbody:not(.loading-locked) .krause-shield:hover .shield-diamond,\nbody:not(.loading-locked) .krause-shield:hover .shield-arc,\nbody:not(.loading-locked) .krause-shield:hover .shield-line {\n  animation: logoPulse 0.6s ease-in-out;\n}\n\n@keyframes logoPulse {\n\n  0%,\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  50% {\n    transform: scale(1.05);\n    opacity: 0.8;\n  }\n}\n\n.brand-text {\n  display: flex;\n  flex-direction: column;\n  gap: 2px;\n}\n\n.brand-name {\n  font-family: 'Cinzel', serif;\n  font-size: 22px;\n  font-weight: 600;\n  color: var(--brand-maroon);\n  line-height: 1;\n}\n\n.brand-tagline {\n  font-size: 11px;\n  color: var(--text-light);\n  font-weight: 500;\n  letter-spacing: 0.5px;\n  text-transform: uppercase;\n}\n\n.mobile-menu-toggle {\n  display: none;\n  flex-direction: column;\n  gap: 5px;\n  background: none;\n  border: none;\n  cursor: pointer;\n  padding: 8px;\n}\n\n.mobile-menu-toggle span {\n  width: 25px;\n  height: 3px;\n  background: var(--brand-maroon);\n  border-radius: 2px;\n  transition: all 0.3s ease;\n}\n\n.nav-menu {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n\n.nav-link {\n  padding: 10px 20px;\n  color: var(--text-dark);\n  text-decoration: none;\n  font-weight: 500;\n  transition: all 0.3s ease;\n  border-radius: 8px;\n  font-size: 16px;\n}\n\n.nav-link:hover,\n.nav-link.active {\n  color: var(--brand-maroon);\n  background: var(--theme-navlink-active-bg);\n  backdrop-filter: blur(15px) saturate(150%);\n  -webkit-backdrop-filter: blur(15px) saturate(150%);\n}\n\n.nav-buttons {\n  display: flex;\n  gap: 12px;\n  margin-left: 20px;\n}\n\n/* Generic buttons (used in Home CTA + Auth forms) */\n.btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  padding: 12px 18px;\n  border-radius: 12px;\n  border: 1px solid transparent;\n  font-family: inherit;\n  font-weight: 700;\n  font-size: 0.95rem;\n  line-height: 1;\n  cursor: pointer;\n  user-select: none;\n  text-decoration: none;\n  background: transparent;\n  color: inherit;\n  transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s ease,\n    border-color 0.25s ease, color 0.25s ease, filter 0.25s ease;\n}\n\n.btn:hover {\n  transform: translateY(-1px);\n}\n\n.btn:active {\n  transform: translateY(0);\n}\n\n.btn:disabled,\n.btn[disabled] {\n  opacity: 0.65;\n  cursor: not-allowed;\n  transform: none;\n}\n\n.btn:focus-visible {\n  outline: 2px solid var(--theme-highlight-light);\n  outline-offset: 2px;\n}\n\n.btn-lg {\n  padding: 14px 22px;\n  border-radius: 14px;\n  font-size: 1rem;\n}\n\n.btn-block {\n  width: 100%;\n}\n\n.btn-primary {\n  background: radial-gradient(circle at 35% 35%, var(--theme-primary-color) 0%, var(--theme-secondary-color) 70%);\n  color: var(--white);\n  border-color: rgba(255, 255, 255, 0.16);\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), 0 10px 24px var(--theme-primary-shadow-color);\n}\n\n.btn.is-loading,\n.btn[aria-busy=\"true\"] {\n  position: relative;\n  pointer-events: none;\n  color: var(--theme-contrast-strong, var(--brand-maroon));\n  border-color: var(--theme-contrast-glow, rgba(255, 255, 255, 0.25));\n  filter: brightness(1.02);\n}\n\n.btn.is-loading::after,\n.btn[aria-busy=\"true\"]::after {\n  content: '';\n  position: absolute;\n  inset: 6px;\n  border-radius: inherit;\n  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));\n  animation: loading-pulse 0.9s ease-in-out infinite;\n  mix-blend-mode: screen;\n}\n\n@keyframes loading-pulse {\n\n  0%,\n  100% {\n    opacity: 0.35;\n    transform: scale(0.98);\n  }\n\n  50% {\n    opacity: 0.75;\n    transform: scale(1.02);\n  }\n}\n\n.btn-primary:hover {\n  filter: brightness(1.05);\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26), 0 14px 34px var(--theme-primary-shadow-color);\n}\n\n.btn-secondary {\n  background: rgba(255, 255, 255, 0.14);\n  color: white;\n  border-color: rgba(255, 255, 255, 0.20);\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);\n}\n\n.btn-secondary:hover {\n  background: rgba(255, 255, 255, 0.18);\n  border-color: rgba(255, 255, 255, 0.26);\n  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);\n}\n\n.btn-outline {\n  background: transparent;\n  color: var(--theme-primary-color);\n  border-color: rgba(255, 255, 255, 0.35);\n}\n\n.btn-outline:hover {\n  background: rgba(255, 255, 255, 0.12);\n  color: var(--theme-secondary-color);\n}\n\n.btn-nav {\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-weight: 600;\n  font-size: 15px;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  border: none;\n  font-family: inherit;\n}\n\n.btn-login {\n  background: transparent;\n  color: var(--brand-maroon);\n  border: 2px solid var(--brand-maroon);\n}\n\n.btn-login:hover {\n  background: var(--brand-maroon);\n  color: white;\n}\n\n.btn-agent {\n  background: var(--brand-maroon);\n  color: white;\n  border: 2px solid var(--brand-maroon);\n}\n\n.btn-agent:hover {\n  background: var(--wine);\n  border-color: var(--wine);\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px var(--theme-primary-shadow-color);\n}\n\n/* Main Content */\n.main-content {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 10;\n  height: auto;\n  width: 100%;\n  box-sizing: border-box;\n  overflow-y: auto;\n  overflow-x: hidden;\n}\n\nbody:not(.no-footer) .main-content {\n  padding-bottom: var(--footer-height);\n}\n\nbody.no-footer .main-content {\n  padding-bottom: 0;\n}\n\nbody.no-footer .footer {\n  display: none !important;\n}\n\n/* Home has a fixed sub-navigation that overlays the scroll container.\n   Add top padding only on home so sections (esp. Cotiza logo/title) are not cut. */\nbody[data-page=\"home\"] .main-content {\n  padding-top: var(--subnav-height);\n}\n\n/* Dashboards sin navbar: usar todo el alto disponible sin offset del nav */\nbody[data-page=\"client-dashboard\"] .main-content,\nbody[data-page=\"agent-dashboard\"] .main-content,\nbody[data-page=\"admin-dashboard\"] .main-content {\n  top: 0;\n  padding-top: 0;\n}\n\n\n\n/* Sub Navigation */\n.sub-navigation {\n  position: fixed;\n  top: var(--nav-height);\n  left: 0;\n  right: 0;\n  width: 100%;\n  z-index: 9998;\n  background: var(--acrylic-bg-dark);\n  backdrop-filter: blur(25px) saturate(180%);\n  -webkit-backdrop-filter: blur(25px) saturate(180%);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);\n  height: var(--subnav-height);\n  transition: all 0.3s ease;\n}\n\n.sub-nav-btn {\n  position: relative;\n  padding: 18px 32px;\n  background: transparent;\n  border: none;\n  border-radius: 0 !important;\n  font-size: 13px;\n  font-weight: 600;\n  color: rgba(255, 255, 255, 0.85);\n  cursor: pointer;\n  will-change: transform, opacity;\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  font-family: inherit;\n  text-transform: uppercase;\n  letter-spacing: 1.5px;\n  overflow: hidden;\n  height: 56px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.sub-nav-btn::before {\n  content: '';\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  width: 100%;\n  height: 3px;\n  background: linear-gradient(90deg, transparent, var(--theme-highlight-light), transparent);\n  opacity: 0;\n  transform: scaleX(0);\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n  pointer-events: none;\n}\n\n.sub-nav-btn:hover {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(20px) saturate(160%);\n  -webkit-backdrop-filter: blur(20px) saturate(160%);\n  color: white;\n}\n\n.sub-nav-btn:hover::before {\n  opacity: 0.5;\n  transform: scaleX(1);\n}\n\n.sub-nav-btn.active {\n  background: rgba(255, 255, 255, 0.15);\n  backdrop-filter: blur(25px) saturate(170%);\n  -webkit-backdrop-filter: blur(25px) saturate(170%);\n  color: white;\n  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n}\n\n.sub-nav-btn.active::before {\n  opacity: 1;\n  transform: scaleX(1);\n  box-shadow: 0 0 15px var(--theme-highlight-glow);\n}\n\n/* Button separators */\n.sub-nav-btn:not(:last-child)::after {\n  content: '|';\n  position: absolute;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  color: rgba(255, 255, 255, 0.25);\n  font-weight: 300;\n  font-size: 18px;\n  pointer-events: none;\n  width: 1px;\n  height: 100%;\n}\n\n/* \n   PAGE-SPECIFIC STYLES HAVE BEEN EXTRACTED TO SEPARATE FILES:\n   - styles/pages/home.css: Home page sections (hero, features, cta, agents)\n   - styles/pages/services.css: Services grid and cards\n   - styles/pages/about.css: About content and team\n   - styles/pages/contact.css: Contact form and info\n   - styles/auth.css: Auth login forms\n   - styles/dashboards.css: Dashboard layouts\n   \n   This app.css file now contains ONLY base/global styles.\n   See index.html for CSS module links.\n*/"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2675,13 +2678,19 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Chart Modal Styles */
 
 .chart-modal-title {
     font-family: 'Cinzel', serif;
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: 700;
-    color: var(--dashboard-text-primary);
+    color: #1a1a1a;
     display: flex;
     align-items: center;
     gap: 10px;
     margin: 0;
+    line-height: 1.4;
+}
+
+[data-theme="dark-forest"] .chart-modal-title,
+body.dark-forest .chart-modal-title {
+    color: var(--theme-text-primary, #f0f7f3);
 }
 
 .chart-modal-title svg {
@@ -2708,6 +2717,195 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Chart Modal Styles */
     color: white;
     transform: rotate(90deg);
     border-color: var(--theme-accent-color);
+}
+
+.chart-modal-body {
+    padding: 24px 28px;
+}
+
+.chart-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.chart-stat-box {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.chart-stat-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chart-stat-label {
+    font-size: 0.813rem;
+    font-weight: 500;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chart-stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+}
+
+.chart-stat-trend {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.chart-stat-box.success .chart-stat-value {
+    color: #10b981;
+}
+
+.chart-stat-box.warning .chart-stat-value {
+    color: #f59e0b;
+}
+
+.chart-stat-box.danger .chart-stat-value {
+    color: #ef4444;
+}
+
+.chart-stat-box.info .chart-stat-value {
+    color: #3b82f6;
+}
+
+[data-theme="dark-forest"] .chart-stat-box,
+body.dark-forest .chart-stat-box {
+    background: rgba(15, 43, 36, 0.6);
+    border-color: rgba(47, 107, 122, 0.3);
+}
+
+[data-theme="dark-forest"] .chart-stat-label,
+body.dark-forest .chart-stat-label {
+    color: #a0a0a0;
+}
+
+[data-theme="dark-forest"] .chart-stat-value,
+body.dark-forest .chart-stat-value {
+    color: #f0f7f3;
+}
+
+[data-theme="dark-forest"] .chart-stat-trend,
+body.dark-forest .chart-stat-trend {
+    color: #a0a0a0;
+}
+
+.chart-details-section {
+    margin-top: 24px;
+}
+
+.chart-details-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+[data-theme="dark-forest"] .chart-details-section h3,
+body.dark-forest .chart-details-section h3 {
+    color: #e0e0e0;
+}
+
+.policy-actions-list,
+.payment-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.action-item:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.action-item svg {
+    flex-shrink: 0;
+    color: #666;
+}
+
+.action-item.warning svg {
+    color: #f59e0b;
+}
+
+.action-item.danger svg {
+    color: #ef4444;
+}
+
+.action-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.action-content strong {
+    font-size: 0.938rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.action-detail {
+    font-size: 0.813rem;
+    color: #666;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    background: var(--theme-accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    background: var(--theme-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark-forest"] .action-item,
+body.dark-forest .action-item {
+    background: rgba(15, 43, 36, 0.6);
+    border-color: rgba(47, 107, 122, 0.3);
+}
+
+[data-theme="dark-forest"] .action-content strong,
+body.dark-forest .action-content strong {
+    color: #e0e0e0;
+}
+
+[data-theme="dark-forest"] .action-detail,
+body.dark-forest .action-detail {
+    color: #a0a0a0;
 }
 
 .chart-modal-body {
@@ -3050,7 +3248,7 @@ html[data-theme="dark-forest"] .timeline-content,
 html[data-theme="dark-forest"] .policy-detail-card {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(242, 234, 220, 0.1);
-}`, "",{"version":3,"sources":["webpack://./styles/chart-modals.css"],"names":[],"mappings":"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","sourcesContent":["/* Chart Modal Styles */\n.chart-modal-overlay {\n    position: fixed;\n    inset: 0;\n    background: rgba(0, 0, 0, 0.7);\n    backdrop-filter: blur(8px);\n    -webkit-backdrop-filter: blur(8px);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 10000;\n    animation: fadeIn 0.2s ease;\n    padding: 20px;\n    overflow-y: auto;\n}\n\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n.chart-modal-content {\n    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.96) 100%);\n    border-radius: 24px;\n    max-width: 900px;\n    width: 100%;\n    max-height: 90vh;\n    overflow-y: auto;\n    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3), 0 10px 40px rgba(139, 35, 72, 0.2);\n    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(30px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n.chart-modal-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 24px 28px;\n    border-bottom: 1px solid rgba(226, 232, 240, 0.6);\n    background: rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(10px);\n    -webkit-backdrop-filter: blur(10px);\n    position: sticky;\n    top: 0;\n    z-index: 10;\n}\n\n.chart-modal-title {\n    font-family: 'Cinzel', serif;\n    font-size: 22px;\n    font-weight: 700;\n    color: var(--dashboard-text-primary);\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin: 0;\n}\n\n.chart-modal-title svg {\n    color: var(--theme-accent-color);\n}\n\n.chart-modal-close {\n    width: 36px;\n    height: 36px;\n    border-radius: 12px;\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    background: rgba(255, 255, 255, 0.8);\n    color: var(--dashboard-text-secondary);\n    font-size: 24px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.chart-modal-close:hover {\n    background: var(--theme-accent-color);\n    color: white;\n    transform: rotate(90deg);\n    border-color: var(--theme-accent-color);\n}\n\n.chart-modal-body {\n    padding: 24px 28px 28px;\n    display: flex;\n    flex-direction: column;\n    gap: 24px;\n}\n\n.chart-stats-row {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n    gap: 14px;\n}\n\n.chart-stat-box {\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 14px;\n    padding: 16px;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);\n}\n\n.chart-stat-box.success {\n    border-color: rgba(56, 239, 125, 0.3);\n    background: linear-gradient(135deg, rgba(56, 239, 125, 0.08), rgba(56, 239, 125, 0.02));\n}\n\n.chart-stat-box.warning {\n    border-color: rgba(245, 158, 11, 0.3);\n    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));\n}\n\n.chart-stat-box.info {\n    border-color: rgba(59, 130, 246, 0.3);\n    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.02));\n}\n\n.chart-stat-label {\n    font-size: 13px;\n    color: var(--dashboard-text-tertiary);\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.chart-stat-value {\n    font-size: 28px;\n    font-weight: 700;\n    font-family: 'Cinzel', serif;\n    color: var(--dashboard-text-primary);\n}\n\n.chart-stat-trend {\n    font-size: 12px;\n    font-weight: 600;\n    color: var(--dashboard-text-secondary);\n}\n\n.chart-stat-trend.positive {\n    color: #38ef7d;\n}\n\n.chart-stat-trend.negative {\n    color: #f5576c;\n}\n\n.chart-visualization {\n    background: rgba(255, 255, 255, 0.6);\n    border-radius: 16px;\n    padding: 24px;\n    border: 1px solid rgba(226, 232, 240, 0.6);\n}\n\n.chart-graph-placeholder {\n    min-height: 280px;\n    display: flex;\n    align-items: flex-end;\n    justify-content: center;\n}\n\n.chart-bars {\n    display: flex;\n    align-items: flex-end;\n    justify-content: space-around;\n    width: 100%;\n    height: 260px;\n    gap: 16px;\n    padding: 0 20px;\n}\n\n.chart-bar {\n    flex: 1;\n    background: var(--bar-color, #38ef7d);\n    border-radius: 8px 8px 0 0;\n    min-height: 40px;\n    position: relative;\n    transition: all 0.3s ease;\n    cursor: pointer;\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-end;\n    align-items: center;\n    padding-bottom: 8px;\n    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.chart-bar:hover {\n    transform: translateY(-4px);\n    opacity: 0.85;\n}\n\n.chart-bar .bar-label {\n    position: absolute;\n    bottom: -24px;\n    font-size: 12px;\n    font-weight: 600;\n    color: var(--dashboard-text-tertiary);\n}\n\n.chart-bar .bar-value {\n    font-size: 13px;\n    font-weight: 700;\n    color: white;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);\n}\n\n.chart-details-section {\n    background: rgba(255, 255, 255, 0.5);\n    border-radius: 16px;\n    padding: 20px;\n    border: 1px solid rgba(226, 232, 240, 0.6);\n}\n\n.chart-details-section h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 18px;\n    color: var(--dashboard-text-primary);\n    margin: 0 0 16px 0;\n}\n\n.payment-timeline {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.timeline-item {\n    display: flex;\n    gap: 14px;\n    align-items: flex-start;\n}\n\n.timeline-dot {\n    width: 12px;\n    height: 12px;\n    border-radius: 50%;\n    background: #38ef7d;\n    flex-shrink: 0;\n    margin-top: 4px;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.2);\n}\n\n.timeline-dot.success {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.2);\n}\n\n.timeline-content {\n    flex: 1;\n    background: rgba(255, 255, 255, 0.7);\n    padding: 12px 14px;\n    border-radius: 10px;\n    border: 1px solid rgba(226, 232, 240, 0.5);\n}\n\n.timeline-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 4px;\n}\n\n.timeline-header strong {\n    color: var(--dashboard-text-primary);\n    font-size: 14px;\n}\n\n.timeline-date {\n    font-size: 12px;\n    color: var(--dashboard-text-tertiary);\n}\n\n.timeline-detail {\n    margin: 0;\n    font-size: 13px;\n    color: var(--dashboard-text-secondary);\n}\n\n/* Policy Grid Detailed */\n.policy-grid-detailed {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 16px;\n}\n\n.policy-detail-card {\n    background: rgba(255, 255, 255, 0.8);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 16px;\n    padding: 18px;\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);\n    transition: all 0.3s ease;\n}\n\n.policy-detail-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);\n}\n\n.policy-detail-card.active {\n    border-color: rgba(56, 239, 125, 0.4);\n}\n\n.policy-detail-header {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.policy-icon {\n    width: 44px;\n    height: 44px;\n    border-radius: 12px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.policy-icon.auto {\n    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));\n    color: #3b82f6;\n}\n\n.policy-icon.home {\n    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));\n    color: #f59e0b;\n}\n\n.policy-icon.life {\n    background: linear-gradient(135deg, rgba(245, 87, 108, 0.2), rgba(245, 87, 108, 0.1));\n    color: #f5576c;\n}\n\n.policy-detail-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.policy-detail-info h4 {\n    margin: 0 0 2px 0;\n    font-size: 16px;\n    font-weight: 700;\n    color: var(--dashboard-text-primary);\n}\n\n.policy-number {\n    font-size: 12px;\n    color: var(--dashboard-text-tertiary);\n    font-family: monospace;\n}\n\n.policy-status-badge {\n    padding: 4px 10px;\n    border-radius: 8px;\n    font-size: 11px;\n    font-weight: 700;\n    text-transform: uppercase;\n}\n\n.policy-status-badge.active {\n    background: rgba(56, 239, 125, 0.2);\n    color: #38ef7d;\n}\n\n.policy-detail-body {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.policy-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 13px;\n}\n\n.policy-label {\n    color: var(--dashboard-text-tertiary);\n    font-weight: 600;\n}\n\n.policy-value {\n    color: var(--dashboard-text-primary);\n    font-weight: 600;\n}\n\n.policy-value.warning {\n    color: #f59e0b;\n}\n\n/* Dark theme overrides */\nhtml[data-theme=\"dark-forest\"] .chart-modal-content {\n    background: linear-gradient(145deg, rgba(15, 43, 36, 0.98) 0%, rgba(27, 63, 71, 0.96) 100%);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-modal-header {\n    background: rgba(15, 43, 36, 0.8);\n    border-bottom-color: rgba(242, 234, 220, 0.1);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-modal-close {\n    background: rgba(255, 255, 255, 0.1);\n    border-color: rgba(242, 234, 220, 0.2);\n    color: #e8f4ef;\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-stat-box,\nhtml[data-theme=\"dark-forest\"] .chart-visualization,\nhtml[data-theme=\"dark-forest\"] .chart-details-section,\nhtml[data-theme=\"dark-forest\"] .timeline-content,\nhtml[data-theme=\"dark-forest\"] .policy-detail-card {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(242, 234, 220, 0.1);\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/chart-modals.css"],"names":[],"mappings":"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","sourcesContent":["/* Chart Modal Styles */\n.chart-modal-overlay {\n    position: fixed;\n    inset: 0;\n    background: rgba(0, 0, 0, 0.7);\n    backdrop-filter: blur(8px);\n    -webkit-backdrop-filter: blur(8px);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 10000;\n    animation: fadeIn 0.2s ease;\n    padding: 20px;\n    overflow-y: auto;\n}\n\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n.chart-modal-content {\n    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.96) 100%);\n    border-radius: 24px;\n    max-width: 900px;\n    width: 100%;\n    max-height: 90vh;\n    overflow-y: auto;\n    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3), 0 10px 40px rgba(139, 35, 72, 0.2);\n    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(30px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n.chart-modal-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 24px 28px;\n    border-bottom: 1px solid rgba(226, 232, 240, 0.6);\n    background: rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(10px);\n    -webkit-backdrop-filter: blur(10px);\n    position: sticky;\n    top: 0;\n    z-index: 10;\n}\n\n.chart-modal-title {\n    font-family: 'Cinzel', serif;\n    font-size: 1.375rem;\n    font-weight: 700;\n    color: #1a1a1a;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin: 0;\n    line-height: 1.4;\n}\n\n[data-theme=\"dark-forest\"] .chart-modal-title,\nbody.dark-forest .chart-modal-title {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n.chart-modal-title svg {\n    color: var(--theme-accent-color);\n}\n\n.chart-modal-close {\n    width: 36px;\n    height: 36px;\n    border-radius: 12px;\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    background: rgba(255, 255, 255, 0.8);\n    color: var(--dashboard-text-secondary);\n    font-size: 24px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.chart-modal-close:hover {\n    background: var(--theme-accent-color);\n    color: white;\n    transform: rotate(90deg);\n    border-color: var(--theme-accent-color);\n}\n\n.chart-modal-body {\n    padding: 24px 28px;\n}\n\n.chart-stats-row {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 16px;\n    margin-bottom: 24px;\n}\n\n.chart-stat-box {\n    background: rgba(255, 255, 255, 0.6);\n    border: 1px solid rgba(226, 232, 240, 0.8);\n    border-radius: 12px;\n    padding: 20px;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    transition: all 0.2s ease;\n}\n\n.chart-stat-box:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.chart-stat-label {\n    font-size: 0.813rem;\n    font-weight: 500;\n    color: #666;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.chart-stat-value {\n    font-size: 2rem;\n    font-weight: 700;\n    color: #1a1a1a;\n    line-height: 1;\n}\n\n.chart-stat-trend {\n    font-size: 0.875rem;\n    color: #666;\n}\n\n.chart-stat-box.success .chart-stat-value {\n    color: #10b981;\n}\n\n.chart-stat-box.warning .chart-stat-value {\n    color: #f59e0b;\n}\n\n.chart-stat-box.danger .chart-stat-value {\n    color: #ef4444;\n}\n\n.chart-stat-box.info .chart-stat-value {\n    color: #3b82f6;\n}\n\n[data-theme=\"dark-forest\"] .chart-stat-box,\nbody.dark-forest .chart-stat-box {\n    background: rgba(15, 43, 36, 0.6);\n    border-color: rgba(47, 107, 122, 0.3);\n}\n\n[data-theme=\"dark-forest\"] .chart-stat-label,\nbody.dark-forest .chart-stat-label {\n    color: #a0a0a0;\n}\n\n[data-theme=\"dark-forest\"] .chart-stat-value,\nbody.dark-forest .chart-stat-value {\n    color: #f0f7f3;\n}\n\n[data-theme=\"dark-forest\"] .chart-stat-trend,\nbody.dark-forest .chart-stat-trend {\n    color: #a0a0a0;\n}\n\n.chart-details-section {\n    margin-top: 24px;\n}\n\n.chart-details-section h3 {\n    font-size: 1.125rem;\n    font-weight: 600;\n    color: #1a1a1a;\n    margin-bottom: 16px;\n}\n\n[data-theme=\"dark-forest\"] .chart-details-section h3,\nbody.dark-forest .chart-details-section h3 {\n    color: #e0e0e0;\n}\n\n.policy-actions-list,\n.payment-details-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.action-item {\n    display: flex;\n    align-items: center;\n    gap: 16px;\n    padding: 16px;\n    background: rgba(255, 255, 255, 0.6);\n    border: 1px solid rgba(226, 232, 240, 0.8);\n    border-radius: 12px;\n    transition: all 0.2s ease;\n}\n\n.action-item:hover {\n    background: rgba(255, 255, 255, 0.8);\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);\n}\n\n.action-item svg {\n    flex-shrink: 0;\n    color: #666;\n}\n\n.action-item.warning svg {\n    color: #f59e0b;\n}\n\n.action-item.danger svg {\n    color: #ef4444;\n}\n\n.action-content {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n}\n\n.action-content strong {\n    font-size: 0.938rem;\n    font-weight: 600;\n    color: #1a1a1a;\n}\n\n.action-detail {\n    font-size: 0.813rem;\n    color: #666;\n}\n\n.action-btn {\n    padding: 8px 16px;\n    background: var(--theme-accent-color);\n    color: white;\n    border: none;\n    border-radius: 8px;\n    font-size: 0.875rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    white-space: nowrap;\n}\n\n.action-btn:hover {\n    background: var(--theme-accent-hover);\n    transform: translateY(-1px);\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);\n}\n\n[data-theme=\"dark-forest\"] .action-item,\nbody.dark-forest .action-item {\n    background: rgba(15, 43, 36, 0.6);\n    border-color: rgba(47, 107, 122, 0.3);\n}\n\n[data-theme=\"dark-forest\"] .action-content strong,\nbody.dark-forest .action-content strong {\n    color: #e0e0e0;\n}\n\n[data-theme=\"dark-forest\"] .action-detail,\nbody.dark-forest .action-detail {\n    color: #a0a0a0;\n}\n\n.chart-modal-body {\n    padding: 24px 28px 28px;\n    display: flex;\n    flex-direction: column;\n    gap: 24px;\n}\n\n.chart-stats-row {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n    gap: 14px;\n}\n\n.chart-stat-box {\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 14px;\n    padding: 16px;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);\n}\n\n.chart-stat-box.success {\n    border-color: rgba(56, 239, 125, 0.3);\n    background: linear-gradient(135deg, rgba(56, 239, 125, 0.08), rgba(56, 239, 125, 0.02));\n}\n\n.chart-stat-box.warning {\n    border-color: rgba(245, 158, 11, 0.3);\n    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));\n}\n\n.chart-stat-box.info {\n    border-color: rgba(59, 130, 246, 0.3);\n    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.02));\n}\n\n.chart-stat-label {\n    font-size: 13px;\n    color: var(--dashboard-text-tertiary);\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.chart-stat-value {\n    font-size: 28px;\n    font-weight: 700;\n    font-family: 'Cinzel', serif;\n    color: var(--dashboard-text-primary);\n}\n\n.chart-stat-trend {\n    font-size: 12px;\n    font-weight: 600;\n    color: var(--dashboard-text-secondary);\n}\n\n.chart-stat-trend.positive {\n    color: #38ef7d;\n}\n\n.chart-stat-trend.negative {\n    color: #f5576c;\n}\n\n.chart-visualization {\n    background: rgba(255, 255, 255, 0.6);\n    border-radius: 16px;\n    padding: 24px;\n    border: 1px solid rgba(226, 232, 240, 0.6);\n}\n\n.chart-graph-placeholder {\n    min-height: 280px;\n    display: flex;\n    align-items: flex-end;\n    justify-content: center;\n}\n\n.chart-bars {\n    display: flex;\n    align-items: flex-end;\n    justify-content: space-around;\n    width: 100%;\n    height: 260px;\n    gap: 16px;\n    padding: 0 20px;\n}\n\n.chart-bar {\n    flex: 1;\n    background: var(--bar-color, #38ef7d);\n    border-radius: 8px 8px 0 0;\n    min-height: 40px;\n    position: relative;\n    transition: all 0.3s ease;\n    cursor: pointer;\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-end;\n    align-items: center;\n    padding-bottom: 8px;\n    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.chart-bar:hover {\n    transform: translateY(-4px);\n    opacity: 0.85;\n}\n\n.chart-bar .bar-label {\n    position: absolute;\n    bottom: -24px;\n    font-size: 12px;\n    font-weight: 600;\n    color: var(--dashboard-text-tertiary);\n}\n\n.chart-bar .bar-value {\n    font-size: 13px;\n    font-weight: 700;\n    color: white;\n    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);\n}\n\n.chart-details-section {\n    background: rgba(255, 255, 255, 0.5);\n    border-radius: 16px;\n    padding: 20px;\n    border: 1px solid rgba(226, 232, 240, 0.6);\n}\n\n.chart-details-section h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 18px;\n    color: var(--dashboard-text-primary);\n    margin: 0 0 16px 0;\n}\n\n.payment-timeline {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.timeline-item {\n    display: flex;\n    gap: 14px;\n    align-items: flex-start;\n}\n\n.timeline-dot {\n    width: 12px;\n    height: 12px;\n    border-radius: 50%;\n    background: #38ef7d;\n    flex-shrink: 0;\n    margin-top: 4px;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.2);\n}\n\n.timeline-dot.success {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.2);\n}\n\n.timeline-content {\n    flex: 1;\n    background: rgba(255, 255, 255, 0.7);\n    padding: 12px 14px;\n    border-radius: 10px;\n    border: 1px solid rgba(226, 232, 240, 0.5);\n}\n\n.timeline-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 4px;\n}\n\n.timeline-header strong {\n    color: var(--dashboard-text-primary);\n    font-size: 14px;\n}\n\n.timeline-date {\n    font-size: 12px;\n    color: var(--dashboard-text-tertiary);\n}\n\n.timeline-detail {\n    margin: 0;\n    font-size: 13px;\n    color: var(--dashboard-text-secondary);\n}\n\n/* Policy Grid Detailed */\n.policy-grid-detailed {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 16px;\n}\n\n.policy-detail-card {\n    background: rgba(255, 255, 255, 0.8);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 16px;\n    padding: 18px;\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);\n    transition: all 0.3s ease;\n}\n\n.policy-detail-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);\n}\n\n.policy-detail-card.active {\n    border-color: rgba(56, 239, 125, 0.4);\n}\n\n.policy-detail-header {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.policy-icon {\n    width: 44px;\n    height: 44px;\n    border-radius: 12px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.policy-icon.auto {\n    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));\n    color: #3b82f6;\n}\n\n.policy-icon.home {\n    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));\n    color: #f59e0b;\n}\n\n.policy-icon.life {\n    background: linear-gradient(135deg, rgba(245, 87, 108, 0.2), rgba(245, 87, 108, 0.1));\n    color: #f5576c;\n}\n\n.policy-detail-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.policy-detail-info h4 {\n    margin: 0 0 2px 0;\n    font-size: 16px;\n    font-weight: 700;\n    color: var(--dashboard-text-primary);\n}\n\n.policy-number {\n    font-size: 12px;\n    color: var(--dashboard-text-tertiary);\n    font-family: monospace;\n}\n\n.policy-status-badge {\n    padding: 4px 10px;\n    border-radius: 8px;\n    font-size: 11px;\n    font-weight: 700;\n    text-transform: uppercase;\n}\n\n.policy-status-badge.active {\n    background: rgba(56, 239, 125, 0.2);\n    color: #38ef7d;\n}\n\n.policy-detail-body {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.policy-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 13px;\n}\n\n.policy-label {\n    color: var(--dashboard-text-tertiary);\n    font-weight: 600;\n}\n\n.policy-value {\n    color: var(--dashboard-text-primary);\n    font-weight: 600;\n}\n\n.policy-value.warning {\n    color: #f59e0b;\n}\n\n/* Dark theme overrides */\nhtml[data-theme=\"dark-forest\"] .chart-modal-content {\n    background: linear-gradient(145deg, rgba(15, 43, 36, 0.98) 0%, rgba(27, 63, 71, 0.96) 100%);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-modal-header {\n    background: rgba(15, 43, 36, 0.8);\n    border-bottom-color: rgba(242, 234, 220, 0.1);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-modal-close {\n    background: rgba(255, 255, 255, 0.1);\n    border-color: rgba(242, 234, 220, 0.2);\n    color: #e8f4ef;\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-stat-box,\nhtml[data-theme=\"dark-forest\"] .chart-visualization,\nhtml[data-theme=\"dark-forest\"] .chart-details-section,\nhtml[data-theme=\"dark-forest\"] .timeline-content,\nhtml[data-theme=\"dark-forest\"] .policy-detail-card {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(242, 234, 220, 0.1);\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4262,6 +4460,40 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/**
     max-width: 1200px;
 }
 
+/* Asegurar que los modales tengan colores correctos */
+.app-modal {
+    background: #ffffff;
+    color: #1a1a1a;
+}
+
+.app-modal-header {
+    background: #f8f9fa;
+    color: #1a1a1a;
+}
+
+.app-modal-body {
+    background: #ffffff;
+    color: #333;
+}
+
+[data-theme="dark-forest"] .app-modal,
+body.dark-forest .app-modal {
+    background: var(--theme-surface-bg, #0a2920);
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
+[data-theme="dark-forest"] .app-modal-header,
+body.dark-forest .app-modal-header {
+    background: var(--theme-surface-bg-deep, #061c17);
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
+[data-theme="dark-forest"] .app-modal-body,
+body.dark-forest .app-modal-body {
+    background: var(--theme-surface-bg, #0a2920);
+    color: var(--theme-text-primary, #f0f7f3);
+}
+
 /* Forms dentro de modales - Estilos específicos para dashboard */
 .app-modal form {
     display: flex;
@@ -4613,6 +4845,135 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/**
     }
 }
 
+/* ============================================================================
+   POLICY SECTIONS - Comprobantes y Claims
+   ============================================================================ */
+
+.policy-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.policy-section h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.receipts-list,
+.claims-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.receipt-item,
+.claim-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--background-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+}
+
+.receipt-item:hover,
+.claim-item:hover {
+    background: var(--background-tertiary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-info,
+.claim-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.receipt-info strong,
+.claim-info strong {
+    font-size: 0.938rem;
+    color: var(--text-primary);
+}
+
+.receipt-info small,
+.claim-info small {
+    font-size: 0.813rem;
+    color: var(--text-secondary);
+}
+
+.receipt-item .badge,
+.claim-item .badge {
+    margin-top: 0.25rem;
+    align-self: flex-start;
+}
+
+.detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.detail-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.detail-group label {
+    font-size: 0.875rem;
+    color: #555;
+    font-weight: 500;
+}
+
+[data-theme="dark-forest"] .detail-group label {
+    color: #a0a0a0;
+}
+
+/* Receipt review modal styles */
+.receipt-preview {
+    margin-bottom: 1.5rem;
+}
+
+.receipt-image-placeholder {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark-forest"] .receipt-image-placeholder {
+    background: rgba(15, 43, 36, 0.4);
+}
+
+.receipt-image-placeholder svg {
+    margin: 0 auto;
+    color: #666;
+}
+
+[data-theme="dark-forest"] .receipt-image-placeholder svg {
+    color: #a0a0a0;
+}
+
+.receipt-image-placeholder p {
+    margin-top: 1rem;
+    color: #666;
+}
+
+[data-theme="dark-forest"] .receipt-image-placeholder p {
+    color: #a0a0a0;
+}
+
+.receipt-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
 /* Dark theme adjustments */
 @media (prefers-color-scheme: dark) {
     .app-modal-overlay {
@@ -4622,7 +4983,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/**
     .app-modal {
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     }
-}`, "",{"version":3,"sources":["webpack://./styles/dashboard-actions.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Dashboard Actions Styles\n * Estilos para modales, tabs y componentes de acciones\n */\n\n/* ============================================================================\n   UPLOAD & POLICY PROCESSING - Sistema de subida de pólizas\n   ============================================================================ */\n\n.upload-instructions {\n    margin-bottom: 20px;\n}\n\n.info-box {\n    display: flex;\n    gap: 15px;\n    padding: 15px;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    border-radius: 8px;\n    color: white;\n}\n\n.info-box svg {\n    flex-shrink: 0;\n    margin-top: 2px;\n}\n\n.info-box ul {\n    margin: 10px 0;\n    padding-left: 20px;\n}\n\n.info-box li {\n    margin: 5px 0;\n}\n\n/* Progress Bar */\n#upload-progress {\n    margin: 20px 0;\n    padding: 15px;\n    background: #f8f9fa;\n    border-radius: 8px;\n}\n\n.progress-bar {\n    width: 100%;\n    height: 8px;\n    background: #e9ecef;\n    border-radius: 4px;\n    overflow: hidden;\n    margin-bottom: 10px;\n}\n\n.progress-fill {\n    height: 100%;\n    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);\n    transition: width 0.3s ease;\n    border-radius: 4px;\n}\n\n#progress-text {\n    font-size: 14px;\n    color: #6c757d;\n    text-align: center;\n    margin: 0;\n}\n\n/* Extracted Data Preview */\n#extracted-data-preview {\n    margin: 20px 0;\n    padding: 20px;\n    background: #f8f9fa;\n    border-radius: 8px;\n    border: 2px solid #dee2e6;\n}\n\n.extracted-data-grid {\n    display: grid;\n    gap: 15px;\n    margin-bottom: 15px;\n}\n\n.data-field {\n    display: flex;\n    flex-direction: column;\n    gap: 5px;\n}\n\n.data-field label {\n    font-size: 14px;\n    font-weight: 500;\n    color: #495057;\n}\n\n.data-field input,\n.data-field select {\n    padding: 8px 12px;\n    border: 1px solid #ced4da;\n    border-radius: 4px;\n    font-size: 14px;\n}\n\n.confidence-note {\n    padding: 10px 15px;\n    border-radius: 6px;\n    font-size: 14px;\n    margin: 0;\n}\n\n.confidence-note.warning {\n    background: #fff3cd;\n    color: #856404;\n    border: 1px solid #ffeeba;\n}\n\n.confidence-note.info {\n    background: #d1ecf1;\n    color: #0c5460;\n    border: 1px solid #bee5eb;\n}\n\n/* Success Summary */\n.success-summary {\n    padding: 20px;\n    background: #d4edda;\n    border: 1px solid #c3e6cb;\n    border-radius: 8px;\n    margin-bottom: 20px;\n}\n\n.success-summary p {\n    margin: 8px 0;\n    font-size: 14px;\n    color: #155724;\n}\n\n.success-message {\n    margin-top: 15px;\n    padding-top: 15px;\n    border-top: 1px solid #c3e6cb;\n    font-weight: 500;\n}\n\n/* ============================================================================\n   MODAL SYSTEM - MOVIDO A modals-unified.css\n   Los estilos de modales ahora están centralizados en modals-unified.css\n   ============================================================================ */\n\n/* Modal sizes - Extensiones específicas para dashboard-actions */\n/* Modal sizes - Extensiones específicas para dashboard-actions */\n.app-modal-sm {\n    width: 100%;\n    max-width: 400px;\n}\n\n.app-modal-md {\n    width: 100%;\n    max-width: 600px;\n}\n\n.app-modal-lg {\n    width: 100%;\n    max-width: 900px;\n}\n\n.app-modal-xl {\n    width: 100%;\n    max-width: 1200px;\n}\n\n/* Forms dentro de modales - Estilos específicos para dashboard */\n.app-modal form {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.form-group {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.form-group label {\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-primary);\n}\n\n.form-group input,\n.form-group select,\n.form-group textarea {\n    padding: 12px 16px;\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    background: var(--background-secondary);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    transition: all 0.2s;\n}\n\n.form-group input:focus,\n.form-group select:focus,\n.form-group textarea:focus {\n    outline: none;\n    border-color: var(--accent-color);\n    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);\n}\n\n.form-group small {\n    font-size: 0.75rem;\n    color: var(--text-secondary);\n}\n\n.form-row {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.form-actions {\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n    padding-top: 8px;\n}\n\n/* ============================================================================\n   CLIENT DETAILS TABS - Sistema de tabs para detalles de cliente\n   ============================================================================ */\n\n.client-detail-tabs {\n    display: flex;\n    gap: 8px;\n    border-bottom: 2px solid var(--border-color);\n    margin-bottom: 24px;\n    padding-bottom: 0;\n    overflow-x: auto;\n    scrollbar-width: thin;\n}\n\n.client-detail-tabs::-webkit-scrollbar {\n    height: 4px;\n}\n\n.client-detail-tabs::-webkit-scrollbar-thumb {\n    background: var(--border-color);\n    border-radius: 2px;\n}\n\n.tab-btn {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 12px 16px;\n    background: transparent;\n    border: none;\n    border-bottom: 3px solid transparent;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s;\n    white-space: nowrap;\n    position: relative;\n    margin-bottom: -2px;\n}\n\n.tab-btn svg {\n    flex-shrink: 0;\n}\n\n.tab-btn:hover {\n    color: var(--text-primary);\n    background: var(--background-tertiary);\n}\n\n.tab-btn.active {\n    color: var(--accent-color);\n    border-bottom-color: var(--accent-color);\n}\n\n.client-detail-content {\n    min-height: 400px;\n}\n\n.tab-content {\n    display: none;\n    animation: fadeIn 0.2s ease;\n}\n\n.tab-content.active {\n    display: block;\n}\n\n/* Client info grid */\n.client-info-grid {\n    background: var(--background-secondary);\n    padding: 24px;\n    border-radius: 12px;\n}\n\n.client-info-grid dl {\n    display: grid;\n    grid-template-columns: 140px 1fr;\n    gap: 16px 24px;\n    margin: 0;\n}\n\n.client-info-grid dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n}\n\n.client-info-grid dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n/* Data table */\n.data-table {\n    width: 100%;\n    border-collapse: collapse;\n    background: var(--background-secondary);\n    border-radius: 12px;\n    overflow: hidden;\n}\n\n.data-table thead {\n    background: var(--background-tertiary);\n}\n\n.data-table th {\n    padding: 12px 16px;\n    text-align: left;\n    font-weight: 600;\n    font-size: 0.8125rem;\n    color: var(--text-secondary);\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.data-table td {\n    padding: 16px;\n    border-top: 1px solid var(--border-color);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.data-table tbody tr:hover {\n    background: var(--background-tertiary);\n}\n\n/* Files grid */\n.files-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.file-card {\n    background: var(--background-secondary);\n    border: 1px solid var(--border-color);\n    border-radius: 12px;\n    padding: 20px;\n    text-align: center;\n    transition: all 0.2s;\n    cursor: pointer;\n}\n\n.file-card:hover {\n    background: var(--background-tertiary);\n    border-color: var(--accent-color);\n    transform: translateY(-2px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.file-card svg {\n    color: var(--accent-color);\n    margin-bottom: 12px;\n}\n\n.file-card p {\n    margin: 8px 0 4px;\n    font-weight: 500;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.file-card small {\n    color: var(--text-secondary);\n    font-size: 0.75rem;\n}\n\n/* ============================================================================\n   POLICY DETAILS - Detalles de póliza\n   ============================================================================ */\n\n.policy-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 24px;\n    margin-bottom: 24px;\n}\n\n.detail-section {\n    background: var(--background-secondary);\n    padding: 20px;\n    border-radius: 12px;\n    border: 1px solid var(--border-color);\n}\n\n.detail-section h3 {\n    margin: 0 0 16px;\n    font-size: 1rem;\n    font-weight: 600;\n    color: var(--text-primary);\n    border-bottom: 2px solid var(--accent-color);\n    padding-bottom: 8px;\n}\n\n.detail-section dl {\n    display: grid;\n    gap: 12px;\n    margin: 0;\n}\n\n.detail-section dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.8125rem;\n    margin-bottom: 4px;\n}\n\n.detail-section dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.detail-section ul {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n}\n\n.detail-section ul li {\n    padding: 8px 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    display: flex;\n    align-items: flex-start;\n    gap: 8px;\n}\n\n.detail-section ul li::before {\n    content: '•';\n    color: var(--accent-color);\n    font-weight: bold;\n    font-size: 1.2em;\n}\n\n/* ============================================================================\n   RESPONSIVE\n   ============================================================================ */\n\n@media (max-width: 768px) {\n    .app-modal-overlay {\n        padding: 10px;\n    }\n\n    .app-modal {\n        max-height: 95vh;\n    }\n\n    .app-modal-header {\n        padding: 16px;\n    }\n\n    .app-modal-title {\n        font-size: 1.25rem;\n    }\n\n    .app-modal-body {\n        padding: 16px;\n    }\n\n    .form-row {\n        grid-template-columns: 1fr;\n    }\n\n    .client-info-grid dl {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .client-info-grid dt {\n        font-weight: 600;\n        color: var(--text-primary);\n    }\n\n    .policy-details-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .files-grid {\n        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\n    }\n\n    .data-table {\n        font-size: 0.875rem;\n    }\n\n    .data-table th,\n    .data-table td {\n        padding: 10px 12px;\n    }\n}\n\n/* Dark theme adjustments */\n@media (prefers-color-scheme: dark) {\n    .app-modal-overlay {\n        background: rgba(0, 0, 0, 0.8);\n    }\n\n    .app-modal {\n        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);\n    }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/dashboard-actions.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Dashboard Actions Styles\n * Estilos para modales, tabs y componentes de acciones\n */\n\n/* ============================================================================\n   UPLOAD & POLICY PROCESSING - Sistema de subida de pólizas\n   ============================================================================ */\n\n.upload-instructions {\n    margin-bottom: 20px;\n}\n\n.info-box {\n    display: flex;\n    gap: 15px;\n    padding: 15px;\n    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n    border-radius: 8px;\n    color: white;\n}\n\n.info-box svg {\n    flex-shrink: 0;\n    margin-top: 2px;\n}\n\n.info-box ul {\n    margin: 10px 0;\n    padding-left: 20px;\n}\n\n.info-box li {\n    margin: 5px 0;\n}\n\n/* Progress Bar */\n#upload-progress {\n    margin: 20px 0;\n    padding: 15px;\n    background: #f8f9fa;\n    border-radius: 8px;\n}\n\n.progress-bar {\n    width: 100%;\n    height: 8px;\n    background: #e9ecef;\n    border-radius: 4px;\n    overflow: hidden;\n    margin-bottom: 10px;\n}\n\n.progress-fill {\n    height: 100%;\n    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);\n    transition: width 0.3s ease;\n    border-radius: 4px;\n}\n\n#progress-text {\n    font-size: 14px;\n    color: #6c757d;\n    text-align: center;\n    margin: 0;\n}\n\n/* Extracted Data Preview */\n#extracted-data-preview {\n    margin: 20px 0;\n    padding: 20px;\n    background: #f8f9fa;\n    border-radius: 8px;\n    border: 2px solid #dee2e6;\n}\n\n.extracted-data-grid {\n    display: grid;\n    gap: 15px;\n    margin-bottom: 15px;\n}\n\n.data-field {\n    display: flex;\n    flex-direction: column;\n    gap: 5px;\n}\n\n.data-field label {\n    font-size: 14px;\n    font-weight: 500;\n    color: #495057;\n}\n\n.data-field input,\n.data-field select {\n    padding: 8px 12px;\n    border: 1px solid #ced4da;\n    border-radius: 4px;\n    font-size: 14px;\n}\n\n.confidence-note {\n    padding: 10px 15px;\n    border-radius: 6px;\n    font-size: 14px;\n    margin: 0;\n}\n\n.confidence-note.warning {\n    background: #fff3cd;\n    color: #856404;\n    border: 1px solid #ffeeba;\n}\n\n.confidence-note.info {\n    background: #d1ecf1;\n    color: #0c5460;\n    border: 1px solid #bee5eb;\n}\n\n/* Success Summary */\n.success-summary {\n    padding: 20px;\n    background: #d4edda;\n    border: 1px solid #c3e6cb;\n    border-radius: 8px;\n    margin-bottom: 20px;\n}\n\n.success-summary p {\n    margin: 8px 0;\n    font-size: 14px;\n    color: #155724;\n}\n\n.success-message {\n    margin-top: 15px;\n    padding-top: 15px;\n    border-top: 1px solid #c3e6cb;\n    font-weight: 500;\n}\n\n/* ============================================================================\n   MODAL SYSTEM - MOVIDO A modals-unified.css\n   Los estilos de modales ahora están centralizados en modals-unified.css\n   ============================================================================ */\n\n/* Modal sizes - Extensiones específicas para dashboard-actions */\n/* Modal sizes - Extensiones específicas para dashboard-actions */\n.app-modal-sm {\n    width: 100%;\n    max-width: 400px;\n}\n\n.app-modal-md {\n    width: 100%;\n    max-width: 600px;\n}\n\n.app-modal-lg {\n    width: 100%;\n    max-width: 900px;\n}\n\n.app-modal-xl {\n    width: 100%;\n    max-width: 1200px;\n}\n\n/* Asegurar que los modales tengan colores correctos */\n.app-modal {\n    background: #ffffff;\n    color: #1a1a1a;\n}\n\n.app-modal-header {\n    background: #f8f9fa;\n    color: #1a1a1a;\n}\n\n.app-modal-body {\n    background: #ffffff;\n    color: #333;\n}\n\n[data-theme=\"dark-forest\"] .app-modal,\nbody.dark-forest .app-modal {\n    background: var(--theme-surface-bg, #0a2920);\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n[data-theme=\"dark-forest\"] .app-modal-header,\nbody.dark-forest .app-modal-header {\n    background: var(--theme-surface-bg-deep, #061c17);\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n[data-theme=\"dark-forest\"] .app-modal-body,\nbody.dark-forest .app-modal-body {\n    background: var(--theme-surface-bg, #0a2920);\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n/* Forms dentro de modales - Estilos específicos para dashboard */\n.app-modal form {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.form-group {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.form-group label {\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-primary);\n}\n\n.form-group input,\n.form-group select,\n.form-group textarea {\n    padding: 12px 16px;\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    background: var(--background-secondary);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    transition: all 0.2s;\n}\n\n.form-group input:focus,\n.form-group select:focus,\n.form-group textarea:focus {\n    outline: none;\n    border-color: var(--accent-color);\n    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);\n}\n\n.form-group small {\n    font-size: 0.75rem;\n    color: var(--text-secondary);\n}\n\n.form-row {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.form-actions {\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n    padding-top: 8px;\n}\n\n/* ============================================================================\n   CLIENT DETAILS TABS - Sistema de tabs para detalles de cliente\n   ============================================================================ */\n\n.client-detail-tabs {\n    display: flex;\n    gap: 8px;\n    border-bottom: 2px solid var(--border-color);\n    margin-bottom: 24px;\n    padding-bottom: 0;\n    overflow-x: auto;\n    scrollbar-width: thin;\n}\n\n.client-detail-tabs::-webkit-scrollbar {\n    height: 4px;\n}\n\n.client-detail-tabs::-webkit-scrollbar-thumb {\n    background: var(--border-color);\n    border-radius: 2px;\n}\n\n.tab-btn {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 12px 16px;\n    background: transparent;\n    border: none;\n    border-bottom: 3px solid transparent;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s;\n    white-space: nowrap;\n    position: relative;\n    margin-bottom: -2px;\n}\n\n.tab-btn svg {\n    flex-shrink: 0;\n}\n\n.tab-btn:hover {\n    color: var(--text-primary);\n    background: var(--background-tertiary);\n}\n\n.tab-btn.active {\n    color: var(--accent-color);\n    border-bottom-color: var(--accent-color);\n}\n\n.client-detail-content {\n    min-height: 400px;\n}\n\n.tab-content {\n    display: none;\n    animation: fadeIn 0.2s ease;\n}\n\n.tab-content.active {\n    display: block;\n}\n\n/* Client info grid */\n.client-info-grid {\n    background: var(--background-secondary);\n    padding: 24px;\n    border-radius: 12px;\n}\n\n.client-info-grid dl {\n    display: grid;\n    grid-template-columns: 140px 1fr;\n    gap: 16px 24px;\n    margin: 0;\n}\n\n.client-info-grid dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.875rem;\n}\n\n.client-info-grid dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n/* Data table */\n.data-table {\n    width: 100%;\n    border-collapse: collapse;\n    background: var(--background-secondary);\n    border-radius: 12px;\n    overflow: hidden;\n}\n\n.data-table thead {\n    background: var(--background-tertiary);\n}\n\n.data-table th {\n    padding: 12px 16px;\n    text-align: left;\n    font-weight: 600;\n    font-size: 0.8125rem;\n    color: var(--text-secondary);\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.data-table td {\n    padding: 16px;\n    border-top: 1px solid var(--border-color);\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.data-table tbody tr:hover {\n    background: var(--background-tertiary);\n}\n\n/* Files grid */\n.files-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n    gap: 16px;\n}\n\n.file-card {\n    background: var(--background-secondary);\n    border: 1px solid var(--border-color);\n    border-radius: 12px;\n    padding: 20px;\n    text-align: center;\n    transition: all 0.2s;\n    cursor: pointer;\n}\n\n.file-card:hover {\n    background: var(--background-tertiary);\n    border-color: var(--accent-color);\n    transform: translateY(-2px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.file-card svg {\n    color: var(--accent-color);\n    margin-bottom: 12px;\n}\n\n.file-card p {\n    margin: 8px 0 4px;\n    font-weight: 500;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.file-card small {\n    color: var(--text-secondary);\n    font-size: 0.75rem;\n}\n\n/* ============================================================================\n   POLICY DETAILS - Detalles de póliza\n   ============================================================================ */\n\n.policy-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 24px;\n    margin-bottom: 24px;\n}\n\n.detail-section {\n    background: var(--background-secondary);\n    padding: 20px;\n    border-radius: 12px;\n    border: 1px solid var(--border-color);\n}\n\n.detail-section h3 {\n    margin: 0 0 16px;\n    font-size: 1rem;\n    font-weight: 600;\n    color: var(--text-primary);\n    border-bottom: 2px solid var(--accent-color);\n    padding-bottom: 8px;\n}\n\n.detail-section dl {\n    display: grid;\n    gap: 12px;\n    margin: 0;\n}\n\n.detail-section dt {\n    font-weight: 500;\n    color: var(--text-secondary);\n    font-size: 0.8125rem;\n    margin-bottom: 4px;\n}\n\n.detail-section dd {\n    margin: 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n}\n\n.detail-section ul {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n}\n\n.detail-section ul li {\n    padding: 8px 0;\n    color: var(--text-primary);\n    font-size: 0.9375rem;\n    display: flex;\n    align-items: flex-start;\n    gap: 8px;\n}\n\n.detail-section ul li::before {\n    content: '•';\n    color: var(--accent-color);\n    font-weight: bold;\n    font-size: 1.2em;\n}\n\n/* ============================================================================\n   RESPONSIVE\n   ============================================================================ */\n\n@media (max-width: 768px) {\n    .app-modal-overlay {\n        padding: 10px;\n    }\n\n    .app-modal {\n        max-height: 95vh;\n    }\n\n    .app-modal-header {\n        padding: 16px;\n    }\n\n    .app-modal-title {\n        font-size: 1.25rem;\n    }\n\n    .app-modal-body {\n        padding: 16px;\n    }\n\n    .form-row {\n        grid-template-columns: 1fr;\n    }\n\n    .client-info-grid dl {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .client-info-grid dt {\n        font-weight: 600;\n        color: var(--text-primary);\n    }\n\n    .policy-details-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .files-grid {\n        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\n    }\n\n    .data-table {\n        font-size: 0.875rem;\n    }\n\n    .data-table th,\n    .data-table td {\n        padding: 10px 12px;\n    }\n}\n\n/* ============================================================================\n   POLICY SECTIONS - Comprobantes y Claims\n   ============================================================================ */\n\n.policy-section {\n    margin-top: 2rem;\n    padding-top: 1.5rem;\n    border-top: 1px solid var(--border-color);\n}\n\n.policy-section h3 {\n    font-size: 1.125rem;\n    margin-bottom: 1rem;\n    color: var(--text-primary);\n}\n\n.receipts-list,\n.claims-list {\n    display: flex;\n    flex-direction: column;\n    gap: 0.75rem;\n}\n\n.receipt-item,\n.claim-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 1rem;\n    background: var(--background-secondary);\n    border-radius: 8px;\n    border: 1px solid var(--border-color);\n    transition: all 0.2s;\n}\n\n.receipt-item:hover,\n.claim-item:hover {\n    background: var(--background-tertiary);\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n}\n\n.receipt-info,\n.claim-info {\n    display: flex;\n    flex-direction: column;\n    gap: 0.25rem;\n    flex: 1;\n}\n\n.receipt-info strong,\n.claim-info strong {\n    font-size: 0.938rem;\n    color: var(--text-primary);\n}\n\n.receipt-info small,\n.claim-info small {\n    font-size: 0.813rem;\n    color: var(--text-secondary);\n}\n\n.receipt-item .badge,\n.claim-item .badge {\n    margin-top: 0.25rem;\n    align-self: flex-start;\n}\n\n.detail-group {\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n}\n\n.detail-group.full-width {\n    grid-column: 1 / -1;\n}\n\n.detail-group label {\n    font-size: 0.875rem;\n    color: #555;\n    font-weight: 500;\n}\n\n[data-theme=\"dark-forest\"] .detail-group label {\n    color: #a0a0a0;\n}\n\n/* Receipt review modal styles */\n.receipt-preview {\n    margin-bottom: 1.5rem;\n}\n\n.receipt-image-placeholder {\n    text-align: center;\n    padding: 2rem;\n    background: #f8f9fa;\n    border-radius: 8px;\n    margin-bottom: 1rem;\n}\n\n[data-theme=\"dark-forest\"] .receipt-image-placeholder {\n    background: rgba(15, 43, 36, 0.4);\n}\n\n.receipt-image-placeholder svg {\n    margin: 0 auto;\n    color: #666;\n}\n\n[data-theme=\"dark-forest\"] .receipt-image-placeholder svg {\n    color: #a0a0a0;\n}\n\n.receipt-image-placeholder p {\n    margin-top: 1rem;\n    color: #666;\n}\n\n[data-theme=\"dark-forest\"] .receipt-image-placeholder p {\n    color: #a0a0a0;\n}\n\n.receipt-details {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 1rem;\n    margin-bottom: 1rem;\n}\n\n/* Dark theme adjustments */\n@media (prefers-color-scheme: dark) {\n    .app-modal-overlay {\n        background: rgba(0, 0, 0, 0.8);\n    }\n\n    .app-modal {\n        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4658,7 +5019,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 .empty-state {
     text-align: center;
     padding: 40px 20px;
-    color: #999;
+    color: #666;
     font-style: italic;
 }
 
@@ -4711,12 +5072,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
     display: flex;
     gap: 12px;
     font-size: 13px;
-    color: #999;
+    color: #666;
     flex-wrap: wrap;
 }
 
 .client-meta .text-muted {
-    color: #999;
+    color: #666;
     font-style: italic;
 }
 
@@ -4979,7 +5340,7 @@ body.dark-forest .empty-state {
         align-items: flex-start;
         gap: 12px;
     }
-}`, "",{"version":3,"sources":["webpack://./styles/dashboard-components.css"],"names":[],"mappings":"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","sourcesContent":["/* ============================================\n   DASHBOARD COMPONENTS\n   NOTA: Estilos de modales movidos a modals-unified.css\n   ============================================ */\n\n/* Loading and Empty States */\n.loading-state,\n.empty-state {\n    text-align: center;\n    padding: 40px 20px;\n    color: #999;\n    font-style: italic;\n}\n\n/* Client Item */\n.client-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 16px;\n    border-bottom: 1px solid #eee;\n    border-left: 3px solid transparent;\n    transition: background 0.2s, border-left-color 0.2s;\n}\n\n.client-item:hover {\n    background: #f9f9f9;\n}\n\n/* Assigned client styling */\n.client-item.client-assigned {\n    border-left-color: var(--theme-accent-color, #8b2348);\n    background: rgba(139, 35, 72, 0.02);\n}\n\n.client-item.client-assigned:hover {\n    background: rgba(139, 35, 72, 0.05);\n}\n\n.client-item:last-child {\n    border-bottom: none;\n}\n\n.client-info h4 {\n    margin: 0 0 4px 0;\n    color: #333;\n    font-size: 16px;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.client-info p {\n    margin: 0 0 8px 0;\n    color: #666;\n    font-size: 14px;\n}\n\n.client-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 13px;\n    color: #999;\n    flex-wrap: wrap;\n}\n\n.client-meta .text-muted {\n    color: #999;\n    font-style: italic;\n}\n\n.client-actions {\n    display: flex;\n    gap: 8px;\n}\n\n/* Claim Item */\n.claim-item {\n    padding: 16px;\n    border-bottom: 1px solid #eee;\n    transition: background 0.2s;\n}\n\n.claim-item:hover {\n    background: #f9f9f9;\n}\n\n.claim-item:last-child {\n    border-bottom: none;\n}\n\n.claim-info h4 {\n    margin: 0 0 4px 0;\n    color: #333;\n    font-size: 16px;\n}\n\n.claim-info p {\n    margin: 0 0 8px 0;\n    color: #666;\n    font-size: 14px;\n}\n\n.claim-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 13px;\n}\n\n/* Payment Item */\n.payment-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 12px 0;\n    border-bottom: 1px solid #eee;\n}\n\n.payment-item:last-child {\n    border-bottom: none;\n}\n\n.payment-info {\n    display: flex;\n    gap: 16px;\n    align-items: center;\n}\n\n.payment-date {\n    color: #666;\n    font-size: 14px;\n    margin: 0;\n}\n\n.payment-amount {\n    font-weight: 600;\n    font-size: 16px;\n    color: #333;\n    margin: 0;\n}\n\n/* ============================================\n   DARK FOREST THEME OVERRIDES\n   NOTA: Estilos de modales dark theme en modals-unified.css\n   ============================================ */\n\n/* Client Details Grid - Dark Theme (estilos específicos de dashboard) */\nbody.dark-forest .client-details-grid .detail-item label {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .client-details-grid .detail-item .value {\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-details-grid .detail-item .badge {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-details-grid .detail-item .badge.active {\n    background: rgba(107, 144, 128, 0.3);\n    color: var(--accent-color);\n}\n\n/* Policy Items - Dark Theme */\nbody.dark-forest .policy-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .policy-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(107, 144, 128, 0.3);\n}\n\nbody.dark-forest .policy-number {\n    color: var(--text-color);\n}\n\nbody.dark-forest .policy-type {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .policy-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .policy-status.status-active {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .policy-status.status-pending {\n    background: rgba(255, 152, 0, 0.2);\n    color: #ffb74d;\n}\n\nbody.dark-forest .policy-status.status-expired {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Payment Items - Dark Theme */\nbody.dark-forest .payment-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .payment-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .payment-date {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .payment-amount {\n    color: var(--text-color);\n}\n\nbody.dark-forest .payment-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .payment-status.status-paid {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .payment-status.status-pending {\n    background: rgba(255, 193, 7, 0.2);\n    color: #ffd54f;\n}\n\nbody.dark-forest .payment-status.status-overdue {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Claim Items - Dark Theme */\nbody.dark-forest .claim-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .claim-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .claim-number {\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-date {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .claim-amount {\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-status.status-approved {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .claim-status.status-processing {\n    background: rgba(33, 150, 243, 0.2);\n    color: #64b5f6;\n}\n\nbody.dark-forest .claim-status.status-rejected {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Client Items List - Dark Theme */\nbody.dark-forest .client-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .client-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(107, 144, 128, 0.3);\n}\n\nbody.dark-forest .client-name {\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-email,\nbody.dark-forest .client-phone {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .client-badge {\n    background: rgba(107, 144, 128, 0.2);\n    color: var(--accent-color);\n}\n\n/* Empty States - Dark Theme */\nbody.dark-forest .empty-state {\n    color: var(--text-muted);\n}\n\n/* Responsive */\n@media (max-width: 768px) {\n    .modal-content {\n        width: 95%;\n        max-height: 90vh;\n    }\n\n    .client-details-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .client-item {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 12px;\n    }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/dashboard-components.css"],"names":[],"mappings":"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","sourcesContent":["/* ============================================\n   DASHBOARD COMPONENTS\n   NOTA: Estilos de modales movidos a modals-unified.css\n   ============================================ */\n\n/* Loading and Empty States */\n.loading-state,\n.empty-state {\n    text-align: center;\n    padding: 40px 20px;\n    color: #666;\n    font-style: italic;\n}\n\n/* Client Item */\n.client-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 16px;\n    border-bottom: 1px solid #eee;\n    border-left: 3px solid transparent;\n    transition: background 0.2s, border-left-color 0.2s;\n}\n\n.client-item:hover {\n    background: #f9f9f9;\n}\n\n/* Assigned client styling */\n.client-item.client-assigned {\n    border-left-color: var(--theme-accent-color, #8b2348);\n    background: rgba(139, 35, 72, 0.02);\n}\n\n.client-item.client-assigned:hover {\n    background: rgba(139, 35, 72, 0.05);\n}\n\n.client-item:last-child {\n    border-bottom: none;\n}\n\n.client-info h4 {\n    margin: 0 0 4px 0;\n    color: #333;\n    font-size: 16px;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.client-info p {\n    margin: 0 0 8px 0;\n    color: #666;\n    font-size: 14px;\n}\n\n.client-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 13px;\n    color: #666;\n    flex-wrap: wrap;\n}\n\n.client-meta .text-muted {\n    color: #666;\n    font-style: italic;\n}\n\n.client-actions {\n    display: flex;\n    gap: 8px;\n}\n\n/* Claim Item */\n.claim-item {\n    padding: 16px;\n    border-bottom: 1px solid #eee;\n    transition: background 0.2s;\n}\n\n.claim-item:hover {\n    background: #f9f9f9;\n}\n\n.claim-item:last-child {\n    border-bottom: none;\n}\n\n.claim-info h4 {\n    margin: 0 0 4px 0;\n    color: #333;\n    font-size: 16px;\n}\n\n.claim-info p {\n    margin: 0 0 8px 0;\n    color: #666;\n    font-size: 14px;\n}\n\n.claim-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 13px;\n}\n\n/* Payment Item */\n.payment-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 12px 0;\n    border-bottom: 1px solid #eee;\n}\n\n.payment-item:last-child {\n    border-bottom: none;\n}\n\n.payment-info {\n    display: flex;\n    gap: 16px;\n    align-items: center;\n}\n\n.payment-date {\n    color: #666;\n    font-size: 14px;\n    margin: 0;\n}\n\n.payment-amount {\n    font-weight: 600;\n    font-size: 16px;\n    color: #333;\n    margin: 0;\n}\n\n/* ============================================\n   DARK FOREST THEME OVERRIDES\n   NOTA: Estilos de modales dark theme en modals-unified.css\n   ============================================ */\n\n/* Client Details Grid - Dark Theme (estilos específicos de dashboard) */\nbody.dark-forest .client-details-grid .detail-item label {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .client-details-grid .detail-item .value {\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-details-grid .detail-item .badge {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-details-grid .detail-item .badge.active {\n    background: rgba(107, 144, 128, 0.3);\n    color: var(--accent-color);\n}\n\n/* Policy Items - Dark Theme */\nbody.dark-forest .policy-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .policy-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(107, 144, 128, 0.3);\n}\n\nbody.dark-forest .policy-number {\n    color: var(--text-color);\n}\n\nbody.dark-forest .policy-type {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .policy-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .policy-status.status-active {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .policy-status.status-pending {\n    background: rgba(255, 152, 0, 0.2);\n    color: #ffb74d;\n}\n\nbody.dark-forest .policy-status.status-expired {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Payment Items - Dark Theme */\nbody.dark-forest .payment-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .payment-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .payment-date {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .payment-amount {\n    color: var(--text-color);\n}\n\nbody.dark-forest .payment-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .payment-status.status-paid {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .payment-status.status-pending {\n    background: rgba(255, 193, 7, 0.2);\n    color: #ffd54f;\n}\n\nbody.dark-forest .payment-status.status-overdue {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Claim Items - Dark Theme */\nbody.dark-forest .claim-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .claim-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\nbody.dark-forest .claim-number {\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-date {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .claim-amount {\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-status {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-color);\n}\n\nbody.dark-forest .claim-status.status-approved {\n    background: rgba(76, 175, 80, 0.2);\n    color: #81c784;\n}\n\nbody.dark-forest .claim-status.status-processing {\n    background: rgba(33, 150, 243, 0.2);\n    color: #64b5f6;\n}\n\nbody.dark-forest .claim-status.status-rejected {\n    background: rgba(244, 67, 54, 0.2);\n    color: #e57373;\n}\n\n/* Client Items List - Dark Theme */\nbody.dark-forest .client-item {\n    background: rgba(255, 255, 255, 0.03);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\nbody.dark-forest .client-item:hover {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(107, 144, 128, 0.3);\n}\n\nbody.dark-forest .client-name {\n    color: var(--text-color);\n}\n\nbody.dark-forest .client-email,\nbody.dark-forest .client-phone {\n    color: var(--text-muted);\n}\n\nbody.dark-forest .client-badge {\n    background: rgba(107, 144, 128, 0.2);\n    color: var(--accent-color);\n}\n\n/* Empty States - Dark Theme */\nbody.dark-forest .empty-state {\n    color: var(--text-muted);\n}\n\n/* Responsive */\n@media (max-width: 768px) {\n    .modal-content {\n        width: 95%;\n        max-height: 90vh;\n    }\n\n    .client-details-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .client-item {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 12px;\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -5150,7 +5511,7 @@ body[data-page="admin-dashboard"] .navbar-header {
 }
 
 .dashboard-section .dashboard-header>div:first-child p {
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: var(--dashboard-text-md);
     margin: 0;
 }
@@ -5158,7 +5519,7 @@ body[data-page="admin-dashboard"] .navbar-header {
 .dashboard-section .dashboard-header .btn {
     padding: 12px 26px;
     background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     border: 1px solid var(--theme-accent-border);
     border-radius: 12px;
     cursor: pointer;
@@ -5269,7 +5630,7 @@ html[data-theme="dark-forest"] .rail-surface {
     background: transparent;
     border: 0;
     box-shadow: none;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .sidebar-block {
@@ -5287,7 +5648,7 @@ html[data-theme="dark-forest"] .sidebar-block {
 
 .dashboard-section .sidebar-header {
     padding: 14px 16px;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.18);
     text-align: center;
     flex-shrink: 0;
 }
@@ -5334,21 +5695,21 @@ html[data-theme="dark-forest"] .sidebar-block {
 }
 
 .sidebar-branding .brand-text-sidebar .brand-name {
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     font-size: var(--dashboard-text-md);
     letter-spacing: 0.04em;
     font-weight: var(--dashboard-font-bold);
 }
 
 .sidebar-branding .brand-text-sidebar .brand-tagline {
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: var(--dashboard-text-xs);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
 .dashboard-section .sidebar-nav {
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     padding: 8px 0;
     display: flex;
     flex-direction: column;
@@ -5383,7 +5744,7 @@ html[data-theme="dark-forest"] .sidebar-widget-group {
     font-size: var(--dashboard-text-sm);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     margin-bottom: 6px;
     font-weight: var(--dashboard-font-bold);
 }
@@ -5398,7 +5759,7 @@ html[data-theme="dark-forest"] .sidebar-widget-group {
     border-radius: 12px;
     border: 1px solid rgba(0, 0, 0, 0.10);
     background: rgba(255, 255, 255, 0.45) !important;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: var(--dashboard-font-semibold);
@@ -5413,7 +5774,7 @@ html[data-theme="dark-forest"] .client-pill,
 html[data-theme="dark-forest"] .widget-mini-item {
     background: rgba(10, 22, 19, 0.35) !important;
     border: 1px solid rgba(76, 201, 191, 0.16) !important;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     box-shadow: none !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -5429,7 +5790,7 @@ html[data-theme="dark-forest"] .badge.badge-warning,
 html[data-theme="dark-forest"] .badge.badge-success {
     background: linear-gradient(135deg, rgba(76, 201, 191, 0.18), rgba(155, 89, 182, 0.28));
     border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.32);
 }
 
@@ -5477,7 +5838,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     align-items: center;
     gap: 12px;
     padding: 10px 16px;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     text-decoration: none;
     transition: all 0.2s ease;
     position: relative;
@@ -5498,7 +5859,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 
 .dashboard-section .nav-item:hover,
 .dashboard-section .nav-item.active {
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     background: var(--theme-accent-bg-soft);
 }
 
@@ -5541,7 +5902,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     box-shadow: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -5553,7 +5914,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     font-size: var(--dashboard-text-base);
     letter-spacing: 0.3px;
     text-transform: uppercase;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-weight: var(--dashboard-font-bold);
 }
 
@@ -5566,7 +5927,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .sidebar-widget ul {
     margin: 0;
     padding-left: 16px;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     display: grid;
     gap: 6px;
     font-size: var(--dashboard-text-base);
@@ -5579,7 +5940,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 
 .sidebar-widget .contact-chip {
     background: rgba(255, 255, 255, 0.85);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     border: 1px solid rgba(0, 0, 0, 0.10);
     padding: 8px 10px;
     border-radius: 12px;
@@ -5770,7 +6131,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 }
 
 .dashboard-section .mimic-header .top-left h1 {
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .dashboard-section .top-right {
@@ -5820,7 +6181,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     outline: none;
     width: 100%;
     font-size: var(--dashboard-text-base);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .search-bar input::placeholder {
@@ -5845,7 +6206,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .icon-pill:hover {
@@ -5867,7 +6228,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 
 .badge.ghost {
     background: rgba(255, 255, 255, 0.94);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     border: 1px solid rgba(0, 0, 0, 0.12);
     backdrop-filter: blur(8px);
 }
@@ -6048,7 +6409,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     font-weight: var(--dashboard-font-bold);
     color: var(--text-primary);
     margin: 0 0 4px 0;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 .dashboard-section .text-muted {
@@ -6229,7 +6590,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .link-btn.subtle {
     margin-top: 6px;
     font-weight: var(--dashboard-font-semibold);
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 .link-btn.subtle:hover {
@@ -6258,7 +6619,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .stat-summary .summary-title {
     margin: 0 0 6px;
     font-weight: var(--dashboard-font-bold);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .stat-summary .summary-list {
@@ -6423,12 +6784,12 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .donut-title {
     font-size: var(--dashboard-text-lg);
     font-weight: var(--dashboard-font-extrabold);
-    fill: var(--theme-text-primary);
+    fill: var(--dashboard-text-primary);
 }
 
 .donut-sub {
     font-size: var(--dashboard-text-sm);
-    fill: var(--theme-text-secondary);
+    fill: var(--dashboard-text-secondary);
     letter-spacing: 0.04em;
 }
 
@@ -6441,12 +6802,12 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 
 .donut-heading {
     font-weight: var(--dashboard-font-bold);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .donut-desc {
     margin: 0;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: var(--dashboard-text-base);
 }
 
@@ -6460,7 +6821,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-weight: 600;
 }
 
@@ -6718,7 +7079,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     padding: 6px;
     text-align: center;
     font-weight: 600;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: 11px;
     text-transform: uppercase;
 }
@@ -6729,7 +7090,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     background: rgba(255, 255, 255, 0.12);
     text-align: center;
     font-weight: 500;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     border: 1px solid rgba(255, 255, 255, 0.12);
     position: relative;
     cursor: pointer;
@@ -6783,18 +7144,49 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 }
 
 .calendar-card .payment-slot {
-    display: grid;
-    grid-template-columns: 70px 1fr 80px;
-    gap: 8px;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 8px;
     padding: 10px 12px;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    color: var(--theme-text-primary);
-    cursor: pointer;
+    color: var(--dashboard-text-primary);
     transition: all 0.2s ease;
     font-size: 13px;
+}
+
+.calendar-card .payment-slot-info {
+    display: grid;
+    grid-template-columns: 70px 1fr 80px;
+    gap: 8px;
+    align-items: center;
+    flex: 1;
+    cursor: pointer;
+}
+
+.calendar-card .payment-receipt-btn {
+    flex-shrink: 0;
+    padding: 6px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: var(--theme-accent-bg-soft, rgba(139, 35, 72, 0.08));
+    border: 1px solid var(--theme-accent-border-subtle, rgba(139, 35, 72, 0.18));
+    color: var(--theme-accent-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calendar-card .payment-receipt-btn:hover {
+    background: var(--theme-accent-color);
+    border-color: var(--theme-accent-color);
+    color: #fff;
+    transform: scale(1.1);
 }
 
 .calendar-card .payment-slot:hover {
@@ -6823,12 +7215,14 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     font-weight: 600;
     text-transform: uppercase;
     font-size: 11px;
-    color: var(--theme-text-secondary);
+    color: #64748b;
+    /* Slate-500 - legible en tema claro */
 }
 
 .calendar-card .payment-policy {
     font-size: 12px;
-    color: var(--theme-text-primary);
+    color: #1e293b;
+    /* Slate-800 - oscuro y legible */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -6837,13 +7231,30 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .calendar-card .payment-amount {
     text-align: right;
     font-weight: 700;
-    color: var(--theme-accent-color);
+    color: #8b2348;
+    /* Brand maroon - alto contraste */
+}
+
+/* Dark-forest overrides para calendario */
+html[data-theme="dark-forest"] .calendar-card .payment-date {
+    color: #94a3b8;
+    /* Slate-400 */
+}
+
+html[data-theme="dark-forest"] .calendar-card .payment-policy {
+    color: #f1f5f9;
+    /* Slate-100 */
+}
+
+html[data-theme="dark-forest"] .calendar-card .payment-amount {
+    color: #fbbf24;
+    /* Amber-400 - visible en oscuro */
 }
 
 .calendar-card .calendar-error {
     padding: 20px;
     text-align: center;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: 13px;
 }
 
@@ -6853,7 +7264,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .cal-slot.accent {
@@ -6871,7 +7282,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .chart-title {
     font-size: 15px;
     font-weight: 700;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     margin: 0;
     display: inline-flex;
     align-items: center;
@@ -6889,7 +7300,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     align-items: center;
     gap: 6px;
     font-size: 14px;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 .chart-legend-dot {
@@ -6915,6 +7326,20 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     inset: 0;
     background: linear-gradient(135deg, rgba(139, 35, 72, 0.14), rgba(155, 89, 182, 0.12));
     opacity: 0.55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.sparkline-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.sparkline-svg polyline {
+    vector-effect: non-scaling-stroke;
 }
 
 .chart-metrics {
@@ -6938,13 +7363,13 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 
 .chart-metric .label {
     font-size: 14px;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 .chart-metric .value {
     font-size: 16px;
     font-weight: 700;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .list-card .mini-table {
@@ -6969,14 +7394,14 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     background: rgba(255, 255, 255, 0.54);
     border: 1px solid rgba(0, 0, 0, 0.04);
     font-weight: 700;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 0.08em;
 }
 
 .mini-table-row span {
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     font-size: 14px;
 }
 
@@ -7021,7 +7446,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .contact-chip {
     border: 1px solid rgba(0, 0, 0, 0.06);
     background: linear-gradient(145deg, rgba(118, 75, 162, 0.08), rgba(102, 126, 234, 0.08));
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     padding: 8px 12px;
     border-radius: 999px;
     font-weight: 700;
@@ -7111,7 +7536,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     backdrop-filter: blur(12px) saturate(1.08);
     -webkit-backdrop-filter: blur(12px) saturate(1.08);
     margin-bottom: 12px;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
 }
 
@@ -7135,7 +7560,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .dashboard-card>h3 {
     font-family: 'Cinzel', serif;
     font-size: 1.25rem;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     margin: 0 0 16px 0;
 }
 
@@ -7152,7 +7577,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .card-header h3 {
     font-family: 'Cinzel', serif;
     font-size: 1.25rem;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     margin: 0;
 }
 
@@ -7180,7 +7605,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     background: var(--acrylic-bg-light);
     border: 1px solid var(--theme-accent-border-subtle);
     border-radius: 12px;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .task-title,
@@ -7194,7 +7619,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .alert-meta,
 .activity-meta {
     margin: 0;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: 0.9rem;
 }
 
@@ -7249,14 +7674,14 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 
 .badge-light {
     background: rgba(255, 255, 255, 0.12);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     border: 1px solid var(--theme-surface-border);
 }
 
 .prelaunch-checklist {
     padding-left: 18px;
     margin: 0;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 .prelaunch-checklist li {
@@ -7312,13 +7737,13 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .policy-info h4,
 .quote-info h4 {
     font-size: 1.05rem;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     margin: 0 0 6px 0;
 }
 
 .policy-info p,
 .quote-info p {
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: 0.92rem;
     margin: 0 0 10px 0;
 }
@@ -7329,12 +7754,12 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     flex-wrap: wrap;
     gap: 10px;
     font-size: 0.85rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 .quote-date {
     font-size: 0.85rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 .recent-docs-list {
@@ -7363,11 +7788,11 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 
 .doc-meta strong {
     font-size: 14px;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .doc-meta span {
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: 12px;
 }
 
@@ -7390,66 +7815,10 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     display: flex;
 }
 
-.modal-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-}
-
-.modal-card {
-    position: relative;
-    width: min(420px, 92vw);
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.88));
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px) saturate(1.05);
-    -webkit-backdrop-filter: blur(10px) saturate(1.05);
-}
-
-.modal-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 10px;
-}
-
-.modal-card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.contact-detail {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 10px 12px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    border-radius: 12px;
-}
-
-.contact-detail span {
-    color: var(--theme-text-secondary);
-    font-size: 13px;
-}
-
-.contact-detail strong {
-    color: var(--theme-text-primary);
-}
-
-.modal-card-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
+/* ============================================================================
+   MODALES: Todos los estilos están centralizados en modals-unified.css
+   No duplicar estilos aquí - usar modals-unified.css como única fuente
+   ============================================================================ */
 
 /* Badges */
 .badge {
@@ -7506,14 +7875,14 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .payments-table th,
 .clients-table th {
     font-weight: 700;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     background: var(--theme-navlink-active-bg);
     font-size: 0.9rem;
 }
 
 .payments-table td,
 .clients-table td {
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: 0.95rem;
 }
 
@@ -7539,12 +7908,17 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 
 .client-name {
     font-weight: 700;
-    color: var(--theme-text-primary);
+    color: #1a1a1a;
+}
+
+[data-theme="dark-forest"] .client-name,
+body.dark-forest .client-name {
+    color: var(--dashboard-text-primary);
 }
 
 .client-email {
     font-size: 0.85rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 /* Sidebar */
@@ -7583,11 +7957,11 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     font-family: 'Cinzel', serif;
     font-size: 1.15rem;
     margin: 0 0 6px 0;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .agent-info p {
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-size: 0.92rem;
     margin: 0 0 14px 0;
 }
@@ -7604,7 +7978,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
 .agent-contact p {
     margin: 6px 0;
     font-size: 0.92rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 /* Shared stat grid + cards */
@@ -7665,14 +8039,14 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     font-family: 'Cinzel', serif;
     font-size: 2rem;
     font-weight: 700;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     line-height: 1;
     margin-bottom: 6px;
 }
 
 .stat-label {
     font-size: 0.95rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-weight: 500;
 }
 
@@ -7682,7 +8056,7 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     border: 1px solid var(--theme-surface-border);
     border-radius: 10px;
     text-decoration: none;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     font-size: 0.92rem;
     transition: transform 0.2s ease, background 0.2s ease;
     display: flex;
@@ -7731,11 +8105,11 @@ html[data-theme="dark-forest"] .widget-mini-item:hover {
     gap: 12px;
     padding: 10px 0;
     border-bottom: 1px solid var(--theme-surface-border);
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 .commission-row strong {
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 /* Responsive */
@@ -7858,7 +8232,7 @@ html[data-theme="dark-forest"] .dashboard-section,
 html[data-theme="dark-forest"] .agent-dashboard,
 html[data-theme="dark-forest"] .admin-dashboard {
     background: #060b0a;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 /* Sidebar dark theme overrides */
@@ -7973,7 +8347,7 @@ html[data-theme="dark-forest"] .sidebar-widget ul {
 html[data-theme="dark-forest"] .sidebar-widget .contact-chip {
     background: rgba(10, 22, 19, 0.65);
     border: 1px solid rgba(76, 201, 191, 0.16);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     box-shadow: none;
 }
 
@@ -7995,7 +8369,7 @@ html[data-theme="dark-forest"] .agent-dashboard .dashboard-header p,
 html[data-theme="dark-forest"] .agent-dashboard .dashboard-header>div:first-child p,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-header p,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-header>div:first-child p {
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 html[data-theme="dark-forest"] .dashboard-header .btn,
@@ -8035,7 +8409,7 @@ html[data-theme="dark-forest"] .dashboard-section .card .cta,
 html[data-theme="dark-forest"] .dashboard-section .card .cta .btn {
     border: 1px solid rgba(76, 201, 191, 0.32);
     background: radial-gradient(circle at 20% 20%, rgba(76, 201, 191, 0.18), rgba(0, 0, 0, 0.32));
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     transition: all 0.2s ease;
 }
 
@@ -8081,7 +8455,7 @@ html[data-theme="dark-forest"] .dashboard-section .widget-card {
     background: rgba(15, 43, 36, 0.25) !important;
     border: 1px solid rgba(242, 234, 220, 0.12);
     box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     backdrop-filter: blur(20px) saturate(1.2);
     -webkit-backdrop-filter: blur(20px) saturate(1.2);
 }
@@ -8103,7 +8477,7 @@ html[data-theme="dark-forest"] .dashboard-section .activity-item,
 html[data-theme="dark-forest"] .dashboard-section .action-btn,
 html[data-theme="dark-forest"] .dashboard-section .card-badge,
 html[data-theme="dark-forest"] .dashboard-section .widget-card h4 {
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 html[data-theme="dark-forest"] .dashboard-section .policy-info p,
@@ -8113,7 +8487,7 @@ html[data-theme="dark-forest"] .dashboard-section .alert-meta,
 html[data-theme="dark-forest"] .dashboard-section .activity-meta,
 html[data-theme="dark-forest"] .dashboard-section .text-muted,
 html[data-theme="dark-forest"] .dashboard-section .stat-label {
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 html[data-theme="dark-forest"] .dashboard-section .task-item,
@@ -8123,7 +8497,7 @@ html[data-theme="dark-forest"] .dashboard-section .policy-item,
 html[data-theme="dark-forest"] .dashboard-section .quote-item {
     background: linear-gradient(150deg, rgba(10, 26, 36, 0.82), rgba(10, 26, 36, 0.72));
     border: 1px solid rgba(255, 255, 255, 0.14);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 html[data-theme="dark-forest"] .chart-card {
@@ -8132,10 +8506,19 @@ html[data-theme="dark-forest"] .chart-card {
     box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28), 0 12px 28px rgba(139, 35, 72, 0.16);
 }
 
+html[data-theme="dark-forest"] .chart-body {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark-forest"] .sparkline-placeholder {
+    background: transparent;
+}
+
 html[data-theme="dark-forest"] .chart-metric {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.14);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 html[data-theme="dark-forest"] .dashboard-stat-card:hover,
@@ -8150,7 +8533,7 @@ html[data-theme="dark-forest"] .dashboard-stat-card .stat-icon,
 html[data-theme="dark-forest"] .agent-dashboard .dashboard-stat-card .stat-icon,
 html[data-theme="dark-forest"] .admin-dashboard .dashboard-stat-card .stat-icon {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     border: 1px solid var(--theme-accent-border);
     backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));
     -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));
@@ -8167,14 +8550,14 @@ html[data-theme="dark-forest"] .admin-dashboard .stat-value {
 html[data-theme="dark-forest"] .stat-label,
 html[data-theme="dark-forest"] .agent-dashboard .stat-label,
 html[data-theme="dark-forest"] .admin-dashboard .stat-label {
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-weight: 600;
 }
 
 html[data-theme="dark-forest"] .dashboard-card {
     background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
     border: 1px solid var(--theme-accent-border);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);
     backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));
     -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));
@@ -8195,7 +8578,7 @@ html[data-theme="dark-forest"] .floating-header-bar {
 html[data-theme="dark-forest"] .contact-chip {
     background: rgba(76, 201, 191, 0.15) !important;
     border: 1px solid rgba(76, 201, 191, 0.25);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 html[data-theme="dark-forest"] .contact-chip:hover {
@@ -8203,21 +8586,14 @@ html[data-theme="dark-forest"] .contact-chip:hover {
     border-color: rgba(76, 201, 191, 0.35);
 }
 
-html[data-theme="dark-forest"] .doc-item,
-html[data-theme="dark-forest"] .contact-detail {
+html[data-theme="dark-forest"] .doc-item {
     background: rgba(15, 43, 36, 0.2) !important;
     border: 1px solid rgba(242, 234, 220, 0.1);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
-html[data-theme="dark-forest"] .modal-card {
-    background: rgba(15, 43, 36, 0.85) !important;
-    border: 1px solid rgba(242, 234, 220, 0.18);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38);
-    backdrop-filter: blur(28px) saturate(1.3);
-    -webkit-backdrop-filter: blur(28px) saturate(1.3);
-}
+/* Modales: estilos centralizados en modals-unified.css */
 
 html[data-theme="dark-forest"] .donut-track {
     stroke: rgba(255, 255, 255, 0.18);
@@ -8226,7 +8602,7 @@ html[data-theme="dark-forest"] .donut-track {
 html[data-theme="dark-forest"] .mini-table-head {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
 }
 
 html[data-theme="dark-forest"] .search-bar,
@@ -8234,7 +8610,7 @@ html[data-theme="dark-forest"] .icon-pill,
 html[data-theme="dark-forest"] .badge.ghost {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
 }
 
@@ -8244,7 +8620,7 @@ html[data-theme="dark-forest"] .chip-low,
 html[data-theme="dark-forest"] .chip-medium,
 html[data-theme="dark-forest"] .chip-high,
 html[data-theme="dark-forest"] .status-dot {
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 /* Responsive Design */
@@ -8549,7 +8925,7 @@ html[data-theme="dark-forest"] .status-dot {
 .agent-dashboard .hero-description {
     font-size: 0.875rem;
     line-height: 1.5;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     margin: 0;
     flex: 1;
     margin-left: auto;
@@ -8581,7 +8957,7 @@ html[data-theme="dark-forest"] .status-dot {
 .agent-dashboard .client-pill-name {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 /* Botones y pills del sidebar: igualar estilo de quick actions */
@@ -8594,7 +8970,7 @@ html[data-theme="dark-forest"] .status-dot {
     border-radius: 12px;
     border: 1px solid var(--theme-accent-border);
     background: var(--theme-accent-bg-soft);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: var(--dashboard-font-semibold);
@@ -8619,7 +8995,7 @@ html[data-theme="dark-forest"] .status-dot {
     flex: 1;
     font-size: 0.82rem;
     font-weight: 600;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 .agent-dashboard .widget-mini-badge {
@@ -8652,7 +9028,7 @@ html[data-theme="dark-forest"] .status-dot {
     background: var(--theme-accent-bg-soft);
     font-size: 0.78rem;
     font-weight: 700;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
     backdrop-filter: blur(8px);
@@ -8752,14 +9128,14 @@ html[data-theme="dark-forest"] .status-dot {
     display: block;
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     margin-bottom: 2px;
 }
 
 .agent-dashboard .roadmap-step .step-meta {
     display: block;
     font-size: 0.7rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-weight: 500;
 }
 
@@ -8788,13 +9164,13 @@ html[data-theme="dark-forest"] .agent-dashboard .roadmap-body {
     background: rgba(10, 20, 17, 0.88);
     border: 1px solid rgba(76, 201, 191, 0.22);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 html[data-theme="dark-forest"] .agent-dashboard .roadmap-tab {
     background: rgba(12, 24, 20, 0.9);
     border: 1px solid rgba(76, 201, 191, 0.22);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 html[data-theme="dark-forest"] .agent-dashboard .roadmap-tab:hover {
@@ -8805,7 +9181,7 @@ html[data-theme="dark-forest"] .agent-dashboard .roadmap-tab:hover {
 html[data-theme="dark-forest"] .agent-dashboard .roadmap-tab.active {
     background: linear-gradient(135deg, rgba(76, 201, 191, 0.28), rgba(155, 89, 182, 0.24));
     border-color: rgba(76, 201, 191, 0.42);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 html[data-theme="dark-forest"] .agent-dashboard .roadmap-step {
@@ -8845,13 +9221,13 @@ html[data-theme="dark-forest"] .agent-dashboard .roadmap-step.in-progress::befor
 html[data-theme="dark-forest"] .agent-dashboard .roadmap-step .step-action {
     background: rgba(76, 201, 191, 0.12);
     border-color: rgba(76, 201, 191, 0.28);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 html[data-theme="dark-forest"] .agent-dashboard .roadmap-step .step-action:hover {
     background: rgba(76, 201, 191, 0.2);
     border-color: rgba(76, 201, 191, 0.42);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 @keyframes pulse {
@@ -8939,19 +9315,19 @@ html[data-theme="dark-forest"] .agent-dashboard .roadmap-step .step-action:hover
 
 .timeline-header strong {
     font-size: 0.85rem;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     font-weight: 700;
 }
 
 .timeline-date {
     font-size: 0.7rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     font-weight: 600;
 }
 
 .timeline-content>p {
     font-size: 0.75rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     margin: 2px 0 6px 0;
     font-weight: 500;
 }
@@ -9038,7 +9414,7 @@ html[data-theme="dark-forest"] .agent-dashboard .roadmap-step .step-action:hover
 
 .claim-header strong {
     font-size: 0.85rem;
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
     font-weight: 700;
 }
 
@@ -9066,7 +9442,7 @@ html[data-theme="dark-forest"] .agent-dashboard .roadmap-step .step-action:hover
 
 .claim-content>p {
     font-size: 0.75rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     margin: 2px 0;
     font-weight: 500;
 }
@@ -9075,7 +9451,7 @@ html[data-theme="dark-forest"] .agent-dashboard .roadmap-step .step-action:hover
     display: flex;
     gap: 12px;
     font-size: 0.7rem;
-    color: var(--theme-text-secondary);
+    color: var(--dashboard-text-secondary);
     margin-top: 4px;
     font-weight: 600;
 }
@@ -9091,7 +9467,7 @@ html[data-theme="dark-forest"] .claims-interactive-list .claim-item {
     border: 1px solid rgba(76, 201, 191, 0.18);
     border-left: 3px solid rgba(76, 201, 191, 0.42);
     box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
-    color: var(--theme-text-primary);
+    color: var(--dashboard-text-primary);
 }
 
 html[data-theme="dark-forest"] .claims-interactive-list .claim-item:hover {
@@ -9189,7 +9565,7 @@ html[data-theme="dark-forest"] .claims-interactive-list .claim-item.urgent .clai
    ADMIN DASHBOARD SPECIFIC STYLES  
    ═══════════════════════════════════════════════════════════════════ */
 
-/* Admin styles will go here */`, "",{"version":3,"sources":["webpack://./styles/dashboards.css"],"names":[],"mappings":"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","sourcesContent":["/* Shared Dashboard UI (restored from backup, tokenized)\n   This file provides the missing layout/components for dashboards:\n   - grid layout\n   - cards + headers\n   - lists (policies/quotes)\n   - tables\n   - badges\n   - icon buttons\n   - sidebar widgets\n*/\n\n/* Import Font Manager for centralized typography & colors */\n@import './Font-Manager.css';\n\n:root {\n    /* Modern Dashboard Colors - Aligned with Brand Palette */\n    --sidebar-width: 300px;\n    --sidebar-slim-width: 80px;\n    --rail-width: 300px;\n    --dashboard-max-width: 1680px;\n    --dashboard-content-width: 90%;\n\n    /* Brand gradients */\n    --color-primary: linear-gradient(135deg, #8b2348 0%, #9b59b6 100%);\n    --color-success: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n    --color-warning: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);\n    --color-info: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);\n\n    /* Background & Surface Colors */\n    --bg-main: #f8f9fa;\n    --bg-card: #ffffff;\n    --bg-sidebar: #0d1117;\n    --bg-dashboard: linear-gradient(135deg, #f6f7fb 0%, #eef1f7 45%, #e7ebf3 100%);\n\n    /* Legacy compatibility */\n    --dashboard-bg-light: var(--bg-main);\n    --dashboard-stat-gap-shared: 14px;\n    --dashboard-stat-icon-size-shared: 60px;\n    --dashboard-stat-icon-radius-shared: 14px;\n    --dashboard-stat-transition-shared: all 0.42s cubic-bezier(0.33, 1, 0.68, 1);\n\n    /* Theme-adaptive variables for high contrast */\n    --dashboard-bg-surface: rgba(255, 255, 255, 0.92);\n    --dashboard-border: rgba(0, 0, 0, 0.06);\n    --dashboard-border-subtle: rgba(0, 0, 0, 0.08);\n    --dashboard-radius-lg: 18px;\n}\n\n/* Dark theme overrides */\nhtml[data-theme=\"dark-forest\"] {\n    --dashboard-bg-surface: rgba(20, 30, 25, 0.88);\n    --dashboard-border: rgba(255, 255, 255, 0.1);\n    --dashboard-border-subtle: rgba(255, 255, 255, 0.12);\n}\n\n/* Dashboard shell & layout */\n.dashboard-section {\n    background: var(--bg-dashboard);\n    height: 100vh;\n    width: 100vw;\n    margin: 0;\n    padding: 0;\n    /* SCROLL UNIVERSAL: overflow-y manejado por scroll-modal-fixes.css */\n    display: flex;\n    flex-direction: column;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section {\n    background: #060b0a;\n}\n\n/* Hero Container - Full Width Outside Grid */\n.dashboard-section .dashboard-hero-container {\n    width: 100%;\n    flex-shrink: 0;\n    padding: 12px 12px 12px 12px;\n}\n\n.dashboard-section .dashboard-layout {\n    display: grid;\n    grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);\n    gap: 0;\n    flex: 1;\n    min-height: 0;\n    width: 100%;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0;\n    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */\n}\n\n.dashboard-section .dashboard-main-wrapper {\n    /* SCROLL UNIVERSAL: height y overflow manejados por scroll-modal-fixes.css */\n    min-width: 0;\n    width: 100%;\n}\n\n.dashboard-shell {\n    width: 100%;\n    margin: 0;\n    padding: 0;\n}\n\n.dashboard-section.no-sidebar .dashboard-layout {\n    display: block;\n}\n\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\n    margin-left: 0;\n    padding: 0;\n    max-width: none;\n}\n\n/* Floating right rail */\n.dashboard-section.no-sidebar .dashboard-shell {\n    padding: 0 20px 36px;\n}\n\n/* ===== DASHBOARD HEADER - SHARED ACROSS ALL DASHBOARDS ===== */\n.dashboard-section .dashboard-header {\n    display: none !important;\n}\n\n/* Ocultar navbar global cuando se navega a dashboards (evita header doble) */\nbody[data-page=\"client-dashboard\"] .navbar,\nbody[data-page=\"agent-dashboard\"] .navbar,\nbody[data-page=\"admin-dashboard\"] .navbar,\nbody[data-page=\"client-dashboard\"] .navbar-header,\nbody[data-page=\"agent-dashboard\"] .navbar-header,\nbody[data-page=\"admin-dashboard\"] .navbar-header {\n    display: none !important;\n}\n\n.dashboard-section .dashboard-header>div:first-child h1 {\n    font-family: var(--dashboard-font-family-primary);\n    font-size: var(--dashboard-text-2xl);\n    color: var(--theme-accent-color);\n    margin: 0 0 8px 0;\n    font-weight: var(--dashboard-font-bold);\n    text-shadow: 0 2px 8px var(--theme-primary-shadow-color);\n}\n\n.dashboard-section .dashboard-header>div:first-child p {\n    color: var(--theme-text-secondary);\n    font-size: var(--dashboard-text-md);\n    margin: 0;\n}\n\n.dashboard-section .dashboard-header .btn {\n    padding: 12px 26px;\n    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 12px;\n    cursor: pointer;\n    font-weight: var(--dashboard-font-semibold);\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14);\n    transition: all 0.3s ease;\n}\n\n.dashboard-section .dashboard-header .btn:hover {\n    transform: translateY(-3px);\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--theme-accent-border);\n}\n\n/* ===== END DASHBOARD HEADER ===== */\n\n/* Integrated content without additional rail wrapping */\n.dashboard-stage {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */\n    overflow: visible;\n    height: auto;\n    padding: 0 12px 12px 12px;\n}\n\n/* Scroll collapse behavior:\n   When user scrolls down past threshold (80px), hero-surface collapses.\n   Controlled by scrollCollapse.js which adds/removes COLLAPSE_CLASS.\n   Target: .dashboard-section (scroll universal)\n*/\n\n.stage-main {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.dashboard-body {\n    display: block;\n    margin-top: 8px;\n}\n\n/* Slim Sidebar Navigation */\n.dashboard-section .dashboard-sidebar {\n    /* SCROLL UNIVERSAL: No sticky, no overflow */\n    width: var(--sidebar-width);\n    display: flex;\n    flex-direction: column;\n    padding: 0;\n}\n\n.dashboard-section .dashboard-sidebar .sidebar-surface {\n    /* SCROLL UNIVERSAL: height auto */\n    height: auto;\n}\n\n.sidebar-stack {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 12px;\n}\n\n.sidebar-block .sidebar-header,\n.sidebar-block .sidebar-quick-actions,\n.sidebar-block .sidebar-widget-group,\n.sidebar-block .sidebar-widget {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    padding: 0;\n    margin: 0;\n}\n\n.sidebar-block .sidebar-qa-header {\n    margin-bottom: 8px;\n}\n\n.sidebar-block .qa-btn,\n.sidebar-block .client-pill,\n.sidebar-block .widget-mini-item,\n.sidebar-block .sidebar-logout {\n    width: 100%;\n}\n\n.sidebar-surface {\n    background: transparent;\n    border-radius: 20px;\n    border: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n    padding: 0;\n    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */\n    overflow: visible;\n    height: auto;\n    display: flex;\n    flex-direction: column;\n    gap: 0;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface,\nhtml[data-theme=\"dark-forest\"] .rail-surface {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    color: var(--theme-text-primary);\n}\n\n.sidebar-block {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    padding: 0;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-block {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\n.dashboard-section .sidebar-header {\n    padding: 14px 16px;\n    border-bottom: 1px solid rgba(15, 23, 42, 0.08);\n    text-align: center;\n    flex-shrink: 0;\n}\n\n.dashboard-section .user-avatar {\n    width: 60px;\n    height: 60px;\n    margin: 0 auto 12px;\n    border-radius: 50%;\n    overflow: hidden;\n    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);\n}\n\n.dashboard-section .sidebar-header h3 {\n    color: var(--dashboard-text-primary);\n    font-size: var(--dashboard-text-md);\n    font-weight: var(--dashboard-font-semibold);\n    margin: 0;\n}\n\n.dashboard-section .sidebar-header.sidebar-branding {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 10px;\n    padding: 16px 16px 14px;\n    flex-shrink: 0;\n}\n\n.sidebar-branding .logo-slot-nav {\n    width: 64px;\n    height: 64px;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    color: var(--theme-primary-color);\n}\n\n.sidebar-branding .brand-text-sidebar {\n    text-align: center;\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n}\n\n.sidebar-branding .brand-text-sidebar .brand-name {\n    color: var(--theme-text-primary);\n    font-size: var(--dashboard-text-md);\n    letter-spacing: 0.04em;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.sidebar-branding .brand-text-sidebar .brand-tagline {\n    color: var(--theme-text-secondary);\n    font-size: var(--dashboard-text-xs);\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n}\n\n.dashboard-section .sidebar-nav {\n    color: var(--theme-text-primary);\n    padding: 8px 0;\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n    flex-shrink: 0;\n}\n\n.sidebar-quick-actions,\n.sidebar-widget-group {\n    padding: 12px;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    border: 0;\n    background: transparent;\n    border-radius: 14px;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n    flex-shrink: 0;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-quick-actions,\nhtml[data-theme=\"dark-forest\"] .sidebar-widget-group {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\n.sidebar-qa-header,\n.sidebar-widget-group .sidebar-qa-header {\n    font-size: var(--dashboard-text-sm);\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    color: var(--theme-text-secondary);\n    margin-bottom: 6px;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.qa-btn,\n.client-pill,\n.widget-mini-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 8px 10px;\n    border-radius: 12px;\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    background: rgba(255, 255, 255, 0.45) !important;\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-weight: var(--dashboard-font-semibold);\n    text-align: left;\n    box-shadow: none !important;\n    backdrop-filter: blur(8px);\n    -webkit-backdrop-filter: blur(8px);\n}\n\nhtml[data-theme=\"dark-forest\"] .qa-btn,\nhtml[data-theme=\"dark-forest\"] .client-pill,\nhtml[data-theme=\"dark-forest\"] .widget-mini-item {\n    background: rgba(10, 22, 19, 0.35) !important;\n    border: 1px solid rgba(76, 201, 191, 0.16) !important;\n    color: var(--theme-text-primary);\n    box-shadow: none !important;\n    backdrop-filter: blur(8px);\n    -webkit-backdrop-filter: blur(8px);\n}\n\n/* Ajuste de badges en tema oscuro: gradiente y legibilidad */\nhtml[data-theme=\"dark-forest\"] .card-badge,\nhtml[data-theme=\"dark-forest\"] .badge,\nhtml[data-theme=\"dark-forest\"] .badge.badge-accent,\nhtml[data-theme=\"dark-forest\"] .badge.badge-light,\nhtml[data-theme=\"dark-forest\"] .badge.badge-primary,\nhtml[data-theme=\"dark-forest\"] .badge.badge-warning,\nhtml[data-theme=\"dark-forest\"] .badge.badge-success {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.18), rgba(155, 89, 182, 0.28));\n    border: 1px solid rgba(255, 255, 255, 0.08);\n    color: var(--theme-text-primary);\n    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.32);\n}\n\n/* Evitar contenedor extra en sidebar widgets (light & dark) */\n.sidebar-quick-actions,\n.sidebar-widget-group {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\n.sidebar-block.sidebar-logout-block {\n    display: flex;\n    padding: 10px 10px 6px;\n}\n\n.sidebar-block.sidebar-brand-block .sidebar-header {\n    align-items: center;\n}\n\n.qa-btn:hover,\n.client-pill:hover,\n.widget-mini-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateY(-2px);\n}\n\nhtml[data-theme=\"dark-forest\"] .qa-btn:hover,\nhtml[data-theme=\"dark-forest\"] .client-pill:hover,\nhtml[data-theme=\"dark-forest\"] .widget-mini-item:hover {\n    background: rgba(76, 201, 191, 0.12);\n    border-color: rgba(76, 201, 191, 0.32);\n    transform: translateY(-1px);\n}\n\n/* Ajuste específico para client-pill y widget-mini-item */\n.client-pill,\n.widget-mini-item {\n    gap: 8px;\n}\n\n.dashboard-section .nav-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 10px 16px;\n    color: var(--theme-text-secondary);\n    text-decoration: none;\n    transition: all 0.2s ease;\n    position: relative;\n}\n\n.dashboard-section .nav-item::before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 50%;\n    transform: translateY(-50%);\n    width: 3px;\n    height: 0;\n    background: linear-gradient(180deg, #667eea, #764ba2);\n    border-radius: 0 2px 2px 0;\n    transition: height 0.2s ease;\n}\n\n.dashboard-section .nav-item:hover,\n.dashboard-section .nav-item.active {\n    color: var(--theme-text-primary);\n    background: var(--theme-accent-bg-soft);\n}\n\n.dashboard-section .nav-item.active::before {\n    height: 70%;\n}\n\n.dashboard-section .nav-item svg {\n    flex-shrink: 0;\n}\n\n.dashboard-section .sidebar-logout {\n    padding: 12px;\n    background: rgba(245, 87, 108, 0.08);\n    border: 1px solid rgba(245, 87, 108, 0.25);\n    border-radius: 12px;\n    color: #f5576c;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 8px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-size: var(--dashboard-text-base);\n    font-weight: var(--dashboard-font-medium);\n    flex-shrink: 0;\n    margin-top: auto;\n}\n\n.dashboard-section .sidebar-logout:hover {\n    background: rgba(245, 87, 108, 0.2);\n    border-color: rgba(245, 87, 108, 0.4);\n}\n\n.sidebar-widget {\n    padding: 12px;\n    border-radius: 14px;\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n    color: var(--theme-text-primary);\n    flex-shrink: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.sidebar-widget h4 {\n    margin: 0;\n    font-size: var(--dashboard-text-base);\n    letter-spacing: 0.3px;\n    text-transform: uppercase;\n    color: var(--theme-text-secondary);\n    font-weight: var(--dashboard-font-bold);\n}\n\n.sidebar-widget .card-badge {\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-accent-color);\n    border: 1px solid var(--theme-accent-border);\n}\n\n.sidebar-widget ul {\n    margin: 0;\n    padding-left: 16px;\n    color: var(--theme-text-primary);\n    display: grid;\n    gap: 6px;\n    font-size: var(--dashboard-text-base);\n}\n\n.sidebar-widget .contact-chips {\n    display: grid;\n    gap: 8px;\n}\n\n.sidebar-widget .contact-chip {\n    background: rgba(255, 255, 255, 0.85);\n    color: var(--theme-text-primary);\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    padding: 8px 10px;\n    border-radius: 12px;\n    text-align: left;\n    width: 100%;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n/* Main Content Wrapper */\n.dashboard-section .dashboard-main-wrapper {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    min-width: 0;\n}\n\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\n    margin-left: 0;\n    padding: 0;\n    max-width: none;\n}\n\n/* Top Header */\n.dashboard-section .dashboard-top-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 22px;\n    gap: 14px;\n}\n\n.dashboard-section .mimic-header {\n    align-items: flex-start;\n}\n\n.search-hero {\n    flex-direction: column;\n    align-items: stretch;\n    gap: 12px;\n}\n\n.search-hero .hero-copy {\n    text-align: center;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n}\n\n.hero-title-row {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    gap: 12px;\n    font-weight: var(--dashboard-font-extrabold);\n    font-size: 16px;\n    letter-spacing: 0.4px;\n}\n\n.hero-title-row .eyebrow {\n    color: var(--dashboard-hero-eyebrow);\n    font-size: 14px;\n    font-weight: var(--dashboard-font-semibold);\n    text-transform: uppercase;\n    letter-spacing: 1.2px;\n}\n\n.hero-divider {\n    color: var(--dashboard-text-tertiary);\n    opacity: 0.4;\n    font-size: 14px;\n}\n\n.hero-welcome {\n    color: var(--dashboard-hero-title);\n    font-weight: var(--dashboard-font-bold);\n    font-family: 'Cinzel', serif;\n    font-size: 20px;\n    letter-spacing: 0.5px;\n}\n\n.hero-welcome span[data-user-name],\n.hero-welcome span[data-hero-user],\n.hero-welcome span[data-agent-name] {\n    font-weight: var(--dashboard-font-black);\n    color: var(--dashboard-hero-title);\n}\n\n.hero-description {\n    margin: 6px 0 0;\n    color: var(--dashboard-hero-subtitle);\n    max-width: 760px;\n    align-self: center;\n    line-height: 1.5;\n    font-size: 15px;\n    font-weight: var(--dashboard-font-regular);\n}\n\n.search-hero .hero-search {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    width: 100%;\n}\n\n.hero-surface {\n    position: relative;\n    border-radius: 16px;\n    padding: 16px 20px;\n    margin: 0;\n    width: 100%;\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n    overflow: hidden;\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, max-height 0.3s ease;\n    transform-origin: top center;\n}\n\n.hero-surface.scrolled-collapsed {\n    transform: scaleY(0.75) translateY(-12px);\n    opacity: 0.6;\n    max-height: 60px;\n    overflow: hidden;\n}\n\n.hero-surface::before {\n    content: '';\n    position: absolute;\n    inset: -32% -38% auto auto;\n    width: 280px;\n    height: 180px;\n    background:\n        radial-gradient(circle at 22% 42%, rgba(102, 126, 234, 0.26), transparent 58%),\n        radial-gradient(circle at 74% 60%, rgba(118, 75, 162, 0.22), transparent 60%);\n    filter: blur(6px);\n    opacity: 0.8;\n    pointer-events: none;\n}\n\n.hero-surface .hero-grid {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.hero-surface .hero-copy {\n    text-align: justify;\n    align-items: flex-start;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    width: 100%;\n}\n\n.hero-surface .hero-title-row {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-wrap: wrap;\n    width: 100%;\n}\n\n.hero-surface .hero-welcome {\n    margin-left: 0;\n}\n\n.hero-surface .hero-title-row .hero-description {\n    flex: 1;\n    margin: 0;\n    margin-left: auto;\n    text-align: justify;\n    min-width: 300px;\n}\n\n.hero-surface .hero-search {\n    width: 100%;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.search-hero .search-bar.stretch {\n    flex: 1;\n    width: 100%;\n}\n\n.dashboard-section .mimic-header .top-left h1 {\n    color: var(--theme-text-primary);\n}\n\n.dashboard-section .top-right {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    flex-wrap: wrap;\n    justify-content: flex-end;\n    align-self: flex-start;\n}\n\n.floating-header-bar {\n    display: inline-flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.85);\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 16px;\n    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);\n    backdrop-filter: blur(14px) saturate(1.05);\n    -webkit-backdrop-filter: blur(14px) saturate(1.05);\n}\n\n.pill-actions {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n}\n\n.search-bar {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.92);\n    border: 1px solid rgba(0, 0, 0, 0.08);\n    border-radius: 14px;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);\n    min-width: 320px;\n    backdrop-filter: blur(12px) saturate(1.05);\n}\n\n.search-bar input {\n    border: none;\n    background: transparent;\n    outline: none;\n    width: 100%;\n    font-size: var(--dashboard-text-base);\n    color: var(--theme-text-primary);\n}\n\n.search-bar input::placeholder {\n    color: #64748b;\n}\n\n.header-actions.tight {\n    gap: 10px;\n}\n\n.icon-pill {\n    position: relative;\n    width: 38px;\n    height: 38px;\n    border-radius: 12px;\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    background: rgba(255, 255, 255, 0.94);\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);\n    cursor: pointer;\n    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;\n    color: var(--theme-text-primary);\n}\n\n.icon-pill:hover {\n    transform: translateY(-2px);\n    border-color: rgba(0, 0, 0, 0.12);\n    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);\n}\n\n.icon-pill .dot {\n    position: absolute;\n    top: 8px;\n    right: 8px;\n    width: 8px;\n    height: 8px;\n    background: #f5576c;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.15);\n}\n\n.badge.ghost {\n    background: rgba(255, 255, 255, 0.94);\n    color: var(--theme-text-primary);\n    border: 1px solid rgba(0, 0, 0, 0.12);\n    backdrop-filter: blur(8px);\n}\n\n.dashboard-section .dashboard-top-header .eyebrow {\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    font-size: var(--dashboard-text-xs);\n    color: var(--text-secondary);\n    margin: 0 0 6px 0;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.dashboard-section .dashboard-top-header .header-actions {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-wrap: wrap;\n    justify-content: flex-end;\n}\n\n.dashboard-section .dashboard-top-header .btn-refresh {\n    display: none;\n}\n\n.dashboard-tabs {\n    display: none;\n}\n\n.dashboard-tab {\n    border: none;\n    background: transparent;\n    color: var(--text-secondary);\n    padding: 10px 14px;\n    border-radius: 12px;\n    font-weight: var(--dashboard-font-semibold);\n    cursor: pointer;\n    transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);\n}\n\n.dashboard-tab:hover {\n    color: var(--text-primary);\n    background: rgba(102, 126, 234, 0.06);\n}\n\n.dashboard-tab.active {\n    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(118, 75, 162, 0.18));\n    color: #4a3b91;\n    box-shadow: 0 10px 26px rgba(102, 126, 234, 0.18);\n}\n\n.tab-panels {\n    width: 100%;\n}\n\n.tab-panels .tab-panel {\n    display: none !important;\n    width: 100%;\n    gap: 18px;\n}\n\n.tab-panels .tab-panel.active {\n    display: block !important;\n}\n\n.panel-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 14px;\n}\n\n.mimic-grid {\n    display: grid;\n    grid-template-columns: 1.65fr 1fr;\n    gap: 14px;\n    align-items: start;\n    margin-top: 12px;\n}\n\n.mimic-col {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.mimic-col.main {\n    display: grid;\n    grid-template-columns: repeat(4, minmax(0, 1fr));\n    gap: 12px;\n}\n\n.mimic-col.main>.content-card,\n.mimic-col.main>.chart-card,\n.mimic-col.main>.subgrid {\n    grid-column: span 2;\n}\n\n.mimic-col.main>.list-card,\n.mimic-col.main>.subgrid.two {\n    grid-column: span 4;\n}\n\n.dashboard-body.with-rail {\n    display: grid;\n    grid-template-columns: 1fr var(--rail-width, 320px);\n    gap: 16px;\n    align-items: start;\n    margin-top: 12px;\n}\n\n.dashboard-body .main-surface {\n    height: 100%;\n    padding: 0;\n}\n\n.rail-surface {\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));\n    border: 1px solid rgba(255, 255, 255, 0.06);\n    border-radius: 18px;\n    padding: 10px;\n    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);\n}\n\n.dashboard-rail.right-rail {\n    /* SCROLL UNIVERSAL: No sticky, no overflow */\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 12px 12px 12px 0;\n    /* overflow manejado por scroll-modal-fixes.css */\n}\n\n.mimic-col.side-left,\n.mimic-col.side-right {\n    /* SCROLL UNIVERSAL: No sticky */\n}\n\n.mimic-wrap {\n    background: transparent;\n    border: none;\n    border-radius: 20px;\n    padding: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n}\n\n.mimic-wrap-inner {\n    background: transparent;\n    border: none;\n    border-radius: 18px;\n    padding: 0;\n    box-shadow: none;\n}\n\n.subgrid.two {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 12px;\n}\n\n.mimic-col.main .content-card,\n.mimic-col.charts .chart-card,\n.mimic-col.rail .content-card {\n    width: 100%;\n}\n\n.panel-grid.two-columns {\n    grid-template-columns: 1.25fr 1fr;\n}\n\n.panel-grid.stacked {\n    align-items: start;\n}\n\n.dashboard-section .dashboard-top-header h1 {\n    font-size: var(--dashboard-text-2xl);\n    font-weight: var(--dashboard-font-bold);\n    color: var(--text-primary);\n    margin: 0 0 4px 0;\n    color: var(--theme-text-secondary);\n}\n\n.dashboard-section .text-muted {\n    color: var(--text-secondary);\n    font-size: var(--dashboard-text-base);\n    margin: 0;\n}\n\n.dashboard-section .btn-refresh {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 10px 20px;\n    background: white;\n    border: 1px solid var(--border-color);\n    border-radius: 10px;\n    color: var(--text-primary);\n    font-size: var(--dashboard-text-base);\n    font-weight: var(--dashboard-font-medium);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    box-shadow: var(--shadow-sm);\n}\n\n.dashboard-section .btn-refresh:hover {\n    border-color: #667eea;\n    color: #667eea;\n    box-shadow: var(--shadow-md);\n    transform: translateY(-2px);\n}\n\n.dashboard-section .btn-refresh svg {\n    transition: transform 0.4s ease;\n}\n\n.dashboard-section .btn-refresh:hover svg {\n    transform: rotate(180deg);\n}\n\n/* Stats Grid with Color Pops */\n.dashboard-section .stats-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\n    gap: 14px;\n    margin-bottom: 20px;\n}\n\n.dashboard-section .stats-grid .stat-card.stat-summary {\n    grid-column: 1 / -1;\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));\n    gap: 14px;\n    align-items: start;\n    padding: 18px;\n}\n\n.monitor-card {\n    grid-column: 1 / -1;\n    display: grid;\n    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.1fr);\n    gap: 16px;\n    align-items: start;\n    padding: 16px;\n}\n\n.monitor-wrapper {\n    grid-column: 1 / -1;\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n.monitor-header-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n    padding: 0 4px;\n}\n\n.monitor-title {\n    font-family: 'Cinzel', serif;\n    font-size: 22px;\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-text-primary);\n    margin: 0;\n    letter-spacing: 0.3px;\n}\n\n.expand-all-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    padding: 8px 14px;\n    background: rgba(139, 35, 72, 0.08);\n    border: 1px solid rgba(139, 35, 72, 0.18);\n    border-radius: 12px;\n    color: var(--theme-accent-color);\n    font-size: 13px;\n    font-weight: var(--dashboard-font-semibold);\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.expand-all-btn:hover {\n    background: rgba(139, 35, 72, 0.14);\n    border-color: var(--theme-accent-color);\n    transform: translateY(-1px);\n}\n\n.expand-all-btn svg {\n    transition: transform 0.2s ease;\n}\n\n.expand-all-btn[data-expanded=\"true\"] svg {\n    transform: rotate(180deg);\n}\n\n.pending-count {\n    display: inline-block;\n    padding: 2px 8px;\n    background: var(--theme-accent-color);\n    color: white;\n    border-radius: 8px;\n    font-size: 11px;\n    font-weight: var(--dashboard-font-bold);\n    margin-left: 2px;\n}\n\n.monitor-visual {\n    display: grid;\n    grid-template-columns: 120px 1fr;\n    gap: 12px;\n    align-items: center;\n    padding: 12px;\n    border-right: 1px solid var(--dashboard-border);\n}\n\n.monitor-actions {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n    gap: 12px;\n}\n\n.summary-block {\n    padding: 10px;\n    border-left: 2px solid var(--dashboard-border-subtle);\n}\n\n.summary-head-inline {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 8px;\n}\n\n.summary-title {\n    color: var(--dashboard-card-heading);\n    font-weight: var(--dashboard-font-bold);\n    font-size: var(--dashboard-text-base);\n}\n\n.summary-list.compact li {\n    padding: 9px 10px;\n    color: var(--dashboard-card-text);\n}\n\n.donut-heading {\n    color: var(--dashboard-card-heading);\n    font-weight: 700;\n}\n\n.donut-desc {\n    color: var(--dashboard-card-meta);\n}\n\n.link-btn.subtle {\n    margin-top: 6px;\n    font-weight: var(--dashboard-font-semibold);\n    color: var(--theme-text-secondary);\n}\n\n.link-btn.subtle:hover {\n    color: var(--theme-accent-color, #3b82f6);\n    background: rgba(59, 130, 246, 0.08);\n}\n\n.stat-summary .summary-head {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n}\n\n.stat-summary .summary-head h3 {\n    margin: 2px 0 0;\n    font-size: var(--dashboard-text-lg);\n}\n\n.stat-summary .summary-columns {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n    gap: 14px;\n}\n\n.stat-summary .summary-title {\n    margin: 0 0 6px;\n    font-weight: var(--dashboard-font-bold);\n    color: var(--theme-text-primary);\n}\n\n.stat-summary .summary-list {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n    display: grid;\n    gap: 8px;\n}\n\n.stat-summary .summary-list li {\n    display: grid;\n    grid-template-columns: auto 1fr auto;\n    align-items: center;\n    gap: 8px;\n    background: rgba(255, 255, 255, 0.6);\n    border: 1px solid rgba(15, 23, 42, 0.06);\n    border-radius: 12px;\n    padding: 10px 12px;\n    color: var(--text-primary);\n}\n\n.stat-summary .summary-list .dot {\n    width: 9px;\n    height: 9px;\n}\n\n.stat-summary .summary-list .dot.info {\n    background: var(--theme-accent-color, #3b82f6);\n    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);\n}\n\n.stat-summary .summary-list .dot.warn {\n    background: #f59e0b;\n    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.14);\n}\n\n.stat-summary .summary-list .dot.ok {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.14);\n}\n\n.stat-summary .link-btn {\n    border: none;\n    background: transparent;\n    color: var(--theme-accent-color, #3b82f6);\n    font-weight: 700;\n    cursor: pointer;\n    padding: 4px 8px;\n    border-radius: 10px;\n    transition: background 0.2s ease, color 0.2s ease;\n}\n\n.stat-summary .link-btn:hover {\n    background: rgba(59, 130, 246, 0.1);\n}\n\n.dashboard-section .stats-grid.compact {\n    gap: 16px;\n    margin-bottom: 12px;\n}\n\n.dashboard-section .stat-card {\n    background: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border-radius: 16px;\n    padding: 14px;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    position: relative;\n    overflow: hidden;\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    backdrop-filter: blur(28px) saturate(1.5);\n    -webkit-backdrop-filter: blur(28px) saturate(1.5);\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.dashboard-section .stat-card::before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 4px;\n    opacity: 0;\n    transition: opacity 0.3s ease;\n}\n\n.dashboard-section .stat-card.stat-primary::before {\n    background: var(--color-primary);\n}\n\n.dashboard-section .stat-card.stat-success::before {\n    background: var(--color-success);\n}\n\n.dashboard-section .stat-card.stat-warning::before {\n    background: var(--color-warning);\n}\n\n.dashboard-section .stat-card.stat-info::before {\n    background: var(--color-info);\n}\n\n.dashboard-section .stat-card:hover {\n    transform: translateY(-4px);\n    box-shadow: var(--shadow-lg);\n}\n\n.dashboard-section .stat-card:hover::before {\n    opacity: 1;\n}\n\n.dashboard-section .stat-card.stat-graph {\n    align-items: center;\n    gap: 16px;\n}\n\n.stat-donut-card {\n    min-height: 140px;\n}\n\n.donut-figure {\n    width: 120px;\n    height: 120px;\n    position: relative;\n    flex-shrink: 0;\n}\n\n.donut-svg {\n    width: 100%;\n    height: 100%;\n}\n\n.donut-track {\n    fill: none;\n    stroke: rgba(15, 23, 42, 0.12);\n    stroke-width: 12;\n}\n\n.donut-segment {\n    fill: none;\n    stroke-width: 12;\n    stroke-linecap: round;\n    transform: rotate(-90deg);\n    transform-origin: center;\n}\n\n.donut-segment.active {\n    stroke: #16a34a;\n}\n\n.donut-segment.renew {\n    stroke: #f59e0b;\n}\n\n.donut-segment.risk {\n    stroke: #e11d48;\n}\n\n.donut-title {\n    font-size: var(--dashboard-text-lg);\n    font-weight: var(--dashboard-font-extrabold);\n    fill: var(--theme-text-primary);\n}\n\n.donut-sub {\n    font-size: var(--dashboard-text-sm);\n    fill: var(--theme-text-secondary);\n    letter-spacing: 0.04em;\n}\n\n.donut-meta {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n}\n\n.donut-heading {\n    font-weight: var(--dashboard-font-bold);\n    color: var(--theme-text-primary);\n}\n\n.donut-desc {\n    margin: 0;\n    color: var(--theme-text-secondary);\n    font-size: var(--dashboard-text-base);\n}\n\n.donut-legend {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 10px;\n}\n\n.donut-key {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n}\n\n.donut-key .dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04);\n}\n\n.donut-key .dot.active {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.18);\n}\n\n.donut-key .dot.renew {\n    background: #f8c547;\n    box-shadow: 0 0 0 4px rgba(248, 197, 71, 0.18);\n}\n\n.donut-key .dot.risk {\n    background: #f5576c;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.18);\n}\n\n.dashboard-section .stat-icon-wrapper {\n    width: 60px;\n    height: 60px;\n    border-radius: 12px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.dashboard-section .stat-primary .stat-icon-wrapper {\n    background: var(--color-primary);\n}\n\n.dashboard-section .stat-success .stat-icon-wrapper {\n    background: var(--color-success);\n}\n\n.dashboard-section .stat-warning .stat-icon-wrapper {\n    background: var(--color-warning);\n}\n\n.dashboard-section .stat-info .stat-icon-wrapper {\n    background: var(--color-info);\n}\n\n.dashboard-section .stat-icon-wrapper svg {\n    stroke: white;\n}\n\n.dashboard-section .stat-content {\n    flex: 1;\n}\n\n.dashboard-section .stat-value {\n    font-size: var(--dashboard-text-2xl);\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-stat-value);\n    margin: 0 0 4px 0;\n    line-height: 1;\n}\n\n.dashboard-section .stat-label {\n    font-size: var(--dashboard-text-base);\n    color: var(--dashboard-stat-label);\n    font-weight: var(--dashboard-font-semibold);\n}\n\n.dashboard-section .stat-trend,\n.dashboard-section .stat-badge {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    font-size: var(--dashboard-text-sm);\n    font-weight: var(--dashboard-font-semibold);\n    padding: 4px 10px;\n    border-radius: 20px;\n}\n\n.dashboard-section .stat-trend.positive {\n    color: #1e8449;\n    background: rgba(45, 189, 99, 0.15);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-trend.negative {\n    color: #c0392b;\n    background: rgba(192, 57, 43, 0.15);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-badge.success {\n    color: #1e8449;\n    background: rgba(45, 189, 99, 0.15);\n    border: 1px solid rgba(45, 189, 99, 0.3);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-badge.warning {\n    color: #fee140;\n    background: rgba(254, 225, 64, 0.15);\n}\n\n/* Content Grid */\n.dashboard-section .content-grid {\n    display: grid;\n    grid-template-columns: 1fr 360px;\n    gap: 16px;\n}\n\n.client-dashboard .content-grid,\n.agent-dashboard .content-grid {\n    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n    gap: 14px;\n}\n\n.dashboard-section .content-main {\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n}\n\n/* Content Cards */\n.dashboard-section .content-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border-radius: 16px;\n    padding: 18px 18px 16px;\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n}\n\n.dashboard-section .content-card.compact,\n.dashboard-section .widget-card.compact {\n    padding: 18px 18px 16px;\n    border-radius: 14px;\n}\n\n.card-body-scroll {\n    max-height: 340px;\n    overflow: auto;\n    padding-right: 4px;\n    scrollbar-width: thin;\n}\n\n.card-body-scroll::-webkit-scrollbar {\n    width: 8px;\n}\n\n.card-body-scroll::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.12);\n    border-radius: 10px;\n}\n\n.dashboard-section .card-header-modern {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 20px;\n}\n\n.dashboard-section .card-header-modern h3 {\n    font-size: 18px;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0;\n}\n\n.dashboard-section .card-badge {\n    padding: 6px 12px;\n    background: var(--color-primary);\n    color: white;\n    border-radius: 20px;\n    font-size: 12px;\n    font-weight: 600;\n}\n\n.dashboard-section .btn-icon-sm {\n    width: 32px;\n    height: 32px;\n    border-radius: 8px;\n    border: 1px solid var(--border-color);\n    background: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.dashboard-section .btn-icon-sm:hover {\n    border-color: #667eea;\n    background: #f7fafc;\n}\n\n/* Sidebar Widgets */\n.dashboard-section .content-sidebar {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.dashboard-section .widget-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.74));\n    border-radius: 16px;\n    padding: 20px;\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-md);\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    backdrop-filter: blur(14px) saturate(1.1);\n    -webkit-backdrop-filter: blur(14px) saturate(1.1);\n}\n\n.dashboard-section .widget-card h4 {\n    font-size: 16px;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0 0 16px 0;\n}\n\n/* Chart & data visuals */\n.chart-card {\n    position: relative;\n    padding: 16px;\n    border-radius: 14px;\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n    cursor: pointer;\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.chart-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16), 0 12px 32px rgba(139, 35, 72, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border-color: var(--theme-accent-color);\n}\n\n.calendar-card .calendar-grid {\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n    gap: 4px;\n    font-size: 12px;\n    margin-bottom: 16px;\n}\n\n.calendar-card .cal-day-header {\n    padding: 6px;\n    text-align: center;\n    font-weight: 600;\n    color: var(--theme-text-secondary);\n    font-size: 11px;\n    text-transform: uppercase;\n}\n\n.calendar-card .cal-day {\n    padding: 8px 4px;\n    border-radius: 8px;\n    background: rgba(255, 255, 255, 0.12);\n    text-align: center;\n    font-weight: 500;\n    color: var(--theme-text-primary);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    position: relative;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.calendar-card .cal-day:hover {\n    background: rgba(255, 255, 255, 0.18);\n    border-color: rgba(255, 255, 255, 0.2);\n}\n\n.calendar-card .cal-day.today {\n    background: rgba(76, 175, 80, 0.2);\n    border-color: rgba(76, 175, 80, 0.4);\n    font-weight: 700;\n    color: #4CAF50;\n}\n\n.calendar-card .cal-day.has-payment {\n    background: rgba(33, 150, 243, 0.2);\n    border-color: rgba(33, 150, 243, 0.4);\n}\n\n.calendar-card .cal-day.muted {\n    opacity: 0.5;\n    cursor: default;\n}\n\n.calendar-card .payment-count {\n    display: inline-block;\n    position: absolute;\n    top: 0;\n    right: 0;\n    width: 16px;\n    height: 16px;\n    background: #FF6B6B;\n    color: white;\n    border-radius: 50%;\n    font-size: 10px;\n    font-weight: 700;\n    line-height: 16px;\n}\n\n.calendar-card .upcoming-payments {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    margin-top: 12px;\n    padding-top: 12px;\n    border-top: 1px solid rgba(255, 255, 255, 0.1);\n}\n\n.calendar-card .payment-slot {\n    display: grid;\n    grid-template-columns: 70px 1fr 80px;\n    gap: 8px;\n    align-items: center;\n    padding: 10px 12px;\n    border-radius: 8px;\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-size: 13px;\n}\n\n.calendar-card .payment-slot:hover {\n    background: rgba(255, 255, 255, 0.14);\n    transform: translateX(2px);\n}\n\n.calendar-card .payment-slot.muted {\n    opacity: 0.6;\n    cursor: default;\n}\n\n.calendar-card .payment-slot.status-pending {\n    border-left: 3px solid #FF9800;\n}\n\n.calendar-card .payment-slot.status-completed {\n    border-left: 3px solid #4CAF50;\n}\n\n.calendar-card .payment-slot.status-failed {\n    border-left: 3px solid #F44336;\n}\n\n.calendar-card .payment-date {\n    font-weight: 600;\n    text-transform: uppercase;\n    font-size: 11px;\n    color: var(--theme-text-secondary);\n}\n\n.calendar-card .payment-policy {\n    font-size: 12px;\n    color: var(--theme-text-primary);\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n.calendar-card .payment-amount {\n    text-align: right;\n    font-weight: 700;\n    color: var(--theme-accent-color);\n}\n\n.calendar-card .calendar-error {\n    padding: 20px;\n    text-align: center;\n    color: var(--theme-text-secondary);\n    font-size: 13px;\n}\n\n.cal-slot {\n    grid-column: span 5;\n    padding: 10px 12px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n}\n\n.cal-slot.accent {\n    background: rgba(118, 75, 162, 0.12);\n    border-color: rgba(118, 75, 162, 0.24);\n}\n\n.chart-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 10px;\n}\n\n.chart-title {\n    font-size: 15px;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    margin: 0;\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.chart-legend {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.chart-legend-item {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    font-size: 14px;\n    color: var(--theme-text-secondary);\n}\n\n.chart-legend-dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: var(--theme-accent-color);\n    box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.12);\n}\n\n.chart-body {\n    position: relative;\n    margin-top: 6px;\n    min-height: 140px;\n    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.28));\n    border-radius: 12px;\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    overflow: hidden;\n}\n\n.sparkline-placeholder {\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.14), rgba(155, 89, 182, 0.12));\n    opacity: 0.55;\n}\n\n.chart-metrics {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n    gap: 10px;\n    margin-top: 12px;\n}\n\n.chart-metric {\n    background: rgba(255, 255, 255, 0.82);\n    border: 1px solid rgba(255, 255, 255, 0.22);\n    border-radius: 10px;\n    padding: 10px 12px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 10px;\n    box-shadow: 0 8px 22px rgba(139, 35, 72, 0.10);\n}\n\n.chart-metric .label {\n    font-size: 14px;\n    color: var(--theme-text-secondary);\n}\n\n.chart-metric .value {\n    font-size: 16px;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n}\n\n.list-card .mini-table {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.mini-table-row {\n    display: grid;\n    grid-template-columns: 1.2fr 0.9fr 0.7fr 0.7fr 0.9fr;\n    align-items: center;\n    gap: 10px;\n    padding: 12px 10px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.76);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);\n}\n\n.mini-table-head {\n    background: rgba(255, 255, 255, 0.54);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    font-weight: 700;\n    color: var(--theme-text-secondary);\n    text-transform: uppercase;\n    font-size: 12px;\n    letter-spacing: 0.08em;\n}\n\n.mini-table-row span {\n    color: var(--theme-text-primary);\n    font-size: 14px;\n}\n\n.mini-table-row .cell-strong {\n    font-weight: 700;\n}\n\n.chip {\n    display: inline-flex;\n    align-items: center;\n    padding: 4px 10px;\n    border-radius: 999px;\n    font-weight: 700;\n    font-size: 12px;\n    border: 1px solid transparent;\n}\n\n.chip-low {\n    background: rgba(56, 239, 125, 0.14);\n    color: #1c7d4f;\n    border-color: rgba(56, 239, 125, 0.28);\n}\n\n.chip-medium {\n    background: rgba(248, 197, 71, 0.16);\n    color: #8a5b00;\n    border-color: rgba(248, 197, 71, 0.28);\n}\n\n.chip-high {\n    background: rgba(245, 87, 108, 0.16);\n    color: #982b3a;\n    border-color: rgba(245, 87, 108, 0.3);\n}\n\n.contact-chips {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 8px;\n}\n\n.contact-chip {\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    background: linear-gradient(145deg, rgba(118, 75, 162, 0.08), rgba(102, 126, 234, 0.08));\n    color: var(--theme-text-primary);\n    padding: 8px 12px;\n    border-radius: 999px;\n    font-weight: 700;\n    font-size: 13px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);\n}\n\n.contact-chip:hover,\n.contact-chip:focus-visible {\n    outline: none;\n    border-color: var(--theme-accent-color);\n    box-shadow: 0 12px 30px rgba(118, 75, 162, 0.16);\n    transform: translateY(-1px);\n}\n\n.contact-chip:active {\n    transform: translateY(0);\n}\n\n.status-dot {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    font-weight: 600;\n}\n\n.status-dot::before {\n    content: '';\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);\n}\n\n.status-dot.ok::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.14);\n}\n\n.status-dot.warn::before {\n    background: #f8c547;\n    box-shadow: 0 0 0 4px rgba(248, 197, 71, 0.18);\n}\n\n.status-dot.risk::before {\n    background: #f5576c;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.16);\n}\n\n.icon-animated {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    width: 28px;\n    height: 28px;\n    margin-right: 4px;\n    color: var(--theme-primary-color);\n}\n\n.icon-animated svg {\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    overflow: visible;\n}\n\n.icon-animated svg * {\n    stroke-dasharray: 120;\n    stroke-dashoffset: 120;\n    animation: line-draw 1.2s ease forwards;\n    animation-delay: 0.05s;\n}\n\n@keyframes line-draw {\n    to {\n        stroke-dashoffset: 0;\n    }\n}\n\n.dashboard-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.78));\n    border: 1px solid rgba(255, 255, 255, 0.6);\n    border-radius: 16px;\n    padding: var(--dashboard-card-padding);\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-sm);\n    backdrop-filter: blur(12px) saturate(1.08);\n    -webkit-backdrop-filter: blur(12px) saturate(1.08);\n    margin-bottom: 12px;\n    color: var(--theme-text-primary);\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;\n}\n\n.dashboard-card.scrolled-collapsed {\n    transform: scale(0.98);\n    opacity: 0.85;\n}\n\n/* Obsoleto - tabs antiguos ocultos usan .dashboard-card */\n/* .agent-dashboard .dashboard-card {\n    padding: 18px 16px;\n    border-radius: 14px;\n}\n\n.agent-dashboard .dashboard-stats {\n    gap: 12px;\n    margin-bottom: 12px;\n} */\n\n/* Simple card title when no .card-header is used (sidebar cards) */\n.dashboard-card>h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.25rem;\n    color: var(--theme-text-primary);\n    margin: 0 0 16px 0;\n}\n\n.card-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n    margin-bottom: var(--dashboard-card-header-margin);\n    padding-bottom: var(--dashboard-card-header-padding);\n    border-bottom: 2px solid var(--theme-surface-border);\n}\n\n.card-header h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.25rem;\n    color: var(--theme-text-primary);\n    margin: 0;\n}\n\n/* Lists */\n.policies-list,\n.quotes-list,\n.documents-list,\n.tasks-list,\n.alert-list,\n.activity-list,\n.prelaunch-checklist {\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n}\n\n.task-item,\n.alert-item,\n.activity-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 14px 16px;\n    background: var(--acrylic-bg-light);\n    border: 1px solid var(--theme-accent-border-subtle);\n    border-radius: 12px;\n    color: var(--theme-text-primary);\n}\n\n.task-title,\n.alert-title,\n.activity-title {\n    margin: 0 0 4px 0;\n    font-weight: 700;\n}\n\n.task-meta,\n.alert-meta,\n.activity-meta {\n    margin: 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.9rem;\n}\n\n.quick-actions {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n/* Skeleton loading states for dashboards */\n.skeleton-mode .dashboard-stat-card,\n.skeleton-mode .task-item,\n.skeleton-mode .alert-item,\n.skeleton-mode .activity-item {\n    position: relative;\n    overflow: hidden;\n    color: transparent !important;\n}\n\n.skeleton-mode .dashboard-stat-card::after,\n.skeleton-mode .task-item::after,\n.skeleton-mode .alert-item::after,\n.skeleton-mode .activity-item::after {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(90deg,\n            rgba(255, 255, 255, 0.04) 0%,\n            rgba(255, 255, 255, 0.08) 40%,\n            rgba(255, 255, 255, 0.04) 80%);\n    animation: skeleton-shimmer 1.2s infinite;\n}\n\n.skeleton-mode .dashboard-stat-card .stat-icon,\n.skeleton-mode .dashboard-stat-card .stat-value,\n.skeleton-mode .dashboard-stat-card .stat-label,\n.skeleton-mode .task-item *,\n.skeleton-mode .alert-item *,\n.skeleton-mode .activity-item * {\n    color: transparent !important;\n}\n\n@keyframes skeleton-shimmer {\n    0% {\n        transform: translateX(-60%);\n    }\n\n    100% {\n        transform: translateX(60%);\n    }\n}\n\n.badge-light {\n    background: rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-surface-border);\n}\n\n.prelaunch-checklist {\n    padding-left: 18px;\n    margin: 0;\n    color: var(--theme-text-secondary);\n}\n\n.prelaunch-checklist li {\n    margin-bottom: 8px;\n}\n\n.policy-item,\n.quote-item {\n    display: flex;\n    align-items: center;\n    gap: 16px;\n    padding: 18px;\n    background: rgba(255, 255, 255, 0.92);\n    border: 1px solid rgba(255, 255, 255, 0.26);\n    border-radius: 12px;\n    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;\n}\n\n.policy-item:hover,\n.quote-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(3px);\n    box-shadow: var(--shadow);\n}\n\n.policy-icon {\n    font-size: 2rem;\n    width: 52px;\n    height: 52px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: var(--acrylic-bg-light);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    flex-shrink: 0;\n}\n\n.policy-info,\n.quote-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.policy-actions {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-shrink: 0;\n}\n\n.policy-info h4,\n.quote-info h4 {\n    font-size: 1.05rem;\n    color: var(--theme-text-primary);\n    margin: 0 0 6px 0;\n}\n\n.policy-info p,\n.quote-info p {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n    margin: 0 0 10px 0;\n}\n\n.policy-meta {\n    display: flex;\n    align-items: center;\n    flex-wrap: wrap;\n    gap: 10px;\n    font-size: 0.85rem;\n    color: var(--theme-text-secondary);\n}\n\n.quote-date {\n    font-size: 0.85rem;\n    color: var(--theme-text-secondary);\n}\n\n.recent-docs-list {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n.doc-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px 14px;\n    background: rgba(255, 255, 255, 0.82);\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 12px;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);\n}\n\n.doc-meta {\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n}\n\n.doc-meta strong {\n    font-size: 14px;\n    color: var(--theme-text-primary);\n}\n\n.doc-meta span {\n    color: var(--theme-text-secondary);\n    font-size: 12px;\n}\n\n.doc-actions {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n}\n\n.contact-modal {\n    position: fixed;\n    inset: 0;\n    display: none;\n    align-items: center;\n    justify-content: center;\n    z-index: 200;\n}\n\n.contact-modal.is-open {\n    display: flex;\n}\n\n.modal-backdrop {\n    position: absolute;\n    inset: 0;\n    background: rgba(0, 0, 0, 0.35);\n    backdrop-filter: blur(6px);\n    -webkit-backdrop-filter: blur(6px);\n}\n\n.modal-card {\n    position: relative;\n    width: min(420px, 92vw);\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.88));\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 16px;\n    padding: 16px;\n    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);\n    backdrop-filter: blur(10px) saturate(1.05);\n    -webkit-backdrop-filter: blur(10px) saturate(1.05);\n}\n\n.modal-card-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    margin-bottom: 10px;\n}\n\n.modal-card-body {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    margin-bottom: 12px;\n}\n\n.contact-detail {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.7);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    border-radius: 12px;\n}\n\n.contact-detail span {\n    color: var(--theme-text-secondary);\n    font-size: 13px;\n}\n\n.contact-detail strong {\n    color: var(--theme-text-primary);\n}\n\n.modal-card-actions {\n    display: flex;\n    justify-content: flex-end;\n    gap: 10px;\n}\n\n/* Badges */\n.badge {\n    padding: 4px 12px;\n    border-radius: 999px;\n    font-size: 0.72rem;\n    font-weight: 700;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.badge-success {\n    background: var(--success);\n    color: var(--theme-on-success);\n}\n\n.badge-warning {\n    background: var(--warning);\n    color: var(--theme-on-warning);\n}\n\n.badge-danger {\n    background: var(--danger);\n    color: var(--theme-on-danger);\n}\n\n.badge-primary {\n    background: var(--theme-primary-color);\n    color: var(--theme-highlight-light);\n}\n\n.badge-accent {\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-accent-color);\n    border: 1px solid var(--theme-accent-border);\n}\n\n/* Tables */\n.payments-table table,\n.clients-table table {\n    width: 100%;\n    border-collapse: collapse;\n}\n\n.payments-table th,\n.payments-table td,\n.clients-table th,\n.clients-table td {\n    padding: 14px 12px;\n    text-align: left;\n    border-bottom: 1px solid var(--theme-surface-border);\n}\n\n.payments-table th,\n.clients-table th {\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    background: var(--theme-navlink-active-bg);\n    font-size: 0.9rem;\n}\n\n.payments-table td,\n.clients-table td {\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n.client-cell {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.client-avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\n    color: var(--white);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-weight: 800;\n    font-size: 0.9rem;\n    flex-shrink: 0;\n}\n\n.client-name {\n    font-weight: 700;\n    color: var(--theme-text-primary);\n}\n\n.client-email {\n    font-size: 0.85rem;\n    color: var(--theme-text-secondary);\n}\n\n/* Sidebar */\n.dashboard-sidebar .dashboard-card {\n    position: sticky;\n    top: calc(var(--nav-height) + 14px);\n}\n\n.quick-actions {\n    display: flex;\n    flex-direction: column;\n    gap: var(--dashboard-quick-actions-gap);\n}\n\n.agent-info {\n    text-align: center;\n}\n\n.agent-avatar {\n    width: 80px;\n    height: 80px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\n    color: var(--white);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-family: 'Cinzel', serif;\n    font-size: 2rem;\n    font-weight: 800;\n    margin: 0 auto 16px;\n    box-shadow: 0 10px 26px var(--theme-primary-shadow-color);\n}\n\n.agent-info h4 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.15rem;\n    margin: 0 0 6px 0;\n    color: var(--theme-text-primary);\n}\n\n.agent-info p {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n    margin: 0 0 14px 0;\n}\n\n.agent-contact {\n    margin: 14px 0;\n    padding: 14px;\n    background: var(--theme-navlink-active-bg);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    text-align: left;\n}\n\n.agent-contact p {\n    margin: 6px 0;\n    font-size: 0.92rem;\n    color: var(--theme-text-secondary);\n}\n\n/* Shared stat grid + cards */\n.dashboard-stats {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(var(--dashboard-stat-min), 1fr));\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\n    margin-top: 0;\n    margin-bottom: 12px;\n}\n\n.dashboard-stat-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\n    padding: var(--dashboard-stat-padding);\n    border-radius: var(--dashboard-stat-radius);\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: var(--dashboard-stat-shadow, var(--dashboard-stat-shadow-shared));\n    transition: var(--dashboard-stat-transition, var(--dashboard-stat-transition-shared));\n    display: flex;\n    align-items: center;\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\n    position: relative;\n    overflow: hidden;\n    transition: transform 0.42s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.42s cubic-bezier(0.33, 1, 0.68, 1), background 0.42s cubic-bezier(0.33, 1, 0.68, 1), border-color 0.42s cubic-bezier(0.33, 1, 0.68, 1);\n}\n\n.dashboard-stat-card:hover {\n    transform: translateY(var(--dashboard-stat-hover-lift, var(--dashboard-stat-hover-lift-shared)));\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\n    box-shadow: var(--dashboard-stat-hover-shadow, var(--dashboard-stat-hover-shadow-shared));\n}\n\n.dashboard-stat-card .stat-icon {\n    font-size: var(--dashboard-stat-icon-font, var(--dashboard-stat-icon-font-shared));\n    width: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\n    height: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));\n    border-radius: var(--dashboard-stat-icon-radius, var(--dashboard-stat-icon-radius-shared));\n    border: 1px solid rgba(255, 255, 255, 0.28);\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 1.05)) saturate(calc(var(--acrylic-saturate) * 1.18));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 1.05)) saturate(calc(var(--acrylic-saturate) * 1.18));\n    box-shadow: 0 10px 28px rgba(139, 35, 72, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.26);\n    flex-shrink: 0;\n}\n\n.stat-info {\n    flex: 1;\n}\n\n.stat-value {\n    font-family: 'Cinzel', serif;\n    font-size: 2rem;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    line-height: 1;\n    margin-bottom: 6px;\n}\n\n.stat-label {\n    font-size: 0.95rem;\n    color: var(--theme-text-secondary);\n    font-weight: 500;\n}\n\n.document-link {\n    padding: 12px 14px;\n    background: var(--theme-navlink-active-bg);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 10px;\n    text-decoration: none;\n    color: var(--theme-text-primary);\n    font-size: 0.92rem;\n    transition: transform 0.2s ease, background 0.2s ease;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.document-link:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(3px);\n}\n\n.task-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 12px;\n    background: rgba(255, 255, 255, 0.94);\n    border: 1px solid rgba(255, 255, 255, 0.26);\n    border-radius: 10px;\n    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;\n}\n\n.task-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(2px);\n}\n\n.task-item input[type=\"checkbox\"] {\n    width: 18px;\n    height: 18px;\n    cursor: pointer;\n}\n\n.commissions-info {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.commission-row {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 10px 0;\n    border-bottom: 1px solid var(--theme-surface-border);\n    color: var(--theme-text-secondary);\n}\n\n.commission-row strong {\n    color: var(--theme-text-primary);\n}\n\n/* Responsive */\n@media (max-width: 1480px) {\n    .dashboard-grid {\n        grid-template-columns: repeat(2, minmax(300px, 1fr));\n    }\n\n    .dashboard-main {\n        grid-column: span 2;\n        grid-template-columns: repeat(2, minmax(var(--dashboard-main-col-min), 1fr));\n    }\n\n    .dashboard-sidebar {\n        grid-column: span 2;\n    }\n}\n\n@media (max-width: 1100px) {\n    .dashboard-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-stage.with-rail {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-main {\n        grid-column: span 1;\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-sidebar {\n        grid-column: span 1;\n    }\n\n    .dashboard-sidebar .dashboard-card {\n        position: static;\n    }\n\n    .mimic-col.main {\n        grid-template-columns: repeat(2, minmax(0, 1fr));\n    }\n\n    .mimic-col.main>.content-card,\n    .mimic-col.main>.chart-card,\n    .mimic-col.main>.subgrid {\n        grid-column: span 1;\n    }\n\n    .mimic-col.main>.list-card,\n    .mimic-col.main>.subgrid.two {\n        grid-column: span 2;\n    }\n\n    .dashboard-body.with-rail {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-rail.right-rail {\n        position: static;\n        order: 2;\n    }\n\n    .hero-surface .hero-grid {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n}\n\n@media (max-width: 560px) {\n    .dashboard-card {\n        padding: 20px;\n    }\n\n    .mimic-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.rail {\n        grid-column: 1;\n    }\n\n    .policy-item,\n    .quote-item {\n        flex-direction: column;\n        align-items: flex-start;\n    }\n\n    .mimic-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.rail,\n    .mimic-col.charts,\n    .mimic-col.main {\n        grid-column: 1;\n    }\n\n    .mimic-col.main {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.main>.content-card,\n    .mimic-col.main>.chart-card,\n    .mimic-col.main>.subgrid,\n    .mimic-col.main>.list-card,\n    .mimic-col.main>.subgrid.two {\n        grid-column: span 1;\n    }\n\n    .dashboard-rail.right-rail {\n        position: static;\n        order: 2;\n    }\n}\n\n/* ===== Dark-Forest Dashboard Overrides (moved from theme file for load priority) ===== */\nhtml[data-theme=\"dark-forest\"] .dashboard-section,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard {\n    background: #060b0a;\n    color: var(--theme-text-primary);\n}\n\n/* Sidebar dark theme overrides */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .dashboard-sidebar {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface {\n    background: transparent !important;\n    border: 0 !important;\n    border-radius: 20px !important;\n    box-shadow: none !important;\n    backdrop-filter: none !important;\n    -webkit-backdrop-filter: none !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .sidebar-header {\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .logo-slot-nav {\n    color: #fff;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .brand-text-sidebar .brand-name {\n    color: #fff;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .brand-text-sidebar .brand-tagline {\n    color: rgba(255, 255, 255, 0.72);\n}\n\n/* sidebar-quick-actions ya usa estilos unificados - sin background extra */\n\nhtml[data-theme=\"dark-forest\"] .sidebar-qa-header {\n    color: rgba(255, 255, 255, 0.7);\n}\n\n/* Unificado con los demás botones de sidebar */\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item {\n    color: rgba(255, 255, 255, 0.7);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item.active {\n    color: white;\n    background: rgba(255, 255, 255, 0.05);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    color: white;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget h4 {\n    color: rgba(255, 255, 255, 0.82);\n}\n\n/* Dashboard cards - unified dark backgrounds for consistency */\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;\n    backdrop-filter: blur(20px) saturate(1.2) !important;\n    -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface .dashboard-card {\n    background: rgba(255, 255, 255, 0.05) !important;\n    border: 1px solid rgba(255, 255, 255, 0.08) !important;\n}\n\n/* Stat cards - same background as dashboard-card for consistency */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;\n    backdrop-filter: blur(28px) saturate(1.3) !important;\n    -webkit-backdrop-filter: blur(28px) saturate(1.3) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .client-dashboard .stat-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n}\n\n/* Hero surface - unified dark background */\nhtml[data-theme=\"dark-forest\"] .hero-surface {\n    background: rgba(15, 43, 36, 0.3) !important;\n    border: 1px solid rgba(242, 234, 220, 0.14) !important;\n    border-radius: 16px !important;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;\n    backdrop-filter: blur(32px) saturate(1.3) !important;\n    -webkit-backdrop-filter: blur(32px) saturate(1.3) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget .card-badge {\n    background: rgba(255, 255, 255, 0.12);\n    color: white;\n    border: 1px solid rgba(255, 255, 255, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget ul {\n    color: rgba(255, 255, 255, 0.9);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget .contact-chip {\n    background: rgba(10, 22, 19, 0.65);\n    border: 1px solid rgba(76, 201, 191, 0.16);\n    color: var(--theme-text-primary);\n    box-shadow: none;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header {\n    border-bottom: 2px solid rgba(223, 243, 237, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child h1,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child h1 {\n    color: var(--theme-contrast-strong);\n    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child p,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child p {\n    color: var(--theme-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.28) 0%, rgba(113, 220, 201, 0.22) 100%);\n    color: #e8f4ef;\n    border: 1px solid rgba(76, 201, 191, 0.35);\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), 0 4px 12px rgba(76, 201, 191, 0.25);\n    backdrop-filter: blur(12px) saturate(1.4);\n    -webkit-backdrop-filter: blur(12px) saturate(1.4);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary:hover {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.38) 0%, rgba(113, 220, 201, 0.32) 100%);\n    border-color: rgba(76, 201, 191, 0.45);\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), 0 6px 18px rgba(76, 201, 191, 0.35);\n    transform: translateY(-2px);\n}\n\n/* Normalizar tamaño y densidad de CTAs en dark theme (evita botones gigantes como \"Abrir\") */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section button,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .cta .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta .btn {\n    border: 1px solid rgba(76, 201, 191, 0.32);\n    background: radial-gradient(circle at 20% 20%, rgba(76, 201, 191, 0.18), rgba(0, 0, 0, 0.32));\n    color: var(--theme-text-primary);\n    transition: all 0.2s ease;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section button:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .cta .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta .btn:hover {\n    border-color: rgba(76, 201, 191, 0.55);\n    background: radial-gradient(circle at 20% 20%, rgba(76, 201, 191, 0.25), rgba(0, 0, 0, 0.4));\n    transform: translateY(-1px);\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-icon {\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.15) 0%, rgba(155, 89, 182, 0.1) 100%);\n    border: 2px solid var(--theme-primary-color);\n    color: var(--theme-primary-color);\n    box-shadow: 0 4px 12px rgba(139, 35, 72, 0.25);\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-icon:hover {\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.25) 0%, rgba(155, 89, 182, 0.2) 100%);\n    border-color: var(--theme-accent-color);\n    box-shadow: 0 6px 16px rgba(139, 35, 72, 0.35);\n    transform: translateY(-2px);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .content-card,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .widget-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);\n    color: var(--theme-text-primary);\n    backdrop-filter: blur(20px) saturate(1.2);\n    -webkit-backdrop-filter: blur(20px) saturate(1.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .text-muted,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-header h3,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-header-modern h3,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-label,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-value,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-trend,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-badge,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info h4,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info h4,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-badge,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .widget-card h4 {\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .text-muted,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-label {\n    color: var(--theme-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-item {\n    background: linear-gradient(150deg, rgba(10, 26, 36, 0.82), rgba(10, 26, 36, 0.72));\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-card {\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28), 0 12px 28px rgba(139, 35, 72, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-metric {\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card:hover {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\n    border-color: var(--theme-accent-border);\n    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card .stat-icon,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card .stat-icon,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card .stat-icon {\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\n    color: var(--theme-text-primary);\n    border: 1px solid var(--theme-accent-border);\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\n    box-shadow: 0 10px 28px var(--theme-primary-shadow-color), inset 0 1px 0 rgba(255, 255, 255, 0.24);\n}\n\nhtml[data-theme=\"dark-forest\"] .stat-value,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-value,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-value {\n    color: var(--theme-contrast-strong);\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n}\n\nhtml[data-theme=\"dark-forest\"] .stat-label,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-label,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-label {\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));\n    border: 1px solid var(--theme-accent-border);\n    color: var(--theme-text-primary);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-row {\n    background: rgba(15, 43, 36, 0.2) !important;\n    border: 1px solid rgba(242, 234, 220, 0.1);\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .floating-header-bar {\n    background: rgba(15, 43, 36, 0.3) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12);\n    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.32);\n}\n\nhtml[data-theme=\"dark-forest\"] .contact-chip {\n    background: rgba(76, 201, 191, 0.15) !important;\n    border: 1px solid rgba(76, 201, 191, 0.25);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .contact-chip:hover {\n    background: rgba(76, 201, 191, 0.25) !important;\n    border-color: rgba(76, 201, 191, 0.35);\n}\n\nhtml[data-theme=\"dark-forest\"] .doc-item,\nhtml[data-theme=\"dark-forest\"] .contact-detail {\n    background: rgba(15, 43, 36, 0.2) !important;\n    border: 1px solid rgba(242, 234, 220, 0.1);\n    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .modal-card {\n    background: rgba(15, 43, 36, 0.85) !important;\n    border: 1px solid rgba(242, 234, 220, 0.18);\n    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38);\n    backdrop-filter: blur(28px) saturate(1.3);\n    -webkit-backdrop-filter: blur(28px) saturate(1.3);\n}\n\nhtml[data-theme=\"dark-forest\"] .donut-track {\n    stroke: rgba(255, 255, 255, 0.18);\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-head {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.08);\n    color: var(--theme-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .search-bar,\nhtml[data-theme=\"dark-forest\"] .icon-pill,\nhtml[data-theme=\"dark-forest\"] .badge.ghost {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--theme-text-primary);\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-row span,\nhtml[data-theme=\"dark-forest\"] .cell-strong,\nhtml[data-theme=\"dark-forest\"] .chip-low,\nhtml[data-theme=\"dark-forest\"] .chip-medium,\nhtml[data-theme=\"dark-forest\"] .chip-high,\nhtml[data-theme=\"dark-forest\"] .status-dot {\n    color: var(--theme-text-primary);\n}\n\n/* Responsive Design */\n@media (max-width: 1200px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: var(--sidebar-width) 1fr;\n    }\n\n    .dashboard-right-rail {\n        display: none;\n    }\n\n    .dashboard-section .content-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-section .content-sidebar {\n        grid-column: 1;\n    }\n\n    .panel-grid.two-columns {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-stage {\n        padding: 16px;\n    }\n}\n\n@media (max-width: 768px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: var(--sidebar-slim-width) 1fr;\n        gap: 4px;\n        padding: 4px;\n    }\n\n    .dashboard-section .dashboard-sidebar {\n        width: var(--sidebar-slim-width);\n    }\n\n    .dashboard-section .nav-item span,\n    .dashboard-section .sidebar-header h3,\n    .sidebar-branding .brand-text,\n    .sidebar-quick-actions,\n    .sidebar-widget {\n        display: none;\n    }\n\n    .sidebar-surface {\n        padding: 8px 4px;\n    }\n\n    .dashboard-section .stats-grid {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .stat-card {\n        padding: 12px;\n    }\n\n    .dashboard-section .dashboard-top-header {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 12px;\n    }\n\n    .hero-surface {\n        padding: 12px;\n    }\n\n    .hero-surface .hero-grid {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n\n    .search-bar {\n        width: 100%;\n    }\n\n    .dashboard-tabs {\n        width: 100%;\n        justify-content: space-between;\n        gap: 4px;\n        overflow-x: auto;\n        -webkit-overflow-scrolling: touch;\n    }\n\n    .dashboard-tab {\n        flex: 1 1 auto;\n        min-width: 80px;\n        text-align: center;\n        font-size: 0.8rem;\n        padding: 8px 12px;\n        white-space: nowrap;\n    }\n\n    .dashboard-stage {\n        padding: 8px 4px;\n    }\n\n    .content-grid {\n        grid-template-columns: 1fr !important;\n        gap: 12px;\n    }\n\n    .dashboard-card {\n        margin-bottom: 8px;\n    }\n\n    .monitor-wrapper .monitor-card {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n\n    .monitor-visual {\n        grid-template-columns: 100px 1fr;\n        border-right: none;\n        border-bottom: 1px solid var(--dashboard-border);\n        padding-bottom: 12px;\n    }\n}\n\n/* Mobile phones - stack everything */\n@media (max-width: 480px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: 1fr;\n        gap: 0;\n        padding: 0;\n    }\n\n    .dashboard-section .dashboard-sidebar {\n        display: none;\n    }\n\n    .dashboard-section .dashboard-right-rail {\n        display: none;\n    }\n\n    .dashboard-main-wrapper {\n        width: 100%;\n        padding: 0;\n    }\n\n    .dashboard-stage {\n        padding: 8px;\n    }\n\n    .hero-surface {\n        padding: 12px;\n        border-radius: 12px;\n    }\n\n    .hero-welcome {\n        font-size: 24px;\n    }\n\n    .hero-title-row .eyebrow {\n        font-size: 16px;\n    }\n\n    .hero-description {\n        font-size: 14px;\n    }\n\n    .dashboard-tabs {\n        padding: 8px 4px;\n        gap: 4px;\n    }\n\n    .dashboard-tab {\n        font-size: 0.75rem;\n        padding: 6px 8px;\n        min-width: 70px;\n    }\n\n    .stats-grid {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .stat-card {\n        padding: 10px;\n    }\n\n    .stat-value {\n        font-size: 1.5rem;\n    }\n\n    .stat-label {\n        font-size: 0.8rem;\n    }\n\n    .monitor-header-row {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 8px;\n    }\n\n    .monitor-title {\n        font-size: 18px;\n    }\n\n    .expand-all-btn {\n        width: 100%;\n        justify-content: center;\n    }\n\n    .monitor-card {\n        grid-template-columns: 1fr;\n        padding: 12px;\n    }\n\n    .monitor-visual {\n        grid-template-columns: 1fr;\n        text-align: center;\n        border-right: none;\n        border-bottom: 1px solid var(--dashboard-border);\n        padding-bottom: 12px;\n        margin-bottom: 12px;\n    }\n\n    .donut-figure {\n        margin: 0 auto 12px;\n    }\n\n    .monitor-actions {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-card {\n        padding: 12px;\n        margin-bottom: 8px;\n    }\n\n    .card-header-modern {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 8px;\n    }\n\n    /* Add mobile menu toggle button */\n    .dashboard-mobile-menu-toggle {\n        display: flex;\n        position: fixed;\n        bottom: 20px;\n        right: 20px;\n        width: 56px;\n        height: 56px;\n        background: var(--theme-accent-color);\n        border-radius: 50%;\n        align-items: center;\n        justify-content: center;\n        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n        z-index: 1000;\n        border: none;\n        color: white;\n        cursor: pointer;\n    }\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   CLIENT DASHBOARD SPECIFIC STYLES\n   ═══════════════════════════════════════════════════════════════════ */\n\n.client-dashboard .stat-card {\n    padding: 12px;\n    border-radius: 14px;\n    gap: 10px;\n}\n\n.client-dashboard .stat-card .stat-content .stat-value {\n    font-size: 1.45rem;\n}\n\n.client-dashboard .stat-card .stat-icon-wrapper {\n    width: 38px;\n    height: 38px;\n    border-radius: 12px;\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   AGENT DASHBOARD SPECIFIC STYLES\n   ═══════════════════════════════════════════════════════════════════ */\n\n/* Hero header layout - siguiendo patrón de client dashboard */\n.agent-dashboard .hero-surface {\n    background: linear-gradient(135deg, rgba(79, 172, 254, 0.08) 0%, rgba(0, 242, 254, 0.08) 100%);\n}\n\n.agent-dashboard .hero-title-row {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin-bottom: 0;\n    flex-wrap: wrap;\n    width: 100%;\n}\n\n/* Estilos unificados en selectores base - no necesita sobrescritura */\n\n.agent-dashboard .hero-description {\n    font-size: 0.875rem;\n    line-height: 1.5;\n    color: var(--theme-text-secondary);\n    margin: 0;\n    flex: 1;\n    margin-left: auto;\n    text-align: justify;\n}\n\n/* Sidebar pills and widgets */\n.agent-dashboard .recent-clients-pills,\n.agent-dashboard .widget-mini-list {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.agent-dashboard .agent-dashboard .client-pill-avatar {\n    width: 28px;\n    height: 28px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 11px;\n    font-weight: bold;\n    color: white;\n    flex-shrink: 0;\n}\n\n.agent-dashboard .client-pill-name {\n    font-size: 0.85rem;\n    font-weight: 600;\n    color: var(--theme-text-primary);\n}\n\n/* Botones y pills del sidebar: igualar estilo de quick actions */\n.agent-dashboard .client-pill,\n.agent-dashboard .widget-mini-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    border-radius: 12px;\n    border: 1px solid var(--theme-accent-border);\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-weight: var(--dashboard-font-semibold);\n    text-align: left;\n    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);\n    backdrop-filter: blur(8px);\n}\n\n.agent-dashboard .client-pill:hover,\n.agent-dashboard .widget-mini-item:hover {\n    background: rgba(79, 172, 254, 0.12);\n    border-color: var(--theme-accent-color);\n    transform: translateY(-2px);\n}\n\n.agent-dashboard .widget-mini-item svg {\n    flex-shrink: 0;\n    color: var(--theme-accent-color);\n}\n\n.agent-dashboard .widget-mini-item span {\n    flex: 1;\n    font-size: 0.82rem;\n    font-weight: 600;\n    color: var(--theme-text-primary);\n}\n\n.agent-dashboard .widget-mini-badge {\n    background: rgba(79, 172, 254, 0.12);\n    color: var(--theme-accent-color);\n    font-size: 0.75rem;\n    font-weight: 700;\n    padding: 2px 8px;\n    border-radius: 12px;\n    border: 1px solid currentColor;\n}\n\n.agent-dashboard .widget-mini-badge.warn {\n    background: rgba(245, 87, 108, 0.12);\n    color: #f5576c;\n    border-color: #f5576c;\n}\n\n/* Roadmap de Suscripción - pasos de registro del cliente */\n.agent-dashboard .roadmap-tabs {\n    display: flex;\n    gap: 6px;\n    margin-bottom: 12px;\n}\n\n.agent-dashboard .roadmap-tab {\n    padding: 8px 12px;\n    border-radius: 10px;\n    border: 1px solid var(--theme-accent-border);\n    background: var(--theme-accent-bg-soft);\n    font-size: 0.78rem;\n    font-weight: 700;\n    color: var(--theme-text-secondary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.agent-dashboard .roadmap-tab:hover {\n    background: rgba(79, 172, 254, 0.12);\n    border-color: var(--theme-accent-color);\n}\n\n.agent-dashboard .roadmap-tab.active {\n    background: rgba(79, 172, 254, 0.18);\n    border-color: var(--theme-accent-color);\n    color: var(--theme-accent-color);\n}\n\n.agent-dashboard .roadmap-body {\n    position: relative;\n    background: rgba(255, 255, 255, 0.9);\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 14px;\n    padding: 12px;\n    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);\n    backdrop-filter: blur(10px);\n}\n\n.agent-dashboard .roadmap-status {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.agent-dashboard .roadmap-status.hidden {\n    display: none;\n}\n\n.agent-dashboard .roadmap-step {\n    position: relative;\n    padding: 12px 12px 12px 36px;\n    border-left: 2px solid rgba(0, 0, 0, 0.08);\n    border: 1px solid var(--dashboard-border, rgba(0, 0, 0, 0.06));\n    border-radius: 10px;\n    background: rgba(255, 255, 255, 0.86);\n    transition: all 0.2s ease;\n    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);\n}\n\n.agent-dashboard .roadmap-step:first-child {\n    padding-top: 6px;\n}\n\n.agent-dashboard .roadmap-step:last-child {\n    border-left-color: transparent;\n    padding-bottom: 6px;\n}\n\n.agent-dashboard .roadmap-step::before {\n    content: '';\n    position: absolute;\n    left: 12px;\n    top: 16px;\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: rgba(0, 0, 0, 0.15);\n    border: 2px solid white;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .roadmap-step.done {\n    border-left-color: #38ef7d;\n    border-color: rgba(56, 239, 125, 0.35);\n}\n\n.agent-dashboard .roadmap-step.done::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.15);\n}\n\n.agent-dashboard .roadmap-step.in-progress {\n    border-left-color: #feca57;\n    background: rgba(254, 202, 87, 0.04);\n    border-color: rgba(254, 202, 87, 0.35);\n}\n\n.agent-dashboard .roadmap-step.in-progress::before {\n    background: #feca57;\n    box-shadow: 0 0 0 4px rgba(254, 202, 87, 0.15);\n    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;\n}\n\n.agent-dashboard .roadmap-step.pending {\n    opacity: 0.6;\n}\n\n.agent-dashboard .roadmap-step .step-label {\n    display: block;\n    font-size: 0.85rem;\n    font-weight: 700;\n    color: var(--theme-text-primary);\n    margin-bottom: 2px;\n}\n\n.agent-dashboard .roadmap-step .step-meta {\n    display: block;\n    font-size: 0.7rem;\n    color: var(--theme-text-secondary);\n    font-weight: 500;\n}\n\n.agent-dashboard .roadmap-step .step-action {\n    position: absolute;\n    right: 10px;\n    top: 10px;\n    padding: 4px 8px;\n    border-radius: 8px;\n    border: 1px solid var(--theme-accent-border);\n    background: rgba(79, 172, 254, 0.12);\n    color: var(--theme-accent-color);\n    font-size: 0.7rem;\n    font-weight: 700;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .roadmap-step .step-action:hover {\n    background: rgba(79, 172, 254, 0.18);\n    border-color: var(--theme-accent-color);\n}\n\n/* Roadmap + steps en modo oscuro: superficies más profundas y contrastadas */\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-body {\n    background: rgba(10, 20, 17, 0.88);\n    border: 1px solid rgba(76, 201, 191, 0.22);\n    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-tab {\n    background: rgba(12, 24, 20, 0.9);\n    border: 1px solid rgba(76, 201, 191, 0.22);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-tab:hover {\n    background: rgba(76, 201, 191, 0.14);\n    border-color: rgba(76, 201, 191, 0.38);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-tab.active {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.28), rgba(155, 89, 182, 0.24));\n    border-color: rgba(76, 201, 191, 0.42);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step {\n    background: rgba(8, 16, 14, 0.9);\n    border: 1px solid rgba(76, 201, 191, 0.16);\n    border-left-color: rgba(76, 201, 191, 0.3);\n    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step::before {\n    background: rgba(76, 201, 191, 0.8);\n    border: 2px solid rgba(0, 0, 0, 0.35);\n    box-shadow: 0 0 0 4px rgba(76, 201, 191, 0.12);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.done {\n    border-left-color: #38ef7d;\n    border-color: rgba(56, 239, 125, 0.25);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.done::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.in-progress {\n    background: rgba(10, 20, 17, 0.9);\n    border-left-color: #feca57;\n    border-color: rgba(254, 202, 87, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.in-progress::before {\n    background: #feca57;\n    box-shadow: 0 0 0 4px rgba(254, 202, 87, 0.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step .step-action {\n    background: rgba(76, 201, 191, 0.12);\n    border-color: rgba(76, 201, 191, 0.28);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step .step-action:hover {\n    background: rgba(76, 201, 191, 0.2);\n    border-color: rgba(76, 201, 191, 0.42);\n    color: var(--theme-text-primary);\n}\n\n@keyframes pulse {\n\n    0%,\n    100% {\n        opacity: 1;\n    }\n\n    50% {\n        opacity: 0.5;\n    }\n}\n\n/* Old roadmap timeline styles - deprecated */\n.roadmap-timeline {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding: 6px 0;\n}\n\n.timeline-item {\n    display: flex;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.35);\n    border-left: 3px solid transparent;\n    border-radius: 8px;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.timeline-item.urgent {\n    border-left-color: #f5576c;\n    background: rgba(245, 87, 108, 0.06);\n}\n\n.timeline-item.soon {\n    border-left-color: #feca57;\n    background: rgba(254, 202, 87, 0.06);\n}\n\n.timeline-item.ok {\n    border-left-color: #38ef7d;\n    background: rgba(56, 239, 125, 0.06);\n}\n\n.timeline-item:hover {\n    transform: translateX(4px);\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);\n}\n\n.timeline-marker {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: var(--theme-accent-color);\n    margin-top: 4px;\n    flex-shrink: 0;\n}\n\n.timeline-item.urgent .timeline-marker {\n    background: #f5576c;\n}\n\n.timeline-item.soon .timeline-marker {\n    background: #feca57;\n}\n\n.timeline-item.ok .timeline-marker {\n    background: #38ef7d;\n}\n\n.timeline-content {\n    flex: 1;\n}\n\n.timeline-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 4px;\n}\n\n.timeline-header strong {\n    font-size: 0.85rem;\n    color: var(--theme-text-primary);\n    font-weight: 700;\n}\n\n.timeline-date {\n    font-size: 0.7rem;\n    color: var(--theme-text-secondary);\n    font-weight: 600;\n}\n\n.timeline-content>p {\n    font-size: 0.75rem;\n    color: var(--theme-text-secondary);\n    margin: 2px 0 6px 0;\n    font-weight: 500;\n}\n\n.timeline-actions {\n    display: flex;\n    gap: 6px;\n}\n\n/* Claims interactive list */\n.claims-interactive-list {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding: 6px 0;\n}\n\n.claim-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.35);\n    border-left: 3px solid transparent;\n    border: 1px solid rgba(0, 0, 0, 0.05);\n    border-radius: 8px;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.claim-item:hover {\n    background: rgba(255, 255, 255, 0.45);\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);\n    transform: translateX(3px);\n}\n\n.claim-item.warn {\n    border-left: 3px solid #feca57;\n}\n\n.claim-item.ok {\n    border-left: 3px solid #38ef7d;\n}\n\n.claim-item.urgent {\n    border-left: 3px solid #f5576c;\n}\n\n.claim-icon {\n    width: 34px;\n    height: 34px;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.claim-item.warn .claim-icon {\n    background: rgba(254, 202, 87, 0.18);\n    color: #feca57;\n}\n\n.claim-item.ok .claim-icon {\n    background: rgba(56, 239, 125, 0.18);\n    color: #38ef7d;\n}\n\n.claim-item.urgent .claim-icon {\n    background: rgba(245, 87, 108, 0.18);\n    color: #f5576c;\n}\n\n.claim-content {\n    flex: 1;\n}\n\n.claim-header {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 4px;\n}\n\n.claim-header strong {\n    font-size: 0.85rem;\n    color: var(--theme-text-primary);\n    font-weight: 700;\n}\n\n.claim-status {\n    font-size: 0.65rem;\n    font-weight: 700;\n    padding: 2px 8px;\n    border-radius: 10px;\n}\n\n.claim-status.warn {\n    background: rgba(254, 202, 87, 0.18);\n    color: #feca57;\n}\n\n.claim-status.ok {\n    background: rgba(56, 239, 125, 0.18);\n    color: #38ef7d;\n}\n\n.claim-status.urgent {\n    background: rgba(245, 87, 108, 0.18);\n    color: #f5576c;\n}\n\n.claim-content>p {\n    font-size: 0.75rem;\n    color: var(--theme-text-secondary);\n    margin: 2px 0;\n    font-weight: 500;\n}\n\n.claim-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 0.7rem;\n    color: var(--theme-text-secondary);\n    margin-top: 4px;\n    font-weight: 600;\n}\n\n.claim-amount {\n    font-weight: 600;\n    color: var(--theme-accent-color);\n}\n\n/* Claims/siniestros: superficies oscuras para legibilidad en dark theme */\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item {\n    background: rgba(8, 16, 14, 0.9);\n    border: 1px solid rgba(76, 201, 191, 0.18);\n    border-left: 3px solid rgba(76, 201, 191, 0.42);\n    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);\n    color: var(--theme-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item:hover {\n    background: rgba(10, 20, 17, 0.92);\n    border-color: rgba(76, 201, 191, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.warn,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.urgent,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.ok {\n    border-left-width: 3px;\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.warn .claim-icon,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.warn .claim-status {\n    background: rgba(254, 202, 87, 0.14);\n    color: #feca57;\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.ok .claim-icon,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.ok .claim-status {\n    background: rgba(56, 239, 125, 0.14);\n    color: #38ef7d;\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.urgent .claim-icon,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.urgent .claim-status {\n    background: rgba(245, 87, 108, 0.16);\n    color: #f5576c;\n}\n\n/* Sidebar surface fix - remove double background */\n.agent-dashboard .sidebar-surface {\n    background: rgba(255, 255, 255, 0.75) !important;\n    border-radius: 20px !important;\n}\n\n/* Content organization and visibility controls */\n.agent-dashboard .stats-grid {\n    margin-bottom: 24px;\n}\n\n.agent-dashboard .dashboard-2col {\n    gap: 20px;\n    margin-bottom: 20px;\n}\n\n.agent-dashboard .content-card {\n    background: rgba(255, 255, 255, 0.75);\n    backdrop-filter: blur(10px);\n    border-radius: 16px;\n    padding: 20px;\n    border: 1px solid rgba(0, 0, 0, 0.08);\n}\n\n.agent-dashboard .content-card .card-header {\n    margin-bottom: 16px;\n}\n\n/* Estilos hero unificados en selectores base */\n\n/* Ensure compact spacing throughout */\n.agent-dashboard .mimic-wrap {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.agent-dashboard .chart-card {\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .chart-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);\n}\n\n/* Control rail spacing */\n.agent-dashboard .dashboard-rail {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n}\n\n.agent-dashboard .rail-card {\n    background: rgba(255, 255, 255, 0.75);\n    backdrop-filter: blur(10px);\n    border-radius: 16px;\n    padding: 18px;\n    border: 1px solid rgba(0, 0, 0, 0.08);\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   ADMIN DASHBOARD SPECIFIC STYLES  \n   ═══════════════════════════════════════════════════════════════════ */\n\n/* Admin styles will go here */"],"sourceRoot":""}]);
+/* Admin styles will go here */`, "",{"version":3,"sources":["webpack://./styles/dashboards.css"],"names":[],"mappings":"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","sourcesContent":["/* Shared Dashboard UI (restored from backup, tokenized)\n   This file provides the missing layout/components for dashboards:\n   - grid layout\n   - cards + headers\n   - lists (policies/quotes)\n   - tables\n   - badges\n   - icon buttons\n   - sidebar widgets\n*/\n\n/* Import Font Manager for centralized typography & colors */\n@import './Font-Manager.css';\n\n:root {\n    /* Modern Dashboard Colors - Aligned with Brand Palette */\n    --sidebar-width: 300px;\n    --sidebar-slim-width: 80px;\n    --rail-width: 300px;\n    --dashboard-max-width: 1680px;\n    --dashboard-content-width: 90%;\n\n    /* Brand gradients */\n    --color-primary: linear-gradient(135deg, #8b2348 0%, #9b59b6 100%);\n    --color-success: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n    --color-warning: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);\n    --color-info: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);\n\n    /* Background & Surface Colors */\n    --bg-main: #f8f9fa;\n    --bg-card: #ffffff;\n    --bg-sidebar: #0d1117;\n    --bg-dashboard: linear-gradient(135deg, #f6f7fb 0%, #eef1f7 45%, #e7ebf3 100%);\n\n    /* Legacy compatibility */\n    --dashboard-bg-light: var(--bg-main);\n    --dashboard-stat-gap-shared: 14px;\n    --dashboard-stat-icon-size-shared: 60px;\n    --dashboard-stat-icon-radius-shared: 14px;\n    --dashboard-stat-transition-shared: all 0.42s cubic-bezier(0.33, 1, 0.68, 1);\n\n    /* Theme-adaptive variables for high contrast */\n    --dashboard-bg-surface: rgba(255, 255, 255, 0.92);\n    --dashboard-border: rgba(0, 0, 0, 0.06);\n    --dashboard-border-subtle: rgba(0, 0, 0, 0.08);\n    --dashboard-radius-lg: 18px;\n}\n\n/* Dark theme overrides */\nhtml[data-theme=\"dark-forest\"] {\n    --dashboard-bg-surface: rgba(20, 30, 25, 0.88);\n    --dashboard-border: rgba(255, 255, 255, 0.1);\n    --dashboard-border-subtle: rgba(255, 255, 255, 0.12);\n}\n\n/* Dashboard shell & layout */\n.dashboard-section {\n    background: var(--bg-dashboard);\n    height: 100vh;\n    width: 100vw;\n    margin: 0;\n    padding: 0;\n    /* SCROLL UNIVERSAL: overflow-y manejado por scroll-modal-fixes.css */\n    display: flex;\n    flex-direction: column;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section {\n    background: #060b0a;\n}\n\n/* Hero Container - Full Width Outside Grid */\n.dashboard-section .dashboard-hero-container {\n    width: 100%;\n    flex-shrink: 0;\n    padding: 12px 12px 12px 12px;\n}\n\n.dashboard-section .dashboard-layout {\n    display: grid;\n    grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--rail-width);\n    gap: 0;\n    flex: 1;\n    min-height: 0;\n    width: 100%;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0;\n    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */\n}\n\n.dashboard-section .dashboard-main-wrapper {\n    /* SCROLL UNIVERSAL: height y overflow manejados por scroll-modal-fixes.css */\n    min-width: 0;\n    width: 100%;\n}\n\n.dashboard-shell {\n    width: 100%;\n    margin: 0;\n    padding: 0;\n}\n\n.dashboard-section.no-sidebar .dashboard-layout {\n    display: block;\n}\n\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\n    margin-left: 0;\n    padding: 0;\n    max-width: none;\n}\n\n/* Floating right rail */\n.dashboard-section.no-sidebar .dashboard-shell {\n    padding: 0 20px 36px;\n}\n\n/* ===== DASHBOARD HEADER - SHARED ACROSS ALL DASHBOARDS ===== */\n.dashboard-section .dashboard-header {\n    display: none !important;\n}\n\n/* Ocultar navbar global cuando se navega a dashboards (evita header doble) */\nbody[data-page=\"client-dashboard\"] .navbar,\nbody[data-page=\"agent-dashboard\"] .navbar,\nbody[data-page=\"admin-dashboard\"] .navbar,\nbody[data-page=\"client-dashboard\"] .navbar-header,\nbody[data-page=\"agent-dashboard\"] .navbar-header,\nbody[data-page=\"admin-dashboard\"] .navbar-header {\n    display: none !important;\n}\n\n.dashboard-section .dashboard-header>div:first-child h1 {\n    font-family: var(--dashboard-font-family-primary);\n    font-size: var(--dashboard-text-2xl);\n    color: var(--theme-accent-color);\n    margin: 0 0 8px 0;\n    font-weight: var(--dashboard-font-bold);\n    text-shadow: 0 2px 8px var(--theme-primary-shadow-color);\n}\n\n.dashboard-section .dashboard-header>div:first-child p {\n    color: var(--dashboard-text-secondary);\n    font-size: var(--dashboard-text-md);\n    margin: 0;\n}\n\n.dashboard-section .dashboard-header .btn {\n    padding: 12px 26px;\n    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));\n    color: var(--dashboard-text-primary);\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 12px;\n    cursor: pointer;\n    font-weight: var(--dashboard-font-semibold);\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate-strong));\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14);\n    transition: all 0.3s ease;\n}\n\n.dashboard-section .dashboard-header .btn:hover {\n    transform: translateY(-3px);\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--theme-accent-border);\n}\n\n/* ===== END DASHBOARD HEADER ===== */\n\n/* Integrated content without additional rail wrapping */\n.dashboard-stage {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */\n    overflow: visible;\n    height: auto;\n    padding: 0 12px 12px 12px;\n}\n\n/* Scroll collapse behavior:\n   When user scrolls down past threshold (80px), hero-surface collapses.\n   Controlled by scrollCollapse.js which adds/removes COLLAPSE_CLASS.\n   Target: .dashboard-section (scroll universal)\n*/\n\n.stage-main {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.dashboard-body {\n    display: block;\n    margin-top: 8px;\n}\n\n/* Slim Sidebar Navigation */\n.dashboard-section .dashboard-sidebar {\n    /* SCROLL UNIVERSAL: No sticky, no overflow */\n    width: var(--sidebar-width);\n    display: flex;\n    flex-direction: column;\n    padding: 0;\n}\n\n.dashboard-section .dashboard-sidebar .sidebar-surface {\n    /* SCROLL UNIVERSAL: height auto */\n    height: auto;\n}\n\n.sidebar-stack {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 12px;\n}\n\n.sidebar-block .sidebar-header,\n.sidebar-block .sidebar-quick-actions,\n.sidebar-block .sidebar-widget-group,\n.sidebar-block .sidebar-widget {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    padding: 0;\n    margin: 0;\n}\n\n.sidebar-block .sidebar-qa-header {\n    margin-bottom: 8px;\n}\n\n.sidebar-block .qa-btn,\n.sidebar-block .client-pill,\n.sidebar-block .widget-mini-item,\n.sidebar-block .sidebar-logout {\n    width: 100%;\n}\n\n.sidebar-surface {\n    background: transparent;\n    border-radius: 20px;\n    border: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n    padding: 0;\n    /* SCROLL UNIVERSAL: overflow manejado por scroll-modal-fixes.css */\n    overflow: visible;\n    height: auto;\n    display: flex;\n    flex-direction: column;\n    gap: 0;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface,\nhtml[data-theme=\"dark-forest\"] .rail-surface {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    color: var(--dashboard-text-primary);\n}\n\n.sidebar-block {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    padding: 0;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-block {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\n.dashboard-section .sidebar-header {\n    padding: 14px 16px;\n    border-bottom: 1px solid rgba(15, 23, 42, 0.18);\n    text-align: center;\n    flex-shrink: 0;\n}\n\n.dashboard-section .user-avatar {\n    width: 60px;\n    height: 60px;\n    margin: 0 auto 12px;\n    border-radius: 50%;\n    overflow: hidden;\n    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);\n}\n\n.dashboard-section .sidebar-header h3 {\n    color: var(--dashboard-text-primary);\n    font-size: var(--dashboard-text-md);\n    font-weight: var(--dashboard-font-semibold);\n    margin: 0;\n}\n\n.dashboard-section .sidebar-header.sidebar-branding {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 10px;\n    padding: 16px 16px 14px;\n    flex-shrink: 0;\n}\n\n.sidebar-branding .logo-slot-nav {\n    width: 64px;\n    height: 64px;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    color: var(--theme-primary-color);\n}\n\n.sidebar-branding .brand-text-sidebar {\n    text-align: center;\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n}\n\n.sidebar-branding .brand-text-sidebar .brand-name {\n    color: var(--dashboard-text-primary);\n    font-size: var(--dashboard-text-md);\n    letter-spacing: 0.04em;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.sidebar-branding .brand-text-sidebar .brand-tagline {\n    color: var(--dashboard-text-secondary);\n    font-size: var(--dashboard-text-xs);\n    letter-spacing: 0.12em;\n    text-transform: uppercase;\n}\n\n.dashboard-section .sidebar-nav {\n    color: var(--dashboard-text-primary);\n    padding: 8px 0;\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n    flex-shrink: 0;\n}\n\n.sidebar-quick-actions,\n.sidebar-widget-group {\n    padding: 12px;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    border: 0;\n    background: transparent;\n    border-radius: 14px;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n    flex-shrink: 0;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-quick-actions,\nhtml[data-theme=\"dark-forest\"] .sidebar-widget-group {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\n.sidebar-qa-header,\n.sidebar-widget-group .sidebar-qa-header {\n    font-size: var(--dashboard-text-sm);\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    color: var(--dashboard-text-secondary);\n    margin-bottom: 6px;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.qa-btn,\n.client-pill,\n.widget-mini-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 8px 10px;\n    border-radius: 12px;\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    background: rgba(255, 255, 255, 0.45) !important;\n    color: var(--dashboard-text-primary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-weight: var(--dashboard-font-semibold);\n    text-align: left;\n    box-shadow: none !important;\n    backdrop-filter: blur(8px);\n    -webkit-backdrop-filter: blur(8px);\n}\n\nhtml[data-theme=\"dark-forest\"] .qa-btn,\nhtml[data-theme=\"dark-forest\"] .client-pill,\nhtml[data-theme=\"dark-forest\"] .widget-mini-item {\n    background: rgba(10, 22, 19, 0.35) !important;\n    border: 1px solid rgba(76, 201, 191, 0.16) !important;\n    color: var(--dashboard-text-primary);\n    box-shadow: none !important;\n    backdrop-filter: blur(8px);\n    -webkit-backdrop-filter: blur(8px);\n}\n\n/* Ajuste de badges en tema oscuro: gradiente y legibilidad */\nhtml[data-theme=\"dark-forest\"] .card-badge,\nhtml[data-theme=\"dark-forest\"] .badge,\nhtml[data-theme=\"dark-forest\"] .badge.badge-accent,\nhtml[data-theme=\"dark-forest\"] .badge.badge-light,\nhtml[data-theme=\"dark-forest\"] .badge.badge-primary,\nhtml[data-theme=\"dark-forest\"] .badge.badge-warning,\nhtml[data-theme=\"dark-forest\"] .badge.badge-success {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.18), rgba(155, 89, 182, 0.28));\n    border: 1px solid rgba(255, 255, 255, 0.08);\n    color: var(--dashboard-text-primary);\n    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.32);\n}\n\n/* Evitar contenedor extra en sidebar widgets (light & dark) */\n.sidebar-quick-actions,\n.sidebar-widget-group {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\n.sidebar-block.sidebar-logout-block {\n    display: flex;\n    padding: 10px 10px 6px;\n}\n\n.sidebar-block.sidebar-brand-block .sidebar-header {\n    align-items: center;\n}\n\n.qa-btn:hover,\n.client-pill:hover,\n.widget-mini-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateY(-2px);\n}\n\nhtml[data-theme=\"dark-forest\"] .qa-btn:hover,\nhtml[data-theme=\"dark-forest\"] .client-pill:hover,\nhtml[data-theme=\"dark-forest\"] .widget-mini-item:hover {\n    background: rgba(76, 201, 191, 0.12);\n    border-color: rgba(76, 201, 191, 0.32);\n    transform: translateY(-1px);\n}\n\n/* Ajuste específico para client-pill y widget-mini-item */\n.client-pill,\n.widget-mini-item {\n    gap: 8px;\n}\n\n.dashboard-section .nav-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 10px 16px;\n    color: var(--dashboard-text-secondary);\n    text-decoration: none;\n    transition: all 0.2s ease;\n    position: relative;\n}\n\n.dashboard-section .nav-item::before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 50%;\n    transform: translateY(-50%);\n    width: 3px;\n    height: 0;\n    background: linear-gradient(180deg, #667eea, #764ba2);\n    border-radius: 0 2px 2px 0;\n    transition: height 0.2s ease;\n}\n\n.dashboard-section .nav-item:hover,\n.dashboard-section .nav-item.active {\n    color: var(--dashboard-text-primary);\n    background: var(--theme-accent-bg-soft);\n}\n\n.dashboard-section .nav-item.active::before {\n    height: 70%;\n}\n\n.dashboard-section .nav-item svg {\n    flex-shrink: 0;\n}\n\n.dashboard-section .sidebar-logout {\n    padding: 12px;\n    background: rgba(245, 87, 108, 0.08);\n    border: 1px solid rgba(245, 87, 108, 0.25);\n    border-radius: 12px;\n    color: #f5576c;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 8px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-size: var(--dashboard-text-base);\n    font-weight: var(--dashboard-font-medium);\n    flex-shrink: 0;\n    margin-top: auto;\n}\n\n.dashboard-section .sidebar-logout:hover {\n    background: rgba(245, 87, 108, 0.2);\n    border-color: rgba(245, 87, 108, 0.4);\n}\n\n.sidebar-widget {\n    padding: 12px;\n    border-radius: 14px;\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n    color: var(--dashboard-text-primary);\n    flex-shrink: 0;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.sidebar-widget h4 {\n    margin: 0;\n    font-size: var(--dashboard-text-base);\n    letter-spacing: 0.3px;\n    text-transform: uppercase;\n    color: var(--dashboard-text-secondary);\n    font-weight: var(--dashboard-font-bold);\n}\n\n.sidebar-widget .card-badge {\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-accent-color);\n    border: 1px solid var(--theme-accent-border);\n}\n\n.sidebar-widget ul {\n    margin: 0;\n    padding-left: 16px;\n    color: var(--dashboard-text-primary);\n    display: grid;\n    gap: 6px;\n    font-size: var(--dashboard-text-base);\n}\n\n.sidebar-widget .contact-chips {\n    display: grid;\n    gap: 8px;\n}\n\n.sidebar-widget .contact-chip {\n    background: rgba(255, 255, 255, 0.85);\n    color: var(--dashboard-text-primary);\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    padding: 8px 10px;\n    border-radius: 12px;\n    text-align: left;\n    width: 100%;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n/* Main Content Wrapper */\n.dashboard-section .dashboard-main-wrapper {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    min-width: 0;\n}\n\n.dashboard-section.no-sidebar .dashboard-main-wrapper {\n    margin-left: 0;\n    padding: 0;\n    max-width: none;\n}\n\n/* Top Header */\n.dashboard-section .dashboard-top-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 22px;\n    gap: 14px;\n}\n\n.dashboard-section .mimic-header {\n    align-items: flex-start;\n}\n\n.search-hero {\n    flex-direction: column;\n    align-items: stretch;\n    gap: 12px;\n}\n\n.search-hero .hero-copy {\n    text-align: center;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n}\n\n.hero-title-row {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    gap: 12px;\n    font-weight: var(--dashboard-font-extrabold);\n    font-size: 16px;\n    letter-spacing: 0.4px;\n}\n\n.hero-title-row .eyebrow {\n    color: var(--dashboard-hero-eyebrow);\n    font-size: 14px;\n    font-weight: var(--dashboard-font-semibold);\n    text-transform: uppercase;\n    letter-spacing: 1.2px;\n}\n\n.hero-divider {\n    color: var(--dashboard-text-tertiary);\n    opacity: 0.4;\n    font-size: 14px;\n}\n\n.hero-welcome {\n    color: var(--dashboard-hero-title);\n    font-weight: var(--dashboard-font-bold);\n    font-family: 'Cinzel', serif;\n    font-size: 20px;\n    letter-spacing: 0.5px;\n}\n\n.hero-welcome span[data-user-name],\n.hero-welcome span[data-hero-user],\n.hero-welcome span[data-agent-name] {\n    font-weight: var(--dashboard-font-black);\n    color: var(--dashboard-hero-title);\n}\n\n.hero-description {\n    margin: 6px 0 0;\n    color: var(--dashboard-hero-subtitle);\n    max-width: 760px;\n    align-self: center;\n    line-height: 1.5;\n    font-size: 15px;\n    font-weight: var(--dashboard-font-regular);\n}\n\n.search-hero .hero-search {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    width: 100%;\n}\n\n.hero-surface {\n    position: relative;\n    border-radius: 16px;\n    padding: 16px 20px;\n    margin: 0;\n    width: 100%;\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n    overflow: hidden;\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, max-height 0.3s ease;\n    transform-origin: top center;\n}\n\n.hero-surface.scrolled-collapsed {\n    transform: scaleY(0.75) translateY(-12px);\n    opacity: 0.6;\n    max-height: 60px;\n    overflow: hidden;\n}\n\n.hero-surface::before {\n    content: '';\n    position: absolute;\n    inset: -32% -38% auto auto;\n    width: 280px;\n    height: 180px;\n    background:\n        radial-gradient(circle at 22% 42%, rgba(102, 126, 234, 0.26), transparent 58%),\n        radial-gradient(circle at 74% 60%, rgba(118, 75, 162, 0.22), transparent 60%);\n    filter: blur(6px);\n    opacity: 0.8;\n    pointer-events: none;\n}\n\n.hero-surface .hero-grid {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.hero-surface .hero-copy {\n    text-align: justify;\n    align-items: flex-start;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    width: 100%;\n}\n\n.hero-surface .hero-title-row {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-wrap: wrap;\n    width: 100%;\n}\n\n.hero-surface .hero-welcome {\n    margin-left: 0;\n}\n\n.hero-surface .hero-title-row .hero-description {\n    flex: 1;\n    margin: 0;\n    margin-left: auto;\n    text-align: justify;\n    min-width: 300px;\n}\n\n.hero-surface .hero-search {\n    width: 100%;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.search-hero .search-bar.stretch {\n    flex: 1;\n    width: 100%;\n}\n\n.dashboard-section .mimic-header .top-left h1 {\n    color: var(--dashboard-text-primary);\n}\n\n.dashboard-section .top-right {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    flex-wrap: wrap;\n    justify-content: flex-end;\n    align-self: flex-start;\n}\n\n.floating-header-bar {\n    display: inline-flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.85);\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 16px;\n    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);\n    backdrop-filter: blur(14px) saturate(1.05);\n    -webkit-backdrop-filter: blur(14px) saturate(1.05);\n}\n\n.pill-actions {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n}\n\n.search-bar {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.92);\n    border: 1px solid rgba(0, 0, 0, 0.08);\n    border-radius: 14px;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);\n    min-width: 320px;\n    backdrop-filter: blur(12px) saturate(1.05);\n}\n\n.search-bar input {\n    border: none;\n    background: transparent;\n    outline: none;\n    width: 100%;\n    font-size: var(--dashboard-text-base);\n    color: var(--dashboard-text-primary);\n}\n\n.search-bar input::placeholder {\n    color: #64748b;\n}\n\n.header-actions.tight {\n    gap: 10px;\n}\n\n.icon-pill {\n    position: relative;\n    width: 38px;\n    height: 38px;\n    border-radius: 12px;\n    border: 1px solid rgba(0, 0, 0, 0.10);\n    background: rgba(255, 255, 255, 0.94);\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);\n    cursor: pointer;\n    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;\n    color: var(--dashboard-text-primary);\n}\n\n.icon-pill:hover {\n    transform: translateY(-2px);\n    border-color: rgba(0, 0, 0, 0.12);\n    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);\n}\n\n.icon-pill .dot {\n    position: absolute;\n    top: 8px;\n    right: 8px;\n    width: 8px;\n    height: 8px;\n    background: #f5576c;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.15);\n}\n\n.badge.ghost {\n    background: rgba(255, 255, 255, 0.94);\n    color: var(--dashboard-text-primary);\n    border: 1px solid rgba(0, 0, 0, 0.12);\n    backdrop-filter: blur(8px);\n}\n\n.dashboard-section .dashboard-top-header .eyebrow {\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    font-size: var(--dashboard-text-xs);\n    color: var(--text-secondary);\n    margin: 0 0 6px 0;\n    font-weight: var(--dashboard-font-bold);\n}\n\n.dashboard-section .dashboard-top-header .header-actions {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-wrap: wrap;\n    justify-content: flex-end;\n}\n\n.dashboard-section .dashboard-top-header .btn-refresh {\n    display: none;\n}\n\n.dashboard-tabs {\n    display: none;\n}\n\n.dashboard-tab {\n    border: none;\n    background: transparent;\n    color: var(--text-secondary);\n    padding: 10px 14px;\n    border-radius: 12px;\n    font-weight: var(--dashboard-font-semibold);\n    cursor: pointer;\n    transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);\n}\n\n.dashboard-tab:hover {\n    color: var(--text-primary);\n    background: rgba(102, 126, 234, 0.06);\n}\n\n.dashboard-tab.active {\n    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(118, 75, 162, 0.18));\n    color: #4a3b91;\n    box-shadow: 0 10px 26px rgba(102, 126, 234, 0.18);\n}\n\n.tab-panels {\n    width: 100%;\n}\n\n.tab-panels .tab-panel {\n    display: none !important;\n    width: 100%;\n    gap: 18px;\n}\n\n.tab-panels .tab-panel.active {\n    display: block !important;\n}\n\n.panel-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 14px;\n}\n\n.mimic-grid {\n    display: grid;\n    grid-template-columns: 1.65fr 1fr;\n    gap: 14px;\n    align-items: start;\n    margin-top: 12px;\n}\n\n.mimic-col {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.mimic-col.main {\n    display: grid;\n    grid-template-columns: repeat(4, minmax(0, 1fr));\n    gap: 12px;\n}\n\n.mimic-col.main>.content-card,\n.mimic-col.main>.chart-card,\n.mimic-col.main>.subgrid {\n    grid-column: span 2;\n}\n\n.mimic-col.main>.list-card,\n.mimic-col.main>.subgrid.two {\n    grid-column: span 4;\n}\n\n.dashboard-body.with-rail {\n    display: grid;\n    grid-template-columns: 1fr var(--rail-width, 320px);\n    gap: 16px;\n    align-items: start;\n    margin-top: 12px;\n}\n\n.dashboard-body .main-surface {\n    height: 100%;\n    padding: 0;\n}\n\n.rail-surface {\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));\n    border: 1px solid rgba(255, 255, 255, 0.06);\n    border-radius: 18px;\n    padding: 10px;\n    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);\n}\n\n.dashboard-rail.right-rail {\n    /* SCROLL UNIVERSAL: No sticky, no overflow */\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    padding: 12px 12px 12px 0;\n    /* overflow manejado por scroll-modal-fixes.css */\n}\n\n.mimic-col.side-left,\n.mimic-col.side-right {\n    /* SCROLL UNIVERSAL: No sticky */\n}\n\n.mimic-wrap {\n    background: transparent;\n    border: none;\n    border-radius: 20px;\n    padding: 0;\n    box-shadow: none;\n    backdrop-filter: none;\n    -webkit-backdrop-filter: none;\n}\n\n.mimic-wrap-inner {\n    background: transparent;\n    border: none;\n    border-radius: 18px;\n    padding: 0;\n    box-shadow: none;\n}\n\n.subgrid.two {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n    gap: 12px;\n}\n\n.mimic-col.main .content-card,\n.mimic-col.charts .chart-card,\n.mimic-col.rail .content-card {\n    width: 100%;\n}\n\n.panel-grid.two-columns {\n    grid-template-columns: 1.25fr 1fr;\n}\n\n.panel-grid.stacked {\n    align-items: start;\n}\n\n.dashboard-section .dashboard-top-header h1 {\n    font-size: var(--dashboard-text-2xl);\n    font-weight: var(--dashboard-font-bold);\n    color: var(--text-primary);\n    margin: 0 0 4px 0;\n    color: var(--dashboard-text-secondary);\n}\n\n.dashboard-section .text-muted {\n    color: var(--text-secondary);\n    font-size: var(--dashboard-text-base);\n    margin: 0;\n}\n\n.dashboard-section .btn-refresh {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    padding: 10px 20px;\n    background: white;\n    border: 1px solid var(--border-color);\n    border-radius: 10px;\n    color: var(--text-primary);\n    font-size: var(--dashboard-text-base);\n    font-weight: var(--dashboard-font-medium);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    box-shadow: var(--shadow-sm);\n}\n\n.dashboard-section .btn-refresh:hover {\n    border-color: #667eea;\n    color: #667eea;\n    box-shadow: var(--shadow-md);\n    transform: translateY(-2px);\n}\n\n.dashboard-section .btn-refresh svg {\n    transition: transform 0.4s ease;\n}\n\n.dashboard-section .btn-refresh:hover svg {\n    transform: rotate(180deg);\n}\n\n/* Stats Grid with Color Pops */\n.dashboard-section .stats-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\n    gap: 14px;\n    margin-bottom: 20px;\n}\n\n.dashboard-section .stats-grid .stat-card.stat-summary {\n    grid-column: 1 / -1;\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));\n    gap: 14px;\n    align-items: start;\n    padding: 18px;\n}\n\n.monitor-card {\n    grid-column: 1 / -1;\n    display: grid;\n    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.1fr);\n    gap: 16px;\n    align-items: start;\n    padding: 16px;\n}\n\n.monitor-wrapper {\n    grid-column: 1 / -1;\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n.monitor-header-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n    padding: 0 4px;\n}\n\n.monitor-title {\n    font-family: 'Cinzel', serif;\n    font-size: 22px;\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-text-primary);\n    margin: 0;\n    letter-spacing: 0.3px;\n}\n\n.expand-all-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    padding: 8px 14px;\n    background: rgba(139, 35, 72, 0.08);\n    border: 1px solid rgba(139, 35, 72, 0.18);\n    border-radius: 12px;\n    color: var(--theme-accent-color);\n    font-size: 13px;\n    font-weight: var(--dashboard-font-semibold);\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.expand-all-btn:hover {\n    background: rgba(139, 35, 72, 0.14);\n    border-color: var(--theme-accent-color);\n    transform: translateY(-1px);\n}\n\n.expand-all-btn svg {\n    transition: transform 0.2s ease;\n}\n\n.expand-all-btn[data-expanded=\"true\"] svg {\n    transform: rotate(180deg);\n}\n\n.pending-count {\n    display: inline-block;\n    padding: 2px 8px;\n    background: var(--theme-accent-color);\n    color: white;\n    border-radius: 8px;\n    font-size: 11px;\n    font-weight: var(--dashboard-font-bold);\n    margin-left: 2px;\n}\n\n.monitor-visual {\n    display: grid;\n    grid-template-columns: 120px 1fr;\n    gap: 12px;\n    align-items: center;\n    padding: 12px;\n    border-right: 1px solid var(--dashboard-border);\n}\n\n.monitor-actions {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n    gap: 12px;\n}\n\n.summary-block {\n    padding: 10px;\n    border-left: 2px solid var(--dashboard-border-subtle);\n}\n\n.summary-head-inline {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 8px;\n}\n\n.summary-title {\n    color: var(--dashboard-card-heading);\n    font-weight: var(--dashboard-font-bold);\n    font-size: var(--dashboard-text-base);\n}\n\n.summary-list.compact li {\n    padding: 9px 10px;\n    color: var(--dashboard-card-text);\n}\n\n.donut-heading {\n    color: var(--dashboard-card-heading);\n    font-weight: 700;\n}\n\n.donut-desc {\n    color: var(--dashboard-card-meta);\n}\n\n.link-btn.subtle {\n    margin-top: 6px;\n    font-weight: var(--dashboard-font-semibold);\n    color: var(--dashboard-text-secondary);\n}\n\n.link-btn.subtle:hover {\n    color: var(--theme-accent-color, #3b82f6);\n    background: rgba(59, 130, 246, 0.08);\n}\n\n.stat-summary .summary-head {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n}\n\n.stat-summary .summary-head h3 {\n    margin: 2px 0 0;\n    font-size: var(--dashboard-text-lg);\n}\n\n.stat-summary .summary-columns {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n    gap: 14px;\n}\n\n.stat-summary .summary-title {\n    margin: 0 0 6px;\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-text-primary);\n}\n\n.stat-summary .summary-list {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n    display: grid;\n    gap: 8px;\n}\n\n.stat-summary .summary-list li {\n    display: grid;\n    grid-template-columns: auto 1fr auto;\n    align-items: center;\n    gap: 8px;\n    background: rgba(255, 255, 255, 0.6);\n    border: 1px solid rgba(15, 23, 42, 0.06);\n    border-radius: 12px;\n    padding: 10px 12px;\n    color: var(--text-primary);\n}\n\n.stat-summary .summary-list .dot {\n    width: 9px;\n    height: 9px;\n}\n\n.stat-summary .summary-list .dot.info {\n    background: var(--theme-accent-color, #3b82f6);\n    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);\n}\n\n.stat-summary .summary-list .dot.warn {\n    background: #f59e0b;\n    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.14);\n}\n\n.stat-summary .summary-list .dot.ok {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.14);\n}\n\n.stat-summary .link-btn {\n    border: none;\n    background: transparent;\n    color: var(--theme-accent-color, #3b82f6);\n    font-weight: 700;\n    cursor: pointer;\n    padding: 4px 8px;\n    border-radius: 10px;\n    transition: background 0.2s ease, color 0.2s ease;\n}\n\n.stat-summary .link-btn:hover {\n    background: rgba(59, 130, 246, 0.1);\n}\n\n.dashboard-section .stats-grid.compact {\n    gap: 16px;\n    margin-bottom: 12px;\n}\n\n.dashboard-section .stat-card {\n    background: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border-radius: 16px;\n    padding: 14px;\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    position: relative;\n    overflow: hidden;\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    backdrop-filter: blur(28px) saturate(1.5);\n    -webkit-backdrop-filter: blur(28px) saturate(1.5);\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.dashboard-section .stat-card::before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 4px;\n    opacity: 0;\n    transition: opacity 0.3s ease;\n}\n\n.dashboard-section .stat-card.stat-primary::before {\n    background: var(--color-primary);\n}\n\n.dashboard-section .stat-card.stat-success::before {\n    background: var(--color-success);\n}\n\n.dashboard-section .stat-card.stat-warning::before {\n    background: var(--color-warning);\n}\n\n.dashboard-section .stat-card.stat-info::before {\n    background: var(--color-info);\n}\n\n.dashboard-section .stat-card:hover {\n    transform: translateY(-4px);\n    box-shadow: var(--shadow-lg);\n}\n\n.dashboard-section .stat-card:hover::before {\n    opacity: 1;\n}\n\n.dashboard-section .stat-card.stat-graph {\n    align-items: center;\n    gap: 16px;\n}\n\n.stat-donut-card {\n    min-height: 140px;\n}\n\n.donut-figure {\n    width: 120px;\n    height: 120px;\n    position: relative;\n    flex-shrink: 0;\n}\n\n.donut-svg {\n    width: 100%;\n    height: 100%;\n}\n\n.donut-track {\n    fill: none;\n    stroke: rgba(15, 23, 42, 0.12);\n    stroke-width: 12;\n}\n\n.donut-segment {\n    fill: none;\n    stroke-width: 12;\n    stroke-linecap: round;\n    transform: rotate(-90deg);\n    transform-origin: center;\n}\n\n.donut-segment.active {\n    stroke: #16a34a;\n}\n\n.donut-segment.renew {\n    stroke: #f59e0b;\n}\n\n.donut-segment.risk {\n    stroke: #e11d48;\n}\n\n.donut-title {\n    font-size: var(--dashboard-text-lg);\n    font-weight: var(--dashboard-font-extrabold);\n    fill: var(--dashboard-text-primary);\n}\n\n.donut-sub {\n    font-size: var(--dashboard-text-sm);\n    fill: var(--dashboard-text-secondary);\n    letter-spacing: 0.04em;\n}\n\n.donut-meta {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n}\n\n.donut-heading {\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-text-primary);\n}\n\n.donut-desc {\n    margin: 0;\n    color: var(--dashboard-text-secondary);\n    font-size: var(--dashboard-text-base);\n}\n\n.donut-legend {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 10px;\n}\n\n.donut-key {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    color: var(--dashboard-text-secondary);\n    font-weight: 600;\n}\n\n.donut-key .dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04);\n}\n\n.donut-key .dot.active {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.18);\n}\n\n.donut-key .dot.renew {\n    background: #f8c547;\n    box-shadow: 0 0 0 4px rgba(248, 197, 71, 0.18);\n}\n\n.donut-key .dot.risk {\n    background: #f5576c;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.18);\n}\n\n.dashboard-section .stat-icon-wrapper {\n    width: 60px;\n    height: 60px;\n    border-radius: 12px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.dashboard-section .stat-primary .stat-icon-wrapper {\n    background: var(--color-primary);\n}\n\n.dashboard-section .stat-success .stat-icon-wrapper {\n    background: var(--color-success);\n}\n\n.dashboard-section .stat-warning .stat-icon-wrapper {\n    background: var(--color-warning);\n}\n\n.dashboard-section .stat-info .stat-icon-wrapper {\n    background: var(--color-info);\n}\n\n.dashboard-section .stat-icon-wrapper svg {\n    stroke: white;\n}\n\n.dashboard-section .stat-content {\n    flex: 1;\n}\n\n.dashboard-section .stat-value {\n    font-size: var(--dashboard-text-2xl);\n    font-weight: var(--dashboard-font-bold);\n    color: var(--dashboard-stat-value);\n    margin: 0 0 4px 0;\n    line-height: 1;\n}\n\n.dashboard-section .stat-label {\n    font-size: var(--dashboard-text-base);\n    color: var(--dashboard-stat-label);\n    font-weight: var(--dashboard-font-semibold);\n}\n\n.dashboard-section .stat-trend,\n.dashboard-section .stat-badge {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    font-size: var(--dashboard-text-sm);\n    font-weight: var(--dashboard-font-semibold);\n    padding: 4px 10px;\n    border-radius: 20px;\n}\n\n.dashboard-section .stat-trend.positive {\n    color: #1e8449;\n    background: rgba(45, 189, 99, 0.15);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-trend.negative {\n    color: #c0392b;\n    background: rgba(192, 57, 43, 0.15);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-badge.success {\n    color: #1e8449;\n    background: rgba(45, 189, 99, 0.15);\n    border: 1px solid rgba(45, 189, 99, 0.3);\n    font-weight: 700;\n}\n\n.dashboard-section .stat-badge.warning {\n    color: #fee140;\n    background: rgba(254, 225, 64, 0.15);\n}\n\n/* Content Grid */\n.dashboard-section .content-grid {\n    display: grid;\n    grid-template-columns: 1fr 360px;\n    gap: 16px;\n}\n\n.client-dashboard .content-grid,\n.agent-dashboard .content-grid {\n    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n    gap: 14px;\n}\n\n.dashboard-section .content-main {\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n}\n\n/* Content Cards */\n.dashboard-section .content-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border-radius: 16px;\n    padding: 18px 18px 16px;\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n}\n\n.dashboard-section .content-card.compact,\n.dashboard-section .widget-card.compact {\n    padding: 18px 18px 16px;\n    border-radius: 14px;\n}\n\n.card-body-scroll {\n    max-height: 340px;\n    overflow: auto;\n    padding-right: 4px;\n    scrollbar-width: thin;\n}\n\n.card-body-scroll::-webkit-scrollbar {\n    width: 8px;\n}\n\n.card-body-scroll::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.12);\n    border-radius: 10px;\n}\n\n.dashboard-section .card-header-modern {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 20px;\n}\n\n.dashboard-section .card-header-modern h3 {\n    font-size: 18px;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0;\n}\n\n.dashboard-section .card-badge {\n    padding: 6px 12px;\n    background: var(--color-primary);\n    color: white;\n    border-radius: 20px;\n    font-size: 12px;\n    font-weight: 600;\n}\n\n.dashboard-section .btn-icon-sm {\n    width: 32px;\n    height: 32px;\n    border-radius: 8px;\n    border: 1px solid var(--border-color);\n    background: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.dashboard-section .btn-icon-sm:hover {\n    border-color: #667eea;\n    background: #f7fafc;\n}\n\n/* Sidebar Widgets */\n.dashboard-section .content-sidebar {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.dashboard-section .widget-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.74));\n    border-radius: 16px;\n    padding: 20px;\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-md);\n    border: 1px solid rgba(255, 255, 255, 0.55);\n    backdrop-filter: blur(14px) saturate(1.1);\n    -webkit-backdrop-filter: blur(14px) saturate(1.1);\n}\n\n.dashboard-section .widget-card h4 {\n    font-size: 16px;\n    font-weight: 600;\n    color: var(--text-primary);\n    margin: 0 0 16px 0;\n}\n\n/* Chart & data visuals */\n.chart-card {\n    position: relative;\n    padding: 16px;\n    border-radius: 14px;\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(139, 35, 72, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    backdrop-filter: blur(28px) saturate(1.4);\n    -webkit-backdrop-filter: blur(28px) saturate(1.4);\n    cursor: pointer;\n    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.chart-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16), 0 12px 32px rgba(139, 35, 72, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    border-color: var(--theme-accent-color);\n}\n\n.calendar-card .calendar-grid {\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n    gap: 4px;\n    font-size: 12px;\n    margin-bottom: 16px;\n}\n\n.calendar-card .cal-day-header {\n    padding: 6px;\n    text-align: center;\n    font-weight: 600;\n    color: var(--dashboard-text-secondary);\n    font-size: 11px;\n    text-transform: uppercase;\n}\n\n.calendar-card .cal-day {\n    padding: 8px 4px;\n    border-radius: 8px;\n    background: rgba(255, 255, 255, 0.12);\n    text-align: center;\n    font-weight: 500;\n    color: var(--dashboard-text-primary);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    position: relative;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.calendar-card .cal-day:hover {\n    background: rgba(255, 255, 255, 0.18);\n    border-color: rgba(255, 255, 255, 0.2);\n}\n\n.calendar-card .cal-day.today {\n    background: rgba(76, 175, 80, 0.2);\n    border-color: rgba(76, 175, 80, 0.4);\n    font-weight: 700;\n    color: #4CAF50;\n}\n\n.calendar-card .cal-day.has-payment {\n    background: rgba(33, 150, 243, 0.2);\n    border-color: rgba(33, 150, 243, 0.4);\n}\n\n.calendar-card .cal-day.muted {\n    opacity: 0.5;\n    cursor: default;\n}\n\n.calendar-card .payment-count {\n    display: inline-block;\n    position: absolute;\n    top: 0;\n    right: 0;\n    width: 16px;\n    height: 16px;\n    background: #FF6B6B;\n    color: white;\n    border-radius: 50%;\n    font-size: 10px;\n    font-weight: 700;\n    line-height: 16px;\n}\n\n.calendar-card .upcoming-payments {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    margin-top: 12px;\n    padding-top: 12px;\n    border-top: 1px solid rgba(255, 255, 255, 0.1);\n}\n\n.calendar-card .payment-slot {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 8px;\n    padding: 10px 12px;\n    border-radius: 8px;\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--dashboard-text-primary);\n    transition: all 0.2s ease;\n    font-size: 13px;\n}\n\n.calendar-card .payment-slot-info {\n    display: grid;\n    grid-template-columns: 70px 1fr 80px;\n    gap: 8px;\n    align-items: center;\n    flex: 1;\n    cursor: pointer;\n}\n\n.calendar-card .payment-receipt-btn {\n    flex-shrink: 0;\n    padding: 6px;\n    width: 28px;\n    height: 28px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 6px;\n    background: var(--theme-accent-bg-soft, rgba(139, 35, 72, 0.08));\n    border: 1px solid var(--theme-accent-border-subtle, rgba(139, 35, 72, 0.18));\n    color: var(--theme-accent-color);\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.calendar-card .payment-receipt-btn:hover {\n    background: var(--theme-accent-color);\n    border-color: var(--theme-accent-color);\n    color: #fff;\n    transform: scale(1.1);\n}\n\n.calendar-card .payment-slot:hover {\n    background: rgba(255, 255, 255, 0.14);\n    transform: translateX(2px);\n}\n\n.calendar-card .payment-slot.muted {\n    opacity: 0.6;\n    cursor: default;\n}\n\n.calendar-card .payment-slot.status-pending {\n    border-left: 3px solid #FF9800;\n}\n\n.calendar-card .payment-slot.status-completed {\n    border-left: 3px solid #4CAF50;\n}\n\n.calendar-card .payment-slot.status-failed {\n    border-left: 3px solid #F44336;\n}\n\n.calendar-card .payment-date {\n    font-weight: 600;\n    text-transform: uppercase;\n    font-size: 11px;\n    color: #64748b;\n    /* Slate-500 - legible en tema claro */\n}\n\n.calendar-card .payment-policy {\n    font-size: 12px;\n    color: #1e293b;\n    /* Slate-800 - oscuro y legible */\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n.calendar-card .payment-amount {\n    text-align: right;\n    font-weight: 700;\n    color: #8b2348;\n    /* Brand maroon - alto contraste */\n}\n\n/* Dark-forest overrides para calendario */\nhtml[data-theme=\"dark-forest\"] .calendar-card .payment-date {\n    color: #94a3b8;\n    /* Slate-400 */\n}\n\nhtml[data-theme=\"dark-forest\"] .calendar-card .payment-policy {\n    color: #f1f5f9;\n    /* Slate-100 */\n}\n\nhtml[data-theme=\"dark-forest\"] .calendar-card .payment-amount {\n    color: #fbbf24;\n    /* Amber-400 - visible en oscuro */\n}\n\n.calendar-card .calendar-error {\n    padding: 20px;\n    text-align: center;\n    color: var(--dashboard-text-secondary);\n    font-size: 13px;\n}\n\n.cal-slot {\n    grid-column: span 5;\n    padding: 10px 12px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--dashboard-text-primary);\n}\n\n.cal-slot.accent {\n    background: rgba(118, 75, 162, 0.12);\n    border-color: rgba(118, 75, 162, 0.24);\n}\n\n.chart-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 10px;\n}\n\n.chart-title {\n    font-size: 15px;\n    font-weight: 700;\n    color: var(--dashboard-text-primary);\n    margin: 0;\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.chart-legend {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.chart-legend-item {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    font-size: 14px;\n    color: var(--dashboard-text-secondary);\n}\n\n.chart-legend-dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: var(--theme-accent-color);\n    box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.12);\n}\n\n.chart-body {\n    position: relative;\n    margin-top: 6px;\n    min-height: 140px;\n    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.28));\n    border-radius: 12px;\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    overflow: hidden;\n}\n\n.sparkline-placeholder {\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.14), rgba(155, 89, 182, 0.12));\n    opacity: 0.55;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 12px;\n}\n\n.sparkline-svg {\n    width: 100%;\n    height: 100%;\n    display: block;\n}\n\n.sparkline-svg polyline {\n    vector-effect: non-scaling-stroke;\n}\n\n.chart-metrics {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n    gap: 10px;\n    margin-top: 12px;\n}\n\n.chart-metric {\n    background: rgba(255, 255, 255, 0.82);\n    border: 1px solid rgba(255, 255, 255, 0.22);\n    border-radius: 10px;\n    padding: 10px 12px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 10px;\n    box-shadow: 0 8px 22px rgba(139, 35, 72, 0.10);\n}\n\n.chart-metric .label {\n    font-size: 14px;\n    color: var(--dashboard-text-secondary);\n}\n\n.chart-metric .value {\n    font-size: 16px;\n    font-weight: 700;\n    color: var(--dashboard-text-primary);\n}\n\n.list-card .mini-table {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.mini-table-row {\n    display: grid;\n    grid-template-columns: 1.2fr 0.9fr 0.7fr 0.7fr 0.9fr;\n    align-items: center;\n    gap: 10px;\n    padding: 12px 10px;\n    border-radius: 12px;\n    background: rgba(255, 255, 255, 0.76);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);\n}\n\n.mini-table-head {\n    background: rgba(255, 255, 255, 0.54);\n    border: 1px solid rgba(0, 0, 0, 0.04);\n    font-weight: 700;\n    color: var(--dashboard-text-secondary);\n    text-transform: uppercase;\n    font-size: 12px;\n    letter-spacing: 0.08em;\n}\n\n.mini-table-row span {\n    color: var(--dashboard-text-primary);\n    font-size: 14px;\n}\n\n.mini-table-row .cell-strong {\n    font-weight: 700;\n}\n\n.chip {\n    display: inline-flex;\n    align-items: center;\n    padding: 4px 10px;\n    border-radius: 999px;\n    font-weight: 700;\n    font-size: 12px;\n    border: 1px solid transparent;\n}\n\n.chip-low {\n    background: rgba(56, 239, 125, 0.14);\n    color: #1c7d4f;\n    border-color: rgba(56, 239, 125, 0.28);\n}\n\n.chip-medium {\n    background: rgba(248, 197, 71, 0.16);\n    color: #8a5b00;\n    border-color: rgba(248, 197, 71, 0.28);\n}\n\n.chip-high {\n    background: rgba(245, 87, 108, 0.16);\n    color: #982b3a;\n    border-color: rgba(245, 87, 108, 0.3);\n}\n\n.contact-chips {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 8px;\n}\n\n.contact-chip {\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    background: linear-gradient(145deg, rgba(118, 75, 162, 0.08), rgba(102, 126, 234, 0.08));\n    color: var(--dashboard-text-primary);\n    padding: 8px 12px;\n    border-radius: 999px;\n    font-weight: 700;\n    font-size: 13px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);\n}\n\n.contact-chip:hover,\n.contact-chip:focus-visible {\n    outline: none;\n    border-color: var(--theme-accent-color);\n    box-shadow: 0 12px 30px rgba(118, 75, 162, 0.16);\n    transform: translateY(-1px);\n}\n\n.contact-chip:active {\n    transform: translateY(0);\n}\n\n.status-dot {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    font-weight: 600;\n}\n\n.status-dot::before {\n    content: '';\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);\n}\n\n.status-dot.ok::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.14);\n}\n\n.status-dot.warn::before {\n    background: #f8c547;\n    box-shadow: 0 0 0 4px rgba(248, 197, 71, 0.18);\n}\n\n.status-dot.risk::before {\n    background: #f5576c;\n    box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.16);\n}\n\n.icon-animated {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    width: 28px;\n    height: 28px;\n    margin-right: 4px;\n    color: var(--theme-primary-color);\n}\n\n.icon-animated svg {\n    stroke-linecap: round;\n    stroke-linejoin: round;\n    overflow: visible;\n}\n\n.icon-animated svg * {\n    stroke-dasharray: 120;\n    stroke-dashoffset: 120;\n    animation: line-draw 1.2s ease forwards;\n    animation-delay: 0.05s;\n}\n\n@keyframes line-draw {\n    to {\n        stroke-dashoffset: 0;\n    }\n}\n\n.dashboard-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.78));\n    border: 1px solid rgba(255, 255, 255, 0.6);\n    border-radius: 16px;\n    padding: var(--dashboard-card-padding);\n    box-shadow: 0 14px 34px rgba(31, 38, 135, 0.12), var(--shadow-sm);\n    backdrop-filter: blur(12px) saturate(1.08);\n    -webkit-backdrop-filter: blur(12px) saturate(1.08);\n    margin-bottom: 12px;\n    color: var(--dashboard-text-primary);\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;\n}\n\n.dashboard-card.scrolled-collapsed {\n    transform: scale(0.98);\n    opacity: 0.85;\n}\n\n/* Obsoleto - tabs antiguos ocultos usan .dashboard-card */\n/* .agent-dashboard .dashboard-card {\n    padding: 18px 16px;\n    border-radius: 14px;\n}\n\n.agent-dashboard .dashboard-stats {\n    gap: 12px;\n    margin-bottom: 12px;\n} */\n\n/* Simple card title when no .card-header is used (sidebar cards) */\n.dashboard-card>h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.25rem;\n    color: var(--dashboard-text-primary);\n    margin: 0 0 16px 0;\n}\n\n.card-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n    margin-bottom: var(--dashboard-card-header-margin);\n    padding-bottom: var(--dashboard-card-header-padding);\n    border-bottom: 2px solid var(--theme-surface-border);\n}\n\n.card-header h3 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.25rem;\n    color: var(--dashboard-text-primary);\n    margin: 0;\n}\n\n/* Lists */\n.policies-list,\n.quotes-list,\n.documents-list,\n.tasks-list,\n.alert-list,\n.activity-list,\n.prelaunch-checklist {\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n}\n\n.task-item,\n.alert-item,\n.activity-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 14px 16px;\n    background: var(--acrylic-bg-light);\n    border: 1px solid var(--theme-accent-border-subtle);\n    border-radius: 12px;\n    color: var(--dashboard-text-primary);\n}\n\n.task-title,\n.alert-title,\n.activity-title {\n    margin: 0 0 4px 0;\n    font-weight: 700;\n}\n\n.task-meta,\n.alert-meta,\n.activity-meta {\n    margin: 0;\n    color: var(--dashboard-text-secondary);\n    font-size: 0.9rem;\n}\n\n.quick-actions {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n/* Skeleton loading states for dashboards */\n.skeleton-mode .dashboard-stat-card,\n.skeleton-mode .task-item,\n.skeleton-mode .alert-item,\n.skeleton-mode .activity-item {\n    position: relative;\n    overflow: hidden;\n    color: transparent !important;\n}\n\n.skeleton-mode .dashboard-stat-card::after,\n.skeleton-mode .task-item::after,\n.skeleton-mode .alert-item::after,\n.skeleton-mode .activity-item::after {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(90deg,\n            rgba(255, 255, 255, 0.04) 0%,\n            rgba(255, 255, 255, 0.08) 40%,\n            rgba(255, 255, 255, 0.04) 80%);\n    animation: skeleton-shimmer 1.2s infinite;\n}\n\n.skeleton-mode .dashboard-stat-card .stat-icon,\n.skeleton-mode .dashboard-stat-card .stat-value,\n.skeleton-mode .dashboard-stat-card .stat-label,\n.skeleton-mode .task-item *,\n.skeleton-mode .alert-item *,\n.skeleton-mode .activity-item * {\n    color: transparent !important;\n}\n\n@keyframes skeleton-shimmer {\n    0% {\n        transform: translateX(-60%);\n    }\n\n    100% {\n        transform: translateX(60%);\n    }\n}\n\n.badge-light {\n    background: rgba(255, 255, 255, 0.12);\n    color: var(--dashboard-text-primary);\n    border: 1px solid var(--theme-surface-border);\n}\n\n.prelaunch-checklist {\n    padding-left: 18px;\n    margin: 0;\n    color: var(--dashboard-text-secondary);\n}\n\n.prelaunch-checklist li {\n    margin-bottom: 8px;\n}\n\n.policy-item,\n.quote-item {\n    display: flex;\n    align-items: center;\n    gap: 16px;\n    padding: 18px;\n    background: rgba(255, 255, 255, 0.92);\n    border: 1px solid rgba(255, 255, 255, 0.26);\n    border-radius: 12px;\n    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;\n}\n\n.policy-item:hover,\n.quote-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(3px);\n    box-shadow: var(--shadow);\n}\n\n.policy-icon {\n    font-size: 2rem;\n    width: 52px;\n    height: 52px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: var(--acrylic-bg-light);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    flex-shrink: 0;\n}\n\n.policy-info,\n.quote-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.policy-actions {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-shrink: 0;\n}\n\n.policy-info h4,\n.quote-info h4 {\n    font-size: 1.05rem;\n    color: var(--dashboard-text-primary);\n    margin: 0 0 6px 0;\n}\n\n.policy-info p,\n.quote-info p {\n    color: var(--dashboard-text-secondary);\n    font-size: 0.92rem;\n    margin: 0 0 10px 0;\n}\n\n.policy-meta {\n    display: flex;\n    align-items: center;\n    flex-wrap: wrap;\n    gap: 10px;\n    font-size: 0.85rem;\n    color: var(--dashboard-text-secondary);\n}\n\n.quote-date {\n    font-size: 0.85rem;\n    color: var(--dashboard-text-secondary);\n}\n\n.recent-docs-list {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n\n.doc-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px 14px;\n    background: rgba(255, 255, 255, 0.82);\n    border: 1px solid rgba(0, 0, 0, 0.06);\n    border-radius: 12px;\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);\n}\n\n.doc-meta {\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n}\n\n.doc-meta strong {\n    font-size: 14px;\n    color: var(--dashboard-text-primary);\n}\n\n.doc-meta span {\n    color: var(--dashboard-text-secondary);\n    font-size: 12px;\n}\n\n.doc-actions {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n}\n\n.contact-modal {\n    position: fixed;\n    inset: 0;\n    display: none;\n    align-items: center;\n    justify-content: center;\n    z-index: 200;\n}\n\n.contact-modal.is-open {\n    display: flex;\n}\n\n/* ============================================================================\n   MODALES: Todos los estilos están centralizados en modals-unified.css\n   No duplicar estilos aquí - usar modals-unified.css como única fuente\n   ============================================================================ */\n\n/* Badges */\n.badge {\n    padding: 4px 12px;\n    border-radius: 999px;\n    font-size: 0.72rem;\n    font-weight: 700;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.badge-success {\n    background: var(--success);\n    color: var(--theme-on-success);\n}\n\n.badge-warning {\n    background: var(--warning);\n    color: var(--theme-on-warning);\n}\n\n.badge-danger {\n    background: var(--danger);\n    color: var(--theme-on-danger);\n}\n\n.badge-primary {\n    background: var(--theme-primary-color);\n    color: var(--theme-highlight-light);\n}\n\n.badge-accent {\n    background: var(--theme-accent-bg-soft);\n    color: var(--theme-accent-color);\n    border: 1px solid var(--theme-accent-border);\n}\n\n/* Tables */\n.payments-table table,\n.clients-table table {\n    width: 100%;\n    border-collapse: collapse;\n}\n\n.payments-table th,\n.payments-table td,\n.clients-table th,\n.clients-table td {\n    padding: 14px 12px;\n    text-align: left;\n    border-bottom: 1px solid var(--theme-surface-border);\n}\n\n.payments-table th,\n.clients-table th {\n    font-weight: 700;\n    color: var(--dashboard-text-primary);\n    background: var(--theme-navlink-active-bg);\n    font-size: 0.9rem;\n}\n\n.payments-table td,\n.clients-table td {\n    color: var(--dashboard-text-secondary);\n    font-size: 0.95rem;\n}\n\n.client-cell {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\n.client-avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\n    color: var(--white);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-weight: 800;\n    font-size: 0.9rem;\n    flex-shrink: 0;\n}\n\n.client-name {\n    font-weight: 700;\n    color: #1a1a1a;\n}\n\n[data-theme=\"dark-forest\"] .client-name,\nbody.dark-forest .client-name {\n    color: var(--dashboard-text-primary);\n}\n\n.client-email {\n    font-size: 0.85rem;\n    color: var(--dashboard-text-secondary);\n}\n\n/* Sidebar */\n.dashboard-sidebar .dashboard-card {\n    position: sticky;\n    top: calc(var(--nav-height) + 14px);\n}\n\n.quick-actions {\n    display: flex;\n    flex-direction: column;\n    gap: var(--dashboard-quick-actions-gap);\n}\n\n.agent-info {\n    text-align: center;\n}\n\n.agent-avatar {\n    width: 80px;\n    height: 80px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-primary-color), var(--theme-accent-color));\n    color: var(--white);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-family: 'Cinzel', serif;\n    font-size: 2rem;\n    font-weight: 800;\n    margin: 0 auto 16px;\n    box-shadow: 0 10px 26px var(--theme-primary-shadow-color);\n}\n\n.agent-info h4 {\n    font-family: 'Cinzel', serif;\n    font-size: 1.15rem;\n    margin: 0 0 6px 0;\n    color: var(--dashboard-text-primary);\n}\n\n.agent-info p {\n    color: var(--dashboard-text-secondary);\n    font-size: 0.92rem;\n    margin: 0 0 14px 0;\n}\n\n.agent-contact {\n    margin: 14px 0;\n    padding: 14px;\n    background: var(--theme-navlink-active-bg);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    text-align: left;\n}\n\n.agent-contact p {\n    margin: 6px 0;\n    font-size: 0.92rem;\n    color: var(--dashboard-text-secondary);\n}\n\n/* Shared stat grid + cards */\n.dashboard-stats {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(var(--dashboard-stat-min), 1fr));\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\n    margin-top: 0;\n    margin-bottom: 12px;\n}\n\n.dashboard-stat-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.05)) saturate(calc(var(--acrylic-saturate-strong) * 1.05));\n    padding: var(--dashboard-stat-padding);\n    border-radius: var(--dashboard-stat-radius);\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: var(--dashboard-stat-shadow, var(--dashboard-stat-shadow-shared));\n    transition: var(--dashboard-stat-transition, var(--dashboard-stat-transition-shared));\n    display: flex;\n    align-items: center;\n    gap: var(--dashboard-stat-gap, var(--dashboard-stat-gap-shared));\n    position: relative;\n    overflow: hidden;\n    transition: transform 0.42s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.42s cubic-bezier(0.33, 1, 0.68, 1), background 0.42s cubic-bezier(0.33, 1, 0.68, 1), border-color 0.42s cubic-bezier(0.33, 1, 0.68, 1);\n}\n\n.dashboard-stat-card:hover {\n    transform: translateY(var(--dashboard-stat-hover-lift, var(--dashboard-stat-hover-lift-shared)));\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.2)) saturate(calc(var(--acrylic-saturate-strong) * 1.15));\n    box-shadow: var(--dashboard-stat-hover-shadow, var(--dashboard-stat-hover-shadow-shared));\n}\n\n.dashboard-stat-card .stat-icon {\n    font-size: var(--dashboard-stat-icon-font, var(--dashboard-stat-icon-font-shared));\n    width: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\n    height: var(--dashboard-stat-icon-size, var(--dashboard-stat-icon-size-shared));\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));\n    border-radius: var(--dashboard-stat-icon-radius, var(--dashboard-stat-icon-radius-shared));\n    border: 1px solid rgba(255, 255, 255, 0.28);\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 1.05)) saturate(calc(var(--acrylic-saturate) * 1.18));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 1.05)) saturate(calc(var(--acrylic-saturate) * 1.18));\n    box-shadow: 0 10px 28px rgba(139, 35, 72, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.26);\n    flex-shrink: 0;\n}\n\n.stat-info {\n    flex: 1;\n}\n\n.stat-value {\n    font-family: 'Cinzel', serif;\n    font-size: 2rem;\n    font-weight: 700;\n    color: var(--dashboard-text-primary);\n    line-height: 1;\n    margin-bottom: 6px;\n}\n\n.stat-label {\n    font-size: 0.95rem;\n    color: var(--dashboard-text-secondary);\n    font-weight: 500;\n}\n\n.document-link {\n    padding: 12px 14px;\n    background: var(--theme-navlink-active-bg);\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 10px;\n    text-decoration: none;\n    color: var(--dashboard-text-primary);\n    font-size: 0.92rem;\n    transition: transform 0.2s ease, background 0.2s ease;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n.document-link:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(3px);\n}\n\n.task-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 12px;\n    background: rgba(255, 255, 255, 0.94);\n    border: 1px solid rgba(255, 255, 255, 0.26);\n    border-radius: 10px;\n    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;\n}\n\n.task-item:hover {\n    background: var(--theme-accent-bg-soft);\n    border-color: var(--theme-accent-border);\n    transform: translateX(2px);\n}\n\n.task-item input[type=\"checkbox\"] {\n    width: 18px;\n    height: 18px;\n    cursor: pointer;\n}\n\n.commissions-info {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.commission-row {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 10px 0;\n    border-bottom: 1px solid var(--theme-surface-border);\n    color: var(--dashboard-text-secondary);\n}\n\n.commission-row strong {\n    color: var(--dashboard-text-primary);\n}\n\n/* Responsive */\n@media (max-width: 1480px) {\n    .dashboard-grid {\n        grid-template-columns: repeat(2, minmax(300px, 1fr));\n    }\n\n    .dashboard-main {\n        grid-column: span 2;\n        grid-template-columns: repeat(2, minmax(var(--dashboard-main-col-min), 1fr));\n    }\n\n    .dashboard-sidebar {\n        grid-column: span 2;\n    }\n}\n\n@media (max-width: 1100px) {\n    .dashboard-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-stage.with-rail {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-main {\n        grid-column: span 1;\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-sidebar {\n        grid-column: span 1;\n    }\n\n    .dashboard-sidebar .dashboard-card {\n        position: static;\n    }\n\n    .mimic-col.main {\n        grid-template-columns: repeat(2, minmax(0, 1fr));\n    }\n\n    .mimic-col.main>.content-card,\n    .mimic-col.main>.chart-card,\n    .mimic-col.main>.subgrid {\n        grid-column: span 1;\n    }\n\n    .mimic-col.main>.list-card,\n    .mimic-col.main>.subgrid.two {\n        grid-column: span 2;\n    }\n\n    .dashboard-body.with-rail {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-rail.right-rail {\n        position: static;\n        order: 2;\n    }\n\n    .hero-surface .hero-grid {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n}\n\n@media (max-width: 560px) {\n    .dashboard-card {\n        padding: 20px;\n    }\n\n    .mimic-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.rail {\n        grid-column: 1;\n    }\n\n    .policy-item,\n    .quote-item {\n        flex-direction: column;\n        align-items: flex-start;\n    }\n\n    .mimic-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.rail,\n    .mimic-col.charts,\n    .mimic-col.main {\n        grid-column: 1;\n    }\n\n    .mimic-col.main {\n        grid-template-columns: 1fr;\n    }\n\n    .mimic-col.main>.content-card,\n    .mimic-col.main>.chart-card,\n    .mimic-col.main>.subgrid,\n    .mimic-col.main>.list-card,\n    .mimic-col.main>.subgrid.two {\n        grid-column: span 1;\n    }\n\n    .dashboard-rail.right-rail {\n        position: static;\n        order: 2;\n    }\n}\n\n/* ===== Dark-Forest Dashboard Overrides (moved from theme file for load priority) ===== */\nhtml[data-theme=\"dark-forest\"] .dashboard-section,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard {\n    background: #060b0a;\n    color: var(--dashboard-text-primary);\n}\n\n/* Sidebar dark theme overrides */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .dashboard-sidebar {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface {\n    background: transparent !important;\n    border: 0 !important;\n    border-radius: 20px !important;\n    box-shadow: none !important;\n    backdrop-filter: none !important;\n    -webkit-backdrop-filter: none !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .sidebar-header {\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .logo-slot-nav {\n    color: #fff;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .brand-text-sidebar .brand-name {\n    color: #fff;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-branding .brand-text-sidebar .brand-tagline {\n    color: rgba(255, 255, 255, 0.72);\n}\n\n/* sidebar-quick-actions ya usa estilos unificados - sin background extra */\n\nhtml[data-theme=\"dark-forest\"] .sidebar-qa-header {\n    color: rgba(255, 255, 255, 0.7);\n}\n\n/* Unificado con los demás botones de sidebar */\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item {\n    color: rgba(255, 255, 255, 0.7);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .nav-item.active {\n    color: white;\n    background: rgba(255, 255, 255, 0.05);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget {\n    background: transparent;\n    border: 0;\n    box-shadow: none;\n    color: white;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget h4 {\n    color: rgba(255, 255, 255, 0.82);\n}\n\n/* Dashboard cards - unified dark backgrounds for consistency */\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;\n    backdrop-filter: blur(20px) saturate(1.2) !important;\n    -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-surface .dashboard-card {\n    background: rgba(255, 255, 255, 0.05) !important;\n    border: 1px solid rgba(255, 255, 255, 0.08) !important;\n}\n\n/* Stat cards - same background as dashboard-card for consistency */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;\n    backdrop-filter: blur(28px) saturate(1.3) !important;\n    -webkit-backdrop-filter: blur(28px) saturate(1.3) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .client-dashboard .stat-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12) !important;\n}\n\n/* Hero surface - unified dark background */\nhtml[data-theme=\"dark-forest\"] .hero-surface {\n    background: rgba(15, 43, 36, 0.3) !important;\n    border: 1px solid rgba(242, 234, 220, 0.14) !important;\n    border-radius: 16px !important;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;\n    backdrop-filter: blur(32px) saturate(1.3) !important;\n    -webkit-backdrop-filter: blur(32px) saturate(1.3) !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget .card-badge {\n    background: rgba(255, 255, 255, 0.12);\n    color: white;\n    border: 1px solid rgba(255, 255, 255, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget ul {\n    color: rgba(255, 255, 255, 0.9);\n}\n\nhtml[data-theme=\"dark-forest\"] .sidebar-widget .contact-chip {\n    background: rgba(10, 22, 19, 0.65);\n    border: 1px solid rgba(76, 201, 191, 0.16);\n    color: var(--dashboard-text-primary);\n    box-shadow: none;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header {\n    border-bottom: 2px solid rgba(223, 243, 237, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child h1,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header h1,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child h1 {\n    color: var(--theme-contrast-strong);\n    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header>div:first-child p,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header p,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header>div:first-child p {\n    color: var(--dashboard-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.28) 0%, rgba(113, 220, 201, 0.22) 100%);\n    color: #e8f4ef;\n    border: 1px solid rgba(76, 201, 191, 0.35);\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), 0 4px 12px rgba(76, 201, 191, 0.25);\n    backdrop-filter: blur(12px) saturate(1.4);\n    -webkit-backdrop-filter: blur(12px) saturate(1.4);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-header .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .btn-primary:hover {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.38) 0%, rgba(113, 220, 201, 0.32) 100%);\n    border-color: rgba(76, 201, 191, 0.45);\n    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), 0 6px 18px rgba(76, 201, 191, 0.35);\n    transform: translateY(-2px);\n}\n\n/* Normalizar tamaño y densidad de CTAs en dark theme (evita botones gigantes como \"Abrir\") */\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section button,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .cta .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta .btn {\n    border: 1px solid rgba(76, 201, 191, 0.32);\n    background: radial-gradient(circle at 20% 20%, rgba(76, 201, 191, 0.18), rgba(0, 0, 0, 0.32));\n    color: var(--dashboard-text-primary);\n    transition: all 0.2s ease;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section button:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .cta .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .btn-primary:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .btn:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta:hover,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card .cta .btn:hover {\n    border-color: rgba(76, 201, 191, 0.55);\n    background: radial-gradient(circle at 20% 20%, rgba(76, 201, 191, 0.25), rgba(0, 0, 0, 0.4));\n    transform: translateY(-1px);\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-icon {\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.15) 0%, rgba(155, 89, 182, 0.1) 100%);\n    border: 2px solid var(--theme-primary-color);\n    color: var(--theme-primary-color);\n    box-shadow: 0 4px 12px rgba(139, 35, 72, 0.25);\n}\n\nhtml[data-theme=\"dark-forest\"] .btn-icon:hover {\n    background: linear-gradient(135deg, rgba(139, 35, 72, 0.25) 0%, rgba(155, 89, 182, 0.2) 100%);\n    border-color: var(--theme-accent-color);\n    box-shadow: 0 6px 16px rgba(139, 35, 72, 0.35);\n    transform: translateY(-2px);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.05));\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);\n    backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur-strong) * 1.1)) saturate(calc(var(--acrylic-saturate-strong) * 1.1));\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .content-card,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .widget-card {\n    background: rgba(15, 43, 36, 0.25) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);\n    color: var(--dashboard-text-primary);\n    backdrop-filter: blur(20px) saturate(1.2);\n    -webkit-backdrop-filter: blur(20px) saturate(1.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .text-muted,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-header h3,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-header-modern h3,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-label,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-value,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-trend,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-badge,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info h4,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info h4,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .action-btn,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .card-badge,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .widget-card h4 {\n    color: var(--dashboard-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-info p,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-meta,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .text-muted,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .stat-label {\n    color: var(--dashboard-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-section .task-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .alert-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .activity-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .policy-item,\nhtml[data-theme=\"dark-forest\"] .dashboard-section .quote-item {\n    background: linear-gradient(150deg, rgba(10, 26, 36, 0.82), rgba(10, 26, 36, 0.72));\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    color: var(--dashboard-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-card {\n    background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));\n    border: 1px solid var(--theme-accent-border);\n    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28), 0 12px 28px rgba(139, 35, 72, 0.16);\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-body {\n    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));\n    border-color: rgba(255, 255, 255, 0.12);\n}\n\nhtml[data-theme=\"dark-forest\"] .sparkline-placeholder {\n    background: transparent;\n}\n\nhtml[data-theme=\"dark-forest\"] .chart-metric {\n    background: rgba(255, 255, 255, 0.08);\n    border: 1px solid rgba(255, 255, 255, 0.14);\n    color: var(--dashboard-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card:hover,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card:hover,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card:hover {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));\n    border-color: var(--theme-accent-border);\n    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-stat-card .stat-icon,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .dashboard-stat-card .stat-icon,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .dashboard-stat-card .stat-icon {\n    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));\n    color: var(--dashboard-text-primary);\n    border: 1px solid var(--theme-accent-border);\n    backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\n    -webkit-backdrop-filter: blur(calc(var(--acrylic-blur) * 0.9)) saturate(calc(var(--acrylic-saturate) * 1.1));\n    box-shadow: 0 10px 28px var(--theme-primary-shadow-color), inset 0 1px 0 rgba(255, 255, 255, 0.24);\n}\n\nhtml[data-theme=\"dark-forest\"] .stat-value,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-value,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-value {\n    color: var(--theme-contrast-strong);\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);\n}\n\nhtml[data-theme=\"dark-forest\"] .stat-label,\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .stat-label,\nhtml[data-theme=\"dark-forest\"] .admin-dashboard .stat-label {\n    color: var(--dashboard-text-secondary);\n    font-weight: 600;\n}\n\nhtml[data-theme=\"dark-forest\"] .dashboard-card {\n    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));\n    border: 1px solid var(--theme-accent-border);\n    color: var(--dashboard-text-primary);\n    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);\n    backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\n    -webkit-backdrop-filter: blur(var(--acrylic-blur)) saturate(var(--acrylic-saturate));\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-row {\n    background: rgba(15, 43, 36, 0.2) !important;\n    border: 1px solid rgba(242, 234, 220, 0.1);\n    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .floating-header-bar {\n    background: rgba(15, 43, 36, 0.3) !important;\n    border: 1px solid rgba(242, 234, 220, 0.12);\n    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.32);\n}\n\nhtml[data-theme=\"dark-forest\"] .contact-chip {\n    background: rgba(76, 201, 191, 0.15) !important;\n    border: 1px solid rgba(76, 201, 191, 0.25);\n    color: var(--dashboard-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .contact-chip:hover {\n    background: rgba(76, 201, 191, 0.25) !important;\n    border-color: rgba(76, 201, 191, 0.35);\n}\n\nhtml[data-theme=\"dark-forest\"] .doc-item {\n    background: rgba(15, 43, 36, 0.2) !important;\n    border: 1px solid rgba(242, 234, 220, 0.1);\n    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);\n    color: var(--dashboard-text-primary);\n}\n\n/* Modales: estilos centralizados en modals-unified.css */\n\nhtml[data-theme=\"dark-forest\"] .donut-track {\n    stroke: rgba(255, 255, 255, 0.18);\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-head {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.08);\n    color: var(--dashboard-text-secondary);\n}\n\nhtml[data-theme=\"dark-forest\"] .search-bar,\nhtml[data-theme=\"dark-forest\"] .icon-pill,\nhtml[data-theme=\"dark-forest\"] .badge.ghost {\n    background: rgba(255, 255, 255, 0.06);\n    border: 1px solid rgba(255, 255, 255, 0.12);\n    color: var(--dashboard-text-primary);\n    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .mini-table-row span,\nhtml[data-theme=\"dark-forest\"] .cell-strong,\nhtml[data-theme=\"dark-forest\"] .chip-low,\nhtml[data-theme=\"dark-forest\"] .chip-medium,\nhtml[data-theme=\"dark-forest\"] .chip-high,\nhtml[data-theme=\"dark-forest\"] .status-dot {\n    color: var(--dashboard-text-primary);\n}\n\n/* Responsive Design */\n@media (max-width: 1200px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: var(--sidebar-width) 1fr;\n    }\n\n    .dashboard-right-rail {\n        display: none;\n    }\n\n    .dashboard-section .content-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-section .content-sidebar {\n        grid-column: 1;\n    }\n\n    .panel-grid.two-columns {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-stage {\n        padding: 16px;\n    }\n}\n\n@media (max-width: 768px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: var(--sidebar-slim-width) 1fr;\n        gap: 4px;\n        padding: 4px;\n    }\n\n    .dashboard-section .dashboard-sidebar {\n        width: var(--sidebar-slim-width);\n    }\n\n    .dashboard-section .nav-item span,\n    .dashboard-section .sidebar-header h3,\n    .sidebar-branding .brand-text,\n    .sidebar-quick-actions,\n    .sidebar-widget {\n        display: none;\n    }\n\n    .sidebar-surface {\n        padding: 8px 4px;\n    }\n\n    .dashboard-section .stats-grid {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .stat-card {\n        padding: 12px;\n    }\n\n    .dashboard-section .dashboard-top-header {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 12px;\n    }\n\n    .hero-surface {\n        padding: 12px;\n    }\n\n    .hero-surface .hero-grid {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n\n    .search-bar {\n        width: 100%;\n    }\n\n    .dashboard-tabs {\n        width: 100%;\n        justify-content: space-between;\n        gap: 4px;\n        overflow-x: auto;\n        -webkit-overflow-scrolling: touch;\n    }\n\n    .dashboard-tab {\n        flex: 1 1 auto;\n        min-width: 80px;\n        text-align: center;\n        font-size: 0.8rem;\n        padding: 8px 12px;\n        white-space: nowrap;\n    }\n\n    .dashboard-stage {\n        padding: 8px 4px;\n    }\n\n    .content-grid {\n        grid-template-columns: 1fr !important;\n        gap: 12px;\n    }\n\n    .dashboard-card {\n        margin-bottom: 8px;\n    }\n\n    .monitor-wrapper .monitor-card {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n\n    .monitor-visual {\n        grid-template-columns: 100px 1fr;\n        border-right: none;\n        border-bottom: 1px solid var(--dashboard-border);\n        padding-bottom: 12px;\n    }\n}\n\n/* Mobile phones - stack everything */\n@media (max-width: 480px) {\n    .dashboard-section .dashboard-layout {\n        grid-template-columns: 1fr;\n        gap: 0;\n        padding: 0;\n    }\n\n    .dashboard-section .dashboard-sidebar {\n        display: none;\n    }\n\n    .dashboard-section .dashboard-right-rail {\n        display: none;\n    }\n\n    .dashboard-main-wrapper {\n        width: 100%;\n        padding: 0;\n    }\n\n    .dashboard-stage {\n        padding: 8px;\n    }\n\n    .hero-surface {\n        padding: 12px;\n        border-radius: 12px;\n    }\n\n    .hero-welcome {\n        font-size: 24px;\n    }\n\n    .hero-title-row .eyebrow {\n        font-size: 16px;\n    }\n\n    .hero-description {\n        font-size: 14px;\n    }\n\n    .dashboard-tabs {\n        padding: 8px 4px;\n        gap: 4px;\n    }\n\n    .dashboard-tab {\n        font-size: 0.75rem;\n        padding: 6px 8px;\n        min-width: 70px;\n    }\n\n    .stats-grid {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    .stat-card {\n        padding: 10px;\n    }\n\n    .stat-value {\n        font-size: 1.5rem;\n    }\n\n    .stat-label {\n        font-size: 0.8rem;\n    }\n\n    .monitor-header-row {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 8px;\n    }\n\n    .monitor-title {\n        font-size: 18px;\n    }\n\n    .expand-all-btn {\n        width: 100%;\n        justify-content: center;\n    }\n\n    .monitor-card {\n        grid-template-columns: 1fr;\n        padding: 12px;\n    }\n\n    .monitor-visual {\n        grid-template-columns: 1fr;\n        text-align: center;\n        border-right: none;\n        border-bottom: 1px solid var(--dashboard-border);\n        padding-bottom: 12px;\n        margin-bottom: 12px;\n    }\n\n    .donut-figure {\n        margin: 0 auto 12px;\n    }\n\n    .monitor-actions {\n        grid-template-columns: 1fr;\n    }\n\n    .dashboard-card {\n        padding: 12px;\n        margin-bottom: 8px;\n    }\n\n    .card-header-modern {\n        flex-direction: column;\n        align-items: flex-start;\n        gap: 8px;\n    }\n\n    /* Add mobile menu toggle button */\n    .dashboard-mobile-menu-toggle {\n        display: flex;\n        position: fixed;\n        bottom: 20px;\n        right: 20px;\n        width: 56px;\n        height: 56px;\n        background: var(--theme-accent-color);\n        border-radius: 50%;\n        align-items: center;\n        justify-content: center;\n        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n        z-index: 1000;\n        border: none;\n        color: white;\n        cursor: pointer;\n    }\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   CLIENT DASHBOARD SPECIFIC STYLES\n   ═══════════════════════════════════════════════════════════════════ */\n\n.client-dashboard .stat-card {\n    padding: 12px;\n    border-radius: 14px;\n    gap: 10px;\n}\n\n.client-dashboard .stat-card .stat-content .stat-value {\n    font-size: 1.45rem;\n}\n\n.client-dashboard .stat-card .stat-icon-wrapper {\n    width: 38px;\n    height: 38px;\n    border-radius: 12px;\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   AGENT DASHBOARD SPECIFIC STYLES\n   ═══════════════════════════════════════════════════════════════════ */\n\n/* Hero header layout - siguiendo patrón de client dashboard */\n.agent-dashboard .hero-surface {\n    background: linear-gradient(135deg, rgba(79, 172, 254, 0.08) 0%, rgba(0, 242, 254, 0.08) 100%);\n}\n\n.agent-dashboard .hero-title-row {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin-bottom: 0;\n    flex-wrap: wrap;\n    width: 100%;\n}\n\n/* Estilos unificados en selectores base - no necesita sobrescritura */\n\n.agent-dashboard .hero-description {\n    font-size: 0.875rem;\n    line-height: 1.5;\n    color: var(--dashboard-text-secondary);\n    margin: 0;\n    flex: 1;\n    margin-left: auto;\n    text-align: justify;\n}\n\n/* Sidebar pills and widgets */\n.agent-dashboard .recent-clients-pills,\n.agent-dashboard .widget-mini-list {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.agent-dashboard .agent-dashboard .client-pill-avatar {\n    width: 28px;\n    height: 28px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 11px;\n    font-weight: bold;\n    color: white;\n    flex-shrink: 0;\n}\n\n.agent-dashboard .client-pill-name {\n    font-size: 0.85rem;\n    font-weight: 600;\n    color: var(--dashboard-text-primary);\n}\n\n/* Botones y pills del sidebar: igualar estilo de quick actions */\n.agent-dashboard .client-pill,\n.agent-dashboard .widget-mini-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    border-radius: 12px;\n    border: 1px solid var(--theme-accent-border);\n    background: var(--theme-accent-bg-soft);\n    color: var(--dashboard-text-primary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    font-weight: var(--dashboard-font-semibold);\n    text-align: left;\n    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);\n    backdrop-filter: blur(8px);\n}\n\n.agent-dashboard .client-pill:hover,\n.agent-dashboard .widget-mini-item:hover {\n    background: rgba(79, 172, 254, 0.12);\n    border-color: var(--theme-accent-color);\n    transform: translateY(-2px);\n}\n\n.agent-dashboard .widget-mini-item svg {\n    flex-shrink: 0;\n    color: var(--theme-accent-color);\n}\n\n.agent-dashboard .widget-mini-item span {\n    flex: 1;\n    font-size: 0.82rem;\n    font-weight: 600;\n    color: var(--dashboard-text-primary);\n}\n\n.agent-dashboard .widget-mini-badge {\n    background: rgba(79, 172, 254, 0.12);\n    color: var(--theme-accent-color);\n    font-size: 0.75rem;\n    font-weight: 700;\n    padding: 2px 8px;\n    border-radius: 12px;\n    border: 1px solid currentColor;\n}\n\n.agent-dashboard .widget-mini-badge.warn {\n    background: rgba(245, 87, 108, 0.12);\n    color: #f5576c;\n    border-color: #f5576c;\n}\n\n/* Roadmap de Suscripción - pasos de registro del cliente */\n.agent-dashboard .roadmap-tabs {\n    display: flex;\n    gap: 6px;\n    margin-bottom: 12px;\n}\n\n.agent-dashboard .roadmap-tab {\n    padding: 8px 12px;\n    border-radius: 10px;\n    border: 1px solid var(--theme-accent-border);\n    background: var(--theme-accent-bg-soft);\n    font-size: 0.78rem;\n    font-weight: 700;\n    color: var(--dashboard-text-secondary);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.agent-dashboard .roadmap-tab:hover {\n    background: rgba(79, 172, 254, 0.12);\n    border-color: var(--theme-accent-color);\n}\n\n.agent-dashboard .roadmap-tab.active {\n    background: rgba(79, 172, 254, 0.18);\n    border-color: var(--theme-accent-color);\n    color: var(--theme-accent-color);\n}\n\n.agent-dashboard .roadmap-body {\n    position: relative;\n    background: rgba(255, 255, 255, 0.9);\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 14px;\n    padding: 12px;\n    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);\n    backdrop-filter: blur(10px);\n}\n\n.agent-dashboard .roadmap-status {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.agent-dashboard .roadmap-status.hidden {\n    display: none;\n}\n\n.agent-dashboard .roadmap-step {\n    position: relative;\n    padding: 12px 12px 12px 36px;\n    border-left: 2px solid rgba(0, 0, 0, 0.08);\n    border: 1px solid var(--dashboard-border, rgba(0, 0, 0, 0.06));\n    border-radius: 10px;\n    background: rgba(255, 255, 255, 0.86);\n    transition: all 0.2s ease;\n    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);\n}\n\n.agent-dashboard .roadmap-step:first-child {\n    padding-top: 6px;\n}\n\n.agent-dashboard .roadmap-step:last-child {\n    border-left-color: transparent;\n    padding-bottom: 6px;\n}\n\n.agent-dashboard .roadmap-step::before {\n    content: '';\n    position: absolute;\n    left: 12px;\n    top: 16px;\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: rgba(0, 0, 0, 0.15);\n    border: 2px solid white;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .roadmap-step.done {\n    border-left-color: #38ef7d;\n    border-color: rgba(56, 239, 125, 0.35);\n}\n\n.agent-dashboard .roadmap-step.done::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.15);\n}\n\n.agent-dashboard .roadmap-step.in-progress {\n    border-left-color: #feca57;\n    background: rgba(254, 202, 87, 0.04);\n    border-color: rgba(254, 202, 87, 0.35);\n}\n\n.agent-dashboard .roadmap-step.in-progress::before {\n    background: #feca57;\n    box-shadow: 0 0 0 4px rgba(254, 202, 87, 0.15);\n    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;\n}\n\n.agent-dashboard .roadmap-step.pending {\n    opacity: 0.6;\n}\n\n.agent-dashboard .roadmap-step .step-label {\n    display: block;\n    font-size: 0.85rem;\n    font-weight: 700;\n    color: var(--dashboard-text-primary);\n    margin-bottom: 2px;\n}\n\n.agent-dashboard .roadmap-step .step-meta {\n    display: block;\n    font-size: 0.7rem;\n    color: var(--dashboard-text-secondary);\n    font-weight: 500;\n}\n\n.agent-dashboard .roadmap-step .step-action {\n    position: absolute;\n    right: 10px;\n    top: 10px;\n    padding: 4px 8px;\n    border-radius: 8px;\n    border: 1px solid var(--theme-accent-border);\n    background: rgba(79, 172, 254, 0.12);\n    color: var(--theme-accent-color);\n    font-size: 0.7rem;\n    font-weight: 700;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .roadmap-step .step-action:hover {\n    background: rgba(79, 172, 254, 0.18);\n    border-color: var(--theme-accent-color);\n}\n\n/* Roadmap + steps en modo oscuro: superficies más profundas y contrastadas */\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-body {\n    background: rgba(10, 20, 17, 0.88);\n    border: 1px solid rgba(76, 201, 191, 0.22);\n    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);\n    color: var(--dashboard-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-tab {\n    background: rgba(12, 24, 20, 0.9);\n    border: 1px solid rgba(76, 201, 191, 0.22);\n    color: var(--dashboard-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-tab:hover {\n    background: rgba(76, 201, 191, 0.14);\n    border-color: rgba(76, 201, 191, 0.38);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-tab.active {\n    background: linear-gradient(135deg, rgba(76, 201, 191, 0.28), rgba(155, 89, 182, 0.24));\n    border-color: rgba(76, 201, 191, 0.42);\n    color: var(--dashboard-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step {\n    background: rgba(8, 16, 14, 0.9);\n    border: 1px solid rgba(76, 201, 191, 0.16);\n    border-left-color: rgba(76, 201, 191, 0.3);\n    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step::before {\n    background: rgba(76, 201, 191, 0.8);\n    border: 2px solid rgba(0, 0, 0, 0.35);\n    box-shadow: 0 0 0 4px rgba(76, 201, 191, 0.12);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.done {\n    border-left-color: #38ef7d;\n    border-color: rgba(56, 239, 125, 0.25);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.done::before {\n    background: #38ef7d;\n    box-shadow: 0 0 0 4px rgba(56, 239, 125, 0.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.in-progress {\n    background: rgba(10, 20, 17, 0.9);\n    border-left-color: #feca57;\n    border-color: rgba(254, 202, 87, 0.28);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step.in-progress::before {\n    background: #feca57;\n    box-shadow: 0 0 0 4px rgba(254, 202, 87, 0.2);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step .step-action {\n    background: rgba(76, 201, 191, 0.12);\n    border-color: rgba(76, 201, 191, 0.28);\n    color: var(--dashboard-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .agent-dashboard .roadmap-step .step-action:hover {\n    background: rgba(76, 201, 191, 0.2);\n    border-color: rgba(76, 201, 191, 0.42);\n    color: var(--dashboard-text-primary);\n}\n\n@keyframes pulse {\n\n    0%,\n    100% {\n        opacity: 1;\n    }\n\n    50% {\n        opacity: 0.5;\n    }\n}\n\n/* Old roadmap timeline styles - deprecated */\n.roadmap-timeline {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding: 6px 0;\n}\n\n.timeline-item {\n    display: flex;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.35);\n    border-left: 3px solid transparent;\n    border-radius: 8px;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.timeline-item.urgent {\n    border-left-color: #f5576c;\n    background: rgba(245, 87, 108, 0.06);\n}\n\n.timeline-item.soon {\n    border-left-color: #feca57;\n    background: rgba(254, 202, 87, 0.06);\n}\n\n.timeline-item.ok {\n    border-left-color: #38ef7d;\n    background: rgba(56, 239, 125, 0.06);\n}\n\n.timeline-item:hover {\n    transform: translateX(4px);\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);\n}\n\n.timeline-marker {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: var(--theme-accent-color);\n    margin-top: 4px;\n    flex-shrink: 0;\n}\n\n.timeline-item.urgent .timeline-marker {\n    background: #f5576c;\n}\n\n.timeline-item.soon .timeline-marker {\n    background: #feca57;\n}\n\n.timeline-item.ok .timeline-marker {\n    background: #38ef7d;\n}\n\n.timeline-content {\n    flex: 1;\n}\n\n.timeline-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 4px;\n}\n\n.timeline-header strong {\n    font-size: 0.85rem;\n    color: var(--dashboard-text-primary);\n    font-weight: 700;\n}\n\n.timeline-date {\n    font-size: 0.7rem;\n    color: var(--dashboard-text-secondary);\n    font-weight: 600;\n}\n\n.timeline-content>p {\n    font-size: 0.75rem;\n    color: var(--dashboard-text-secondary);\n    margin: 2px 0 6px 0;\n    font-weight: 500;\n}\n\n.timeline-actions {\n    display: flex;\n    gap: 6px;\n}\n\n/* Claims interactive list */\n.claims-interactive-list {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    padding: 6px 0;\n}\n\n.claim-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(255, 255, 255, 0.35);\n    border-left: 3px solid transparent;\n    border: 1px solid rgba(0, 0, 0, 0.05);\n    border-radius: 8px;\n    transition: all 0.2s ease;\n    backdrop-filter: blur(8px);\n}\n\n.claim-item:hover {\n    background: rgba(255, 255, 255, 0.45);\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);\n    transform: translateX(3px);\n}\n\n.claim-item.warn {\n    border-left: 3px solid #feca57;\n}\n\n.claim-item.ok {\n    border-left: 3px solid #38ef7d;\n}\n\n.claim-item.urgent {\n    border-left: 3px solid #f5576c;\n}\n\n.claim-icon {\n    width: 34px;\n    height: 34px;\n    border-radius: 8px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.claim-item.warn .claim-icon {\n    background: rgba(254, 202, 87, 0.18);\n    color: #feca57;\n}\n\n.claim-item.ok .claim-icon {\n    background: rgba(56, 239, 125, 0.18);\n    color: #38ef7d;\n}\n\n.claim-item.urgent .claim-icon {\n    background: rgba(245, 87, 108, 0.18);\n    color: #f5576c;\n}\n\n.claim-content {\n    flex: 1;\n}\n\n.claim-header {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 4px;\n}\n\n.claim-header strong {\n    font-size: 0.85rem;\n    color: var(--dashboard-text-primary);\n    font-weight: 700;\n}\n\n.claim-status {\n    font-size: 0.65rem;\n    font-weight: 700;\n    padding: 2px 8px;\n    border-radius: 10px;\n}\n\n.claim-status.warn {\n    background: rgba(254, 202, 87, 0.18);\n    color: #feca57;\n}\n\n.claim-status.ok {\n    background: rgba(56, 239, 125, 0.18);\n    color: #38ef7d;\n}\n\n.claim-status.urgent {\n    background: rgba(245, 87, 108, 0.18);\n    color: #f5576c;\n}\n\n.claim-content>p {\n    font-size: 0.75rem;\n    color: var(--dashboard-text-secondary);\n    margin: 2px 0;\n    font-weight: 500;\n}\n\n.claim-meta {\n    display: flex;\n    gap: 12px;\n    font-size: 0.7rem;\n    color: var(--dashboard-text-secondary);\n    margin-top: 4px;\n    font-weight: 600;\n}\n\n.claim-amount {\n    font-weight: 600;\n    color: var(--theme-accent-color);\n}\n\n/* Claims/siniestros: superficies oscuras para legibilidad en dark theme */\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item {\n    background: rgba(8, 16, 14, 0.9);\n    border: 1px solid rgba(76, 201, 191, 0.18);\n    border-left: 3px solid rgba(76, 201, 191, 0.42);\n    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);\n    color: var(--dashboard-text-primary);\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item:hover {\n    background: rgba(10, 20, 17, 0.92);\n    border-color: rgba(76, 201, 191, 0.26);\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.warn,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.urgent,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.ok {\n    border-left-width: 3px;\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.warn .claim-icon,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.warn .claim-status {\n    background: rgba(254, 202, 87, 0.14);\n    color: #feca57;\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.ok .claim-icon,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.ok .claim-status {\n    background: rgba(56, 239, 125, 0.14);\n    color: #38ef7d;\n}\n\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.urgent .claim-icon,\nhtml[data-theme=\"dark-forest\"] .claims-interactive-list .claim-item.urgent .claim-status {\n    background: rgba(245, 87, 108, 0.16);\n    color: #f5576c;\n}\n\n/* Sidebar surface fix - remove double background */\n.agent-dashboard .sidebar-surface {\n    background: rgba(255, 255, 255, 0.75) !important;\n    border-radius: 20px !important;\n}\n\n/* Content organization and visibility controls */\n.agent-dashboard .stats-grid {\n    margin-bottom: 24px;\n}\n\n.agent-dashboard .dashboard-2col {\n    gap: 20px;\n    margin-bottom: 20px;\n}\n\n.agent-dashboard .content-card {\n    background: rgba(255, 255, 255, 0.75);\n    backdrop-filter: blur(10px);\n    border-radius: 16px;\n    padding: 20px;\n    border: 1px solid rgba(0, 0, 0, 0.08);\n}\n\n.agent-dashboard .content-card .card-header {\n    margin-bottom: 16px;\n}\n\n/* Estilos hero unificados en selectores base */\n\n/* Ensure compact spacing throughout */\n.agent-dashboard .mimic-wrap {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n}\n\n.agent-dashboard .chart-card {\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.agent-dashboard .chart-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);\n}\n\n/* Control rail spacing */\n.agent-dashboard .dashboard-rail {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n}\n\n.agent-dashboard .rail-card {\n    background: rgba(255, 255, 255, 0.75);\n    backdrop-filter: blur(10px);\n    border-radius: 16px;\n    padding: 18px;\n    border: 1px solid rgba(0, 0, 0, 0.08);\n}\n\n/* ═══════════════════════════════════════════════════════════════════\n   ADMIN DASHBOARD SPECIFIC STYLES  \n   ═══════════════════════════════════════════════════════════════════ */\n\n/* Admin styles will go here */"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9390,9 +9766,219 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Agent Dashboard Styles */
 }
 
 .notify-hint {
-    margin: 10px 0 0;
+    color: var(--theme-highlight-soft);
+    font-size: 0.88rem;
+    margin-top: 4px;
+}
+
+/* Quotes Status Panel */
+.quotes-status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--acrylic-bg-light);
+    border: 1px solid var(--theme-surface-border);
+    transition: background 0.2s ease;
+}
+
+.status-item:hover {
+    background: var(--acrylic-bg-medium);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-dot.pending {
+    background: #ff9800;
+    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);
+}
+
+.status-dot.in-progress {
+    background: #2196f3;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+}
+
+.status-dot.approved {
+    background: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.status-text {
+    flex: 1;
     font-size: 0.9rem;
+    color: var(--theme-text-primary);
+    font-weight: 500;
+}
+
+.status-count {
+    font-size: 0.85rem;
+    font-weight: 700;
     color: var(--theme-text-secondary);
+    padding: 2px 8px;
+    background: var(--theme-accent-bg-soft);
+    border-radius: 6px;
+}
+
+/* Calendar Actions */
+.calendar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.calendar-actions .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .agent-dashboard .dashboard-layout {
+        grid-template-columns: 280px 1fr 260px;
+        gap: 12px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .agent-dashboard .dashboard-layout {
+        grid-template-columns: 260px 1fr;
+        gap: 10px;
+    }
+
+    /* Hide right rail on medium screens */
+    .agent-dashboard .right-rail {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .agent-dashboard .dashboard-layout {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 6px;
+    }
+
+    /* Stack sidebar horizontally */
+    .agent-dashboard .dashboard-sidebar {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .agent-dashboard .sidebar-surface {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        height: auto;
+        padding: 12px;
+    }
+
+    .agent-dashboard .sidebar-block {
+        min-width: 280px;
+        flex-shrink: 0;
+    }
+
+    .agent-dashboard .sidebar-logout-block {
+        min-width: auto;
+        flex-shrink: 0;
+    }
+
+    /* Adjust stats grid */
+    .agent-dashboard .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    /* Content grid adjustments */
+    .agent-dashboard .content-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Make cards stack vertically */
+    .agent-dashboard .mimic-wrap {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .agent-dashboard .dashboard-layout {
+        padding: 4px;
+        gap: 6px;
+    }
+
+    /* Single column stats */
+    .agent-dashboard .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    /* Reduce padding in cards */
+    .agent-dashboard .content-card {
+        padding: 12px;
+    }
+
+    /* Smaller text in sidebar */
+    .qa-btn {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+    }
+
+    .widget-mini-item {
+        padding: 8px;
+        font-size: 0.82rem;
+    }
+
+    /* Compact sidebar blocks */
+    .sidebar-block {
+        min-width: 240px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Full mobile view */
+    .agent-dashboard .sidebar-surface {
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .agent-dashboard .sidebar-block {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    /* Stack everything vertically */
+    .agent-dashboard .stats-grid,
+    .agent-dashboard .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Hide less critical elements on mobile */
+    .stat-trend,
+    .card-badge {
+        font-size: 0.75rem;
+    }
 }
 
 /* Support list */
@@ -9450,7 +10036,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Agent Dashboard Styles */
 .tasks-list.compact .task-meta {
     font-size: 0.9rem;
     color: var(--theme-text-secondary);
-}`, "",{"version":3,"sources":["webpack://./styles/dashboards/agent-dashboard.css"],"names":[],"mappings":"AAAA,2BAA2B;AAC3B;IACI,iBAAiB;IACjB,gCAAgC;IAChC,UAAU;IACV,kEAAkE;AACtE;;AAEA;IACI,WAAW;IACX,+EAA+E;IAC/E,cAAc;AAClB;;AAEA,iBAAiB;AACjB;IACI,aAAa;IACb,QAAQ;IACR,eAAe;AACnB;;AAEA;IACI,iBAAiB;IACjB,4CAA4C;IAC5C,mBAAmB;IACnB,0CAA0C;IAC1C,gCAAgC;IAChC,eAAe;IACf,2EAA2E;AAC/E;;AAEA;IACI,uCAAuC;IACvC,4BAA4B;IAC5B,2BAA2B;AAC/B;;AAEA;IACI,aAAa;IACb,SAAS;AACb;;AAEA;IACI,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,mBAAmB;IACnB,kBAAkB;IAClB,6CAA6C;IAC7C,mBAAmB;IACnB,mCAAmC;AACvC;;AAEA;IACI,qCAAqC;IACrC,uFAAuF;AAC3F;;AAEA;IACI,qCAAqC;IACrC,uFAAuF;AAC3F;;AAEA;IACI,YAAY;AAChB;;AAEA;IACI,gBAAgB;AACpB;;AAEA;IACI,kCAAkC;IAClC,kBAAkB;AACtB;;AAEA,wBAAwB;AACxB;IACI,WAAW;IACX,yBAAyB;AAC7B;;AAEA;;IAEI,iBAAiB;IACjB,oDAAoD;IACpD,gBAAgB;IAChB,gCAAgC;AACpC;;AAEA;IACI,iBAAiB;IACjB,gBAAgB;IAChB,0CAA0C;AAC9C;;AAEA;IACI,gBAAgB;IAChB,iBAAiB;IACjB,kCAAkC;AACtC;;AAEA,iBAAiB;AACjB;IACI,aAAa;IACb,sBAAsB;IACtB,SAAS;AACb;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,SAAS;IACT,aAAa;IACb,6CAA6C;IAC7C,mBAAmB;IACnB,mCAAmC;AACvC;;AAEA;IACI,eAAe;IACf,kCAAkC;IAClC,kBAAkB;AACtB;;AAEA,yBAAyB;AACzB;IACI,aAAa;IACb,sBAAsB;IACtB,SAAS;AACb;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,SAAS;IACT,aAAa;IACb,6CAA6C;IAC7C,mBAAmB;IACnB,mCAAmC;AACvC;;AAEA;IACI,eAAe;IACf,kCAAkC;IAClC,kBAAkB;AACtB;;AAEA;IACI,uBAAuB;IACvB,QAAQ;IACR,sBAAsB;AAC1B;;AAEA;IACI,iBAAiB;IACjB,kCAAkC;AACtC","sourcesContent":["/* Agent Dashboard Styles */\n.agent-dashboard {\n    min-height: 100vh;\n    color: var(--theme-text-primary);\n    padding: 0;\n    /* Sin padding - el spacing lo manejan los contenedores internos */\n}\n\n.agent-dashboard .dashboard-container {\n    width: 100%;\n    max-width: var(--dashboard-container-max-agent, var(--dashboard-container-max));\n    margin: 0 auto;\n}\n\n/* Roadmap tabs */\n.roadmap-tabs {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.roadmap-tab {\n    padding: 8px 12px;\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 10px;\n    background: var(--theme-navlink-active-bg);\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;\n}\n\n.roadmap-tab.active {\n    background: var(--theme-accent-bg-soft);\n    box-shadow: var(--shadow-sm);\n    transform: translateY(-1px);\n}\n\n.roadmap-body {\n    display: grid;\n    gap: 10px;\n}\n\n.roadmap-status.hidden {\n    display: none;\n}\n\n.roadmap-step {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.roadmap-step.done {\n    border-color: rgba(67, 160, 71, 0.35);\n    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(255, 255, 255, 0.02));\n}\n\n.roadmap-step.in-progress {\n    border-color: rgba(255, 193, 7, 0.35);\n    background: linear-gradient(135deg, rgba(255, 193, 7, 0.10), rgba(255, 255, 255, 0.02));\n}\n\n.roadmap-step.pending {\n    opacity: 0.9;\n}\n\n.step-label {\n    font-weight: 700;\n}\n\n.step-meta {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n}\n\n/* Claims / Siniestros */\n.claims-table table {\n    width: 100%;\n    border-collapse: collapse;\n}\n\n.claims-table th,\n.claims-table td {\n    padding: 10px 8px;\n    border-bottom: 1px solid var(--theme-surface-border);\n    text-align: left;\n    color: var(--theme-text-primary);\n}\n\n.claims-table th {\n    font-size: 0.9rem;\n    font-weight: 700;\n    background: var(--theme-navlink-active-bg);\n}\n\n.notify-hint {\n    margin: 10px 0 0;\n    font-size: 0.9rem;\n    color: var(--theme-text-secondary);\n}\n\n/* Support list */\n.support-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.support-item {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.support-item p {\n    margin: 4px 0 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n/* Alerts & expirations */\n.alerts-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.alert-item {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.alert-meta {\n    margin: 4px 0 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n.tasks-list.compact .task-item {\n    align-items: flex-start;\n    gap: 8px;\n    flex-direction: column;\n}\n\n.tasks-list.compact .task-meta {\n    font-size: 0.9rem;\n    color: var(--theme-text-secondary);\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/dashboards/agent-dashboard.css"],"names":[],"mappings":"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","sourcesContent":["/* Agent Dashboard Styles */\n.agent-dashboard {\n    min-height: 100vh;\n    color: var(--theme-text-primary);\n    padding: 0;\n    /* Sin padding - el spacing lo manejan los contenedores internos */\n}\n\n.agent-dashboard .dashboard-container {\n    width: 100%;\n    max-width: var(--dashboard-container-max-agent, var(--dashboard-container-max));\n    margin: 0 auto;\n}\n\n/* Roadmap tabs */\n.roadmap-tabs {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.roadmap-tab {\n    padding: 8px 12px;\n    border: 1px solid var(--theme-accent-border);\n    border-radius: 10px;\n    background: var(--theme-navlink-active-bg);\n    color: var(--theme-text-primary);\n    cursor: pointer;\n    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;\n}\n\n.roadmap-tab.active {\n    background: var(--theme-accent-bg-soft);\n    box-shadow: var(--shadow-sm);\n    transform: translateY(-1px);\n}\n\n.roadmap-body {\n    display: grid;\n    gap: 10px;\n}\n\n.roadmap-status.hidden {\n    display: none;\n}\n\n.roadmap-step {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.roadmap-step.done {\n    border-color: rgba(67, 160, 71, 0.35);\n    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(255, 255, 255, 0.02));\n}\n\n.roadmap-step.in-progress {\n    border-color: rgba(255, 193, 7, 0.35);\n    background: linear-gradient(135deg, rgba(255, 193, 7, 0.10), rgba(255, 255, 255, 0.02));\n}\n\n.roadmap-step.pending {\n    opacity: 0.9;\n}\n\n.step-label {\n    font-weight: 700;\n}\n\n.step-meta {\n    color: var(--theme-text-secondary);\n    font-size: 0.92rem;\n}\n\n/* Claims / Siniestros */\n.claims-table table {\n    width: 100%;\n    border-collapse: collapse;\n}\n\n.claims-table th,\n.claims-table td {\n    padding: 10px 8px;\n    border-bottom: 1px solid var(--theme-surface-border);\n    text-align: left;\n    color: var(--theme-text-primary);\n}\n\n.claims-table th {\n    font-size: 0.9rem;\n    font-weight: 700;\n    background: var(--theme-navlink-active-bg);\n}\n\n.notify-hint {\n    color: var(--theme-highlight-soft);\n    font-size: 0.88rem;\n    margin-top: 4px;\n}\n\n/* Quotes Status Panel */\n.quotes-status-list {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    padding: 8px 0;\n}\n\n.status-item {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 8px 10px;\n    border-radius: 8px;\n    background: var(--acrylic-bg-light);\n    border: 1px solid var(--theme-surface-border);\n    transition: background 0.2s ease;\n}\n\n.status-item:hover {\n    background: var(--acrylic-bg-medium);\n}\n\n.status-dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    flex-shrink: 0;\n}\n\n.status-dot.pending {\n    background: #ff9800;\n    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);\n}\n\n.status-dot.in-progress {\n    background: #2196f3;\n    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);\n}\n\n.status-dot.approved {\n    background: #4caf50;\n    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);\n}\n\n.status-text {\n    flex: 1;\n    font-size: 0.9rem;\n    color: var(--theme-text-primary);\n    font-weight: 500;\n}\n\n.status-count {\n    font-size: 0.85rem;\n    font-weight: 700;\n    color: var(--theme-text-secondary);\n    padding: 2px 8px;\n    background: var(--theme-accent-bg-soft);\n    border-radius: 6px;\n}\n\n/* Calendar Actions */\n.calendar-actions {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n}\n\n.calendar-actions .btn {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 6px;\n}\n\n/* Responsive Design */\n@media (max-width: 1400px) {\n    .agent-dashboard .dashboard-layout {\n        grid-template-columns: 280px 1fr 260px;\n        gap: 12px;\n        padding: 8px;\n    }\n}\n\n@media (max-width: 1200px) {\n    .agent-dashboard .dashboard-layout {\n        grid-template-columns: 260px 1fr;\n        gap: 10px;\n    }\n\n    /* Hide right rail on medium screens */\n    .agent-dashboard .right-rail {\n        display: none;\n    }\n}\n\n@media (max-width: 992px) {\n    .agent-dashboard .dashboard-layout {\n        grid-template-columns: 1fr;\n        gap: 8px;\n        padding: 6px;\n    }\n\n    /* Stack sidebar horizontally */\n    .agent-dashboard .dashboard-sidebar {\n        position: relative;\n        width: 100%;\n        max-width: 100%;\n        margin-bottom: 16px;\n    }\n\n    .agent-dashboard .sidebar-surface {\n        display: flex;\n        flex-direction: row;\n        gap: 12px;\n        overflow-x: auto;\n        overflow-y: hidden;\n        height: auto;\n        padding: 12px;\n    }\n\n    .agent-dashboard .sidebar-block {\n        min-width: 280px;\n        flex-shrink: 0;\n    }\n\n    .agent-dashboard .sidebar-logout-block {\n        min-width: auto;\n        flex-shrink: 0;\n    }\n\n    /* Adjust stats grid */\n    .agent-dashboard .stats-grid {\n        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n        gap: 10px;\n    }\n\n    /* Content grid adjustments */\n    .agent-dashboard .content-grid {\n        grid-template-columns: 1fr;\n        gap: 12px;\n    }\n\n    /* Make cards stack vertically */\n    .agent-dashboard .mimic-wrap {\n        flex-direction: column;\n    }\n}\n\n@media (max-width: 768px) {\n    .agent-dashboard .dashboard-layout {\n        padding: 4px;\n        gap: 6px;\n    }\n\n    /* Single column stats */\n    .agent-dashboard .stats-grid {\n        grid-template-columns: 1fr;\n        gap: 8px;\n    }\n\n    /* Reduce padding in cards */\n    .agent-dashboard .content-card {\n        padding: 12px;\n    }\n\n    /* Smaller text in sidebar */\n    .qa-btn {\n        font-size: 0.85rem;\n        padding: 8px 10px;\n    }\n\n    .widget-mini-item {\n        padding: 8px;\n        font-size: 0.82rem;\n    }\n\n    /* Compact sidebar blocks */\n    .sidebar-block {\n        min-width: 240px;\n    }\n}\n\n@media (max-width: 576px) {\n\n    /* Full mobile view */\n    .agent-dashboard .sidebar-surface {\n        flex-direction: column;\n        overflow-x: hidden;\n        overflow-y: auto;\n    }\n\n    .agent-dashboard .sidebar-block {\n        min-width: 100%;\n        width: 100%;\n    }\n\n    /* Stack everything vertically */\n    .agent-dashboard .stats-grid,\n    .agent-dashboard .content-grid {\n        grid-template-columns: 1fr;\n    }\n\n    /* Hide less critical elements on mobile */\n    .stat-trend,\n    .card-badge {\n        font-size: 0.75rem;\n    }\n}\n\n/* Support list */\n.support-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.support-item {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.support-item p {\n    margin: 4px 0 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n/* Alerts & expirations */\n.alerts-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.alert-item {\n    display: flex;\n    justify-content: space-between;\n    gap: 12px;\n    padding: 12px;\n    border: 1px solid var(--theme-surface-border);\n    border-radius: 12px;\n    background: var(--acrylic-bg-light);\n}\n\n.alert-meta {\n    margin: 4px 0 0;\n    color: var(--theme-text-secondary);\n    font-size: 0.95rem;\n}\n\n.tasks-list.compact .task-item {\n    align-items: flex-start;\n    gap: 8px;\n    flex-direction: column;\n}\n\n.tasks-list.compact .task-meta {\n    font-size: 0.9rem;\n    color: var(--theme-text-secondary);\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9543,17 +10129,18 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 /* Direct Messages Modal */
 .dm-modal-container {
     max-width: 900px;
-    width: 90vw;
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
+}
+
+.dm-modal-body {
+    padding: 0;
+    overflow: hidden;
 }
 
 .dm-content {
     display: grid;
     grid-template-columns: 300px 1fr;
     gap: 0;
-    flex: 1;
+    height: 500px;
     overflow: hidden;
 }
 
@@ -9577,19 +10164,20 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 }
 
 .dm-thread-item.unread {
-    background: rgba(var(--primary-rgb), 0.05);
+    background: var(--theme-accent-bg-soft, rgba(155, 89, 182, 0.08));
 }
 
 .dm-thread-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.2));
 }
 
 .dm-thread-info {
@@ -9634,16 +10222,18 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 
 .dm-expires {
     font-size: 0.75rem;
-    color: #ff9800;
+    color: var(--theme-accent-color, #9b59b6);
+    font-weight: 600;
 }
 
 .dm-unread-badge {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
     border-radius: 10px;
     padding: 2px 8px;
     font-size: 0.75rem;
     font-weight: 600;
+    box-shadow: 0 2px 6px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.3));
 }
 
 .dm-messages-area {
@@ -9676,7 +10266,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
     display: flex;
     align-items: center;
     gap: 12px;
-    background: var(--card-background);
+    background: rgba(0, 0, 0, 0.02);
+    flex-shrink: 0;
+}
+
+body.dark-forest .dm-messages-header {
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .btn-back {
@@ -9722,8 +10317,9 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 }
 
 .dm-message.sent .dm-message-content {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.25));
 }
 
 .dm-message-header {
@@ -9770,7 +10366,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 
 .btn-send {
     padding: 12px 16px;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -9778,18 +10374,18 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.3));
 }
 
 .btn-send:hover {
-    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--theme-accent-shadow-strong, rgba(155, 89, 182, 0.4));
 }
 
 /* Contact Modal */
 .contact-modal-container {
     max-width: 600px;
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
 }
 
 .contact-search-box {
@@ -9849,13 +10445,14 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
     font-size: 0.875rem;
+    box-shadow: 0 2px 6px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.2));
 }
 
 .contact-info {
@@ -9895,13 +10492,14 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 
 .btn-action:hover {
     background: var(--hover-background);
-    border-color: var(--primary-color);
+    border-color: var(--theme-accent-color, #9b59b6);
 }
 
 .btn-action.btn-message:hover {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);
     color: white;
-    border-color: var(--primary-color);
+    border-color: var(--theme-accent-color, #9b59b6);
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.25));
 }
 
 /* Info Popup */
@@ -10018,8 +10616,8 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
     width: 32px;
     height: 32px;
     border-radius: 6px;
-    background: rgba(var(--primary-rgb), 0.1);
-    color: var(--primary-color);
+    background: var(--theme-accent-bg-soft, rgba(155, 89, 182, 0.1));
+    color: var(--theme-accent-color, #9b59b6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10050,7 +10648,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
     width: 40px;
     height: 40px;
     border: 3px solid var(--border-color);
-    border-top-color: var(--primary-color);
+    border-top-color: var(--theme-accent-color, #9b59b6);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     margin: 0 auto 1rem auto;
@@ -10064,11 +10662,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* ===================================
 
 /* Dark Theme Adjustments */
 body.dark-forest .dm-thread-item.unread {
-    background: rgba(var(--primary-rgb), 0.1);
+    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.15));
 }
 
 body.dark-forest .dm-message.sent .dm-message-content {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--theme-accent-color, #2f6b7a) 0%, var(--theme-accent-color-hover, #45a0b8) 100%);
+    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.3));
 }
 
 body.dark-forest .search-results {
@@ -10096,7 +10695,197 @@ body.dark-forest .info-popup {
     .contact-modal-container {
         width: 95vw;
     }
-}`, "",{"version":3,"sources":["webpack://./styles/direct-messages.css"],"names":[],"mappings":"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","sourcesContent":["/* ===================================\n   DIRECT MESSAGES & GLOBAL SEARCH STYLES\n   =================================== */\n\n/* Badge contador en header */\n.badge-count {\n    position: absolute;\n    top: -4px;\n    right: -4px;\n    background: #f44336;\n    color: white;\n    border-radius: 10px;\n    padding: 2px 6px;\n    font-size: 0.6875rem;\n    font-weight: 600;\n    min-width: 18px;\n    text-align: center;\n    line-height: 1.2;\n}\n\n.icon-pill {\n    position: relative;\n}\n\n/* Direct Messages Modal */\n.dm-modal-container {\n    max-width: 900px;\n    width: 90vw;\n    max-height: 80vh;\n    display: flex;\n    flex-direction: column;\n}\n\n.dm-content {\n    display: grid;\n    grid-template-columns: 300px 1fr;\n    gap: 0;\n    flex: 1;\n    overflow: hidden;\n}\n\n.dm-threads-list {\n    border-right: 1px solid var(--border-color);\n    overflow-y: auto;\n    background: var(--card-background);\n}\n\n.dm-thread-item {\n    display: flex;\n    gap: 12px;\n    padding: 12px;\n    cursor: pointer;\n    transition: background 0.2s ease;\n    border-bottom: 1px solid var(--border-color);\n}\n\n.dm-thread-item:hover {\n    background: var(--hover-background);\n}\n\n.dm-thread-item.unread {\n    background: rgba(var(--primary-rgb), 0.05);\n}\n\n.dm-thread-avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    background: var(--primary-color);\n    color: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.dm-thread-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.dm-thread-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 4px;\n}\n\n.dm-thread-header strong {\n    font-size: 0.9375rem;\n    color: var(--text-color);\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n.dm-thread-time {\n    font-size: 0.75rem;\n    color: var(--text-muted);\n}\n\n.dm-thread-preview {\n    font-size: 0.875rem;\n    color: var(--text-muted);\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 4px;\n}\n\n.dm-thread-footer {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\n.dm-expires {\n    font-size: 0.75rem;\n    color: #ff9800;\n}\n\n.dm-unread-badge {\n    background: var(--primary-color);\n    color: white;\n    border-radius: 10px;\n    padding: 2px 8px;\n    font-size: 0.75rem;\n    font-weight: 600;\n}\n\n.dm-messages-area {\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.dm-empty-state,\n.dm-empty-list {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    padding: 3rem 2rem;\n    color: var(--text-muted);\n    text-align: center;\n    height: 100%;\n}\n\n.dm-empty-state svg,\n.dm-empty-list svg {\n    opacity: 0.3;\n    margin-bottom: 1rem;\n}\n\n.dm-messages-header {\n    padding: 16px;\n    border-bottom: 1px solid var(--border-color);\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    background: var(--card-background);\n}\n\n.btn-back {\n    padding: 8px;\n    background: transparent;\n    border: 1px solid var(--border-color);\n    border-radius: 4px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.btn-back:hover {\n    background: var(--hover-background);\n}\n\n.dm-messages-list {\n    flex: 1;\n    overflow-y: auto;\n    padding: 16px;\n    background: var(--background-color);\n}\n\n.dm-message {\n    margin-bottom: 16px;\n    display: flex;\n}\n\n.dm-message.sent {\n    justify-content: flex-end;\n}\n\n.dm-message.received {\n    justify-content: flex-start;\n}\n\n.dm-message-content {\n    max-width: 70%;\n    background: var(--card-background);\n    padding: 12px;\n    border-radius: 12px;\n}\n\n.dm-message.sent .dm-message-content {\n    background: var(--primary-color);\n    color: white;\n}\n\n.dm-message-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 6px;\n}\n\n.dm-message-header strong {\n    font-size: 0.875rem;\n}\n\n.dm-message-time {\n    font-size: 0.75rem;\n    opacity: 0.7;\n    margin-left: 8px;\n}\n\n.dm-message-content p {\n    margin: 0;\n    font-size: 0.9375rem;\n    line-height: 1.5;\n    word-wrap: break-word;\n}\n\n.dm-message-input {\n    padding: 16px;\n    border-top: 1px solid var(--border-color);\n    display: flex;\n    gap: 12px;\n    background: var(--card-background);\n}\n\n.dm-message-input textarea {\n    flex: 1;\n    padding: 12px;\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    resize: none;\n    font-family: inherit;\n    font-size: 0.9375rem;\n}\n\n.btn-send {\n    padding: 12px 16px;\n    background: var(--primary-color);\n    color: white;\n    border: none;\n    border-radius: 8px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.btn-send:hover {\n    background: var(--primary-hover);\n}\n\n/* Contact Modal */\n.contact-modal-container {\n    max-width: 600px;\n    max-height: 80vh;\n    display: flex;\n    flex-direction: column;\n}\n\n.contact-search-box {\n    position: relative;\n    margin-bottom: 1.5rem;\n}\n\n.contact-search-box svg {\n    position: absolute;\n    left: 12px;\n    top: 50%;\n    transform: translateY(-50%);\n    color: var(--text-muted);\n}\n\n.contact-search-box input {\n    width: 100%;\n    padding: 12px 12px 12px 40px;\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    font-size: 0.9375rem;\n}\n\n.contact-section {\n    margin-bottom: 1.5rem;\n}\n\n.contact-section-title {\n    font-size: 0.875rem;\n    font-weight: 600;\n    color: var(--text-muted);\n    text-transform: uppercase;\n    margin-bottom: 0.75rem;\n}\n\n.contact-list {\n    max-height: 300px;\n    overflow-y: auto;\n}\n\n.contact-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 12px;\n    border-radius: 8px;\n    cursor: pointer;\n    transition: background 0.2s ease;\n    border-bottom: 1px solid var(--border-color);\n}\n\n.contact-item:hover {\n    background: var(--hover-background);\n}\n\n.contact-avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    background: var(--primary-color);\n    color: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-weight: 600;\n    font-size: 0.875rem;\n}\n\n.contact-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.contact-info strong {\n    display: block;\n    font-size: 0.9375rem;\n    color: var(--text-color);\n    margin-bottom: 2px;\n}\n\n.contact-info small {\n    display: block;\n    font-size: 0.8125rem;\n    color: var(--text-muted);\n}\n\n.contact-actions {\n    display: flex;\n    gap: 8px;\n}\n\n.btn-action {\n    padding: 8px;\n    background: transparent;\n    border: 1px solid var(--border-color);\n    border-radius: 6px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.btn-action:hover {\n    background: var(--hover-background);\n    border-color: var(--primary-color);\n}\n\n.btn-action.btn-message:hover {\n    background: var(--primary-color);\n    color: white;\n    border-color: var(--primary-color);\n}\n\n/* Info Popup */\n.info-popup-overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: rgba(0, 0, 0, 0.5);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 10001;\n    opacity: 0;\n    transition: opacity 0.3s ease;\n}\n\n.info-popup-overlay.active {\n    opacity: 1;\n}\n\n.info-popup {\n    background: var(--card-background);\n    border-radius: 12px;\n    padding: 24px;\n    max-width: 400px;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);\n}\n\n.client-info-popup h4 {\n    margin: 0 0 16px 0;\n    color: var(--text-color);\n}\n\n.info-row {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 12px;\n    color: var(--text-color);\n}\n\n.info-row svg {\n    color: var(--text-muted);\n}\n\n.info-row a {\n    color: var(--primary-color);\n    text-decoration: none;\n}\n\n.info-row a:hover {\n    text-decoration: underline;\n}\n\n/* Global Search Results */\n.search-results {\n    position: absolute;\n    top: calc(100% + 8px);\n    left: 0;\n    right: 0;\n    background: var(--card-background);\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);\n    max-height: 500px;\n    overflow-y: auto;\n    z-index: 1000;\n}\n\n.search-results-header {\n    padding: 12px 16px;\n    border-bottom: 1px solid var(--border-color);\n    font-weight: 600;\n    font-size: 0.875rem;\n    color: var(--text-color);\n}\n\n.search-category {\n    padding: 12px 0;\n    border-bottom: 1px solid var(--border-color);\n}\n\n.search-category:last-child {\n    border-bottom: none;\n}\n\n.search-category h4 {\n    margin: 0 16px 8px 16px;\n    font-size: 0.8125rem;\n    font-weight: 600;\n    color: var(--text-muted);\n    text-transform: uppercase;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.search-result-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 10px 16px;\n    cursor: pointer;\n    transition: background 0.2s ease;\n}\n\n.search-result-item:hover {\n    background: var(--hover-background);\n}\n\n.search-result-icon {\n    width: 32px;\n    height: 32px;\n    border-radius: 6px;\n    background: rgba(var(--primary-rgb), 0.1);\n    color: var(--primary-color);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.search-result-item strong {\n    display: block;\n    font-size: 0.9375rem;\n    color: var(--text-color);\n    margin-bottom: 2px;\n}\n\n.search-result-item small {\n    display: block;\n    font-size: 0.8125rem;\n    color: var(--text-muted);\n}\n\n.search-loading,\n.search-no-results,\n.search-error {\n    padding: 3rem 2rem;\n    text-align: center;\n    color: var(--text-muted);\n}\n\n.search-loading .spinner {\n    width: 40px;\n    height: 40px;\n    border: 3px solid var(--border-color);\n    border-top-color: var(--primary-color);\n    border-radius: 50%;\n    animation: spin 0.8s linear infinite;\n    margin: 0 auto 1rem auto;\n}\n\n@keyframes spin {\n    to {\n        transform: rotate(360deg);\n    }\n}\n\n/* Dark Theme Adjustments */\nbody.dark-forest .dm-thread-item.unread {\n    background: rgba(var(--primary-rgb), 0.1);\n}\n\nbody.dark-forest .dm-message.sent .dm-message-content {\n    background: var(--primary-color);\n}\n\nbody.dark-forest .search-results {\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);\n}\n\nbody.dark-forest .info-popup {\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);\n}\n\n/* Responsive */\n@media (max-width: 768px) {\n    .dm-content {\n        grid-template-columns: 1fr;\n    }\n\n    .dm-threads-list {\n        border-right: none;\n    }\n\n    .dm-message-content {\n        max-width: 85%;\n    }\n\n    .contact-modal-container {\n        width: 95vw;\n    }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/direct-messages.css"],"names":[],"mappings":"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","sourcesContent":["/* ===================================\n   DIRECT MESSAGES & GLOBAL SEARCH STYLES\n   =================================== */\n\n/* Badge contador en header */\n.badge-count {\n    position: absolute;\n    top: -4px;\n    right: -4px;\n    background: #f44336;\n    color: white;\n    border-radius: 10px;\n    padding: 2px 6px;\n    font-size: 0.6875rem;\n    font-weight: 600;\n    min-width: 18px;\n    text-align: center;\n    line-height: 1.2;\n}\n\n.icon-pill {\n    position: relative;\n}\n\n/* Direct Messages Modal */\n.dm-modal-container {\n    max-width: 900px;\n}\n\n.dm-modal-body {\n    padding: 0;\n    overflow: hidden;\n}\n\n.dm-content {\n    display: grid;\n    grid-template-columns: 300px 1fr;\n    gap: 0;\n    height: 500px;\n    overflow: hidden;\n}\n\n.dm-threads-list {\n    border-right: 1px solid var(--border-color);\n    overflow-y: auto;\n    background: var(--card-background);\n}\n\n.dm-thread-item {\n    display: flex;\n    gap: 12px;\n    padding: 12px;\n    cursor: pointer;\n    transition: background 0.2s ease;\n    border-bottom: 1px solid var(--border-color);\n}\n\n.dm-thread-item:hover {\n    background: var(--hover-background);\n}\n\n.dm-thread-item.unread {\n    background: var(--theme-accent-bg-soft, rgba(155, 89, 182, 0.08));\n}\n\n.dm-thread-avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);\n    color: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.2));\n}\n\n.dm-thread-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.dm-thread-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 4px;\n}\n\n.dm-thread-header strong {\n    font-size: 0.9375rem;\n    color: var(--text-color);\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n\n.dm-thread-time {\n    font-size: 0.75rem;\n    color: var(--text-muted);\n}\n\n.dm-thread-preview {\n    font-size: 0.875rem;\n    color: var(--text-muted);\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    margin-bottom: 4px;\n}\n\n.dm-thread-footer {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\n.dm-expires {\n    font-size: 0.75rem;\n    color: var(--theme-accent-color, #9b59b6);\n    font-weight: 600;\n}\n\n.dm-unread-badge {\n    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);\n    color: white;\n    border-radius: 10px;\n    padding: 2px 8px;\n    font-size: 0.75rem;\n    font-weight: 600;\n    box-shadow: 0 2px 6px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.3));\n}\n\n.dm-messages-area {\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.dm-empty-state,\n.dm-empty-list {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    padding: 3rem 2rem;\n    color: var(--text-muted);\n    text-align: center;\n    height: 100%;\n}\n\n.dm-empty-state svg,\n.dm-empty-list svg {\n    opacity: 0.3;\n    margin-bottom: 1rem;\n}\n\n.dm-messages-header {\n    padding: 16px;\n    border-bottom: 1px solid var(--border-color);\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    background: rgba(0, 0, 0, 0.02);\n    flex-shrink: 0;\n}\n\nbody.dark-forest .dm-messages-header {\n    background: rgba(0, 0, 0, 0.2);\n}\n\n.btn-back {\n    padding: 8px;\n    background: transparent;\n    border: 1px solid var(--border-color);\n    border-radius: 4px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.btn-back:hover {\n    background: var(--hover-background);\n}\n\n.dm-messages-list {\n    flex: 1;\n    overflow-y: auto;\n    padding: 16px;\n    background: var(--background-color);\n}\n\n.dm-message {\n    margin-bottom: 16px;\n    display: flex;\n}\n\n.dm-message.sent {\n    justify-content: flex-end;\n}\n\n.dm-message.received {\n    justify-content: flex-start;\n}\n\n.dm-message-content {\n    max-width: 70%;\n    background: var(--card-background);\n    padding: 12px;\n    border-radius: 12px;\n}\n\n.dm-message.sent .dm-message-content {\n    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);\n    color: white;\n    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.25));\n}\n\n.dm-message-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 6px;\n}\n\n.dm-message-header strong {\n    font-size: 0.875rem;\n}\n\n.dm-message-time {\n    font-size: 0.75rem;\n    opacity: 0.7;\n    margin-left: 8px;\n}\n\n.dm-message-content p {\n    margin: 0;\n    font-size: 0.9375rem;\n    line-height: 1.5;\n    word-wrap: break-word;\n}\n\n.dm-message-input {\n    padding: 16px;\n    border-top: 1px solid var(--border-color);\n    display: flex;\n    gap: 12px;\n    background: var(--card-background);\n}\n\n.dm-message-input textarea {\n    flex: 1;\n    padding: 12px;\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    resize: none;\n    font-family: inherit;\n    font-size: 0.9375rem;\n}\n\n.btn-send {\n    padding: 12px 16px;\n    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);\n    color: white;\n    border: none;\n    border-radius: 8px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.3));\n}\n\n.btn-send:hover {\n    transform: translateY(-1px);\n    box-shadow: 0 4px 12px var(--theme-accent-shadow-strong, rgba(155, 89, 182, 0.4));\n}\n\n/* Contact Modal */\n.contact-modal-container {\n    max-width: 600px;\n}\n\n.contact-search-box {\n    position: relative;\n    margin-bottom: 1.5rem;\n}\n\n.contact-search-box svg {\n    position: absolute;\n    left: 12px;\n    top: 50%;\n    transform: translateY(-50%);\n    color: var(--text-muted);\n}\n\n.contact-search-box input {\n    width: 100%;\n    padding: 12px 12px 12px 40px;\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    font-size: 0.9375rem;\n}\n\n.contact-section {\n    margin-bottom: 1.5rem;\n}\n\n.contact-section-title {\n    font-size: 0.875rem;\n    font-weight: 600;\n    color: var(--text-muted);\n    text-transform: uppercase;\n    margin-bottom: 0.75rem;\n}\n\n.contact-list {\n    max-height: 300px;\n    overflow-y: auto;\n}\n\n.contact-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 12px;\n    border-radius: 8px;\n    cursor: pointer;\n    transition: background 0.2s ease;\n    border-bottom: 1px solid var(--border-color);\n}\n\n.contact-item:hover {\n    background: var(--hover-background);\n}\n\n.contact-avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);\n    color: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-weight: 600;\n    font-size: 0.875rem;\n    box-shadow: 0 2px 6px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.2));\n}\n\n.contact-info {\n    flex: 1;\n    min-width: 0;\n}\n\n.contact-info strong {\n    display: block;\n    font-size: 0.9375rem;\n    color: var(--text-color);\n    margin-bottom: 2px;\n}\n\n.contact-info small {\n    display: block;\n    font-size: 0.8125rem;\n    color: var(--text-muted);\n}\n\n.contact-actions {\n    display: flex;\n    gap: 8px;\n}\n\n.btn-action {\n    padding: 8px;\n    background: transparent;\n    border: 1px solid var(--border-color);\n    border-radius: 6px;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.btn-action:hover {\n    background: var(--hover-background);\n    border-color: var(--theme-accent-color, #9b59b6);\n}\n\n.btn-action.btn-message:hover {\n    background: linear-gradient(135deg, var(--theme-accent-color, #9b59b6) 0%, var(--theme-primary-color, #8b2348) 100%);\n    color: white;\n    border-color: var(--theme-accent-color, #9b59b6);\n    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(155, 89, 182, 0.25));\n}\n\n/* Info Popup */\n.info-popup-overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: rgba(0, 0, 0, 0.5);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 10001;\n    opacity: 0;\n    transition: opacity 0.3s ease;\n}\n\n.info-popup-overlay.active {\n    opacity: 1;\n}\n\n.info-popup {\n    background: var(--card-background);\n    border-radius: 12px;\n    padding: 24px;\n    max-width: 400px;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);\n}\n\n.client-info-popup h4 {\n    margin: 0 0 16px 0;\n    color: var(--text-color);\n}\n\n.info-row {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 12px;\n    color: var(--text-color);\n}\n\n.info-row svg {\n    color: var(--text-muted);\n}\n\n.info-row a {\n    color: var(--primary-color);\n    text-decoration: none;\n}\n\n.info-row a:hover {\n    text-decoration: underline;\n}\n\n/* Global Search Results */\n.search-results {\n    position: absolute;\n    top: calc(100% + 8px);\n    left: 0;\n    right: 0;\n    background: var(--card-background);\n    border: 1px solid var(--border-color);\n    border-radius: 8px;\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);\n    max-height: 500px;\n    overflow-y: auto;\n    z-index: 1000;\n}\n\n.search-results-header {\n    padding: 12px 16px;\n    border-bottom: 1px solid var(--border-color);\n    font-weight: 600;\n    font-size: 0.875rem;\n    color: var(--text-color);\n}\n\n.search-category {\n    padding: 12px 0;\n    border-bottom: 1px solid var(--border-color);\n}\n\n.search-category:last-child {\n    border-bottom: none;\n}\n\n.search-category h4 {\n    margin: 0 16px 8px 16px;\n    font-size: 0.8125rem;\n    font-weight: 600;\n    color: var(--text-muted);\n    text-transform: uppercase;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.search-result-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 10px 16px;\n    cursor: pointer;\n    transition: background 0.2s ease;\n}\n\n.search-result-item:hover {\n    background: var(--hover-background);\n}\n\n.search-result-icon {\n    width: 32px;\n    height: 32px;\n    border-radius: 6px;\n    background: var(--theme-accent-bg-soft, rgba(155, 89, 182, 0.1));\n    color: var(--theme-accent-color, #9b59b6);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.search-result-item strong {\n    display: block;\n    font-size: 0.9375rem;\n    color: var(--text-color);\n    margin-bottom: 2px;\n}\n\n.search-result-item small {\n    display: block;\n    font-size: 0.8125rem;\n    color: var(--text-muted);\n}\n\n.search-loading,\n.search-no-results,\n.search-error {\n    padding: 3rem 2rem;\n    text-align: center;\n    color: var(--text-muted);\n}\n\n.search-loading .spinner {\n    width: 40px;\n    height: 40px;\n    border: 3px solid var(--border-color);\n    border-top-color: var(--theme-accent-color, #9b59b6);\n    border-radius: 50%;\n    animation: spin 0.8s linear infinite;\n    margin: 0 auto 1rem auto;\n}\n\n@keyframes spin {\n    to {\n        transform: rotate(360deg);\n    }\n}\n\n/* Dark Theme Adjustments */\nbody.dark-forest .dm-thread-item.unread {\n    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.15));\n}\n\nbody.dark-forest .dm-message.sent .dm-message-content {\n    background: linear-gradient(135deg, var(--theme-accent-color, #2f6b7a) 0%, var(--theme-accent-color-hover, #45a0b8) 100%);\n    box-shadow: 0 2px 8px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.3));\n}\n\nbody.dark-forest .search-results {\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);\n}\n\nbody.dark-forest .info-popup {\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);\n}\n\n/* Responsive */\n@media (max-width: 768px) {\n    .dm-content {\n        grid-template-columns: 1fr;\n    }\n\n    .dm-threads-list {\n        border-right: none;\n    }\n\n    .dm-message-content {\n        max-width: 85%;\n    }\n\n    .contact-modal-container {\n        width: 95vw;\n    }\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./styles/dm-modal-improvements.css":
+/*!********************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./styles/dm-modal-improvements.css ***!
+  \********************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `/* Direct Messages Modal - Mejoras de contraste y animaciones */
+
+/* Overlay con mejor contraste */
+.dm-modal-overlay {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+    pointer-events: all !important;
+    opacity: 1 !important;
+}
+
+/* Modal container con animación */
+.dm-modal-container {
+    background: var(--surface-primary, #1a1a1a) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Transición al cerrar */
+.dm-modal-overlay.closing {
+    animation: fadeOut 0.2s ease-out;
+}
+
+.dm-modal-container.closing {
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+/* Modern Table - Separadores minimalistas */
+.modern-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.modern-table thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary, #999);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modern-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.modern-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.modern-table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 0.875rem;
+}
+
+.modern-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Textos cortos en cliente */
+.client-info strong {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-primary, #fff);
+}
+
+.policy-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8125rem;
+    color: var(--text-secondary, #999);
+}
+
+/* Botones de ícono */
+.btn-icon {
+    padding: 6px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-icon svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary, #999);
+}
+
+/* Badges de estado compactos */
+.text-danger {
+    color: #ef5350;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.text-warning {
+    color: #ffa726;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Action buttons row */
+.action-buttons {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+}`, "",{"version":3,"sources":["webpack://./styles/dm-modal-improvements.css"],"names":[],"mappings":"AAAA,+DAA+D;;AAE/D,gCAAgC;AAChC;IACI,gDAAgD;IAChD,0BAA0B;IAC1B,+BAA+B;IAC/B,8BAA8B;IAC9B,qBAAqB;AACzB;;AAEA,kCAAkC;AAClC;IACI,sDAAsD;IACtD,0CAA0C;IAC1C,yCAAyC;IACzC,gCAAgC;AACpC;;AAEA,gBAAgB;AAChB;IACI;QACI,UAAU;IACd;;IAEA;QACI,UAAU;IACd;AACJ;;AAEA;IACI;QACI,2BAA2B;QAC3B,UAAU;IACd;;IAEA;QACI,wBAAwB;QACxB,UAAU;IACd;AACJ;;AAEA,yBAAyB;AACzB;IACI,gCAAgC;AACpC;;AAEA;IACI,kCAAkC;AACtC;;AAEA;IACI;QACI,UAAU;IACd;;IAEA;QACI,UAAU;IACd;AACJ;;AAEA;IACI;QACI,wBAAwB;QACxB,UAAU;IACd;;IAEA;QACI,2BAA2B;QAC3B,UAAU;IACd;AACJ;;AAEA,4CAA4C;AAC5C;IACI,WAAW;IACX,yBAAyB;IACzB,iBAAiB;AACrB;;AAEA;IACI,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;IAChB,kBAAkB;IAClB,yBAAyB;IACzB,sBAAsB;IACtB,kCAAkC;IAClC,kDAAkD;AACtD;;AAEA;IACI,uCAAuC;AAC3C;;AAEA;IACI,2CAA2C;AAC/C;;AAEA;IACI,kBAAkB;IAClB,kDAAkD;IAClD,mBAAmB;AACvB;;AAEA;IACI,mBAAmB;AACvB;;AAEA,6BAA6B;AAC7B;IACI,cAAc;IACd,mBAAmB;IACnB,gCAAgC;AACpC;;AAEA;IACI,qCAAqC;IACrC,oBAAoB;IACpB,kCAAkC;AACtC;;AAEA,qBAAqB;AACrB;IACI,YAAY;IACZ,uBAAuB;IACvB,0CAA0C;IAC1C,kBAAkB;IAClB,eAAe;IACf,0BAA0B;IAC1B,oBAAoB;IACpB,mBAAmB;IACnB,uBAAuB;AAC3B;;AAEA;IACI,qCAAqC;IACrC,sCAAsC;AAC1C;;AAEA;IACI,WAAW;IACX,YAAY;IACZ,kCAAkC;AACtC;;AAEA,+BAA+B;AAC/B;IACI,cAAc;IACd,kBAAkB;IAClB,gBAAgB;AACpB;;AAEA;IACI,cAAc;IACd,kBAAkB;IAClB,gBAAgB;AACpB;;AAEA,uBAAuB;AACvB;IACI,aAAa;IACb,QAAQ;IACR,yBAAyB;AAC7B","sourcesContent":["/* Direct Messages Modal - Mejoras de contraste y animaciones */\n\n/* Overlay con mejor contraste */\n.dm-modal-overlay {\n    background-color: rgba(0, 0, 0, 0.75) !important;\n    backdrop-filter: blur(4px);\n    animation: fadeIn 0.2s ease-out;\n    pointer-events: all !important;\n    opacity: 1 !important;\n}\n\n/* Modal container con animación */\n.dm-modal-container {\n    background: var(--surface-primary, #1a1a1a) !important;\n    border: 1px solid rgba(255, 255, 255, 0.1);\n    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);\n    animation: slideUp 0.3s ease-out;\n}\n\n/* Animaciones */\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(20px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n/* Transición al cerrar */\n.dm-modal-overlay.closing {\n    animation: fadeOut 0.2s ease-out;\n}\n\n.dm-modal-container.closing {\n    animation: slideDown 0.2s ease-out;\n}\n\n@keyframes fadeOut {\n    from {\n        opacity: 1;\n    }\n\n    to {\n        opacity: 0;\n    }\n}\n\n@keyframes slideDown {\n    from {\n        transform: translateY(0);\n        opacity: 1;\n    }\n\n    to {\n        transform: translateY(20px);\n        opacity: 0;\n    }\n}\n\n/* Modern Table - Separadores minimalistas */\n.modern-table table {\n    width: 100%;\n    border-collapse: separate;\n    border-spacing: 0;\n}\n\n.modern-table thead th {\n    padding: 12px 16px;\n    text-align: left;\n    font-weight: 600;\n    font-size: 0.75rem;\n    text-transform: uppercase;\n    letter-spacing: 0.05em;\n    color: var(--text-secondary, #999);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.08);\n}\n\n.modern-table tbody tr {\n    transition: background-color 0.15s ease;\n}\n\n.modern-table tbody tr:hover {\n    background-color: rgba(255, 255, 255, 0.02);\n}\n\n.modern-table tbody td {\n    padding: 12px 16px;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.04);\n    font-size: 0.875rem;\n}\n\n.modern-table tbody tr:last-child td {\n    border-bottom: none;\n}\n\n/* Textos cortos en cliente */\n.client-info strong {\n    display: block;\n    font-size: 0.875rem;\n    color: var(--text-primary, #fff);\n}\n\n.policy-num {\n    font-family: 'Courier New', monospace;\n    font-size: 0.8125rem;\n    color: var(--text-secondary, #999);\n}\n\n/* Botones de ícono */\n.btn-icon {\n    padding: 6px;\n    background: transparent;\n    border: 1px solid rgba(255, 255, 255, 0.1);\n    border-radius: 4px;\n    cursor: pointer;\n    transition: all 0.15s ease;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.btn-icon:hover {\n    background: rgba(255, 255, 255, 0.05);\n    border-color: rgba(255, 255, 255, 0.2);\n}\n\n.btn-icon svg {\n    width: 16px;\n    height: 16px;\n    color: var(--text-secondary, #999);\n}\n\n/* Badges de estado compactos */\n.text-danger {\n    color: #ef5350;\n    font-size: 0.75rem;\n    font-weight: 600;\n}\n\n.text-warning {\n    color: #ffa726;\n    font-size: 0.75rem;\n    font-weight: 600;\n}\n\n/* Action buttons row */\n.action-buttons {\n    display: flex;\n    gap: 4px;\n    justify-content: flex-end;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10151,6 +10940,113 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/**
     transition: opacity 0.3s ease;
     padding: 20px;
     overflow-y: auto;
+}
+
+/* Design tokens for modal accents and section highlights (light + dark friendly) */
+:root {
+    --modal-accent-height: 6px;
+    /* Default accent RGB (light theme fallback) - matches light primary #0d3d23 */
+    --primary-rgb: 13, 61, 35;
+    /* Secondary surface used inside modal cards */
+    --bg-secondary-rgb: 245, 245, 245;
+}
+
+/* Dark theme overrides for accent and surfaces */
+html[data-theme="dark-forest"],
+body.dark-forest {
+    --primary-rgb: 47, 107, 122;
+    /* dark-forest accent fallback */
+    --bg-secondary-rgb: 6, 24, 20;
+}
+
+/* Accent strip at top of every modal (applies even when markup doesn't include an explicit accent element) */
+.modal-content::before,
+.app-modal::before,
+.chart-modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--modal-accent-height);
+    background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.95), rgba(var(--primary-rgb), 0.55));
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Ensure header sits above the accent strip */
+.modal-header,
+.app-modal-header,
+.chart-modal-header {
+    position: relative;
+    z-index: 3;
+}
+
+/* A thin explicit accent element (used by some modals) */
+.modal-accent {
+    height: var(--modal-accent-height);
+    width: 100%;
+    background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.95), rgba(var(--primary-rgb), 0.55));
+}
+
+/* Modal icon container for a consistent look */
+.modal-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(var(--primary-rgb), 0.08), rgba(var(--primary-rgb), 0.04));
+    flex-shrink: 0;
+}
+
+/* Policy/section card look used throughout the modal content */
+.policy-section {
+    padding: 0.75rem;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    border-left: 4px solid rgba(var(--primary-rgb), 0.12);
+    padding-left: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+body.dark-forest .policy-section,
+html[data-theme="dark-forest"] .policy-section {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.01));
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    border-left-color: rgba(var(--primary-rgb), 0.16);
+}
+
+/* Consistent item cards inside lists */
+.receipt-item,
+.claim-item,
+.comment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem;
+    border-radius: 8px;
+    background: rgba(var(--bg-secondary-rgb), 0.45);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+    margin-bottom: 0.6rem;
+}
+
+body.dark-forest .receipt-item,
+body.dark-forest .claim-item,
+body.dark-forest .comment-item {
+    background: rgba(var(--bg-secondary-rgb), 0.28);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* Section divider used between modal segments */
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.005), rgba(255, 255, 255, 0.02));
+    margin: 1rem 0;
 }
 
 .modal-overlay.active,
@@ -10253,12 +11149,57 @@ html[data-theme="dark-forest"] .chart-modal-content {
 .app-modal-title,
 .chart-modal-title {
     margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.375rem;
+    font-weight: 700;
     color: #1a1a1a;
     display: flex;
     align-items: center;
     gap: 10px;
+    line-height: 1.4;
+}
+
+.modal-body h3,
+.app-modal-body h3,
+.chart-modal-body h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #333;
+    margin: 1.5rem 0 1rem;
+}
+
+.modal-body p,
+.app-modal-body p,
+.chart-modal-body p {
+    font-size: 0.938rem;
+    line-height: 1.6;
+    color: #444;
+    margin: 0.5rem 0;
+}
+
+.modal-body label,
+.app-modal-body label,
+.chart-modal-body label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+}
+
+[data-theme="dark-forest"] .modal-body h3,
+[data-theme="dark-forest"] .app-modal-body h3,
+[data-theme="dark-forest"] .chart-modal-body h3 {
+    color: #e0e0e0;
+}
+
+[data-theme="dark-forest"] .modal-body p,
+[data-theme="dark-forest"] .app-modal-body p,
+[data-theme="dark-forest"] .chart-modal-body p {
+    color: #d0d0d0;
+}
+
+[data-theme="dark-forest"] .modal-body label,
+[data-theme="dark-forest"] .app-modal-body label,
+[data-theme="dark-forest"] .chart-modal-body label {
+    color: #b0b0b0;
 }
 
 /* Dark Forest Theme - Modal Header */
@@ -10295,7 +11236,7 @@ html[data-theme="dark-forest"] .chart-modal-title {
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    color: #666;
+    color: #555;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -10470,7 +11411,7 @@ html[data-theme="dark-forest"] .client-details-grid p {
 .loading-state {
     text-align: center;
     padding: 40px 20px;
-    color: #999;
+    color: #666;
 }
 
 body.dark-forest .loading-state,
@@ -10494,7 +11435,7 @@ html[data-theme="dark-forest"] .loading-state {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: #666;
+    color: #555;
     margin-bottom: 4px;
 }
 
@@ -10543,7 +11484,7 @@ html[data-theme="dark-forest"] .chart-details-section {
 
 .chart-stat-label {
     font-size: 13px;
-    color: #666;
+    color: #555;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -10697,7 +11638,710 @@ html[data-theme="dark-forest"] .policy-number {
         grid-template-columns: 1fr;
         gap: 16px;
     }
-}`, "",{"version":3,"sources":["webpack://./styles/modals-unified.css"],"names":[],"mappings":"AAAA;;;;EAIE;;AAEF;;iFAEiF;;AAEjF;;;IAGI,eAAe;IACf,QAAQ;IACR,YAAY;IACZ,aAAa;IACb,aAAa;IACb,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,8BAA8B;IAC9B,0BAA0B;IAC1B,kCAAkC;IAClC,UAAU;IACV,oBAAoB;IACpB,6BAA6B;IAC7B,aAAa;IACb,gBAAgB;AACpB;;AAEA;;;IAGI,UAAU;IACV,mBAAmB;AACvB;;AAEA,gCAAgC;AAChC;;;;;;IAMI,iCAAiC;IACjC,0CAA0C;IAC1C,kDAAkD;AACtD;;AAEA;;iFAEiF;;AAEjF;;;IAGI,kBAAkB;IAClB,UAAU;IACV,gBAAgB;IAChB,gBAAgB;IAChB,mBAAmB;IACnB,mBAAmB;IACnB;;oCAEgC;IAChC,aAAa;IACb,sBAAsB;IACtB,gBAAgB;IAChB,sCAAsC;IACtC,4DAA4D;AAChE;;AAEA;;;IAGI,iCAAiC;AACrC;;AAEA,gBAAgB;AAChB;IACI,gBAAgB;AACpB;;AAEA;IACI,gBAAgB;AACpB;;AAEA;IACI,gBAAgB;AACpB;;AAEA;IACI,iBAAiB;AACrB;;AAEA,sCAAsC;AACtC;;;;;;IAMI,gEAAgE;IAChE,wEAAwE;IACxE;;;0EAGsE;AAC1E;;AAEA;;iFAEiF;;AAEjF;;;IAGI,uBAAuB;IACvB,2CAA2C;IAC3C,mBAAmB;IACnB,cAAc;IACd,aAAa;IACb,mBAAmB;IACnB,8BAA8B;AAClC;;AAEA;;;IAGI,SAAS;IACT,iBAAiB;IACjB,gBAAgB;IAChB,cAAc;IACd,aAAa;IACb,mBAAmB;IACnB,SAAS;AACb;;AAEA,qCAAqC;AACrC;;;;;;IAMI,iDAAiD;IACjD,2EAA2E;AAC/E;;AAEA;;;;;;IAMI,yCAAyC;IACzC,yCAAyC;AAC7C;;AAEA;;iFAEiF;;AAEjF;;;IAGI,WAAW;IACX,YAAY;IACZ,UAAU;IACV,uBAAuB;IACvB,oCAAoC;IACpC,kBAAkB;IAClB,WAAW;IACX,eAAe;IACf,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,eAAe;IACf,cAAc;IACd,yBAAyB;AAC7B;;AAEA;;;IAGI,+BAA+B;IAC/B,cAAc;IACd,wBAAwB;AAC5B;;AAEA,qCAAqC;AACrC;;;;;;IAMI,iEAAiE;IACjE,yEAAyE;IACzE,2CAA2C;AAC/C;;AAEA;;;;;;IAMI,8CAA8C;IAC9C,sDAAsD;IACtD,yCAAyC;IACzC,8EAA8E;AAClF;;AAEA;;iFAEiF;;AAEjF;;;IAGI,OAAO;IACP,gBAAgB;IAChB,kBAAkB;IAClB,aAAa;IACb,mBAAmB;IACnB,iCAAiC;IACjC,uBAAuB;AAC3B;;AAEA,mCAAmC;AACnC;;;;;;IAMI,gEAAgE;IAChE,yCAAyC;AAC7C;;AAEA,oCAAoC;AACpC;;;IAGI,UAAU;AACd;;AAEA;;;IAGI,uBAAuB;AAC3B;;AAEA;;;IAGI,8BAA8B;IAC9B,kBAAkB;AACtB;;AAEA;;;IAGI,8BAA8B;AAClC;;AAEA,kCAAkC;AAClC;;;;;;IAMI,iEAAiE;IACjE,kBAAkB;AACtB;;AAEA;;;;;;IAMI,8CAA8C;AAClD;;AAEA;;iFAEiF;;AAEjF;;IAEI,kBAAkB;IAClB,wCAAwC;IACxC,mBAAmB;IACnB,aAAa;IACb,SAAS;IACT,yBAAyB;IACzB,cAAc;AAClB;;AAEA,qCAAqC;AACrC;;;;IAII,iDAAiD;IACjD,wEAAwE;AAC5E;;AAEA;;iFAEiF;;AAEjF,wBAAwB;AACxB;IACI,aAAa;IACb,2DAA2D;IAC3D,SAAS;AACb;;AAEA;IACI,eAAe;IACf,mBAAmB;IACnB,cAAc;AAClB;;AAEA;IACI,aAAa;IACb,WAAW;AACf;;AAEA;;IAEI,4CAA4C;AAChD;;AAEA;;IAEI,2CAA2C;AAC/C;;AAEA,kBAAkB;AAClB;IACI,kBAAkB;IAClB,kBAAkB;IAClB,WAAW;AACf;;AAEA;;IAEI,2CAA2C;AAC/C;;AAEA,iBAAiB;AACjB;IACI,eAAe;IACf,2CAA2C;AAC/C;;AAEA;IACI,mBAAmB;AACvB;;AAEA;IACI,cAAc;IACd,eAAe;IACf,gBAAgB;IAChB,yBAAyB;IACzB,qBAAqB;IACrB,WAAW;IACX,kBAAkB;AACtB;;AAEA;IACI,eAAe;IACf,cAAc;IACd,gBAAgB;AACpB;;AAEA;;IAEI,gFAAgF;AACpF;;AAEA;;IAEI,2CAA2C;AAC/C;;AAEA;;IAEI,yCAAyC;AAC7C;;AAEA,qBAAqB;AACrB;;;IAGI,oCAAoC;IACpC,0CAA0C;IAC1C,mBAAmB;IACnB,aAAa;AACjB;;AAEA;;;;;;IAMI,2DAA2D;IAC3D,oEAAoE;IACpE,0CAA0C;IAC1C,kDAAkD;AACtD;;AAEA;IACI,eAAe;IACf,WAAW;IACX,gBAAgB;IAChB,yBAAyB;IACzB,qBAAqB;AACzB;;AAEA;IACI,eAAe;IACf,gBAAgB;IAChB,cAAc;AAClB;;AAEA;;IAEI,2CAA2C;AAC/C;;AAEA;;IAEI,4CAA4C;AAChD;;AAEA,mBAAmB;AACnB;IACI,oCAAoC;IACpC,kBAAkB;IAClB,mBAAmB;IACnB,0CAA0C;AAC9C;;AAEA;;IAEI,0DAA0D;IAC1D,yEAAyE;IACzE,2BAA2B;IAC3B,mCAAmC;AACvC;;AAEA;IACI,cAAc;AAClB;;AAEA;;IAEI,WAAW;AACf;;AAEA;;IAEI,yCAAyC;AAC7C;;AAEA;;;;IAII,2CAA2C;AAC/C;;AAEA,wBAAwB;AACxB;IACI,oCAAoC;IACpC,0CAA0C;IAC1C,mBAAmB;IACnB,aAAa;AACjB;;AAEA;;IAEI,2DAA2D;IAC3D,oEAAoE;IACpE,2BAA2B;IAC3B,mCAAmC;AACvC;;AAEA;IACI,cAAc;AAClB;;AAEA;IACI,WAAW;AACf;;AAEA;;IAEI,yCAAyC;AAC7C;;AAEA;;IAEI,2CAA2C;AAC/C;;AAEA;;iFAEiF;;AAEjF;IACI;QACI,UAAU;IACd;;IAEA;QACI,UAAU;IACd;AACJ;;AAEA;IACI;QACI,2BAA2B;QAC3B,UAAU;IACd;;IAEA;QACI,wBAAwB;QACxB,UAAU;IACd;AACJ;;AAEA;;iFAEiF;;AAEjF;;IAEI;;;QAGI,UAAU;QACV,gBAAgB;IACpB;;IAEA;;;QAGI,uBAAuB;IAC3B;;IAEA;;;QAGI,aAAa;IACjB;;IAEA;;;QAGI,kBAAkB;IACtB;;IAEA;QACI,0BAA0B;QAC1B,SAAS;IACb;AACJ","sourcesContent":["/**\n * UNIFIED MODAL SYSTEM - Sistema centralizado de modales\n * Este archivo centraliza todos los estilos de modales para consistencia\n * Incluye soporte completo para dark-forest theme\n */\n\n/* ============================================================================\n   BASE MODAL OVERLAY - Overlay común para todos los modales\n   ============================================================================ */\n\n.modal-overlay,\n.app-modal-overlay,\n.chart-modal-overlay {\n    position: fixed;\n    inset: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 9999;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: rgba(0, 0, 0, 0.6);\n    backdrop-filter: blur(6px);\n    -webkit-backdrop-filter: blur(6px);\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n    padding: 20px;\n    overflow-y: auto;\n}\n\n.modal-overlay.active,\n.app-modal-overlay.active,\n.chart-modal-overlay.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* Dark Forest Theme - Overlay */\nbody.dark-forest .modal-overlay,\nbody.dark-forest .app-modal-overlay,\nbody.dark-forest .chart-modal-overlay,\nhtml[data-theme=\"dark-forest\"] .modal-overlay,\nhtml[data-theme=\"dark-forest\"] .app-modal-overlay,\nhtml[data-theme=\"dark-forest\"] .chart-modal-overlay {\n    background: rgba(6, 24, 20, 0.92);\n    backdrop-filter: blur(12px) saturate(160%);\n    -webkit-backdrop-filter: blur(12px) saturate(160%);\n}\n\n/* ============================================================================\n   MODAL CONTENT CONTAINER - Contenedor del modal\n   ============================================================================ */\n\n.modal-content,\n.app-modal,\n.chart-modal-content {\n    position: relative;\n    width: 90%;\n    max-width: 800px;\n    max-height: 90vh;\n    background: #ffffff;\n    border-radius: 16px;\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.2),\n        0 0 0 1px rgba(0, 0, 0, 0.1);\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    transform: scale(0.9) translateY(20px);\n    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n\n.modal-overlay.active .modal-content,\n.app-modal-overlay.active .app-modal,\n.chart-modal-overlay.active .chart-modal-content {\n    transform: scale(1) translateY(0);\n}\n\n/* Modal sizes */\n.app-modal-sm {\n    max-width: 500px;\n}\n\n.app-modal-md {\n    max-width: 700px;\n}\n\n.app-modal-lg {\n    max-width: 900px;\n}\n\n.app-modal-xl {\n    max-width: 1200px;\n}\n\n/* Dark Forest Theme - Modal Content */\nbody.dark-forest .modal-content,\nbody.dark-forest .app-modal,\nbody.dark-forest .chart-modal-content,\nhtml[data-theme=\"dark-forest\"] .modal-content,\nhtml[data-theme=\"dark-forest\"] .app-modal,\nhtml[data-theme=\"dark-forest\"] .chart-modal-content {\n    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94));\n    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.7),\n        0 0 0 1px var(--theme-surface-border-strong, rgba(223, 243, 237, 0.42)),\n        0 0 60px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.18));\n}\n\n/* ============================================================================\n   MODAL HEADER - Cabecera del modal\n   ============================================================================ */\n\n.modal-header,\n.app-modal-header,\n.chart-modal-header {\n    padding: 24px 24px 20px;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n    background: #f8f9fa;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n\n.modal-header h2,\n.app-modal-title,\n.chart-modal-title {\n    margin: 0;\n    font-size: 1.5rem;\n    font-weight: 600;\n    color: #1a1a1a;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n/* Dark Forest Theme - Modal Header */\nbody.dark-forest .modal-header,\nbody.dark-forest .app-modal-header,\nbody.dark-forest .chart-modal-header,\nhtml[data-theme=\"dark-forest\"] .modal-header,\nhtml[data-theme=\"dark-forest\"] .app-modal-header,\nhtml[data-theme=\"dark-forest\"] .chart-modal-header {\n    background: var(--theme-surface-bg-deep, #061c17);\n    border-bottom-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n}\n\nbody.dark-forest .modal-header h2,\nbody.dark-forest .app-modal-title,\nbody.dark-forest .chart-modal-title,\nhtml[data-theme=\"dark-forest\"] .modal-header h2,\nhtml[data-theme=\"dark-forest\"] .app-modal-title,\nhtml[data-theme=\"dark-forest\"] .chart-modal-title {\n    color: var(--theme-text-primary, #f0f7f3);\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);\n}\n\n/* ============================================================================\n   MODAL CLOSE BUTTON - Botón de cerrar\n   ============================================================================ */\n\n.modal-close,\n.app-modal-close,\n.chart-modal-close {\n    width: 36px;\n    height: 36px;\n    padding: 0;\n    background: transparent;\n    border: 1px solid rgba(0, 0, 0, 0.1);\n    border-radius: 8px;\n    color: #666;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 24px;\n    line-height: 1;\n    transition: all 0.2s ease;\n}\n\n.modal-close:hover,\n.app-modal-close:hover,\n.chart-modal-close:hover {\n    background: rgba(0, 0, 0, 0.05);\n    color: #1a1a1a;\n    transform: rotate(90deg);\n}\n\n/* Dark Forest Theme - Close Button */\nbody.dark-forest .modal-close,\nbody.dark-forest .app-modal-close,\nbody.dark-forest .chart-modal-close,\nhtml[data-theme=\"dark-forest\"] .modal-close,\nhtml[data-theme=\"dark-forest\"] .app-modal-close,\nhtml[data-theme=\"dark-forest\"] .chart-modal-close {\n    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.22));\n    border-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\nbody.dark-forest .modal-close:hover,\nbody.dark-forest .app-modal-close:hover,\nbody.dark-forest .chart-modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .app-modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .chart-modal-close:hover {\n    background: var(--theme-accent-color, #2f6b7a);\n    border-color: var(--theme-accent-color-hover, #45a0b8);\n    color: var(--theme-text-primary, #f0f7f3);\n    box-shadow: 0 0 16px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.18));\n}\n\n/* ============================================================================\n   MODAL BODY - Cuerpo del modal (scrollable)\n   ============================================================================ */\n\n.modal-body,\n.app-modal-body,\n.chart-modal-body {\n    flex: 1;\n    overflow-y: auto;\n    overflow-x: hidden;\n    padding: 24px;\n    background: #ffffff;\n    -webkit-overflow-scrolling: touch;\n    scroll-behavior: smooth;\n}\n\n/* Dark Forest Theme - Modal Body */\nbody.dark-forest .modal-body,\nbody.dark-forest .app-modal-body,\nbody.dark-forest .chart-modal-body,\nhtml[data-theme=\"dark-forest\"] .modal-body,\nhtml[data-theme=\"dark-forest\"] .app-modal-body,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body {\n    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94));\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n/* Custom scrollbar for modal body */\n.modal-body::-webkit-scrollbar,\n.app-modal-body::-webkit-scrollbar,\n.chart-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.modal-body::-webkit-scrollbar-track,\n.app-modal-body::-webkit-scrollbar-track,\n.chart-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.modal-body::-webkit-scrollbar-thumb,\n.app-modal-body::-webkit-scrollbar-thumb,\n.chart-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.2);\n    border-radius: 4px;\n}\n\n.modal-body::-webkit-scrollbar-thumb:hover,\n.app-modal-body::-webkit-scrollbar-thumb:hover,\n.chart-modal-body::-webkit-scrollbar-thumb:hover {\n    background: rgba(0, 0, 0, 0.3);\n}\n\n/* Dark Forest Theme - Scrollbar */\nbody.dark-forest .modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .app-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .chart-modal-body::-webkit-scrollbar-thumb,\nhtml[data-theme=\"dark-forest\"] .modal-body::-webkit-scrollbar-thumb,\nhtml[data-theme=\"dark-forest\"] .app-modal-body::-webkit-scrollbar-thumb,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body::-webkit-scrollbar-thumb {\n    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.22));\n    border-radius: 4px;\n}\n\nbody.dark-forest .modal-body::-webkit-scrollbar-thumb:hover,\nbody.dark-forest .app-modal-body::-webkit-scrollbar-thumb:hover,\nbody.dark-forest .chart-modal-body::-webkit-scrollbar-thumb:hover,\nhtml[data-theme=\"dark-forest\"] .modal-body::-webkit-scrollbar-thumb:hover,\nhtml[data-theme=\"dark-forest\"] .app-modal-body::-webkit-scrollbar-thumb:hover,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body::-webkit-scrollbar-thumb:hover {\n    background: var(--theme-accent-color, #2f6b7a);\n}\n\n/* ============================================================================\n   MODAL FOOTER - Pie del modal (opcional)\n   ============================================================================ */\n\n.modal-footer,\n.app-modal-footer {\n    padding: 20px 24px;\n    border-top: 1px solid rgba(0, 0, 0, 0.1);\n    background: #f8f9fa;\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n    flex-shrink: 0;\n}\n\n/* Dark Forest Theme - Modal Footer */\nbody.dark-forest .modal-footer,\nbody.dark-forest .app-modal-footer,\nhtml[data-theme=\"dark-forest\"] .modal-footer,\nhtml[data-theme=\"dark-forest\"] .app-modal-footer {\n    background: var(--theme-surface-bg-deep, #061c17);\n    border-top-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n}\n\n/* ============================================================================\n   MODAL CONTENT ELEMENTS - Elementos internos del modal\n   ============================================================================ */\n\n/* Client Details Grid */\n.client-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n    gap: 24px;\n}\n\n.client-details-grid h3 {\n    font-size: 18px;\n    margin-bottom: 12px;\n    color: #1a1a1a;\n}\n\n.client-details-grid p {\n    margin: 8px 0;\n    color: #555;\n}\n\nbody.dark-forest .client-details-grid h3,\nhtml[data-theme=\"dark-forest\"] .client-details-grid h3 {\n    color: var(--theme-contrast-strong, #c3efe2);\n}\n\nbody.dark-forest .client-details-grid p,\nhtml[data-theme=\"dark-forest\"] .client-details-grid p {\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\n/* Loading State */\n.loading-state {\n    text-align: center;\n    padding: 40px 20px;\n    color: #999;\n}\n\nbody.dark-forest .loading-state,\nhtml[data-theme=\"dark-forest\"] .loading-state {\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\n/* Detail Items */\n.detail-item {\n    padding: 12px 0;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n}\n\n.detail-item:last-child {\n    border-bottom: none;\n}\n\n.detail-item label {\n    display: block;\n    font-size: 12px;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n    color: #666;\n    margin-bottom: 4px;\n}\n\n.detail-item .value {\n    font-size: 14px;\n    color: #1a1a1a;\n    font-weight: 500;\n}\n\nbody.dark-forest .detail-item,\nhtml[data-theme=\"dark-forest\"] .detail-item {\n    border-bottom-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));\n}\n\nbody.dark-forest .detail-item label,\nhtml[data-theme=\"dark-forest\"] .detail-item label {\n    color: var(--theme-highlight-soft, #cbeee4);\n}\n\nbody.dark-forest .detail-item .value,\nhtml[data-theme=\"dark-forest\"] .detail-item .value {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n/* Charts and Stats */\n.chart-stat-box,\n.chart-visualization,\n.chart-details-section {\n    background: rgba(255, 255, 255, 0.6);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 14px;\n    padding: 16px;\n}\n\nbody.dark-forest .chart-stat-box,\nbody.dark-forest .chart-visualization,\nbody.dark-forest .chart-details-section,\nhtml[data-theme=\"dark-forest\"] .chart-stat-box,\nhtml[data-theme=\"dark-forest\"] .chart-visualization,\nhtml[data-theme=\"dark-forest\"] .chart-details-section {\n    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34));\n    border-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n    backdrop-filter: blur(20px) saturate(160%);\n    -webkit-backdrop-filter: blur(20px) saturate(160%);\n}\n\n.chart-stat-label {\n    font-size: 13px;\n    color: #666;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.chart-stat-value {\n    font-size: 28px;\n    font-weight: 700;\n    color: #1a1a1a;\n}\n\nbody.dark-forest .chart-stat-label,\nhtml[data-theme=\"dark-forest\"] .chart-stat-label {\n    color: var(--theme-highlight-soft, #cbeee4);\n}\n\nbody.dark-forest .chart-stat-value,\nhtml[data-theme=\"dark-forest\"] .chart-stat-value {\n    color: var(--theme-sunlight-strong, #c6ede0);\n}\n\n/* Timeline Items */\n.timeline-content {\n    background: rgba(255, 255, 255, 0.7);\n    padding: 12px 14px;\n    border-radius: 10px;\n    border: 1px solid rgba(226, 232, 240, 0.5);\n}\n\nbody.dark-forest .timeline-content,\nhtml[data-theme=\"dark-forest\"] .timeline-content {\n    background: var(--acrylic-bg-light, rgba(6, 24, 20, 0.22));\n    border-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));\n    backdrop-filter: blur(15px);\n    -webkit-backdrop-filter: blur(15px);\n}\n\n.timeline-header strong {\n    color: #1a1a1a;\n}\n\n.timeline-date,\n.timeline-detail {\n    color: #666;\n}\n\nbody.dark-forest .timeline-header strong,\nhtml[data-theme=\"dark-forest\"] .timeline-header strong {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\nbody.dark-forest .timeline-date,\nbody.dark-forest .timeline-detail,\nhtml[data-theme=\"dark-forest\"] .timeline-date,\nhtml[data-theme=\"dark-forest\"] .timeline-detail {\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\n/* Policy Detail Cards */\n.policy-detail-card {\n    background: rgba(255, 255, 255, 0.8);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 16px;\n    padding: 18px;\n}\n\nbody.dark-forest .policy-detail-card,\nhtml[data-theme=\"dark-forest\"] .policy-detail-card {\n    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34));\n    border-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n    backdrop-filter: blur(18px);\n    -webkit-backdrop-filter: blur(18px);\n}\n\n.policy-detail-info h4 {\n    color: #1a1a1a;\n}\n\n.policy-number {\n    color: #666;\n}\n\nbody.dark-forest .policy-detail-info h4,\nhtml[data-theme=\"dark-forest\"] .policy-detail-info h4 {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\nbody.dark-forest .policy-number,\nhtml[data-theme=\"dark-forest\"] .policy-number {\n    color: var(--theme-highlight-soft, #cbeee4);\n}\n\n/* ============================================================================\n   ANIMATIONS - Animaciones comunes\n   ============================================================================ */\n\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(30px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n/* ============================================================================\n   RESPONSIVE - Adaptación a móviles\n   ============================================================================ */\n\n@media (max-width: 768px) {\n\n    .modal-content,\n    .app-modal,\n    .chart-modal-content {\n        width: 95%;\n        max-height: 95vh;\n    }\n\n    .modal-header,\n    .app-modal-header,\n    .chart-modal-header {\n        padding: 20px 16px 16px;\n    }\n\n    .modal-body,\n    .app-modal-body,\n    .chart-modal-body {\n        padding: 16px;\n    }\n\n    .modal-header h2,\n    .app-modal-title,\n    .chart-modal-title {\n        font-size: 1.25rem;\n    }\n\n    .client-details-grid {\n        grid-template-columns: 1fr;\n        gap: 16px;\n    }\n}"],"sourceRoot":""}]);
+}
+
+/* ============================================================================
+   LIGHT THEME - High contrast modal adjustments
+   These rules force white modal surfaces and clear typographic hierarchy
+   while preserving dark-forest overrides below.
+   ============================================================================ */
+
+/* Force crisp white cards on light theme and ensure readable text */
+.modal-content,
+.app-modal,
+.chart-modal-content,
+.modal-card {
+    background: #ffffff;
+    color: #1e293b;
+    /* Slate 800 - high contrast on white */
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* Modal card specific layout (used in dashboard modals) */
+.modal-card {
+    position: relative;
+    width: min(420px, 92vw);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px) saturate(1.05);
+    -webkit-backdrop-filter: blur(10px) saturate(1.05);
+}
+
+.modal-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.modal-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.modal-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    border-radius: 12px;
+}
+
+/* Header and title clarity */
+.modal-header,
+.app-modal-header,
+.chart-modal-header {
+    background: #ffffff;
+    border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+.modal-title,
+.app-modal-title,
+.chart-modal-title {
+    color: #0f172a;
+    /* Slate 900 - maximum contrast for titles */
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Modal body: ensure all inner text defaults to high-contrast on light theme */
+.modal-body,
+.app-modal-body,
+.chart-modal-body {
+    color: #334155;
+    /* Slate 700 - readable body text */
+}
+
+/* Improve hierarchy inside modals (section headings vs detail text) */
+.modal-body h3,
+.app-modal-body h3,
+.chart-modal-body h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    /* Slate 900 - dark headings */
+    margin: 0 0 0.5rem;
+}
+
+.detail-group label,
+.policy-details-grid .detail-group label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #475569;
+    /* Slate 600 - medium gray for labels */
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.detail-group p,
+.policy-details-grid p,
+.detail-item .value {
+    color: #1e293b;
+    /* Slate 800 - dark for values */
+    font-weight: 500;
+}
+
+.contact-detail span {
+    color: #475569;
+    /* Slate 600 - labels */
+    font-size: 13px;
+}
+
+.contact-detail strong {
+    color: #0f172a;
+    /* Slate 900 - values */
+    font-weight: 600;
+}
+
+/* Sections: keep background clean (transparent/white) and show subtle borders only */
+.policy-section {
+    background: rgba(248, 250, 252, 0.5);
+    /* Very light slate background */
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-left: 4px solid rgba(139, 35, 72, 0.3);
+    /* Brand maroon accent */
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* List items inside sections should be minimal and bordered */
+.receipt-item,
+.claim-item,
+.comment-item {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
+    border-radius: 8px;
+}
+
+.receipt-item span,
+.claim-item span,
+.comment-item span {
+    color: #334155;
+    /* Slate 700 for item text */
+}
+
+/* Section divider becomes a thin rule */
+.section-divider {
+    height: 0;
+    background: none;
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    margin: 1rem 0;
+}
+
+/* Muted text on light theme */
+.text-muted {
+    color: #64748b;
+    /* Slate 500 */
+}
+
+/* Tweak modal close button for light theme */
+.modal-close,
+.app-modal-close,
+.chart-modal-close {
+    color: #475569;
+    /* Slate 600 */
+    border-color: rgba(15, 23, 42, 0.1);
+    background: transparent;
+}
+
+.modal-close:hover,
+.app-modal-close:hover,
+.chart-modal-close:hover {
+    color: #1e293b;
+    /* Slate 800 on hover */
+    background: rgba(15, 23, 42, 0.04);
+}
+
+/* ============================================================================
+   DARK THEME OVERRIDES (re-assert darker acrylic backgrounds where needed)
+   These use !important to override the light-theme forcing above when dark mode
+   is active.
+   ============================================================================ */
+/* ============================================================================
+   DARK FOREST THEME - Alto contraste con colores explícitos
+   ============================================================================ */
+
+body.dark-forest .modal-content,
+body.dark-forest .app-modal,
+body.dark-forest .chart-modal-content,
+html[data-theme="dark-forest"] .modal-content,
+html[data-theme="dark-forest"] .app-modal,
+html[data-theme="dark-forest"] .chart-modal-content,
+body.dark-forest .modal-card,
+html[data-theme="dark-forest"] .modal-card {
+    background: rgba(15, 43, 36, 0.92) !important;
+    /* Dark forest green */
+    color: #f1f5f9 !important;
+    /* Slate 100 - light text */
+    border: 1px solid rgba(241, 245, 249, 0.15) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+body.dark-forest .modal-header,
+html[data-theme="dark-forest"] .modal-header,
+body.dark-forest .app-modal-header,
+html[data-theme="dark-forest"] .app-modal-header,
+body.dark-forest .chart-modal-header,
+html[data-theme="dark-forest"] .chart-modal-header {
+    background: transparent !important;
+    border-bottom-color: rgba(241, 245, 249, 0.1) !important;
+}
+
+body.dark-forest .modal-title,
+html[data-theme="dark-forest"] .modal-title,
+body.dark-forest .app-modal-title,
+html[data-theme="dark-forest"] .app-modal-title,
+body.dark-forest .chart-modal-title,
+html[data-theme="dark-forest"] .chart-modal-title {
+    color: #f8fafc !important;
+    /* Slate 50 - brightest for titles */
+}
+
+body.dark-forest .modal-body,
+html[data-theme="dark-forest"] .modal-body,
+body.dark-forest .app-modal-body,
+html[data-theme="dark-forest"] .app-modal-body,
+body.dark-forest .chart-modal-body,
+html[data-theme="dark-forest"] .chart-modal-body {
+    background: transparent !important;
+    color: #e2e8f0 !important;
+    /* Slate 200 - light body text */
+}
+
+body.dark-forest .modal-body h3,
+html[data-theme="dark-forest"] .modal-body h3,
+body.dark-forest .app-modal-body h3,
+html[data-theme="dark-forest"] .app-modal-body h3,
+body.dark-forest .chart-modal-body h3,
+html[data-theme="dark-forest"] .chart-modal-body h3 {
+    color: #f1f5f9 !important;
+    /* Slate 100 - headings */
+}
+
+body.dark-forest .detail-group label,
+html[data-theme="dark-forest"] .detail-group label,
+body.dark-forest .policy-details-grid .detail-group label,
+html[data-theme="dark-forest"] .policy-details-grid .detail-group label {
+    color: #cbd5e1 !important;
+    /* Slate 300 - labels */
+}
+
+body.dark-forest .detail-group p,
+html[data-theme="dark-forest"] .detail-group p,
+body.dark-forest .policy-details-grid p,
+html[data-theme="dark-forest"] .policy-details-grid p,
+body.dark-forest .detail-item .value,
+html[data-theme="dark-forest"] .detail-item .value {
+    color: #f1f5f9 !important;
+    /* Slate 100 - values */
+}
+
+body.dark-forest .contact-detail,
+html[data-theme="dark-forest"] .contact-detail {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(241, 245, 249, 0.1) !important;
+}
+
+body.dark-forest .contact-detail span,
+html[data-theme="dark-forest"] .contact-detail span {
+    color: #cbd5e1 !important;
+    /* Slate 300 - labels */
+}
+
+body.dark-forest .contact-detail strong,
+html[data-theme="dark-forest"] .contact-detail strong {
+    color: #f8fafc !important;
+    /* Slate 50 - values */
+}
+
+body.dark-forest .policy-section,
+html[data-theme="dark-forest"] .policy-section {
+    background: rgba(255, 255, 255, 0.03) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+    border-left: 4px solid rgba(76, 201, 191, 0.4) !important;
+    /* Teal accent */
+    border: 1px solid rgba(241, 245, 249, 0.08) !important;
+}
+
+body.dark-forest .receipt-item,
+html[data-theme="dark-forest"] .receipt-item,
+body.dark-forest .claim-item,
+html[data-theme="dark-forest"] .claim-item,
+body.dark-forest .comment-item,
+html[data-theme="dark-forest"] .comment-item {
+    background: rgba(255, 255, 255, 0.04) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(241, 245, 249, 0.08) !important;
+}
+
+body.dark-forest .receipt-item span,
+html[data-theme="dark-forest"] .receipt-item span,
+body.dark-forest .claim-item span,
+html[data-theme="dark-forest"] .claim-item span,
+body.dark-forest .comment-item span,
+html[data-theme="dark-forest"] .comment-item span {
+    color: #e2e8f0 !important;
+    /* Slate 200 */
+}
+
+body.dark-forest .text-muted,
+html[data-theme="dark-forest"] .text-muted {
+    color: #94a3b8 !important;
+    /* Slate 400 */
+}
+
+body.dark-forest .modal-close,
+html[data-theme="dark-forest"] .modal-close,
+body.dark-forest .app-modal-close,
+html[data-theme="dark-forest"] .app-modal-close,
+body.dark-forest .chart-modal-close,
+html[data-theme="dark-forest"] .chart-modal-close {
+    color: #cbd5e1 !important;
+    /* Slate 300 */
+    border-color: rgba(241, 245, 249, 0.1) !important;
+}
+
+body.dark-forest .modal-close:hover,
+html[data-theme="dark-forest"] .modal-close:hover,
+body.dark-forest .app-modal-close:hover,
+html[data-theme="dark-forest"] .app-modal-close:hover,
+body.dark-forest .chart-modal-close:hover,
+html[data-theme="dark-forest"] .chart-modal-close:hover {
+    color: #f8fafc !important;
+    /* Slate 50 */
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* ============================================================================
+   QUOTES LIST MODAL - Modal de lista de cotizaciones
+   ============================================================================ */
+
+.quotes-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+}
+
+.summary-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.summary-icon.pending {
+    background: rgba(251, 146, 60, 0.15);
+    color: #ea580c;
+}
+
+.summary-icon.in-progress {
+    background: rgba(59, 130, 246, 0.15);
+    color: #2563eb;
+}
+
+.summary-icon.approved {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a;
+}
+
+.summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.summary-label {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1;
+}
+
+.quotes-list-container h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 16px 0;
+}
+
+.quotes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quote-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(248, 250, 252, 0.6);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-left: 4px solid #94a3b8;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.quote-item:hover {
+    background: rgba(248, 250, 252, 0.9);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.quote-item.status-pending {
+    border-left-color: #ea580c;
+}
+
+.quote-item.status-in-progress {
+    border-left-color: #2563eb;
+}
+
+.quote-item.status-approved {
+    border-left-color: #16a34a;
+}
+
+.quote-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.quote-type {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 0.95rem;
+}
+
+.quote-client {
+    font-size: 0.85rem;
+    color: #475569;
+}
+
+.quote-date {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.quote-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Dark-forest theme overrides for quotes modal */
+body.dark-forest .summary-card,
+html[data-theme="dark-forest"] .summary-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(241, 245, 249, 0.1);
+}
+
+body.dark-forest .summary-label,
+html[data-theme="dark-forest"] .summary-label {
+    color: #94a3b8;
+}
+
+body.dark-forest .summary-value,
+html[data-theme="dark-forest"] .summary-value {
+    color: #f1f5f9;
+}
+
+body.dark-forest .quotes-list-container h3,
+html[data-theme="dark-forest"] .quotes-list-container h3 {
+    color: #f1f5f9;
+}
+
+body.dark-forest .quote-item,
+html[data-theme="dark-forest"] .quote-item {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(241, 245, 249, 0.08);
+}
+
+body.dark-forest .quote-item:hover,
+html[data-theme="dark-forest"] .quote-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+body.dark-forest .quote-type,
+html[data-theme="dark-forest"] .quote-type {
+    color: #f1f5f9;
+}
+
+body.dark-forest .quote-client,
+html[data-theme="dark-forest"] .quote-client {
+    color: #cbd5e1;
+}
+
+body.dark-forest .quote-date,
+html[data-theme="dark-forest"] .quote-date {
+    color: #94a3b8;
+}
+
+/* ==================== */
+/* Quote Details Modal */
+/* ==================== */
+
+.quote-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.quote-detail-type {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.detail-value-large {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.quote-detail-status {
+    display: flex;
+    align-items: center;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-primary {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+}
+
+.badge-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.quote-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.detail-group label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.detail-group p {
+    font-size: 14px;
+    color: #0f172a;
+    font-weight: 500;
+    margin: 0;
+}
+
+.detail-value-highlight {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #8b2348 !important;
+}
+
+.section-divider {
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 24px 0;
+}
+
+.quote-actions-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Dark-forest theme - Quote Details */
+html[data-theme="dark-forest"] .quote-details-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark-forest"] .detail-label {
+    color: #94a3b8;
+}
+
+html[data-theme="dark-forest"] .detail-value-large {
+    color: #f1f5f9;
+}
+
+html[data-theme="dark-forest"] .badge-warning {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+}
+
+html[data-theme="dark-forest"] .badge-primary {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+}
+
+html[data-theme="dark-forest"] .badge-success {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+}
+
+html[data-theme="dark-forest"] .detail-group label {
+    color: #94a3b8;
+}
+
+html[data-theme="dark-forest"] .detail-group p {
+    color: #e2e8f0;
+}
+
+html[data-theme="dark-forest"] .detail-value-highlight {
+    color: #fbbf24 !important;
+}
+
+html[data-theme="dark-forest"] .section-divider {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark-forest"] .quote-actions-footer {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}`, "",{"version":3,"sources":["webpack://./styles/modals-unified.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * UNIFIED MODAL SYSTEM - Sistema centralizado de modales\n * Este archivo centraliza todos los estilos de modales para consistencia\n * Incluye soporte completo para dark-forest theme\n */\n\n/* ============================================================================\n   BASE MODAL OVERLAY - Overlay común para todos los modales\n   ============================================================================ */\n\n.modal-overlay,\n.app-modal-overlay,\n.chart-modal-overlay {\n    position: fixed;\n    inset: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 9999;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: rgba(0, 0, 0, 0.6);\n    backdrop-filter: blur(6px);\n    -webkit-backdrop-filter: blur(6px);\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n    padding: 20px;\n    overflow-y: auto;\n}\n\n/* Design tokens for modal accents and section highlights (light + dark friendly) */\n:root {\n    --modal-accent-height: 6px;\n    /* Default accent RGB (light theme fallback) - matches light primary #0d3d23 */\n    --primary-rgb: 13, 61, 35;\n    /* Secondary surface used inside modal cards */\n    --bg-secondary-rgb: 245, 245, 245;\n}\n\n/* Dark theme overrides for accent and surfaces */\nhtml[data-theme=\"dark-forest\"],\nbody.dark-forest {\n    --primary-rgb: 47, 107, 122;\n    /* dark-forest accent fallback */\n    --bg-secondary-rgb: 6, 24, 20;\n}\n\n/* Accent strip at top of every modal (applies even when markup doesn't include an explicit accent element) */\n.modal-content::before,\n.app-modal::before,\n.chart-modal-content::before {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    height: var(--modal-accent-height);\n    background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.95), rgba(var(--primary-rgb), 0.55));\n    border-top-left-radius: inherit;\n    border-top-right-radius: inherit;\n    z-index: 2;\n    pointer-events: none;\n}\n\n/* Ensure header sits above the accent strip */\n.modal-header,\n.app-modal-header,\n.chart-modal-header {\n    position: relative;\n    z-index: 3;\n}\n\n/* A thin explicit accent element (used by some modals) */\n.modal-accent {\n    height: var(--modal-accent-height);\n    width: 100%;\n    background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.95), rgba(var(--primary-rgb), 0.55));\n}\n\n/* Modal icon container for a consistent look */\n.modal-icon {\n    width: 40px;\n    height: 40px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 8px;\n    background: linear-gradient(180deg, rgba(var(--primary-rgb), 0.08), rgba(var(--primary-rgb), 0.04));\n    flex-shrink: 0;\n}\n\n/* Policy/section card look used throughout the modal content */\n.policy-section {\n    padding: 0.75rem;\n    border-radius: 10px;\n    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);\n    border-left: 4px solid rgba(var(--primary-rgb), 0.12);\n    padding-left: 0.9rem;\n    margin-bottom: 1rem;\n}\n\nbody.dark-forest .policy-section,\nhtml[data-theme=\"dark-forest\"] .policy-section {\n    background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.01));\n    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);\n    border-left-color: rgba(var(--primary-rgb), 0.16);\n}\n\n/* Consistent item cards inside lists */\n.receipt-item,\n.claim-item,\n.comment-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 0.6rem;\n    border-radius: 8px;\n    background: rgba(var(--bg-secondary-rgb), 0.45);\n    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);\n    margin-bottom: 0.6rem;\n}\n\nbody.dark-forest .receipt-item,\nbody.dark-forest .claim-item,\nbody.dark-forest .comment-item {\n    background: rgba(var(--bg-secondary-rgb), 0.28);\n    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);\n}\n\n/* Section divider used between modal segments */\n.section-divider {\n    height: 1px;\n    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.005), rgba(255, 255, 255, 0.02));\n    margin: 1rem 0;\n}\n\n.modal-overlay.active,\n.app-modal-overlay.active,\n.chart-modal-overlay.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* Dark Forest Theme - Overlay */\nbody.dark-forest .modal-overlay,\nbody.dark-forest .app-modal-overlay,\nbody.dark-forest .chart-modal-overlay,\nhtml[data-theme=\"dark-forest\"] .modal-overlay,\nhtml[data-theme=\"dark-forest\"] .app-modal-overlay,\nhtml[data-theme=\"dark-forest\"] .chart-modal-overlay {\n    background: rgba(6, 24, 20, 0.92);\n    backdrop-filter: blur(12px) saturate(160%);\n    -webkit-backdrop-filter: blur(12px) saturate(160%);\n}\n\n/* ============================================================================\n   MODAL CONTENT CONTAINER - Contenedor del modal\n   ============================================================================ */\n\n.modal-content,\n.app-modal,\n.chart-modal-content {\n    position: relative;\n    width: 90%;\n    max-width: 800px;\n    max-height: 90vh;\n    background: #ffffff;\n    border-radius: 16px;\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.2),\n        0 0 0 1px rgba(0, 0, 0, 0.1);\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    transform: scale(0.9) translateY(20px);\n    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n\n.modal-overlay.active .modal-content,\n.app-modal-overlay.active .app-modal,\n.chart-modal-overlay.active .chart-modal-content {\n    transform: scale(1) translateY(0);\n}\n\n/* Modal sizes */\n.app-modal-sm {\n    max-width: 500px;\n}\n\n.app-modal-md {\n    max-width: 700px;\n}\n\n.app-modal-lg {\n    max-width: 900px;\n}\n\n.app-modal-xl {\n    max-width: 1200px;\n}\n\n/* Dark Forest Theme - Modal Content */\nbody.dark-forest .modal-content,\nbody.dark-forest .app-modal,\nbody.dark-forest .chart-modal-content,\nhtml[data-theme=\"dark-forest\"] .modal-content,\nhtml[data-theme=\"dark-forest\"] .app-modal,\nhtml[data-theme=\"dark-forest\"] .chart-modal-content {\n    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94));\n    border: 1px solid var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.7),\n        0 0 0 1px var(--theme-surface-border-strong, rgba(223, 243, 237, 0.42)),\n        0 0 60px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.18));\n}\n\n/* ============================================================================\n   MODAL HEADER - Cabecera del modal\n   ============================================================================ */\n\n.modal-header,\n.app-modal-header,\n.chart-modal-header {\n    padding: 24px 24px 20px;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n    background: #f8f9fa;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n\n.modal-header h2,\n.app-modal-title,\n.chart-modal-title {\n    margin: 0;\n    font-size: 1.375rem;\n    font-weight: 700;\n    color: #1a1a1a;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    line-height: 1.4;\n}\n\n.modal-body h3,\n.app-modal-body h3,\n.chart-modal-body h3 {\n    font-size: 1.125rem;\n    font-weight: 600;\n    color: #333;\n    margin: 1.5rem 0 1rem;\n}\n\n.modal-body p,\n.app-modal-body p,\n.chart-modal-body p {\n    font-size: 0.938rem;\n    line-height: 1.6;\n    color: #444;\n    margin: 0.5rem 0;\n}\n\n.modal-body label,\n.app-modal-body label,\n.chart-modal-body label {\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: #555;\n}\n\n[data-theme=\"dark-forest\"] .modal-body h3,\n[data-theme=\"dark-forest\"] .app-modal-body h3,\n[data-theme=\"dark-forest\"] .chart-modal-body h3 {\n    color: #e0e0e0;\n}\n\n[data-theme=\"dark-forest\"] .modal-body p,\n[data-theme=\"dark-forest\"] .app-modal-body p,\n[data-theme=\"dark-forest\"] .chart-modal-body p {\n    color: #d0d0d0;\n}\n\n[data-theme=\"dark-forest\"] .modal-body label,\n[data-theme=\"dark-forest\"] .app-modal-body label,\n[data-theme=\"dark-forest\"] .chart-modal-body label {\n    color: #b0b0b0;\n}\n\n/* Dark Forest Theme - Modal Header */\nbody.dark-forest .modal-header,\nbody.dark-forest .app-modal-header,\nbody.dark-forest .chart-modal-header,\nhtml[data-theme=\"dark-forest\"] .modal-header,\nhtml[data-theme=\"dark-forest\"] .app-modal-header,\nhtml[data-theme=\"dark-forest\"] .chart-modal-header {\n    background: var(--theme-surface-bg-deep, #061c17);\n    border-bottom-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n}\n\nbody.dark-forest .modal-header h2,\nbody.dark-forest .app-modal-title,\nbody.dark-forest .chart-modal-title,\nhtml[data-theme=\"dark-forest\"] .modal-header h2,\nhtml[data-theme=\"dark-forest\"] .app-modal-title,\nhtml[data-theme=\"dark-forest\"] .chart-modal-title {\n    color: var(--theme-text-primary, #f0f7f3);\n    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);\n}\n\n/* ============================================================================\n   MODAL CLOSE BUTTON - Botón de cerrar\n   ============================================================================ */\n\n.modal-close,\n.app-modal-close,\n.chart-modal-close {\n    width: 36px;\n    height: 36px;\n    padding: 0;\n    background: transparent;\n    border: 1px solid rgba(0, 0, 0, 0.1);\n    border-radius: 8px;\n    color: #555;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 24px;\n    line-height: 1;\n    transition: all 0.2s ease;\n}\n\n.modal-close:hover,\n.app-modal-close:hover,\n.chart-modal-close:hover {\n    background: rgba(0, 0, 0, 0.05);\n    color: #1a1a1a;\n    transform: rotate(90deg);\n}\n\n/* Dark Forest Theme - Close Button */\nbody.dark-forest .modal-close,\nbody.dark-forest .app-modal-close,\nbody.dark-forest .chart-modal-close,\nhtml[data-theme=\"dark-forest\"] .modal-close,\nhtml[data-theme=\"dark-forest\"] .app-modal-close,\nhtml[data-theme=\"dark-forest\"] .chart-modal-close {\n    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.22));\n    border-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\nbody.dark-forest .modal-close:hover,\nbody.dark-forest .app-modal-close:hover,\nbody.dark-forest .chart-modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .app-modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .chart-modal-close:hover {\n    background: var(--theme-accent-color, #2f6b7a);\n    border-color: var(--theme-accent-color-hover, #45a0b8);\n    color: var(--theme-text-primary, #f0f7f3);\n    box-shadow: 0 0 16px var(--theme-accent-shadow-soft, rgba(47, 107, 122, 0.18));\n}\n\n/* ============================================================================\n   MODAL BODY - Cuerpo del modal (scrollable)\n   ============================================================================ */\n\n.modal-body,\n.app-modal-body,\n.chart-modal-body {\n    flex: 1;\n    overflow-y: auto;\n    overflow-x: hidden;\n    padding: 24px;\n    background: #ffffff;\n    -webkit-overflow-scrolling: touch;\n    scroll-behavior: smooth;\n}\n\n/* Dark Forest Theme - Modal Body */\nbody.dark-forest .modal-body,\nbody.dark-forest .app-modal-body,\nbody.dark-forest .chart-modal-body,\nhtml[data-theme=\"dark-forest\"] .modal-body,\nhtml[data-theme=\"dark-forest\"] .app-modal-body,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body {\n    background: var(--theme-surface-bg-solid, rgba(8, 28, 24, 0.94));\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n/* Custom scrollbar for modal body */\n.modal-body::-webkit-scrollbar,\n.app-modal-body::-webkit-scrollbar,\n.chart-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.modal-body::-webkit-scrollbar-track,\n.app-modal-body::-webkit-scrollbar-track,\n.chart-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.modal-body::-webkit-scrollbar-thumb,\n.app-modal-body::-webkit-scrollbar-thumb,\n.chart-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.2);\n    border-radius: 4px;\n}\n\n.modal-body::-webkit-scrollbar-thumb:hover,\n.app-modal-body::-webkit-scrollbar-thumb:hover,\n.chart-modal-body::-webkit-scrollbar-thumb:hover {\n    background: rgba(0, 0, 0, 0.3);\n}\n\n/* Dark Forest Theme - Scrollbar */\nbody.dark-forest .modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .app-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .chart-modal-body::-webkit-scrollbar-thumb,\nhtml[data-theme=\"dark-forest\"] .modal-body::-webkit-scrollbar-thumb,\nhtml[data-theme=\"dark-forest\"] .app-modal-body::-webkit-scrollbar-thumb,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body::-webkit-scrollbar-thumb {\n    background: var(--theme-accent-bg-soft, rgba(47, 107, 122, 0.22));\n    border-radius: 4px;\n}\n\nbody.dark-forest .modal-body::-webkit-scrollbar-thumb:hover,\nbody.dark-forest .app-modal-body::-webkit-scrollbar-thumb:hover,\nbody.dark-forest .chart-modal-body::-webkit-scrollbar-thumb:hover,\nhtml[data-theme=\"dark-forest\"] .modal-body::-webkit-scrollbar-thumb:hover,\nhtml[data-theme=\"dark-forest\"] .app-modal-body::-webkit-scrollbar-thumb:hover,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body::-webkit-scrollbar-thumb:hover {\n    background: var(--theme-accent-color, #2f6b7a);\n}\n\n/* ============================================================================\n   MODAL FOOTER - Pie del modal (opcional)\n   ============================================================================ */\n\n.modal-footer,\n.app-modal-footer {\n    padding: 20px 24px;\n    border-top: 1px solid rgba(0, 0, 0, 0.1);\n    background: #f8f9fa;\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n    flex-shrink: 0;\n}\n\n/* Dark Forest Theme - Modal Footer */\nbody.dark-forest .modal-footer,\nbody.dark-forest .app-modal-footer,\nhtml[data-theme=\"dark-forest\"] .modal-footer,\nhtml[data-theme=\"dark-forest\"] .app-modal-footer {\n    background: var(--theme-surface-bg-deep, #061c17);\n    border-top-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n}\n\n/* ============================================================================\n   MODAL CONTENT ELEMENTS - Elementos internos del modal\n   ============================================================================ */\n\n/* Client Details Grid */\n.client-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n    gap: 24px;\n}\n\n.client-details-grid h3 {\n    font-size: 18px;\n    margin-bottom: 12px;\n    color: #1a1a1a;\n}\n\n.client-details-grid p {\n    margin: 8px 0;\n    color: #555;\n}\n\nbody.dark-forest .client-details-grid h3,\nhtml[data-theme=\"dark-forest\"] .client-details-grid h3 {\n    color: var(--theme-contrast-strong, #c3efe2);\n}\n\nbody.dark-forest .client-details-grid p,\nhtml[data-theme=\"dark-forest\"] .client-details-grid p {\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\n/* Loading State */\n.loading-state {\n    text-align: center;\n    padding: 40px 20px;\n    color: #666;\n}\n\nbody.dark-forest .loading-state,\nhtml[data-theme=\"dark-forest\"] .loading-state {\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\n/* Detail Items */\n.detail-item {\n    padding: 12px 0;\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n}\n\n.detail-item:last-child {\n    border-bottom: none;\n}\n\n.detail-item label {\n    display: block;\n    font-size: 12px;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n    color: #555;\n    margin-bottom: 4px;\n}\n\n.detail-item .value {\n    font-size: 14px;\n    color: #1a1a1a;\n    font-weight: 500;\n}\n\nbody.dark-forest .detail-item,\nhtml[data-theme=\"dark-forest\"] .detail-item {\n    border-bottom-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));\n}\n\nbody.dark-forest .detail-item label,\nhtml[data-theme=\"dark-forest\"] .detail-item label {\n    color: var(--theme-highlight-soft, #cbeee4);\n}\n\nbody.dark-forest .detail-item .value,\nhtml[data-theme=\"dark-forest\"] .detail-item .value {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\n/* Charts and Stats */\n.chart-stat-box,\n.chart-visualization,\n.chart-details-section {\n    background: rgba(255, 255, 255, 0.6);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 14px;\n    padding: 16px;\n}\n\nbody.dark-forest .chart-stat-box,\nbody.dark-forest .chart-visualization,\nbody.dark-forest .chart-details-section,\nhtml[data-theme=\"dark-forest\"] .chart-stat-box,\nhtml[data-theme=\"dark-forest\"] .chart-visualization,\nhtml[data-theme=\"dark-forest\"] .chart-details-section {\n    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34));\n    border-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n    backdrop-filter: blur(20px) saturate(160%);\n    -webkit-backdrop-filter: blur(20px) saturate(160%);\n}\n\n.chart-stat-label {\n    font-size: 13px;\n    color: #555;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.chart-stat-value {\n    font-size: 28px;\n    font-weight: 700;\n    color: #1a1a1a;\n}\n\nbody.dark-forest .chart-stat-label,\nhtml[data-theme=\"dark-forest\"] .chart-stat-label {\n    color: var(--theme-highlight-soft, #cbeee4);\n}\n\nbody.dark-forest .chart-stat-value,\nhtml[data-theme=\"dark-forest\"] .chart-stat-value {\n    color: var(--theme-sunlight-strong, #c6ede0);\n}\n\n/* Timeline Items */\n.timeline-content {\n    background: rgba(255, 255, 255, 0.7);\n    padding: 12px 14px;\n    border-radius: 10px;\n    border: 1px solid rgba(226, 232, 240, 0.5);\n}\n\nbody.dark-forest .timeline-content,\nhtml[data-theme=\"dark-forest\"] .timeline-content {\n    background: var(--acrylic-bg-light, rgba(6, 24, 20, 0.22));\n    border-color: var(--theme-accent-border-subtle, rgba(47, 107, 122, 0.24));\n    backdrop-filter: blur(15px);\n    -webkit-backdrop-filter: blur(15px);\n}\n\n.timeline-header strong {\n    color: #1a1a1a;\n}\n\n.timeline-date,\n.timeline-detail {\n    color: #666;\n}\n\nbody.dark-forest .timeline-header strong,\nhtml[data-theme=\"dark-forest\"] .timeline-header strong {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\nbody.dark-forest .timeline-date,\nbody.dark-forest .timeline-detail,\nhtml[data-theme=\"dark-forest\"] .timeline-date,\nhtml[data-theme=\"dark-forest\"] .timeline-detail {\n    color: var(--theme-text-secondary, #c8ddd2);\n}\n\n/* Policy Detail Cards */\n.policy-detail-card {\n    background: rgba(255, 255, 255, 0.8);\n    border: 1px solid rgba(226, 232, 240, 0.6);\n    border-radius: 16px;\n    padding: 18px;\n}\n\nbody.dark-forest .policy-detail-card,\nhtml[data-theme=\"dark-forest\"] .policy-detail-card {\n    background: var(--acrylic-bg-medium, rgba(6, 24, 20, 0.34));\n    border-color: var(--theme-surface-border, rgba(223, 243, 237, 0.32));\n    backdrop-filter: blur(18px);\n    -webkit-backdrop-filter: blur(18px);\n}\n\n.policy-detail-info h4 {\n    color: #1a1a1a;\n}\n\n.policy-number {\n    color: #666;\n}\n\nbody.dark-forest .policy-detail-info h4,\nhtml[data-theme=\"dark-forest\"] .policy-detail-info h4 {\n    color: var(--theme-text-primary, #f0f7f3);\n}\n\nbody.dark-forest .policy-number,\nhtml[data-theme=\"dark-forest\"] .policy-number {\n    color: var(--theme-highlight-soft, #cbeee4);\n}\n\n/* ============================================================================\n   ANIMATIONS - Animaciones comunes\n   ============================================================================ */\n\n@keyframes fadeIn {\n    from {\n        opacity: 0;\n    }\n\n    to {\n        opacity: 1;\n    }\n}\n\n@keyframes slideUp {\n    from {\n        transform: translateY(30px);\n        opacity: 0;\n    }\n\n    to {\n        transform: translateY(0);\n        opacity: 1;\n    }\n}\n\n/* ============================================================================\n   RESPONSIVE - Adaptación a móviles\n   ============================================================================ */\n\n@media (max-width: 768px) {\n\n    .modal-content,\n    .app-modal,\n    .chart-modal-content {\n        width: 95%;\n        max-height: 95vh;\n    }\n\n    .modal-header,\n    .app-modal-header,\n    .chart-modal-header {\n        padding: 20px 16px 16px;\n    }\n\n    .modal-body,\n    .app-modal-body,\n    .chart-modal-body {\n        padding: 16px;\n    }\n\n    .modal-header h2,\n    .app-modal-title,\n    .chart-modal-title {\n        font-size: 1.25rem;\n    }\n\n    .client-details-grid {\n        grid-template-columns: 1fr;\n        gap: 16px;\n    }\n}\n\n/* ============================================================================\n   LIGHT THEME - High contrast modal adjustments\n   These rules force white modal surfaces and clear typographic hierarchy\n   while preserving dark-forest overrides below.\n   ============================================================================ */\n\n/* Force crisp white cards on light theme and ensure readable text */\n.modal-content,\n.app-modal,\n.chart-modal-content,\n.modal-card {\n    background: #ffffff;\n    color: #1e293b;\n    /* Slate 800 - high contrast on white */\n    border: 1px solid rgba(15, 23, 42, 0.08);\n}\n\n/* Modal card specific layout (used in dashboard modals) */\n.modal-card {\n    position: relative;\n    width: min(420px, 92vw);\n    border-radius: 16px;\n    padding: 16px;\n    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);\n    backdrop-filter: blur(10px) saturate(1.05);\n    -webkit-backdrop-filter: blur(10px) saturate(1.05);\n}\n\n.modal-card-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    margin-bottom: 10px;\n}\n\n.modal-card-body {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    margin-bottom: 12px;\n}\n\n.modal-card-actions {\n    display: flex;\n    justify-content: flex-end;\n    gap: 10px;\n}\n\n.contact-detail {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 10px;\n    padding: 10px 12px;\n    background: rgba(248, 250, 252, 0.8);\n    border: 1px solid rgba(15, 23, 42, 0.06);\n    border-radius: 12px;\n}\n\n/* Header and title clarity */\n.modal-header,\n.app-modal-header,\n.chart-modal-header {\n    background: #ffffff;\n    border-bottom-color: rgba(15, 23, 42, 0.08);\n}\n\n.modal-title,\n.app-modal-title,\n.chart-modal-title {\n    color: #0f172a;\n    /* Slate 900 - maximum contrast for titles */\n    font-size: 1.25rem;\n    font-weight: 700;\n}\n\n/* Modal body: ensure all inner text defaults to high-contrast on light theme */\n.modal-body,\n.app-modal-body,\n.chart-modal-body {\n    color: #334155;\n    /* Slate 700 - readable body text */\n}\n\n/* Improve hierarchy inside modals (section headings vs detail text) */\n.modal-body h3,\n.app-modal-body h3,\n.chart-modal-body h3 {\n    font-size: 1.05rem;\n    font-weight: 700;\n    color: #0f172a;\n    /* Slate 900 - dark headings */\n    margin: 0 0 0.5rem;\n}\n\n.detail-group label,\n.policy-details-grid .detail-group label {\n    font-size: 0.74rem;\n    font-weight: 700;\n    color: #475569;\n    /* Slate 600 - medium gray for labels */\n    text-transform: uppercase;\n    letter-spacing: 0.6px;\n}\n\n.detail-group p,\n.policy-details-grid p,\n.detail-item .value {\n    color: #1e293b;\n    /* Slate 800 - dark for values */\n    font-weight: 500;\n}\n\n.contact-detail span {\n    color: #475569;\n    /* Slate 600 - labels */\n    font-size: 13px;\n}\n\n.contact-detail strong {\n    color: #0f172a;\n    /* Slate 900 - values */\n    font-weight: 600;\n}\n\n/* Sections: keep background clean (transparent/white) and show subtle borders only */\n.policy-section {\n    background: rgba(248, 250, 252, 0.5);\n    /* Very light slate background */\n    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);\n    border: 1px solid rgba(15, 23, 42, 0.08);\n    border-left: 4px solid rgba(139, 35, 72, 0.3);\n    /* Brand maroon accent */\n    padding: 0.75rem;\n    border-radius: 10px;\n    margin-bottom: 1rem;\n}\n\n/* List items inside sections should be minimal and bordered */\n.receipt-item,\n.claim-item,\n.comment-item {\n    background: rgba(255, 255, 255, 0.8);\n    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);\n    border: 1px solid rgba(15, 23, 42, 0.06);\n    padding: 0.6rem;\n    margin-bottom: 0.6rem;\n    border-radius: 8px;\n}\n\n.receipt-item span,\n.claim-item span,\n.comment-item span {\n    color: #334155;\n    /* Slate 700 for item text */\n}\n\n/* Section divider becomes a thin rule */\n.section-divider {\n    height: 0;\n    background: none;\n    border-top: 1px solid rgba(15, 23, 42, 0.1);\n    margin: 1rem 0;\n}\n\n/* Muted text on light theme */\n.text-muted {\n    color: #64748b;\n    /* Slate 500 */\n}\n\n/* Tweak modal close button for light theme */\n.modal-close,\n.app-modal-close,\n.chart-modal-close {\n    color: #475569;\n    /* Slate 600 */\n    border-color: rgba(15, 23, 42, 0.1);\n    background: transparent;\n}\n\n.modal-close:hover,\n.app-modal-close:hover,\n.chart-modal-close:hover {\n    color: #1e293b;\n    /* Slate 800 on hover */\n    background: rgba(15, 23, 42, 0.04);\n}\n\n/* ============================================================================\n   DARK THEME OVERRIDES (re-assert darker acrylic backgrounds where needed)\n   These use !important to override the light-theme forcing above when dark mode\n   is active.\n   ============================================================================ */\n/* ============================================================================\n   DARK FOREST THEME - Alto contraste con colores explícitos\n   ============================================================================ */\n\nbody.dark-forest .modal-content,\nbody.dark-forest .app-modal,\nbody.dark-forest .chart-modal-content,\nhtml[data-theme=\"dark-forest\"] .modal-content,\nhtml[data-theme=\"dark-forest\"] .app-modal,\nhtml[data-theme=\"dark-forest\"] .chart-modal-content,\nbody.dark-forest .modal-card,\nhtml[data-theme=\"dark-forest\"] .modal-card {\n    background: rgba(15, 43, 36, 0.92) !important;\n    /* Dark forest green */\n    color: #f1f5f9 !important;\n    /* Slate 100 - light text */\n    border: 1px solid rgba(241, 245, 249, 0.15) !important;\n    backdrop-filter: blur(20px);\n    -webkit-backdrop-filter: blur(20px);\n}\n\nbody.dark-forest .modal-header,\nhtml[data-theme=\"dark-forest\"] .modal-header,\nbody.dark-forest .app-modal-header,\nhtml[data-theme=\"dark-forest\"] .app-modal-header,\nbody.dark-forest .chart-modal-header,\nhtml[data-theme=\"dark-forest\"] .chart-modal-header {\n    background: transparent !important;\n    border-bottom-color: rgba(241, 245, 249, 0.1) !important;\n}\n\nbody.dark-forest .modal-title,\nhtml[data-theme=\"dark-forest\"] .modal-title,\nbody.dark-forest .app-modal-title,\nhtml[data-theme=\"dark-forest\"] .app-modal-title,\nbody.dark-forest .chart-modal-title,\nhtml[data-theme=\"dark-forest\"] .chart-modal-title {\n    color: #f8fafc !important;\n    /* Slate 50 - brightest for titles */\n}\n\nbody.dark-forest .modal-body,\nhtml[data-theme=\"dark-forest\"] .modal-body,\nbody.dark-forest .app-modal-body,\nhtml[data-theme=\"dark-forest\"] .app-modal-body,\nbody.dark-forest .chart-modal-body,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body {\n    background: transparent !important;\n    color: #e2e8f0 !important;\n    /* Slate 200 - light body text */\n}\n\nbody.dark-forest .modal-body h3,\nhtml[data-theme=\"dark-forest\"] .modal-body h3,\nbody.dark-forest .app-modal-body h3,\nhtml[data-theme=\"dark-forest\"] .app-modal-body h3,\nbody.dark-forest .chart-modal-body h3,\nhtml[data-theme=\"dark-forest\"] .chart-modal-body h3 {\n    color: #f1f5f9 !important;\n    /* Slate 100 - headings */\n}\n\nbody.dark-forest .detail-group label,\nhtml[data-theme=\"dark-forest\"] .detail-group label,\nbody.dark-forest .policy-details-grid .detail-group label,\nhtml[data-theme=\"dark-forest\"] .policy-details-grid .detail-group label {\n    color: #cbd5e1 !important;\n    /* Slate 300 - labels */\n}\n\nbody.dark-forest .detail-group p,\nhtml[data-theme=\"dark-forest\"] .detail-group p,\nbody.dark-forest .policy-details-grid p,\nhtml[data-theme=\"dark-forest\"] .policy-details-grid p,\nbody.dark-forest .detail-item .value,\nhtml[data-theme=\"dark-forest\"] .detail-item .value {\n    color: #f1f5f9 !important;\n    /* Slate 100 - values */\n}\n\nbody.dark-forest .contact-detail,\nhtml[data-theme=\"dark-forest\"] .contact-detail {\n    background: rgba(255, 255, 255, 0.04) !important;\n    border: 1px solid rgba(241, 245, 249, 0.1) !important;\n}\n\nbody.dark-forest .contact-detail span,\nhtml[data-theme=\"dark-forest\"] .contact-detail span {\n    color: #cbd5e1 !important;\n    /* Slate 300 - labels */\n}\n\nbody.dark-forest .contact-detail strong,\nhtml[data-theme=\"dark-forest\"] .contact-detail strong {\n    color: #f8fafc !important;\n    /* Slate 50 - values */\n}\n\nbody.dark-forest .policy-section,\nhtml[data-theme=\"dark-forest\"] .policy-section {\n    background: rgba(255, 255, 255, 0.03) !important;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;\n    border-left: 4px solid rgba(76, 201, 191, 0.4) !important;\n    /* Teal accent */\n    border: 1px solid rgba(241, 245, 249, 0.08) !important;\n}\n\nbody.dark-forest .receipt-item,\nhtml[data-theme=\"dark-forest\"] .receipt-item,\nbody.dark-forest .claim-item,\nhtml[data-theme=\"dark-forest\"] .claim-item,\nbody.dark-forest .comment-item,\nhtml[data-theme=\"dark-forest\"] .comment-item {\n    background: rgba(255, 255, 255, 0.04) !important;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;\n    border: 1px solid rgba(241, 245, 249, 0.08) !important;\n}\n\nbody.dark-forest .receipt-item span,\nhtml[data-theme=\"dark-forest\"] .receipt-item span,\nbody.dark-forest .claim-item span,\nhtml[data-theme=\"dark-forest\"] .claim-item span,\nbody.dark-forest .comment-item span,\nhtml[data-theme=\"dark-forest\"] .comment-item span {\n    color: #e2e8f0 !important;\n    /* Slate 200 */\n}\n\nbody.dark-forest .text-muted,\nhtml[data-theme=\"dark-forest\"] .text-muted {\n    color: #94a3b8 !important;\n    /* Slate 400 */\n}\n\nbody.dark-forest .modal-close,\nhtml[data-theme=\"dark-forest\"] .modal-close,\nbody.dark-forest .app-modal-close,\nhtml[data-theme=\"dark-forest\"] .app-modal-close,\nbody.dark-forest .chart-modal-close,\nhtml[data-theme=\"dark-forest\"] .chart-modal-close {\n    color: #cbd5e1 !important;\n    /* Slate 300 */\n    border-color: rgba(241, 245, 249, 0.1) !important;\n}\n\nbody.dark-forest .modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .modal-close:hover,\nbody.dark-forest .app-modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .app-modal-close:hover,\nbody.dark-forest .chart-modal-close:hover,\nhtml[data-theme=\"dark-forest\"] .chart-modal-close:hover {\n    color: #f8fafc !important;\n    /* Slate 50 */\n    background: rgba(255, 255, 255, 0.06) !important;\n}\n\n/* ============================================================================\n   QUOTES LIST MODAL - Modal de lista de cotizaciones\n   ============================================================================ */\n\n.quotes-summary-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n    gap: 16px;\n    margin-bottom: 24px;\n}\n\n.summary-card {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 16px;\n    background: rgba(248, 250, 252, 0.8);\n    border: 1px solid rgba(15, 23, 42, 0.08);\n    border-radius: 12px;\n    transition: all 0.2s ease;\n}\n\n.summary-card:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);\n}\n\n.summary-icon {\n    width: 40px;\n    height: 40px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 10px;\n    flex-shrink: 0;\n}\n\n.summary-icon.pending {\n    background: rgba(251, 146, 60, 0.15);\n    color: #ea580c;\n}\n\n.summary-icon.in-progress {\n    background: rgba(59, 130, 246, 0.15);\n    color: #2563eb;\n}\n\n.summary-icon.approved {\n    background: rgba(34, 197, 94, 0.15);\n    color: #16a34a;\n}\n\n.summary-content {\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n}\n\n.summary-label {\n    font-size: 0.8rem;\n    color: #64748b;\n    font-weight: 500;\n}\n\n.summary-value {\n    font-size: 1.75rem;\n    font-weight: 700;\n    color: #0f172a;\n    line-height: 1;\n}\n\n.quotes-list-container h3 {\n    font-size: 1.1rem;\n    font-weight: 600;\n    color: #1e293b;\n    margin: 0 0 16px 0;\n}\n\n.quotes-list {\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n}\n\n.quote-item {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 16px;\n    padding: 16px;\n    background: rgba(248, 250, 252, 0.6);\n    border: 1px solid rgba(15, 23, 42, 0.08);\n    border-left: 4px solid #94a3b8;\n    border-radius: 10px;\n    transition: all 0.2s ease;\n}\n\n.quote-item:hover {\n    background: rgba(248, 250, 252, 0.9);\n    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);\n}\n\n.quote-item.status-pending {\n    border-left-color: #ea580c;\n}\n\n.quote-item.status-in-progress {\n    border-left-color: #2563eb;\n}\n\n.quote-item.status-approved {\n    border-left-color: #16a34a;\n}\n\n.quote-info {\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n    flex: 1;\n}\n\n.quote-type {\n    font-weight: 700;\n    color: #0f172a;\n    font-size: 0.95rem;\n}\n\n.quote-client {\n    font-size: 0.85rem;\n    color: #475569;\n}\n\n.quote-date {\n    font-size: 0.75rem;\n    color: #64748b;\n}\n\n.quote-actions {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n}\n\n/* Dark-forest theme overrides for quotes modal */\nbody.dark-forest .summary-card,\nhtml[data-theme=\"dark-forest\"] .summary-card {\n    background: rgba(255, 255, 255, 0.04);\n    border-color: rgba(241, 245, 249, 0.1);\n}\n\nbody.dark-forest .summary-label,\nhtml[data-theme=\"dark-forest\"] .summary-label {\n    color: #94a3b8;\n}\n\nbody.dark-forest .summary-value,\nhtml[data-theme=\"dark-forest\"] .summary-value {\n    color: #f1f5f9;\n}\n\nbody.dark-forest .quotes-list-container h3,\nhtml[data-theme=\"dark-forest\"] .quotes-list-container h3 {\n    color: #f1f5f9;\n}\n\nbody.dark-forest .quote-item,\nhtml[data-theme=\"dark-forest\"] .quote-item {\n    background: rgba(255, 255, 255, 0.04);\n    border-color: rgba(241, 245, 249, 0.08);\n}\n\nbody.dark-forest .quote-item:hover,\nhtml[data-theme=\"dark-forest\"] .quote-item:hover {\n    background: rgba(255, 255, 255, 0.06);\n}\n\nbody.dark-forest .quote-type,\nhtml[data-theme=\"dark-forest\"] .quote-type {\n    color: #f1f5f9;\n}\n\nbody.dark-forest .quote-client,\nhtml[data-theme=\"dark-forest\"] .quote-client {\n    color: #cbd5e1;\n}\n\nbody.dark-forest .quote-date,\nhtml[data-theme=\"dark-forest\"] .quote-date {\n    color: #94a3b8;\n}\n\n/* ==================== */\n/* Quote Details Modal */\n/* ==================== */\n\n.quote-details-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 24px;\n    padding-bottom: 16px;\n    border-bottom: 1px solid #e2e8f0;\n}\n\n.quote-detail-type {\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n}\n\n.detail-label {\n    font-size: 11px;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n    color: #64748b;\n    font-weight: 600;\n}\n\n.detail-value-large {\n    font-size: 24px;\n    font-weight: 700;\n    color: #0f172a;\n}\n\n.quote-detail-status {\n    display: flex;\n    align-items: center;\n}\n\n.badge {\n    display: inline-flex;\n    align-items: center;\n    padding: 6px 12px;\n    border-radius: 6px;\n    font-size: 12px;\n    font-weight: 600;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n}\n\n.badge-warning {\n    background-color: #fef3c7;\n    color: #92400e;\n}\n\n.badge-primary {\n    background-color: #dbeafe;\n    color: #1e3a8a;\n}\n\n.badge-success {\n    background-color: #d1fae5;\n    color: #065f46;\n}\n\n.quote-details-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n    gap: 20px;\n    margin-bottom: 20px;\n}\n\n.detail-group {\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n}\n\n.detail-group label {\n    font-size: 11px;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n    color: #64748b;\n    font-weight: 600;\n}\n\n.detail-group p {\n    font-size: 14px;\n    color: #0f172a;\n    font-weight: 500;\n    margin: 0;\n}\n\n.detail-value-highlight {\n    font-size: 18px !important;\n    font-weight: 700 !important;\n    color: #8b2348 !important;\n}\n\n.section-divider {\n    height: 1px;\n    background-color: #e2e8f0;\n    margin: 24px 0;\n}\n\n.quote-actions-footer {\n    display: flex;\n    justify-content: flex-end;\n    gap: 12px;\n    margin-top: 24px;\n    padding-top: 20px;\n    border-top: 1px solid #e2e8f0;\n}\n\n/* Dark-forest theme - Quote Details */\nhtml[data-theme=\"dark-forest\"] .quote-details-header {\n    border-bottom-color: rgba(255, 255, 255, 0.08);\n}\n\nhtml[data-theme=\"dark-forest\"] .detail-label {\n    color: #94a3b8;\n}\n\nhtml[data-theme=\"dark-forest\"] .detail-value-large {\n    color: #f1f5f9;\n}\n\nhtml[data-theme=\"dark-forest\"] .badge-warning {\n    background-color: rgba(245, 158, 11, 0.15);\n    color: #fbbf24;\n}\n\nhtml[data-theme=\"dark-forest\"] .badge-primary {\n    background-color: rgba(59, 130, 246, 0.15);\n    color: #60a5fa;\n}\n\nhtml[data-theme=\"dark-forest\"] .badge-success {\n    background-color: rgba(16, 185, 129, 0.15);\n    color: #34d399;\n}\n\nhtml[data-theme=\"dark-forest\"] .detail-group label {\n    color: #94a3b8;\n}\n\nhtml[data-theme=\"dark-forest\"] .detail-group p {\n    color: #e2e8f0;\n}\n\nhtml[data-theme=\"dark-forest\"] .detail-value-highlight {\n    color: #fbbf24 !important;\n}\n\nhtml[data-theme=\"dark-forest\"] .section-divider {\n    background-color: rgba(255, 255, 255, 0.08);\n}\n\nhtml[data-theme=\"dark-forest\"] .quote-actions-footer {\n    border-top-color: rgba(255, 255, 255, 0.08);\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10767,64 +12411,13 @@ body.dark-forest .notification-modal-overlay {
 }
 
 /* ========== MODAL CONTENT ========== */
-.notification-modal-content {
-    position: relative;
-    width: 90%;
-    max-width: 600px;
-    max-height: 85vh;
-    background: var(--surface-primary, #ffffff);
-    border-radius: 16px;
-    box-shadow:
-        0 24px 48px rgba(0, 0, 0, 0.2),
-        0 0 0 1px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transform: scale(0.9) translateY(20px);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.notification-modal.active .notification-modal-content {
-    transform: scale(1) translateY(0);
-}
-
-/* Dark mode */
-body.dark-forest .notification-modal-content {
-    background: var(--surface-primary, #1a1a1a);
-    box-shadow:
-        0 24px 48px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(255, 255, 255, 0.1);
+.notification-modal-container {
+    max-width: 700px;
 }
 
 /* ========== HEADER ========== */
-.notification-modal-header {
-    padding: 24px 24px 20px;
-    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--surface-secondary, #f8f9fa);
-}
+/* Header styles now inherited from modals-unified.css */
 
-body.dark-forest .notification-modal-header {
-    background: var(--surface-secondary, #222);
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-
-.notification-modal-title {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary, #1a1a1a);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-body.dark-forest .notification-modal-title,
-body.dark-forest .notification-modal-title {
-    color: var(--text-primary, #ffffff);
-}
 
 .notification-modal-title svg {
     color: var(--accent-primary, #2c5f4f);
@@ -10850,31 +12443,7 @@ body.dark-forest .notification-count-badge {
     color: var(--theme-bg-solid, #1a1a1a);
 }
 
-.notification-modal-close {
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: 8px;
-    color: var(--text-secondary, #666);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.notification-modal-close:hover {
-    background: rgba(0, 0, 0, 0.05);
-    color: var(--text-primary, #1a1a1a);
-}
-
-body.dark-forest .notification-modal-close:hover,
-body.dark-forest .notification-modal-close:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary, #ffffff);
-}
+/* Close button styles now inherited from modals-unified.css */
 
 /* ========== FILTERS ========== */
 .notification-modal-filters {
@@ -10947,15 +12516,7 @@ body.dark-forest .notification-filter:hover {
 
 /* ========== BODY ========== */
 .notification-modal-body {
-    flex: 1;
-    overflow-y: auto;
     padding: 16px 24px;
-    background: var(--surface-primary, #ffffff);
-}
-
-body.dark-forest .notification-modal-body,
-body.dark-forest .notification-modal-body {
-    background: var(--surface-primary, #1a1a1a);
 }
 
 /* Custom scrollbar */
@@ -11092,14 +12653,14 @@ body.dark-forest .notification-item-title {
 
 .notification-item-time {
     font-size: 0.75rem;
-    color: var(--text-tertiary, #999);
+    color: var(--text-tertiary, #666);
     white-space: nowrap;
 }
 
 .notification-item-message {
     margin: 0 0 12px;
     font-size: 0.875rem;
-    color: var(--text-secondary, #666);
+    color: var(--text-secondary, #555);
     line-height: 1.5;
 }
 
@@ -11159,7 +12720,7 @@ body.dark-forest .notification-action-btn.secondary {
     background: transparent;
     border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));
     border-radius: 6px;
-    color: var(--text-secondary, #666);
+    color: var(--text-secondary, #555);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -11177,7 +12738,7 @@ body.dark-forest .notification-action-btn.secondary {
 .notification-empty {
     padding: 48px 24px;
     text-align: center;
-    color: var(--text-tertiary, #999);
+    color: var(--text-tertiary, #666);
 }
 
 .notification-empty svg {
@@ -11303,8 +12864,7 @@ body.dark-forest .notification-modal-footer {
 
 .icon-pill .dot.active {
     animation: notificationPulse 2s infinite;
-}
-`, "",{"version":3,"sources":["webpack://./styles/notification-modal.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Sistema de notificaciones modal\n * Estilos para el modal de notificaciones detalladas\n */\n\n/* ========== MODAL CONTAINER ========== */\n.notification-modal {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 10000;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n}\n\n.notification-modal.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* ========== OVERLAY ========== */\n.notification-modal-overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: var(--overlay-bg, rgba(0, 0, 0, 0.6));\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    cursor: pointer;\n}\n\nbody.dark-forest .notification-modal-overlay {\n    background: var(--overlay-bg, rgba(0, 0, 0, 0.8));\n}\n\n/* ========== MODAL CONTENT ========== */\n.notification-modal-content {\n    position: relative;\n    width: 90%;\n    max-width: 600px;\n    max-height: 85vh;\n    background: var(--surface-primary, #ffffff);\n    border-radius: 16px;\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.2),\n        0 0 0 1px rgba(0, 0, 0, 0.1);\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    transform: scale(0.9) translateY(20px);\n    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n\n.notification-modal.active .notification-modal-content {\n    transform: scale(1) translateY(0);\n}\n\n/* Dark mode */\nbody.dark-forest .notification-modal-content {\n    background: var(--surface-primary, #1a1a1a);\n    box-shadow:\n        0 24px 48px rgba(0, 0, 0, 0.6),\n        0 0 0 1px rgba(255, 255, 255, 0.1);\n}\n\n/* ========== HEADER ========== */\n.notification-modal-header {\n    padding: 24px 24px 20px;\n    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    background: var(--surface-secondary, #f8f9fa);\n}\n\nbody.dark-forest .notification-modal-header {\n    background: var(--surface-secondary, #222);\n    border-bottom-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-modal-title {\n    margin: 0;\n    font-size: 1.25rem;\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n    display: flex;\n    align-items: center;\n    gap: 12px;\n}\n\nbody.dark-forest .notification-modal-title,\nbody.dark-forest .notification-modal-title {\n    color: var(--text-primary, #ffffff);\n}\n\n.notification-modal-title svg {\n    color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-count-badge {\n    display: inline-block;\n    min-width: 24px;\n    height: 24px;\n    padding: 0 8px;\n    background: var(--theme-primary-color, var(--accent-primary, #2c5f4f));\n    color: var(--theme-text-on-primary, #ffffff);\n    border-radius: 12px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 24px;\n    text-align: center;\n}\n\nbody.dark-forest .notification-count-badge,\nbody.dark-forest .notification-count-badge {\n    background: var(--theme-accent-color, #6b9080);\n    color: var(--theme-bg-solid, #1a1a1a);\n}\n\n.notification-modal-close {\n    width: 36px;\n    height: 36px;\n    padding: 0;\n    background: transparent;\n    border: none;\n    border-radius: 8px;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.notification-modal-close:hover {\n    background: rgba(0, 0, 0, 0.05);\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-forest .notification-modal-close:hover,\nbody.dark-forest .notification-modal-close:hover {\n    background: rgba(255, 255, 255, 0.1);\n    color: var(--text-primary, #ffffff);\n}\n\n/* ========== FILTERS ========== */\n.notification-modal-filters {\n    padding: 16px 24px;\n    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n    background: var(--surface-primary, #ffffff);\n}\n\nbody.dark-forest .notification-modal-filters,\nbody.dark-forest .notification-modal-filters {\n    background: var(--surface-primary, #1a1a1a);\n    border-bottom-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-filter {\n    padding: 8px 16px;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));\n    border-radius: 20px;\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.notification-filter:hover {\n    background: rgba(0, 0, 0, 0.03);\n    border-color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-filter.active {\n    background: var(--accent-primary, #2c5f4f);\n    border-color: var(--accent-primary, #2c5f4f);\n    color: white;\n}\n\nbody.dark-forest .notification-filter,\nbody.dark-forest .notification-filter {\n    border-color: rgba(255, 255, 255, 0.2);\n    color: var(--text-secondary, #aaa);\n}\n\nbody.dark-forest .notification-filter:hover,\nbody.dark-forest .notification-filter:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\n.filter-count {\n    min-width: 20px;\n    height: 20px;\n    padding: 0 6px;\n    background: rgba(0, 0, 0, 0.1);\n    border-radius: 10px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 20px;\n    text-align: center;\n}\n\n.notification-filter.active .filter-count {\n    background: rgba(255, 255, 255, 0.3);\n}\n\n/* ========== BODY ========== */\n.notification-modal-body {\n    flex: 1;\n    overflow-y: auto;\n    padding: 16px 24px;\n    background: var(--surface-primary, #ffffff);\n}\n\nbody.dark-forest .notification-modal-body,\nbody.dark-forest .notification-modal-body {\n    background: var(--surface-primary, #1a1a1a);\n}\n\n/* Custom scrollbar */\n.notification-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.notification-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.2);\n    border-radius: 4px;\n}\n\nbody.dark-forest .notification-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.2);\n}\n\n/* ========== NOTIFICATION ITEM ========== */\n.notification-item {\n    position: relative;\n    padding: 16px;\n    margin-bottom: 12px;\n    background: var(--surface-secondary, #f8f9fa);\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    border-radius: 12px;\n    display: flex;\n    gap: 12px;\n    transition: all 0.2s ease;\n}\n\nbody.dark-forest .notification-item,\nbody.dark-forest .notification-item {\n    background: var(--surface-secondary, #222);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-item:hover {\n    transform: translateX(4px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.notification-item.unread {\n    background: var(--theme-surface-accent, var(--surface-accent, #e8f5f0));\n    border-color: var(--theme-primary-color, var(--accent-primary, #2c5f4f));\n    border-left-width: 4px;\n}\n\nbody.dark-forest .notification-item.unread {\n    background: rgba(107, 144, 128, 0.15);\n    border-color: var(--theme-accent-color, #6b9080);\n}\n\nbody.dark-forest .notification-item.unread {\n    background: var(--theme-surface-hover, rgba(107, 144, 128, 0.12));\n    border-color: var(--theme-accent-color, #6b9080);\n}\n\n/* Priority indicators */\n.notification-item.priority-high {\n    border-left-color: #d32f2f;\n}\n\n.notification-item.priority-normal {\n    border-left-color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-item.priority-low {\n    border-left-color: #757575;\n}\n\n/* ========== NOTIFICATION ICON ========== */\n.notification-item-icon {\n    width: 40px;\n    height: 40px;\n    flex-shrink: 0;\n    background: var(--theme-primary-color, var(--accent-primary, #2c5f4f));\n    border-radius: 10px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: var(--theme-text-on-primary, #ffffff);\n}\n\n.notification-item-icon.type-payment {\n    background: var(--theme-primary-color, #2c5f4f);\n}\n\n.notification-item-icon.type-policy {\n    background: var(--theme-info-color, #1565c0);\n}\n\n.notification-item-icon.type-comment {\n    background: var(--theme-accent-secondary, #7b1fa2);\n}\n\n.notification-item-icon.type-system {\n    background: var(--theme-text-tertiary, #616161);\n}\n\nbody.dark-forest .notification-item-icon,\nbody.dark-forest .notification-item-icon {\n    color: var(--theme-text-primary, #ffffff);\n}\n\n/* ========== NOTIFICATION CONTENT ========== */\n.notification-item-content {\n    flex: 1;\n    min-width: 0;\n}\n\n.notification-item-header {\n    display: flex;\n    align-items: flex-start;\n    justify-content: space-between;\n    gap: 12px;\n    margin-bottom: 6px;\n}\n\n.notification-item-title {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-forest .notification-item-title,\nbody.dark-forest .notification-item-title {\n    color: var(--text-primary, #ffffff);\n}\n\n.notification-item-time {\n    font-size: 0.75rem;\n    color: var(--text-tertiary, #999);\n    white-space: nowrap;\n}\n\n.notification-item-message {\n    margin: 0 0 12px;\n    font-size: 0.875rem;\n    color: var(--text-secondary, #666);\n    line-height: 1.5;\n}\n\nbody.dark-forest .notification-item-message,\nbody.dark-forest .notification-item-message {\n    color: var(--text-secondary, #aaa);\n}\n\n/* ========== NOTIFICATION ACTIONS ========== */\n.notification-item-actions {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.notification-action-btn {\n    padding: 6px 14px;\n    background: var(--accent-primary, #2c5f4f);\n    color: white;\n    border: none;\n    border-radius: 6px;\n    font-size: 0.8125rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.notification-action-btn:hover {\n    background: var(--accent-hover, #3d7a63);\n    transform: translateY(-1px);\n    box-shadow: 0 2px 8px rgba(44, 95, 79, 0.3);\n}\n\n.notification-action-btn.secondary {\n    background: transparent;\n    color: var(--accent-primary, #2c5f4f);\n    border: 1px solid var(--accent-primary, #2c5f4f);\n}\n\n.notification-action-btn.secondary:hover {\n    background: rgba(44, 95, 79, 0.1);\n    transform: none;\n}\n\nbody.dark-forest .notification-action-btn.secondary,\nbody.dark-forest .notification-action-btn.secondary {\n    color: var(--accent-light, #4a9975);\n    border-color: var(--accent-light, #4a9975);\n}\n\n/* ========== MARK AS READ BUTTON ========== */\n.notification-mark-read {\n    width: 32px;\n    height: 32px;\n    flex-shrink: 0;\n    padding: 0;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));\n    border-radius: 6px;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.notification-mark-read:hover {\n    background: var(--accent-primary, #2c5f4f);\n    border-color: var(--accent-primary, #2c5f4f);\n    color: white;\n}\n\n/* ========== EMPTY STATE ========== */\n.notification-empty {\n    padding: 48px 24px;\n    text-align: center;\n    color: var(--text-tertiary, #999);\n}\n\n.notification-empty svg {\n    margin-bottom: 16px;\n    opacity: 0.3;\n}\n\n.notification-empty p {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 500;\n}\n\n/* ========== FOOTER ========== */\n.notification-modal-footer {\n    padding: 16px 24px;\n    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    background: var(--surface-secondary, #f8f9fa);\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n}\n\nbody.dark-forest .notification-modal-footer,\nbody.dark-forest .notification-modal-footer {\n    background: var(--surface-secondary, #222);\n    border-top-color: rgba(255, 255, 255, 0.1);\n}\n\n/* ========== NOTIFICATION BELL BADGE ========== */\n.icon-pill .dot {\n    position: absolute;\n    top: 4px;\n    right: 4px;\n    width: 8px;\n    height: 8px;\n    background: #d32f2f;\n    border: 2px solid var(--surface-primary, #ffffff);\n    border-radius: 50%;\n    opacity: 0;\n    transform: scale(0);\n    transition: all 0.2s ease;\n}\n\n.icon-pill .dot.active {\n    opacity: 1;\n    transform: scale(1);\n}\n\n.icon-pill .dot[data-count]::after {\n    content: attr(data-count);\n    position: absolute;\n    top: -12px;\n    right: -8px;\n    min-width: 18px;\n    height: 18px;\n    padding: 0 4px;\n    background: #d32f2f;\n    color: white;\n    border-radius: 9px;\n    font-size: 0.625rem;\n    font-weight: 700;\n    line-height: 18px;\n    text-align: center;\n}\n\n/* ========== RESPONSIVE ========== */\n@media (max-width: 640px) {\n    .notification-modal-content {\n        width: 100%;\n        max-width: none;\n        max-height: 100vh;\n        border-radius: 0;\n    }\n\n    .notification-modal-header,\n    .notification-modal-filters,\n    .notification-modal-body,\n    .notification-modal-footer {\n        padding-left: 16px;\n        padding-right: 16px;\n    }\n\n    .notification-modal-title {\n        font-size: 1.125rem;\n    }\n\n    .notification-item {\n        padding: 12px;\n    }\n\n    .notification-item-icon {\n        width: 36px;\n        height: 36px;\n    }\n\n    .notification-item-icon svg {\n        width: 18px;\n        height: 18px;\n    }\n\n    .notification-modal-footer {\n        flex-direction: column;\n    }\n\n    .notification-action-btn {\n        width: 100%;\n    }\n}\n\n/* ========== ANIMATIONS ========== */\n@keyframes notificationPulse {\n\n    0%,\n    100% {\n        transform: scale(1);\n    }\n\n    50% {\n        transform: scale(1.1);\n    }\n}\n\n.icon-pill .dot.active {\n    animation: notificationPulse 2s infinite;\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/notification-modal.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Sistema de notificaciones modal\n * Estilos para el modal de notificaciones detalladas\n */\n\n/* ========== MODAL CONTAINER ========== */\n.notification-modal {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 10000;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n}\n\n.notification-modal.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* ========== OVERLAY ========== */\n.notification-modal-overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: var(--overlay-bg, rgba(0, 0, 0, 0.6));\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    cursor: pointer;\n}\n\nbody.dark-forest .notification-modal-overlay {\n    background: var(--overlay-bg, rgba(0, 0, 0, 0.8));\n}\n\n/* ========== MODAL CONTENT ========== */\n.notification-modal-container {\n    max-width: 700px;\n}\n\n/* ========== HEADER ========== */\n/* Header styles now inherited from modals-unified.css */\n\n\n.notification-modal-title svg {\n    color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-count-badge {\n    display: inline-block;\n    min-width: 24px;\n    height: 24px;\n    padding: 0 8px;\n    background: var(--theme-primary-color, var(--accent-primary, #2c5f4f));\n    color: var(--theme-text-on-primary, #ffffff);\n    border-radius: 12px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 24px;\n    text-align: center;\n}\n\nbody.dark-forest .notification-count-badge,\nbody.dark-forest .notification-count-badge {\n    background: var(--theme-accent-color, #6b9080);\n    color: var(--theme-bg-solid, #1a1a1a);\n}\n\n/* Close button styles now inherited from modals-unified.css */\n\n/* ========== FILTERS ========== */\n.notification-modal-filters {\n    padding: 16px 24px;\n    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n    background: var(--surface-primary, #ffffff);\n}\n\nbody.dark-forest .notification-modal-filters,\nbody.dark-forest .notification-modal-filters {\n    background: var(--surface-primary, #1a1a1a);\n    border-bottom-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-filter {\n    padding: 8px 16px;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));\n    border-radius: 20px;\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.notification-filter:hover {\n    background: rgba(0, 0, 0, 0.03);\n    border-color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-filter.active {\n    background: var(--accent-primary, #2c5f4f);\n    border-color: var(--accent-primary, #2c5f4f);\n    color: white;\n}\n\nbody.dark-forest .notification-filter,\nbody.dark-forest .notification-filter {\n    border-color: rgba(255, 255, 255, 0.2);\n    color: var(--text-secondary, #aaa);\n}\n\nbody.dark-forest .notification-filter:hover,\nbody.dark-forest .notification-filter:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\n.filter-count {\n    min-width: 20px;\n    height: 20px;\n    padding: 0 6px;\n    background: rgba(0, 0, 0, 0.1);\n    border-radius: 10px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 20px;\n    text-align: center;\n}\n\n.notification-filter.active .filter-count {\n    background: rgba(255, 255, 255, 0.3);\n}\n\n/* ========== BODY ========== */\n.notification-modal-body {\n    padding: 16px 24px;\n}\n\n/* Custom scrollbar */\n.notification-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.notification-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.2);\n    border-radius: 4px;\n}\n\nbody.dark-forest .notification-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.2);\n}\n\n/* ========== NOTIFICATION ITEM ========== */\n.notification-item {\n    position: relative;\n    padding: 16px;\n    margin-bottom: 12px;\n    background: var(--surface-secondary, #f8f9fa);\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    border-radius: 12px;\n    display: flex;\n    gap: 12px;\n    transition: all 0.2s ease;\n}\n\nbody.dark-forest .notification-item,\nbody.dark-forest .notification-item {\n    background: var(--surface-secondary, #222);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-item:hover {\n    transform: translateX(4px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.notification-item.unread {\n    background: var(--theme-surface-accent, var(--surface-accent, #e8f5f0));\n    border-color: var(--theme-primary-color, var(--accent-primary, #2c5f4f));\n    border-left-width: 4px;\n}\n\nbody.dark-forest .notification-item.unread {\n    background: rgba(107, 144, 128, 0.15);\n    border-color: var(--theme-accent-color, #6b9080);\n}\n\nbody.dark-forest .notification-item.unread {\n    background: var(--theme-surface-hover, rgba(107, 144, 128, 0.12));\n    border-color: var(--theme-accent-color, #6b9080);\n}\n\n/* Priority indicators */\n.notification-item.priority-high {\n    border-left-color: #d32f2f;\n}\n\n.notification-item.priority-normal {\n    border-left-color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-item.priority-low {\n    border-left-color: #757575;\n}\n\n/* ========== NOTIFICATION ICON ========== */\n.notification-item-icon {\n    width: 40px;\n    height: 40px;\n    flex-shrink: 0;\n    background: var(--theme-primary-color, var(--accent-primary, #2c5f4f));\n    border-radius: 10px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: var(--theme-text-on-primary, #ffffff);\n}\n\n.notification-item-icon.type-payment {\n    background: var(--theme-primary-color, #2c5f4f);\n}\n\n.notification-item-icon.type-policy {\n    background: var(--theme-info-color, #1565c0);\n}\n\n.notification-item-icon.type-comment {\n    background: var(--theme-accent-secondary, #7b1fa2);\n}\n\n.notification-item-icon.type-system {\n    background: var(--theme-text-tertiary, #616161);\n}\n\nbody.dark-forest .notification-item-icon,\nbody.dark-forest .notification-item-icon {\n    color: var(--theme-text-primary, #ffffff);\n}\n\n/* ========== NOTIFICATION CONTENT ========== */\n.notification-item-content {\n    flex: 1;\n    min-width: 0;\n}\n\n.notification-item-header {\n    display: flex;\n    align-items: flex-start;\n    justify-content: space-between;\n    gap: 12px;\n    margin-bottom: 6px;\n}\n\n.notification-item-title {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-forest .notification-item-title,\nbody.dark-forest .notification-item-title {\n    color: var(--text-primary, #ffffff);\n}\n\n.notification-item-time {\n    font-size: 0.75rem;\n    color: var(--text-tertiary, #666);\n    white-space: nowrap;\n}\n\n.notification-item-message {\n    margin: 0 0 12px;\n    font-size: 0.875rem;\n    color: var(--text-secondary, #555);\n    line-height: 1.5;\n}\n\nbody.dark-forest .notification-item-message,\nbody.dark-forest .notification-item-message {\n    color: var(--text-secondary, #aaa);\n}\n\n/* ========== NOTIFICATION ACTIONS ========== */\n.notification-item-actions {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.notification-action-btn {\n    padding: 6px 14px;\n    background: var(--accent-primary, #2c5f4f);\n    color: white;\n    border: none;\n    border-radius: 6px;\n    font-size: 0.8125rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.notification-action-btn:hover {\n    background: var(--accent-hover, #3d7a63);\n    transform: translateY(-1px);\n    box-shadow: 0 2px 8px rgba(44, 95, 79, 0.3);\n}\n\n.notification-action-btn.secondary {\n    background: transparent;\n    color: var(--accent-primary, #2c5f4f);\n    border: 1px solid var(--accent-primary, #2c5f4f);\n}\n\n.notification-action-btn.secondary:hover {\n    background: rgba(44, 95, 79, 0.1);\n    transform: none;\n}\n\nbody.dark-forest .notification-action-btn.secondary,\nbody.dark-forest .notification-action-btn.secondary {\n    color: var(--accent-light, #4a9975);\n    border-color: var(--accent-light, #4a9975);\n}\n\n/* ========== MARK AS READ BUTTON ========== */\n.notification-mark-read {\n    width: 32px;\n    height: 32px;\n    flex-shrink: 0;\n    padding: 0;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));\n    border-radius: 6px;\n    color: var(--text-secondary, #555);\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.notification-mark-read:hover {\n    background: var(--accent-primary, #2c5f4f);\n    border-color: var(--accent-primary, #2c5f4f);\n    color: white;\n}\n\n/* ========== EMPTY STATE ========== */\n.notification-empty {\n    padding: 48px 24px;\n    text-align: center;\n    color: var(--text-tertiary, #666);\n}\n\n.notification-empty svg {\n    margin-bottom: 16px;\n    opacity: 0.3;\n}\n\n.notification-empty p {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 500;\n}\n\n/* ========== FOOTER ========== */\n.notification-modal-footer {\n    padding: 16px 24px;\n    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    background: var(--surface-secondary, #f8f9fa);\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n}\n\nbody.dark-forest .notification-modal-footer,\nbody.dark-forest .notification-modal-footer {\n    background: var(--surface-secondary, #222);\n    border-top-color: rgba(255, 255, 255, 0.1);\n}\n\n/* ========== NOTIFICATION BELL BADGE ========== */\n.icon-pill .dot {\n    position: absolute;\n    top: 4px;\n    right: 4px;\n    width: 8px;\n    height: 8px;\n    background: #d32f2f;\n    border: 2px solid var(--surface-primary, #ffffff);\n    border-radius: 50%;\n    opacity: 0;\n    transform: scale(0);\n    transition: all 0.2s ease;\n}\n\n.icon-pill .dot.active {\n    opacity: 1;\n    transform: scale(1);\n}\n\n.icon-pill .dot[data-count]::after {\n    content: attr(data-count);\n    position: absolute;\n    top: -12px;\n    right: -8px;\n    min-width: 18px;\n    height: 18px;\n    padding: 0 4px;\n    background: #d32f2f;\n    color: white;\n    border-radius: 9px;\n    font-size: 0.625rem;\n    font-weight: 700;\n    line-height: 18px;\n    text-align: center;\n}\n\n/* ========== RESPONSIVE ========== */\n@media (max-width: 640px) {\n    .notification-modal-content {\n        width: 100%;\n        max-width: none;\n        max-height: 100vh;\n        border-radius: 0;\n    }\n\n    .notification-modal-header,\n    .notification-modal-filters,\n    .notification-modal-body,\n    .notification-modal-footer {\n        padding-left: 16px;\n        padding-right: 16px;\n    }\n\n    .notification-modal-title {\n        font-size: 1.125rem;\n    }\n\n    .notification-item {\n        padding: 12px;\n    }\n\n    .notification-item-icon {\n        width: 36px;\n        height: 36px;\n    }\n\n    .notification-item-icon svg {\n        width: 18px;\n        height: 18px;\n    }\n\n    .notification-modal-footer {\n        flex-direction: column;\n    }\n\n    .notification-action-btn {\n        width: 100%;\n    }\n}\n\n/* ========== ANIMATIONS ========== */\n@keyframes notificationPulse {\n\n    0%,\n    100% {\n        transform: scale(1);\n    }\n\n    50% {\n        transform: scale(1.1);\n    }\n}\n\n.icon-pill .dot.active {\n    animation: notificationPulse 2s infinite;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -19340,8 +20900,9 @@ var ContactModalComponent = /*#__PURE__*/function () {
       if (existingModal) existingModal.remove();
       var modal = document.createElement('div');
       modal.id = 'contact-modal';
-      modal.className = 'modal-overlay active';
-      modal.innerHTML = "\n            <div class=\"modal-container contact-modal-container\">\n                <div class=\"modal-header\">\n                    <h3>\n                        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />\n                        </svg>\n                        \xBFA qui\xE9n quieres contactar?\n                    </h3>\n                    <button class=\"btn-close\" onclick=\"window.contactModal.close()\">\n                        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                        </svg>\n                    </button>\n                </div>\n                <div class=\"modal-body\">\n                    <div class=\"contact-search-box\">\n                        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <circle cx=\"11\" cy=\"11\" r=\"7\" />\n                            <line x1=\"16.65\" y1=\"16.65\" x2=\"21\" y2=\"21\" />\n                        </svg>\n                        <input \n                            type=\"text\" \n                            id=\"contact-search\" \n                            placeholder=\"Buscar cliente...\" \n                            oninput=\"window.contactModal.filterClients(this.value)\"\n                        />\n                    </div>\n\n                    ".concat(this.recentClients.length > 0 ? "\n                        <div class=\"contact-section\">\n                            <h4 class=\"contact-section-title\">Recientes</h4>\n                            <div class=\"contact-list\">\n                                ".concat(this.recentClients.map(function (client) {
+      // use unified modal classes so styles/themes apply consistently
+      modal.className = 'app-modal-overlay active';
+      modal.innerHTML = "\n            <div class=\"app-modal app-modal-md contact-modal-container\">\n                <div class=\"app-modal-header\">\n                    <h2>\n                        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />\n                        </svg>\n                        \xBFA qui\xE9n quieres contactar?\n                    </h2>\n                    <button class=\"app-modal-close\" onclick=\"window.contactModal.close()\">\n                        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                        </svg>\n                    </button>\n                </div>\n                <div class=\"app-modal-body\">\n                    <div class=\"contact-search-box\">\n                        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <circle cx=\"11\" cy=\"11\" r=\"7\" />\n                            <line x1=\"16.65\" y1=\"16.65\" x2=\"21\" y2=\"21\" />\n                        </svg>\n                        <input \n                            type=\"text\" \n                            id=\"contact-search\" \n                            placeholder=\"Buscar cliente...\" \n                            oninput=\"window.contactModal.filterClients(this.value)\"\n                        />\n                    </div>\n\n                    ".concat(this.recentClients.length > 0 ? "\n                        <div class=\"contact-section\">\n                            <h4 class=\"contact-section-title\">Recientes</h4>\n                            <div class=\"contact-list\">\n                                ".concat(this.recentClients.map(function (client) {
         return _this.renderClientItem(client);
       }).join(''), "\n                            </div>\n                        </div>\n                    ") : '', "\n\n                    <div class=\"contact-section\">\n                        <h4 class=\"contact-section-title\">Todos los clientes</h4>\n                        <div class=\"contact-list\" id=\"all-clients-list\">\n                            ").concat(this.clients.map(function (client) {
         return _this.renderClientItem(client);
@@ -19415,10 +20976,10 @@ var ContactModalComponent = /*#__PURE__*/function () {
     value: function startDirectMessage(clientId, clientName) {
       this.close();
 
-      // Crear mini-modal para escribir mensaje
+      // Crear mini-modal para escribir mensaje (unified modal classes)
       var messageModal = document.createElement('div');
-      messageModal.className = 'modal-overlay active';
-      messageModal.innerHTML = "\n            <div class=\"modal-container\" style=\"max-width: 500px;\">\n                <div class=\"modal-header\">\n                    <h3>Mensaje directo a ".concat(clientName, "</h3>\n                    <button class=\"btn-close\" onclick=\"this.closest('.modal-overlay').remove()\">\n                        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                        </svg>\n                    </button>\n                </div>\n                <div class=\"modal-body\">\n                    <div class=\"form-group\">\n                        <label>Mensaje (expira en 42 horas)</label>\n                        <textarea id=\"dm-text\" rows=\"4\" placeholder=\"Escribe tu mensaje...\"></textarea>\n                    </div>\n                    <div class=\"alert alert-info\">\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                            <line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/>\n                            <line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>\n                        </svg>\n                        Este mensaje ser\xE1 visible durante 42 horas. El cliente puede responder durante ese tiempo.\n                    </div>\n                </div>\n                <div class=\"modal-footer\">\n                    <button class=\"btn-secondary\" onclick=\"this.closest('.modal-overlay').remove()\">Cancelar</button>\n                    <button class=\"btn-primary\" onclick=\"window.contactModal.sendDirectMessage(").concat(clientId, ", '").concat(clientName, "')\">\n                        Enviar mensaje\n                    </button>\n                </div>\n            </div>\n        ");
+      messageModal.className = 'app-modal-overlay active';
+      messageModal.innerHTML = "\n            <div class=\"app-modal app-modal-md\" style=\"max-width: 500px;\">\n                <div class=\"app-modal-header\">\n                    <h3>Mensaje directo a ".concat(clientName, "</h3>\n                    <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n                        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                        </svg>\n                    </button>\n                </div>\n                <div class=\"app-modal-body\">\n                    <div class=\"form-group\">\n                        <label>Mensaje (expira en 42 horas)</label>\n                        <textarea id=\"dm-text\" rows=\"4\" placeholder=\"Escribe tu mensaje...\"></textarea>\n                    </div>\n                    <div class=\"alert alert-info\">\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                            <line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/>\n                            <line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>\n                        </svg>\n                        Este mensaje ser\xE1 visible durante 42 horas. El cliente puede responder durante ese tiempo.\n                    </div>\n                </div>\n                <div class=\"app-modal-footer\">\n                    <button class=\"btn-secondary\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n                    <button class=\"btn-primary\" onclick=\"window.contactModal.sendDirectMessage(").concat(clientId, ", '").concat(clientName, "')\">\n                        Enviar mensaje\n                    </button>\n                </div>\n            </div>\n        ");
       document.body.appendChild(messageModal);
     }
 
@@ -19460,7 +21021,8 @@ var ContactModalComponent = /*#__PURE__*/function () {
             case 4:
               data = _context3.v;
               if (data.success) {
-                document.querySelectorAll('.modal-overlay').forEach(function (m) {
+                // Remove both legacy and unified modal overlays just in case
+                document.querySelectorAll('.modal-overlay, .app-modal-overlay').forEach(function (m) {
                   return m.remove();
                 });
                 if (window.showNotification) {
@@ -19887,6 +21449,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   makePayment: () => (/* binding */ makePayment),
 /* harmony export */   openCommissionsModal: () => (/* binding */ openCommissionsModal),
 /* harmony export */   openSalesModal: () => (/* binding */ openSalesModal),
+/* harmony export */   requestQuote: () => (/* binding */ requestQuote),
 /* harmony export */   scheduleAppointment: () => (/* binding */ scheduleAppointment),
 /* harmony export */   submitAppointment: () => (/* binding */ submitAppointment),
 /* harmony export */   submitClaim: () => (/* binding */ submitClaim),
@@ -19894,6 +21457,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   submitPayment: () => (/* binding */ submitPayment),
 /* harmony export */   submitPolicyDocumentUpload: () => (/* binding */ submitPolicyDocumentUpload),
 /* harmony export */   submitPolicyUpload: () => (/* binding */ submitPolicyUpload),
+/* harmony export */   submitQuoteRequest: () => (/* binding */ submitQuoteRequest),
 /* harmony export */   switchClientTab: () => (/* binding */ switchClientTab),
 /* harmony export */   updateInfo: () => (/* binding */ updateInfo),
 /* harmony export */   uploadPolicyDocument: () => (/* binding */ uploadPolicyDocument),
@@ -20181,7 +21745,16 @@ function _fileClaim() {
 function createQuote() {
   var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'auto';
   (0,_quoteFlow_js__WEBPACK_IMPORTED_MODULE_3__.setPendingQuoteType)(type);
-  (0,_simpleRouter_js__WEBPACK_IMPORTED_MODULE_2__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.PAGES.QUOTE);
+  // Open the in-place "Nueva Cotización" modal instead of navigating away
+  // If opening the modal fails, fallback to the original navigation to the quote page
+  try {
+    // requestQuote is defined below in this module
+    requestQuote();
+  } catch (err) {
+    console.error('Error opening quote modal:', err);
+    (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se pudo abrir la modal de cotización, redirigiendo...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+    (0,_simpleRouter_js__WEBPACK_IMPORTED_MODULE_2__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.PAGES.QUOTE);
+  }
 }
 
 /**
@@ -20196,23 +21769,130 @@ function addClient() {
 }
 
 /**
- * Agendar cita
+ * Solicitar nueva cotización - Modal independiente
  */
-function scheduleAppointment() {
-  var modal = document.createElement('div');
-  modal.className = 'app-modal-overlay';
-  modal.innerHTML = "\n    <div class=\"app-modal app-modal-md\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Agendar Cita</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form class=\"appointment-form\" onsubmit=\"window.dashboardActions?.submitAppointment(event)\">\n          <div class=\"form-group\">\n            <label for=\"appt-client\">Cliente</label>\n            <select id=\"appt-client\" required>\n              <option value=\"\">Seleccionar cliente</option>\n              <option value=\"CL-001\">Mar\xEDa Gonz\xE1lez</option>\n              <option value=\"CL-002\">Carlos Rodr\xEDguez</option>\n              <option value=\"CL-003\">Ana Mart\xEDnez</option>\n            </select>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-type\">Tipo de cita</label>\n            <select id=\"appt-type\" required>\n              <option value=\"consultation\">Consulta</option>\n              <option value=\"quote\">Cotizaci\xF3n</option>\n              <option value=\"claim\">Siniestro</option>\n              <option value=\"policy-review\">Revisi\xF3n de p\xF3liza</option>\n            </select>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"appt-date\">Fecha</label>\n              <input type=\"date\" id=\"appt-date\" required>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"appt-time\">Hora</label>\n              <input type=\"time\" id=\"appt-time\" required>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"appt-notes\">Notas</label>\n            <textarea id=\"appt-notes\" rows=\"3\" placeholder=\"Asunto o detalles adicionales\"></textarea>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Agendar</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
-  document.body.appendChild(modal);
+function requestQuote() {
+  return _requestQuote.apply(this, arguments);
+}
+function _requestQuote() {
+  _requestQuote = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+    var _yield$import, showNotification, NOTIFICATION_TYPES, modal;
+    return _regenerator().w(function (_context5) {
+      while (1) switch (_context5.n) {
+        case 0:
+          _context5.n = 1;
+          return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./notifications.js */ "./src/modules/notifications.js"));
+        case 1:
+          _yield$import = _context5.v;
+          showNotification = _yield$import.showNotification;
+          NOTIFICATION_TYPES = _yield$import.NOTIFICATION_TYPES;
+          modal = document.createElement('div');
+          modal.className = 'app-modal-overlay active';
+          modal.innerHTML = "\n    <div class=\"app-modal app-modal-lg\">\n      <div class=\"app-modal-header\">\n        <h2 class=\"app-modal-title\">Nueva Cotizaci\xF3n</h2>\n        <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"app-modal-body\">\n        <form id=\"quote-request-form\" onsubmit=\"window.dashboardActions?.submitQuoteRequest?.(event)\">\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"quote-name\">Nombre completo *</label>\n              <input type=\"text\" id=\"quote-name\" required placeholder=\"Juan P\xE9rez\">\n            </div>\n            <div class=\"form-group\">\n              <label for=\"quote-email\">Email *</label>\n              <input type=\"email\" id=\"quote-email\" required placeholder=\"juan@ejemplo.com\">\n            </div>\n          </div>\n          <div class=\"form-row\">\n            <div class=\"form-group\">\n              <label for=\"quote-phone\">Tel\xE9fono *</label>\n              <input type=\"tel\" id=\"quote-phone\" required placeholder=\"555-1234-5678\">\n            </div>\n            <div class=\"form-group\">\n              <label for=\"quote-type\">Tipo de p\xF3liza *</label>\n              <select id=\"quote-type\" required>\n                <option value=\"\">Seleccionar tipo</option>\n                <option value=\"auto\">Auto</option>\n                <option value=\"home\">Hogar</option>\n                <option value=\"life\">Vida</option>\n                <option value=\"health\">Salud</option>\n                <option value=\"business\">Negocio</option>\n              </select>\n            </div>\n          </div>\n          <div class=\"form-group\">\n            <label for=\"quote-coverage\">Cobertura deseada</label>\n            <input type=\"text\" id=\"quote-coverage\" placeholder=\"Ej: Cobertura amplia, da\xF1os a terceros\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"quote-details\">Detalles adicionales</label>\n            <textarea id=\"quote-details\" rows=\"4\" placeholder=\"Proporciona informaci\xF3n adicional que pueda ayudarnos a cotizar mejor...\"></textarea>\n          </div>\n          <div class=\"form-group\">\n            <label style=\"display: flex; align-items: center; gap: 8px;\">\n              <input type=\"checkbox\" id=\"quote-urgent\" style=\"width: auto;\">\n              Solicitud urgente (respuesta en 24 horas)\n            </label>\n          </div>\n          <div class=\"form-actions\">\n            <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n            <button type=\"submit\" class=\"btn btn-primary\">Enviar Solicitud</button>\n          </div>\n        </form>\n      </div>\n    </div>\n  ";
+          document.body.appendChild(modal);
+        case 2:
+          return _context5.a(2);
+      }
+    }, _callee5);
+  }));
+  return _requestQuote.apply(this, arguments);
+}
+function submitQuoteRequest(_x) {
+  return _submitQuoteRequest.apply(this, arguments);
+}
 
-  // Cargar clientes dinámicamente
-  var clientSelect = modal.querySelector('#appt-client');
-  (0,_utils_clientLoader_js__WEBPACK_IMPORTED_MODULE_4__.populateClientSelect)(clientSelect);
+/**
+ * Agendar cita - Usar el scheduler de meetings
+ */
+function _submitQuoteRequest() {
+  _submitQuoteRequest = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(event) {
+    var _yield$import2, showNotification, NOTIFICATION_TYPES, formData, _document$querySelect, _t3;
+    return _regenerator().w(function (_context6) {
+      while (1) switch (_context6.p = _context6.n) {
+        case 0:
+          event.preventDefault();
+          _context6.n = 1;
+          return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./notifications.js */ "./src/modules/notifications.js"));
+        case 1:
+          _yield$import2 = _context6.v;
+          showNotification = _yield$import2.showNotification;
+          NOTIFICATION_TYPES = _yield$import2.NOTIFICATION_TYPES;
+          formData = {
+            name: document.getElementById('quote-name').value,
+            email: document.getElementById('quote-email').value,
+            phone: document.getElementById('quote-phone').value,
+            policy_type: document.getElementById('quote-type').value,
+            coverage: document.getElementById('quote-coverage').value,
+            details: document.getElementById('quote-details').value,
+            urgent: document.getElementById('quote-urgent').checked
+          };
+          _context6.p = 2;
+          showNotification('Enviando solicitud de cotización...', NOTIFICATION_TYPES.INFO);
+          _context6.n = 3;
+          return new Promise(function (resolve) {
+            return setTimeout(resolve, 1000);
+          });
+        case 3:
+          showNotification('Solicitud enviada exitosamente. Te contactaremos pronto.', NOTIFICATION_TYPES.SUCCESS);
+          (_document$querySelect = document.querySelector('.app-modal-overlay')) === null || _document$querySelect === void 0 || _document$querySelect.remove();
+          console.log('Quote request:', formData);
+          _context6.n = 5;
+          break;
+        case 4:
+          _context6.p = 4;
+          _t3 = _context6.v;
+          console.error('Error sending quote request:', _t3);
+          showNotification('Error al enviar la solicitud. Inténtalo de nuevo.', NOTIFICATION_TYPES.ERROR);
+        case 5:
+          return _context6.a(2);
+      }
+    }, _callee6, null, [[2, 4]]);
+  }));
+  return _submitQuoteRequest.apply(this, arguments);
+}
+function scheduleAppointment() {
+  return _scheduleAppointment.apply(this, arguments);
 }
 
 /**
  * Ver detalles de cliente - CONECTADO CON BACKEND
  */
-function viewClientDetails(_x) {
+function _scheduleAppointment() {
+  _scheduleAppointment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+    var _yield$import3, openMeetingScheduler, _yield$import4, _showNotification, _NOTIFICATION_TYPES, _t4;
+    return _regenerator().w(function (_context7) {
+      while (1) switch (_context7.p = _context7.n) {
+        case 0:
+          _context7.p = 0;
+          _context7.n = 1;
+          return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./scheduling.js */ "./src/modules/scheduling.js"));
+        case 1:
+          _yield$import3 = _context7.v;
+          openMeetingScheduler = _yield$import3.openMeetingScheduler;
+          _context7.n = 2;
+          return openMeetingScheduler();
+        case 2:
+          _context7.n = 5;
+          break;
+        case 3:
+          _context7.p = 3;
+          _t4 = _context7.v;
+          console.error('Error opening meeting scheduler:', _t4);
+          _context7.n = 4;
+          return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./notifications.js */ "./src/modules/notifications.js"));
+        case 4:
+          _yield$import4 = _context7.v;
+          _showNotification = _yield$import4.showNotification;
+          _NOTIFICATION_TYPES = _yield$import4.NOTIFICATION_TYPES;
+          _showNotification('Error al abrir el calendario de citas', _NOTIFICATION_TYPES.ERROR);
+        case 5:
+          return _context7.a(2);
+      }
+    }, _callee7, null, [[0, 3]]);
+  }));
+  return _scheduleAppointment.apply(this, arguments);
+}
+function viewClientDetails(_x2) {
   return _viewClientDetails.apply(this, arguments);
 }
 
@@ -20220,10 +21900,10 @@ function viewClientDetails(_x) {
  * Cambiar entre tabs del modal de detalles de cliente
  */
 function _viewClientDetails() {
-  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(clientId) {
-    var modal, data, client, _data$policies, policies, _data$claims, claims, contentDiv, _contentDiv, _t3;
-    return _regenerator().w(function (_context5) {
-      while (1) switch (_context5.p = _context5.n) {
+  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(clientId) {
+    var modal, data, client, _data$policies, policies, _data$claims, claims, contentDiv, _contentDiv, _t5;
+    return _regenerator().w(function (_context8) {
+      while (1) switch (_context8.p = _context8.n) {
         case 0:
           // Crear modal de detalles
           modal = document.createElement('div');
@@ -20232,15 +21912,15 @@ function _viewClientDetails() {
           document.body.appendChild(modal);
 
           // Cargar datos reales del backend
-          _context5.p = 1;
-          _context5.n = 2;
+          _context8.p = 1;
+          _context8.n = 2;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_6__.apiService.request("".concat(_api_integration_js__WEBPACK_IMPORTED_MODULE_6__.API_CONFIG.ENDPOINTS.GET_CLIENT_DETAILS, "&id=").concat(clientId), {
             method: 'GET'
           });
         case 2:
-          data = _context5.v;
+          data = _context8.v;
           if (data) {
-            _context5.n = 3;
+            _context8.n = 3;
             break;
           }
           throw new Error('No se recibieron datos del cliente');
@@ -20252,19 +21932,19 @@ function _viewClientDetails() {
           }).join('') : '<p class="text-muted">Sin pólizas registradas</p>', "\n        </div>\n\n        <div class=\"detail-section\">\n          <h3>\uD83D\uDD14 Reclamaciones Recientes (").concat(claims.length, ")</h3>\n          ").concat(claims.length > 0 ? claims.map(function (c) {
             return "\n            <div class=\"detail-item\">\n              <label>Reclamaci\xF3n #".concat(c.claim_number || c.id, "</label>\n              <div class=\"value\">\n                <span class=\"badge badge-").concat(c.status === 'approved' ? 'success' : c.status === 'pending' ? 'warning' : 'secondary', "\">\n                  ").concat(c.status || 'N/A', "\n                </span>\n              </div>\n            </div>\n          ");
           }).join('') : '<p class="text-muted">Sin reclamaciones registradas</p>', "\n        </div>\n      </div>\n    ");
-          _context5.n = 5;
+          _context8.n = 5;
           break;
         case 4:
-          _context5.p = 4;
-          _t3 = _context5.v;
-          console.error('Error loading client details:', _t3);
+          _context8.p = 4;
+          _t5 = _context8.v;
+          console.error('Error loading client details:', _t5);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           _contentDiv = modal.querySelector('.client-detail-content');
-          _contentDiv.innerHTML = "\n      <div class=\"loading-state\">\n        <p style=\"color: var(--error-color, #ef5350);\">\u274C Error al cargar la informaci\xF3n del cliente</p>\n        <p style=\"font-size: 14px; color: var(--text-muted, #999);\">".concat(_t3.message, "</p>\n      </div>\n    ");
+          _contentDiv.innerHTML = "\n      <div class=\"loading-state\">\n        <p style=\"color: var(--error-color, #ef5350);\">\u274C Error al cargar la informaci\xF3n del cliente</p>\n        <p style=\"font-size: 14px; color: var(--text-muted, #999);\">".concat(_t5.message, "</p>\n      </div>\n    ");
         case 5:
-          return _context5.a(2);
+          return _context8.a(2);
       }
-    }, _callee5, null, [[1, 4]]);
+    }, _callee8, null, [[1, 4]]);
   }));
   return _viewClientDetails.apply(this, arguments);
 }
@@ -20304,15 +21984,15 @@ function filterByClient(clientId) {
 // FORM SUBMISSIONS - Handlers para envío de formularios CON BACKEND REAL
 // ============================================================================
 
-function submitPayment(_x2) {
+function submitPayment(_x3) {
   return _submitPayment.apply(this, arguments);
 }
 function _submitPayment() {
-  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(event) {
+  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(event) {
     var _document$getElementB2, _document$getElementB3;
-    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t4;
-    return _regenerator().w(function (_context6) {
-      while (1) switch (_context6.p = _context6.n) {
+    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t6;
+    return _regenerator().w(function (_context9) {
+      while (1) switch (_context9.p = _context9.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -20321,18 +22001,18 @@ function _submitPayment() {
           file = (_document$getElementB2 = document.getElementById('payment-proof-file')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.files[0];
           reference = ((_document$getElementB3 = document.getElementById('payment-reference')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value) || '';
           if (file) {
-            _context6.n = 1;
+            _context9.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context6.a(2);
+          return _context9.a(2);
         case 1:
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Subiendo comprobante...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context6.p = 2;
-          _context6.n = 3;
+          _context9.p = 2;
+          _context9.n = 3;
           return paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
         case 3:
-          result = _context6.v;
+          result = _context9.v;
           form.closest('.app-modal-overlay').remove();
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Comprobante subido. Estará en revisión pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
 
@@ -20342,17 +22022,17 @@ function _submitPayment() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context6.n = 5;
+          _context9.n = 5;
           break;
         case 4:
-          _context6.p = 4;
-          _t4 = _context6.v;
-          console.error('Error uploading payment proof:', _t4);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t4.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context9.p = 4;
+          _t6 = _context9.v;
+          console.error('Error uploading payment proof:', _t6);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t6.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 5:
-          return _context6.a(2);
+          return _context9.a(2);
       }
-    }, _callee6, null, [[2, 4]]);
+    }, _callee9, null, [[2, 4]]);
   }));
   return _submitPayment.apply(this, arguments);
 }
@@ -20365,7 +22045,7 @@ function submitInfoUpdate(event) {
     (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Información actualizada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
   }, 1000);
 }
-function submitClaim(_x3) {
+function submitClaim(_x4) {
   return _submitClaim.apply(this, arguments);
 }
 
@@ -20373,17 +22053,17 @@ function submitClaim(_x3) {
  * Subir póliza y crear cliente automáticamente
  */
 function _submitClaim() {
-  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(event) {
-    var form, formData, _window$appHandlers3, claimNumber, _t5;
-    return _regenerator().w(function (_context7) {
-      while (1) switch (_context7.p = _context7.n) {
+  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(event) {
+    var form, formData, _window$appHandlers3, claimNumber, _t7;
+    return _regenerator().w(function (_context0) {
+      while (1) switch (_context0.p = _context0.n) {
         case 0:
           event.preventDefault();
           form = event.target;
           formData = new FormData(form);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Enviando siniestro...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context7.p = 1;
-          _context7.n = 2;
+          _context0.p = 1;
+          _context0.n = 2;
           return new Promise(function (resolve) {
             return setTimeout(resolve, 1500);
           });
@@ -20398,21 +22078,21 @@ function _submitClaim() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context7.n = 4;
+          _context0.n = 4;
           break;
         case 3:
-          _context7.p = 3;
-          _t5 = _context7.v;
-          console.error('Error submitting claim:', _t5);
+          _context0.p = 3;
+          _t7 = _context0.v;
+          console.error('Error submitting claim:', _t7);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al enviar siniestro', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context7.a(2);
+          return _context0.a(2);
       }
-    }, _callee7, null, [[1, 3]]);
+    }, _callee0, null, [[1, 3]]);
   }));
   return _submitClaim.apply(this, arguments);
 }
-function submitPolicyUpload(_x4) {
+function submitPolicyUpload(_x5) {
   return _submitPolicyUpload.apply(this, arguments);
 }
 
@@ -20420,10 +22100,10 @@ function submitPolicyUpload(_x4) {
  * Mostrar datos extraídos para confirmación (cuando confianza es baja)
  */
 function _submitPolicyUpload() {
-  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(event) {
-    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t6;
-    return _regenerator().w(function (_context8) {
-      while (1) switch (_context8.p = _context8.n) {
+  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(event) {
+    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t8;
+    return _regenerator().w(function (_context1) {
+      while (1) switch (_context1.p = _context1.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -20432,29 +22112,29 @@ function _submitPolicyUpload() {
           file = fileInput === null || fileInput === void 0 ? void 0 : fileInput.files[0];
           clientEmail = emailInput === null || emailInput === void 0 ? void 0 : emailInput.value.trim();
           if (file) {
-            _context8.n = 1;
+            _context1.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo de póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context8.a(2);
+          return _context1.a(2);
         case 1:
           if (clientEmail) {
-            _context8.n = 2;
+            _context1.n = 2;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('El email del cliente es obligatorio', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context8.a(2);
+          return _context1.a(2);
         case 2:
           // Validar formato de email
           emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (emailRegex.test(clientEmail)) {
-            _context8.n = 3;
+            _context1.n = 3;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Por favor ingresa un email válido', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context8.a(2);
+          return _context1.a(2);
         case 3:
           // Mostrar progreso
           progressContainer = document.getElementById('upload-progress');
@@ -20463,7 +22143,7 @@ function _submitPolicyUpload() {
           submitBtn = document.getElementById('submit-policy-btn');
           progressContainer.style.display = 'block';
           submitBtn.disabled = true;
-          _context8.p = 4;
+          _context1.p = 4;
           // Preparar FormData
           formData = new FormData();
           formData.append('policy_file', file);
@@ -20471,7 +22151,7 @@ function _submitPolicyUpload() {
           // Enviar al backend
           progressText.textContent = 'Subiendo documento...';
           progressFill.style.width = '30%';
-          _context8.n = 5;
+          _context1.n = 5;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -20480,36 +22160,36 @@ function _submitPolicyUpload() {
             body: formData
           });
         case 5:
-          response = _context8.v;
+          response = _context1.v;
           progressFill.style.width = '60%';
           progressText.textContent = 'Analizando documento...';
-          _context8.n = 6;
+          _context1.n = 6;
           return response.json();
         case 6:
-          result = _context8.v;
+          result = _context1.v;
           progressFill.style.width = '100%';
           if (result.success) {
-            _context8.n = 7;
+            _context1.n = 7;
             break;
           }
           throw new Error(result.error || 'Error al procesar póliza');
         case 7:
           if (!result.requires_confirmation) {
-            _context8.n = 8;
+            _context1.n = 8;
             break;
           }
           showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
-          return _context8.a(2);
+          return _context1.a(2);
         case 8:
           if (!result.requires_manual_entry) {
-            _context8.n = 9;
+            _context1.n = 9;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se pudo extraer datos. Abriendo formulario manual...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           showManualEntryForm(result.temp_file_path);
-          return _context8.a(2);
+          return _context1.a(2);
         case 9:
           // Éxito
           form.closest('.app-modal-overlay').remove();
@@ -20530,19 +22210,19 @@ function _submitPolicyUpload() {
               return window.appHandlers.refreshDashboard();
             }, 2000);
           }
-          _context8.n = 11;
+          _context1.n = 11;
           break;
         case 10:
-          _context8.p = 10;
-          _t6 = _context8.v;
-          console.error('Error uploading policy:', _t6);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t6.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context1.p = 10;
+          _t8 = _context1.v;
+          console.error('Error uploading policy:', _t8);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t8.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
         case 11:
-          return _context8.a(2);
+          return _context1.a(2);
       }
-    }, _callee8, null, [[4, 10]]);
+    }, _callee1, null, [[4, 10]]);
   }));
   return _submitPolicyUpload.apply(this, arguments);
 }
@@ -20570,17 +22250,17 @@ function showExtractedDataForConfirmation(data, tempFilePath) {
 /**
  * Confirmar datos corregidos y crear cliente
  */
-function confirmAndCreateClient(_x5) {
+function confirmAndCreateClient(_x6) {
   return _confirmAndCreateClient.apply(this, arguments);
 }
 /**
  * Mostrar formulario de entrada manual
  */
 function _confirmAndCreateClient() {
-  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(tempFilePath) {
-    var confirmedData, _token, response, result, _window$appHandlers5, _t7;
-    return _regenerator().w(function (_context9) {
-      while (1) switch (_context9.p = _context9.n) {
+  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(tempFilePath) {
+    var confirmedData, _token, response, result, _window$appHandlers5, _t9;
+    return _regenerator().w(function (_context10) {
+      while (1) switch (_context10.p = _context10.n) {
         case 0:
           confirmedData = {
             client_email: document.getElementById('confirm-client-email').value,
@@ -20592,9 +22272,9 @@ function _confirmAndCreateClient() {
             payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
           };
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente con datos confirmados...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context9.p = 1;
+          _context10.p = 1;
           _token = sessionStorage.getItem('auth_token');
-          _context9.n = 2;
+          _context10.n = 2;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -20607,13 +22287,13 @@ function _confirmAndCreateClient() {
             })
           });
         case 2:
-          response = _context9.v;
-          _context9.n = 3;
+          response = _context10.v;
+          _context10.n = 3;
           return response.json();
         case 3:
-          result = _context9.v;
+          result = _context10.v;
           if (!result.success) {
-            _context9.n = 4;
+            _context10.n = 4;
             break;
           }
           document.querySelector('.app-modal-overlay').remove();
@@ -20623,21 +22303,21 @@ function _confirmAndCreateClient() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context9.n = 5;
+          _context10.n = 5;
           break;
         case 4:
           throw new Error(result.error);
         case 5:
-          _context9.n = 7;
+          _context10.n = 7;
           break;
         case 6:
-          _context9.p = 6;
-          _t7 = _context9.v;
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t7.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context10.p = 6;
+          _t9 = _context10.v;
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t9.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 7:
-          return _context9.a(2);
+          return _context10.a(2);
       }
-    }, _callee9, null, [[1, 6]]);
+    }, _callee10, null, [[1, 6]]);
   }));
   return _confirmAndCreateClient.apply(this, arguments);
 }
@@ -20755,6 +22435,8 @@ if (typeof window !== 'undefined') {
     fileClaim: fileClaim,
     // Agent actions
     createQuote: createQuote,
+    requestQuote: requestQuote,
+    submitQuoteRequest: submitQuoteRequest,
     addClient: addClient,
     scheduleAppointment: scheduleAppointment,
     viewClientDetails: viewClientDetails,
@@ -20995,12 +22677,20 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
   }, {
     key: "renderModal",
     value: function renderModal() {
+      var _this = this;
       var existingModal = document.getElementById('dm-modal');
       if (existingModal) existingModal.remove();
       var modal = document.createElement('div');
       modal.id = 'dm-modal';
-      modal.className = 'modal-overlay active';
-      modal.innerHTML = "\n            <div class=\"modal-container dm-modal-container\">\n                <div class=\"modal-header\">\n                    <h3>\n                        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />\n                        </svg>\n                        Direct Messages\n                    </h3>\n                    <button class=\"btn-close\" onclick=\"window.directMessages.closeModal()\">\n                        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                        </svg>\n                    </button>\n                </div>\n                <div class=\"dm-content\">\n                    <div class=\"dm-threads-list\">\n                        ".concat(this.renderThreadsList(), "\n                    </div>\n                    <div class=\"dm-messages-area\" id=\"dm-messages-area\">\n                        <div class=\"dm-empty-state\">\n                            <svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\">\n                                <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />\n                            </svg>\n                            <p>Selecciona una conversaci\xF3n</p>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        ");
+      modal.className = 'app-modal-overlay dm-modal-overlay active';
+      modal.innerHTML = "\n            <div class=\"app-modal app-modal-lg dm-modal-container\" onclick=\"event.stopPropagation()\">\n                <div class=\"app-modal-header\">\n                    <h2>\n                        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />\n                        </svg>\n                        Direct Messages\n                    </h2>\n                    <button class=\"app-modal-close\" onclick=\"window.directMessages.closeModal()\">\n                        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                            <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                        </svg>\n                    </button>\n                </div>\n                <div class=\"app-modal-body dm-modal-body\">\n                    <div class=\"dm-content\">\n                        <div class=\"dm-threads-list\">\n                            ".concat(this.renderThreadsList(), "\n                        </div>\n                        <div class=\"dm-messages-area\" id=\"dm-messages-area\">\n                            <div class=\"dm-empty-state\">\n                            <svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\">\n                                <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\" />\n                            </svg>\n                            <p>Selecciona una conversaci\xF3n</p>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        ");
+
+      // Cerrar modal al hacer clic en el overlay (fuera del contenido)
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) {
+          _this.closeModal();
+        }
+      });
       document.body.appendChild(modal);
     }
 
@@ -21010,12 +22700,12 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
   }, {
     key: "renderThreadsList",
     value: function renderThreadsList() {
-      var _this = this;
+      var _this2 = this;
       if (this.threads.length === 0) {
         return "\n                <div class=\"dm-empty-list\">\n                    <p>No tienes mensajes directos</p>\n                    ".concat(this.userType === 'agent' ? '<button class="btn-primary" onclick="window.contactModal.open()">Iniciar conversación</button>' : '', "\n                </div>\n            ");
       }
       return this.threads.map(function (thread) {
-        return "\n            <div class=\"dm-thread-item ".concat(thread.unread_count > 0 ? 'unread' : '', "\" onclick=\"window.directMessages.openThread('").concat(thread.thread_id, "')\">\n                <div class=\"dm-thread-avatar\">\n                    <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/>\n                        <circle cx=\"12\" cy=\"7\" r=\"4\"/>\n                    </svg>\n                </div>\n                <div class=\"dm-thread-info\">\n                    <div class=\"dm-thread-header\">\n                        <strong>").concat(_this.userType === 'agent' ? thread.client_name : thread.agent_name, "</strong>\n                        <span class=\"dm-thread-time\">").concat(_this.formatTime(thread.last_message_at), "</span>\n                    </div>\n                    <div class=\"dm-thread-preview\">").concat(thread.last_message || thread.subject, "</div>\n                    <div class=\"dm-thread-footer\">\n                        <span class=\"dm-expires\">Expira en ").concat(_this.formatTimeLeft(thread.expires_at), "</span>\n                        ").concat(thread.unread_count > 0 ? "<span class=\"dm-unread-badge\">".concat(thread.unread_count, "</span>") : '', "\n                    </div>\n                </div>\n            </div>\n        ");
+        return "\n            <div class=\"dm-thread-item ".concat(thread.unread_count > 0 ? 'unread' : '', "\" onclick=\"window.directMessages.openThread(&quot;").concat(thread.thread_id, "&quot;)\">\n                <div class=\"dm-thread-avatar\">\n                    <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/>\n                        <circle cx=\"12\" cy=\"7\" r=\"4\"/>\n                    </svg>\n                </div>\n                <div class=\"dm-thread-info\">\n                    <div class=\"dm-thread-header\">\n                        <strong>").concat(_this2.userType === 'agent' ? thread.client_name : thread.agent_name, "</strong>\n                        <span class=\"dm-thread-time\">").concat(_this2.formatTime(thread.last_message_at), "</span>\n                    </div>\n                    <div class=\"dm-thread-preview\">").concat(thread.last_message || thread.subject, "</div>\n                    <div class=\"dm-thread-footer\">\n                        <span class=\"dm-expires\">Expira en ").concat(_this2.formatTimeLeft(thread.expires_at), "</span>\n                        ").concat(thread.unread_count > 0 ? "<span class=\"dm-unread-badge\">".concat(thread.unread_count, "</span>") : '', "\n                    </div>\n                </div>\n            </div>\n        ");
       }).join('');
     }
 
@@ -21077,14 +22767,14 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
   }, {
     key: "renderMessages",
     value: function renderMessages() {
-      var _this2 = this;
+      var _this3 = this;
       var container = document.getElementById('dm-messages-area');
       if (!container || !this.currentThread) return;
       var token = localStorage.getItem('jwt_token');
       var payload = JSON.parse(atob(token.split('.')[1]));
       var currentUserId = payload.user_id;
       container.innerHTML = "\n            <div class=\"dm-messages-header\">\n                <button class=\"btn-back\" onclick=\"window.directMessages.renderModal()\">\n                    <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <line x1=\"19\" y1=\"12\" x2=\"5\" y2=\"12\"/>\n                        <polyline points=\"12 19 5 12 12 5\"/>\n                    </svg>\n                </button>\n                <div>\n                    <strong>".concat(this.userType === 'agent' ? 'Cliente' : 'Agente', "</strong>\n                    <small>Expira en ").concat(this.formatTimeLeft(this.currentThread.expires_at), "</small>\n                </div>\n            </div>\n            <div class=\"dm-messages-list\" id=\"dm-messages-list\">\n                ").concat(this.currentThread.messages.map(function (msg) {
-        return "\n                    <div class=\"dm-message ".concat(msg.sender_id == currentUserId ? 'sent' : 'received', "\">\n                        <div class=\"dm-message-content\">\n                            <div class=\"dm-message-header\">\n                                <strong>").concat(msg.sender_name, "</strong>\n                                <span class=\"dm-message-time\">").concat(_this2.formatTime(msg.created_at), "</span>\n                            </div>\n                            <p>").concat(_this2.escapeHtml(msg.message_text), "</p>\n                        </div>\n                    </div>\n                ");
+        return "\n                    <div class=\"dm-message ".concat(msg.sender_id == currentUserId ? 'sent' : 'received', "\">\n                        <div class=\"dm-message-content\">\n                            <div class=\"dm-message-header\">\n                                <strong>").concat(msg.sender_name, "</strong>\n                                <span class=\"dm-message-time\">").concat(_this3.formatTime(msg.created_at), "</span>\n                            </div>\n                            <p>").concat(_this3.escapeHtml(msg.message_text), "</p>\n                        </div>\n                    </div>\n                ");
       }).join(''), "\n            </div>\n            <div class=\"dm-message-input\">\n                <textarea id=\"dm-input\" placeholder=\"Escribe un mensaje...\" rows=\"2\"></textarea>\n                <button class=\"btn-send\" onclick=\"window.directMessages.sendMessage()\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <line x1=\"22\" y1=\"2\" x2=\"11\" y2=\"13\"/>\n                        <polygon points=\"22 2 15 22 11 13 2 9 22 2\"/>\n                    </svg>\n                </button>\n            </div>\n        ");
 
       // Scroll al último mensaje
@@ -21125,10 +22815,10 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
               _context6.n = 4;
               return apiService.request('?action=dm_send_message', {
                 method: 'POST',
-                body: JSON.stringify({
+                body: {
                   thread_id: this.currentThread.thread_id,
                   message: messageText
-                })
+                }
               });
             case 4:
               data = _context6.v;
@@ -21180,9 +22870,9 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
   }, {
     key: "startPolling",
     value: function startPolling() {
-      var _this3 = this;
+      var _this4 = this;
       this.pollInterval = setInterval(function () {
-        _this3.loadUnreadCount();
+        _this4.loadUnreadCount();
       }, 30000); // 30 segundos
     }
 
@@ -21222,9 +22912,12 @@ var DirectMessagesComponent = /*#__PURE__*/function () {
   }, {
     key: "formatTimeLeft",
     value: function formatTimeLeft(expiresAt) {
+      if (!expiresAt) return 'Sin límite';
       var expires = new Date(expiresAt);
+      if (isNaN(expires.getTime())) return 'Sin límite';
       var now = new Date();
       var diff = expires - now;
+      if (diff <= 0) return 'Expirado';
       var hours = Math.floor(diff / 3600000);
       var minutes = Math.floor(diff % 3600000 / 60000);
       if (hours > 24) {
@@ -22357,7 +24050,10 @@ function createModal(title, content) {
   var actions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
   var modal = document.createElement('div');
   modal.className = 'modal-overlay';
-  modal.innerHTML = "\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <h2>".concat(title, "</h2>\n                <button class=\"modal-close\" onclick=\"this.closest('.modal-overlay').remove()\">\xD7</button>\n            </div>\n            <div class=\"modal-body\">\n                ").concat(content, "\n            </div>\n            ").concat(actions.length > 0 ? "\n                <div class=\"modal-footer\">\n                    ".concat(actions.map(function (action) {
+  // Subtle dark overlay and centered layout for modern card-like modals
+  // Slightly stronger overlay for dark theme with subtle radial vignette
+  modal.style.cssText = 'display:flex; align-items:center; justify-content:center; padding: 2rem; z-index: 9999;';
+  modal.innerHTML = "\n        <div class=\"modal-content modal-card\">\n            <div class=\"modal-accent\"></div>\n            <div class=\"modal-header\">\n                <div class=\"modal-icon\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" style=\"color:var(--primary);\">\n                        <path d=\"M12 2l7 3v5c0 5-3.5 9.6-7 11-3.5-1.4-7-6-7-11V5l7-3z\"></path>\n                        <path d=\"M8 12s1.5-2 4-2 4 2 4 2\"></path>\n                    </svg>\n                </div>\n                <h2 class=\"modal-title\">".concat(title, "</h2>\n                <button class=\"modal-close\" onclick=\"this.closest('.modal-overlay').remove()\">\xD7</button>\n            </div>\n            <div class=\"modal-body\">\n                ").concat(content, "\n            </div>\n            ").concat(actions.length > 0 ? "\n                <div class=\"modal-footer\">\n                    ".concat(actions.map(function (action) {
     return "\n                        <button class=\"btn ".concat(action.className || 'btn-primary', "\" \n                                onclick=\"").concat(action.onclick, "\"\n                                ").concat(action.disabled ? 'disabled' : '', ">\n                            ").concat(action.label, "\n                        </button>\n                    ");
   }).join(''), "\n                </div>\n            ") : '', "\n        </div>\n    ");
 
@@ -22394,26 +24090,106 @@ function openPolicyModal(_x) {
   return _openPolicyModal.apply(this, arguments);
 }
 
-/**
- * File Claim Modal with Comments
- */
+// Función global para agregar comentarios a póliza
 function _openPolicyModal() {
-  _openPolicyModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(policyId) {
-    var policy, content, actions, _t4;
-    return _regenerator().w(function (_context4) {
-      while (1) switch (_context4.p = _context4.n) {
+  _openPolicyModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(policyId) {
+    var policy, receipts, receiptsData, claims, claimsData, comments, commentsData, paymentSchedule, scheduleData, content, actions, modal, _t5, _t6, _t7, _t8, _t9;
+    return _regenerator().w(function (_context5) {
+      while (1) switch (_context5.p = _context5.n) {
         case 0:
-          _context4.p = 0;
-          _context4.n = 1;
+          _context5.p = 0;
+          _context5.n = 1;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.ENDPOINTS.GET_POLICY_DETAILS, {
             method: 'GET',
-            params: {
+            queryParams: {
               id: policyId
             }
           });
         case 1:
-          policy = _context4.v;
-          content = "\n            <div class=\"policy-details-grid\">\n                <div class=\"detail-group\">\n                    <label>N\xFAmero de P\xF3liza</label>\n                    <p>".concat(policy.policy_number, "</p>\n                </div>\n                <div class=\"detail-group\">\n                    <label>Tipo</label>\n                    <p>").concat(policy.policy_type, "</p>\n                </div>\n                <div class=\"detail-group\">\n                    <label>Estado</label>\n                    <p><span class=\"badge badge-").concat(policy.status === 'active' ? 'success' : 'warning', "\">").concat(policy.status, "</span></p>\n                </div>\n                <div class=\"detail-group\">\n                    <label>Prima Mensual</label>\n                    <p>$").concat(parseFloat(policy.premium_amount).toFixed(2), "</p>\n                </div>\n                <div class=\"detail-group\">\n                    <label>Cobertura Total</label>\n                    <p>$").concat(parseFloat(policy.coverage_amount).toLocaleString(), "</p>\n                </div>\n                <div class=\"detail-group\">\n                    <label>Fecha de Renovaci\xF3n</label>\n                    <p>").concat(new Date(policy.renewal_date).toLocaleDateString(), "</p>\n                </div>\n                ").concat(policy.agent_name ? "\n                    <div class=\"detail-group full-width\">\n                        <label>Agente Asignado</label>\n                        <p>".concat(policy.agent_name, " - ").concat(policy.agent_email, "</p>\n                    </div>\n                ") : '', "\n            </div>\n        ");
+          policy = _context5.v;
+          // Obtener comprobantes de pago
+          receipts = [];
+          _context5.p = 2;
+          _context5.n = 3;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request("".concat(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.BASE_URL, "?action=payment_receipts&policy_id=").concat(policyId), {
+            method: 'GET'
+          });
+        case 3:
+          receiptsData = _context5.v;
+          receipts = receiptsData.receipts || [];
+          _context5.n = 5;
+          break;
+        case 4:
+          _context5.p = 4;
+          _t5 = _context5.v;
+          console.warn('No se pudieron cargar comprobantes:', _t5);
+        case 5:
+          // Obtener claims
+          claims = [];
+          _context5.p = 6;
+          _context5.n = 7;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request("".concat(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.BASE_URL, "?action=policy_claims&policy_id=").concat(policyId), {
+            method: 'GET'
+          });
+        case 7:
+          claimsData = _context5.v;
+          claims = claimsData.claims || [];
+          _context5.n = 9;
+          break;
+        case 8:
+          _context5.p = 8;
+          _t6 = _context5.v;
+          console.warn('No se pudieron cargar claims:', _t6);
+        case 9:
+          // Obtener comentarios de la póliza
+          comments = [];
+          _context5.p = 10;
+          _context5.n = 11;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request("".concat(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.BASE_URL, "?action=policy_comments&policy_id=").concat(policyId), {
+            method: 'GET'
+          });
+        case 11:
+          commentsData = _context5.v;
+          comments = commentsData.comments || [];
+          _context5.n = 13;
+          break;
+        case 12:
+          _context5.p = 12;
+          _t7 = _context5.v;
+          console.warn('No se pudieron cargar comentarios:', _t7);
+        case 13:
+          // Obtener calendario de pagos
+          paymentSchedule = [];
+          _context5.p = 14;
+          _context5.n = 15;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request("".concat(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.BASE_URL, "?action=agent_payments"), {
+            method: 'GET',
+            queryParams: {
+              policy_id: policyId
+            }
+          });
+        case 15:
+          scheduleData = _context5.v;
+          paymentSchedule = scheduleData.payments || [];
+          _context5.n = 17;
+          break;
+        case 16:
+          _context5.p = 16;
+          _t8 = _context5.v;
+          console.warn('No se pudo cargar calendario de pagos:', _t8);
+        case 17:
+          content = "\n            <div class=\"policy-modal-content\">\n                <!-- Informaci\xF3n General -->\n                <div class=\"policy-details-grid\" style=\"display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem;\">\n                    <div class=\"detail-group\">\n                        <label>N\xFAmero de P\xF3liza</label>\n                        <p><strong>".concat(policy.policy_number, "</strong></p>\n                    </div>\n                    <div class=\"detail-group\">\n                        <label>Tipo</label>\n                        <p>").concat(policy.policy_type, "</p>\n                    </div>\n                    <div class=\"detail-group\">\n                        <label>Estado</label>\n                        <p><span class=\"badge badge-").concat(policy.status === 'active' ? 'success' : 'warning', "\">").concat(policy.status, "</span></p>\n                    </div>\n                    <div class=\"detail-group\">\n                        <label>Prima Mensual</label>\n                        <p>$").concat(parseFloat(policy.premium_amount).toFixed(2), "</p>\n                    </div>\n                    <div class=\"detail-group\">\n                        <label>Cobertura Total</label>\n                        <p>$").concat(parseFloat(policy.coverage_amount).toLocaleString(), "</p>\n                    </div>\n                    <div class=\"detail-group\">\n                        <label>Inicio de Vigencia</label>\n                        <p>").concat(new Date(policy.start_date).toLocaleDateString('es-MX'), "</p>\n                    </div>\n                    <div class=\"detail-group\">\n                        <label>Fin de Vigencia</label>\n                        <p>").concat(new Date(policy.end_date).toLocaleDateString('es-MX'), "</p>\n                    </div>\n                    <div class=\"detail-group\">\n                        <label>Fecha de Renovaci\xF3n</label>\n                        <p>").concat(new Date(policy.renewal_date).toLocaleDateString('es-MX'), "</p>\n                    </div>\n                    ").concat(policy.client_name ? "\n                        <div class=\"detail-group full-width\">\n                            <label>Cliente</label>\n                            <p>".concat(policy.client_name, " - ").concat(policy.client_email || '', "</p>\n                        </div>\n                    ") : '', "\n                    ").concat(policy.agent_name ? "\n                        <div class=\"detail-group full-width\">\n                            <label>Agente Asignado</label>\n                            <p>".concat(policy.agent_name, " - ").concat(policy.agent_email, "</p>\n                        </div>\n                    ") : '', "\n                </div>\n\n                <div class=\"section-divider\" style=\"height:1px; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005), rgba(255,255,255,0.02)); margin: 1rem 0;\"></div>\n\n                <!-- Calendario de Pagos -->\n                ").concat(paymentSchedule.length > 0 ? "\n                    <div class=\"policy-section\" style=\"padding:0.75rem; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); box-shadow: 0 6px 18px rgba(0,0,0,0.5); border-left:4px solid rgba(var(--primary-rgb,80,145,255),0.12); padding-left:0.9rem;\">\n                        <h3 style=\"display:flex; align-items:center; gap:0.6rem; margin:0 0 0.5rem; color:var(--text-primary);\">\n                          <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" style=\"flex-shrink:0;\">\n                            <rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"></rect>\n                            <path d=\"M16 2v4M8 2v4M3 10h18\"></path>\n                          </svg>\n                          <span>Calendario de Pagos</span>\n                        </h3>\n                        <div class=\"payment-schedule-compact\">\n                            ".concat(paymentSchedule.slice(0, 5).map(function (payment) {
+            return "\n                                <div class=\"payment-row ".concat(payment.status, "\" style=\"display:flex; justify-content:space-between; align-items:center; padding:0.5rem; border-radius:8px; background: rgba(0,0,0,0.04); margin-bottom:0.5rem;\">\n                                    <span class=\"payment-date\" style=\"font-weight:600;\">").concat(new Date(payment.due_date).toLocaleDateString('es-MX'), "</span>\n                                    <span class=\"payment-amount\">$").concat(parseFloat(payment.amount_due).toFixed(2), "</span>\n                                    <span class=\"payment-status badge badge-").concat(payment.status === 'paid' ? 'success' : payment.status === 'overdue' ? 'danger' : 'warning', "\">\n                                        ").concat(payment.status === 'paid' ? 'Pagado' : payment.status === 'overdue' ? 'Vencido' : 'Pendiente', "\n                                    </span>\n                                </div>\n                            ");
+          }).join(''), "\n                            ").concat(paymentSchedule.length > 5 ? "<p class=\"text-muted\" style=\"margin-top: 0.5rem; font-size: 0.875rem;\">Y ".concat(paymentSchedule.length - 5, " pagos m\xE1s...</p>") : '', "\n                        </div>\n                    </div>\n                ") : '', "\n\n                <div class=\"section-divider\" style=\"height:1px; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005), rgba(255,255,255,0.02)); margin: 1rem 0;\"></div>\n\n                <!-- Comprobantes de Pago -->\n                <div class=\"policy-section\" style=\"padding:0.75rem; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01)); box-shadow:0 6px 18px rgba(0,0,0,0.45); border-left:4px solid rgba(var(--primary-rgb,80,145,255),0.12); padding-left:0.9rem;\">\n                    <h3 style=\"display:flex; align-items:center; gap:0.6rem; margin:0 0 0.5rem; color:var(--text-primary);\">\n                      <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\">\n                        <path d=\"M21 8V7a2 2 0 0 0-2-2h-3\"></path>\n                        <path d=\"M3 6v12a2 2 0 0 0 2 2h14\"></path>\n                        <path d=\"M8 10h8v6H8z\"></path>\n                      </svg>\n                      <span>Comprobantes de Pago</span>\n                    </h3>\n                    ").concat(receipts.length > 0 ? "\n                        <div class=\"receipts-list\">\n                            ".concat(receipts.map(function (receipt) {
+            return "\n                                <div class=\"receipt-item\" style=\"display:flex; justify-content:space-between; align-items:center; padding:0.6rem; border-radius:8px; background: rgba(var(--bg-secondary-rgb,30,30,30),0.45); box-shadow:0 6px 14px rgba(0,0,0,0.45); margin-bottom:0.6rem;\">\n                                    <div class=\"receipt-info\">\n                                        <strong style=\"display:block; color:var(--text-primary);\">".concat(receipt.file_name, "</strong>\n                                        <small class=\"text-muted\">$").concat(parseFloat(receipt.amount).toFixed(2), " - ").concat(new Date(receipt.uploaded_at).toLocaleDateString('es-MX'), "</small>\n                                        <span class=\"badge badge-").concat(receipt.status === 'approved' ? 'success' : receipt.status === 'pending' ? 'warning' : 'danger', "\" style=\"margin-left:0.5rem;\">").concat(receipt.status === 'approved' ? 'Aprobado' : receipt.status === 'pending' ? 'Pendiente' : 'Rechazado', "</span>\n                                    </div>\n                                    <button class=\"btn-icon\" onclick=\"window.open('").concat(receipt.file_path, "', '_blank')\" title=\"Ver comprobante\" style=\"background:transparent; border:none; color:var(--primary);\">\n                                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\">\n                                            <path d=\"M12 2v6\"></path>\n                                            <path d=\"M21 21H3\"></path>\n                                            <path d=\"M16 6l-4 4-4-4\"></path>\n                                        </svg>\n                                    </button>\n                                </div>\n                            ");
+          }).join(''), "\n                        </div>\n                    ") : '<p class="text-muted">No hay comprobantes de pago</p>', "\n                </div>\n\n                <div class=\"section-divider\" style=\"height:1px; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005), rgba(255,255,255,0.02)); margin: 1rem 0;\"></div>\n\n                <!-- Claims / Siniestros -->\n                <div class=\"policy-section\" style=\"padding:0.75rem; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01)); box-shadow:0 6px 18px rgba(0,0,0,0.45); border-left:4px solid rgba(var(--primary-rgb,80,145,255),0.12); padding-left:0.9rem;\">\n                    <h3 style=\"display:flex; align-items:center; gap:0.6rem; margin:0 0 0.5rem; color:var(--text-primary);\">\n                      <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\">\n                        <path d=\"M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"></path>\n                        <path d=\"M12 9v4\"></path>\n                        <path d=\"M12 17h.01\"></path>\n                      </svg>\n                      <span>Siniestros</span>\n                    </h3>\n                    ").concat(claims.length > 0 ? "\n                        <div class=\"claims-list\">\n                            ".concat(claims.map(function (claim) {
+            return "\n                                <div class=\"claim-item\" style=\"display:flex; justify-content:space-between; align-items:center; padding:0.6rem; border-radius:8px; background: rgba(var(--bg-secondary-rgb,30,30,30),0.35); box-shadow: 0 6px 14px rgba(0,0,0,0.45); margin-bottom:0.6rem;\">\n                                    <div class=\"claim-info\">\n                                        <strong style=\"display:block; color:var(--text-primary);\">".concat(claim.claim_number, "</strong>\n                                        <small class=\"text-muted\">").concat(claim.claim_type, " - $").concat(parseFloat(claim.claim_amount).toFixed(2), "</small>\n                                        <span class=\"badge badge-").concat(claim.status === 'approved' ? 'success' : claim.status === 'pending' ? 'warning' : 'danger', "\" style=\"margin-left:0.5rem;\">").concat(claim.status, "</span>\n                                    </div>\n                                    <small class=\"text-muted\">").concat(new Date(claim.submitted_at).toLocaleDateString('es-MX'), "</small>\n                                </div>\n                            ");
+          }).join(''), "\n                        </div>\n                    ") : '<p class="text-muted">No hay siniestros registrados</p>', "\n                </div>\n\n                <div class=\"section-divider\" style=\"height:1px; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005), rgba(255,255,255,0.02)); margin: 1rem 0;\"></div>\n\n                <!-- Comentarios -->\n                <div class=\"policy-section\" style=\"padding:0.75rem; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01)); box-shadow:0 6px 18px rgba(0,0,0,0.45); border-left:4px solid rgba(var(--primary-rgb,80,145,255),0.12); padding-left:0.9rem;\">\n                    <h3 style=\"display:flex; align-items:center; gap:0.6rem; margin:0 0 0.5rem; color:var(--text-primary);\">\n                      <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\">\n                        <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"></path>\n                      </svg>\n                      <span>Comentarios</span>\n                    </h3>\n                    ").concat(comments.length > 0 ? "\n                        <div class=\"comments-list\" style=\"max-height: 300px; overflow-y: auto;\">\n                            ".concat(comments.map(function (comment) {
+            return "\n                                <div class=\"comment-item\" style=\"padding: 0.75rem; margin-bottom: 0.75rem; background: rgba(var(--bg-secondary-rgb,30,30,30),0.5); border-radius: 8px; box-shadow: 0 6px 14px rgba(0,0,0,0.45);\">\n                                    <div style=\"display: flex; justify-content: space-between; margin-bottom: 0.5rem;\">\n                                        <strong style=\"color: var(--text-primary);\">".concat(comment.from_name, "</strong>\n                                        <small class=\"text-muted\">").concat(new Date(comment.created_at).toLocaleDateString('es-MX'), " ").concat(new Date(comment.created_at).toLocaleTimeString('es-MX', {
+              hour: '2-digit',
+              minute: '2-digit'
+            }), "</small>\n                                    </div>\n                                    <p style=\"margin: 0; color: var(--text-secondary);\">").concat(comment.message, "</p>\n                                    ").concat(comment.file_url ? "\n                                        <a href=\"".concat(comment.file_url, "\" target=\"_blank\" style=\"display: inline-block; margin-top: 0.5rem; color: var(--primary); text-decoration: none;\">\n                                            <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"vertical-align:middle; margin-right:6px;\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11\"></path><path d=\"M17 3v4\"></path></svg> ").concat(comment.file_name || 'Archivo adjunto', "\n                                        </a>\n                                    ") : '', "\n                                </div>\n                            ");
+          }).join(''), "\n                        </div>\n                    ") : '<p class="text-muted">No hay comentarios</p>', "\n                    \n                    <!-- Formulario para agregar comentario -->\n                    <div class=\"add-comment-form\" style=\"margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);\">\n                        <textarea id=\"new-policy-comment-").concat(policyId, "\" \n                                  placeholder=\"Agregar un comentario...\" \n                                  style=\"width: 100%; min-height: 80px; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; resize: vertical;\"\n                                  rows=\"3\"></textarea>\n                        <button class=\"btn btn-primary\" \n                                onclick=\"window.addPolicyComment?.('").concat(policyId, "')\"\n                                style=\"margin-top: 0.5rem; display:inline-flex; align-items:center; gap:0.5rem;\">\n                            <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M22 2L11 13\"></path><path d=\"M22 2l-7 20 2-7 7-7z\"></path></svg>\n                            Agregar Comentario\n                        </button>\n                    </div>\n                </div>\n            </div>\n        ");
           actions = [{
             label: 'Descargar Documento',
             className: 'btn-outline',
@@ -22423,20 +24199,71 @@ function _openPolicyModal() {
             className: 'btn-secondary',
             onclick: 'this.closest(".modal-overlay").remove()'
           }];
-          createModal("Detalles de P\xF3liza - ".concat(policy.policy_number), content, actions);
-          _context4.n = 3;
+          modal = createModal("Detalles de P\xF3liza - ".concat(policy.policy_number), content, actions);
+          modal.classList.add('active');
+          _context5.n = 19;
           break;
-        case 2:
-          _context4.p = 2;
-          _t4 = _context4.v;
+        case 18:
+          _context5.p = 18;
+          _t9 = _context5.v;
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al cargar detalles de la póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
-        case 3:
-          return _context4.a(2);
+        case 19:
+          return _context5.a(2);
       }
-    }, _callee4, null, [[0, 2]]);
+    }, _callee5, null, [[14, 16], [10, 12], [6, 8], [2, 4], [0, 18]]);
   }));
   return _openPolicyModal.apply(this, arguments);
 }
+window.addPolicyComment = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(policyId) {
+    var _textarea$value;
+    var textarea, message, _document$querySelect, _t;
+    return _regenerator().w(function (_context) {
+      while (1) switch (_context.p = _context.n) {
+        case 0:
+          textarea = document.getElementById("new-policy-comment-".concat(policyId));
+          message = textarea === null || textarea === void 0 || (_textarea$value = textarea.value) === null || _textarea$value === void 0 ? void 0 : _textarea$value.trim();
+          if (message) {
+            _context.n = 1;
+            break;
+          }
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Escribe un comentario primero', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
+          return _context.a(2);
+        case 1:
+          _context.p = 1;
+          _context.n = 2;
+          return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request("".concat(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.BASE_URL, "?action=add_policy_comment"), {
+            method: 'POST',
+            body: {
+              policy_id: policyId,
+              message: message
+            }
+          });
+        case 2:
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Comentario agregado exitosamente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+
+          // Recargar el modal
+          (_document$querySelect = document.querySelector('.modal-overlay')) === null || _document$querySelect === void 0 || _document$querySelect.remove();
+          openPolicyModal(policyId);
+          _context.n = 4;
+          break;
+        case 3:
+          _context.p = 3;
+          _t = _context.v;
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al agregar comentario', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+        case 4:
+          return _context.a(2);
+      }
+    }, _callee, null, [[1, 3]]);
+  }));
+  return function (_x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/**
+ * File Claim Modal with Comments
+ */
 function openFileClaimModal() {
   return _openFileClaimModal.apply(this, arguments);
 }
@@ -22445,22 +24272,22 @@ function openFileClaimModal() {
  * Submit claim form
  */
 function _openFileClaimModal() {
-  _openFileClaimModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+  _openFileClaimModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
     var policyId,
       policies,
       content,
       actions,
-      _args5 = arguments;
-    return _regenerator().w(function (_context5) {
-      while (1) switch (_context5.n) {
+      _args6 = arguments;
+    return _regenerator().w(function (_context6) {
+      while (1) switch (_context6.n) {
         case 0:
-          policyId = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : null;
-          _context5.n = 1;
+          policyId = _args6.length > 0 && _args6[0] !== undefined ? _args6[0] : null;
+          _context6.n = 1;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.ENDPOINTS.CLIENT_POLICIES, {
             method: 'GET'
           });
         case 1:
-          policies = _context5.v;
+          policies = _context6.v;
           content = "\n        <form id=\"fileClaimForm\" class=\"modal-form\">\n            <div class=\"form-group\">\n                <label for=\"claimPolicyId\">P\xF3liza Afectada *</label>\n                <select id=\"claimPolicyId\" required>\n                    <option value=\"\">Selecciona una p\xF3liza</option>\n                    ".concat(policies.map(function (p) {
             return "\n                        <option value=\"".concat(p.id, "\" ").concat(p.id == policyId ? 'selected' : '', ">\n                            ").concat(p.policy_number, " - ").concat(p.policy_type, "\n                        </option>\n                    ");
           }).join(''), "\n                </select>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"claimType\">Tipo de Siniestro *</label>\n                <select id=\"claimType\" required>\n                    <option value=\"\">Selecciona el tipo</option>\n                    <option value=\"accident\">Accidente</option>\n                    <option value=\"theft\">Robo</option>\n                    <option value=\"damage\">Da\xF1o</option>\n                    <option value=\"medical\">M\xE9dico</option>\n                    <option value=\"other\">Otro</option>\n                </select>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"incidentDate\">Fecha del Incidente *</label>\n                <input type=\"date\" id=\"incidentDate\" max=\"").concat(new Date().toISOString().split('T')[0], "\" required>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"claimAmount\">Monto Estimado *</label>\n                <input type=\"number\" id=\"claimAmount\" step=\"0.01\" min=\"0\" placeholder=\"0.00\" required>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"claimDescription\">Descripci\xF3n del Siniestro *</label>\n                <textarea id=\"claimDescription\" rows=\"5\" placeholder=\"Describe detalladamente lo sucedido...\" required></textarea>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"claimDocuments\">Documentos de Soporte (opcional)</label>\n                <input type=\"file\" id=\"claimDocuments\" multiple accept=\"image/*,.pdf\">\n                <small>Puedes adjuntar fotos, reportes, etc.</small>\n            </div>\n        </form>\n    ");
@@ -22475,24 +24302,24 @@ function _openFileClaimModal() {
           }];
           createModal('Reportar Siniestro', content, actions);
         case 2:
-          return _context5.a(2);
+          return _context6.a(2);
       }
-    }, _callee5);
+    }, _callee6);
   }));
   return _openFileClaimModal.apply(this, arguments);
 }
-window.submitClaimForm = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-  var form, data, _document$querySelect, _window$appHandlers, result, _t;
-  return _regenerator().w(function (_context) {
-    while (1) switch (_context.p = _context.n) {
+window.submitClaimForm = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+  var form, data, _document$querySelect2, _window$appHandlers, result, _t2;
+  return _regenerator().w(function (_context2) {
+    while (1) switch (_context2.p = _context2.n) {
       case 0:
         form = document.getElementById('fileClaimForm');
         if (form.checkValidity()) {
-          _context.n = 1;
+          _context2.n = 1;
           break;
         }
         form.reportValidity();
-        return _context.a(2);
+        return _context2.a(2);
       case 1:
         data = {
           policy_id: document.getElementById('claimPolicyId').value,
@@ -22501,8 +24328,8 @@ window.submitClaimForm = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerato
           claim_amount: document.getElementById('claimAmount').value,
           description: document.getElementById('claimDescription').value
         };
-        _context.p = 2;
-        _context.n = 3;
+        _context2.p = 2;
+        _context2.n = 3;
         return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.ENDPOINTS.SUBMIT_CLAIM, {
           method: 'POST',
           body: data
@@ -22510,8 +24337,8 @@ window.submitClaimForm = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerato
           useCache: false
         });
       case 3:
-        result = _context.v;
-        (_document$querySelect = document.querySelector('.modal-overlay')) === null || _document$querySelect === void 0 || _document$querySelect.remove();
+        result = _context2.v;
+        (_document$querySelect2 = document.querySelector('.modal-overlay')) === null || _document$querySelect2 === void 0 || _document$querySelect2.remove();
         (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)("Siniestro #".concat(result.claim_number, " registrado exitosamente"), _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
 
         // Reload claims if we're on dashboard
@@ -22520,22 +24347,22 @@ window.submitClaimForm = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerato
             return window.appHandlers.loadClientDashboard();
           }, 1000);
         }
-        _context.n = 5;
+        _context2.n = 5;
         break;
       case 4:
-        _context.p = 4;
-        _t = _context.v;
+        _context2.p = 4;
+        _t2 = _context2.v;
         (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al registrar el siniestro', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
       case 5:
-        return _context.a(2);
+        return _context2.a(2);
     }
-  }, _callee, null, [[2, 4]]);
+  }, _callee2, null, [[2, 4]]);
 }));
 
 /**
  * View Claim Details with Comments Thread
  */
-function openClaimDetailsModal(_x2) {
+function openClaimDetailsModal(_x3) {
   return _openClaimDetailsModal.apply(this, arguments);
 }
 
@@ -22543,13 +24370,13 @@ function openClaimDetailsModal(_x2) {
  * Add comment to claim
  */
 function _openClaimDetailsModal() {
-  _openClaimDetailsModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(claimId) {
-    var claim, comments, content, _t5;
-    return _regenerator().w(function (_context6) {
-      while (1) switch (_context6.p = _context6.n) {
+  _openClaimDetailsModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(claimId) {
+    var claim, comments, content, _t0;
+    return _regenerator().w(function (_context7) {
+      while (1) switch (_context7.p = _context7.n) {
         case 0:
-          _context6.p = 0;
-          _context6.n = 1;
+          _context7.p = 0;
+          _context7.n = 1;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.ENDPOINTS.GET_CLAIM_DETAILS, {
             method: 'GET',
             params: {
@@ -22557,7 +24384,7 @@ function _openClaimDetailsModal() {
             }
           });
         case 1:
-          claim = _context6.v;
+          claim = _context7.v;
           comments = claim.comments || [];
           content = "\n            <div class=\"claim-details-container\">\n                <div class=\"claim-info-section\">\n                    <div class=\"detail-group\">\n                        <label>N\xFAmero de Siniestro</label>\n                        <p>".concat(claim.claim_number, "</p>\n                    </div>\n                    <div class=\"detail-group\">\n                        <label>Estado</label>\n                        <p><span class=\"badge badge-").concat(getClaimStatusColor(claim.status), "\">").concat(getClaimStatusLabel(claim.status), "</span></p>\n                    </div>\n                    <div class=\"detail-group\">\n                        <label>Monto Reclamado</label>\n                        <p>$").concat(parseFloat(claim.claim_amount).toFixed(2), "</p>\n                    </div>\n                    ").concat(claim.approved_amount ? "\n                        <div class=\"detail-group\">\n                            <label>Monto Aprobado</label>\n                            <p class=\"text-success\">$".concat(parseFloat(claim.approved_amount).toFixed(2), "</p>\n                        </div>\n                    ") : '', "\n                    <div class=\"detail-group full-width\">\n                        <label>Descripci\xF3n</label>\n                        <p>").concat(claim.description, "</p>\n                    </div>\n                </div>\n\n                <div class=\"comments-section\">\n                    <h3>Conversaci\xF3n</h3>\n                    <div class=\"comments-thread\" id=\"claimComments\">\n                        ").concat(comments.length > 0 ? comments.map(function (comment) {
             return "\n                            <div class=\"comment-item ".concat(comment.from_type === 'agent' ? 'comment-agent' : 'comment-client', "\">\n                                <div class=\"comment-header\">\n                                    <strong>").concat(comment.from_name, "</strong>\n                                    <span class=\"comment-date\">").concat(new Date(comment.created_at).toLocaleString(), "</span>\n                                </div>\n                                <div class=\"comment-body\">").concat(comment.message, "</div>\n                            </div>\n                        ");
@@ -22567,36 +24394,36 @@ function _openClaimDetailsModal() {
             className: 'btn-secondary',
             onclick: 'this.closest(".modal-overlay").remove()'
           }]);
-          _context6.n = 3;
+          _context7.n = 3;
           break;
         case 2:
-          _context6.p = 2;
-          _t5 = _context6.v;
+          _context7.p = 2;
+          _t0 = _context7.v;
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al cargar detalles del siniestro', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 3:
-          return _context6.a(2);
+          return _context7.a(2);
       }
-    }, _callee6, null, [[0, 2]]);
+    }, _callee7, null, [[0, 2]]);
   }));
   return _openClaimDetailsModal.apply(this, arguments);
 }
 window.addClaimComment = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(claimId) {
-    var textarea, message, _document$querySelect2, _t2;
-    return _regenerator().w(function (_context2) {
-      while (1) switch (_context2.p = _context2.n) {
+  var _ref3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(claimId) {
+    var textarea, message, _document$querySelect3, _t3;
+    return _regenerator().w(function (_context3) {
+      while (1) switch (_context3.p = _context3.n) {
         case 0:
           textarea = document.getElementById('newClaimComment');
           message = textarea.value.trim();
           if (message) {
-            _context2.n = 1;
+            _context3.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Escribe un mensaje primero', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context2.a(2);
+          return _context3.a(2);
         case 1:
-          _context2.p = 1;
-          _context2.n = 2;
+          _context3.p = 1;
+          _context3.n = 2;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.ENDPOINTS.ADD_CLAIM_COMMENT, {
             method: 'POST',
             params: {
@@ -22610,22 +24437,22 @@ window.addClaimComment = /*#__PURE__*/function () {
           });
         case 2:
           // Reload the modal
-          (_document$querySelect2 = document.querySelector('.modal-overlay')) === null || _document$querySelect2 === void 0 || _document$querySelect2.remove();
+          (_document$querySelect3 = document.querySelector('.modal-overlay')) === null || _document$querySelect3 === void 0 || _document$querySelect3.remove();
           openClaimDetailsModal(claimId);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Comentario agregado. Se notificará a las partes.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
-          _context2.n = 4;
+          _context3.n = 4;
           break;
         case 3:
-          _context2.p = 3;
-          _t2 = _context2.v;
+          _context3.p = 3;
+          _t3 = _context3.v;
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al agregar comentario', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context2.a(2);
+          return _context3.a(2);
       }
-    }, _callee2, null, [[1, 3]]);
+    }, _callee3, null, [[1, 3]]);
   }));
-  return function (_x3) {
-    return _ref2.apply(this, arguments);
+  return function (_x4) {
+    return _ref3.apply(this, arguments);
   };
 }();
 
@@ -22640,17 +24467,17 @@ function openMakePaymentModal() {
  * Upload payment receipt with OCR analysis
  */
 function _openMakePaymentModal() {
-  _openMakePaymentModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+  _openMakePaymentModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
     var policies, content, modal;
-    return _regenerator().w(function (_context7) {
-      while (1) switch (_context7.n) {
+    return _regenerator().w(function (_context8) {
+      while (1) switch (_context8.n) {
         case 0:
-          _context7.n = 1;
+          _context8.n = 1;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.ENDPOINTS.CLIENT_POLICIES, {
             method: 'GET'
           });
         case 1:
-          policies = _context7.v;
+          policies = _context8.v;
           content = "\n        <form id=\"makePaymentForm\" class=\"modal-form\" enctype=\"multipart/form-data\">\n            <div class=\"info-banner\">\n                <h4>\uD83D\uDCE4 Subir Comprobante de Pago</h4>\n                <p>Sube tu comprobante de transferencia o dep\xF3sito bancario. Nuestro sistema lo analizar\xE1 autom\xE1ticamente.</p>\n            </div>\n            \n            <div class=\"form-group\">\n                <label for=\"paymentPolicyId\">P\xF3liza a Pagar *</label>\n                <select id=\"paymentPolicyId\" required>\n                    <option value=\"\">Selecciona una p\xF3liza</option>\n                    ".concat(policies.filter(function (p) {
             return p.status === 'active';
           }).map(function (p) {
@@ -22689,53 +24516,53 @@ function _openMakePaymentModal() {
           // Set today as default date
           document.getElementById('paymentDate').value = new Date().toISOString().split('T')[0];
         case 2:
-          return _context7.a(2);
+          return _context8.a(2);
       }
-    }, _callee7);
+    }, _callee8);
   }));
   return _openMakePaymentModal.apply(this, arguments);
 }
-window.uploadPaymentReceipt = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
-  var form, fileInput, file, formData, _document$querySelect3, _window$appHandlers2, submitBtn, _originalText, result, analysis, message, _submitBtn, _t3;
-  return _regenerator().w(function (_context3) {
-    while (1) switch (_context3.p = _context3.n) {
+window.uploadPaymentReceipt = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
+  var form, fileInput, file, formData, _document$querySelect4, _window$appHandlers2, submitBtn, _originalText, result, analysis, message, _submitBtn, _t4;
+  return _regenerator().w(function (_context4) {
+    while (1) switch (_context4.p = _context4.n) {
       case 0:
         form = document.getElementById('makePaymentForm');
         if (form.checkValidity()) {
-          _context3.n = 1;
+          _context4.n = 1;
           break;
         }
         form.reportValidity();
-        return _context3.a(2);
+        return _context4.a(2);
       case 1:
         fileInput = document.getElementById('receiptFile');
         file = fileInput.files[0];
         if (file) {
-          _context3.n = 2;
+          _context4.n = 2;
           break;
         }
         (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-        return _context3.a(2);
+        return _context4.a(2);
       case 2:
         if (!(file.size > 5 * 1024 * 1024)) {
-          _context3.n = 3;
+          _context4.n = 3;
           break;
         }
         (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('El archivo es demasiado grande. Máximo 5MB', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
-        return _context3.a(2);
+        return _context4.a(2);
       case 3:
         formData = new FormData();
         formData.append('receipt', file);
         formData.append('policy_id', document.getElementById('paymentPolicyId').value);
         formData.append('payment_date', document.getElementById('paymentDate').value);
         formData.append('reference', document.getElementById('paymentReference').value || '');
-        _context3.p = 4;
+        _context4.p = 4;
         // Show loading
         submitBtn = document.querySelector('.modal-footer .btn-primary');
         _originalText = submitBtn.textContent;
         submitBtn.textContent = 'Analizando...';
         submitBtn.disabled = true;
-        _context3.n = 5;
+        _context4.n = 5;
         return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.ENDPOINTS.UPLOAD_PAYMENT_RECEIPT, {
           method: 'POST',
           body: formData,
@@ -22744,8 +24571,8 @@ window.uploadPaymentReceipt = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regen
           useCache: false
         });
       case 5:
-        result = _context3.v;
-        (_document$querySelect3 = document.querySelector('.modal-overlay')) === null || _document$querySelect3 === void 0 || _document$querySelect3.remove();
+        result = _context4.v;
+        (_document$querySelect4 = document.querySelector('.modal-overlay')) === null || _document$querySelect4 === void 0 || _document$querySelect4.remove();
 
         // Show analysis results
         analysis = result.extracted_data || {};
@@ -22765,21 +24592,21 @@ window.uploadPaymentReceipt = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regen
             return window.appHandlers.loadClientDashboard();
           }, 1500);
         }
-        _context3.n = 7;
+        _context4.n = 7;
         break;
       case 6:
-        _context3.p = 6;
-        _t3 = _context3.v;
-        (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir el comprobante: ' + _t3.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+        _context4.p = 6;
+        _t4 = _context4.v;
+        (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir el comprobante: ' + _t4.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
 
         // Re-enable button
         _submitBtn = document.querySelector('.modal-footer .btn-primary');
         _submitBtn.textContent = originalText;
         _submitBtn.disabled = false;
       case 7:
-        return _context3.a(2);
+        return _context4.a(2);
     }
-  }, _callee3, null, [[4, 6]]);
+  }, _callee4, null, [[4, 6]]);
 }));
 
 /**
@@ -22817,24 +24644,24 @@ function openMakePaymentActionModal() {
  * File Claim Modal Quick Action
  */
 function _openMakePaymentActionModal() {
-  _openMakePaymentActionModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
+  _openMakePaymentActionModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
     var policyId,
       scheduleId,
       modal,
-      _args8 = arguments;
-    return _regenerator().w(function (_context8) {
-      while (1) switch (_context8.n) {
+      _args9 = arguments;
+    return _regenerator().w(function (_context9) {
+      while (1) switch (_context9.n) {
         case 0:
-          policyId = _args8.length > 0 && _args8[0] !== undefined ? _args8[0] : null;
-          scheduleId = _args8.length > 1 && _args8[1] !== undefined ? _args8[1] : null;
+          policyId = _args9.length > 0 && _args9[0] !== undefined ? _args9[0] : null;
+          scheduleId = _args9.length > 1 && _args9[1] !== undefined ? _args9[1] : null;
           modal = document.createElement('div');
           modal.className = 'app-modal-overlay active';
-          modal.innerHTML = "\n        <div class=\"app-modal app-modal-md\">\n            <div class=\"app-modal-header\">\n                <h2 class=\"app-modal-title\">Subir Comprobante de Pago</h2>\n                <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                        <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                    </svg>\n                </button>\n            </div>\n            <div class=\"app-modal-body\">\n                <form id=\"makePaymentForm\" class=\"payment-form\" onsubmit=\"window.submitPaymentForm?.(event)\" data-policy=\"".concat(policyId || '', "\" data-schedule=\"").concat(scheduleId || '', "\">\n                    <div class=\"form-group\">\n                        <label for=\"payment-proof-file\">Comprobante de pago</label>\n                        <input type=\"file\" id=\"payment-proof-file\" accept=\"image/*,.pdf\" required>\n                        <small>Formatos aceptados: JPG, PNG, PDF (m\xE1x 5MB)</small>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"payment-reference\">Referencia de pago (opcional)</label>\n                        <input type=\"text\" id=\"payment-reference\" placeholder=\"N\xFAmero de referencia o folio\">\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"payment-notes\">Notas adicionales (opcional)</label>\n                        <textarea id=\"payment-notes\" rows=\"3\" placeholder=\"Informaci\xF3n adicional sobre el pago\"></textarea>\n                    </div>\n                    <div class=\"form-actions\">\n                        <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n                        <button type=\"submit\" class=\"btn btn-primary\">Subir comprobante</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    ");
+          modal.innerHTML = "\n        <div class=\"app-modal app-modal-md\">\n            <div class=\"modal-accent\"></div>\n            <div class=\"app-modal-header\">\n                <div class=\"modal-icon\">\n                    <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M21 8V7a2 2 0 0 0-2-2h-3\"></path><path d=\"M3 6v12a2 2 0 0 0 2 2h14\"></path><path d=\"M8 10h8v6H8z\"></path></svg>\n                </div>\n                <h2 class=\"app-modal-title\">Subir Comprobante de Pago</h2>\n                <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>\n                </button>\n            </div>\n            <div class=\"app-modal-body\">\n                <form id=\"makePaymentForm\" class=\"payment-form\" onsubmit=\"window.submitPaymentForm?.(event)\" data-policy=\"".concat(policyId || '', "\" data-schedule=\"").concat(scheduleId || '', "\">\n                    <div class=\"form-group\">\n                        <label for=\"payment-proof-file\">Comprobante de pago</label>\n                        <input type=\"file\" id=\"payment-proof-file\" accept=\"image/*,.pdf\" required>\n                        <small>Formatos aceptados: JPG, PNG, PDF (m\xE1x 5MB)</small>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"payment-reference\">Referencia de pago (opcional)</label>\n                        <input type=\"text\" id=\"payment-reference\" placeholder=\"N\xFAmero de referencia o folio\">\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"payment-notes\">Notas adicionales (opcional)</label>\n                        <textarea id=\"payment-notes\" rows=\"3\" placeholder=\"Informaci\xF3n adicional sobre el pago\"></textarea>\n                    </div>\n                    <div class=\"form-actions\">\n                        <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n                        <button type=\"submit\" class=\"btn btn-primary\">Subir comprobante</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    ");
           document.body.appendChild(modal);
         case 1:
-          return _context8.a(2);
+          return _context9.a(2);
       }
-    }, _callee8);
+    }, _callee9);
   }));
   return _openMakePaymentActionModal.apply(this, arguments);
 }
@@ -22846,40 +24673,40 @@ function openFileClaimActionModal() {
  * Update Info Modal Quick Action
  */
 function _openFileClaimActionModal() {
-  _openFileClaimActionModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
+  _openFileClaimActionModal = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
     var policyId,
       policies,
       modal,
-      _args9 = arguments;
-    return _regenerator().w(function (_context9) {
-      while (1) switch (_context9.n) {
+      _args0 = arguments;
+    return _regenerator().w(function (_context0) {
+      while (1) switch (_context0.n) {
         case 0:
-          policyId = _args9.length > 0 && _args9[0] !== undefined ? _args9[0] : null;
-          _context9.n = 1;
+          policyId = _args0.length > 0 && _args0[0] !== undefined ? _args0[0] : null;
+          _context0.n = 1;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_2__.apiService.request(_api_integration_js__WEBPACK_IMPORTED_MODULE_2__.API_CONFIG.ENDPOINTS.CLIENT_POLICIES, {
             method: 'GET'
           })["catch"](function () {
             return [];
           });
         case 1:
-          policies = _context9.v;
+          policies = _context0.v;
           modal = document.createElement('div');
           modal.className = 'app-modal-overlay active';
-          modal.innerHTML = "\n        <div class=\"app-modal app-modal-lg\">\n            <div class=\"app-modal-header\">\n                <h2 class=\"app-modal-title\">Nuevo Siniestro</h2>\n                <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                        <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                    </svg>\n                </button>\n            </div>\n            <div class=\"app-modal-body\">\n                <form id=\"fileClaimForm\" class=\"claim-form\" onsubmit=\"window.submitClaimForm?.(event)\">\n                    <div class=\"form-group\">\n                        <label for=\"claim-policy\">P\xF3liza Afectada *</label>\n                        <select id=\"claim-policy\" required>\n                            <option value=\"\">Selecciona una p\xF3liza</option>\n                            ".concat(policies.map(function (p) {
+          modal.innerHTML = "\n        <div class=\"app-modal app-modal-lg\">\n            <div class=\"modal-accent\"></div>\n            <div class=\"app-modal-header\">\n                <div class=\"modal-icon\">\n                    <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"></path></svg>\n                </div>\n                <h2 class=\"app-modal-title\">Nuevo Siniestro</h2>\n                <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>\n                </button>\n            </div>\n            <div class=\"app-modal-body\">\n                <form id=\"fileClaimForm\" class=\"claim-form\" onsubmit=\"window.submitClaimForm?.(event)\">\n                    <div class=\"form-group\">\n                        <label for=\"claim-policy\">P\xF3liza Afectada *</label>\n                        <select id=\"claim-policy\" required>\n                            <option value=\"\">Selecciona una p\xF3liza</option>\n                            ".concat(policies.map(function (p) {
             return "\n                                <option value=\"".concat(p.id, "\" ").concat(p.id == policyId ? 'selected' : '', ">\n                                    ").concat(p.policy_number, " - ").concat(p.policy_type, "\n                                </option>\n                            ");
           }).join(''), "\n                        </select>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"claim-type\">Tipo de Siniestro *</label>\n                        <input type=\"text\" id=\"claim-type\" placeholder=\"Ej: Accidente, Da\xF1o, Robo\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"claim-date\">Fecha del Incidente *</label>\n                        <input type=\"date\" id=\"claim-date\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"claim-description\">Descripci\xF3n del incidente</label>\n                        <textarea id=\"claim-description\" rows=\"4\" placeholder=\"Describa lo ocurrido...\" required></textarea>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"claim-files\">Documentos adjuntos (fotos, reportes)</label>\n                        <input type=\"file\" id=\"claim-files\" multiple accept=\"image/*,.pdf\">\n                        <small>M\xE1ximo 5 archivos. Formatos: JPG, PNG, PDF</small>\n                    </div>\n                    <div class=\"form-actions\">\n                        <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n                        <button type=\"submit\" class=\"btn btn-primary\">Enviar siniestro</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    ");
           document.body.appendChild(modal);
         case 2:
-          return _context9.a(2);
+          return _context0.a(2);
       }
-    }, _callee9);
+    }, _callee0);
   }));
   return _openFileClaimActionModal.apply(this, arguments);
 }
 function openUpdateInfoModal() {
   var modal = document.createElement('div');
   modal.className = 'app-modal-overlay active';
-  modal.innerHTML = "\n        <div class=\"app-modal app-modal-md\">\n            <div class=\"app-modal-header\">\n                <h2 class=\"app-modal-title\">Actualizar Informaci\xF3n</h2>\n                <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n                        <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                    </svg>\n                </button>\n            </div>\n            <div class=\"app-modal-body\">\n                <form id=\"updateInfoForm\" class=\"update-info-form\" onsubmit=\"window.submitInfoForm?.(event)\">\n                    <div class=\"form-group\">\n                        <label for=\"update-phone\">Tel\xE9fono</label>\n                        <input type=\"tel\" id=\"update-phone\" placeholder=\"+1 (555) 000-0000\">\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"update-email\">Email</label>\n                        <input type=\"email\" id=\"update-email\" placeholder=\"email@ejemplo.com\">\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"update-address\">Direcci\xF3n</label>\n                        <textarea id=\"update-address\" rows=\"3\" placeholder=\"Calle, n\xFAmero, ciudad, estado, c\xF3digo postal\"></textarea>\n                    </div>\n                    <div class=\"form-actions\">\n                        <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n                        <button type=\"submit\" class=\"btn btn-primary\">Guardar cambios</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    ";
+  modal.innerHTML = "\n        <div class=\"app-modal app-modal-md\">\n            <div class=\"modal-accent\"></div>\n            <div class=\"app-modal-header\">\n                <div class=\"modal-icon\">\n                    <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z\"></path></svg>\n                </div>\n                <h2 class=\"app-modal-title\">Actualizar Informaci\xF3n</h2>\n                <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>\n                </button>\n            </div>\n            <div class=\"app-modal-body\">\n                <form id=\"updateInfoForm\" class=\"update-info-form\" onsubmit=\"window.submitInfoForm?.(event)\">\n                    <div class=\"form-group\">\n                        <label for=\"update-phone\">Tel\xE9fono</label>\n                        <input type=\"tel\" id=\"update-phone\" placeholder=\"+1 (555) 000-0000\">\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"update-email\">Email</label>\n                        <input type=\"email\" id=\"update-email\" placeholder=\"email@ejemplo.com\">\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"update-address\">Direcci\xF3n</label>\n                        <textarea id=\"update-address\" rows=\"3\" placeholder=\"Calle, n\xFAmero, ciudad, estado, c\xF3digo postal\"></textarea>\n                    </div>\n                    <div class=\"form-actions\">\n                        <button type=\"button\" class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n                        <button type=\"submit\" class=\"btn btn-primary\">Guardar cambios</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    ";
   document.body.appendChild(modal);
 }
 
@@ -22930,7 +24757,7 @@ var NotificationModal = /*#__PURE__*/function () {
   }, {
     key: "createModal",
     value: function createModal() {
-      var modalHTML = "\n            <div id=\"notification-modal\" class=\"notification-modal\" aria-modal=\"true\" role=\"dialog\">\n                <div class=\"notification-modal-overlay\" data-close-modal></div>\n                <div class=\"notification-modal-content\">\n                    <div class=\"notification-modal-header\">\n                        <h2 class=\"notification-modal-title\">\n                            <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                                <path d=\"M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9\" />\n                                <path d=\"M13.73 21a2 2 0 0 1-3.46 0\" />\n                            </svg>\n                            Notificaciones\n                            <span class=\"notification-count-badge\" data-notification-count></span>\n                        </h2>\n                        <button class=\"notification-modal-close\" data-close-modal aria-label=\"Cerrar notificaciones\">\n                            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                                <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\" />\n                                <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\" />\n                            </svg>\n                        </button>\n                    </div>\n                    \n                    <div class=\"notification-modal-filters\">\n                        <button class=\"notification-filter active\" data-filter=\"all\">\n                            Todas <span class=\"filter-count\" data-count=\"all\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"payment\">\n                            Pagos <span class=\"filter-count\" data-count=\"payment\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"policy\">\n                            P\xF3lizas <span class=\"filter-count\" data-count=\"policy\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"comment\">\n                            Comentarios <span class=\"filter-count\" data-count=\"comment\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"system\">\n                            Sistema <span class=\"filter-count\" data-count=\"system\">0</span>\n                        </button>\n                    </div>\n\n                    <div class=\"notification-modal-body\" data-notification-list>\n                        <!-- Notifications will be injected here -->\n                    </div>\n\n                    <div class=\"notification-modal-footer\">\n                        <button class=\"notification-action-btn secondary\" onclick=\"window.notificationModal?.markAllAsRead()\">\n                            Marcar todas como le\xEDdas\n                        </button>\n                        <button class=\"notification-action-btn secondary\" onclick=\"window.notificationModal?.clearAll()\">\n                            Limpiar todas\n                        </button>\n                    </div>\n                </div>\n            </div>\n        ";
+      var modalHTML = "\n            <div id=\"notification-modal\" class=\"app-modal-overlay notification-modal\" aria-modal=\"true\" role=\"dialog\">\n                <div class=\"app-modal app-modal-lg notification-modal-container\">\n                    <div class=\"app-modal-header\">\n                        <h2>\n                            <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                                <path d=\"M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9\" />\n                                <path d=\"M13.73 21a2 2 0 0 1-3.46 0\" />\n                            </svg>\n                            Notificaciones\n                            <span class=\"notification-count-badge\" data-notification-count></span>\n                        </h2>\n                        <button class=\"app-modal-close\" data-close-modal aria-label=\"Cerrar notificaciones\">\n                            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                                <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\" />\n                                <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\" />\n                            </svg>\n                        </button>\n                    </div>\n                    \n                    <div class=\"notification-modal-filters\">\n                        <button class=\"notification-filter active\" data-filter=\"all\">\n                            Todas <span class=\"filter-count\" data-count=\"all\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"payment\">\n                            Pagos <span class=\"filter-count\" data-count=\"payment\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"policy\">\n                            P\xF3lizas <span class=\"filter-count\" data-count=\"policy\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"comment\">\n                            Comentarios <span class=\"filter-count\" data-count=\"comment\">0</span>\n                        </button>\n                        <button class=\"notification-filter\" data-filter=\"system\">\n                            Sistema <span class=\"filter-count\" data-count=\"system\">0</span>\n                        </button>\n                    </div>\n\n                    <div class=\"app-modal-body notification-modal-body\" data-notification-list>\n                        <!-- Notifications will be injected here -->\n                    </div>\n\n                    <div class=\"notification-modal-footer\">\n                        <button class=\"notification-action-btn secondary\" onclick=\"window.notificationModal?.markAllAsRead()\">\n                            Marcar todas como le\xEDdas\n                        </button>\n                        <button class=\"notification-action-btn secondary\" onclick=\"window.notificationModal?.clearAll()\">\n                            Limpiar todas\n                        </button>\n                    </div>\n                </div>\n            </div>\n        ";
       var container = document.createElement('div');
       container.innerHTML = modalHTML;
       this.modal = container.firstElementChild;
@@ -23907,16 +25734,31 @@ function renderUpcomingPaymentSlots(payments) {
     var statusClass = "status-".concat(payment.status || 'pending');
     var amount = typeof payment.amount === 'number' ? "$".concat(payment.amount.toFixed(2)) : payment.amount;
     var policyInfo = payment.policy_number || payment.policy_type || 'Póliza';
-    html += "\n            <div class=\"payment-slot ".concat(statusClass, "\" data-payment-id=\"").concat(payment.id || '', "\">\n                <span class=\"payment-date\">").concat(dateStr, "</span>\n                <span class=\"payment-policy\">").concat(policyInfo, "</span>\n                <span class=\"payment-amount\">").concat(amount, "</span>\n            </div>\n        ");
+    html += "\n            <div class=\"payment-slot ".concat(statusClass, "\" data-payment-id=\"").concat(payment.id || '', "\">\n                <div class=\"payment-slot-info\">\n                    <span class=\"payment-date\">").concat(dateStr, "</span>\n                    <span class=\"payment-policy\">").concat(policyInfo, "</span>\n                    <span class=\"payment-amount\">").concat(amount, "</span>\n                </div>\n                <button class=\"btn btn-xs btn-ghost payment-receipt-btn\" data-payment-id=\"").concat(payment.id || '', "\" title=\"Ver comprobante\">\n                    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/>\n                        <polyline points=\"14 2 14 8 20 8\"/>\n                    </svg>\n                </button>\n            </div>\n        ");
   });
   upcomingContainer.innerHTML = html;
 
   // Add click handlers for payment slots
-  upcomingContainer.querySelectorAll('.payment-slot').forEach(function (slot) {
+  upcomingContainer.querySelectorAll('.payment-slot-info').forEach(function (slot) {
     slot.addEventListener('click', function () {
-      var paymentId = slot.getAttribute('data-payment-id');
+      var paymentSlot = slot.closest('.payment-slot');
+      var paymentId = paymentSlot.getAttribute('data-payment-id');
       if (paymentId) {
         showPaymentDetails(paymentId, payments);
+      }
+    });
+  });
+
+  // Add click handlers for receipt buttons
+  upcomingContainer.querySelectorAll('.payment-receipt-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var _window$appHandlers;
+      e.stopPropagation();
+      var paymentId = btn.getAttribute('data-payment-id');
+      if (paymentId && (_window$appHandlers = window.appHandlers) !== null && _window$appHandlers !== void 0 && _window$appHandlers.viewReceipt) {
+        window.appHandlers.viewReceipt(paymentId);
+      } else {
+        (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Función de comprobantes próximamente disponible', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.INFO);
       }
     });
   });
@@ -24671,7 +26513,7 @@ var ProofReviewComponent = /*#__PURE__*/function () {
     value: function () {
       var _render3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee13() {
         var _this5 = this;
-        var response, proofs, _t4;
+        var proofs, response, _t4, _t5;
         return _regenerator().w(function (_context13) {
           while (1) switch (_context13.p = _context13.n) {
             case 0:
@@ -24683,36 +26525,59 @@ var ProofReviewComponent = /*#__PURE__*/function () {
               return _context13.a(2);
             case 1:
               _context13.p = 1;
-              _context13.n = 2;
+              console.log('[PendingProofReviews] Loading pending reviews...');
+              proofs = [];
+              _context13.p = 2;
+              _context13.n = 3;
               return this.api.getPendingProofReviews();
-            case 2:
-              response = _context13.v;
-              proofs = response.proofs; // Notificar el contador al callback si existe
-              if (typeof this.onCountUpdate === 'function') {
-                this.onCountUpdate(proofs.length);
-              }
-              if (!(proofs.length === 0)) {
-                _context13.n = 3;
-                break;
-              }
-              this.container.innerHTML = "\n                    <div class=\"no-pending-reviews\">\n                        No hay comprobantes pendientes de revisi\xF3n\n                    </div>\n                ";
-              return _context13.a(2);
             case 3:
-              this.container.innerHTML = "\n                <div class=\"proof-reviews-container\">\n                    <h3>Comprobantes Pendientes (".concat(proofs.length, ")</h3>\n                    <div class=\"proof-list\">\n                        ").concat(proofs.map(function (proof) {
-                return _this5.renderProofCard(proof);
-              }).join(''), "\n                    </div>\n                </div>\n            ");
-              this.attachEventListeners();
+              response = _context13.v;
+              proofs = (response === null || response === void 0 ? void 0 : response.proofs) || response || [];
               _context13.n = 5;
               break;
             case 4:
               _context13.p = 4;
               _t4 = _context13.v;
-              console.error('Error cargando comprobantes:', _t4);
-              this.container.innerHTML = "\n                <div class=\"error-message\">\n                    Error al cargar comprobantes pendientes\n                </div>\n            ";
+              console.warn('[PendingProofReviews] API error, usando datos de prueba:', _t4);
+              // Datos de prueba
+              proofs = [{
+                proof_id: 'PR-001',
+                policy_number: 'AUTO-001-2026',
+                client_name: 'María González',
+                amount_due: 1950.00,
+                due_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+                upload_date: new Date().toISOString(),
+                file_name: 'comprobante_pago.pdf'
+              }];
             case 5:
+              console.log('[PendingProofReviews] Proofs loaded:', proofs.length);
+
+              // Notificar el contador al callback si existe
+              if (typeof this.onCountUpdate === 'function') {
+                this.onCountUpdate(proofs.length);
+              }
+              if (!(proofs.length === 0)) {
+                _context13.n = 6;
+                break;
+              }
+              this.container.innerHTML = "\n                    <div class=\"no-pending-reviews\" style=\"padding: 3rem; text-align: center;\">\n                        <svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" style=\"margin-bottom: 1rem; color: var(--text-secondary);\">\n                            <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                            <path d=\"M12 6v6l4 2\"/>\n                        </svg>\n                        <p style=\"color: var(--text-secondary); margin: 0;\">No hay comprobantes pendientes de revisi\xF3n</p>\n                    </div>\n                ";
+              return _context13.a(2);
+            case 6:
+              this.container.innerHTML = "\n                <div class=\"proof-reviews-container\">\n                    <h3 style=\"margin-bottom: 1rem; color: var(--text-primary);\">Comprobantes Pendientes (".concat(proofs.length, ")</h3>\n                    <div class=\"proof-list\">\n                        ").concat(proofs.map(function (proof) {
+                return _this5.renderProofCard(proof);
+              }).join(''), "\n                    </div>\n                </div>\n            ");
+              this.attachEventListeners();
+              _context13.n = 8;
+              break;
+            case 7:
+              _context13.p = 7;
+              _t5 = _context13.v;
+              console.error('[PendingProofReviews] Error cargando comprobantes:', _t5);
+              this.container.innerHTML = "\n                <div class=\"error-message\" style=\"padding: 2rem; text-align: center; color: var(--text-secondary);\">\n                    <svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" style=\"margin-bottom: 1rem;\">\n                        <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                        <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/>\n                        <line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/>\n                    </svg>\n                    <p>Error al cargar comprobantes pendientes</p>\n                    <button class=\"btn btn-outline\" onclick=\"location.reload()\" style=\"margin-top: 1rem;\">Reintentar</button>\n                </div>\n            ";
+            case 8:
               return _context13.a(2);
           }
-        }, _callee13, this, [[1, 4]]);
+        }, _callee13, this, [[2, 4], [1, 7]]);
       }));
       function render() {
         return _render3.apply(this, arguments);
@@ -24804,7 +26669,7 @@ var ProofReviewComponent = /*#__PURE__*/function () {
     key: "handleReview",
     value: function () {
       var _handleReview = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee17(proofId, approved) {
-        var notes, result, _t5;
+        var notes, result, _t6;
         return _regenerator().w(function (_context17) {
           while (1) switch (_context17.p = _context17.n) {
             case 0:
@@ -24826,8 +26691,8 @@ var ProofReviewComponent = /*#__PURE__*/function () {
               break;
             case 3:
               _context17.p = 3;
-              _t5 = _context17.v;
-              alert('Error al revisar comprobante: ' + _t5.message);
+              _t6 = _context17.v;
+              alert('Error al revisar comprobante: ' + _t6.message);
             case 4:
               return _context17.a(2);
           }
@@ -27827,6 +29692,58 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./styles/dm-modal-improvements.css":
+/*!******************************************!*\
+  !*** ./styles/dm-modal-improvements.css ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_dm_modal_improvements_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./dm-modal-improvements.css */ "./node_modules/css-loader/dist/cjs.js!./styles/dm-modal-improvements.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_dm_modal_improvements_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_dm_modal_improvements_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_dm_modal_improvements_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_dm_modal_improvements_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
 /***/ "./styles/modals-unified.css":
 /*!***********************************!*\
   !*** ./styles/modals-unified.css ***!
@@ -28664,31 +30581,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_dashboard_actions_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../styles/dashboard-actions.css */ "./styles/dashboard-actions.css");
 /* harmony import */ var _styles_agent_dashboard_panels_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../styles/agent-dashboard-panels.css */ "./styles/agent-dashboard-panels.css");
 /* harmony import */ var _styles_direct_messages_css__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../styles/direct-messages.css */ "./styles/direct-messages.css");
-/* harmony import */ var _styles_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../styles/scroll-modal-fixes.css */ "./styles/scroll-modal-fixes.css");
-/* harmony import */ var _styles_modals_unified_css__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../styles/modals-unified.css */ "./styles/modals-unified.css");
-/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../styles/app.css */ "./styles/app.css");
-/* harmony import */ var _styles_dark_forest_css__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../../styles/dark-forest.css */ "./styles/dark-forest.css");
-/* harmony import */ var _modules_particles_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../modules/particles.js */ "./src/modules/particles.js");
-/* harmony import */ var _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../modules/simpleRouter.js */ "./src/modules/simpleRouter.js");
-/* harmony import */ var _modules_auth_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../modules/auth.js */ "./src/modules/auth.js");
-/* harmony import */ var _modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../modules/loadingModal.js */ "./src/modules/loadingModal.js");
-/* harmony import */ var _modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../modules/notifications.js */ "./src/modules/notifications.js");
-/* harmony import */ var _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../modules/homeAnimations.js */ "./src/modules/homeAnimations.js");
-/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./state.js */ "./src/core/state.js");
-/* harmony import */ var _modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../modules/quoteFlow.js */ "./src/modules/quoteFlow.js");
-/* harmony import */ var _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../modules/scheduling.js */ "./src/modules/scheduling.js");
-/* harmony import */ var _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../modules/contactsManager.js */ "./src/modules/contactsManager.js");
-/* harmony import */ var _utils_logo_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ../utils/logo.js */ "./src/utils/logo.js");
-/* harmony import */ var _utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../utils/scrollCollapse.js */ "./src/utils/scrollCollapse.js");
-/* harmony import */ var _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ../modules/chartModals.js */ "./src/modules/chartModals.js");
-/* harmony import */ var _modules_paymentCalendar_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ../modules/paymentCalendar.js */ "./src/modules/paymentCalendar.js");
-/* harmony import */ var _modules_notificationModal_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ../modules/notificationModal.js */ "./src/modules/notificationModal.js");
-/* harmony import */ var _modules_paymentIntegration_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ../modules/paymentIntegration.js */ "./src/modules/paymentIntegration.js");
-/* harmony import */ var _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ../modules/dashboardActions.js */ "./src/modules/dashboardActions.js");
-/* harmony import */ var _modules_directMessages_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ../modules/directMessages.js */ "./src/modules/directMessages.js");
-/* harmony import */ var _modules_contactModal_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ../modules/contactModal.js */ "./src/modules/contactModal.js");
-/* harmony import */ var _modules_globalSearch_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ../modules/globalSearch.js */ "./src/modules/globalSearch.js");
+/* harmony import */ var _styles_dm_modal_improvements_css__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../styles/dm-modal-improvements.css */ "./styles/dm-modal-improvements.css");
+/* harmony import */ var _styles_scroll_modal_fixes_css__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../styles/scroll-modal-fixes.css */ "./styles/scroll-modal-fixes.css");
+/* harmony import */ var _styles_modals_unified_css__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../styles/modals-unified.css */ "./styles/modals-unified.css");
+/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../../styles/app.css */ "./styles/app.css");
+/* harmony import */ var _styles_dark_forest_css__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../../styles/dark-forest.css */ "./styles/dark-forest.css");
+/* harmony import */ var _modules_particles_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../modules/particles.js */ "./src/modules/particles.js");
+/* harmony import */ var _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../modules/simpleRouter.js */ "./src/modules/simpleRouter.js");
+/* harmony import */ var _modules_auth_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../modules/auth.js */ "./src/modules/auth.js");
+/* harmony import */ var _modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../modules/loadingModal.js */ "./src/modules/loadingModal.js");
+/* harmony import */ var _modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../modules/notifications.js */ "./src/modules/notifications.js");
+/* harmony import */ var _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../modules/homeAnimations.js */ "./src/modules/homeAnimations.js");
+/* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
+/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./state.js */ "./src/core/state.js");
+/* harmony import */ var _modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../modules/quoteFlow.js */ "./src/modules/quoteFlow.js");
+/* harmony import */ var _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../modules/scheduling.js */ "./src/modules/scheduling.js");
+/* harmony import */ var _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ../modules/contactsManager.js */ "./src/modules/contactsManager.js");
+/* harmony import */ var _utils_logo_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../utils/logo.js */ "./src/utils/logo.js");
+/* harmony import */ var _utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ../utils/scrollCollapse.js */ "./src/utils/scrollCollapse.js");
+/* harmony import */ var _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ../modules/chartModals.js */ "./src/modules/chartModals.js");
+/* harmony import */ var _modules_paymentCalendar_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ../modules/paymentCalendar.js */ "./src/modules/paymentCalendar.js");
+/* harmony import */ var _modules_modalManager_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ../modules/modalManager.js */ "./src/modules/modalManager.js");
+/* harmony import */ var _modules_notificationModal_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ../modules/notificationModal.js */ "./src/modules/notificationModal.js");
+/* harmony import */ var _modules_paymentIntegration_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ../modules/paymentIntegration.js */ "./src/modules/paymentIntegration.js");
+/* harmony import */ var _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ../modules/dashboardActions.js */ "./src/modules/dashboardActions.js");
+/* harmony import */ var _modules_directMessages_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ../modules/directMessages.js */ "./src/modules/directMessages.js");
+/* harmony import */ var _modules_contactModal_js__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ../modules/contactModal.js */ "./src/modules/contactModal.js");
+/* harmony import */ var _modules_globalSearch_js__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ../modules/globalSearch.js */ "./src/modules/globalSearch.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -28728,10 +30647,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
  // NEW: Acciones y modales de dashboards
  // NEW: Paneles de agente (pagos, pólizas)
  // NEW: Sistema de mensajes directos
+ // NEW: Mejoras de contraste y animaciones para DM
  // NEW: Fixes de scroll y modales
  // NEW: Sistema unificado de modales
  // Base styles
  // Theme overrides MUST load last
+
 
 
 
@@ -28858,29 +30779,33 @@ _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
 
 // Expose handlers globally for onclick handlers in templates
 window.appHandlers = _objectSpread(_objectSpread({
-  navigateTo: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo,
-  toggleMobileMenu: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.toggleMobileMenu,
-  toggleFooter: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.toggleFooter,
-  skipToFinalState: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_29__.skipToFinalState,
-  showHomeSection: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_29__.showHomeSection,
+  navigateTo: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.navigateTo,
+  toggleMobileMenu: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.toggleMobileMenu,
+  toggleFooter: _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.toggleFooter,
+  skipToFinalState: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_30__.skipToFinalState,
+  showHomeSection: _modules_homeAnimations_js__WEBPACK_IMPORTED_MODULE_30__.showHomeSection,
   handleClientLogin: handleClientLogin,
   handleAgentLogin: handleAgentLogin,
   handleContactSubmit: handleContactSubmit,
   logout: handleLogout,
   toggleTheme: toggleTheme
-}, _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__), {}, {
+}, _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__), {}, {
   // Dashboard placeholders (legacy - algunos serán reemplazados por dashboardActions)
-  viewPolicy: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.viewPolicy,
-  makePayment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.makePayment,
-  fileClaim: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.fileClaim,
-  updateInfo: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.updateInfo,
-  downloadPaymentHistory: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.downloadPaymentHistory,
-  viewClientDetails: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.viewClientDetails,
-  createQuote: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.createQuote,
-  addClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.addClient,
-  scheduleAppointment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.scheduleAppointment,
+  viewPolicy: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.viewPolicy,
+  makePayment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.makePayment,
+  fileClaim: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.fileClaim,
+  updateInfo: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.updateInfo,
+  downloadPaymentHistory: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.downloadPaymentHistory,
+  viewClientDetails: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.viewClientDetails,
+  createQuote: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.createQuote,
+  addClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.addClient,
+  scheduleAppointment: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.scheduleAppointment,
   openQuoteModal: openQuoteModal,
-  addNewClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.addClient,
+  openQuotes: openQuotes,
+  closeQuotesModal: closeQuotesModal,
+  viewQuoteDetails: viewQuoteDetails,
+  closeQuoteDetailsModal: closeQuoteDetailsModal,
+  addNewClient: _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.addClient,
   editClient: editClient,
   processQuote: processQuote,
   submitQuote: submitQuote,
@@ -28898,33 +30823,36 @@ window.appHandlers = _objectSpread(_objectSpread({
   loadAdminDashboard: loadAdminDashboard,
   refreshDashboard: refreshDashboard,
   // Chart modals
-  openPaymentTrendsModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_37__.openPaymentTrendsModal,
-  openPolicyHealthModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_37__.openPolicyHealthModal,
-  closeChartModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_37__.closeChartModal
+  openPaymentTrendsModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_38__.openPaymentTrendsModal,
+  openPolicyHealthModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_38__.openPolicyHealthModal,
+  closeChartModal: _modules_chartModals_js__WEBPACK_IMPORTED_MODULE_38__.closeChartModal
 });
 
 // Also expose common helpers as globals for legacy inline onclicks
-window.navigateTo = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo;
-window.toggleMobileMenu = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.toggleMobileMenu;
-window.toggleFooter = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.toggleFooter;
+window.navigateTo = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.navigateTo;
+window.toggleMobileMenu = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.toggleMobileMenu;
+window.toggleFooter = _modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.toggleFooter;
 window.handleContactSubmit = handleContactSubmit;
 window.handleClientLogin = handleClientLogin;
 window.handleAgentLogin = handleAgentLogin;
-window.contactAgent = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.contactAgent;
+window.contactAgent = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.contactAgent;
 window.toggleTheme = toggleTheme;
 window.submitQuote = submitQuote;
 window.logout = handleLogout;
 window.scheduleAppointment = scheduleAppointment;
 window.viewAgentDirectory = viewAgentDirectory;
-window.makePayment = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.makePayment;
-window.downloadPaymentHistory = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.downloadPaymentHistory;
-window.updateInfo = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.updateInfo;
-window.viewPolicy = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.viewPolicy;
-window.fileClaim = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_41__.fileClaim;
+window.makePayment = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.makePayment;
+window.downloadPaymentHistory = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.downloadPaymentHistory;
+window.updateInfo = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.updateInfo;
+window.viewPolicy = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.viewPolicy;
+window.fileClaim = _modules_dashboardActions_js__WEBPACK_IMPORTED_MODULE_43__.fileClaim;
+// Expose modal functions
+window.openPolicyModal = _modules_modalManager_js__WEBPACK_IMPORTED_MODULE_40__.openPolicyModal;
+window.openFileClaimModal = _modules_modalManager_js__WEBPACK_IMPORTED_MODULE_40__.openFileClaimModal;
 // Expose notification helper for quick console testing / legacy inline calls
-window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification;
+window.showNotification = _modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification;
 // Expose module initializers for post-login init
-window.initPaymentCalendar = _modules_paymentCalendar_js__WEBPACK_IMPORTED_MODULE_38__.initPaymentCalendar;
+window.initPaymentCalendar = _modules_paymentCalendar_js__WEBPACK_IMPORTED_MODULE_39__.initPaymentCalendar;
 function delay(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
@@ -28934,7 +30862,7 @@ function delay(ms) {
 // Form handlers
 function handleContactSubmit(e) {
   e.preventDefault();
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Mensaje enviado exitosamente. Te contactaremos pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Mensaje enviado exitosamente. Te contactaremos pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
   e.target.reset();
 }
 function _handleClientLoginAsync(_x) {
@@ -28948,22 +30876,22 @@ function _handleClientLoginAsync2() {
         case 0:
           email = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Autenticando cliente', 'Verificando credenciales', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.showLoading)('Autenticando cliente', 'Verificando credenciales', true);
           _context3.n = 1;
           return delay(200);
         case 1:
           _context3.n = 2;
-          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_26__.login)({
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_27__.login)({
             email: email,
             password: password
           }, 'client');
         case 2:
           user = _context3.v;
           if (user) {
-            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)('client-dashboard');
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(250);
+            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.navigateTo)('client-dashboard');
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(250);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(150);
           }
         case 3:
           return _context3.a(2);
@@ -28976,7 +30904,7 @@ function handleClientLogin(e) {
   e.preventDefault();
   _handleClientLoginAsync(e)["catch"](function (err) {
     console.error('Client login error:', err);
-    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
+    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(150);
   });
   return false;
 }
@@ -28991,7 +30919,7 @@ function _handleAgentLoginAsync2() {
         case 0:
           agentId = e.target[0].value;
           password = e.target[1].value;
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Autenticando agente', 'Verificando credenciales', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.showLoading)('Autenticando agente', 'Verificando credenciales', true);
           _context4.n = 1;
           return delay(200);
         case 1:
@@ -29005,22 +30933,22 @@ function _handleAgentLoginAsync2() {
             loggedAt: Date.now()
           }));
           // Use a relative URL so it works both locally and under a subpath (e.g. /memo/ on GitHub Pages)
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(150);
           window.location.href = 'admin.html';
           return _context4.a(2);
         case 2:
           _context4.n = 3;
-          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_26__.login)({
+          return (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_27__.login)({
             agentId: agentId,
             password: password
           }, 'agent');
         case 3:
           user = _context4.v;
           if (user) {
-            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)('agent-dashboard');
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(250);
+            (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.navigateTo)('agent-dashboard');
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(250);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(150);
           }
         case 4:
           return _context4.a(2);
@@ -29033,21 +30961,21 @@ function handleAgentLogin(e) {
   e.preventDefault();
   _handleAgentLoginAsync(e)["catch"](function (err) {
     console.error('Agent login error:', err);
-    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
+    (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(150);
   });
   return false;
 }
 function handleLogout() {
-  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Cerrando sesión', 'Limpiando sesión');
-  (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_26__.logout)();
+  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.showLoading)('Cerrando sesión', 'Limpiando sesión');
+  (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_27__.logout)();
   try {
     localStorage.removeItem('krause_admin');
   } catch (e) {
     // Non-fatal cleanup
   }
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.HOME);
-  (0,_modules_particles_js__WEBPACK_IMPORTED_MODULE_24__.startParticles)();
-  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(200);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.PAGES.HOME);
+  (0,_modules_particles_js__WEBPACK_IMPORTED_MODULE_25__.startParticles)();
+  (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(200);
 }
 
 // Dashboard placeholder functions - LEGACY (ahora manejadas por dashboardActions.js)
@@ -29061,7 +30989,7 @@ function _refreshDashboard() {
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_31__.getUser)();
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_32__.getUser)();
           if (user) {
             _context6.n = 1;
             break;
@@ -29074,7 +31002,7 @@ function _refreshDashboard() {
           document.body.classList.add('skeleton-mode');
           _context6.p = 2;
           _context6.n = 3;
-          return (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.withLoading)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+          return (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.withLoading)(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
             return _regenerator().w(function (_context5) {
               while (1) switch (_context5.n) {
                 case 0:
@@ -29117,14 +31045,14 @@ function _refreshDashboard() {
             minDelay: 420
           });
         case 3:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Datos actualizados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Datos actualizados', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
           _context6.n = 5;
           break;
         case 4:
           _context6.p = 4;
           _t3 = _context6.v;
           console.warn('Could not refresh dashboard:', _t3);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Modo demo - sin conexión al backend', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
         case 5:
           _context6.p = 5;
           document.body.classList.remove('skeleton-mode');
@@ -29149,11 +31077,11 @@ function _viewClientDetails() {
             _context7.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Detalles no disponibles en modo demo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Detalles no disponibles en modo demo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
           return _context7.a(2);
         case 1:
           _context7.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Cargando detalles del cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
           _context7.n = 2;
           return loadClientDetailsData(clientId);
         case 2:
@@ -29166,7 +31094,7 @@ function _viewClientDetails() {
         case 3:
           _context7.p = 3;
           _t4 = _context7.v;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context7.a(2);
       }
@@ -29188,26 +31116,122 @@ function showClientDetailsModal(data) {
   document.body.appendChild(modal);
 }
 function downloadPaymentHistory() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Descargando historial...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Descargando historial...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
 }
 function openQuoteModal(type) {
   var normalized = (type || 'auto').toLowerCase();
-  (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.setPendingQuoteType)(normalized);
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.QUOTE);
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Preparando formulario para seguro de ".concat(normalized), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_33__.setPendingQuoteType)(normalized);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.PAGES.QUOTE);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)("Preparando formulario para seguro de ".concat(normalized), _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
+}
+function openQuotes() {
+  // Create and show quotes list modal
+  var modalHTML = "\n    <div class=\"modal-overlay app-modal-overlay active\" id=\"quotesListModal\" onclick=\"if(event.target === this) window.appHandlers.closeQuotesModal()\">\n      <div class=\"modal-content app-modal\">\n        <div class=\"modal-header app-modal-header\">\n          <h2 class=\"app-modal-title\">\n            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/>\n              <polyline points=\"14 2 14 8 20 8\"/>\n              <line x1=\"16\" y1=\"13\" x2=\"8\" y2=\"13\"/>\n              <line x1=\"16\" y1=\"17\" x2=\"8\" y2=\"17\"/>\n              <line x1=\"10\" y1=\"9\" x2=\"8\" y2=\"9\"/>\n            </svg>\n            Cotizaciones\n          </h2>\n          <button class=\"modal-close app-modal-close\" onclick=\"window.appHandlers.closeQuotesModal()\" aria-label=\"Cerrar\">\n            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n              <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n            </svg>\n          </button>\n        </div>\n        <div class=\"modal-body app-modal-body\">\n          <div class=\"quotes-summary-grid\">\n            <div class=\"summary-card\">\n              <div class=\"summary-icon pending\">\n                <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                  <polyline points=\"12 6 12 12 16 14\"/>\n                </svg>\n              </div>\n              <div class=\"summary-content\">\n                <span class=\"summary-label\">Pendientes</span>\n                <span class=\"summary-value\">5</span>\n              </div>\n            </div>\n            <div class=\"summary-card\">\n              <div class=\"summary-icon in-progress\">\n                <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"/>\n                  <polyline points=\"22 4 12 14.01 9 11.01\"/>\n                </svg>\n              </div>\n              <div class=\"summary-content\">\n                <span class=\"summary-label\">En revisi\xF3n</span>\n                <span class=\"summary-value\">2</span>\n              </div>\n            </div>\n            <div class=\"summary-card\">\n              <div class=\"summary-icon approved\">\n                <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <polyline points=\"20 6 9 17 4 12\"/>\n                </svg>\n              </div>\n              <div class=\"summary-content\">\n                <span class=\"summary-label\">Aprobadas</span>\n                <span class=\"summary-value\">1</span>\n              </div>\n            </div>\n          </div>\n          \n          <div class=\"quotes-list-container\">\n            <h3>Todas las cotizaciones</h3>\n            <div class=\"quotes-list\">\n              <div class=\"quote-item status-pending\">\n                <div class=\"quote-info\">\n                  <span class=\"quote-type\">Auto</span>\n                  <span class=\"quote-client\">Cliente: Mar\xEDa Elena Garc\xEDa L\xF3pez</span>\n                  <span class=\"quote-date\">Creada: 28 Ene 2026</span>\n                </div>\n                <div class=\"quote-actions\">\n                  <span class=\"badge badge-warning\">Pendiente</span>\n                  <button class=\"btn btn-sm\" onclick=\"window.appHandlers.viewQuoteDetails?.('Q001')\">Ver detalles</button>\n                </div>\n              </div>\n              <div class=\"quote-item status-in-progress\">\n                <div class=\"quote-info\">\n                  <span class=\"quote-type\">Hogar</span>\n                  <span class=\"quote-client\">Cliente: Juan P\xE9rez Mart\xEDnez</span>\n                  <span class=\"quote-date\">Creada: 26 Ene 2026</span>\n                </div>\n                <div class=\"quote-actions\">\n                  <span class=\"badge badge-primary\">En revisi\xF3n</span>\n                  <button class=\"btn btn-sm\" onclick=\"window.appHandlers.viewQuoteDetails?.('Q002')\">Ver detalles</button>\n                </div>\n              </div>\n              <div class=\"quote-item status-approved\">\n                <div class=\"quote-info\">\n                  <span class=\"quote-type\">Vida</span>\n                  <span class=\"quote-client\">Cliente: Ana Rodr\xEDguez S\xE1nchez</span>\n                  <span class=\"quote-date\">Creada: 25 Ene 2026</span>\n                </div>\n                <div class=\"quote-actions\">\n                  <span class=\"badge badge-success\">Aprobada</span>\n                  <button class=\"btn btn-sm\" onclick=\"window.appHandlers.viewQuoteDetails?.('Q003')\">Ver detalles</button>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  ";
+
+  // Remove existing modal if any
+  var existing = document.getElementById('quotesListModal');
+  if (existing) existing.remove();
+
+  // Add modal to DOM
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+  // Prevent body scroll
+  document.body.style.overflow = 'hidden';
+}
+function closeQuotesModal() {
+  var modal = document.getElementById('quotesListModal');
+  if (modal) {
+    modal.classList.remove('active');
+    setTimeout(function () {
+      modal.remove();
+      document.body.style.overflow = '';
+    }, 300);
+  }
+}
+function viewQuoteDetails(quoteId) {
+  // Mock data for demonstration
+  var quotesData = {
+    'Q001': {
+      id: 'Q001',
+      type: 'Auto',
+      status: 'Pendiente',
+      client: 'María Elena García López',
+      email: 'maria.garcia@ejemplo.com',
+      phone: '+52 555 123 4567',
+      created: '28 Ene 2026',
+      vehicle: 'Toyota Corolla 2024',
+      coverage: 'Amplia Plus',
+      premium: '$12,500 MXN/año',
+      deductible: '$5,000 MXN',
+      notes: 'Cliente solicita cobertura contra robo y daños por fenómenos naturales'
+    },
+    'Q002': {
+      id: 'Q002',
+      type: 'Hogar',
+      status: 'En revisión',
+      client: 'Juan Pérez Martínez',
+      email: 'juan.perez@ejemplo.com',
+      phone: '+52 555 234 5678',
+      created: '26 Ene 2026',
+      property: 'Casa habitación, 250m²',
+      coverage: 'Todo Riesgo',
+      premium: '$8,900 MXN/año',
+      deductible: '$3,000 MXN',
+      notes: 'Requiere inspección de propiedad antes de aprobar'
+    },
+    'Q003': {
+      id: 'Q003',
+      type: 'Vida',
+      status: 'Aprobada',
+      client: 'Ana Rodríguez Sánchez',
+      email: 'ana.rodriguez@ejemplo.com',
+      phone: '+52 555 345 6789',
+      created: '25 Ene 2026',
+      coverage: 'Temporal 20 años',
+      sumInsured: '$2,000,000 MXN',
+      premium: '$15,600 MXN/año',
+      beneficiaries: '2 beneficiarios registrados',
+      notes: 'Póliza aprobada, pendiente firma de documentos'
+    }
+  };
+  var quote = quotesData[quoteId];
+  if (!quote) {
+    (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Cotización no encontrada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
+    return;
+  }
+  var statusBadge = quote.status === 'Pendiente' ? '<span class="badge badge-warning">Pendiente</span>' : quote.status === 'En revisión' ? '<span class="badge badge-primary">En revisión</span>' : '<span class="badge badge-success">Aprobada</span>';
+  var modalHTML = "\n    <div class=\"modal-overlay app-modal-overlay active\" id=\"quoteDetailsModal\" onclick=\"if(event.target === this) window.appHandlers.closeQuoteDetailsModal()\">\n      <div class=\"modal-content app-modal app-modal-md\">\n        <div class=\"modal-header app-modal-header\">\n          <h2 class=\"app-modal-title\">\n            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/>\n              <polyline points=\"14 2 14 8 20 8\"/>\n            </svg>\n            Detalles de Cotizaci\xF3n ".concat(quote.id, "\n          </h2>\n          <button class=\"modal-close app-modal-close\" onclick=\"window.appHandlers.closeQuoteDetailsModal()\" aria-label=\"Cerrar\">\n            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/>\n              <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n            </svg>\n          </button>\n        </div>\n        <div class=\"modal-body app-modal-body\">\n          <div class=\"quote-details-header\">\n            <div class=\"quote-detail-type\">\n              <span class=\"detail-label\">Tipo de seguro</span>\n              <span class=\"detail-value-large\">").concat(quote.type, "</span>\n            </div>\n            <div class=\"quote-detail-status\">\n              ").concat(statusBadge, "\n            </div>\n          </div>\n          \n          <div class=\"quote-details-grid\">\n            <div class=\"detail-group\">\n              <label>Cliente</label>\n              <p>").concat(quote.client, "</p>\n            </div>\n            <div class=\"detail-group\">\n              <label>Email</label>\n              <p>").concat(quote.email, "</p>\n            </div>\n            <div class=\"detail-group\">\n              <label>Tel\xE9fono</label>\n              <p>").concat(quote.phone, "</p>\n            </div>\n            <div class=\"detail-group\">\n              <label>Fecha de creaci\xF3n</label>\n              <p>").concat(quote.created, "</p>\n            </div>\n          </div>\n\n          <div class=\"section-divider\"></div>\n\n          <h3>Detalles de cobertura</h3>\n          <div class=\"quote-details-grid\">\n            ").concat(quote.vehicle ? "<div class=\"detail-group\"><label>Veh\xEDculo</label><p>".concat(quote.vehicle, "</p></div>") : '', "\n            ").concat(quote.property ? "<div class=\"detail-group\"><label>Propiedad</label><p>".concat(quote.property, "</p></div>") : '', "\n            <div class=\"detail-group\">\n              <label>Cobertura</label>\n              <p>").concat(quote.coverage, "</p>\n            </div>\n            <div class=\"detail-group\">\n              <label>Prima anual</label>\n              <p class=\"detail-value-highlight\">").concat(quote.premium, "</p>\n            </div>\n            ").concat(quote.deductible ? "<div class=\"detail-group\"><label>Deducible</label><p>".concat(quote.deductible, "</p></div>") : '', "\n            ").concat(quote.sumInsured ? "<div class=\"detail-group\"><label>Suma asegurada</label><p>".concat(quote.sumInsured, "</p></div>") : '', "\n            ").concat(quote.beneficiaries ? "<div class=\"detail-group\"><label>Beneficiarios</label><p>".concat(quote.beneficiaries, "</p></div>") : '', "\n          </div>\n\n          ").concat(quote.notes ? "\n            <div class=\"section-divider\"></div>\n            <div class=\"detail-group\">\n              <label>Notas adicionales</label>\n              <p>".concat(quote.notes, "</p>\n            </div>\n          ") : '', "\n\n          <div class=\"quote-actions-footer\">\n            <button class=\"btn btn-outline\" onclick=\"window.appHandlers.closeQuoteDetailsModal()\">\n              Cerrar\n            </button>\n            ").concat(quote.status === 'Pendiente' ? "\n              <button class=\"btn btn-primary\" onclick=\"window.appHandlers.approveQuote?.('".concat(quote.id, "')\">\n                Aprobar cotizaci\xF3n\n              </button>\n            ") : quote.status === 'Aprobada' ? "\n              <button class=\"btn btn-primary\" onclick=\"window.appHandlers.convertToPolicy?.('".concat(quote.id, "')\">\n                Convertir a p\xF3liza\n              </button>\n            ") : "\n              <button class=\"btn btn-primary\" onclick=\"window.appHandlers.continueReview?.('".concat(quote.id, "')\">\n                Continuar revisi\xF3n\n              </button>\n            "), "\n          </div>\n        </div>\n      </div>\n    </div>\n  ");
+
+  // Remove existing modal if any
+  var existing = document.getElementById('quoteDetailsModal');
+  if (existing) existing.remove();
+
+  // Add modal to DOM
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+  document.body.style.overflow = 'hidden';
+}
+function closeQuoteDetailsModal() {
+  var modal = document.getElementById('quoteDetailsModal');
+  if (modal) {
+    modal.classList.remove('active');
+    setTimeout(function () {
+      modal.remove();
+      document.body.style.overflow = '';
+    }, 300);
+  }
 }
 function addNewClient() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Abriendo formulario de nuevo cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Abriendo formulario de nuevo cliente...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
 }
 function editClient(clientId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Editando cliente ".concat(clientId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)("Editando cliente ".concat(clientId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
 }
 function processQuote(quoteId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Procesando cotizaci\xF3n ".concat(quoteId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)("Procesando cotizaci\xF3n ".concat(quoteId), _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
 }
 function createQuote() {
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.QUOTE);
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Creando nueva cotización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.PAGES.QUOTE);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Creando nueva cotización...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
 }
 function submitQuote(_x4) {
   return _submitQuote.apply(this, arguments);
@@ -29239,21 +31263,21 @@ function _submitQuote() {
             _context8.n = 2;
             break;
           }
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Procesando cotización', 'Calculando cobertura y prima', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.showLoading)('Procesando cotización', 'Calculando cobertura y prima', true);
           _context8.n = 1;
           return delay(800);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(200);
-          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.notifyQuoteSuccess)(label);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(200);
+          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_33__.notifyQuoteSuccess)(label);
           form.reset();
           hiddenType = form.querySelector('input[name="quoteType"]');
           if (hiddenType) hiddenType.value = quoteType;
-          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.setPendingQuoteType)(quoteType);
+          (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_33__.setPendingQuoteType)(quoteType);
           return _context8.a(2);
         case 2:
           _context8.p = 2;
           // Send quote request to API
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Enviando cotización', 'Procesando solicitud', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.showLoading)('Enviando cotización', 'Procesando solicitud', true);
           _context8.n = 3;
           return apiService.request(API_CONFIG.ENDPOINTS.REQUEST_QUOTE, {
             method: 'POST',
@@ -29271,14 +31295,14 @@ function _submitQuote() {
         case 3:
           response = _context8.v;
           if (response.success) {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(200);
-            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.notifyQuoteSuccess)(label);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(200);
+            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_33__.notifyQuoteSuccess)(label);
             form.reset();
             _hiddenType = form.querySelector('input[name="quoteType"]');
             if (_hiddenType) _hiddenType.value = quoteType;
-            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_32__.setPendingQuoteType)(quoteType);
+            (0,_modules_quoteFlow_js__WEBPACK_IMPORTED_MODULE_33__.setPendingQuoteType)(quoteType);
           } else {
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(150);
           }
           _context8.n = 5;
           break;
@@ -29286,8 +31310,8 @@ function _submitQuote() {
           _context8.p = 4;
           _t5 = _context8.v;
           console.error('Quote submission error:', _t5);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al enviar cotización. Por favor intenta de nuevo.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(150);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Error al enviar cotización. Por favor intenta de nuevo.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context8.a(2);
       }
@@ -29296,16 +31320,16 @@ function _submitQuote() {
   return _submitQuote.apply(this, arguments);
 }
 function processRenewal() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Abriendo renovaciones pendientes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Abriendo renovaciones pendientes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
 }
 function viewReports() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Generando reportes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Generando reportes...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
 }
 function completeTask(taskId) {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Tarea completada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Tarea completada', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
 }
 function viewCommissionDetails() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Mostrando detalle de comisiones...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Mostrando detalle de comisiones...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
 }
 
 // --- Agent dashboard wiring ---
@@ -29322,11 +31346,11 @@ function _assignClaimToAgent() {
             _context9.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Siniestro asignado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Siniestro asignado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
           return _context9.a(2);
         case 1:
           _context9.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Asignando siniestro y notificando...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Asignando siniestro y notificando...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
           _context9.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.ASSIGN_CLAIM, {
             method: 'POST',
@@ -29353,14 +31377,14 @@ function _assignClaimToAgent() {
             useCache: false
           });
         case 3:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Siniestro asignado y notificación enviada.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Siniestro asignado y notificación enviada.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
           _context9.n = 5;
           break;
         case 4:
           _context9.p = 4;
           _t6 = _context9.v;
           console.error('Assign claim failed', _t6);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al asignar o notificar el siniestro.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Error al asignar o notificar el siniestro.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context9.a(2);
       }
@@ -29384,11 +31408,11 @@ function _sendQuestionnaire() {
             _context0.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario enviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Cuestionario enviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
           return _context0.a(2);
         case 1:
           _context0.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Enviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Enviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
           _context0.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.SEND_QUESTIONNAIRE, {
             method: 'POST',
@@ -29399,14 +31423,14 @@ function _sendQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario enviado al cliente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Cuestionario enviado al cliente.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
           _context0.n = 4;
           break;
         case 3:
           _context0.p = 3;
           _t7 = _context0.v;
           console.error('Send questionnaire failed', _t7);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('No se pudo enviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('No se pudo enviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context0.a(2);
       }
@@ -29427,11 +31451,11 @@ function _resendQuestionnaire() {
             _context1.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario reenviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Cuestionario reenviado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
           return _context1.a(2);
         case 1:
           _context1.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Reenviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Reenviando cuestionario...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
           _context1.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.RESEND_QUESTIONNAIRE, {
             method: 'POST',
@@ -29442,14 +31466,14 @@ function _resendQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario reenviado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Cuestionario reenviado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
           _context1.n = 4;
           break;
         case 3:
           _context1.p = 3;
           _t8 = _context1.v;
           console.error('Resend questionnaire failed', _t8);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('No se pudo reenviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('No se pudo reenviar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context1.a(2);
       }
@@ -29470,11 +31494,11 @@ function _completeQuestionnaire() {
             _context10.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario completado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Cuestionario completado (modo demo)', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
           return _context10.a(2);
         case 1:
           _context10.p = 1;
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Marcando cuestionario como completado...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Marcando cuestionario como completado...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
           _context10.n = 2;
           return apiService.request(API_CONFIG.ENDPOINTS.COMPLETE_QUESTIONNAIRE, {
             method: 'POST',
@@ -29485,14 +31509,14 @@ function _completeQuestionnaire() {
             useCache: false
           });
         case 2:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Cuestionario completado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Cuestionario completado.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
           _context10.n = 4;
           break;
         case 3:
           _context10.p = 3;
           _t9 = _context10.v;
           console.error('Complete questionnaire failed', _t9);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('No se pudo completar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('No se pudo completar el cuestionario.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
         case 4:
           return _context10.a(2);
       }
@@ -29508,7 +31532,7 @@ function _reviewQuestionnaire() {
     return _regenerator().w(function (_context11) {
       while (1) switch (_context11.n) {
         case 0:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Abriendo revisi\xF3n del cuestionario ".concat(id, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)("Abriendo revisi\xF3n del cuestionario ".concat(id, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
         case 1:
           return _context11.a(2);
       }
@@ -29525,7 +31549,7 @@ function _openSupport() {
     return _regenerator().w(function (_context12) {
       while (1) switch (_context12.p = _context12.n) {
         case 0:
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Abriendo caso de soporte (".concat(type, ")..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)("Abriendo caso de soporte (".concat(type, ")..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
           if (!(!apiAvailable || !apiService || !API_CONFIG)) {
             _context12.n = 1;
             break;
@@ -29559,7 +31583,7 @@ function _openSupport() {
   return _openSupport.apply(this, arguments);
 }
 function showAgentRegistration() {
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Contacta al administrador para solicitar acceso como agente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Contacta al administrador para solicitar acceso como agente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
 }
 
 // ========== SCHEDULING HANDLERS ==========
@@ -29572,31 +31596,31 @@ function _scheduleAppointment() {
     return _regenerator().w(function (_context13) {
       while (1) switch (_context13.p = _context13.n) {
         case 0:
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_31__.getUser)();
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_32__.getUser)();
           if (user) {
             _context13.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Debes iniciar sesión para agendar citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Debes iniciar sesión para agendar citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
           return _context13.a(2);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Cargando calendario', 'Buscando agentes disponibles', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.showLoading)('Cargando calendario', 'Buscando agentes disponibles', true);
           _context13.n = 2;
           return delay(300);
         case 2:
           _context13.p = 2;
-          availableAgents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_34__.getAgents({
+          availableAgents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_35__.getAgents({
             status: 'available'
           });
           if (!(availableAgents.length === 0)) {
             _context13.n = 3;
             break;
           }
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('No hay agentes disponibles en este momento', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.WARNING);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('No hay agentes disponibles en este momento', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.WARNING);
           return _context13.a(2);
         case 3:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(150);
           openSchedulingModal(availableAgents);
           _context13.n = 5;
           break;
@@ -29604,8 +31628,8 @@ function _scheduleAppointment() {
           _context13.p = 4;
           _t1 = _context13.v;
           console.error('Error loading agents:', _t1);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al cargar agentes disponibles', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Error al cargar agentes disponibles', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
         case 5:
           return _context13.a(2);
       }
@@ -29641,18 +31665,18 @@ function _confirmSchedulingSubmit() {
             _context14.n = 1;
             break;
           }
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Por favor completa todos los campos requeridos', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.WARNING);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Por favor completa todos los campos requeridos', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.WARNING);
           return _context14.a(2);
         case 1:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Procesando solicitud', 'Solicitando cita con agente', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.showLoading)('Procesando solicitud', 'Solicitando cita con agente', true);
           _context14.p = 2;
-          agent = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_34__.getAgentById(agentId);
-          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_31__.getUser)();
+          agent = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_35__.getAgentById(agentId);
+          user = (0,_state_js__WEBPACK_IMPORTED_MODULE_32__.getUser)();
           _meetingTime$split = meetingTime.split(':'), _meetingTime$split2 = _slicedToArray(_meetingTime$split, 2), hours = _meetingTime$split2[0], minutes = _meetingTime$split2[1];
           startTime = new Date("".concat(meetingDate, "T").concat(meetingTime, ":00"));
           endTime = new Date(startTime.getTime() + 30 * 60000);
           _context14.n = 3;
-          return _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_33__.requestMeeting({
+          return _modules_scheduling_js__WEBPACK_IMPORTED_MODULE_34__.requestMeeting({
             agentId: agentId,
             agentName: agent.name,
             clientId: user.id,
@@ -29668,17 +31692,17 @@ function _confirmSchedulingSubmit() {
           _context14.n = 4;
           return delay(400);
         case 4:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(150);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(150);
           (_document$querySelect2 = document.querySelector('.booking-modal')) === null || _document$querySelect2 === void 0 || _document$querySelect2.remove();
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Solicitud enviada a ".concat(agent.name, ". Te notificaremos cuando confirme."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.SUCCESS);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)("Solicitud enviada a ".concat(agent.name, ". Te notificaremos cuando confirme."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.SUCCESS);
           _context14.n = 6;
           break;
         case 5:
           _context14.p = 5;
           _t10 = _context14.v;
           console.error('Scheduling error:', _t10);
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
-          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al agendar la cita: ' + _t10.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(100);
+          (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Error al agendar la cita: ' + _t10.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
         case 6:
           return _context14.a(2);
       }
@@ -29695,18 +31719,18 @@ function _viewAgentDirectory() {
     return _regenerator().w(function (_context15) {
       while (1) switch (_context15.n) {
         case 0:
-          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.showLoading)('Cargando directorio', 'Buscando agentes disponibles', true);
+          (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.showLoading)('Cargando directorio', 'Buscando agentes disponibles', true);
           _context15.n = 1;
           return delay(250);
         case 1:
           try {
-            agents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_34__.getAgents();
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
+            agents = _modules_contactsManager_js__WEBPACK_IMPORTED_MODULE_35__.getAgents();
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(100);
             openAgentDirectoryModal(agents);
           } catch (error) {
             console.error('Error loading agents:', error);
-            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_27__.hideLoading)(100);
-            (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Error al cargar directorio de agentes', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.ERROR);
+            (0,_modules_loadingModal_js__WEBPACK_IMPORTED_MODULE_28__.hideLoading)(100);
+            (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Error al cargar directorio de agentes', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.ERROR);
           }
         case 2:
           return _context15.a(2);
@@ -29734,7 +31758,7 @@ function openAgentDirectoryModal(agents) {
 function handleAgentContact(agentId, agentName) {
   var _document$querySelect;
   (_document$querySelect = document.querySelector('.booking-modal')) === null || _document$querySelect === void 0 || _document$querySelect.remove();
-  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)("Iniciando contacto con ".concat(agentName, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO);
+  (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)("Iniciando contacto con ".concat(agentName, "..."), _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO);
   scheduleAppointment();
 }
 
@@ -29796,7 +31820,7 @@ document.addEventListener('DOMContentLoaded', function () {
   applyTheme(normalizedSaved || 'dark-forest');
 
   // Render all shared logo slots (navbar, footer, auth, etc.) with consistent sizing/contrast
-  (0,_utils_logo_js__WEBPACK_IMPORTED_MODULE_35__.renderAllLogos)();
+  (0,_utils_logo_js__WEBPACK_IMPORTED_MODULE_36__.renderAllLogos)();
 
   // Keep theme toggle on the header logo (stays consistent even with dynamic renders)
   var headerLogo = document.querySelector('.nav-brand .krause-shield');
@@ -29820,16 +31844,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // If a session exists, offer redirect or logout
   try {
-    var existingUser = (0,_state_js__WEBPACK_IMPORTED_MODULE_31__.getUser)();
+    var existingUser = (0,_state_js__WEBPACK_IMPORTED_MODULE_32__.getUser)();
     if (existingUser) {
-      (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_28__.showNotification)('Tienes una sesión activa. ¿Quieres ir a tu panel o cerrar sesión?', _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.NOTIFICATION_TYPES.INFO, {
+      (0,_modules_notifications_js__WEBPACK_IMPORTED_MODULE_29__.showNotification)('Tienes una sesión activa. ¿Quieres ir a tu panel o cerrar sesión?', _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.NOTIFICATION_TYPES.INFO, {
         duration: 0
       });
       setTimeout(function () {
         var goToPanel = window.confirm('Sesión activa detectada. ¿Ir a tu panel ahora?');
         if (goToPanel) {
-          var target = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_26__.getRedirectPage)(existingUser) || _utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.HOME;
-          (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(target);
+          var target = (0,_modules_auth_js__WEBPACK_IMPORTED_MODULE_27__.getRedirectPage)(existingUser) || _utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.PAGES.HOME;
+          (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.navigateTo)(target);
           return;
         }
         var shouldLogout = window.confirm('¿Deseas cerrar sesión?');
@@ -29843,10 +31867,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Always land on Home (Inicio) first; keep session info for optional redirects later
-  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_25__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_30__.PAGES.HOME);
+  (0,_modules_simpleRouter_js__WEBPACK_IMPORTED_MODULE_26__.navigateTo)(_utils_constants_js__WEBPACK_IMPORTED_MODULE_31__.PAGES.HOME);
 
   // Initialize scroll collapse for dashboards (will retry if dashboard not loaded yet)
-  (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_36__.initScrollCollapse)();
+  (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_37__.initScrollCollapse)();
 
   // Re-initialize scroll collapse whenever page changes
   var originalNavigateTo = window.navigateTo;
@@ -29859,7 +31883,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Reinit scroll collapse after navigation completes
       setTimeout(function () {
         if (args[0] && args[0].includes('dashboard')) {
-          (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_36__.initScrollCollapse)();
+          (0,_utils_scrollCollapse_js__WEBPACK_IMPORTED_MODULE_37__.initScrollCollapse)();
         }
       }, 300);
     };
