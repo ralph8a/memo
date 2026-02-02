@@ -225,7 +225,7 @@ function getAgentClients($db, $agent_id) {
         FROM users u
         JOIN policies p ON u.id = p.client_id
         WHERE p.agent_id = ?
-        GROUP BY u.id
+        GROUP BY u.id, u.first_name, u.last_name, u.email, u.phone, u.region
         ORDER BY last_activity DESC
     ");
     $stmt->execute([$agent_id]);
