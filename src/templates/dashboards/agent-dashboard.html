@@ -313,6 +313,16 @@
 
                       <!-- Agent Policies Panel -->
                       <div class="content-card list-card compact" id="agent-policies-section">
+                        <div class="card-header-modern">
+                          <h3>📋 Pólizas de Clientes</h3>
+                          <button class="btn btn-sm btn-outline" onclick="window.appHandlers?.createNewPolicy?.()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <line x1="12" y1="5" x2="12" y2="19"/>
+                              <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Nueva póliza
+                          </button>
+                        </div>
                         <div id="agent-policies-container">
                           <p class="loading-state">Cargando pólizas...</p>
                         </div>

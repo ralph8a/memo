@@ -42,17 +42,11 @@ export class AgentPaymentSchedulePanel {
                 payments = payments.filter(p => p.status === 'overdue');
             }
 
+            // Renderizar solo el contenido interno (tabla o empty state)
             this.container.innerHTML = `
-                <div class="agent-payment-panel">
-                    <div class="panel-header">
-                        <h3>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="5" width="20" height="14" rx="2" />
-                                <line x1="2" y1="10" x2="22" y2="10" />
-                            </svg>
-                            Calendario de Pagos ${this.filteredClientId ? '- Cliente Filtrado' : ''}
-                        </h3>
-                        <div class="panel-filters">
+                ${payments.length > 0 ? `
+                    <div class="payment-table-wrapper">
+                        <div class="payment-filters" style="margin-bottom: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
                             <button class="filter-btn ${this.viewMode === 'all' ? 'active' : ''}" 
                                     onclick="window.agentDashboard?.setPaymentView('all')">
                                 Todos (${payments.length})
@@ -66,37 +60,33 @@ export class AgentPaymentSchedulePanel {
                                 Vencidos (${payments.filter(p => p.status === 'overdue').length})
                             </button>
                         </div>
+                        <div class="modern-table">
+                            <table class="payments-table">
+                                <thead>
+                                    <tr>
+                                        <th>Cliente</th>
+                                        <th>Póliza</th>
+                                        <th>Monto</th>
+                                        <th>Vence</th>
+                                        <th>Estado</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${payments.map(p => this.renderPaymentRow(p)).join('')}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        ${payments.length > 0 ? `
-                            <div class="payment-table modern-table">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Cliente</th>
-                                            <th>Póliza</th>
-                                            <th>Monto</th>
-                                            <th>Vence</th>
-                                            <th>Estado</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${payments.map(p => this.renderPaymentRow(p)).join('')}
-                                    </tbody>
-                                </table>
-                            </div>
-                        ` : `
-                            <div class="empty-state">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                    <rect x="2" y="5" width="20" height="14" rx="2" />
-                                    <line x1="2" y1="10" x2="22" y2="10" />
-                                </svg>
-                                <p>No hay pagos ${this.viewMode !== 'all' ? this.viewMode === 'pending' ? 'pendientes' : 'vencidos' : ''}</p>
-                            </div>
-                        `}
+                ` : `
+                    <div class="empty-state" style="text-align: center; padding: 3rem 1rem;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin: 0 auto 1rem; opacity: 0.5;">
+                            <rect x="2" y="5" width="20" height="14" rx="2" />
+                            <line x1="2" y1="10" x2="22" y2="10" />
+                        </svg>
+                        <p style="margin: 0; color: var(--text-muted);">No hay pagos ${this.viewMode !== 'all' ? (this.viewMode === 'pending' ? 'pendientes' : 'vencidos') : ''}</p>
                     </div>
-                </div>
+                `}
             `;
 
         } catch (error) {
@@ -299,17 +289,11 @@ export class AgentPoliciesPanel {
                 });
             }
 
+            // Renderizar solo el contenido interno (tabla o empty state)
             this.container.innerHTML = `
-                <div class="agent-policies-panel">
-                    <div class="panel-header">
-                        <h3>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                            </svg>
-                            Pólizas ${this.filteredClientId ? '- Cliente Filtrado' : ''}
-                        </h3>
-                        <div class="panel-filters">
+                ${policies.length > 0 ? `
+                    <div class="policies-table-wrapper">
+                        <div class="policy-filters" style="margin-bottom: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
                             <button class="filter-btn ${this.viewMode === 'all' ? 'active' : ''}" 
                                     onclick="window.agentDashboard?.setPoliciesView('all')">
                                 Todas (${policies.length})
@@ -323,38 +307,34 @@ export class AgentPoliciesPanel {
                                 Por vencer (${this.getExpiringCount(policies)})
                             </button>
                         </div>
+                        <div class="modern-table">
+                            <table class="policies-table">
+                                <thead>
+                                    <tr>
+                                        <th>Póliza</th>
+                                        <th>Tipo</th>
+                                        <th>Cliente</th>
+                                        <th>Prima</th>
+                                        <th>Renovación</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${policies.map(p => this.renderPolicyRow(p)).join('')}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        ${policies.length > 0 ? `
-                            <div class="policy-table modern-table">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Póliza</th>
-                                            <th>Tipo</th>
-                                            <th>Cliente</th>
-                                            <th>Prima</th>
-                                            <th>Renovación</th>
-                                            <th>Estado</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${policies.map(p => this.renderPolicyRow(p)).join('')}
-                                    </tbody>
-                                </table>
-                            </div>
-                        ` : `
-                            <div class="empty-state">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                    <polyline points="14 2 14 8 20 8"/>
-                                </svg>
-                                <p>No hay pólizas</p>
-                            </div>
-                        `}
+                ` : `
+                    <div class="empty-state" style="text-align: center; padding: 3rem 1rem;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin: 0 auto 1rem; opacity: 0.5;">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                        <p style="margin: 0; color: var(--text-muted);">No hay pólizas</p>
                     </div>
-                </div>
+                `}
             `;
 
         } catch (error) {

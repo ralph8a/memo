@@ -127,6 +127,8 @@ module.exports = {
   // Use development mode during iterative work; switch to production when ready
   mode: 'development',
   devtool: 'source-map',
+  // Disable cache during development to prevent stale code issues
+  cache: false,
   plugins: [
     // Generate index.html with templates injected via custom plugin
     new HtmlWebpackPlugin({
