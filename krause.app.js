@@ -12475,7 +12475,7 @@ body.dark-forest .notification-modal-overlay {
 
 
 .notification-modal-title svg {
-    color: var(--accent-primary, #2c5f4f);
+    color: var(--accent-primary, #6b9080);
 }
 
 .notification-count-badge {
@@ -12483,8 +12483,8 @@ body.dark-forest .notification-modal-overlay {
     min-width: 24px;
     height: 24px;
     padding: 0 8px;
-    background: var(--theme-primary-color, var(--accent-primary, #2c5f4f));
-    color: var(--theme-text-on-primary, #ffffff);
+    background: var(--theme-primary-color, var(--accent-primary, #6b9080));
+    color: var(--theme-text-on-primary, #0a1d18);
     border-radius: 12px;
     font-size: 0.75rem;
     font-weight: 700;
@@ -12495,7 +12495,7 @@ body.dark-forest .notification-modal-overlay {
 body.dark-forest .notification-count-badge,
 body.dark-forest .notification-count-badge {
     background: var(--theme-accent-color, #6b9080);
-    color: var(--theme-bg-solid, #1a1a1a);
+    color: var(--theme-bg-solid, #0a1d18);
 }
 
 /* Close button styles now inherited from modals-unified.css */
@@ -12507,23 +12507,23 @@ body.dark-forest .notification-count-badge {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    background: var(--surface-primary, #ffffff);
+    background: var(--surface-primary, #0a1d18);
 }
 
 body.dark-forest .notification-modal-filters,
 body.dark-forest .notification-modal-filters {
-    background: var(--surface-primary, #1a1a1a);
-    border-bottom-color: rgba(255, 255, 255, 0.1);
+    background: var(--surface-primary, #0a1d18);
+    border-bottom-color: rgba(107, 144, 128, 0.2);
 }
 
 .notification-filter {
     padding: 8px 16px;
     background: transparent;
-    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));
+    border: 1px solid var(--border-subtle, rgba(107, 144, 128, 0.3));
     border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--text-secondary, #666);
+    color: var(--text-secondary, #b8d4c8);
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
@@ -12532,41 +12532,44 @@ body.dark-forest .notification-modal-filters {
 }
 
 .notification-filter:hover {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: var(--accent-primary, #2c5f4f);
+    background: rgba(107, 144, 128, 0.1);
+    border-color: var(--accent-primary, #6b9080);
 }
 
 .notification-filter.active {
-    background: var(--accent-primary, #2c5f4f);
-    border-color: var(--accent-primary, #2c5f4f);
-    color: white;
+    background: var(--accent-primary, #6b9080);
+    border-color: var(--accent-primary, #6b9080);
+    color: #0a1d18;
+    font-weight: 600;
 }
 
 body.dark-forest .notification-filter,
 body.dark-forest .notification-filter {
-    border-color: rgba(255, 255, 255, 0.2);
-    color: var(--text-secondary, #aaa);
+    border-color: rgba(107, 144, 128, 0.3);
+    color: var(--text-secondary, #b8d4c8);
 }
 
 body.dark-forest .notification-filter:hover,
 body.dark-forest .notification-filter:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(107, 144, 128, 0.15);
 }
 
 .filter-count {
     min-width: 20px;
     height: 20px;
     padding: 0 6px;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(107, 144, 128, 0.2);
     border-radius: 10px;
     font-size: 0.75rem;
     font-weight: 700;
     line-height: 20px;
     text-align: center;
+    color: #b8d4c8;
 }
 
 .notification-filter.active .filter-count {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(10, 29, 24, 0.3);
+    color: #0a1d18;
 }
 
 /* ========== BODY ========== */
@@ -12584,13 +12587,13 @@ body.dark-forest .notification-filter:hover {
 }
 
 .notification-modal-body::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(107, 144, 128, 0.3);
     border-radius: 4px;
 }
 
 body.dark-forest .notification-modal-body::-webkit-scrollbar-thumb,
 body.dark-forest .notification-modal-body::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(107, 144, 128, 0.4);
 }
 
 /* ========== NOTIFICATION ITEM ========== */
@@ -12598,8 +12601,8 @@ body.dark-forest .notification-modal-body::-webkit-scrollbar-thumb {
     position: relative;
     padding: 16px;
     margin-bottom: 12px;
-    background: var(--surface-secondary, #f8f9fa);
-    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
+    background: var(--surface-secondary, #050f0c);
+    border: 1px solid var(--border-subtle, rgba(107, 144, 128, 0.2));
     border-radius: 12px;
     display: flex;
     gap: 12px;
@@ -12608,18 +12611,19 @@ body.dark-forest .notification-modal-body::-webkit-scrollbar-thumb {
 
 body.dark-forest .notification-item,
 body.dark-forest .notification-item {
-    background: var(--surface-secondary, #222);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: var(--surface-secondary, #050f0c);
+    border-color: rgba(107, 144, 128, 0.2);
 }
 
 .notification-item:hover {
     transform: translateX(4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(107, 144, 128, 0.15);
+    border-color: rgba(107, 144, 128, 0.4);
 }
 
 .notification-item.unread {
-    background: var(--theme-surface-accent, var(--surface-accent, #e8f5f0));
-    border-color: var(--theme-primary-color, var(--accent-primary, #2c5f4f));
+    background: var(--theme-surface-accent, rgba(107, 144, 128, 0.1));
+    border-color: var(--theme-primary-color, #6b9080);
     border-left-width: 4px;
 }
 
@@ -12635,15 +12639,15 @@ body.dark-forest .notification-item.unread {
 
 /* Priority indicators */
 .notification-item.priority-high {
-    border-left-color: #d32f2f;
+    border-left-color: #ef5350;
 }
 
 .notification-item.priority-normal {
-    border-left-color: var(--accent-primary, #2c5f4f);
+    border-left-color: #6b9080;
 }
 
 .notification-item.priority-low {
-    border-left-color: #757575;
+    border-left-color: #78909c;
 }
 
 /* ========== NOTIFICATION ICON ========== */
@@ -12651,33 +12655,33 @@ body.dark-forest .notification-item.unread {
     width: 40px;
     height: 40px;
     flex-shrink: 0;
-    background: var(--theme-primary-color, var(--accent-primary, #2c5f4f));
+    background: var(--theme-primary-color, #6b9080);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--theme-text-on-primary, #ffffff);
+    color: var(--theme-text-on-primary, #0a1d18);
 }
 
 .notification-item-icon.type-payment {
-    background: var(--theme-primary-color, #2c5f4f);
+    background: var(--theme-primary-color, #6b9080);
 }
 
 .notification-item-icon.type-policy {
-    background: var(--theme-info-color, #1565c0);
+    background: var(--theme-info-color, #4a90e2);
 }
 
 .notification-item-icon.type-comment {
-    background: var(--theme-accent-secondary, #7b1fa2);
+    background: var(--theme-accent-secondary, #9575cd);
 }
 
 .notification-item-icon.type-system {
-    background: var(--theme-text-tertiary, #616161);
+    background: var(--theme-text-tertiary, #78909c);
 }
 
 body.dark-forest .notification-item-icon,
 body.dark-forest .notification-item-icon {
-    color: var(--theme-text-primary, #ffffff);
+    color: var(--theme-text-primary, #0a1d18);
 }
 
 /* ========== NOTIFICATION CONTENT ========== */
@@ -12698,30 +12702,30 @@ body.dark-forest .notification-item-icon {
     margin: 0;
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--text-primary, #1a1a1a);
+    color: var(--text-primary, #d4e8dd);
 }
 
 body.dark-forest .notification-item-title,
 body.dark-forest .notification-item-title {
-    color: var(--text-primary, #ffffff);
+    color: var(--text-primary, #d4e8dd);
 }
 
 .notification-item-time {
     font-size: 0.75rem;
-    color: var(--text-tertiary, #666);
+    color: var(--text-tertiary, #78909c);
     white-space: nowrap;
 }
 
 .notification-item-message {
     margin: 0 0 12px;
     font-size: 0.875rem;
-    color: var(--text-secondary, #555);
+    color: var(--text-secondary, #b8d4c8);
     line-height: 1.5;
 }
 
 body.dark-forest .notification-item-message,
 body.dark-forest .notification-item-message {
-    color: var(--text-secondary, #aaa);
+    color: var(--text-secondary, #b8d4c8);
 }
 
 /* ========== NOTIFICATION ACTIONS ========== */
@@ -12733,37 +12737,37 @@ body.dark-forest .notification-item-message {
 
 .notification-action-btn {
     padding: 6px 14px;
-    background: var(--accent-primary, #2c5f4f);
-    color: white;
+    background: var(--accent-primary, #6b9080);
+    color: #0a1d18;
     border: none;
     border-radius: 6px;
     font-size: 0.8125rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .notification-action-btn:hover {
-    background: var(--accent-hover, #3d7a63);
+    background: var(--accent-hover, #7fa894);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(44, 95, 79, 0.3);
+    box-shadow: 0 2px 8px rgba(107, 144, 128, 0.4);
 }
 
 .notification-action-btn.secondary {
     background: transparent;
-    color: var(--accent-primary, #2c5f4f);
-    border: 1px solid var(--accent-primary, #2c5f4f);
+    color: var(--accent-primary, #6b9080);
+    border: 1px solid var(--accent-primary, #6b9080);
 }
 
 .notification-action-btn.secondary:hover {
-    background: rgba(44, 95, 79, 0.1);
+    background: rgba(107, 144, 128, 0.15);
     transform: none;
 }
 
 body.dark-forest .notification-action-btn.secondary,
 body.dark-forest .notification-action-btn.secondary {
-    color: var(--accent-light, #4a9975);
-    border-color: var(--accent-light, #4a9975);
+    color: var(--accent-light, #7fa894);
+    border-color: var(--accent-light, #7fa894);
 }
 
 /* ========== MARK AS READ BUTTON ========== */
@@ -12773,9 +12777,9 @@ body.dark-forest .notification-action-btn.secondary {
     flex-shrink: 0;
     padding: 0;
     background: transparent;
-    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));
+    border: 1px solid var(--border-subtle, rgba(107, 144, 128, 0.3));
     border-radius: 6px;
-    color: var(--text-secondary, #555);
+    color: var(--text-secondary, #b8d4c8);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -12784,34 +12788,36 @@ body.dark-forest .notification-action-btn.secondary {
 }
 
 .notification-mark-read:hover {
-    background: var(--accent-primary, #2c5f4f);
-    border-color: var(--accent-primary, #2c5f4f);
-    color: white;
+    background: var(--accent-primary, #6b9080);
+    border-color: var(--accent-primary, #6b9080);
+    color: #0a1d18;
 }
 
 /* ========== EMPTY STATE ========== */
 .notification-empty {
     padding: 48px 24px;
     text-align: center;
-    color: var(--text-tertiary, #666);
+    color: var(--text-tertiary, #78909c);
 }
 
 .notification-empty svg {
     margin-bottom: 16px;
     opacity: 0.3;
+    color: #6b9080;
 }
 
 .notification-empty p {
     margin: 0;
     font-size: 0.9375rem;
     font-weight: 500;
+    color: #b8d4c8;
 }
 
 /* ========== FOOTER ========== */
 .notification-modal-footer {
     padding: 16px 24px;
-    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
-    background: var(--surface-secondary, #f8f9fa);
+    border-top: 1px solid var(--border-subtle, rgba(107, 144, 128, 0.2));
+    background: var(--surface-secondary, #050f0c);
     display: flex;
     gap: 12px;
     justify-content: flex-end;
@@ -12819,8 +12825,8 @@ body.dark-forest .notification-action-btn.secondary {
 
 body.dark-forest .notification-modal-footer,
 body.dark-forest .notification-modal-footer {
-    background: var(--surface-secondary, #222);
-    border-top-color: rgba(255, 255, 255, 0.1);
+    background: var(--surface-secondary, #050f0c);
+    border-top-color: rgba(107, 144, 128, 0.2);
 }
 
 /* ========== NOTIFICATION BELL BADGE ========== */
@@ -12830,8 +12836,8 @@ body.dark-forest .notification-modal-footer {
     right: 4px;
     width: 8px;
     height: 8px;
-    background: #d32f2f;
-    border: 2px solid var(--surface-primary, #ffffff);
+    background: #ef5350;
+    border: 2px solid var(--surface-primary, #0a1d18);
     border-radius: 50%;
     opacity: 0;
     transform: scale(0);
@@ -12851,7 +12857,7 @@ body.dark-forest .notification-modal-footer {
     min-width: 18px;
     height: 18px;
     padding: 0 4px;
-    background: #d32f2f;
+    background: #ef5350;
     color: white;
     border-radius: 9px;
     font-size: 0.625rem;
@@ -12919,7 +12925,7 @@ body.dark-forest .notification-modal-footer {
 
 .icon-pill .dot.active {
     animation: notificationPulse 2s infinite;
-}`, "",{"version":3,"sources":["webpack://./styles/notification-modal.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Sistema de notificaciones modal\n * Estilos para el modal de notificaciones detalladas\n */\n\n/* ========== MODAL CONTAINER ========== */\n.notification-modal {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 10000;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n}\n\n.notification-modal.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* ========== OVERLAY ========== */\n.notification-modal-overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: var(--overlay-bg, rgba(0, 0, 0, 0.6));\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    cursor: pointer;\n}\n\nbody.dark-forest .notification-modal-overlay {\n    background: var(--overlay-bg, rgba(0, 0, 0, 0.8));\n}\n\n/* ========== MODAL CONTENT ========== */\n.notification-modal-container {\n    max-width: 700px;\n}\n\n/* ========== HEADER ========== */\n/* Header styles now inherited from modals-unified.css */\n\n\n.notification-modal-title svg {\n    color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-count-badge {\n    display: inline-block;\n    min-width: 24px;\n    height: 24px;\n    padding: 0 8px;\n    background: var(--theme-primary-color, var(--accent-primary, #2c5f4f));\n    color: var(--theme-text-on-primary, #ffffff);\n    border-radius: 12px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 24px;\n    text-align: center;\n}\n\nbody.dark-forest .notification-count-badge,\nbody.dark-forest .notification-count-badge {\n    background: var(--theme-accent-color, #6b9080);\n    color: var(--theme-bg-solid, #1a1a1a);\n}\n\n/* Close button styles now inherited from modals-unified.css */\n\n/* ========== FILTERS ========== */\n.notification-modal-filters {\n    padding: 16px 24px;\n    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n    background: var(--surface-primary, #ffffff);\n}\n\nbody.dark-forest .notification-modal-filters,\nbody.dark-forest .notification-modal-filters {\n    background: var(--surface-primary, #1a1a1a);\n    border-bottom-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-filter {\n    padding: 8px 16px;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));\n    border-radius: 20px;\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-secondary, #666);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.notification-filter:hover {\n    background: rgba(0, 0, 0, 0.03);\n    border-color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-filter.active {\n    background: var(--accent-primary, #2c5f4f);\n    border-color: var(--accent-primary, #2c5f4f);\n    color: white;\n}\n\nbody.dark-forest .notification-filter,\nbody.dark-forest .notification-filter {\n    border-color: rgba(255, 255, 255, 0.2);\n    color: var(--text-secondary, #aaa);\n}\n\nbody.dark-forest .notification-filter:hover,\nbody.dark-forest .notification-filter:hover {\n    background: rgba(255, 255, 255, 0.05);\n}\n\n.filter-count {\n    min-width: 20px;\n    height: 20px;\n    padding: 0 6px;\n    background: rgba(0, 0, 0, 0.1);\n    border-radius: 10px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 20px;\n    text-align: center;\n}\n\n.notification-filter.active .filter-count {\n    background: rgba(255, 255, 255, 0.3);\n}\n\n/* ========== BODY ========== */\n.notification-modal-body {\n    padding: 16px 24px;\n}\n\n/* Custom scrollbar */\n.notification-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.notification-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(0, 0, 0, 0.2);\n    border-radius: 4px;\n}\n\nbody.dark-forest .notification-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(255, 255, 255, 0.2);\n}\n\n/* ========== NOTIFICATION ITEM ========== */\n.notification-item {\n    position: relative;\n    padding: 16px;\n    margin-bottom: 12px;\n    background: var(--surface-secondary, #f8f9fa);\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    border-radius: 12px;\n    display: flex;\n    gap: 12px;\n    transition: all 0.2s ease;\n}\n\nbody.dark-forest .notification-item,\nbody.dark-forest .notification-item {\n    background: var(--surface-secondary, #222);\n    border-color: rgba(255, 255, 255, 0.1);\n}\n\n.notification-item:hover {\n    transform: translateX(4px);\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n}\n\n.notification-item.unread {\n    background: var(--theme-surface-accent, var(--surface-accent, #e8f5f0));\n    border-color: var(--theme-primary-color, var(--accent-primary, #2c5f4f));\n    border-left-width: 4px;\n}\n\nbody.dark-forest .notification-item.unread {\n    background: rgba(107, 144, 128, 0.15);\n    border-color: var(--theme-accent-color, #6b9080);\n}\n\nbody.dark-forest .notification-item.unread {\n    background: var(--theme-surface-hover, rgba(107, 144, 128, 0.12));\n    border-color: var(--theme-accent-color, #6b9080);\n}\n\n/* Priority indicators */\n.notification-item.priority-high {\n    border-left-color: #d32f2f;\n}\n\n.notification-item.priority-normal {\n    border-left-color: var(--accent-primary, #2c5f4f);\n}\n\n.notification-item.priority-low {\n    border-left-color: #757575;\n}\n\n/* ========== NOTIFICATION ICON ========== */\n.notification-item-icon {\n    width: 40px;\n    height: 40px;\n    flex-shrink: 0;\n    background: var(--theme-primary-color, var(--accent-primary, #2c5f4f));\n    border-radius: 10px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: var(--theme-text-on-primary, #ffffff);\n}\n\n.notification-item-icon.type-payment {\n    background: var(--theme-primary-color, #2c5f4f);\n}\n\n.notification-item-icon.type-policy {\n    background: var(--theme-info-color, #1565c0);\n}\n\n.notification-item-icon.type-comment {\n    background: var(--theme-accent-secondary, #7b1fa2);\n}\n\n.notification-item-icon.type-system {\n    background: var(--theme-text-tertiary, #616161);\n}\n\nbody.dark-forest .notification-item-icon,\nbody.dark-forest .notification-item-icon {\n    color: var(--theme-text-primary, #ffffff);\n}\n\n/* ========== NOTIFICATION CONTENT ========== */\n.notification-item-content {\n    flex: 1;\n    min-width: 0;\n}\n\n.notification-item-header {\n    display: flex;\n    align-items: flex-start;\n    justify-content: space-between;\n    gap: 12px;\n    margin-bottom: 6px;\n}\n\n.notification-item-title {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 600;\n    color: var(--text-primary, #1a1a1a);\n}\n\nbody.dark-forest .notification-item-title,\nbody.dark-forest .notification-item-title {\n    color: var(--text-primary, #ffffff);\n}\n\n.notification-item-time {\n    font-size: 0.75rem;\n    color: var(--text-tertiary, #666);\n    white-space: nowrap;\n}\n\n.notification-item-message {\n    margin: 0 0 12px;\n    font-size: 0.875rem;\n    color: var(--text-secondary, #555);\n    line-height: 1.5;\n}\n\nbody.dark-forest .notification-item-message,\nbody.dark-forest .notification-item-message {\n    color: var(--text-secondary, #aaa);\n}\n\n/* ========== NOTIFICATION ACTIONS ========== */\n.notification-item-actions {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.notification-action-btn {\n    padding: 6px 14px;\n    background: var(--accent-primary, #2c5f4f);\n    color: white;\n    border: none;\n    border-radius: 6px;\n    font-size: 0.8125rem;\n    font-weight: 500;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.notification-action-btn:hover {\n    background: var(--accent-hover, #3d7a63);\n    transform: translateY(-1px);\n    box-shadow: 0 2px 8px rgba(44, 95, 79, 0.3);\n}\n\n.notification-action-btn.secondary {\n    background: transparent;\n    color: var(--accent-primary, #2c5f4f);\n    border: 1px solid var(--accent-primary, #2c5f4f);\n}\n\n.notification-action-btn.secondary:hover {\n    background: rgba(44, 95, 79, 0.1);\n    transform: none;\n}\n\nbody.dark-forest .notification-action-btn.secondary,\nbody.dark-forest .notification-action-btn.secondary {\n    color: var(--accent-light, #4a9975);\n    border-color: var(--accent-light, #4a9975);\n}\n\n/* ========== MARK AS READ BUTTON ========== */\n.notification-mark-read {\n    width: 32px;\n    height: 32px;\n    flex-shrink: 0;\n    padding: 0;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));\n    border-radius: 6px;\n    color: var(--text-secondary, #555);\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.notification-mark-read:hover {\n    background: var(--accent-primary, #2c5f4f);\n    border-color: var(--accent-primary, #2c5f4f);\n    color: white;\n}\n\n/* ========== EMPTY STATE ========== */\n.notification-empty {\n    padding: 48px 24px;\n    text-align: center;\n    color: var(--text-tertiary, #666);\n}\n\n.notification-empty svg {\n    margin-bottom: 16px;\n    opacity: 0.3;\n}\n\n.notification-empty p {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 500;\n}\n\n/* ========== FOOTER ========== */\n.notification-modal-footer {\n    padding: 16px 24px;\n    border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    background: var(--surface-secondary, #f8f9fa);\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n}\n\nbody.dark-forest .notification-modal-footer,\nbody.dark-forest .notification-modal-footer {\n    background: var(--surface-secondary, #222);\n    border-top-color: rgba(255, 255, 255, 0.1);\n}\n\n/* ========== NOTIFICATION BELL BADGE ========== */\n.icon-pill .dot {\n    position: absolute;\n    top: 4px;\n    right: 4px;\n    width: 8px;\n    height: 8px;\n    background: #d32f2f;\n    border: 2px solid var(--surface-primary, #ffffff);\n    border-radius: 50%;\n    opacity: 0;\n    transform: scale(0);\n    transition: all 0.2s ease;\n}\n\n.icon-pill .dot.active {\n    opacity: 1;\n    transform: scale(1);\n}\n\n.icon-pill .dot[data-count]::after {\n    content: attr(data-count);\n    position: absolute;\n    top: -12px;\n    right: -8px;\n    min-width: 18px;\n    height: 18px;\n    padding: 0 4px;\n    background: #d32f2f;\n    color: white;\n    border-radius: 9px;\n    font-size: 0.625rem;\n    font-weight: 700;\n    line-height: 18px;\n    text-align: center;\n}\n\n/* ========== RESPONSIVE ========== */\n@media (max-width: 640px) {\n    .notification-modal-content {\n        width: 100%;\n        max-width: none;\n        max-height: 100vh;\n        border-radius: 0;\n    }\n\n    .notification-modal-header,\n    .notification-modal-filters,\n    .notification-modal-body,\n    .notification-modal-footer {\n        padding-left: 16px;\n        padding-right: 16px;\n    }\n\n    .notification-modal-title {\n        font-size: 1.125rem;\n    }\n\n    .notification-item {\n        padding: 12px;\n    }\n\n    .notification-item-icon {\n        width: 36px;\n        height: 36px;\n    }\n\n    .notification-item-icon svg {\n        width: 18px;\n        height: 18px;\n    }\n\n    .notification-modal-footer {\n        flex-direction: column;\n    }\n\n    .notification-action-btn {\n        width: 100%;\n    }\n}\n\n/* ========== ANIMATIONS ========== */\n@keyframes notificationPulse {\n\n    0%,\n    100% {\n        transform: scale(1);\n    }\n\n    50% {\n        transform: scale(1.1);\n    }\n}\n\n.icon-pill .dot.active {\n    animation: notificationPulse 2s infinite;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./styles/notification-modal.css"],"names":[],"mappings":"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","sourcesContent":["/**\n * Sistema de notificaciones modal\n * Estilos para el modal de notificaciones detalladas\n */\n\n/* ========== MODAL CONTAINER ========== */\n.notification-modal {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    z-index: 10000;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.3s ease;\n}\n\n.notification-modal.active {\n    opacity: 1;\n    pointer-events: all;\n}\n\n/* ========== OVERLAY ========== */\n.notification-modal-overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: var(--overlay-bg, rgba(0, 0, 0, 0.6));\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    cursor: pointer;\n}\n\nbody.dark-forest .notification-modal-overlay {\n    background: var(--overlay-bg, rgba(0, 0, 0, 0.8));\n}\n\n/* ========== MODAL CONTENT ========== */\n.notification-modal-container {\n    max-width: 700px;\n}\n\n/* ========== HEADER ========== */\n/* Header styles now inherited from modals-unified.css */\n\n\n.notification-modal-title svg {\n    color: var(--accent-primary, #6b9080);\n}\n\n.notification-count-badge {\n    display: inline-block;\n    min-width: 24px;\n    height: 24px;\n    padding: 0 8px;\n    background: var(--theme-primary-color, var(--accent-primary, #6b9080));\n    color: var(--theme-text-on-primary, #0a1d18);\n    border-radius: 12px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 24px;\n    text-align: center;\n}\n\nbody.dark-forest .notification-count-badge,\nbody.dark-forest .notification-count-badge {\n    background: var(--theme-accent-color, #6b9080);\n    color: var(--theme-bg-solid, #0a1d18);\n}\n\n/* Close button styles now inherited from modals-unified.css */\n\n/* ========== FILTERS ========== */\n.notification-modal-filters {\n    padding: 16px 24px;\n    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n    background: var(--surface-primary, #0a1d18);\n}\n\nbody.dark-forest .notification-modal-filters,\nbody.dark-forest .notification-modal-filters {\n    background: var(--surface-primary, #0a1d18);\n    border-bottom-color: rgba(107, 144, 128, 0.2);\n}\n\n.notification-filter {\n    padding: 8px 16px;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(107, 144, 128, 0.3));\n    border-radius: 20px;\n    font-size: 0.875rem;\n    font-weight: 500;\n    color: var(--text-secondary, #b8d4c8);\n    cursor: pointer;\n    transition: all 0.2s ease;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n}\n\n.notification-filter:hover {\n    background: rgba(107, 144, 128, 0.1);\n    border-color: var(--accent-primary, #6b9080);\n}\n\n.notification-filter.active {\n    background: var(--accent-primary, #6b9080);\n    border-color: var(--accent-primary, #6b9080);\n    color: #0a1d18;\n    font-weight: 600;\n}\n\nbody.dark-forest .notification-filter,\nbody.dark-forest .notification-filter {\n    border-color: rgba(107, 144, 128, 0.3);\n    color: var(--text-secondary, #b8d4c8);\n}\n\nbody.dark-forest .notification-filter:hover,\nbody.dark-forest .notification-filter:hover {\n    background: rgba(107, 144, 128, 0.15);\n}\n\n.filter-count {\n    min-width: 20px;\n    height: 20px;\n    padding: 0 6px;\n    background: rgba(107, 144, 128, 0.2);\n    border-radius: 10px;\n    font-size: 0.75rem;\n    font-weight: 700;\n    line-height: 20px;\n    text-align: center;\n    color: #b8d4c8;\n}\n\n.notification-filter.active .filter-count {\n    background: rgba(10, 29, 24, 0.3);\n    color: #0a1d18;\n}\n\n/* ========== BODY ========== */\n.notification-modal-body {\n    padding: 16px 24px;\n}\n\n/* Custom scrollbar */\n.notification-modal-body::-webkit-scrollbar {\n    width: 8px;\n}\n\n.notification-modal-body::-webkit-scrollbar-track {\n    background: transparent;\n}\n\n.notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(107, 144, 128, 0.3);\n    border-radius: 4px;\n}\n\nbody.dark-forest .notification-modal-body::-webkit-scrollbar-thumb,\nbody.dark-forest .notification-modal-body::-webkit-scrollbar-thumb {\n    background: rgba(107, 144, 128, 0.4);\n}\n\n/* ========== NOTIFICATION ITEM ========== */\n.notification-item {\n    position: relative;\n    padding: 16px;\n    margin-bottom: 12px;\n    background: var(--surface-secondary, #050f0c);\n    border: 1px solid var(--border-subtle, rgba(107, 144, 128, 0.2));\n    border-radius: 12px;\n    display: flex;\n    gap: 12px;\n    transition: all 0.2s ease;\n}\n\nbody.dark-forest .notification-item,\nbody.dark-forest .notification-item {\n    background: var(--surface-secondary, #050f0c);\n    border-color: rgba(107, 144, 128, 0.2);\n}\n\n.notification-item:hover {\n    transform: translateX(4px);\n    box-shadow: 0 4px 12px rgba(107, 144, 128, 0.15);\n    border-color: rgba(107, 144, 128, 0.4);\n}\n\n.notification-item.unread {\n    background: var(--theme-surface-accent, rgba(107, 144, 128, 0.1));\n    border-color: var(--theme-primary-color, #6b9080);\n    border-left-width: 4px;\n}\n\nbody.dark-forest .notification-item.unread {\n    background: rgba(107, 144, 128, 0.15);\n    border-color: var(--theme-accent-color, #6b9080);\n}\n\nbody.dark-forest .notification-item.unread {\n    background: var(--theme-surface-hover, rgba(107, 144, 128, 0.12));\n    border-color: var(--theme-accent-color, #6b9080);\n}\n\n/* Priority indicators */\n.notification-item.priority-high {\n    border-left-color: #ef5350;\n}\n\n.notification-item.priority-normal {\n    border-left-color: #6b9080;\n}\n\n.notification-item.priority-low {\n    border-left-color: #78909c;\n}\n\n/* ========== NOTIFICATION ICON ========== */\n.notification-item-icon {\n    width: 40px;\n    height: 40px;\n    flex-shrink: 0;\n    background: var(--theme-primary-color, #6b9080);\n    border-radius: 10px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: var(--theme-text-on-primary, #0a1d18);\n}\n\n.notification-item-icon.type-payment {\n    background: var(--theme-primary-color, #6b9080);\n}\n\n.notification-item-icon.type-policy {\n    background: var(--theme-info-color, #4a90e2);\n}\n\n.notification-item-icon.type-comment {\n    background: var(--theme-accent-secondary, #9575cd);\n}\n\n.notification-item-icon.type-system {\n    background: var(--theme-text-tertiary, #78909c);\n}\n\nbody.dark-forest .notification-item-icon,\nbody.dark-forest .notification-item-icon {\n    color: var(--theme-text-primary, #0a1d18);\n}\n\n/* ========== NOTIFICATION CONTENT ========== */\n.notification-item-content {\n    flex: 1;\n    min-width: 0;\n}\n\n.notification-item-header {\n    display: flex;\n    align-items: flex-start;\n    justify-content: space-between;\n    gap: 12px;\n    margin-bottom: 6px;\n}\n\n.notification-item-title {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 600;\n    color: var(--text-primary, #d4e8dd);\n}\n\nbody.dark-forest .notification-item-title,\nbody.dark-forest .notification-item-title {\n    color: var(--text-primary, #d4e8dd);\n}\n\n.notification-item-time {\n    font-size: 0.75rem;\n    color: var(--text-tertiary, #78909c);\n    white-space: nowrap;\n}\n\n.notification-item-message {\n    margin: 0 0 12px;\n    font-size: 0.875rem;\n    color: var(--text-secondary, #b8d4c8);\n    line-height: 1.5;\n}\n\nbody.dark-forest .notification-item-message,\nbody.dark-forest .notification-item-message {\n    color: var(--text-secondary, #b8d4c8);\n}\n\n/* ========== NOTIFICATION ACTIONS ========== */\n.notification-item-actions {\n    display: flex;\n    gap: 8px;\n    flex-wrap: wrap;\n}\n\n.notification-action-btn {\n    padding: 6px 14px;\n    background: var(--accent-primary, #6b9080);\n    color: #0a1d18;\n    border: none;\n    border-radius: 6px;\n    font-size: 0.8125rem;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.2s ease;\n}\n\n.notification-action-btn:hover {\n    background: var(--accent-hover, #7fa894);\n    transform: translateY(-1px);\n    box-shadow: 0 2px 8px rgba(107, 144, 128, 0.4);\n}\n\n.notification-action-btn.secondary {\n    background: transparent;\n    color: var(--accent-primary, #6b9080);\n    border: 1px solid var(--accent-primary, #6b9080);\n}\n\n.notification-action-btn.secondary:hover {\n    background: rgba(107, 144, 128, 0.15);\n    transform: none;\n}\n\nbody.dark-forest .notification-action-btn.secondary,\nbody.dark-forest .notification-action-btn.secondary {\n    color: var(--accent-light, #7fa894);\n    border-color: var(--accent-light, #7fa894);\n}\n\n/* ========== MARK AS READ BUTTON ========== */\n.notification-mark-read {\n    width: 32px;\n    height: 32px;\n    flex-shrink: 0;\n    padding: 0;\n    background: transparent;\n    border: 1px solid var(--border-subtle, rgba(107, 144, 128, 0.3));\n    border-radius: 6px;\n    color: var(--text-secondary, #b8d4c8);\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s ease;\n}\n\n.notification-mark-read:hover {\n    background: var(--accent-primary, #6b9080);\n    border-color: var(--accent-primary, #6b9080);\n    color: #0a1d18;\n}\n\n/* ========== EMPTY STATE ========== */\n.notification-empty {\n    padding: 48px 24px;\n    text-align: center;\n    color: var(--text-tertiary, #78909c);\n}\n\n.notification-empty svg {\n    margin-bottom: 16px;\n    opacity: 0.3;\n    color: #6b9080;\n}\n\n.notification-empty p {\n    margin: 0;\n    font-size: 0.9375rem;\n    font-weight: 500;\n    color: #b8d4c8;\n}\n\n/* ========== FOOTER ========== */\n.notification-modal-footer {\n    padding: 16px 24px;\n    border-top: 1px solid var(--border-subtle, rgba(107, 144, 128, 0.2));\n    background: var(--surface-secondary, #050f0c);\n    display: flex;\n    gap: 12px;\n    justify-content: flex-end;\n}\n\nbody.dark-forest .notification-modal-footer,\nbody.dark-forest .notification-modal-footer {\n    background: var(--surface-secondary, #050f0c);\n    border-top-color: rgba(107, 144, 128, 0.2);\n}\n\n/* ========== NOTIFICATION BELL BADGE ========== */\n.icon-pill .dot {\n    position: absolute;\n    top: 4px;\n    right: 4px;\n    width: 8px;\n    height: 8px;\n    background: #ef5350;\n    border: 2px solid var(--surface-primary, #0a1d18);\n    border-radius: 50%;\n    opacity: 0;\n    transform: scale(0);\n    transition: all 0.2s ease;\n}\n\n.icon-pill .dot.active {\n    opacity: 1;\n    transform: scale(1);\n}\n\n.icon-pill .dot[data-count]::after {\n    content: attr(data-count);\n    position: absolute;\n    top: -12px;\n    right: -8px;\n    min-width: 18px;\n    height: 18px;\n    padding: 0 4px;\n    background: #ef5350;\n    color: white;\n    border-radius: 9px;\n    font-size: 0.625rem;\n    font-weight: 700;\n    line-height: 18px;\n    text-align: center;\n}\n\n/* ========== RESPONSIVE ========== */\n@media (max-width: 640px) {\n    .notification-modal-content {\n        width: 100%;\n        max-width: none;\n        max-height: 100vh;\n        border-radius: 0;\n    }\n\n    .notification-modal-header,\n    .notification-modal-filters,\n    .notification-modal-body,\n    .notification-modal-footer {\n        padding-left: 16px;\n        padding-right: 16px;\n    }\n\n    .notification-modal-title {\n        font-size: 1.125rem;\n    }\n\n    .notification-item {\n        padding: 12px;\n    }\n\n    .notification-item-icon {\n        width: 36px;\n        height: 36px;\n    }\n\n    .notification-item-icon svg {\n        width: 18px;\n        height: 18px;\n    }\n\n    .notification-modal-footer {\n        flex-direction: column;\n    }\n\n    .notification-action-btn {\n        width: 100%;\n    }\n}\n\n/* ========== ANIMATIONS ========== */\n@keyframes notificationPulse {\n\n    0%,\n    100% {\n        transform: scale(1);\n    }\n\n    50% {\n        transform: scale(1.1);\n    }\n}\n\n.icon-pill .dot.active {\n    animation: notificationPulse 2s infinite;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
