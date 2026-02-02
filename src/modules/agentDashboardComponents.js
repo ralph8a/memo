@@ -543,13 +543,26 @@ export class AgentDashboardManager {
     }
 
     updateFilterUI(clientId) {
-        const filterIndicator = document.getElementById('client-filter-indicator');
-        if (filterIndicator) {
+        const filterPanel = document.getElementById('client-filter-panel');
+        const filterClientName = document.querySelector('[data-filter-client-name]');
+
+        if (filterPanel) {
             if (clientId) {
-                filterIndicator.textContent = `Filtrando por cliente: ${clientId}`;
-                filterIndicator.style.display = 'block';
+                // Mostrar panel
+                filterPanel.style.display = 'block';
+
+                // Buscar nombre del cliente en los datos cargados
+                if (filterClientName && window.dashboardData?.clients) {
+                    const client = window.dashboardData.clients.find(c => c.id == clientId);
+                    if (client) {
+                        filterClientName.textContent = client.name;
+                    } else {
+                        filterClientName.textContent = `Cliente ID: ${clientId}`;
+                    }
+                }
             } else {
-                filterIndicator.style.display = 'none';
+                // Ocultar panel
+                filterPanel.style.display = 'none';
             }
         }
     }

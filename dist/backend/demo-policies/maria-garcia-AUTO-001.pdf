@@ -1,0 +1,204 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+/Resources <<
+/Font <<
+/F1 5 0 R
+/F2 6 0 R
+>>
+>>
+>>
+endobj
+
+4 0 obj
+<<
+/Length 2850
+>>
+stream
+BT
+/F1 24 Tf
+50 740 Td
+(POLIZA DE SEGURO DE AUTO) Tj
+ET
+
+BT
+/F1 12 Tf
+50 710 Td
+(Numero de Poliza: AUTO-001-2026) Tj
+ET
+
+BT
+/F2 10 Tf
+50 685 Td
+(Fecha de Emision: 15 de Enero de 2026) Tj
+0 -15 Td
+(Fecha de Vigencia: 15 de Enero de 2026 al 15 de Enero de 2027) Tj
+ET
+
+BT
+/F1 14 Tf
+50 640 Td
+(INFORMACION DEL ASEGURADO) Tj
+ET
+
+BT
+/F2 10 Tf
+50 620 Td
+(Nombre Completo: Maria Elena Garcia Lopez) Tj
+0 -15 Td
+(Email: maria.garcia@example.com) Tj
+0 -15 Td
+(Telefono: +52 (555) 123-4567) Tj
+0 -15 Td
+(Direccion: Av. Insurgentes Sur 1234, Col. Del Valle, CDMX 03100) Tj
+0 -15 Td
+(Fecha de Nacimiento: 15 de Marzo de 1985) Tj
+0 -15 Td
+(RFC: GAML850315ABC) Tj
+ET
+
+BT
+/F1 14 Tf
+50 515 Td
+(INFORMACION DEL VEHICULO ASEGURADO) Tj
+ET
+
+BT
+/F2 10 Tf
+50 495 Td
+(Marca: Honda) Tj
+0 -15 Td
+(Modelo: Civic) Tj
+0 -15 Td
+(Ano: 2022) Tj
+0 -15 Td
+(Version: EX Sedan) Tj
+0 -15 Td
+(Placas: ABC-123-XY) Tj
+0 -15 Td
+(Numero de Serie \(VIN\): 1HGBH41JXMN109186) Tj
+0 -15 Td
+(Color: Gris Plata) Tj
+0 -15 Td
+(Uso del Vehiculo: Particular) Tj
+ET
+
+BT
+/F1 14 Tf
+50 375 Td
+(COBERTURA Y BENEFICIOS) Tj
+ET
+
+BT
+/F2 10 Tf
+50 355 Td
+(Responsabilidad Civil: $2,000,000.00 MXN) Tj
+0 -15 Td
+(Danos Materiales: $350,000.00 MXN) Tj
+0 -15 Td
+(Robo Total: Valor Comercial) Tj
+0 -15 Td
+(Gastos Medicos Ocupantes: $150,000.00 MXN por persona) Tj
+0 -15 Td
+(Asistencia Vial 24/7: Incluida) Tj
+0 -15 Td
+(Auto Sustituto: Hasta 15 dias) Tj
+0 -15 Td
+(Cristales: Suma Asegurada sin Deducible) Tj
+ET
+
+BT
+/F1 14 Tf
+50 235 Td
+(INFORMACION DE PAGO) Tj
+ET
+
+BT
+/F2 10 Tf
+50 215 Td
+(Prima Total Anual: $18,500.00 MXN) Tj
+0 -15 Td
+(Prima Mensual: $1,625.00 MXN) Tj
+0 -15 Td
+(Periodicidad de Pago: Mensual) Tj
+0 -15 Td
+(Forma de Pago: Transferencia Bancaria / Tarjeta) Tj
+0 -15 Td
+(Fecha de Primer Pago: 20 de Enero de 2026) Tj
+0 -15 Td
+(Fecha de Siguiente Pago: 20 de Febrero de 2026) Tj
+ET
+
+BT
+/F1 14 Tf
+50 115 Td
+(ASEGURADORA) Tj
+ET
+
+BT
+/F2 10 Tf
+50 95 Td
+(Nombre: GNP Seguros) Tj
+0 -15 Td
+(Agente: Guillermo Krause S.) Tj
+0 -15 Td
+(Telefono de Contacto: +52 (555) 999-8888) Tj
+0 -15 Td
+(Email Agente: krause@ksinsurance.com) Tj
+ET
+
+endstream
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+
+6 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+
+xref
+0 7
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000115 00000 n
+0000000274 00000 n
+0000003176 00000 n
+0000003259 00000 n
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+3337
+%%EOF

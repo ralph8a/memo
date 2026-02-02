@@ -257,16 +257,39 @@
                       
                       <!-- Panel de Cargar Póliza removido - ahora es botón de acción rápida -->
 
-                      <!-- Client Filter Indicator -->
-                      <div id="client-filter-indicator" class="filter-indicator" style="display: none;">
-                        Filtrando por cliente
-                        <button class="btn-clear-filter" onclick="window.agentDashboard?.clearClientFilter()">
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
-                          </svg>
-                          Limpiar filtro
-                        </button>
+                      <!-- Client Filter Panel -->
+                      <div id="client-filter-panel" class="content-card compact" style="display: none;">
+                        <div class="card-header-modern">
+                          <div style="display: flex; align-items: center; gap: 8px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>
+                            </svg>
+                            <h3>Filtro Activo</h3>
+                          </div>
+                          <button class="btn btn-sm btn-outline" onclick="window.agentDashboard?.clearClientFilter()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <line x1="18" y1="6" x2="6" y2="18"/>
+                              <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                            Limpiar filtro
+                          </button>
+                        </div>
+                        <div class="card-body" style="padding: 16px 20px;">
+                          <div id="client-filter-indicator" class="filter-active-info">
+                            <div class="filter-icon">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                              </svg>
+                            </div>
+                            <div class="filter-text">
+                              <div class="filter-label">Cliente seleccionado:</div>
+                              <div class="filter-value" data-filter-client-name>Cargando...</div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
 
                       <!-- Agent Payment Schedule Panel -->

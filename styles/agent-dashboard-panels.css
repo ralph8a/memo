@@ -3,7 +3,62 @@
    Estilos para paneles de pagos y pólizas del agente
    =================================== */
 
-/* Client Filter Indicator */
+/* Client Filter Panel */
+#client-filter-panel {
+    margin-bottom: 1.5rem;
+}
+
+#client-filter-panel .card-header-modern {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="dark-forest"] #client-filter-panel .card-header-modern {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.filter-active-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.filter-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #8b2348 0%, #a12a56 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+html[data-theme="dark-forest"] .filter-icon {
+    background: linear-gradient(135deg, rgba(139, 35, 72, 0.3) 0%, rgba(161, 42, 86, 0.4) 100%);
+    border: 1px solid rgba(139, 35, 72, 0.5);
+}
+
+.filter-text {
+    flex: 1;
+}
+
+.filter-label {
+    font-size: 0.8125rem;
+    color: var(--theme-text-secondary);
+    margin-bottom: 4px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--theme-text-primary);
+}
+
+/* Legacy filter indicator (deprecated) */
 .filter-indicator {
     margin: 0 0 1.5rem 0;
     padding: 12px 16px;

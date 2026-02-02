@@ -436,13 +436,28 @@ var AgentDashboardManager = /*#__PURE__*/function () {
   }, {
     key: "updateFilterUI",
     value: function updateFilterUI(clientId) {
-      var filterIndicator = document.getElementById('client-filter-indicator');
-      if (filterIndicator) {
+      var filterPanel = document.getElementById('client-filter-panel');
+      var filterClientName = document.querySelector('[data-filter-client-name]');
+      if (filterPanel) {
         if (clientId) {
-          filterIndicator.textContent = "Filtrando por cliente: ".concat(clientId);
-          filterIndicator.style.display = 'block';
+          var _window$dashboardData;
+          // Mostrar panel
+          filterPanel.style.display = 'block';
+
+          // Buscar nombre del cliente en los datos cargados
+          if (filterClientName && (_window$dashboardData = window.dashboardData) !== null && _window$dashboardData !== void 0 && _window$dashboardData.clients) {
+            var client = window.dashboardData.clients.find(function (c) {
+              return c.id == clientId;
+            });
+            if (client) {
+              filterClientName.textContent = client.name;
+            } else {
+              filterClientName.textContent = "Cliente ID: ".concat(clientId);
+            }
+          }
         } else {
-          filterIndicator.style.display = 'none';
+          // Ocultar panel
+          filterPanel.style.display = 'none';
         }
       }
     }
