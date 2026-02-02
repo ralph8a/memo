@@ -268,29 +268,40 @@ try {
         sendResponse(getAgentDashboard($db, $user['user_id']));
     }
     
-    // GET ?action=agent_payments - Obtener pagos de clientes del agente
+    // GET ?action=agent_payments - Obtener calendario de pagos mensuales agrupados por póliza
     if ($action === 'agent_payments') {
         $user = Auth::requireUserType(['agent', 'admin']);
         $agent_id = $user['user_id'];
         
         $stmt = $db->prepare("
             SELECT 
-                pay.id AS payment_id,
-                pay.policy_id,
-                pay.amount,
-                pay.payment_date AS due_date,
-                pay.status,
+                ps.id,
+                ps.policy_id,
+                ps.amount,
+                ps.due_date,
+                ps.status,
+                ps.payment_proof_id AS proof_id,
                 p.policy_number,
                 p.policy_type,
                 p.client_id,
+                p.premium_amount,
                 CONCAT(u.first_name, ' ', u.last_name) AS client_name,
                 u.email AS client_email
-            FROM payments pay
-            INNER JOIN policies p ON pay.policy_id = p.id
+            FROM payment_schedules ps
+            INNER JOIN policies p ON ps.policy_id = p.id
             INNER JOIN users u ON p.client_id = u.id
-            WHERE p.agent_id = ? AND u.user_type = 'client'
-            ORDER BY pay.payment_date DESC
-            LIMIT 100
+            WHERE p.agent_id = ? 
+                AND u.user_type = 'client'
+                AND p.status = 'active'
+            ORDER BY 
+                CASE ps.status
+                    WHEN 'overdue' THEN 1
+                    WHEN 'pending' THEN 2
+                    WHEN 'paid' THEN 3
+                    ELSE 4
+                END,
+                ps.due_date ASC
+            LIMIT 200
         ");
         $stmt->execute([$agent_id]);
         $payments = $stmt->fetchAll();
