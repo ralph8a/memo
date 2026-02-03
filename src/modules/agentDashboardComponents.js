@@ -23,12 +23,47 @@ export class AgentPaymentSchedulePanel {
         }
 
         try {
-            // Usar apiService para obtener pagos
-            const data = await apiService.request('?action=agent_payments', {
+            // Obtener clientes completos con sus pólizas desde agent_clients
+            const clients = await apiService.request('?action=agent_clients', {
                 method: 'GET'
             });
 
-            let payments = data.payments || data || [];
+            // Transformar datos de clientes a estructura de pagos
+            // Cada póliza activa genera un "pago pendiente" ficticio
+            let payments = [];
+            clients.forEach(client => {
+                if (client.policies && client.policies.length > 0) {
+                    client.policies.forEach(policy => {
+                        if (policy.status === 'active') {
+                            // Calcular próxima fecha de pago basado en renewal_date
+                            const renewalDate = policy.renewal_date ? new Date(policy.renewal_date) : null;
+                            const nextPaymentDate = renewalDate || new Date();
+                            
+                            payments.push({
+                                id: `payment_${policy.id}`,
+                                client_id: client.id,
+                                client_name: client.name,
+                                client_email: client.email,
+                                policy_id: policy.id,
+                                policy_number: policy.policy_number,
+                                policy_type: policy.policy_type,
+                                amount: parseFloat(policy.premium_amount || 0),
+                                due_date: nextPaymentDate.toISOString().split('T')[0],
+                                status: this.calculatePaymentStatus(nextPaymentDate),
+                                proof_id: null
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Guardar datos completos en JSON para reutilización
+            window.agentClientsData = {
+                clients: clients,
+                payments: payments,
+                lastUpdated: new Date().toISOString()
+            };
+            console.log('💾 Agent clients data stored:', window.agentClientsData);
 
             // Filtrar por cliente si está especificado
             if (this.filteredClientId) {
@@ -150,11 +185,22 @@ export class AgentPaymentSchedulePanel {
         `;
     }
 
+    calculatePaymentStatus(dueDate) {
+        const now = new Date();
+        const due = new Date(dueDate);
+        const diffDays = Math.ceil((due - now) / (1000 * 60 * 60 * 24));
+        
+        if (diffDays < 0) return 'overdue';
+        if (diffDays <= 7) return 'pending';
+        return 'upcoming';
+    }
+
     getStatusClass(status) {
         const classes = {
             'paid': 'success',
             'pending': 'warning',
             'overdue': 'danger',
+            'upcoming': 'info',
             'cancelled': 'neutral'
         };
         return classes[status] || 'neutral';
@@ -165,6 +211,7 @@ export class AgentPaymentSchedulePanel {
             'paid': 'Pagado',
             'pending': 'Pendiente',
             'overdue': 'Vencido',
+            'upcoming': 'Próximo',
             'cancelled': 'Cancelado'
         };
         return texts[status] || status;
