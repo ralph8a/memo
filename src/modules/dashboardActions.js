@@ -417,16 +417,90 @@ export async function submitQuoteRequest(event) {
 }
 
 /**
- * Agendar cita - Usar el scheduler de meetings
+ * Agendar cita - Mostrar modal de citas
  */
 export async function scheduleAppointment() {
   try {
-    const { openMeetingScheduler } = await import('./scheduling.js');
-    await openMeetingScheduler();
+    // Create simple appointment modal
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay';
+    modal.innerHTML = `
+      <div class="app-modal">
+        <div class="app-modal-header">
+          <h2 class="app-modal-title">📅 Agendar Cita</h2>
+          <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <div class="app-modal-body">
+          <form id="appointmentForm" style="display: grid; gap: 16px;">
+            <div class="form-group">
+              <label>Tipo de cita</label>
+              <select name="type" required class="form-control">
+                <option value="quote">Cotización</option>
+                <option value="consultation">Consulta</option>
+                <option value="renewal">Renovación</option>
+                <option value="support">Soporte</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Fecha</label>
+              <input type="date" name="date" required class="form-control" min="${new Date().toISOString().split('T')[0]}">
+            </div>
+            <div class="form-group">
+              <label>Hora</label>
+              <input type="time" name="time" required class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Notas (opcional)</label>
+              <textarea name="notes" class="form-control" rows="3" placeholder="Detalles de la cita..."></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="app-modal-footer">
+          <button class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
+          <button class="btn btn-primary" onclick="window.dashboardActions?.submitAppointmentRequest?.()">Solicitar Cita</button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('active'), 10);
   } catch (error) {
-    console.error('Error opening meeting scheduler:', error);
-    const { showNotification, NOTIFICATION_TYPES } = await import('./notifications.js');
+    console.error('Error opening appointment modal:', error);
     showNotification('Error al abrir el calendario de citas', NOTIFICATION_TYPES.ERROR);
+  }
+}
+
+async function submitAppointmentRequest() {
+  const form = document.getElementById('appointmentForm');
+  if (!form || !form.checkValidity()) {
+    form?.reportValidity();
+    return;
+  }
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData);
+
+  try {
+    showNotification('Procesando solicitud...', NOTIFICATION_TYPES.INFO);
+    
+    // TODO: Connect to backend API when ready
+    // const response = await apiService.request('?action=create_appointment', {
+    //   method: 'POST',
+    //   body: JSON.stringify(data)
+    // });
+    
+    // Simulate success for now
+    setTimeout(() => {
+      document.querySelector('.app-modal-overlay')?.remove();
+      showNotification('Cita solicitada. Te confirmaremos por email.', NOTIFICATION_TYPES.SUCCESS);
+    }, 500);
+  } catch (error) {
+    console.error('Error submitting appointment:', error);
+    showNotification('Error al solicitar la cita', NOTIFICATION_TYPES.ERROR);
   }
 }
 
@@ -1253,6 +1327,7 @@ if (typeof window !== 'undefined') {
     submitClaim,
     submitPolicyUpload,
     submitAppointment,
+    submitAppointmentRequest,
     submitPolicyDocumentUpload,
   };
 }

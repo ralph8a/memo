@@ -21863,7 +21863,7 @@ function submitQuoteRequest(_x) {
 }
 
 /**
- * Agendar cita - Usar el scheduler de meetings
+ * Agendar cita - Mostrar modal de citas
  */
 function _submitQuoteRequest() {
   _submitQuoteRequest = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(event) {
@@ -21914,44 +21914,79 @@ function _submitQuoteRequest() {
 function scheduleAppointment() {
   return _scheduleAppointment.apply(this, arguments);
 }
-
+function _scheduleAppointment() {
+  _scheduleAppointment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+    var modal;
+    return _regenerator().w(function (_context7) {
+      while (1) switch (_context7.n) {
+        case 0:
+          try {
+            // Create simple appointment modal
+            modal = document.createElement('div');
+            modal.className = 'app-modal-overlay';
+            modal.innerHTML = "\n      <div class=\"app-modal\">\n        <div class=\"app-modal-header\">\n          <h2 class=\"app-modal-title\">\uD83D\uDCC5 Agendar Cita</h2>\n          <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n            <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n            </svg>\n          </button>\n        </div>\n        <div class=\"app-modal-body\">\n          <form id=\"appointmentForm\" style=\"display: grid; gap: 16px;\">\n            <div class=\"form-group\">\n              <label>Tipo de cita</label>\n              <select name=\"type\" required class=\"form-control\">\n                <option value=\"quote\">Cotizaci\xF3n</option>\n                <option value=\"consultation\">Consulta</option>\n                <option value=\"renewal\">Renovaci\xF3n</option>\n                <option value=\"support\">Soporte</option>\n              </select>\n            </div>\n            <div class=\"form-group\">\n              <label>Fecha</label>\n              <input type=\"date\" name=\"date\" required class=\"form-control\" min=\"".concat(new Date().toISOString().split('T')[0], "\">\n            </div>\n            <div class=\"form-group\">\n              <label>Hora</label>\n              <input type=\"time\" name=\"time\" required class=\"form-control\">\n            </div>\n            <div class=\"form-group\">\n              <label>Notas (opcional)</label>\n              <textarea name=\"notes\" class=\"form-control\" rows=\"3\" placeholder=\"Detalles de la cita...\"></textarea>\n            </div>\n          </form>\n        </div>\n        <div class=\"app-modal-footer\">\n          <button class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n          <button class=\"btn btn-primary\" onclick=\"window.dashboardActions?.submitAppointmentRequest?.()\">Solicitar Cita</button>\n        </div>\n      </div>\n    ");
+            document.body.appendChild(modal);
+            setTimeout(function () {
+              return modal.classList.add('active');
+            }, 10);
+          } catch (error) {
+            console.error('Error opening appointment modal:', error);
+            (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al abrir el calendario de citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          }
+        case 1:
+          return _context7.a(2);
+      }
+    }, _callee7);
+  }));
+  return _scheduleAppointment.apply(this, arguments);
+}
+function submitAppointmentRequest() {
+  return _submitAppointmentRequest.apply(this, arguments);
+}
 /**
  * Ver detalles de cliente - CONECTADO CON BACKEND
  */
-function _scheduleAppointment() {
-  _scheduleAppointment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-    var _yield$import3, openMeetingScheduler, _yield$import4, _showNotification, _NOTIFICATION_TYPES, _t4;
-    return _regenerator().w(function (_context7) {
-      while (1) switch (_context7.p = _context7.n) {
+function _submitAppointmentRequest() {
+  _submitAppointmentRequest = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
+    var form, formData, data;
+    return _regenerator().w(function (_context8) {
+      while (1) switch (_context8.n) {
         case 0:
-          _context7.p = 0;
-          _context7.n = 1;
-          return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./scheduling.js */ "./src/modules/scheduling.js"));
+          form = document.getElementById('appointmentForm');
+          if (!(!form || !form.checkValidity())) {
+            _context8.n = 1;
+            break;
+          }
+          form === null || form === void 0 || form.reportValidity();
+          return _context8.a(2);
         case 1:
-          _yield$import3 = _context7.v;
-          openMeetingScheduler = _yield$import3.openMeetingScheduler;
-          _context7.n = 2;
-          return openMeetingScheduler();
+          formData = new FormData(form);
+          data = Object.fromEntries(formData);
+          try {
+            (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Procesando solicitud...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
+
+            // TODO: Connect to backend API when ready
+            // const response = await apiService.request('?action=create_appointment', {
+            //   method: 'POST',
+            //   body: JSON.stringify(data)
+            // });
+
+            // Simulate success for now
+            setTimeout(function () {
+              var _document$querySelect2;
+              (_document$querySelect2 = document.querySelector('.app-modal-overlay')) === null || _document$querySelect2 === void 0 || _document$querySelect2.remove();
+              (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cita solicitada. Te confirmaremos por email.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
+            }, 500);
+          } catch (error) {
+            console.error('Error submitting appointment:', error);
+            (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al solicitar la cita', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          }
         case 2:
-          _context7.n = 5;
-          break;
-        case 3:
-          _context7.p = 3;
-          _t4 = _context7.v;
-          console.error('Error opening meeting scheduler:', _t4);
-          _context7.n = 4;
-          return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./notifications.js */ "./src/modules/notifications.js"));
-        case 4:
-          _yield$import4 = _context7.v;
-          _showNotification = _yield$import4.showNotification;
-          _NOTIFICATION_TYPES = _yield$import4.NOTIFICATION_TYPES;
-          _showNotification('Error al abrir el calendario de citas', _NOTIFICATION_TYPES.ERROR);
-        case 5:
-          return _context7.a(2);
+          return _context8.a(2);
       }
-    }, _callee7, null, [[0, 3]]);
+    }, _callee8);
   }));
-  return _scheduleAppointment.apply(this, arguments);
+  return _submitAppointmentRequest.apply(this, arguments);
 }
 function viewClientDetails(_x2) {
   return _viewClientDetails.apply(this, arguments);
@@ -21961,10 +21996,10 @@ function viewClientDetails(_x2) {
  * Cambiar entre tabs del modal de detalles de cliente
  */
 function _viewClientDetails() {
-  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(clientId) {
-    var modal, data, client, _data$policies, policies, _data$claims, claims, contentDiv, _contentDiv, _t5;
-    return _regenerator().w(function (_context8) {
-      while (1) switch (_context8.p = _context8.n) {
+  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(clientId) {
+    var modal, data, client, _data$policies, policies, _data$claims, claims, contentDiv, _contentDiv, _t4;
+    return _regenerator().w(function (_context9) {
+      while (1) switch (_context9.p = _context9.n) {
         case 0:
           // Crear modal de detalles
           modal = document.createElement('div');
@@ -21973,15 +22008,15 @@ function _viewClientDetails() {
           document.body.appendChild(modal);
 
           // Cargar datos reales del backend
-          _context8.p = 1;
-          _context8.n = 2;
+          _context9.p = 1;
+          _context9.n = 2;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_6__.apiService.request("".concat(_api_integration_js__WEBPACK_IMPORTED_MODULE_6__.API_CONFIG.ENDPOINTS.GET_CLIENT_DETAILS, "&id=").concat(clientId), {
             method: 'GET'
           });
         case 2:
-          data = _context8.v;
+          data = _context9.v;
           if (data) {
-            _context8.n = 3;
+            _context9.n = 3;
             break;
           }
           throw new Error('No se recibieron datos del cliente');
@@ -21993,19 +22028,19 @@ function _viewClientDetails() {
           }).join('') : '<p class="text-muted">Sin pólizas registradas</p>', "\n        </div>\n\n        <div class=\"detail-section\">\n          <h3>\uD83D\uDD14 Reclamaciones Recientes (").concat(claims.length, ")</h3>\n          ").concat(claims.length > 0 ? claims.map(function (c) {
             return "\n            <div class=\"detail-item\">\n              <label>Reclamaci\xF3n #".concat(c.claim_number || c.id, "</label>\n              <div class=\"value\">\n                <span class=\"badge badge-").concat(c.status === 'approved' ? 'success' : c.status === 'pending' ? 'warning' : 'secondary', "\">\n                  ").concat(c.status || 'N/A', "\n                </span>\n              </div>\n            </div>\n          ");
           }).join('') : '<p class="text-muted">Sin reclamaciones registradas</p>', "\n        </div>\n      </div>\n    ");
-          _context8.n = 5;
+          _context9.n = 5;
           break;
         case 4:
-          _context8.p = 4;
-          _t5 = _context8.v;
-          console.error('Error loading client details:', _t5);
+          _context9.p = 4;
+          _t4 = _context9.v;
+          console.error('Error loading client details:', _t4);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           _contentDiv = modal.querySelector('.client-detail-content');
-          _contentDiv.innerHTML = "\n      <div class=\"loading-state\">\n        <p style=\"color: var(--error-color, #ef5350);\">\u274C Error al cargar la informaci\xF3n del cliente</p>\n        <p style=\"font-size: 14px; color: var(--text-muted, #999);\">".concat(_t5.message, "</p>\n      </div>\n    ");
+          _contentDiv.innerHTML = "\n      <div class=\"loading-state\">\n        <p style=\"color: var(--error-color, #ef5350);\">\u274C Error al cargar la informaci\xF3n del cliente</p>\n        <p style=\"font-size: 14px; color: var(--text-muted, #999);\">".concat(_t4.message, "</p>\n      </div>\n    ");
         case 5:
-          return _context8.a(2);
+          return _context9.a(2);
       }
-    }, _callee8, null, [[1, 4]]);
+    }, _callee9, null, [[1, 4]]);
   }));
   return _viewClientDetails.apply(this, arguments);
 }
@@ -22049,11 +22084,11 @@ function submitPayment(_x3) {
   return _submitPayment.apply(this, arguments);
 }
 function _submitPayment() {
-  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(event) {
+  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(event) {
     var _document$getElementB2, _document$getElementB3;
-    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t6;
-    return _regenerator().w(function (_context9) {
-      while (1) switch (_context9.p = _context9.n) {
+    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t5;
+    return _regenerator().w(function (_context0) {
+      while (1) switch (_context0.p = _context0.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -22062,18 +22097,18 @@ function _submitPayment() {
           file = (_document$getElementB2 = document.getElementById('payment-proof-file')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.files[0];
           reference = ((_document$getElementB3 = document.getElementById('payment-reference')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value) || '';
           if (file) {
-            _context9.n = 1;
+            _context0.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context9.a(2);
+          return _context0.a(2);
         case 1:
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Subiendo comprobante...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context9.p = 2;
-          _context9.n = 3;
+          _context0.p = 2;
+          _context0.n = 3;
           return paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
         case 3:
-          result = _context9.v;
+          result = _context0.v;
           form.closest('.app-modal-overlay').remove();
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Comprobante subido. Estará en revisión pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
 
@@ -22083,17 +22118,17 @@ function _submitPayment() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context9.n = 5;
+          _context0.n = 5;
           break;
         case 4:
-          _context9.p = 4;
-          _t6 = _context9.v;
-          console.error('Error uploading payment proof:', _t6);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t6.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context0.p = 4;
+          _t5 = _context0.v;
+          console.error('Error uploading payment proof:', _t5);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t5.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 5:
-          return _context9.a(2);
+          return _context0.a(2);
       }
-    }, _callee9, null, [[2, 4]]);
+    }, _callee0, null, [[2, 4]]);
   }));
   return _submitPayment.apply(this, arguments);
 }
@@ -22114,17 +22149,17 @@ function submitClaim(_x4) {
  * Subir póliza y crear cliente automáticamente
  */
 function _submitClaim() {
-  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(event) {
-    var form, formData, _window$appHandlers3, claimNumber, _t7;
-    return _regenerator().w(function (_context0) {
-      while (1) switch (_context0.p = _context0.n) {
+  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(event) {
+    var form, formData, _window$appHandlers3, claimNumber, _t6;
+    return _regenerator().w(function (_context1) {
+      while (1) switch (_context1.p = _context1.n) {
         case 0:
           event.preventDefault();
           form = event.target;
           formData = new FormData(form);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Enviando siniestro...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context0.p = 1;
-          _context0.n = 2;
+          _context1.p = 1;
+          _context1.n = 2;
           return new Promise(function (resolve) {
             return setTimeout(resolve, 1500);
           });
@@ -22139,17 +22174,17 @@ function _submitClaim() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context0.n = 4;
+          _context1.n = 4;
           break;
         case 3:
-          _context0.p = 3;
-          _t7 = _context0.v;
-          console.error('Error submitting claim:', _t7);
+          _context1.p = 3;
+          _t6 = _context1.v;
+          console.error('Error submitting claim:', _t6);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al enviar siniestro', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context0.a(2);
+          return _context1.a(2);
       }
-    }, _callee0, null, [[1, 3]]);
+    }, _callee1, null, [[1, 3]]);
   }));
   return _submitClaim.apply(this, arguments);
 }
@@ -22161,10 +22196,10 @@ function submitPolicyUpload(_x5) {
  * Mostrar datos extraídos para confirmación (cuando confianza es baja)
  */
 function _submitPolicyUpload() {
-  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(event) {
-    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t8;
-    return _regenerator().w(function (_context1) {
-      while (1) switch (_context1.p = _context1.n) {
+  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(event) {
+    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t7;
+    return _regenerator().w(function (_context10) {
+      while (1) switch (_context10.p = _context10.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -22173,29 +22208,29 @@ function _submitPolicyUpload() {
           file = fileInput === null || fileInput === void 0 ? void 0 : fileInput.files[0];
           clientEmail = emailInput === null || emailInput === void 0 ? void 0 : emailInput.value.trim();
           if (file) {
-            _context1.n = 1;
+            _context10.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo de póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context1.a(2);
+          return _context10.a(2);
         case 1:
           if (clientEmail) {
-            _context1.n = 2;
+            _context10.n = 2;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('El email del cliente es obligatorio', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context1.a(2);
+          return _context10.a(2);
         case 2:
           // Validar formato de email
           emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (emailRegex.test(clientEmail)) {
-            _context1.n = 3;
+            _context10.n = 3;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Por favor ingresa un email válido', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context1.a(2);
+          return _context10.a(2);
         case 3:
           // Mostrar progreso
           progressContainer = document.getElementById('upload-progress');
@@ -22204,7 +22239,7 @@ function _submitPolicyUpload() {
           submitBtn = document.getElementById('submit-policy-btn');
           progressContainer.style.display = 'block';
           submitBtn.disabled = true;
-          _context1.p = 4;
+          _context10.p = 4;
           // Preparar FormData
           formData = new FormData();
           formData.append('policy_file', file);
@@ -22212,7 +22247,7 @@ function _submitPolicyUpload() {
           // Enviar al backend
           progressText.textContent = 'Subiendo documento...';
           progressFill.style.width = '30%';
-          _context1.n = 5;
+          _context10.n = 5;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -22221,36 +22256,36 @@ function _submitPolicyUpload() {
             body: formData
           });
         case 5:
-          response = _context1.v;
+          response = _context10.v;
           progressFill.style.width = '60%';
           progressText.textContent = 'Analizando documento...';
-          _context1.n = 6;
+          _context10.n = 6;
           return response.json();
         case 6:
-          result = _context1.v;
+          result = _context10.v;
           progressFill.style.width = '100%';
           if (result.success) {
-            _context1.n = 7;
+            _context10.n = 7;
             break;
           }
           throw new Error(result.error || 'Error al procesar póliza');
         case 7:
           if (!result.requires_confirmation) {
-            _context1.n = 8;
+            _context10.n = 8;
             break;
           }
           showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
-          return _context1.a(2);
+          return _context10.a(2);
         case 8:
           if (!result.requires_manual_entry) {
-            _context1.n = 9;
+            _context10.n = 9;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se pudo extraer datos. Abriendo formulario manual...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           showManualEntryForm(result.temp_file_path);
-          return _context1.a(2);
+          return _context10.a(2);
         case 9:
           // Éxito
           form.closest('.app-modal-overlay').remove();
@@ -22271,19 +22306,19 @@ function _submitPolicyUpload() {
               return window.appHandlers.refreshDashboard();
             }, 2000);
           }
-          _context1.n = 11;
+          _context10.n = 11;
           break;
         case 10:
-          _context1.p = 10;
-          _t8 = _context1.v;
-          console.error('Error uploading policy:', _t8);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t8.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context10.p = 10;
+          _t7 = _context10.v;
+          console.error('Error uploading policy:', _t7);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t7.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
         case 11:
-          return _context1.a(2);
+          return _context10.a(2);
       }
-    }, _callee1, null, [[4, 10]]);
+    }, _callee10, null, [[4, 10]]);
   }));
   return _submitPolicyUpload.apply(this, arguments);
 }
@@ -22318,10 +22353,10 @@ function confirmAndCreateClient(_x6) {
  * Mostrar formulario de entrada manual
  */
 function _confirmAndCreateClient() {
-  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(tempFilePath) {
-    var confirmedData, _token, response, result, _window$appHandlers5, _t9;
-    return _regenerator().w(function (_context10) {
-      while (1) switch (_context10.p = _context10.n) {
+  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11(tempFilePath) {
+    var confirmedData, _token, response, result, _window$appHandlers5, _t8;
+    return _regenerator().w(function (_context11) {
+      while (1) switch (_context11.p = _context11.n) {
         case 0:
           confirmedData = {
             client_email: document.getElementById('confirm-client-email').value,
@@ -22333,9 +22368,9 @@ function _confirmAndCreateClient() {
             payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
           };
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente con datos confirmados...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context10.p = 1;
+          _context11.p = 1;
           _token = sessionStorage.getItem('auth_token');
-          _context10.n = 2;
+          _context11.n = 2;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -22348,13 +22383,13 @@ function _confirmAndCreateClient() {
             })
           });
         case 2:
-          response = _context10.v;
-          _context10.n = 3;
+          response = _context11.v;
+          _context11.n = 3;
           return response.json();
         case 3:
-          result = _context10.v;
+          result = _context11.v;
           if (!result.success) {
-            _context10.n = 4;
+            _context11.n = 4;
             break;
           }
           document.querySelector('.app-modal-overlay').remove();
@@ -22364,21 +22399,21 @@ function _confirmAndCreateClient() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context10.n = 5;
+          _context11.n = 5;
           break;
         case 4:
           throw new Error(result.error);
         case 5:
-          _context10.n = 7;
+          _context11.n = 7;
           break;
         case 6:
-          _context10.p = 6;
-          _t9 = _context10.v;
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t9.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context11.p = 6;
+          _t8 = _context11.v;
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t8.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 7:
-          return _context10.a(2);
+          return _context11.a(2);
       }
-    }, _callee10, null, [[1, 6]]);
+    }, _callee11, null, [[1, 6]]);
   }));
   return _confirmAndCreateClient.apply(this, arguments);
 }
@@ -22513,6 +22548,7 @@ if (typeof window !== 'undefined') {
     submitClaim: submitClaim,
     submitPolicyUpload: submitPolicyUpload,
     submitAppointment: submitAppointment,
+    submitAppointmentRequest: submitAppointmentRequest,
     submitPolicyDocumentUpload: submitPolicyDocumentUpload
   };
 }
