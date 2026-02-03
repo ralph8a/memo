@@ -466,8 +466,219 @@ export function initializeMockMeetings() {
     ];
 }
 
+/**
+ * Open meeting scheduler modal with calendar UI
+ */
+export async function openMeetingScheduler() {
+    // Load current meetings from backend
+    await loadMeetingsFromBackend();
+
+    const today = new Date();
+    const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    const availableSlots = getAgentAvailability('ag_001', today, nextMonth);
+
+    const modal = document.createElement('div');
+    modal.className = 'app-modal-overlay';
+    modal.innerHTML = `
+        <div class="app-modal app-modal-lg">
+            <div class="app-modal-header">
+                <h2 class="app-modal-title">📅 Calendario de Citas</h2>
+                <button class="app-modal-close" onclick="this.closest('.app-modal-overlay').remove()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="app-modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div>
+                        <h3 style="margin: 0 0 16px;">Seleccionar Horario</h3>
+                        <form id="meetingSchedulerForm" style="display: grid; gap: 16px;">
+                            <div class="form-group">
+                                <label>Tipo de cita</label>
+                                <select name="type" required class="form-control">
+                                    <option value="quote">Cotización</option>
+                                    <option value="consultation">Consulta</option>
+                                    <option value="renewal">Renovación</option>
+                                    <option value="support">Soporte</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha</label>
+                                <input type="date" name="date" required class="form-control" 
+                                    min="${today.toISOString().split('T')[0]}"
+                                    value="${today.toISOString().split('T')[0]}">
+                            </div>
+                            <div class="form-group">
+                                <label>Hora de inicio</label>
+                                <select name="startTime" required class="form-control">
+                                    ${generateTimeOptions()}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Duración</label>
+                                <select name="duration" required class="form-control">
+                                    <option value="30">30 minutos</option>
+                                    <option value="60" selected>1 hora</option>
+                                    <option value="90">1.5 horas</option>
+                                    <option value="120">2 horas</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Cliente (Email)</label>
+                                <input type="email" name="clientEmail" required class="form-control" 
+                                    placeholder="cliente@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre del cliente</label>
+                                <input type="text" name="clientName" required class="form-control" 
+                                    placeholder="Nombre completo">
+                            </div>
+                            <div class="form-group">
+                                <label>Notas (opcional)</label>
+                                <textarea name="notes" class="form-control" rows="3" 
+                                    placeholder="Detalles adicionales..."></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0 0 16px;">Próximas Citas</h3>
+                        <div id="upcomingMeetingsContainer" style="max-height: 400px; overflow-y: auto;">
+                            ${renderUpcomingMeetings(meetings)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-modal-footer">
+                <button class="btn btn-outline" onclick="this.closest('.app-modal-overlay').remove()">Cancelar</button>
+                <button class="btn btn-primary" onclick="window.scheduling?.submitMeetingRequest?.()">Crear Cita</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('active'), 10);
+}
+
+/**
+ * Generate time slot options for select
+ */
+function generateTimeOptions() {
+    const options = [];
+    for (let hour = 9; hour < 17; hour++) {
+        for (let min = 0; min < 60; min += 30) {
+            const time = `${hour.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}`;
+            const label = new Date(2000, 0, 1, hour, min).toLocaleTimeString('es-ES', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            options.push(`<option value="${time}">${label}</option>`);
+        }
+    }
+    return options.join('');
+}
+
+/**
+ * Render upcoming meetings list
+ */
+function renderUpcomingMeetings(meetingsList) {
+    if (!meetingsList || meetingsList.length === 0) {
+        return '<p style="color: var(--text-secondary); text-align: center; padding: 20px;">No hay citas programadas</p>';
+    }
+
+    const upcoming = meetingsList
+        .filter(m => new Date(m.startTime) >= new Date() && m.status !== 'cancelled')
+        .slice(0, 10);
+
+    if (upcoming.length === 0) {
+        return '<p style="color: var(--text-secondary); text-align: center; padding: 20px;">No hay citas próximas</p>';
+    }
+
+    return upcoming.map(meeting => {
+        const startTime = new Date(meeting.startTime);
+        const statusColors = {
+            'confirmed': '#38ef7d',
+            'requested': '#ffd700',
+            'pending': '#ff9800'
+        };
+
+        return `
+            <div style="padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                    <strong style="color: var(--text-primary);">${meeting.clientName}</strong>
+                    <span style="padding: 2px 8px; border-radius: 4px; font-size: 11px; background: ${statusColors[meeting.status]}22; color: ${statusColors[meeting.status]};">
+                        ${meeting.status}
+                    </span>
+                </div>
+                <div style="font-size: 13px; color: var(--text-secondary);">
+                    📅 ${startTime.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}
+                    • ${startTime.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
+                </div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+                    ${meeting.type} • ${meeting.clientEmail}
+                </div>
+                ${meeting.notes ? `<div style="font-size: 12px; color: var(--text-tertiary); margin-top: 8px; font-style: italic;">${meeting.notes}</div>` : ''}
+            </div>
+        `;
+    }).join('');
+}
+
+/**
+ * Submit meeting request from modal
+ */
+export async function submitMeetingRequest() {
+    const form = document.getElementById('meetingSchedulerForm');
+    if (!form || !form.checkValidity()) {
+        form?.reportValidity();
+        return;
+    }
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    // Parse date and time
+    const [year, month, day] = data.date.split('-').map(Number);
+    const [hours, minutes] = data.startTime.split(':').map(Number);
+    const duration = parseInt(data.duration);
+
+    const startTime = new Date(year, month - 1, day, hours, minutes);
+    const endTime = new Date(startTime.getTime() + duration * 60000);
+
+    try {
+        showNotification('Creando cita...', NOTIFICATION_TYPES.INFO);
+
+        await requestMeeting({
+            agentId: 'ag_001', // TODO: Get from current user
+            agentName: 'Krause Insurance',
+            clientId: null,
+            clientName: data.clientName,
+            clientEmail: data.clientEmail,
+            startTime: startTime.toISOString(),
+            endTime: endTime.toISOString(),
+            type: data.type,
+            notes: data.notes,
+            location: 'Virtual Meeting'
+        });
+
+        // Close modal
+        document.querySelector('.app-modal-overlay')?.remove();
+
+    } catch (error) {
+        console.error('Error creating meeting:', error);
+        showNotification('Error al crear la cita', NOTIFICATION_TYPES.ERROR);
+    }
+}
+
 // Initialize mock data on module load
 initializeMockMeetings();
+
+// Expose functions globally for modal callbacks
+if (typeof window !== 'undefined') {
+    window.scheduling = {
+        submitMeetingRequest,
+        openMeetingScheduler
+    };
+}
 
 export default {
     getAgentAvailability,
@@ -480,5 +691,7 @@ export default {
     getMeetingById,
     getPendingRequests,
     getAvailableAgents,
-    initializeMockMeetings
+    initializeMockMeetings,
+    openMeetingScheduler,
+    submitMeetingRequest
 };

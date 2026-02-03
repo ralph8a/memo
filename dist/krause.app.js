@@ -21863,7 +21863,7 @@ function submitQuoteRequest(_x) {
 }
 
 /**
- * Agendar cita - Mostrar modal de citas
+ * Agendar cita - Usar el scheduler de meetings con calendario completo
  */
 function _submitQuoteRequest() {
   _submitQuoteRequest = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(event) {
@@ -21914,79 +21914,38 @@ function _submitQuoteRequest() {
 function scheduleAppointment() {
   return _scheduleAppointment.apply(this, arguments);
 }
-function _scheduleAppointment() {
-  _scheduleAppointment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-    var modal;
-    return _regenerator().w(function (_context7) {
-      while (1) switch (_context7.n) {
-        case 0:
-          try {
-            // Create simple appointment modal
-            modal = document.createElement('div');
-            modal.className = 'app-modal-overlay';
-            modal.innerHTML = "\n      <div class=\"app-modal\">\n        <div class=\"app-modal-header\">\n          <h2 class=\"app-modal-title\">\uD83D\uDCC5 Agendar Cita</h2>\n          <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n            <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n              <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n            </svg>\n          </button>\n        </div>\n        <div class=\"app-modal-body\">\n          <form id=\"appointmentForm\" style=\"display: grid; gap: 16px;\">\n            <div class=\"form-group\">\n              <label>Tipo de cita</label>\n              <select name=\"type\" required class=\"form-control\">\n                <option value=\"quote\">Cotizaci\xF3n</option>\n                <option value=\"consultation\">Consulta</option>\n                <option value=\"renewal\">Renovaci\xF3n</option>\n                <option value=\"support\">Soporte</option>\n              </select>\n            </div>\n            <div class=\"form-group\">\n              <label>Fecha</label>\n              <input type=\"date\" name=\"date\" required class=\"form-control\" min=\"".concat(new Date().toISOString().split('T')[0], "\">\n            </div>\n            <div class=\"form-group\">\n              <label>Hora</label>\n              <input type=\"time\" name=\"time\" required class=\"form-control\">\n            </div>\n            <div class=\"form-group\">\n              <label>Notas (opcional)</label>\n              <textarea name=\"notes\" class=\"form-control\" rows=\"3\" placeholder=\"Detalles de la cita...\"></textarea>\n            </div>\n          </form>\n        </div>\n        <div class=\"app-modal-footer\">\n          <button class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n          <button class=\"btn btn-primary\" onclick=\"window.dashboardActions?.submitAppointmentRequest?.()\">Solicitar Cita</button>\n        </div>\n      </div>\n    ");
-            document.body.appendChild(modal);
-            setTimeout(function () {
-              return modal.classList.add('active');
-            }, 10);
-          } catch (error) {
-            console.error('Error opening appointment modal:', error);
-            (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al abrir el calendario de citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
-          }
-        case 1:
-          return _context7.a(2);
-      }
-    }, _callee7);
-  }));
-  return _scheduleAppointment.apply(this, arguments);
-}
-function submitAppointmentRequest() {
-  return _submitAppointmentRequest.apply(this, arguments);
-}
+
 /**
  * Ver detalles de cliente - CONECTADO CON BACKEND
  */
-function _submitAppointmentRequest() {
-  _submitAppointmentRequest = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
-    var form, formData, data;
-    return _regenerator().w(function (_context8) {
-      while (1) switch (_context8.n) {
+function _scheduleAppointment() {
+  _scheduleAppointment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+    var _yield$import3, openMeetingScheduler, _t4;
+    return _regenerator().w(function (_context7) {
+      while (1) switch (_context7.p = _context7.n) {
         case 0:
-          form = document.getElementById('appointmentForm');
-          if (!(!form || !form.checkValidity())) {
-            _context8.n = 1;
-            break;
-          }
-          form === null || form === void 0 || form.reportValidity();
-          return _context8.a(2);
+          _context7.p = 0;
+          _context7.n = 1;
+          return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./scheduling.js */ "./src/modules/scheduling.js"));
         case 1:
-          formData = new FormData(form);
-          data = Object.fromEntries(formData);
-          try {
-            (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Procesando solicitud...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-
-            // TODO: Connect to backend API when ready
-            // const response = await apiService.request('?action=create_appointment', {
-            //   method: 'POST',
-            //   body: JSON.stringify(data)
-            // });
-
-            // Simulate success for now
-            setTimeout(function () {
-              var _document$querySelect2;
-              (_document$querySelect2 = document.querySelector('.app-modal-overlay')) === null || _document$querySelect2 === void 0 || _document$querySelect2.remove();
-              (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Cita solicitada. Te confirmaremos por email.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
-            }, 500);
-          } catch (error) {
-            console.error('Error submitting appointment:', error);
-            (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al solicitar la cita', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
-          }
+          _yield$import3 = _context7.v;
+          openMeetingScheduler = _yield$import3.openMeetingScheduler;
+          _context7.n = 2;
+          return openMeetingScheduler();
         case 2:
-          return _context8.a(2);
+          _context7.n = 4;
+          break;
+        case 3:
+          _context7.p = 3;
+          _t4 = _context7.v;
+          console.error('Error opening meeting scheduler:', _t4);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al abrir el calendario de citas', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+        case 4:
+          return _context7.a(2);
       }
-    }, _callee8);
+    }, _callee7, null, [[0, 3]]);
   }));
-  return _submitAppointmentRequest.apply(this, arguments);
+  return _scheduleAppointment.apply(this, arguments);
 }
 function viewClientDetails(_x2) {
   return _viewClientDetails.apply(this, arguments);
@@ -21996,10 +21955,10 @@ function viewClientDetails(_x2) {
  * Cambiar entre tabs del modal de detalles de cliente
  */
 function _viewClientDetails() {
-  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(clientId) {
-    var modal, data, client, _data$policies, policies, _data$claims, claims, contentDiv, _contentDiv, _t4;
-    return _regenerator().w(function (_context9) {
-      while (1) switch (_context9.p = _context9.n) {
+  _viewClientDetails = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(clientId) {
+    var modal, data, client, _data$policies, policies, _data$claims, claims, contentDiv, _contentDiv, _t5;
+    return _regenerator().w(function (_context8) {
+      while (1) switch (_context8.p = _context8.n) {
         case 0:
           // Crear modal de detalles
           modal = document.createElement('div');
@@ -22008,15 +21967,15 @@ function _viewClientDetails() {
           document.body.appendChild(modal);
 
           // Cargar datos reales del backend
-          _context9.p = 1;
-          _context9.n = 2;
+          _context8.p = 1;
+          _context8.n = 2;
           return _api_integration_js__WEBPACK_IMPORTED_MODULE_6__.apiService.request("".concat(_api_integration_js__WEBPACK_IMPORTED_MODULE_6__.API_CONFIG.ENDPOINTS.GET_CLIENT_DETAILS, "&id=").concat(clientId), {
             method: 'GET'
           });
         case 2:
-          data = _context9.v;
+          data = _context8.v;
           if (data) {
-            _context9.n = 3;
+            _context8.n = 3;
             break;
           }
           throw new Error('No se recibieron datos del cliente');
@@ -22028,19 +21987,19 @@ function _viewClientDetails() {
           }).join('') : '<p class="text-muted">Sin pólizas registradas</p>', "\n        </div>\n\n        <div class=\"detail-section\">\n          <h3>\uD83D\uDD14 Reclamaciones Recientes (").concat(claims.length, ")</h3>\n          ").concat(claims.length > 0 ? claims.map(function (c) {
             return "\n            <div class=\"detail-item\">\n              <label>Reclamaci\xF3n #".concat(c.claim_number || c.id, "</label>\n              <div class=\"value\">\n                <span class=\"badge badge-").concat(c.status === 'approved' ? 'success' : c.status === 'pending' ? 'warning' : 'secondary', "\">\n                  ").concat(c.status || 'N/A', "\n                </span>\n              </div>\n            </div>\n          ");
           }).join('') : '<p class="text-muted">Sin reclamaciones registradas</p>', "\n        </div>\n      </div>\n    ");
-          _context9.n = 5;
+          _context8.n = 5;
           break;
         case 4:
-          _context9.p = 4;
-          _t4 = _context9.v;
-          console.error('Error loading client details:', _t4);
+          _context8.p = 4;
+          _t5 = _context8.v;
+          console.error('Error loading client details:', _t5);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al cargar detalles del cliente', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           _contentDiv = modal.querySelector('.client-detail-content');
-          _contentDiv.innerHTML = "\n      <div class=\"loading-state\">\n        <p style=\"color: var(--error-color, #ef5350);\">\u274C Error al cargar la informaci\xF3n del cliente</p>\n        <p style=\"font-size: 14px; color: var(--text-muted, #999);\">".concat(_t4.message, "</p>\n      </div>\n    ");
+          _contentDiv.innerHTML = "\n      <div class=\"loading-state\">\n        <p style=\"color: var(--error-color, #ef5350);\">\u274C Error al cargar la informaci\xF3n del cliente</p>\n        <p style=\"font-size: 14px; color: var(--text-muted, #999);\">".concat(_t5.message, "</p>\n      </div>\n    ");
         case 5:
-          return _context9.a(2);
+          return _context8.a(2);
       }
-    }, _callee9, null, [[1, 4]]);
+    }, _callee8, null, [[1, 4]]);
   }));
   return _viewClientDetails.apply(this, arguments);
 }
@@ -22084,11 +22043,11 @@ function submitPayment(_x3) {
   return _submitPayment.apply(this, arguments);
 }
 function _submitPayment() {
-  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(event) {
+  _submitPayment = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(event) {
     var _document$getElementB2, _document$getElementB3;
-    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t5;
-    return _regenerator().w(function (_context0) {
-      while (1) switch (_context0.p = _context0.n) {
+    var form, policyId, scheduleId, file, reference, _window$appHandlers2, result, _t6;
+    return _regenerator().w(function (_context9) {
+      while (1) switch (_context9.p = _context9.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -22097,18 +22056,18 @@ function _submitPayment() {
           file = (_document$getElementB2 = document.getElementById('payment-proof-file')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.files[0];
           reference = ((_document$getElementB3 = document.getElementById('payment-reference')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value) || '';
           if (file) {
-            _context0.n = 1;
+            _context9.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context0.a(2);
+          return _context9.a(2);
         case 1:
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Subiendo comprobante...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context0.p = 2;
-          _context0.n = 3;
+          _context9.p = 2;
+          _context9.n = 3;
           return paymentAPI.uploadPaymentProof(scheduleId, policyId, file);
         case 3:
-          result = _context0.v;
+          result = _context9.v;
           form.closest('.app-modal-overlay').remove();
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Comprobante subido. Estará en revisión pronto.', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.SUCCESS);
 
@@ -22118,17 +22077,17 @@ function _submitPayment() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context0.n = 5;
+          _context9.n = 5;
           break;
         case 4:
-          _context0.p = 4;
-          _t5 = _context0.v;
-          console.error('Error uploading payment proof:', _t5);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t5.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context9.p = 4;
+          _t6 = _context9.v;
+          console.error('Error uploading payment proof:', _t6);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al subir comprobante: ' + _t6.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 5:
-          return _context0.a(2);
+          return _context9.a(2);
       }
-    }, _callee0, null, [[2, 4]]);
+    }, _callee9, null, [[2, 4]]);
   }));
   return _submitPayment.apply(this, arguments);
 }
@@ -22149,17 +22108,17 @@ function submitClaim(_x4) {
  * Subir póliza y crear cliente automáticamente
  */
 function _submitClaim() {
-  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(event) {
-    var form, formData, _window$appHandlers3, claimNumber, _t6;
-    return _regenerator().w(function (_context1) {
-      while (1) switch (_context1.p = _context1.n) {
+  _submitClaim = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(event) {
+    var form, formData, _window$appHandlers3, claimNumber, _t7;
+    return _regenerator().w(function (_context0) {
+      while (1) switch (_context0.p = _context0.n) {
         case 0:
           event.preventDefault();
           form = event.target;
           formData = new FormData(form);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Enviando siniestro...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context1.p = 1;
-          _context1.n = 2;
+          _context0.p = 1;
+          _context0.n = 2;
           return new Promise(function (resolve) {
             return setTimeout(resolve, 1500);
           });
@@ -22174,17 +22133,17 @@ function _submitClaim() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context1.n = 4;
+          _context0.n = 4;
           break;
         case 3:
-          _context1.p = 3;
-          _t6 = _context1.v;
-          console.error('Error submitting claim:', _t6);
+          _context0.p = 3;
+          _t7 = _context0.v;
+          console.error('Error submitting claim:', _t7);
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error al enviar siniestro', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 4:
-          return _context1.a(2);
+          return _context0.a(2);
       }
-    }, _callee1, null, [[1, 3]]);
+    }, _callee0, null, [[1, 3]]);
   }));
   return _submitClaim.apply(this, arguments);
 }
@@ -22196,10 +22155,10 @@ function submitPolicyUpload(_x5) {
  * Mostrar datos extraídos para confirmación (cuando confianza es baja)
  */
 function _submitPolicyUpload() {
-  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(event) {
-    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t7;
-    return _regenerator().w(function (_context10) {
-      while (1) switch (_context10.p = _context10.n) {
+  _submitPolicyUpload = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(event) {
+    var form, fileInput, emailInput, file, clientEmail, emailRegex, progressContainer, progressFill, progressText, submitBtn, _window$appHandlers4, formData, response, result, _t8;
+    return _regenerator().w(function (_context1) {
+      while (1) switch (_context1.p = _context1.n) {
         case 0:
           event.preventDefault();
           form = event.target;
@@ -22208,29 +22167,29 @@ function _submitPolicyUpload() {
           file = fileInput === null || fileInput === void 0 ? void 0 : fileInput.files[0];
           clientEmail = emailInput === null || emailInput === void 0 ? void 0 : emailInput.value.trim();
           if (file) {
-            _context10.n = 1;
+            _context1.n = 1;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Selecciona un archivo de póliza', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
-          return _context10.a(2);
+          return _context1.a(2);
         case 1:
           if (clientEmail) {
-            _context10.n = 2;
+            _context1.n = 2;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('El email del cliente es obligatorio', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context10.a(2);
+          return _context1.a(2);
         case 2:
           // Validar formato de email
           emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (emailRegex.test(clientEmail)) {
-            _context10.n = 3;
+            _context1.n = 3;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Por favor ingresa un email válido', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           emailInput === null || emailInput === void 0 || emailInput.focus();
-          return _context10.a(2);
+          return _context1.a(2);
         case 3:
           // Mostrar progreso
           progressContainer = document.getElementById('upload-progress');
@@ -22239,7 +22198,7 @@ function _submitPolicyUpload() {
           submitBtn = document.getElementById('submit-policy-btn');
           progressContainer.style.display = 'block';
           submitBtn.disabled = true;
-          _context10.p = 4;
+          _context1.p = 4;
           // Preparar FormData
           formData = new FormData();
           formData.append('policy_file', file);
@@ -22247,7 +22206,7 @@ function _submitPolicyUpload() {
           // Enviar al backend
           progressText.textContent = 'Subiendo documento...';
           progressFill.style.width = '30%';
-          _context10.n = 5;
+          _context1.n = 5;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -22256,36 +22215,36 @@ function _submitPolicyUpload() {
             body: formData
           });
         case 5:
-          response = _context10.v;
+          response = _context1.v;
           progressFill.style.width = '60%';
           progressText.textContent = 'Analizando documento...';
-          _context10.n = 6;
+          _context1.n = 6;
           return response.json();
         case 6:
-          result = _context10.v;
+          result = _context1.v;
           progressFill.style.width = '100%';
           if (result.success) {
-            _context10.n = 7;
+            _context1.n = 7;
             break;
           }
           throw new Error(result.error || 'Error al procesar póliza');
         case 7:
           if (!result.requires_confirmation) {
-            _context10.n = 8;
+            _context1.n = 8;
             break;
           }
           showExtractedDataForConfirmation(result.extracted_data, result.temp_file_path);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
-          return _context10.a(2);
+          return _context1.a(2);
         case 8:
           if (!result.requires_manual_entry) {
-            _context10.n = 9;
+            _context1.n = 9;
             break;
           }
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('No se pudo extraer datos. Abriendo formulario manual...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.WARNING);
           showManualEntryForm(result.temp_file_path);
-          return _context10.a(2);
+          return _context1.a(2);
         case 9:
           // Éxito
           form.closest('.app-modal-overlay').remove();
@@ -22306,19 +22265,19 @@ function _submitPolicyUpload() {
               return window.appHandlers.refreshDashboard();
             }, 2000);
           }
-          _context10.n = 11;
+          _context1.n = 11;
           break;
         case 10:
-          _context10.p = 10;
-          _t7 = _context10.v;
-          console.error('Error uploading policy:', _t7);
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t7.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context1.p = 10;
+          _t8 = _context1.v;
+          console.error('Error uploading policy:', _t8);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t8.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
           progressContainer.style.display = 'none';
           submitBtn.disabled = false;
         case 11:
-          return _context10.a(2);
+          return _context1.a(2);
       }
-    }, _callee10, null, [[4, 10]]);
+    }, _callee1, null, [[4, 10]]);
   }));
   return _submitPolicyUpload.apply(this, arguments);
 }
@@ -22353,10 +22312,10 @@ function confirmAndCreateClient(_x6) {
  * Mostrar formulario de entrada manual
  */
 function _confirmAndCreateClient() {
-  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11(tempFilePath) {
-    var confirmedData, _token, response, result, _window$appHandlers5, _t8;
-    return _regenerator().w(function (_context11) {
-      while (1) switch (_context11.p = _context11.n) {
+  _confirmAndCreateClient = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(tempFilePath) {
+    var confirmedData, _token, response, result, _window$appHandlers5, _t9;
+    return _regenerator().w(function (_context10) {
+      while (1) switch (_context10.p = _context10.n) {
         case 0:
           confirmedData = {
             client_email: document.getElementById('confirm-client-email').value,
@@ -22368,9 +22327,9 @@ function _confirmAndCreateClient() {
             payment_frequency: parseInt(document.getElementById('confirm-frequency').value)
           };
           (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Creando cliente con datos confirmados...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.INFO);
-          _context11.p = 1;
+          _context10.p = 1;
           _token = sessionStorage.getItem('auth_token');
-          _context11.n = 2;
+          _context10.n = 2;
           return fetch('/backend/client-from-policy.php', {
             method: 'POST',
             headers: {
@@ -22383,13 +22342,13 @@ function _confirmAndCreateClient() {
             })
           });
         case 2:
-          response = _context11.v;
-          _context11.n = 3;
+          response = _context10.v;
+          _context10.n = 3;
           return response.json();
         case 3:
-          result = _context11.v;
+          result = _context10.v;
           if (!result.success) {
-            _context11.n = 4;
+            _context10.n = 4;
             break;
           }
           document.querySelector('.app-modal-overlay').remove();
@@ -22399,21 +22358,21 @@ function _confirmAndCreateClient() {
               return window.appHandlers.refreshDashboard();
             }, 1000);
           }
-          _context11.n = 5;
+          _context10.n = 5;
           break;
         case 4:
           throw new Error(result.error);
         case 5:
-          _context11.n = 7;
+          _context10.n = 7;
           break;
         case 6:
-          _context11.p = 6;
-          _t8 = _context11.v;
-          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t8.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
+          _context10.p = 6;
+          _t9 = _context10.v;
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_0__.showNotification)('Error: ' + _t9.message, _utils_constants_js__WEBPACK_IMPORTED_MODULE_1__.NOTIFICATION_TYPES.ERROR);
         case 7:
-          return _context11.a(2);
+          return _context10.a(2);
       }
-    }, _callee11, null, [[1, 6]]);
+    }, _callee10, null, [[1, 6]]);
   }));
   return _confirmAndCreateClient.apply(this, arguments);
 }
@@ -22548,7 +22507,6 @@ if (typeof window !== 'undefined') {
     submitClaim: submitClaim,
     submitPolicyUpload: submitPolicyUpload,
     submitAppointment: submitAppointment,
-    submitAppointmentRequest: submitAppointmentRequest,
     submitPolicyDocumentUpload: submitPolicyDocumentUpload
   };
 }
@@ -26982,12 +26940,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getYearMeetings: () => (/* binding */ getYearMeetings),
 /* harmony export */   initializeMockMeetings: () => (/* binding */ initializeMockMeetings),
 /* harmony export */   loadMeetingsFromBackend: () => (/* binding */ loadMeetingsFromBackend),
+/* harmony export */   openMeetingScheduler: () => (/* binding */ openMeetingScheduler),
 /* harmony export */   requestMeeting: () => (/* binding */ requestMeeting),
-/* harmony export */   setCalendarView: () => (/* binding */ setCalendarView)
+/* harmony export */   setCalendarView: () => (/* binding */ setCalendarView),
+/* harmony export */   submitMeetingRequest: () => (/* binding */ submitMeetingRequest)
 /* harmony export */ });
 /* harmony import */ var _api_integration_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api-integration.js */ "./src/api-integration.js");
 /* harmony import */ var _notifications_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notifications.js */ "./src/modules/notifications.js");
 /* harmony import */ var _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/constants.js */ "./src/utils/constants.js");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -27584,8 +27550,159 @@ function initializeMockMeetings() {
   }];
 }
 
+/**
+ * Open meeting scheduler modal with calendar UI
+ */
+function openMeetingScheduler() {
+  return _openMeetingScheduler.apply(this, arguments);
+}
+
+/**
+ * Generate time slot options for select
+ */
+function _openMeetingScheduler() {
+  _openMeetingScheduler = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
+    var today, nextMonth, availableSlots, modal;
+    return _regenerator().w(function (_context6) {
+      while (1) switch (_context6.n) {
+        case 0:
+          _context6.n = 1;
+          return loadMeetingsFromBackend();
+        case 1:
+          today = new Date();
+          nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+          availableSlots = getAgentAvailability('ag_001', today, nextMonth);
+          modal = document.createElement('div');
+          modal.className = 'app-modal-overlay';
+          modal.innerHTML = "\n        <div class=\"app-modal app-modal-lg\">\n            <div class=\"app-modal-header\">\n                <h2 class=\"app-modal-title\">\uD83D\uDCC5 Calendario de Citas</h2>\n                <button class=\"app-modal-close\" onclick=\"this.closest('.app-modal-overlay').remove()\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/>\n                    </svg>\n                </button>\n            </div>\n            <div class=\"app-modal-body\">\n                <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 24px;\">\n                    <div>\n                        <h3 style=\"margin: 0 0 16px;\">Seleccionar Horario</h3>\n                        <form id=\"meetingSchedulerForm\" style=\"display: grid; gap: 16px;\">\n                            <div class=\"form-group\">\n                                <label>Tipo de cita</label>\n                                <select name=\"type\" required class=\"form-control\">\n                                    <option value=\"quote\">Cotizaci\xF3n</option>\n                                    <option value=\"consultation\">Consulta</option>\n                                    <option value=\"renewal\">Renovaci\xF3n</option>\n                                    <option value=\"support\">Soporte</option>\n                                </select>\n                            </div>\n                            <div class=\"form-group\">\n                                <label>Fecha</label>\n                                <input type=\"date\" name=\"date\" required class=\"form-control\" \n                                    min=\"".concat(today.toISOString().split('T')[0], "\"\n                                    value=\"").concat(today.toISOString().split('T')[0], "\">\n                            </div>\n                            <div class=\"form-group\">\n                                <label>Hora de inicio</label>\n                                <select name=\"startTime\" required class=\"form-control\">\n                                    ").concat(generateTimeOptions(), "\n                                </select>\n                            </div>\n                            <div class=\"form-group\">\n                                <label>Duraci\xF3n</label>\n                                <select name=\"duration\" required class=\"form-control\">\n                                    <option value=\"30\">30 minutos</option>\n                                    <option value=\"60\" selected>1 hora</option>\n                                    <option value=\"90\">1.5 horas</option>\n                                    <option value=\"120\">2 horas</option>\n                                </select>\n                            </div>\n                            <div class=\"form-group\">\n                                <label>Cliente (Email)</label>\n                                <input type=\"email\" name=\"clientEmail\" required class=\"form-control\" \n                                    placeholder=\"cliente@example.com\">\n                            </div>\n                            <div class=\"form-group\">\n                                <label>Nombre del cliente</label>\n                                <input type=\"text\" name=\"clientName\" required class=\"form-control\" \n                                    placeholder=\"Nombre completo\">\n                            </div>\n                            <div class=\"form-group\">\n                                <label>Notas (opcional)</label>\n                                <textarea name=\"notes\" class=\"form-control\" rows=\"3\" \n                                    placeholder=\"Detalles adicionales...\"></textarea>\n                            </div>\n                        </form>\n                    </div>\n                    <div>\n                        <h3 style=\"margin: 0 0 16px;\">Pr\xF3ximas Citas</h3>\n                        <div id=\"upcomingMeetingsContainer\" style=\"max-height: 400px; overflow-y: auto;\">\n                            ").concat(renderUpcomingMeetings(meetings), "\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"app-modal-footer\">\n                <button class=\"btn btn-outline\" onclick=\"this.closest('.app-modal-overlay').remove()\">Cancelar</button>\n                <button class=\"btn btn-primary\" onclick=\"window.scheduling?.submitMeetingRequest?.()\">Crear Cita</button>\n            </div>\n        </div>\n    ");
+          document.body.appendChild(modal);
+          setTimeout(function () {
+            return modal.classList.add('active');
+          }, 10);
+        case 2:
+          return _context6.a(2);
+      }
+    }, _callee6);
+  }));
+  return _openMeetingScheduler.apply(this, arguments);
+}
+function generateTimeOptions() {
+  var options = [];
+  for (var hour = 9; hour < 17; hour++) {
+    for (var min = 0; min < 60; min += 30) {
+      var time = "".concat(hour.toString().padStart(2, '0'), ":").concat(min.toString().padStart(2, '0'));
+      var label = new Date(2000, 0, 1, hour, min).toLocaleTimeString('es-ES', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      options.push("<option value=\"".concat(time, "\">").concat(label, "</option>"));
+    }
+  }
+  return options.join('');
+}
+
+/**
+ * Render upcoming meetings list
+ */
+function renderUpcomingMeetings(meetingsList) {
+  if (!meetingsList || meetingsList.length === 0) {
+    return '<p style="color: var(--text-secondary); text-align: center; padding: 20px;">No hay citas programadas</p>';
+  }
+  var upcoming = meetingsList.filter(function (m) {
+    return new Date(m.startTime) >= new Date() && m.status !== 'cancelled';
+  }).slice(0, 10);
+  if (upcoming.length === 0) {
+    return '<p style="color: var(--text-secondary); text-align: center; padding: 20px;">No hay citas próximas</p>';
+  }
+  return upcoming.map(function (meeting) {
+    var startTime = new Date(meeting.startTime);
+    var statusColors = {
+      'confirmed': '#38ef7d',
+      'requested': '#ffd700',
+      'pending': '#ff9800'
+    };
+    return "\n            <div style=\"padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 8px;\">\n                <div style=\"display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;\">\n                    <strong style=\"color: var(--text-primary);\">".concat(meeting.clientName, "</strong>\n                    <span style=\"padding: 2px 8px; border-radius: 4px; font-size: 11px; background: ").concat(statusColors[meeting.status], "22; color: ").concat(statusColors[meeting.status], ";\">\n                        ").concat(meeting.status, "\n                    </span>\n                </div>\n                <div style=\"font-size: 13px; color: var(--text-secondary);\">\n                    \uD83D\uDCC5 ").concat(startTime.toLocaleDateString('es-ES', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short'
+    }), "\n                    \u2022 ").concat(startTime.toLocaleTimeString('es-ES', {
+      hour: '2-digit',
+      minute: '2-digit'
+    }), "\n                </div>\n                <div style=\"font-size: 13px; color: var(--text-secondary); margin-top: 4px;\">\n                    ").concat(meeting.type, " \u2022 ").concat(meeting.clientEmail, "\n                </div>\n                ").concat(meeting.notes ? "<div style=\"font-size: 12px; color: var(--text-tertiary); margin-top: 8px; font-style: italic;\">".concat(meeting.notes, "</div>") : '', "\n            </div>\n        ");
+  }).join('');
+}
+
+/**
+ * Submit meeting request from modal
+ */
+function submitMeetingRequest() {
+  return _submitMeetingRequest.apply(this, arguments);
+}
+
 // Initialize mock data on module load
+function _submitMeetingRequest() {
+  _submitMeetingRequest = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+    var form, formData, data, _data$date$split$map, _data$date$split$map2, year, month, day, _data$startTime$split, _data$startTime$split2, hours, minutes, duration, startTime, endTime, _document$querySelect, _t3;
+    return _regenerator().w(function (_context7) {
+      while (1) switch (_context7.p = _context7.n) {
+        case 0:
+          form = document.getElementById('meetingSchedulerForm');
+          if (!(!form || !form.checkValidity())) {
+            _context7.n = 1;
+            break;
+          }
+          form === null || form === void 0 || form.reportValidity();
+          return _context7.a(2);
+        case 1:
+          formData = new FormData(form);
+          data = Object.fromEntries(formData); // Parse date and time
+          _data$date$split$map = data.date.split('-').map(Number), _data$date$split$map2 = _slicedToArray(_data$date$split$map, 3), year = _data$date$split$map2[0], month = _data$date$split$map2[1], day = _data$date$split$map2[2];
+          _data$startTime$split = data.startTime.split(':').map(Number), _data$startTime$split2 = _slicedToArray(_data$startTime$split, 2), hours = _data$startTime$split2[0], minutes = _data$startTime$split2[1];
+          duration = parseInt(data.duration);
+          startTime = new Date(year, month - 1, day, hours, minutes);
+          endTime = new Date(startTime.getTime() + duration * 60000);
+          _context7.p = 2;
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Creando cita...', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.INFO);
+          _context7.n = 3;
+          return requestMeeting({
+            agentId: 'ag_001',
+            // TODO: Get from current user
+            agentName: 'Krause Insurance',
+            clientId: null,
+            clientName: data.clientName,
+            clientEmail: data.clientEmail,
+            startTime: startTime.toISOString(),
+            endTime: endTime.toISOString(),
+            type: data.type,
+            notes: data.notes,
+            location: 'Virtual Meeting'
+          });
+        case 3:
+          // Close modal
+          (_document$querySelect = document.querySelector('.app-modal-overlay')) === null || _document$querySelect === void 0 || _document$querySelect.remove();
+          _context7.n = 5;
+          break;
+        case 4:
+          _context7.p = 4;
+          _t3 = _context7.v;
+          console.error('Error creating meeting:', _t3);
+          (0,_notifications_js__WEBPACK_IMPORTED_MODULE_1__.showNotification)('Error al crear la cita', _utils_constants_js__WEBPACK_IMPORTED_MODULE_2__.NOTIFICATION_TYPES.ERROR);
+        case 5:
+          return _context7.a(2);
+      }
+    }, _callee7, null, [[2, 4]]);
+  }));
+  return _submitMeetingRequest.apply(this, arguments);
+}
 initializeMockMeetings();
+
+// Expose functions globally for modal callbacks
+if (typeof window !== 'undefined') {
+  window.scheduling = {
+    submitMeetingRequest: submitMeetingRequest,
+    openMeetingScheduler: openMeetingScheduler
+  };
+}
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   getAgentAvailability: getAgentAvailability,
   getAgentMeetings: getAgentMeetings,
@@ -27597,7 +27714,9 @@ initializeMockMeetings();
   getMeetingById: getMeetingById,
   getPendingRequests: getPendingRequests,
   getAvailableAgents: getAvailableAgents,
-  initializeMockMeetings: initializeMockMeetings
+  initializeMockMeetings: initializeMockMeetings,
+  openMeetingScheduler: openMeetingScheduler,
+  submitMeetingRequest: submitMeetingRequest
 });
 
 /***/ }),
