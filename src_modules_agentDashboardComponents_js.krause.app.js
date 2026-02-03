@@ -48,7 +48,7 @@ var AgentPaymentSchedulePanel = /*#__PURE__*/function () {
     value: function () {
       var _render = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
         var _this = this;
-        var data, payments, _t;
+        var clients, payments, _t;
         return _regenerator().w(function (_context) {
           while (1) switch (_context.p = _context.n) {
             case 0:
@@ -61,12 +61,48 @@ var AgentPaymentSchedulePanel = /*#__PURE__*/function () {
             case 1:
               _context.p = 1;
               _context.n = 2;
-              return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request('?action=agent_payments', {
+              return _api_integration_js__WEBPACK_IMPORTED_MODULE_0__.apiService.request('?action=agent_clients', {
                 method: 'GET'
               });
             case 2:
-              data = _context.v;
-              payments = data.payments || data || []; // Filtrar por cliente si está especificado
+              clients = _context.v;
+              // Transformar datos de clientes a estructura de pagos
+              // Cada póliza activa genera un "pago pendiente" ficticio
+              payments = [];
+              clients.forEach(function (client) {
+                if (client.policies && client.policies.length > 0) {
+                  client.policies.forEach(function (policy) {
+                    if (policy.status === 'active') {
+                      // Calcular próxima fecha de pago basado en renewal_date
+                      var renewalDate = policy.renewal_date ? new Date(policy.renewal_date) : null;
+                      var nextPaymentDate = renewalDate || new Date();
+                      payments.push({
+                        id: "payment_".concat(policy.id),
+                        client_id: client.id,
+                        client_name: client.name,
+                        client_email: client.email,
+                        policy_id: policy.id,
+                        policy_number: policy.policy_number,
+                        policy_type: policy.policy_type,
+                        amount: parseFloat(policy.premium_amount || 0),
+                        due_date: nextPaymentDate.toISOString().split('T')[0],
+                        status: _this.calculatePaymentStatus(nextPaymentDate),
+                        proof_id: null
+                      });
+                    }
+                  });
+                }
+              });
+
+              // Guardar datos completos en JSON para reutilización
+              window.agentClientsData = {
+                clients: clients,
+                payments: payments,
+                lastUpdated: new Date().toISOString()
+              };
+              console.log('💾 Agent clients data stored:', window.agentClientsData);
+
+              // Filtrar por cliente si está especificado
               if (this.filteredClientId) {
                 payments = payments.filter(function (p) {
                   return p.client_id === _this.filteredClientId;
@@ -120,12 +156,23 @@ var AgentPaymentSchedulePanel = /*#__PURE__*/function () {
       return "\n            <tr class=\"".concat(urgencyClass, "\">\n                <td>\n                    <div class=\"client-info\">\n                        <strong>").concat(shortName, "</strong>\n                    </div>\n                </td>\n                <td><span class=\"policy-num\">").concat(payment.policy_number, "</span></td>\n                <td class=\"amount\">$").concat(parseFloat(payment.amount).toFixed(2), "</td>\n                <td>\n                    <div class=\"due-date ").concat(urgencyClass, "\">\n                        ").concat(this.formatShortDate(payment.due_date), "\n                        ").concat(daysUntilDue < 0 ? "<small class=\"text-danger\">-".concat(Math.abs(daysUntilDue), "d</small>") : daysUntilDue <= 3 ? "<small class=\"text-warning\">".concat(daysUntilDue, "d</small>") : '', "\n                    </div>\n                </td>\n                <td><span class=\"status-badge ").concat(statusClass, "\">").concat(this.getStatusText(payment.status), "</span></td>\n                <td>\n                    <div class=\"action-buttons\">\n                        ").concat(payment.proof_id ? "\n                            <button class=\"btn-icon\" title=\"Revisar comprobante\"\n                                    onclick=\"window.agentDashboard.paymentSchedule?.reviewReceipt('".concat(payment.proof_id, "', '").concat(payment.id, "')\">\n                                <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                                    <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/>\n                                    <polyline points=\"14 2 14 8 20 8\"/>\n                                    <path d=\"M16 13l-4 4-2-2\"/>\n                                </svg>\n                            </button>\n                        ") : '', "\n                        <button class=\"btn-icon\" title=\"Ver P\xF3liza\"\n                                onclick=\"window.openPolicyModal?.('").concat(payment.policy_id, "')\">\n                            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                                <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/>\n                                <polyline points=\"14 2 14 8 20 8\"/>\n                                <path d=\"M9 15h6\"/>\n                                <path d=\"M9 11h6\"/>\n                            </svg>\n                        </button>\n                    </div>\n                </td>\n            </tr>\n        ");
     }
   }, {
+    key: "calculatePaymentStatus",
+    value: function calculatePaymentStatus(dueDate) {
+      var now = new Date();
+      var due = new Date(dueDate);
+      var diffDays = Math.ceil((due - now) / (1000 * 60 * 60 * 24));
+      if (diffDays < 0) return 'overdue';
+      if (diffDays <= 7) return 'pending';
+      return 'upcoming';
+    }
+  }, {
     key: "getStatusClass",
     value: function getStatusClass(status) {
       var classes = {
         'paid': 'success',
         'pending': 'warning',
         'overdue': 'danger',
+        'upcoming': 'info',
         'cancelled': 'neutral'
       };
       return classes[status] || 'neutral';
@@ -137,6 +184,7 @@ var AgentPaymentSchedulePanel = /*#__PURE__*/function () {
         'paid': 'Pagado',
         'pending': 'Pendiente',
         'overdue': 'Vencido',
+        'upcoming': 'Próximo',
         'cancelled': 'Cancelado'
       };
       return texts[status] || status;
